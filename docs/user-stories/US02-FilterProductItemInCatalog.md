@@ -12,7 +12,7 @@
             <ol> 
                 <li>appropriate Price Range; </li>
                 <li>Products on Sale;</li>
-                <li>Product’s Brand;</li>
+                <li>Product’s Brand.</li>
             </ol>
 </td>
     </tr>
