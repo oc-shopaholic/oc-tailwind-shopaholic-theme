@@ -7,11 +7,11 @@
 <table>
     <tr>
         <td>1.</td>
-        <td>I can press the “LOG OUT” hyperlink.</td>
+        <td>I can press the "LOG OUT" hyperlink.</td>
     </tr>
     <tr>
         <td>2.</td>
-        <td>I can see the “Are you sure?” message.</td>
+        <td>I can see the "Are you sure?" message.</td>
     </tr>
     <tr>
         <td>3.</td>
@@ -19,7 +19,7 @@
     </tr>
     <tr>
         <td>4.</td>
-        <td>I can see the “Main” page with the “LOG IN” and “SIGN UP” hyperlinks.</td>
+        <td>I can see the "Main" page with the "LOG IN" and "SIGN UP" hyperlinks.</td>
     </tr>
 </table>
 
@@ -35,6 +35,6 @@
     </tr>
     <tr>
         <td>4A.</td>
-        <td>I don’t see the “Are you sure?” message.</td> 
+        <td>I don’t see the "Are you sure?" message.</td> 
     </tr>
 </table>
