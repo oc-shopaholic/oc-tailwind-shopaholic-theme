@@ -1,4 +1,4 @@
-# US-07: Sign Up
+# US-08: Sign Up
 
 ### As a User I can Sign up to the shop so that I can later perform US-7.
 
