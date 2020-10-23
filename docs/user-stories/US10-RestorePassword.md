@@ -97,7 +97,7 @@
     </tr>
     <tr>
         <td>10C.</td>
-        <td> I can see "Obligatory field" message under the field.</td>
+        <td> I can see "Re field" message under the field.</td>
     </tr>
     <tr>
         <td>11C.</td>
@@ -108,7 +108,7 @@
     </tr>
     <tr>
         <td>10C.</td>
-        <td> I can see "Obligatory field" message under the field.</td>
+        <td> I can see "Required field" message under the field.</td>
     </tr>
     <tr>
         <td>11C.</td>
@@ -119,7 +119,7 @@
     </tr>
     <tr>
         <td>11D.</td>
-        <td> I can see "Obligatory field" message under the field.</td>
+        <td> I can see "Required field field" message under the field.</td>
     </tr>
     <tr>
         <td>12D.</td>
