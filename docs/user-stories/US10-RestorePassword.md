@@ -119,7 +119,7 @@
     </tr>
     <tr>
         <td>11D.</td>
-        <td> I can see "Required field field" message under the field.</td>
+        <td> I can see "Required field" message under the field.</td>
     </tr>
     <tr>
         <td>12D.</td>
