@@ -18,22 +18,37 @@
     </tr>
 </table>
 
-#### **Alternative scenario:**
+#### **Alternative scenarios:**
 
 <table>
     <tr>
         <td colspan="2">I want to delete the Product Item from the Wish List from the “Product Description” page.</td>
     </tr>
     <tr>
-        <td>1a.</td>
+        <td>1A.</td>
         <td>I can see Product Cards.</td>
     </tr>
     <tr>
-        <td>2a.</td>
+        <td>2A.</td>
         <td>I can go to the “Product Description” page by clicking on Product Card.</td>
     </tr>
     <tr>
-        <td>3a.</td>
+        <td>3A.</td>
         <td>See pp.2 of the main scenario.</td>
+    </tr>
+    <tr>
+        <td colspan="2">I want to delete the Product Item from the Wish List from a Product Card.</td>
+    </tr>
+    <tr>
+        <td>1B.</td>
+        <td>I can see a Product Card.</td>
+    </tr>
+    <tr>
+        <td>2B.</td>
+        <td>I can delete a Product Item from the Wish List from a Product Card.</td>
+    </tr>
+    <tr>
+        <td>3B.</td>
+        <td>See pp.3 of the main scenario.</td>
     </tr>
 </table>
