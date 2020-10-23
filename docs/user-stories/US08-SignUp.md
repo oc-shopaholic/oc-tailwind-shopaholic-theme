@@ -44,7 +44,7 @@ I didn’t fill either the "Username" or the "Password" field and submitted the 
     </tr>
     <tr>
         <td>5A.</td>
-        <td> I can see the "Sorry, you didn’t fill the obligatory field(s) in" message.</td>
+        <td> I can see the "Sorry, you didn’t fill the required field(s) in" message.</td>
     </tr>
     <tr>
         <td>2A.</td>
@@ -70,7 +70,7 @@ I didn’t fill either the "Username" or the "Password" field and submitted the 
     </tr>
     <tr>
         <td>3C.</td>
-        <td>I can see the "Obligatory field" message under the field.</td>
+        <td>I can see the "Required field" message under the field.</td>
     </tr>
     <tr>
         <td>4C.</td>
@@ -81,7 +81,7 @@ I didn’t fill either the "Username" or the "Password" field and submitted the 
     </tr>
     <tr>
         <td>4D.</td>
-        <td> I can see "Obligatory field" message under the field.</td>
+        <td> I can see "Required field" message under the field.</td>
     </tr>
     <tr>
         <td>5D.</td>
