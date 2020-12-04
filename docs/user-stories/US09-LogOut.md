@@ -7,19 +7,12 @@
 <table>
     <tr>
         <td>1.</td>
-        <td>I can press the "LOG OUT" hyperlink.</td>
+        <td>I can press the "log out" hyperlink.</td>
     </tr>
+   
     <tr>
         <td>2.</td>
-        <td>I can see the "Are you sure?" message.</td>
-    </tr>
-    <tr>
-        <td>3.</td>
-        <td>I can confirm my desire to Log out.</td>
-    </tr>
-    <tr>
-        <td>4.</td>
-        <td>I can see the "Main" page with the "LOG IN" and "SIGN UP" hyperlinks.</td>
+        <td>I can see the the "LOG IN" and "SIGN UP" hyperlinks on the header.</td>
     </tr>
 </table>
 
@@ -27,14 +20,10 @@
 
 <table>
     <tr>
-        <td colspan="2">I decided not to log out.</td>
+        <td colspan="2">I didn't clicked on "Remember me" checkbox when I was signing in.</td>
     </tr>
     <tr>
-        <td>3A.</td>
-        <td>I do not confirm my desire to Log out.</td> 
-    </tr>
-    <tr>
-        <td>4A.</td>
-        <td>I don’t see the "Are you sure?" message.</td> 
+        <td>1A.</td>
+        <td>I can Log ou by just closing the window with the System.</td> 
     </tr>
 </table>
