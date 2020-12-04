@@ -7,7 +7,7 @@
 <table>
     <tr>
         <td>1.</td>
-        <td>I can go to the "Log in/Register" page.</td>
+        <td>I can go to the "Log in/Sign up" page.</td>
     </tr>
     <tr>
         <td>2.</td>
