@@ -23,6 +23,6 @@
     </tr>
     <tr>
         <td>1A.</td>
-        <td>I can Log ou by just closing the window with the System.</td> 
+        <td>I can Log out by just closing the window with the System.</td> 
     </tr>
 </table>
