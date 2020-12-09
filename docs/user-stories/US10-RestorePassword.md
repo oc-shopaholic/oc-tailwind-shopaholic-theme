@@ -82,7 +82,7 @@
         <td> See pp. 2 or of the main scenario.</td>
     </tr>
     <tr>
-        <td colspan="2">When I perform pp. 11 or of the main scenario it becomes obvious that "Enter New Password" and "Repeat New password" fields are not the same.</td>
+        <td colspan="2">When I perform pp. 11 or of the main scenario it becomes obvious that "Enter New Password" and "Repeat New Password" fields are not the same.</td>
     </tr>
     <tr>
         <td>12B.</td>
