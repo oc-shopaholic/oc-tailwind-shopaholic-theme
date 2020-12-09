@@ -9,10 +9,9 @@
         <td>1.</td>
         <td>I can press the "log out" hyperlink.</td>
     </tr>
-   
-    <tr>
+       <tr>
         <td>2.</td>
-        <td>I can see the the "LOG IN" and "SIGN UP" hyperlinks on the header.</td>
+        <td>I can see the the "log in" and "sign up" hyperlinks on the header.</td>
     </tr>
 </table>
 
