@@ -1,21 +1,21 @@
 # US-09:  Log Out
-### As an Authenticated User I can Log out from the Shop so that I can not leave my account logged in when I don’t need it.
+As an Authenticated User I can Log out from the System so that I can not leave my account logged in when I don’t need it.
 
 
-#### **Acceptance criteria:**
+## **Acceptance criteria:**
 
 <table>
     <tr>
         <td>1.</td>
-        <td>I can press the "log out" hyperlink.</td>
+        <td>I can press the "Log out" hyperlink.</td>
     </tr>
        <tr>
         <td>2.</td>
-        <td>I can see the the "log in" and "sign up" hyperlinks on the header.</td>
+        <td>I can go to the "Log in/Sign up" page.</td>
     </tr>
 </table>
 
-#### **Negative scenario:**
+## **Negative scenario:**
 
 <table>
     <tr>
