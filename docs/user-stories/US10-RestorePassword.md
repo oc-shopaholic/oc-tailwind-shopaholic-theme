@@ -1,8 +1,8 @@
 # US-10: Restore Password
 
-### As a User I can restore my Password for the Shop so that I can Log in if I do not remember my Password. 
+As a User I can restore my Password for the Shop so that I can Log in if I do not remember my Password. 
 
-#### **Acceptance criteria:**
+## **Acceptance criteria:**
 
 <table>
     <tr>
@@ -75,7 +75,7 @@
     </tr>
 </table>
 
-#### **Alternative scenarios:**
+## **Alternative scenarios:**
 
 <table>
     <tr>
@@ -86,7 +86,7 @@
         <td> See pp. 2 or of the main scenario.</td>
     </tr>
     <tr>
-        <td colspan="2">When I perform pp. 11 or of the main scenario it becomes obvious that "Enter New Password" and "Repeat New Password" fields are not the same.</td>
+        <td colspan="2">When I perform pp. 11 of the main scenario it becomes obvious that "Enter New Password" and "Repeat New Password" fields are not the same.</td>
     </tr>
     <tr>
         <td>13B.</td>
