@@ -21,8 +21,8 @@ As a User I can Sign up to the shop so that I can later perform US-7.
         <td>4.</td>
         <td>The system must validate the entered information:
             <ol>
-                <li>When I exit the active "E-mail" field;</li>
-                <li>When I click the "Sign up" hyperlink. </li>
+                <li>when I exit the active "E-mail" field;</li>
+                <li>when I click the "Sign up" hyperlink. </li>
             </ol>
         </td>
     </tr>
@@ -36,13 +36,20 @@ As a User I can Sign up to the shop so that I can later perform US-7.
     </tr>
     <tr>
         <td>7.</td>
-        <td>I can see "Please, confirm your e-mail" message on every page until I confirm the e-mail.</td>
+        <td>I can see "Please, confirm your e-mail" message on every page until I confirm my e-mail.</td>
     </tr>
     <tr>
         <td>8.</td>
         <td>I can go to my E-mail account and see an E-mail with confirmation link.</td>
     </tr>
-    <!-- TODO: Add the confirmation link scenario. -->
+    <tr>
+        <td>9.</td>
+        <td>I can go through this confirmation link and see the "Main" page of the system.</td>
+    </tr>
+    <tr>
+        <td>10.</td>
+        <td>I don't see "Please, confirm your e-mail" message.</td>
+    </tr>
 </table>
 
 ## **Alternative scenarios:**
@@ -64,7 +71,7 @@ As a User I can Sign up to the shop so that I can later perform US-7.
     </tr>
     <tr>
         <td>3B.</td>
-        <td>"Please, fill this required field in." message under the "E-mail" field.</td>
+        <td>I can see "Please, fill this required field in." message under the "E-mail" field.</td>
     </tr>
     <tr>
         <td>4B.</td>
