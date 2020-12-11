@@ -1,8 +1,8 @@
 # US-11: Buy Product Item(s)
 
-### As a User I can Buy Product Item(s) so that I can use it (them).
+As a User I can Buy Product Item(s) so that I can use it (them).
 
-#### **Acceptance criteria:**
+## **Acceptance criteria:**
 
 <table>
     <tr>
@@ -31,40 +31,45 @@
                         <li>height</li>
                         <li>width</li>
                         <li>depth</li>
-                    </ol></li>
-            </ol></td>
+                    </ol>
+                </li>
+            </ol>
+        </td>
     </tr>
     <tr>
         <td>5.</td>
         <td>I can choose Product Item’s options:
             <ol>
                 <li>color.</li>
-            </ol></td>
+            </ol>
+        </td>
     </tr>
     <tr>
         <td>6.</td>
-        <td>I can choose the amount of Product Items I want to buy.</li>
-            </ol></td>
+        <td>I can choose the amount of Product Items I want to buy.</td>
     </tr>
     <tr>
         <td>7.</td>
-        <td>When I change ....</li>
-            </ol></td>
-    </tr>
-    <tr>
-        <td>7.</td>
-        <td>I can add the Project Item to the Wish List.</td>
+        <td>When I change the amount of Product Items I want to buy its Old Price is subtracted from or added to Old Price.</td>
     </tr>
     <tr>
         <td>8.</td>
-        <td>I can add the Project Item to the Shopping Cart.</td>
+        <td>When I change the amount of Product Items I want to buy its New Price is subtracted from or added to New Price.</td>
     </tr>
     <tr>
         <td>9.</td>
-        <td>I can go the Shopping Cart.</td>
+        <td>I can add Product Item to the Wish List.</td>
     </tr>
     <tr>
         <td>10.</td>
+        <td>I can add Product Item to the Shopping Cart.</td>
+    </tr>
+    <tr>
+        <td>11.</td>
+        <td>I can go the Shopping Cart.</td>
+    </tr>
+    <tr>
+        <td>12.</td>
         <td>I can browse my Order: 
             <ol>
                 <li>order item(s) image;</li>
@@ -72,40 +77,34 @@
                 <li>order item(s) quantity;</li>
                 <li>order item(s) price;</li>
                 <li>total order cost excluding delivery;</li>
-            </ol></td>
+            </ol>
+        </td>
     </tr>
     <tr>
-        <td>11.</td>
-        <td>I can delete an Order Item.
+        <td>13.</td>
+        <td>I can delete Order Item.
             <ol>
-                <li>When an Order Item is deleted, its cost is subtracted from the Total Order Cost Excluding Delivery.</li>
+                <li>When Order Item is deleted, its price is subtracted from the Total Order Cost Excluding Delivery.</li>
                 <li>I can undo this deleting.</li>
             </ol></td>
     </tr>
     <tr>
-        <td>12.</td>
-        <td>I can change the quantity of an Order Item.
+        <td>14.</td>
+        <td>I can change the quantity of Order Item.
             <ol>
-                <li>When I change the quantity of an Order Item its cost is subtracted from or added to tthe Total Order Cost Excluding Delivery and the Total Order Cost Including Delivery.</li>
+                <li>When I change the quantity of Order Item its price is subtracted from or added to the Total Order Cost Excluding Delivery and the Total Order Cost Including Delivery.</li>
                 <li>The quantity of an Ordered Item must be ≥ 1.</li>
             </ol></td>
     </tr>
     <tr>
-        <td>13.</td>
+        <td>15.</td>
         <td>I can go to the "Checkout" page and perform <a href="US12-MakeCheckout.md"> US-12</a>.</td>
 </table>
 
-#### **Alternative scenarios:**
+## **Alternative scenario:**
 
 <table>
-    <tr>
-        <td colspan="2">I choose "Continue shopping" at pp. 7 of the Main Scenario.</td>
-    </tr>
-    <tr>
-        <td>8А.</td>
-        <td>See pp.2 of the main scenario.</td>
-    </tr>
-    <tr>
+        <tr>
         <td colspan="2">I have nothing in the Shopping Cart</td>
     </tr>
     <tr>
