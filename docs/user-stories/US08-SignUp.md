@@ -1,6 +1,6 @@
 # US-08: Sign Up
 
-As a User I can Sign up to the shop so that I can later perform US-7.
+As a User I can Sign up to the system so that I can later perform US-7.
 
 ## **Acceptance criteria:**
 
@@ -32,7 +32,7 @@ As a User I can Sign up to the shop so that I can later perform US-7.
     </tr>
     <tr>
         <td>6.</td>
-        <td>Can see "My Аccount" and "Log out" hyperlinks in the header.</td>
+        <td>Can see "My Аccount" and "Log out" hyperlinks.</td>
     </tr>
     <tr>
         <td>7.</td>
