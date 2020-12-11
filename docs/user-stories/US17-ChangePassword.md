@@ -1,4 +1,4 @@
-# US-10: Change Password
+# US-17: Change Password
 
 As a User I can change my Password for the System so that I can be sure my account is secured. 
 
@@ -73,7 +73,7 @@ As a User I can change my Password for the System so that I can be sure my accou
 <td colspan="2"> I clicked on "Enter New Password." field and left it without filling in. </td>
     </tr>
     <tr>
-        <td>6.</td>
+        <td>6C.</td>
         <td> I can see "Please, fill this required field in" message under the field.</td>
     </tr>
     <tr>
