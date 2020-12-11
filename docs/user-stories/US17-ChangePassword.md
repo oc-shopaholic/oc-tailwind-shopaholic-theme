@@ -45,7 +45,10 @@ As a User I can change my Password for the System so that I can be sure my accou
         <td>9.</td>
         <td>I can see "You've changed your password." message.</td>
     </tr>
+</table>
+
 ## **Alternative scenarios:**
+<table>
     <tr>
         <td colspan="2">When I perform pp. 6 of the main scenario it becomes obvious that "Enter New Password" and "Repeat New Password" fields are not the same.</td>
     </tr>
