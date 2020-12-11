@@ -1,6 +1,6 @@
 # US-10: Restore Password
 
-As a User I can restore my Password for the Shop so that I can Log in if I do not remember my Password. 
+As a User I can restore my Password for the System so that I can Log in if I do not remember my Password. 
 
 ## **Acceptance criteria:**
 
@@ -43,18 +43,18 @@ As a User I can restore my Password for the Shop so that I can Log in if I do no
     </tr>
     <tr>
         <td>10.</td>
-        <td>I can fill the "Enter New Password" field in.</td>
+        <td>I can fill the "New password" field in.</td>
     </tr>
     <tr>
         <td>11.</td>
-        <td>I can fill the "Repeat New Password" field in.</td>
+        <td>I can fill the "Repeat new password" field in.</td>
     </tr>
     <tr>
         <td>12.</td>
         <td>The shop must validate the entered information:
             <ol>
-                <li>when I exit either active "Enter New Password" or  "Repeat New Password" field;</li>
-                <li>when I click on "Submit" hyperlink.</li>
+                <li>when I exit either active "New password" or  "Repeat new password" field;</li>
+                <li>when I click on "Submit" button.</li>
             </ol></td>
     </tr>
     <tr>
@@ -86,33 +86,33 @@ As a User I can restore my Password for the Shop so that I can Log in if I do no
         <td> See pp. 2 or of the main scenario.</td>
     </tr>
     <tr>
-        <td colspan="2">When I perform pp. 11 of the main scenario it becomes obvious that "Enter New Password" and "Repeat New Password" fields are not the same.</td>
+        <td colspan="2">When I perform pp. 11 of the main scenario it becomes obvious that "New password" and "Repeat new password" fields are not the same.</td>
     </tr>
     <tr>
         <td>13B.</td>
-        <td>I can see "Passwords are not the same" message.</td>
+        <td>I can see "Passwords are not the same" message under the "Repeat new password" field.</td>
     </tr>
     <tr>
         <td>14B.</td>
         <td>See pp. 9 of the main scenario.</td>
     </tr>
     <tr>
-        <td colspan="2"> I've clicked on "Enter New Password." field and left it without filling in. </td>
+        <td colspan="2"> I've clicked on "New password" field and left it without filling in. </td>
     </tr>
     <tr>
         <td>11C.</td>
-        <td> I can see "Please, fill this required field in" message under the field.</td>
+        <td> I can see "Please, fill this required field in" message under the "New password" field.</td>
     </tr>
     <tr>
         <td>12C.</td>
         <td>See pp.10 of the main scenario.</td>
     </tr>
        <tr>
-        <td colspan="2"> I've clicked on "Repeat New Password" field and left it without filling in. </td>
+        <td colspan="2">I've clicked on "Repeat new password" field and left it without filling in.</td>
     </tr>
     <tr>
         <td>12D.</td>
-        <td> I can see "Please, fill this required field in" message under the field.</td>
+        <td>I can see "Please, fill this required field in" message under the "Repeat new password" field.</td>
     </tr>
     <tr>
         <td>13D.</td>
