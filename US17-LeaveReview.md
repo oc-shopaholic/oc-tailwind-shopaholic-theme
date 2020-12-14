@@ -18,8 +18,11 @@ As an Authenticated User I can leave a review on a Product Item so that other Us
     </tr>
     <tr>
         <td>4.</td>
-        <td>I can rate a Product Item.<br>
-            Default rating - 5.</td>
+        <td>I can rate a Product Item.
+            <ol>
+                <li> Default rating - 5.</li>
+            </ol>
+        </td>
     </tr>
     <tr>
         <td>5.</td>
@@ -83,7 +86,4 @@ As an Authenticated User I can leave a review on a Product Item so that other Us
         <td>7B.</td>
         <td>See pp. 5 of the main scenario.</td>
     </tr>
-
 </table>
-
-РЕвью конкретно для товаров чтобы оставить ревью нужно быть авторизированным пользователем. Ревью окажется на сайте после одобрения модератором. Пользователь видит, что отзыв на модерации, но  остальные его не видят.
