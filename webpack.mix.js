@@ -10,7 +10,7 @@ mix.setResourceRoot('/themes/lovata-tailwind-shopaholic');
 
 mix.js('assets/src/js/app.js', 'assets/dist/js');
 
-mix.postCss('assets/src/css/app.css', 'assets/dist/css/style.css', postCssPlugins);
+mix.postCss('assets/src/css/app.css', 'assets/dist/css', postCssPlugins);
 
 mix.browserSync({
   proxy: '172.17.0.1',
@@ -33,5 +33,3 @@ mix.options({
   },
 });
 mix.version();
-// Disable mix-manifest.json
-Mix.manifest.refresh = _ => void 0;
