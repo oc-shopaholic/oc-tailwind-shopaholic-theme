@@ -24,12 +24,4 @@ mix.browserSync({
   ],
 });
 
-mix.options({
-  terser: {
-    extractComments: false,
-  },
-  fileLoaderDirs: {
-    fonts: '/assets/dist/fonts', // Where fonts will be loaded into from node_modules
-  },
-});
 mix.version();
