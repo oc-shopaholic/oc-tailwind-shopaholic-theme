@@ -1,0 +1,7 @@
+tabs:
+    fields:
+        top_info_block:
+            label: 'Top Info Block'
+            type: richeditor
+            span: full
+            tab: 'General'
