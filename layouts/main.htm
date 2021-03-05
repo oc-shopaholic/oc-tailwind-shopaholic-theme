@@ -1,0 +1,18 @@
+==
+<?php
+function onInit()
+{
+    $this['path_css'] = mix('assets/dist/css/app.css', 'themes/lovata-tailwind-shopaholic');
+    $this['path_js'] = mix('assets/dist/js/app.js', 'themes/lovata-tailwind-shopaholic');
+}
+?>
+==
+<!DOCTYPE html>
+<html lang="{{ activeLocale ? activeLocale : 'en' }}">
+    <head>
+        {% partial 'common/head/head' %}
+    </head>
+    <body itemscope itemtype="http://schema.org/WebPage">
+    {% page %}
+    </body>
+</html>
