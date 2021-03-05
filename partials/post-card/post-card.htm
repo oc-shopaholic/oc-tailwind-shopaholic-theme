@@ -1,0 +1,24 @@
+<article class="flex flex-col hover:text-blue-800">
+    <h{{ headingLevel }} class="mt-2 order-1">
+        <a href="{{ obArticle.getPageUrl('news-page') }}">{{ obArticle.title }}</a>
+    </h{{ headingLevel }}>
+    <div class="h-full">
+        {% if obArticle.preview_image is not empty %}
+            <picture>
+                <source media="(min-width:769px)" data-srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100, 'extension': 'webp'}) }}" type="image/webp">
+                <source media="(min-width:769px)" data-srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" type="image/jpeg">
+                <source media="(max-width:768px)" data-srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100, 'extension': 'webp'}) }}" type="image/webp">
+                <source media="(max-width:768px)" data-srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" type="image/jpeg">
+                <img class="w-full h-full rounded object-cover"
+                        src="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}"
+                        alt="{{ obArticle.preview_image.description }}"
+                >
+            </picture>
+        {% else %}
+            <img class="w-full h-full rounded object-cover"
+                    src="{{ 'assets/images/nophoto.svg'|theme }}"
+                    alt="No article image"
+            >
+        {% endif %}
+    </div>
+</article>
