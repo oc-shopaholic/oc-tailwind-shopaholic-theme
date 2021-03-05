@@ -3,3 +3,14 @@
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+
+@layer utilities {
+  .snap::after{
+    content: '';
+    width: .5rem;
+    display: block;
+  }
+  .scrollbar-x-none::-webkit-scrollbar {
+    height: 0;
+  }
+}
