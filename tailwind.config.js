@@ -4,7 +4,12 @@ module.exports = {
   purge: [],
   darkMode: false,
   theme: {},
-  variants: {},
+  variants: {
+    extend: {
+      margin: ['last'],
+      textColor: ['active'],
+    }
+  },
   plugins: [
     require('@tailwindcss/typography'),
   ],

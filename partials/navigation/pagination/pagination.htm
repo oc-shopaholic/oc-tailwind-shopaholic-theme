@@ -1,0 +1,23 @@
+<nav class="flex items-center justify-center" role="navigation" aria-label="Pagination">
+    <a class="bg-gray-200 w-6 md:w-10 h-6 md:h-10 inline-flex justify-center items-center rounded-sm text-gray-500 hover:text-blue-700 active:text-blue-900 mr-5 md:mr-9 flex-shrink-0" href="#" aria-label="Go to previous page">
+        <svg class="w-3 md:w-5 h-3 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+    </a>
+    <ul class="flex items-center text-sm md:text-base">
+        {% for key in 1..5 %}
+        <li class="mr-5 md:mr-9 last:mr-0">
+            {% if loop.first %}
+            <span class="inline-flex items-center justify-center w-6 md:w-10 h-6 md:h-10 rounded-sm bg-blue-800 text-white">{{ key }}</span>
+            {% else %}
+            <a class="text-gray-500 hover:text-blue-700 hover:underline" href="#">{{ key }}</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    <a class="bg-gray-200 w-6 md:w-10 h-6 md:h-10 inline-flex justify-center items-center rounded-sm text-gray-500 hover:text-blue-700 active:text-blue-900 ml-5 md:ml-9 flex-shrink-0" href="#" aria-label="Go to next page">
+        <svg class="w-3 md:w-5 h-3 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+    </a>
+</nav>
