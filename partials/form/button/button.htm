@@ -1,0 +1,27 @@
+{# TODO: Need fallback for focus-visible #}
+{% if ghost %}
+    {% set defaultClass = 'text-base rounded text-blue-800 border border-blue-800 border-solid py-3 px-8 cursor-default hover:bg-blue-700 hover:border-blue-700 hover:text-white focus:outline-none active:bg-blue-900 focus-visible:ring-2 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white' %}
+{% else %}
+    {% set defaultClass = 'text-base rounded bg-blue-800 text-white py-3 px-8 cursor-default hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus-visible:ring-2 focus:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white disabled:bg-gray-300 disabled:text-gray-600' %}
+{% endif %}
+{% if href %}
+    <a href="{{ href }}"
+        {% if blank == true %}
+            target="_blank" rel="noopener noreferrer"
+        {% endif %}
+    class="{{ defaultClass }} inline-block cursor-pointer {{ class }}">
+        {{ text }}
+    </a>
+{% else %}
+    <button class="{{ defaultClass }} {{ class }}"
+            type="{{ type|default('button') }}"
+            {% if onclick %}
+                onclick="{{ onclick }}"
+            {% endif %}
+            {% if disabled %}
+                disabled
+            {% endif %}
+    >
+        {{ text }}
+    </button>
+{% endif %}
