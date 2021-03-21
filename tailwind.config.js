@@ -1,9 +1,21 @@
+
 module.exports = {
+  corePlugins: {
+  },
   purge: [],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: false,
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        'full': '100%',
+        },
+      gridTemplateRows: {
+        'auto-fr-auto': 'auto 1fr auto',
+      }
+    }
   },
   variants: {},
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }
