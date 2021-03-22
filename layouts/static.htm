@@ -17,7 +17,9 @@ function onInit()
     <body class="h-full bg-white" itemscope itemtype="http://schema.org/WebPage">
         <div class="min-h-full grid grid-cols-full grid-rows-auto-fr-auto">
             {% partial 'layout/header/header' %}
-            {% partial 'layout/main/main' %}
+            <main>
+                {% page %}
+            </main>
             {% partial 'layout/footer/footer' %}
         </div>
     </body>
