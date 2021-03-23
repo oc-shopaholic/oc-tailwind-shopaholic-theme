@@ -1,10 +1,10 @@
-<div class="bg-gray-100 p-4 xl:py-2">
-<div class="grid grid-cols-1 grid-flow-col gap-4 xl:container xl:mx-auto">
-    <div class="prose max-w-none">{{ this.theme.top_info_block|raw }}</div>
-    <button class="m-1 xl:m-0 self-start xl:self-center" type="button" aria-label="Close ads">
-        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-    </button>
-</div>
+<div class="bg-gray-100 p-4 xl:py-2  hidden js-adWrapper">
+    <div class="grid grid-cols-1 grid-flow-col gap-4 xl:container xl:mx-auto">
+        <div class="prose max-w-none js-adContent">{{ this.theme.top_info_block|raw }}</div>
+        <button class="m-1 self-start js-adCloser" type="button" aria-label="Close ads">
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
 </div>
