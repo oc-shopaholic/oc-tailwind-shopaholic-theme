@@ -12,15 +12,15 @@ function onInit()
 <!DOCTYPE html>
 <html lang="{{ activeLocale ? activeLocale : 'en' }}" class="h-full">
     <head>
-        {% partial 'common/head/head' %}
+        {% partial 'head/head' %}
     </head>
     <body class="h-full bg-white" itemscope itemtype="http://schema.org/WebPage">
         <div class="min-h-full grid grid-cols-full grid-rows-auto-fr-auto">
-            {% partial 'layout/header/header' %}
+            {% partial 'header/header' %}
             <main>
                 {% page %}
             </main>
-            {% partial 'layout/footer/footer' %}
+            {% partial 'footer/footer' %}
         </div>
     </body>
 </html>
