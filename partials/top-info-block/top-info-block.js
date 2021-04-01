@@ -1,6 +1,6 @@
 export default new class TopInfoBlock {
   constructor() {
-    this.sTopInfoBlockWrapperClass = '_top-info-block-wrapper';
+    this.sTopInfoBlockWrapperClass = '_top-info-block';
     this.sTopInfoBlockButtonClosedClass = '_top-info-block-button-closed';
     this.sHiddenClass = 'hidden';
 
