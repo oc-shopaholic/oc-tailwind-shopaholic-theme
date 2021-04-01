@@ -11,10 +11,10 @@ mix.setResourceRoot('/themes/lovata-tailwind-shopaholic');
 mix.webpackConfig(webpack =>({
   plugins:[
     new webpack.ProvidePlugin({
-      $:  'jquery',
-      jQuery:  'jquery',
-      'window.jQuery':  'jquery',
-      'window.$':  'jquery',
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      'window.$': 'jquery',
     })
   ]
 }))
