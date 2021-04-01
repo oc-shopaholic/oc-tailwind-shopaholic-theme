@@ -1,7 +1,17 @@
 tabs:
     fields:
-        top_info_block:
+        section_top_info_block:
             label: 'Top Info Block'
+            type: section
+            span: full
+            tab: 'General'
+        top_info_block_active:
+            label: 'lovata.toolbox::lang.field.active'
+            type: switch
+            span: full
+            tab: 'General'
+        top_info_block:
+            label: 'lovata.toolbox::lang.field.description'
             type: richeditor
             span: full
             tab: 'General'

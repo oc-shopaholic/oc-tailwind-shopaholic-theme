@@ -9,7 +9,7 @@ function onInit()
 }
 function onStart()
 {
-    $this['sTopInfoBlockHash'] = !empty($this->theme->top_info_block) ? md5($this->theme->top_info_block) : '';
+    $this['sTopInfoBlockHash'] = $this->theme->top_info_block_active && !empty($this->theme->top_info_block) ? md5($this->theme->top_info_block) : '';
 }
 ?>
 ==
