@@ -11,10 +11,10 @@ mix.setResourceRoot('/themes/lovata-tailwind-shopaholic');
 mix.webpackConfig(webpack =>({
   plugins:[
     new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
-      'window.$': 'jquery',
+      $: require.resolve('jquery'),
+      jQuery: require.resolve('jquery'),
+      'window.jQuery': require.resolve('jquery'),
+      'window.$': require.resolve('jquery'),
     })
   ]
 }))
@@ -36,4 +36,5 @@ mix.browserSync({
 });
 
 mix.sourceMaps(true, 'source-map');
+mix.extract(['jquery']);
 mix.version();
