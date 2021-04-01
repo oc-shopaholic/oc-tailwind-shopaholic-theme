@@ -13,14 +13,22 @@ function onStart()
 }
 ?>
 ==
+
+{% spaceless %}
 <!DOCTYPE html>
-<html lang="{{ activeLocale ? activeLocale : 'en' }}">
+<html lang="{{ activeLocale ? activeLocale : 'en' }}" class="h-full">
     <head>
-        {% partial 'common/head/head' %}
+        {% partial 'head/head' %}
     </head>
-    <body itemscope itemtype="http://schema.org/WebPage">
-        {% partial 'content/top-info-block/top-info-block-wrapper' %}
-        {% page %}
-        {% partial 'common/footer/scripts' %}
+    <body class="h-full bg-white" itemscope itemtype="http://schema.org/WebPage">
+        <div class="min-h-full grid grid-cols-full grid-rows-auto-fr-auto">
+            {% partial 'header/header' %}
+            <main>
+                {% page %}
+            </main>
+            {% partial 'footer/footer' %}
+        </div>
+        {% partial 'footer/scripts' %}
     </body>
 </html>
+{% endspaceless %}

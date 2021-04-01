@@ -57,7 +57,7 @@ export default new class TopInfoBlock {
     const self = this;
 
     $.request('onInit', {
-      update: {'content/top-info-block/top-info-block-ajax': `.${this.sTopInfoBlockWrapperClass}`},
+      update: {'top-info-block/top-info-block-ajax': `.${this.sTopInfoBlockWrapperClass}`},
       complete: function () {
         $(`.${self.sTopInfoBlockWrapperClass}`).removeClass(self.sHiddenClass);
       },
