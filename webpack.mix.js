@@ -35,4 +35,6 @@ mix.browserSync({
   ],
 });
 
+mix.sourceMaps(true, 'source-map');
+mix.extract(['jquery']);
 mix.version();
