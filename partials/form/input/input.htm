@@ -1,0 +1,50 @@
+{% set labelStateClass = labelStateClass is not empty ? 'focuses' : '' %}
+<div class="{{ wrapperClass }}">
+    {% if labelText %}
+    <label for="{{ id }}" class="text-xs text-gray-600 inline-block mb-1 {{ labelClass }} {{ labelStateClass }}">{{ labelText }}</label>
+    {% endif %}
+    <input
+        type="{{ type|default('text') }}"
+        id="{{ id }}"
+        {% if name %}
+        name="{{ name }}"
+        {% endif %}
+        class="w-full border border-gray-400 py-3 px-4 rounded placeholder-gray-400 focus:outline-none focus:border-blue-800 focus:ring-transparent {{ inputClass }}"
+        data-was-change="false"
+        {{ required }}
+        {% if value is not same as(null) %}
+            value="{{ value }}"
+        {% endif %}
+        {% if placeholder %}
+            placeholder="{{ placeholder }}"
+        {% endif %}
+        {% if disabled == true %}
+            disabled="disabled"
+        {% endif %}
+        {% if min is not same as(null) %}
+            min="{{ min }}"
+        {% endif %}
+        {% if max is not same as(null) %}
+            max="{{ max }}"
+        {% endif %}
+        {% if maxLength is not same as(null) %}
+            maxlength="{{ maxLength }}"
+        {% endif %}
+        {% if minLength is not same as(null) %}
+            minlength="{{ minLength }}"
+        {% endif %}
+        {% if pattern is not same as(null) %}
+            pattern="{{ pattern }}"
+        {% endif %}
+        {% if validationErrorSelector is not same as(null) %}
+            data-bouncer-target=".{{ validationErrorSelector }}"
+        {% endif %}
+        {% if customErrorMessage is not same as(null) %}
+            data-bouncer-message="{{ customErrorMessage }}"
+        {% endif %}
+        {{ attribute|raw }}
+    >
+    {% if validationErrorSelector is not same as(null) %}
+        <span class="{{ validationErrorSelector }}"></span>
+    {% endif %}
+</div>
