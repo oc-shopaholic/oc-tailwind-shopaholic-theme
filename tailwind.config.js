@@ -17,7 +17,7 @@ module.exports = {
   },
   variants: {},
   plugins: [
-    require('@tailwindcss/forms')
+    require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('tailwindcss-pseudo-elements'),
     plugin(function ({ addUtilities }) {

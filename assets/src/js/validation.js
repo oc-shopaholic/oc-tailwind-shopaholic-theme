@@ -1,5 +1,4 @@
 import Bouncer from 'formbouncerjs';
-import { messages } from './constant';
 
 export default new class Validation {
   constructor() {
@@ -24,7 +23,7 @@ export default new class Validation {
       messageCustom: 'data-bouncer-message',
       messageTarget: 'data-bouncer-target',
       disableSubmit: true,
-      message,
+      messages: window.messages,
     });
 
     document.addEventListener('bouncerFormValid', ({ target }) => {
