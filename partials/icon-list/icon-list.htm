@@ -1,0 +1,18 @@
+<ul class="{{ ulClass }}">
+    {% for item in arItemList %}
+        <li class="{{ liClass }}">
+            {% set htmlTag = item.url is not empty ? 'a' : 'span' %}
+            {% set url = item.url is not empty ? 'href='~item.url~' target=_blank' %}
+            {% if interactiveSvg %}
+                <{{ htmlTag }} class="{{ itemClass }}" {{ url }}>
+                    <span class="{{ imgClass }}" style="-webkit-mask: url({{ item.image|media }}) center / 100% no-repeat"></span>
+                    <span class="sr-only">{{ item.title }}</span>
+                </{{ htmlTag }}>
+            {% else %}
+                <{{ htmlTag }} class="{{ itemClass }}" {{ url }}>
+                    <img class="{{ imgClass }}" src="{{ item.image|media }}" alt="{{ item.alt }}" title="{{ item.title }}" />
+                </{{ htmlTag }}>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
