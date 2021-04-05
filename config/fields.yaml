@@ -1,0 +1,159 @@
+tabs:
+    fields:
+### General
+        company_name:
+            label: 'Company name'
+            type: text
+            span: left
+            tab: 'General'
+        logo_section:
+            label: 'Logo'
+            type: section
+            span: full
+            tab: 'General'
+        logo_image:
+            label: 'Image'
+            type: mediafinder
+            span: left
+            mode: image
+            tab: 'General'
+        logo_title:
+            label: 'Title'
+            type: text
+            span: right
+            tab: 'General'
+        logo_alt:
+            label: 'Description'
+            type: text
+            span: right
+            tab: 'General'
+        footer_section:
+            label: 'Footer'
+            type: section
+            span: full
+            tab: 'General'
+        company_description_state:
+            label: 'Description'
+            type: switch
+            span: full
+            tab: 'General'
+        company_description:
+            type: text
+            span: full
+            tab: 'General'
+            trigger:
+                action: show
+                field: company_description_state
+                condition: checked
+        company_phone:
+            label: 'Phone'
+            type: text
+            span: left
+            tab: 'General'
+        company_mail:
+            label: 'E-mail'
+            type: text
+            span: right
+            tab: 'General'
+        company_address:
+            label: 'Address'
+            type: text
+            span: full
+            tab: 'General'
+### Footer
+        copyright_section:
+            label: 'Copyright'
+            type: section
+            span: full
+            tab: 'Footer'
+        copyright:
+            type: text
+            span: full
+            required: 0
+            tab: 'Footer'
+        shopaholic_section:
+            label: 'Shopaholic copyright'
+            type: section
+            span: full
+            tab: 'Footer'
+        shopaholic_copyright:
+            type: switch
+            defaul: on
+            span: full
+            tab: 'Footer'
+### Social networks
+        social_networks_section:
+            label: 'Social networks'
+            type: section
+            span: full
+            tab: 'Footer'
+        social_networks_state:
+            label: 'State section'
+            type: switch
+            span: full
+            tab: 'Footer'
+        social_networks_list:
+          type: repeater
+          style: collapsed
+          span: full
+          tab: 'Footer'
+          trigger:
+            action: show
+            field: social_networks_state
+            condition: checked
+          form:
+            fields:
+              title:
+                label: 'Title'
+                type: text
+                span: left
+                placeholder: 'Title'
+              image:
+                label: 'Image'
+                type: mediafinder
+                span: right
+                mode: image
+              url:
+                label: 'Url'
+                type: text
+                span: left
+                placeholder: 'Url of your social network'
+### Payment Methods
+        payment_methods_list_section:
+          label: 'Payment methods'
+          type: section
+          span: full
+          tab: 'Footer'
+        payment_methods_list_state:
+            label: 'State section'
+            type: switch
+            span: full
+            tab: 'Footer'
+        payment_methods_list:
+          type: repeater
+          style: collapsed
+          span: full
+          tab: 'Footer'
+          trigger:
+            action: show
+            field: payment_methods_list_state
+            condition: checked
+          form:
+            fields:
+              title:
+                label: 'lovata.toolbox::lang.field.title'
+                type: text
+                span: left
+              image:
+                label: 'lovata.toolbox::lang.field.image'
+                type: mediafinder
+                span: right
+                mode: image
+              description:
+                label: 'lovata.toolbox::lang.field.description'
+                type: text
+                span: left
+              url:
+                label: 'lovata.toolbox::lang.field.slug'
+                type: text
+                span: left

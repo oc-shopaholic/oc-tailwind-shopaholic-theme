@@ -9,16 +9,32 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         'full': '100%',
+        'social': 'repeat(auto-fill, 40px)',
+        'payments': 'repeat(auto-fit, 56px)',
         },
       gridTemplateRows: {
         'auto-fr-auto': 'auto 1fr auto',
+      },
+      outline: {
+        blue: ['1px dashed #1E40AF', '1px'],
+      },
+      backgroundSize: {
+        '65': '65%',
       }
     }
   },
-  variants: {},
+  variants: {
+    extend: {
+      margin: ['first'],
+      textColor: ['active'],
+      outline: ['focus-visible'],
+      backgroundColor: ['group-focus', 'active']
+    }
+  },
   plugins: [
     require('@tailwindcss/typography'),
     require('tailwindcss-pseudo-elements'),
+    require('@tailwindcss/aspect-ratio'),
     plugin(function ({ addUtilities }) {
       const newUtilities = {
         '.separator': {
