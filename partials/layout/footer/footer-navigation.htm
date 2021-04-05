@@ -1,0 +1,16 @@
+<nav>
+    <ul class="grid grid-cols-2 gap-2 md:gap-20">
+        {% for menu in 1..2 %}
+        <li>
+            <b class="mb-5 md:mb-6 inline-block text-gray-900 text-xl">Footer menu</b>
+            <ul>
+                {% for li in 1..5 %}
+                <li class="mt-4 first:mt-0">
+                    <a class="text-gray-600 underline text-base hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus:outline-blue" href="#">Menu item</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+</nav>
