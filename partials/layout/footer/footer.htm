@@ -1,1 +1,46 @@
-<footer></footer>
+<footer class="bg-gray-100">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-0 py-7 lg:pt-10 lg:pb-8 flex flex-col lg:flex-row divide-y lg:divide-y-0 divide-gray-300">
+    <div>
+        {% partial 'layout/footer/footer-navigation' %}
+        {% if this.theme.payment_methods_list_state == '1' %}
+            {% partial 'layout/footer/footer-payments' %}
+        {% endif %}
+    </div>
+    <div class="mt-6 lg:mt-0 pt-6 lg:pt-0 lg:ml-auto">
+        <span class="p-4 bg-gray-200 inline-block">
+            <img src="{{ this.theme.logo_image|media }}" alt="{{ this.theme.logo_title }}" />
+        </span>
+        {% if this.theme.company_description_state %}
+        <div class="mt-4 prose">
+            <p>Online store of decor and household goods.</p>
+        </div>
+        {% endif %}
+        {% if (this.theme.company_phone or this.theme.company_mail or this.theme.company_address) is not empty %}
+            <ul class="mt-4">
+                {% if this.theme.company_phone is not empty %}
+                    <li>
+                        <a class="text-blue-800 underline hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus:outline-blue" href="tel:{{ this.theme.company_phone|replace({'-': '', '(': '', ')': '', ' ': ''}) }}">{{ this.theme.company_phone }}</a>
+                    </li>
+                {% endif %}
+                {% if this.theme.company_mail is not empty %}
+                    <li class="mt-4 lg:mt-2">
+                        <a class="text-blue-800 underline hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus:outline-blue" href="mailto:{{ this.theme.company_mail }}">{{ this.theme.company_mail }}</a>
+                    </li>
+                {% endif %}
+                {% if this.theme.company_address is not empty %}
+                    <li class="mt-5 lg:mt-2">{{ this.theme.company_address }}</li>
+                {% endif %}
+            </ul>
+        {% endif %}
+        {% if this.theme.social_networks_state == '1' %}
+            {% partial 'layout/footer/footer-social' %}
+        {% endif %}
+    </div>
+</div>
+{% if this.theme.copyright is not empty %}
+    <div class="bg-gray-200 text-gray-700 text-center p-2.5 text-xs md:text-sm">© {{ 'now'|date('Y') }} {{ this.theme.copyright }}</div>
+{% endif %}
+{% if this.theme.shopaholic_copyright %}
+    <div class="text-center text-gray-600 p-2.5 text-xs md:text">Powered by <a class="underline text-blue-800 hover:text-blue-700 hover:no-underline focus:outline-blue active:text-blue-900 visited:text-purple-800" href="#">Shopaholic</a> and the <a class="underline text-blue-800 hover:text-blue-700 hover:no-underline focus:outline-blue active:text-blue-900 visited:text-purple-800" href="#">Tailwind</a> theme.</div>
+{% endif %}
+</footer>
