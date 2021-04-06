@@ -1,15 +1,32 @@
+[staticMenu FooterMenu]
+code = "footer-menu"
+
+==
+{% set arMenuList = FooterMenu.menuItems %}
 <nav>
-    <ul class="grid grid-cols-2 gap-2 md:gap-20">
-        {% for menu in 1..2 %}
+    <ul class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-20">
+        {% for arItemMenu in arMenuList if not arItemMenu.viewBag.isHidden %}
         <li>
-            <b class="mb-5 md:mb-6 inline-block text-gray-900 text-xl">Footer menu</b>
+            {% set htmlTag = arItemMenu.url is not empty ? 'a' : 'span' %}
+            {% set url =  arItemMenu.url is not empty ? 'href='~ arItemMenu.url %}
+            {% set external = (arItemMenu.viewBag.isExternal and arItemMenu.url is not empty) ? 'target=_blank' %}
+            {% set code =  arItemMenu.code is not empty ? 'data-code='~arItemMenu.code %}
+            <{{ htmlTag }} {{ url }} {{ external }} class="mb-5 md:mb-6 inline-block text-gray-900 text-xl {{ arItemMenu.viewBag.cssClass }}" {{ code }}>{{ arItemMenu.title }}</{{ htmlTag }}>
+            {% set arSubItemMenuList = arItemMenu.items %}
+            {% if arSubItemMenuList is not empty %}
             <ul>
-                {% for li in 1..5 %}
+                {% for arSubItemMenu in arSubItemMenuList %}
                 <li class="mt-4 first:mt-0">
-                    <a class="text-gray-600 underline text-base hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus:outline-blue" href="#">Menu item</a>
+                    {% set htmlTag = arSubItemMenu.url is not empty ? 'a' : 'span' %}
+                    {% set url =  arSubItemMenu.url is not empty ? 'href='~ arSubItemMenu.url %}
+                    {% set external = (arSubItemMenu.viewBag.isExternal and arSubItemMenu.url is not empty) ? 'target=_blank' %}
+                    {% set code =  arSubItemMenu.code is not empty ? 'data-code='~arItemMenu.code %}
+                    {% set interactiveClass = arSubItemMenu.url is not empty ? 'hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800' : 'cursor-default' %}
+                    <{{ htmlTag }} {{ url }} {{ external }} class="text-gray-600 underline text-base focus:outline-blue {{ interactiveClass }} {{ arSubItemMenu.viewBag.cssClass }}" {{ code }}>{{ arSubItemMenu.title }}</{{ htmlTag }}>
                 </li>
                 {% endfor %}
             </ul>
+            {% endif %}
         </li>
         {% endfor %}
     </ul>
