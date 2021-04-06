@@ -41,6 +41,6 @@
     <div class="bg-gray-200 text-gray-700 text-center p-2.5 text-xs md:text-sm">© {{ 'now'|date('Y') }} {{ this.theme.copyright }}</div>
 {% endif %}
 {% if this.theme.shopaholic_copyright %}
-    {% partial 'layout/footer/footer-powered-by' %}
+    <div class="text-center text-gray-600 p-2.5 text-xs md:text">Powered by <a class="underline text-blue-800 hover:text-blue-700 hover:no-underline focus:outline-blue active:text-blue-900 visited:text-purple-800" href="#">Shopaholic</a> and the <a class="underline text-blue-800 hover:text-blue-700 hover:no-underline focus:outline-blue active:text-blue-900 visited:text-purple-800" href="#">Tailwind</a> theme.</div>
 {% endif %}
 </footer>
