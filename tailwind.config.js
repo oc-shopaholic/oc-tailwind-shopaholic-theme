@@ -12,10 +12,19 @@ module.exports = {
         },
       gridTemplateRows: {
         'auto-fr-auto': 'auto 1fr auto',
-      }
+      },
+      outline: {
+        blue: ['1px dashed #1E40AF', '1px'],
+      },
     }
   },
-  variants: {},
+  variants: {
+    extend: {
+      margin: ['first'],
+      textColor: ['active'],
+      outline: ['focus-visible']
+    }
+  },
   plugins: [
     require('@tailwindcss/typography'),
     require('tailwindcss-pseudo-elements'),

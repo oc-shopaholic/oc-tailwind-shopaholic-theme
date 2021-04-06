@@ -6,29 +6,29 @@ code = "navigation-footer"
 <nav>
     <ul class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-20">
         {% for arItemMenu in arMenuList if not arItemMenu.viewBag.isHidden %}
-        <li>
-            {% set htmlTag = arItemMenu.url is not empty ? 'a' : 'span' %}
-            {% set url =  arItemMenu.url is not empty ? 'href='~ arItemMenu.url %}
-            {% set external = (arItemMenu.viewBag.isExternal and arItemMenu.url is not empty) ? 'target=_blank' %}
-            {% set code =  arItemMenu.code is not empty ? 'data-code='~arItemMenu.code %}
-            {% set interactiveClass = arItemMenu.url is not empty ? 'underline hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus-visible:outline-blue' : 'cursor-default' %}
-            <{{ htmlTag }} {{ url }} {{ external }} class="mb-5 md:mb-6 inline-block text-gray-900 text-xl {{ interactiveClass }} {{ arItemMenu.viewBag.cssClass }}" {{ code }}>{{ arItemMenu.title }}</{{ htmlTag }}>
-            {% set arSubItemMenuList = arItemMenu.items %}
-            {% if arSubItemMenuList is not empty %}
-            <ul>
-                {% for arSubItemMenu in arSubItemMenuList if not arSubItemMenu.viewBag.isHidden %}
-                <li class="mt-4 first:mt-0">
-                    {% set htmlTag = arSubItemMenu.url is not empty ? 'a' : 'span' %}
-                    {% set url =  arSubItemMenu.url is not empty ? 'href='~ arSubItemMenu.url %}
-                    {% set external = (arSubItemMenu.viewBag.isExternal and arSubItemMenu.url is not empty) ? 'target=_blank' %}
-                    {% set code =  arSubItemMenu.code is not empty ? 'data-code='~arSubItemMenu.code %}
-                    {% set interactiveClass = arSubItemMenu.url is not empty ? 'underline hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus-visible:outline-blue ' : 'cursor-default' %}
-                    <{{ htmlTag }} {{ url }} {{ external }} class="text-gray-600 text-base {{ interactiveClass }} {{ arSubItemMenu.viewBag.cssClass }}" {{ code }}>{{ arSubItemMenu.title }}</{{ htmlTag }}>
-                </li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-        </li>
+            <li>
+                {% set htmlTag = arItemMenu.url is not empty ? 'a' : 'span' %}
+                {% set url =  arItemMenu.url is not empty ? 'href='~ arItemMenu.url %}
+                {% set external = (arItemMenu.viewBag.isExternal and arItemMenu.url is not empty) ? 'target=_blank' %}
+                {% set code =  arItemMenu.code is not empty ? 'data-code='~arItemMenu.code %}
+                {% set interactiveClass = arItemMenu.url is not empty ? 'underline hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus-visible:outline-blue' : 'cursor-default' %}
+                <{{ htmlTag }} {{ url }} {{ external }} class="mb-5 md:mb-6 inline-block text-gray-900 text-xl {{ interactiveClass }} {{ arItemMenu.viewBag.cssClass }}" {{ code }}>{{ arItemMenu.title }}</{{ htmlTag }}>
+                {% set arSubItemMenuList = arItemMenu.items %}
+                {% if arSubItemMenuList is not empty %}
+                    <ul>
+                        {% for arSubItemMenu in arSubItemMenuList if not arSubItemMenu.viewBag.isHidden %}
+                            <li class="mt-4 first:mt-0">
+                                {% set htmlTag = arSubItemMenu.url is not empty ? 'a' : 'span' %}
+                                {% set url =  arSubItemMenu.url is not empty ? 'href='~ arSubItemMenu.url %}
+                                {% set external = (arSubItemMenu.viewBag.isExternal and arSubItemMenu.url is not empty) ? 'target=_blank' %}
+                                {% set code =  arSubItemMenu.code is not empty ? 'data-code='~arSubItemMenu.code %}
+                                {% set interactiveClass = arSubItemMenu.url is not empty ? 'underline hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus-visible:outline-blue ' : 'cursor-default' %}
+                                <{{ htmlTag }} {{ url }} {{ external }} class="text-gray-600 text-base {{ interactiveClass }} {{ arSubItemMenu.viewBag.cssClass }}" {{ code }}>{{ arSubItemMenu.title }}</{{ htmlTag }}>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
         {% endfor %}
     </ul>
 </nav>
