@@ -28,7 +28,7 @@ module.exports = {
       margin: ['first'],
       textColor: ['active'],
       outline: ['focus-visible'],
-      backgroundColor: ['group-focus', 'active']
+      backgroundColor: ['group-focus', 'active', 'focus-visible']
     }
   },
   plugins: [

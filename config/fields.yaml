@@ -17,13 +17,13 @@ tabs:
             span: left
             mode: image
             tab: 'General'
-        logo_title:
-            label: 'Title'
+        logo_alt:
+            label: 'Alternative text'
             type: text
             span: right
             tab: 'General'
-        logo_alt:
-            label: 'Description'
+        logo_title:
+            label: 'Title'
             type: text
             span: right
             tab: 'General'
@@ -77,6 +77,7 @@ tabs:
             span: full
             tab: 'Footer'
         shopaholic_copyright:
+            label: 'Active'
             type: switch
             defaul: on
             span: full
@@ -88,7 +89,7 @@ tabs:
             span: full
             tab: 'Footer'
         social_networks_state:
-            label: 'State section'
+            label: 'Active'
             type: switch
             span: full
             tab: 'Footer'
@@ -103,16 +104,21 @@ tabs:
             condition: checked
           form:
             fields:
-              title:
-                label: 'Title'
+              alt:
+                label: 'Alternative text'
                 type: text
                 span: left
-                placeholder: 'Title'
               image:
                 label: 'Image'
                 type: mediafinder
                 span: right
                 mode: image
+                comment: Only .svg files
+                commentHtml: true
+              title:
+                label: 'Title'
+                type: text
+                span: left
               url:
                 label: 'Url'
                 type: text
@@ -125,7 +131,7 @@ tabs:
           span: full
           tab: 'Footer'
         payment_methods_list_state:
-            label: 'State section'
+            label: 'Active'
             type: switch
             span: full
             tab: 'Footer'
@@ -140,8 +146,8 @@ tabs:
             condition: checked
           form:
             fields:
-              title:
-                label: 'lovata.toolbox::lang.field.title'
+              alt:
+                label: 'Alternative text'
                 type: text
                 span: left
               image:
@@ -149,8 +155,8 @@ tabs:
                 type: mediafinder
                 span: right
                 mode: image
-              description:
-                label: 'lovata.toolbox::lang.field.description'
+              title:
+                label: 'Title'
                 type: text
                 span: left
               url:
