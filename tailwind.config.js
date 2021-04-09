@@ -12,10 +12,22 @@ module.exports = {
         },
       gridTemplateRows: {
         'auto-fr-auto': 'auto 1fr auto',
+      },
+      outline: {
+        blue: ['1px dashed #1E40AF', '1px'],
       }
     }
   },
-  variants: {},
+  variants: {
+    extend: {
+      backgroundColor: ['active', 'disabled'],
+      ringWidth: ['focus-visible'],
+      ringColor: ['hover', 'active', 'focus', 'focus-visible'],
+      ringOffsetWidth: ['responsive', 'focus-visible', 'focus'],
+      textColor: ['active', 'focus-visible'],
+      outline: ['focus-visible'],
+    }
+  },
   plugins: [
     require('@tailwindcss/typography'),
     require('tailwindcss-pseudo-elements'),
