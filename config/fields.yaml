@@ -1,165 +1,72 @@
 tabs:
     fields:
-### General
-        company_name:
-            label: 'Company name'
+### Content
+        business_card_section:
+            label: 'Business card'
+            type: section
+            span: full
+            tab: 'Content'
+        business_card_name:
+            label: 'Store name'
             type: text
             span: left
-            tab: 'General'
-        logo_section:
+            tab: 'Content'
+        business_card_image:
             label: 'Logo'
-            type: section
-            span: full
-            tab: 'General'
-        logo_image:
-            label: 'Image'
+            comment: 'Recommended resolution: 300×75px. The SVG format is supported.'
             type: mediafinder
-            span: left
+            span: right
             mode: image
-            tab: 'General'
-        logo_alt:
-            label: 'Alternative text'
-            type: text
-            span: right
-            tab: 'General'
-        logo_title:
-            label: 'Title'
-            type: text
-            span: right
-            tab: 'General'
-        footer_section:
-            label: 'Footer'
-            type: section
-            span: full
-            tab: 'General'
-        company_description_state:
-            label: 'Description'
-            type: switch
-            span: full
-            tab: 'General'
-        company_description:
-            type: text
-            span: full
-            tab: 'General'
-            trigger:
-                action: show
-                field: company_description_state
-                condition: checked
-        company_phone:
-            label: 'Phone'
+            tab: 'Content'
+        business_card_description:
+            label: 'Store description or tagline'
             type: text
             span: left
-            tab: 'General'
-        company_mail:
-            label: 'E-mail'
+            tab: 'Content'
+        business_card_image_alt:
+            label: 'Alternative text'
+            comment: 'This string will have been shown in case an image has not loaded on the page.'
             type: text
             span: right
-            tab: 'General'
-        company_address:
+            tab: 'Content'
+        business_card_phone:
+            label: 'Phone'
+            comment: 'This string will be rendered on the page as a clickable hyperlink.'
+            type: text
+            span: left
+            tab: 'Content'
+        business_card_image_title:
+            label: 'Title'
+            comment: 'This string will be shown on the mouse hover on the image.'
+            type: text
+            span: right
+            tab: 'Content'
+        business_card_email:
+            label: 'E-mail'
+            comment: 'This string will be rendered on the page as a clickable hyperlink.'
+            type: text
+            span: left
+            tab: 'Content'
+        business_card_address:
             label: 'Address'
             type: text
             span: full
-            tab: 'General'
-### Footer
-        copyright_section:
-            label: 'Copyright'
-            type: section
-            span: full
-            tab: 'Footer'
-        copyright:
+            tab: 'Content'
+        business_card_copyright:
+            label: 'Page copyright'
+            placeholder: '© 2020 Atmosphere. All rights reserved.'
             type: text
             span: full
-            required: 0
-            tab: 'Footer'
-        shopaholic_section:
-            label: 'Shopaholic copyright'
+            tab: 'Content'
+### Functionality
+        shopaholic_bar_section:
+            label: 'Powered by Shopaholic bar'
             type: section
             span: full
-            tab: 'Footer'
-        shopaholic_copyright:
+            tab: 'Functionality'
+        shopaholic_bar:
             label: 'Active'
             type: switch
             defaul: on
             span: full
-            tab: 'Footer'
-### Social networks
-        social_networks_section:
-            label: 'Social networks'
-            type: section
-            span: full
-            tab: 'Footer'
-        social_networks_state:
-            label: 'Active'
-            type: switch
-            span: full
-            tab: 'Footer'
-        social_networks_list:
-          type: repeater
-          style: collapsed
-          span: full
-          tab: 'Footer'
-          trigger:
-            action: show
-            field: social_networks_state
-            condition: checked
-          form:
-            fields:
-              alt:
-                label: 'Alternative text'
-                type: text
-                span: left
-              image:
-                label: 'Image'
-                type: mediafinder
-                span: right
-                mode: image
-                comment: Only .svg files
-                commentHtml: true
-              title:
-                label: 'Title'
-                type: text
-                span: left
-              url:
-                label: 'Url'
-                type: text
-                span: left
-                placeholder: 'Url of your social network'
-### Payment Methods
-        payment_methods_list_section:
-          label: 'Payment methods'
-          type: section
-          span: full
-          tab: 'Footer'
-        payment_methods_list_state:
-            label: 'Active'
-            type: switch
-            span: full
-            tab: 'Footer'
-        payment_methods_list:
-          type: repeater
-          style: collapsed
-          span: full
-          tab: 'Footer'
-          trigger:
-            action: show
-            field: payment_methods_list_state
-            condition: checked
-          form:
-            fields:
-              alt:
-                label: 'Alternative text'
-                type: text
-                span: left
-              image:
-                label: 'lovata.toolbox::lang.field.image'
-                type: mediafinder
-                span: right
-                mode: image
-              title:
-                label: 'Title'
-                type: text
-                span: left
-              url:
-                label: 'lovata.toolbox::lang.field.slug'
-                type: text
-                span: left
+            tab: 'Functionality'
