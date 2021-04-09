@@ -12,7 +12,7 @@ code = "navigation-footer"
                 {% set external = (arItemMenu.viewBag.isExternal and arItemMenu.url is not empty) ? 'target=_blank' %}
                 {% set code =  arItemMenu.code is not empty ? 'data-code='~arItemMenu.code %}
                 {% set interactiveClass = arItemMenu.url is not empty ? 'underline hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus-visible:outline-blue' : 'cursor-default' %}
-                <{{ htmlTag }} {{ url }} {{ external }} class="mb-5 md:mb-6 inline-block text-gray-900 text-xl {{ interactiveClass }} {{ arItemMenu.viewBag.cssClass }}" {{ code }}>{{ arItemMenu.title }}</{{ htmlTag }}>
+                <{{ htmlTag }} {{ url }} {{ external }} class="uppercase mb-5 md:mb-6 inline-block text-gray-900 text-xl {{ interactiveClass }} {{ arItemMenu.viewBag.cssClass }}" {{ code }}>{{ arItemMenu.title }}</{{ htmlTag }}>
                 {% set arSubItemMenuList = arItemMenu.items %}
                 {% if arSubItemMenuList is not empty %}
                     <ul>
