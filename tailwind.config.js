@@ -26,15 +26,18 @@ module.exports = {
   variants: {
     extend: {
       margin: ['first'],
-      textColor: ['active'],
+      textColor: ['active', 'focus-visible'],
       outline: ['focus-visible'],
-      backgroundColor: ['group-focus', 'active', 'focus-visible']
+      backgroundColor: ['group-focus', 'active', 'focus-visible', 'disabled'],
+      ringWidth: ['focus-visible'],
+      ringColor: ['hover', 'active', 'focus', 'focus-visible'],
+      ringOffsetWidth: ['responsive', 'focus-visible', 'focus']
     }
   },
   plugins: [
     require('@tailwindcss/typography'),
-    require('tailwindcss-pseudo-elements'),
     require('@tailwindcss/aspect-ratio'),
+    require('tailwindcss-pseudo-elements'),
     plugin(function ({ addUtilities }) {
       const newUtilities = {
         '.separator': {
