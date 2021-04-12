@@ -74,6 +74,91 @@ tabs:
             type: richeditor
             span: full
             tab: 'Content'
+
+        payment_methods_list_section:
+            label: 'Payment methods'
+            type: section
+            span: full
+            tab: 'Content'
+        payment_methods_list_active:
+            label: 'lovata.toolbox::lang.field.active'
+            type: switch
+            span: full
+            tab: 'Content'
+        payment_methods_list:
+            type: repeater
+            span: full
+            style: collapsed
+            tab: 'Content'
+            trigger:
+                action: show
+                field: payment_methods_list_active
+                condition: checked
+            form:
+                fields:
+                    title:
+                        label: 'lovata.toolbox::lang.field.title'
+                        type: text
+                        span: left
+                        placeholder: 'lovata.toolbox::lang.field.title'
+                    image:
+                        label: 'lovata.toolbox::lang.field.image'
+                        type: mediafinder
+                        span: right
+                        mode: image
+                    description:
+                        label: 'lovata.toolbox::lang.field.description'
+                        type: text
+                        span: left
+                        placeholder: 'lovata.toolbox::lang.field.description'
+                    url:
+                        label: 'lovata.toolbox::lang.field.slug'
+                        type: text
+                        span: left
+                        placeholder: 'lovata.toolbox::lang.field.slug'
+
+        social_networks_list_section:
+            label: 'Social Networks'
+            type: section
+            span: full
+            tab: 'Content'
+        social_networks_list_active:
+            label: 'lovata.toolbox::lang.field.active'
+            type: switch
+            span: full
+            tab: 'Content'
+        social_networks_list:
+            type: repeater
+            span: full
+            style: collapsed
+            tab: 'Content'
+            trigger:
+                action: show
+                field: social_networks_list_active
+                condition: checked
+            form:
+                fields:
+                    title:
+                        label: 'lovata.toolbox::lang.field.title'
+                        type: text
+                        span: left
+                        placeholder: 'lovata.toolbox::lang.field.title'
+                    image:
+                        label: 'lovata.toolbox::lang.field.image'
+                        type: mediafinder
+                        span: right
+                        mode: image
+                    description:
+                        label: 'lovata.toolbox::lang.field.description'
+                        type: text
+                        span: left
+                        placeholder: 'lovata.toolbox::lang.field.description'
+                    url:
+                        label: 'lovata.toolbox::lang.field.slug'
+                        type: text
+                        span: left
+                        placeholder: 'lovata.toolbox::lang.field.slug'
+
 ### Functionality
         shopaholic_bar_section:
             label: 'Powered by Shopaholic bar'

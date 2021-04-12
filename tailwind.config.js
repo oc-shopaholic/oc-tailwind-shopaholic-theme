@@ -26,7 +26,7 @@ module.exports = {
   variants: {
     extend: {
       margin: ['first'],
-      textColor: ['active', 'focus-visible'],
+      textColor: ['active', 'focus-visible', 'visited'],
       outline: ['focus-visible'],
       backgroundColor: ['group-focus', 'active', 'focus-visible', 'disabled'],
       ringWidth: ['focus-visible'],
