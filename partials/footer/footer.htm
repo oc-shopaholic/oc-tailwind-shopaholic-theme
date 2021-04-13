@@ -1,7 +1,12 @@
+{##}
 <footer class="bg-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-0 py-7 lg:pt-10 lg:pb-8 flex flex-col md:flex-row">
-        <div class="mb-6 lg:mb-0 pb-6 lg:pb-0 border-b lg:border-b-0 border-gray-300"></div> <!-- TODO: Replace with pseudo element -->
+        <div class="mb-6 lg:mb-0 pb-6 lg:pb-0 border-b lg:border-b-0 border-gray-300 flex flex-col">
         {% partial 'navigation-column/navigation-column' %}
+            {% if this.theme.payment_methods_list_active %}
+                {% partial 'icon-list/icon-list' arItemList=this.theme.payment_methods_list %}
+            {% endif %}
+        </div>
         <div class="lg:pl-8 lg:ml-auto max-w-xs">
             {% if this.theme.business_card_image is not empty %}
                 <img class="block max-h-14" src="{{ this.theme.business_card_image|media }}" alt="{{ this.theme.business_card_image_alt }}" title="{{ this.theme.business_card_image_title }}" />
@@ -13,12 +18,12 @@
                 <ul class="mt-4">
                     {% if this.theme.business_card_phone is not empty %}
                         <li>
-                            <a class="text-blue-800 underline hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus:outline-blue" href="tel:{{ this.theme.business_card_phone|replace({'-': '', '(': '', ')': '', ' ': ''}) }}">{{ this.theme.business_card_phone }}</a>
+                            <a class="text-blue-800 underline hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus-visible:outline-blue" href="tel:{{ this.theme.business_card_phone|replace({'-': '', '(': '', ')': '', ' ': ''}) }}">{{ this.theme.business_card_phone }}</a>
                         </li>
                     {% endif %}
                     {% if this.theme.business_card_email is not empty %}
                         <li class="mt-4 lg:mt-2">
-                            <a class="text-blue-800 underline hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus:outline-blue" href="mailto:{{ this.theme.business_card_email }}">{{ this.theme.business_card_email }}</a>
+                            <a class="text-blue-800 underline hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus-visible:outline-blue" href="mailto:{{ this.theme.business_card_email }}">{{ this.theme.business_card_email }}</a>
                         </li>
                     {% endif %}
                     {% if this.theme.business_card_address is not empty %}
@@ -26,12 +31,22 @@
                     {% endif %}
                 </ul>
             {% endif %}
+            {% if this.theme.social_networks_list_active %}
+                {% partial 'icon-list/icon-list'
+                    arItemList=this.theme.social_networks_list
+                    interactiveSvg = true
+                    ulClass = "grid gap-4 grid-cols-social mt-6 lg:mt-5"
+                    itemClass = "bg-gray-200 aspect-w-1 aspect-h-1 rounded-lg block group hover:bg-blue-700"
+                    linkClass = "active:bg-blue-900 focus-visible:outline-blue"
+                    imgClass = "bg-gray-400 transform scale-50 group-hover:bg-white"
+                     %}
+            {% endif %}
         </div>
     </div>
     {% if this.theme.business_card_copyright is not empty %}
         <div class="bg-gray-200 text-gray-700 text-center p-2.5 text-xs md:text-sm">{{ this.theme.business_card_copyright }}</div>
     {% endif %}
     {% if this.theme.shopaholic_bar %}
-        <div class="text-center text-gray-600 p-2.5 text-xs md:text">Powered by <a class="underline text-blue-800 hover:text-blue-700 hover:no-underline focus:outline-blue active:text-blue-900 visited:text-purple-800" href="https://shopaholic.one" target="_blank">Shopaholic</a> and the <a class="underline text-blue-800 hover:text-blue-700 hover:no-underline focus:outline-blue active:text-blue-900 visited:text-purple-800" href="https://octobercms.com/theme/lovata-tailwind-shopaholic" target="_blank">Tailwind</a> theme.</div>
+        <div class="text-center text-gray-600 p-2.5 text-xs md:text">Powered by <a class="underline text-blue-800 hover:text-blue-700 hover:no-underline focus-visible:outline-blue active:text-blue-900 visited:text-purple-800" href="https://shopaholic.one" target="_blank">Shopaholic</a> and the <a class="underline text-blue-800 hover:text-blue-700 hover:no-underline focus:outline-blue active:text-blue-900 visited:text-purple-800" href="https://octobercms.com/theme/lovata-tailwind-shopaholic" target="_blank">Tailwind</a> theme.</div>
     {% endif %}
 </footer>
