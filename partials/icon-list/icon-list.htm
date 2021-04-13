@@ -1,19 +1,18 @@
-<ul class="{{ ulClass }}">
-    {% for item in arItemList %}
-        <li class="{{ liClass }}">
-            {% set htmlTag = item.url is not empty ? 'a' : 'span' %}
-            {% set sUrl = item.url is not empty ? 'href='~item.url~' target=_blank' %}
-            {% set sInteractiveClass = item.url is not empty ? linkClass %}
-            {% if interactiveSvg %}
-                <{{ htmlTag }} class="{{ itemClass }} {{ sInteractiveClass }}" {{ sUrl }}>
-                    <span class="{{ imgClass }}" style="-webkit-mask: url({{ item.image|media }}) center / 100% no-repeat" title="{{ item.title }}"></span>
-                    <span class="sr-only">{{ item.title }}</span>
-                </{{ htmlTag }}>
-            {% else %}
-                <{{ htmlTag }} class="{{ itemClass }} {{ sInteractiveClass }}" {{ sUrl }}>
-                    <img class="{{ imgClass }}" src="{{ item.image|media }}" alt="{{ item.alt }}" title="{{ item.title }}" />
-                </{{ htmlTag }}>
-            {% endif %}
-        </li>
-    {% endfor %}
-</ul>
+{##}
+<section class="mt-5 lg:mt-8">
+    <ul class="flex flex-wrap gap-x-2 gap-y-4">
+        {% for obItem in arItemList %}
+            <li>
+                {% if obItem.url is not empty %}
+                    <a class="bg-gray-200 w-14 aspect-w-14 aspect-h-9 rounded block hover:bg-gray-300 hover:opacity-75 active:bg-gray-400 focus-visible:outline-blue" href={{ obItem.url }} target="_blank">
+                        <img src="{{ obItem.image|media }}" alt="{{ obItem.alt }}" title="{{ obItem.title }}">
+                    </a>
+                {% else %}
+                    <span class="bg-gray-200 w-14 aspect-w-14 aspect-h-9 rounded block">
+                        <img src="{{ obItem.image|media }}" alt="{{ obItem.alt }}" title="{{ obItem.title }}">
+                    </span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</section>
