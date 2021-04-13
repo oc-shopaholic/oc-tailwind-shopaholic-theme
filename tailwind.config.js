@@ -31,7 +31,8 @@ module.exports = {
       backgroundColor: ['group-focus', 'active', 'focus-visible', 'disabled'],
       ringWidth: ['focus-visible'],
       ringColor: ['hover', 'active', 'focus', 'focus-visible'],
-      ringOffsetWidth: ['responsive', 'focus-visible', 'focus']
+      ringOffsetWidth: ['responsive', 'focus-visible', 'focus'],
+      opacity: ['hover', 'focus']
     }
   },
   plugins: [

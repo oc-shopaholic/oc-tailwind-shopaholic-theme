@@ -96,26 +96,26 @@ tabs:
                 condition: checked
             form:
                 fields:
-                    title:
-                        label: 'lovata.toolbox::lang.field.title'
+                    alt:
+                        label: 'Alternative text'
                         type: text
                         span: left
-                        placeholder: 'lovata.toolbox::lang.field.title'
+                        comment: 'This string will have been shown in case an image has not loaded on the page.'
                     image:
                         label: 'lovata.toolbox::lang.field.image'
                         type: mediafinder
                         span: right
                         mode: image
-                    description:
-                        label: 'lovata.toolbox::lang.field.description'
+                        comment: 'Recommended resolution: 56×36px. The SVG format is supported.'
+                    title:
+                        label: 'Title'
                         type: text
                         span: left
-                        placeholder: 'lovata.toolbox::lang.field.description'
+                        comment: 'This string will be shown on the mouse hover on the image.'
                     url:
                         label: 'lovata.toolbox::lang.field.slug'
                         type: text
                         span: left
-                        placeholder: 'lovata.toolbox::lang.field.slug'
 
         social_networks_list_section:
             label: 'Social Networks'
@@ -138,21 +138,22 @@ tabs:
                 condition: checked
             form:
                 fields:
-                    title:
-                        label: 'lovata.toolbox::lang.field.title'
+                    alt:
+                        label: 'Alternative text'
                         type: text
                         span: left
-                        placeholder: 'lovata.toolbox::lang.field.title'
+                        comment: 'This string will have been shown in case an image has not loaded on the page.'
                     image:
                         label: 'lovata.toolbox::lang.field.image'
                         type: mediafinder
                         span: right
                         mode: image
-                    description:
-                        label: 'lovata.toolbox::lang.field.description'
+                        comment: 'Recommended resolution: 40×40px. The SVG format is supported.'
+                    title:
+                        label: 'Title'
                         type: text
                         span: left
-                        placeholder: 'lovata.toolbox::lang.field.description'
+                        comment: 'This string will be shown on the mouse hover on the image.'
                     url:
                         label: 'lovata.toolbox::lang.field.slug'
                         type: text

@@ -6,7 +6,7 @@
             {% set sInteractiveClass = item.url is not empty ? linkClass %}
             {% if interactiveSvg %}
                 <{{ htmlTag }} class="{{ itemClass }} {{ sInteractiveClass }}" {{ sUrl }}>
-                    <span class="{{ imgClass }}" style="-webkit-mask: url({{ item.image|media }}) center / 100% no-repeat"></span>
+                    <span class="{{ imgClass }}" style="-webkit-mask: url({{ item.image|media }}) center / 100% no-repeat" title="{{ item.title }}"></span>
                     <span class="sr-only">{{ item.title }}</span>
                 </{{ htmlTag }}>
             {% else %}
