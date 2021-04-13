@@ -4,12 +4,12 @@
         <li>
             <a class="underline" href="{{ 'index'|page }}">Home</a>
         </li>
-        {% for li in 1..4 %}
+        {% for arItem in arBreadcrumbs %}
             <li class="pl-3 inline-flex before:separator whitespace-nowrap">
                 {% if loop.last %}
-                <span class="ml-3">Page Titlte</span>
+                    <span class="ml-3">{{ arItem.name }}</span>
                 {% else %}
-                <a class="underline hover:text-blue-700 focus:text-blue-800 active:text-blue-900 ml-3" href="#">Page</a>
+                    <a class="underline hover:text-blue-700 focus:text-blue-800 active:text-blue-900 ml-3" href="{{ arItem.url }}">{{ arItem.name }}</a>
                 {% endif %}
             </li>
         {% endfor %}

@@ -91,5 +91,6 @@ pixelPerfect/
 node_modules/
 package-lock.json
 docs/
+meta/
 
 _ide_helper.php
