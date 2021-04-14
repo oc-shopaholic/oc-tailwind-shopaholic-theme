@@ -9,6 +9,8 @@ cgi-bin/
 
 assets/dist/css
 assets/dist/js
+assets/images/temp_img
+assets/images/temp_img/*
 mix-manifest.json
 build-script.sh
 
@@ -91,5 +93,6 @@ pixelPerfect/
 node_modules/
 package-lock.json
 docs/
+meta/
 
 _ide_helper.php
