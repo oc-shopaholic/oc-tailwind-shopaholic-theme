@@ -4,7 +4,11 @@
         <div class="mb-6 lg:mb-0 pb-6 lg:pb-0 border-b lg:border-b-0 border-gray-300 flex flex-col">
         {% partial 'navigation-columns/navigation-columns' %}
             {% if this.theme.payment_methods_list_active %}
-                {% partial 'icon-list/icon-list' arItemList=this.theme.payment_methods_list %}
+                {% partial 'icon-list/icon-list'
+                    sectionClass = "lg:mt-8"
+                    ulClass = "gap-x-2"
+                    arItemList = this.theme.payment_methods_list
+                    itemClass = "w-14 aspect-w-14 aspect-h-9" %}
             {% endif %}
         </div>
         <div class="lg:pl-8 lg:ml-auto max-w-xs">
@@ -33,12 +37,9 @@
             {% endif %}
             {% if this.theme.social_networks_list_active %}
                 {% partial 'icon-list/icon-list'
-                    arItemList=this.theme.social_networks_list
-                    interactiveSvg = true
-                    ulClass = "grid gap-4 grid-cols-social mt-6 lg:mt-5"
-                    itemClass = "bg-gray-200 aspect-w-1 aspect-h-1 rounded-lg block group hover:bg-blue-700"
-                    linkClass = "active:bg-blue-900 focus-visible:outline-blue"
-                    imgClass = "bg-gray-400 transform scale-50 group-hover:bg-white"
+                    sectionClass = "lg:mt-5"
+                    arItemList = this.theme.social_networks_list
+                    itemClass = "w-10 aspect-w-1 aspect-h-1 rounded-lg"
                      %}
             {% endif %}
         </div>
