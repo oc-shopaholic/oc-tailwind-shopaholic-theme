@@ -1,0 +1,25 @@
+[ArticleList]
+sorting = "publish|desc"
+==
+
+{##}
+
+<div class="container mx-auto mt-10 mb-10">
+    <div class="flex justify-between items-center mb-4 md:mb-10 px-4 md:px-0">
+        <h{{ sSectionHeadingLevel }} class="text-lg md:text-3xl uppercase">News</h{{ sSectionHeadingLevel }}>
+        <a class="text-blue-800 underline text-base md:text-xl active:text-blue-900 hover:text-blue-700 hover:no-underline" href="{{ 'news-list'|page }}">See all</a>
+    </div>
+    {% if arArticleList is not empty %}
+        <ul class="grid grid-flow-col md:grid-flow-row md:grid-cols-4 gap-x-2 gap-y-4 md:gap-x-4 md:gap-y-12 snap snap-x snap-mandatory overflow-x-scroll xl:overflow-visible snap-px-4 pl-4 md:pl-0 scrollbar-x-none">
+            {% if arArticleList is not empty %}
+                {% for obArticle in arArticleList %}
+                    <li class="snap-start w-40 md:w-auto">
+                        {# {% partial 'news-item/news-item' obArticle = obArticle sCardHeadingLevel = 3 %} #}
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+    {% else %}
+        <span class="block text-gray-400 text-center mb-4 md:mb-10">No news has been posted yet.</span>
+    {% endif %}
+</div>
