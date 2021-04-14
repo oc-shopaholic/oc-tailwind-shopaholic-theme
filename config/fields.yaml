@@ -2,7 +2,7 @@ tabs:
     fields:
 ### Content
         business_card_section:
-            label: 'Business card'
+            label: 'Business Сard'
             type: section
             span: full
             tab: 'Content'
@@ -76,7 +76,7 @@ tabs:
             tab: 'Content'
 
         payment_methods_list_section:
-            label: 'Payment methods'
+            label: 'Payment Methods'
             type: section
             span: full
             tab: 'Content'
@@ -118,7 +118,7 @@ tabs:
                         span: left
 
         social_networks_list_section:
-            label: 'Social Networks'
+            label: 'Social Media'
             type: section
             span: full
             tab: 'Content'
