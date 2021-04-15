@@ -1,0 +1,21 @@
+title = "News List"
+url = "/news"
+layout = "main"
+is_hidden = 0
+
+[ArticleList]
+sorting = "publish|desc"
+
+[Pagination]
+count_per_page = 16
+
+==
+
+{##}
+
+{% set obArticleList = ArticleList.make().sort('publish|desc').published() %}
+{% set arArticleList = obArticleList.page(iPage, Pagination.getCountPerPage()) %}
+
+{% partial 'breadcrumbs/breadcrumbs' %}
+<h1 class="container mx-auto mb-4 md:mb-10 px-4 md:px-0 text-lg md:text-3xl uppercase">News</h1>
+{% partial 'news-list/news-list' arArticleList = arArticleList sCardHeadingLevel = 2 %}

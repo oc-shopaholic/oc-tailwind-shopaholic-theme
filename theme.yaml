@@ -3,3 +3,4 @@ description: ''
 author: Lovata
 homepage: ''
 code: 'tailwind-shopaholic'
+form: config/fields.yaml

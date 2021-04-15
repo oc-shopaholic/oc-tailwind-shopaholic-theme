@@ -1,0 +1,17 @@
+{##}
+<nav class="overflow-auto xl:overflow-hidden scrollbar-x-none" role="navigation">
+    <ul class="flex flex-nowrap xl:flex-wrap text-gray-600" aria-label="breadcrumbs">
+        <li>
+            <a class="underline" href="{{ 'index'|page }}">Home</a>
+        </li>
+        {% for arItem in arBreadcrumbs %}
+            <li class="pl-3 inline-flex before:separator whitespace-nowrap">
+                {% if loop.last %}
+                    <span class="ml-3">{{ arItem.name }}</span>
+                {% else %}
+                    <a class="underline hover:text-blue-700 focus:text-blue-800 active:text-blue-900 ml-3" href="{{ arItem.url }}">{{ arItem.name }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</nav>
