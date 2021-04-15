@@ -1,4 +1,5 @@
 {##}
+
 <article class="flex flex-col">
     <h{{ sCardHeadingLevel }} class="mt-2 order-1">
         <a class="hover:text-blue-800 focus-visible:outline-blue" href="{{ obArticle.getPageUrl('news-page') }}">{{ obArticle.title }}</a>
@@ -10,16 +11,10 @@
                 <source media="(min-width:769px)" data-srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" type="image/jpeg">
                 <source media="(max-width:768px)" data-srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100, 'extension': 'webp'}) }}" type="image/webp">
                 <source media="(max-width:768px)" data-srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" type="image/jpeg">
-                <img class="w-full h-full rounded object-cover"
-                        src="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}"
-                        alt="{{ obArticle.preview_image.description }}"
-                >
+                <img class="w-full h-full rounded object-cover" src="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" alt="{{ obArticle.preview_image.description }}">
             </picture>
         {% else %}
-            <img class="w-full h-full rounded object-cover"
-                    src="{{ 'assets/images/nophoto.svg'|theme }}"
-                    alt="No article image"
-            >
+            <img class="w-full h-full rounded object-cover" src="{{ 'assets/images/no-photo.svg'|theme }}" alt="No article image">
         {% endif %}
     </div>
 </article>
