@@ -14,7 +14,7 @@ sorting = "publish|desc"
             {% if arArticleList is not empty %}
                 {% for obArticle in arArticleList %}
                     <li class="snap-start w-40 md:w-auto">
-                        {# {% partial 'news-item/news-item' obArticle = obArticle sCardHeadingLevel = 3 %} #}
+                        {% partial 'news-item/news-item' obArticle = obArticle sCardHeadingLevel = 3 %}
                     </li>
                 {% endfor %}
             {% endif %}
