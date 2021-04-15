@@ -3,7 +3,11 @@ const plugin = require('tailwindcss/plugin')
 module.exports = {
   corePlugins: {
   },
-  purge: [],
+  purge: [
+    './layouts/**/*.htm',
+    './pages/**/*.htm',
+    './partials/**/*.htm',
+  ],
   darkMode: false,
   theme: {
     extend: {
@@ -37,6 +41,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
+    require('tailwindcss-scroll-snap'),
     require('@tailwindcss/aspect-ratio'),
     require('tailwindcss-pseudo-elements'),
     plugin(function ({ addUtilities }) {

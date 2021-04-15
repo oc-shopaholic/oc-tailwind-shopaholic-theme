@@ -172,3 +172,14 @@ tabs:
             defaul: on
             span: full
             tab: 'Functionality'
+        latest_news_section:
+            label: 'Latest News block on the Index page'
+            type: section
+            span: full
+            tab: 'Functionality'
+        latest_news_is_active:
+            label: 'Active'
+            type: switch
+            defaul: on
+            span: full
+            tab: 'Functionality'
