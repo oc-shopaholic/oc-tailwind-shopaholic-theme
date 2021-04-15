@@ -52,10 +52,5 @@ module.exports = {
       }
       addUtilities(newUtilities, ['before'])
     }),
-  ],
-  variants: {
-    extend: {
-      backgroundColor: ['group-focus'],
-    }
-  },
+  ]
 }
