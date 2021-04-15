@@ -1,4 +1,5 @@
-<nav class="flex items-center justify-center" role="navigation" aria-label="Pagination">
+{##}
+{# <nav class="flex items-center justify-center" role="navigation" aria-label="Pagination">
     <a class="bg-gray-200 w-6 md:w-10 h-6 md:h-10 inline-flex justify-center items-center rounded-sm text-gray-500 hover:text-blue-700 active:text-blue-900 mr-5 md:mr-9 flex-shrink-0" href="#" aria-label="Go to previous page">
         <svg class="w-3 md:w-5 h-3 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
@@ -20,4 +21,30 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>
     </a>
-</nav>
+</nav> #}
+
+{% if arPaginationList is not empty and iMaxPage > 1 %}
+    {% if iPage != 1 %}
+        <a href="{{ url_current() ~ '?page=' ~ (iPage - 1) }}" data-page="{{ iPage - 1 }}" class="pagination__btn pagination__btn_prev {{ sShopaholicPaginationClass }}" aria-label="Go to previous page">
+            Go to previous page
+        </a>
+    {% endif %}
+    <ul class="pagination__list">
+        {% for arPagination in arPaginationList %}
+            {% if arPagination.value != iPage %}
+                <li class="pagination__item">
+                    <a class="pagination__link {{ sShopaholicPaginationClass }}" data-page="{{ arPagination.value }}" href="{{ url_current() ~ '?page=' ~ arPagination.value }}">{{ arPagination.name }}</a>
+                </li>
+            {% else %}
+                <li class="pagination__item">
+                    <span class="pagination__link pagination__link_current" aria-current="true">{{ arPagination.name }}</span>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    {% if iMaxPage > iPage %}
+        <a href="{{ url_current() ~ '?page=' ~ (iPage + 1) }}" data-page="{{ iPage + 1 }}" class="pagination__btn pagination__btn_next {{ sShopaholicPaginationClass }}" aria-label="Go to next page">
+            Go to next page
+        </a>
+    {% endif %}
+{% endif %}
