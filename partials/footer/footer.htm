@@ -1,12 +1,12 @@
 {##}
-<footer class="bg-gray-100">
+<footer class="bg-gray-100 {{ partialClasses }}">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-0 py-7 lg:pt-10 lg:pb-8 flex flex-col md:flex-row">
         <div class="mb-6 lg:mb-0 pb-6 lg:pb-0 border-b lg:border-b-0 border-gray-300 flex flex-col">
         {% partial 'navigation-columns/navigation-columns' %}
             {% if this.theme.payment_methods_list_active %}
                 {% partial 'icon-list/icon-list'
                     sectionHeader = "Payment methods"
-                    sectionClass = "lg:mt-8"
+                    partialClasses = "lg:mt-8"
                     ulClass = "gap-x-2"
                     arItemList = this.theme.payment_methods_list
                     itemClass = "w-14 aspect-w-14 aspect-h-9"
@@ -40,7 +40,7 @@
             {% if this.theme.social_networks_list_active %}
                 {% partial 'icon-list/icon-list'
                     sectionHeader = "Our Social Media"
-                    sectionClass = "lg:mt-5"
+                    partialClasses = "lg:mt-5"
                     arItemList = this.theme.social_networks_list
                     itemClass = "w-10 aspect-w-1 aspect-h-1"
                 %}

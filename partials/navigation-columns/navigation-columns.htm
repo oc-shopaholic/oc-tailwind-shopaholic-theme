@@ -4,9 +4,10 @@ code = "navigation-footer"
 ==
 
 {##}
+
 {% set arMenuList = FooterMenu.menuItems %}
 {% if arMenuList is not empty %}
-    <nav>
+    <nav class="{{ partialClasses }}">
         <ul class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-20">
             {% for arItemMenu in arMenuList if not arItemMenu.viewBag.isHidden %}
                 <li>

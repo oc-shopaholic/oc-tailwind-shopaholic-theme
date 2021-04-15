@@ -10,11 +10,11 @@
     {% if blank == true %}
         target="_blank" rel="noopener noreferrer"
     {% endif %}
-    class="{{ defaultClass }} inline-block {{ class }}">
+    class="{{ defaultClass }} inline-block {{ partialClasses }}">
         {{ text }}
     </a>
 {% else %}
-    <button class="{{ defaultClass }} {{ class }}"
+    <button class="{{ defaultClass }} {{ partialClasses }}"
             type="{{ type|default('button') }}"
         {% if onclick %}
             onclick="{{ onclick }}"
