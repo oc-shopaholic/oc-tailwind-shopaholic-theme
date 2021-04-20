@@ -1,17 +1,185 @@
 tabs:
     fields:
-        section_top_info_block:
+### Content
+        business_card_section:
+            label: 'Business Сard'
+            type: section
+            span: full
+            tab: 'Content'
+        business_card_name:
+            label: 'Store name'
+            type: text
+            span: left
+            tab: 'Content'
+        business_card_image:
+            label: 'Logo'
+            comment: 'Recommended resolution: 300×75px. The SVG format is supported.'
+            type: mediafinder
+            span: right
+            mode: image
+            tab: 'Content'
+        business_card_description:
+            label: 'Store description or tagline'
+            type: text
+            span: left
+            tab: 'Content'
+        business_card_image_alt:
+            label: 'Alternative text'
+            comment: 'This string will have been shown in case an image has not loaded on the page.'
+            type: text
+            span: right
+            tab: 'Content'
+        business_card_phone:
+            label: 'Phone'
+            comment: 'This string will be rendered on the page as a clickable hyperlink.'
+            type: text
+            span: left
+            tab: 'Content'
+        business_card_image_title:
+            label: 'Title'
+            comment: 'This string will be shown on the mouse hover on the image.'
+            type: text
+            span: right
+            tab: 'Content'
+        business_card_email:
+            label: 'E-mail'
+            comment: 'This string will be rendered on the page as a clickable hyperlink.'
+            type: text
+            span: left
+            tab: 'Content'
+        business_card_address:
+            label: 'Address'
+            type: text
+            span: full
+            tab: 'Content'
+        business_card_copyright:
+            label: 'Page copyright'
+            placeholder: '© 2020 Atmosphere. All rights reserved.'
+            type: text
+            span: full
+            tab: 'Content'
+
+        top_info_block_section:
             label: 'Top Info Block'
             type: section
             span: full
-            tab: 'General'
+            tab: 'Content'
         top_info_block_active:
             label: 'lovata.toolbox::lang.field.active'
             type: switch
             span: full
-            tab: 'General'
+            tab: 'Content'
         top_info_block:
             label: 'lovata.toolbox::lang.field.description'
             type: richeditor
             span: full
-            tab: 'General'
+            tab: 'Content'
+
+        payment_methods_list_section:
+            label: 'Payment Methods'
+            type: section
+            span: full
+            tab: 'Content'
+        payment_methods_list_active:
+            label: 'lovata.toolbox::lang.field.active'
+            type: switch
+            span: full
+            tab: 'Content'
+        payment_methods_list:
+            type: repeater
+            span: full
+            style: collapsed
+            tab: 'Content'
+            trigger:
+                action: show
+                field: payment_methods_list_active
+                condition: checked
+            form:
+                fields:
+                    alt:
+                        label: 'Alternative text'
+                        type: text
+                        span: left
+                        comment: 'This string will have been shown in case an image has not loaded on the page.'
+                    image:
+                        label: 'lovata.toolbox::lang.field.image'
+                        type: mediafinder
+                        span: right
+                        mode: image
+                        comment: 'Recommended resolution: 56×36px. The SVG format is supported.'
+                    title:
+                        label: 'Title'
+                        type: text
+                        span: left
+                        comment: 'This string will be shown on the mouse hover on the image.'
+                    url:
+                        label: 'lovata.toolbox::lang.field.slug'
+                        type: text
+                        span: left
+
+        social_networks_list_section:
+            label: 'Social Media'
+            type: section
+            span: full
+            tab: 'Content'
+        social_networks_list_active:
+            label: 'lovata.toolbox::lang.field.active'
+            type: switch
+            span: full
+            tab: 'Content'
+        social_networks_list:
+            type: repeater
+            span: full
+            style: collapsed
+            tab: 'Content'
+            trigger:
+                action: show
+                field: social_networks_list_active
+                condition: checked
+            form:
+                fields:
+                    alt:
+                        label: 'Alternative text'
+                        type: text
+                        span: left
+                        comment: 'This string will have been shown in case an image has not loaded on the page.'
+                    image:
+                        label: 'lovata.toolbox::lang.field.image'
+                        type: mediafinder
+                        span: right
+                        mode: image
+                        comment: 'Recommended resolution: 40×40px. The SVG format is supported.'
+                    title:
+                        label: 'Title'
+                        type: text
+                        span: left
+                        comment: 'This string will be shown on the mouse hover on the image.'
+                    url:
+                        label: 'lovata.toolbox::lang.field.slug'
+                        type: text
+                        span: left
+                        placeholder: 'lovata.toolbox::lang.field.slug'
+
+### Functionality
+        shopaholic_bar_section:
+            label: 'Powered by Shopaholic bar'
+            type: section
+            span: full
+            tab: 'Functionality'
+        shopaholic_bar:
+            label: 'Active'
+            type: switch
+            defaul: on
+            span: full
+            tab: 'Functionality'
+        latest_news_section:
+            label: 'Latest News block on the Index page'
+            type: section
+            span: full
+            tab: 'Functionality'
+        latest_news_is_active:
+            label: 'Active'
+            type: switch
+            defaul: on
+            span: full
+            tab: 'Functionality'

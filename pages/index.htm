@@ -2,4 +2,15 @@ title = "Home"
 url = "/"
 layout = "main"
 is_hidden = 0
+
+[ArticleList]
+sorting = "publish|desc"
+
 ==
+{##}
+
+{% set arArticleList = ArticleList.make().sort('publish|desc').published().take(4) %}
+
+{% if this.theme.latest_news_is_active %}
+    {% partial 'news-list-latest/news-list-latest' arArticleList = arArticleList sSectionHeadingLevel = 2 %}
+{% endif %}

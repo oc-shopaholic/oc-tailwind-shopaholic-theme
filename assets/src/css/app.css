@@ -3,3 +3,26 @@
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+
+@layer utilities {
+  .snap::after{
+    content: '';
+    width: .5rem;
+    display: block;
+  }
+  .scrollbar-x-none::-webkit-scrollbar {
+    height: 0;
+  }
+  .scrollbar-x-none {
+    scrollbar-width: none;
+  }
+  .full-width {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    position: relative;
+    right: 50%;
+    left: 50%;
+  }
+}

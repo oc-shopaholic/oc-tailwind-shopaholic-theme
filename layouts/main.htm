@@ -14,14 +14,16 @@ function onStart()
 ?>
 ==
 
+{##}
+
 {% spaceless %}
 <!DOCTYPE html>
-<html lang="{{ activeLocale ? activeLocale : 'en' }}" class="h-full">
+<html lang="{{ activeLocale ? activeLocale : 'en' }}">
     <head>
         {% partial 'head/head' %}
     </head>
-    <body class="h-full bg-white" itemscope itemtype="http://schema.org/WebPage">
-        <div class="min-h-full grid grid-cols-full grid-rows-auto-fr-auto">
+    <body class="bg-white" itemscope itemtype="http://schema.org/WebPage">
+        <div class="sm:container sm:mx-auto px-4 min-h-screen l grid grid-cols-full grid-rows-auto-fr-auto">
             {% partial 'header/header' %}
             <main>
                 {% page %}
