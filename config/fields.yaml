@@ -160,6 +160,55 @@ tabs:
                         span: left
                         placeholder: 'lovata.toolbox::lang.field.slug'
 
+        page_seo_block_section:
+            label: 'Page SEO Block'
+            type: section
+            span: full
+            tab: 'Content'
+        page_seo_block_active:
+            label: 'lovata.toolbox::lang.field.active'
+            type: switch
+            span: full
+            tab: 'Content'
+        page_seo_block_text:
+            label: 'SEO Text'
+            type: richeditor
+            span: left
+            tab: 'Content'
+            trigger:
+                action: show
+                field: page_seo_block_active
+                condition: checked
+        page_seo_block_image:
+            label: 'Image'
+            type: mediafinder
+            span: right
+            mode: image
+            tab: 'Content'
+            trigger:
+                action: show
+                field: page_seo_block_active
+                condition: checked
+        page_seo_block_image_alt:
+            label: 'Alternative text'
+            comment: 'This string will have been shown in case an image has not loaded on the page.'
+            type: text
+            span: right
+            tab: 'Content'
+            trigger:
+                action: show
+                field: page_seo_block_active
+                condition: checked
+        page_seo_block_image_title:
+            label: 'Title'
+            comment: 'This string will be shown on the mouse hover on the image.'
+            type: text
+            span: right
+            tab: 'Content'
+            trigger:
+                action: show
+                field: page_seo_block_active
+                condition: checked
 ### Functionality
         shopaholic_bar_section:
             label: 'Powered by Shopaholic bar'
