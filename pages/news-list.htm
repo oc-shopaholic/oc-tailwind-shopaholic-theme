@@ -3,4 +3,44 @@ url = "/news"
 layout = "main"
 is_hidden = 0
 
+[ArticleList]
+sorting = "publish|desc"
+
+[Pagination]
+count_per_page = 16
+pagination_limit = 5
+active_class = "pagination__link_current"
+button_list = "first,first-more,main,last-more,last"
+first_button_name = "First"
+first_button_limit = 3
+first_button_number = 1
+first-more_button_name = "..."
+first-more_button_limit = 4
+prev_button_name = "Prev"
+prev_button_limit = 1
+prev-more_button_name = "..."
+prev-more_button_limit = 1
+next-more_button_name = "..."
+next-more_button_limit = 1
+next_button_name = "Next"
+next_button_limit = 1
+last-more_button_name = "..."
+last-more_button_limit = 4
+last_button_name = "Last"
+last_button_limit = 3
+last_button_number = 1
+
 ==
+
+{##}
+
+{% set obArticleList = ArticleList.make().sort('publish|desc').published() %}
+{% set iPage = Pagination.getPageFromRequest() %}
+{% set arArticleList = obArticleList.page(iPage, Pagination.getCountPerPage()) %}
+{% set iMaxPage = Pagination.getMaxPage(obArticleList.count()) %}
+{% set arPaginationList = Pagination.get(iPage, obArticleList.count()) %}
+
+{% partial 'breadcrumbs/breadcrumbs' %}
+<h1 class="container mx-auto mb-4 md:mb-10 text-lg md:text-3xl uppercase">News</h1>
+{% partial 'news-list/news-list' arArticleList = arArticleList sCardHeadingLevel = 2 %}
+{% partial 'pagination/pagination' arPaginationList = arPaginationList iMaxPage = iMaxPage iPage = iPage sPartialClasses = 'mb-14' %}

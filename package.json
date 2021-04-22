@@ -22,12 +22,16 @@
     "postcss": "^7.0.35",
     "postcss-import": "^12.0.1",
     "resolve-url-loader": "^3.1.2",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.1",
-    "tailwindcss-pseudo-elements": "^1.5.1"
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0",
+    "tailwindcss-pseudo-elements": "^1.5.1",
+    "vue-template-compiler": "^2.6.12"
   },
   "dependencies": {
+    "@tailwindcss/aspect-ratio": "^0.2.0",
     "@tailwindcss/forms": "^0.3.2",
     "cross-env": "^7.0.2",
-    "formbouncerjs": "^1.4.6"
+    "formbouncerjs": "^1.4.6",
+    "jquery": "^3.6.0",
+    "tailwindcss-scroll-snap": "^1.1.0"
   }
 }

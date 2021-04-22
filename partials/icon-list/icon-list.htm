@@ -1,0 +1,24 @@
+{##}
+
+<section class="mt-6 {{ sPartialClasses }}">
+    <h2 class="sr-only">{{ sSectionHeader }}</h2>
+    {% if arItemList is not empty %}
+        <ul class="flex flex-wrap gap-4 {{ sUlClass }}">
+            {% for obItem in arItemList %}
+                <li>
+                    {% if obItem.url is not empty %}
+                        <a class="bg-gray-200 block rounded hover:opacity-75 focus-visible:outline-blue {{ sItemClass }}" href="{{ obItem.url }}" target="_blank">
+                            <img src="{{ obItem.image|media }}" alt="{{ obItem.alt }}" title="{{ obItem.title }}">
+                        </a>
+                    {% else %}
+                        <span class="bg-gray-200 block rounded {{ sItemClass }}">
+                            <img src="{{ obItem.image|media }}" alt="{{ obItem.alt }}" title="{{ obItem.title }}">
+                        </span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <span class="block text-gray-400 text-center mb-4 md:mb-10">No social media links have been added yet.</span>
+    {% endif %}
+</section>

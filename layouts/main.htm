@@ -4,25 +4,34 @@ function onInit()
 {
     $this['path_css'] = mix('assets/dist/css/app.css', 'themes/lovata-tailwind-shopaholic');
     $this['path_js'] = mix('assets/dist/js/app.js', 'themes/lovata-tailwind-shopaholic');
+    $this['path_manifest_js'] = mix('assets/dist/js/manifest.js', 'themes/lovata-tailwind-shopaholic');
+    $this['path_vendor_js'] = mix('assets/dist/js/vendor.js', 'themes/lovata-tailwind-shopaholic');
+}
+function onStart()
+{
+    $this['sTopInfoBlockHash'] = $this->theme->top_info_block_active && !empty($this->theme->top_info_block) ? md5($this->theme->top_info_block) : '';
 }
 ?>
 ==
 
+{##}
+
 {% spaceless %}
 <!DOCTYPE html>
-<html lang="{{ activeLocale ? activeLocale : 'en' }}" class="h-full">
+<html lang="{{ activeLocale ? activeLocale : 'en' }}">
     <head>
-        {% partial 'common/head/head' %}
+        {% partial 'head/head' %}
     </head>
-    <body class="h-full bg-white" itemscope itemtype="http://schema.org/WebPage">
-        <div class="min-h-full grid grid-cols-full grid-rows-auto-fr-auto">
-            {% partial 'layout/header/header' %}
+    <body class="bg-white lg:overflow-x-hidden" itemscope itemtype="http://schema.org/WebPage">
+    {# TODO: Fix horizontal scroll on the lg breakpoint. lg:overflow-x-hidden is a temporary solution. #}
+        <div class="sm:container sm:mx-auto px-4 min-h-screen l grid grid-cols-full grid-rows-auto-fr-auto">
+            {% partial 'header/header' %}
             <main>
                 {% page %}
             </main>
-            {% partial 'layout/footer/footer' %}
+            {% partial 'footer/footer' %}
         </div>
-        <script src="{{ path_js }}"></script>
+        {% partial 'scripts/scripts' %}
         {% partial 'form/validation-message' %}
     </body>
 </html>
