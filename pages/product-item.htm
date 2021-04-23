@@ -1,8 +1,17 @@
 title = "Catalog Item"
-url = "/:slug_category/:slug"
+url = "/catalog/:category/:product"
 layout = "main"
 is_hidden = 0
 
+[CategoryPage]
+slug = "{{ :category }}"
+slug_required = 1
+smart_url_check = 0
+
+[ProductPage]
+slug = "{{ :product }}"
+slug_required = 1
+smart_url_check = 0
 ==
 
 {##}
