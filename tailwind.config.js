@@ -36,7 +36,9 @@ module.exports = {
       ringWidth: ['focus-visible'],
       ringColor: ['hover', 'active', 'focus', 'focus-visible'],
       ringOffsetWidth: ['responsive', 'focus-visible', 'focus'],
-      opacity: ['hover', 'focus']
+      opacity: ['hover', 'focus'],
+      fill: ['hover', 'group-hover', 'group-focus', 'focus'],
+      stroke: ['hover', 'group-hover', 'group-focus', 'focus']
     }
   },
   plugins: [
@@ -44,6 +46,7 @@ module.exports = {
     require('tailwindcss-scroll-snap'),
     require('@tailwindcss/aspect-ratio'),
     require('tailwindcss-pseudo-elements'),
+    require('@tailwindcss/line-clamp'),
     plugin(function ({ addUtilities }) {
       const newUtilities = {
         '.separator': {
