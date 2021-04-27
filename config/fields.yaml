@@ -183,3 +183,33 @@ tabs:
             defaul: on
             span: full
             tab: 'Functionality'
+### Plugins
+        plugin_check:
+            tab: 'Plugins'
+            span: left
+            type: partial
+            path: ~/themes/lovata-tailwind-shopaholic/config/_plugin_check.htm
+        has_wish_list:
+            label: 'Wish List for Shopaholic'
+            type: switch
+            span: left
+            required: 0
+            tab: 'Plugins'
+            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-wishlistshopaholic">Wish List for Shopaholic</a></strong>'
+            commentHtml: true
+            trigger:
+                action: enable
+                field: check_wish_list
+                condition: checked
+        has_lables:
+            label: 'Labels for Shopaholic'
+            type: switch
+            span: left
+            required: 0
+            tab: 'Plugins'
+            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-labelsshopaholic">Labels for Shopaholic</a></strong>'
+            commentHtml: true
+            trigger:
+                action: enable
+                field: check_wish_list
+                condition: checked
