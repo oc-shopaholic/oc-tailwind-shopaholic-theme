@@ -2,17 +2,26 @@
 
 {% set obOffer = obProduct.offer.first() %}
 
-<div class="_shopaholic-product-wrapper flex flex-col relative border border-gray-200 rounded" data-product-id="{{ obProduct.id }}">
-    <a class="text-xs md:text-lg font-medium text-gray-900 active:text-blue-900 hover:text-blue-700 focus-visible:outline-blue line-clamp-2 mb-auto mx-2" href="{{ obProduct.getPageUrl('product-item') }}">{{ obProduct.name }}</a>
+<div class="_shopaholic-product-wrapper flex flex-col relative border border-gray-200 rounded pb-2" data-product-id="{{ obProduct.id }}">
+    <a class="text-xs md:text-lg font-bold text-gray-900 active:text-blue-900 hover:text-blue-700 focus-visible:outline-blue line-clamp-3 mb-auto mx-2" href="{{ obProduct.getPageUrl('product-item') }}">{{ obProduct.name }}</a>
     {% if this.theme.has_lables %}
-        {% set obLableList = obProduct.label.active().sort() %}
-        {% if obLableList.isNotEmpty() %}
-            <div class="absolute z-10 -top-px -left-px overflow-hidden rounded-br rounded-tl flex">
-                {% for obLable in obLableList %}
-                    <div class="text-white bg-red-700 px-4 py-2">{{ obLable.name }}</div>
-                {% endfor %}
-    {#            <div class="text-white bg-green-900 px-4 py-2">New</div>#}
-            </div>
+        {% set obLabelList = obProduct.label.active().sort() %}
+        {% if obLabelList.isNotEmpty() %}
+            {% if obLabelList.count() == 1 %}
+                <div class="absolute z-10 -top-px -left-px overflow-hidden rounded-br rounded-tl flex">
+                    {% for obLabel in obLabelList %}
+                        <div class="text-white bg-red-700 px-4 py-2 whitespace-nowrap">{{ obLabel.name }}</div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <ul class="absolute z-10 -top-px -left-px overflow-hidden rounded-br rounded-tl flex w-2/3 scrollbar-x-none overflow-x-scroll">
+                    {% for obLabel in obLabelList %}
+                        <li>
+                            <div class="text-white bg-red-700 px-4 py-2 whitespace-nowrap">{{ obLabel.name }}</div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         {% endif %}
     {% endif %}
     <div class="order-first mb-2 rounded-tl rounded-tr overflow-hidden aspect-w-16 aspect-h-12">
@@ -29,10 +38,10 @@
             >
         </picture>
     </div>
-    <div class="mt-2 md:mt-3 mx-2">
-        <span class="text-xs md:text-lg text-gray-900 font-medium">{{ obOffer.currency }}{{ obOffer.price }}</span>
+    <div class="mt-2 md:mt-3 mx-2 flex flex-wrap">
+        <span class="text-xs md:text-lg text-gray-900 font-medium mr-2">{{ obOffer.currency }}{{ obOffer.price }}</span>
         {% if obOffer.old_price_value > obOffer.price_value %}
-            <span class="text-xs md:text-lg text-gray-600 font-medium ml-2">{{ obOffer.currency }}{{ obOffer.old_price }}</span>
+            <span class="text-xs md:text-lg text-gray-600 font-medium">{{ obOffer.currency }}{{ obOffer.old_price }}</span>
         {% endif %}
     </div>
     {% if this.theme.has_wish_list %}
