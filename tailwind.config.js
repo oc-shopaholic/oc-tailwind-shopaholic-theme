@@ -38,7 +38,8 @@ module.exports = {
       ringOffsetWidth: ['responsive', 'focus-visible', 'focus'],
       opacity: ['hover', 'focus'],
       fill: ['hover', 'group-hover', 'group-focus', 'focus'],
-      stroke: ['hover', 'group-hover', 'group-focus', 'focus']
+      stroke: ['hover', 'group-hover', 'group-focus', 'focus'],
+      width: ["hover"]
     }
   },
   plugins: [

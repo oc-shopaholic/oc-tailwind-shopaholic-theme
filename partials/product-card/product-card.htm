@@ -14,7 +14,7 @@
                     {% endfor %}
                 </div>
             {% else %}
-                <ul class="absolute z-10 -top-px -left-px overflow-hidden rounded-br rounded-tl flex w-2/3 scrollbar-x-none overflow-x-scroll">
+                <ul class="absolute z-10 -top-px -left-px rounded-br rounded-tl flex w-2/3 scrollbar-x-none overflow-x-scroll md:overflow-auto md:hover:w-auto">
                     {% for obLabel in obLabelList %}
                         <li>
                             <div class="text-white bg-red-700 px-4 py-2 whitespace-nowrap">{{ obLabel.name }}</div>
