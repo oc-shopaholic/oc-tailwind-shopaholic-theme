@@ -1,8 +1,6 @@
 <?php
     $bHasWishListPlugin = \System\Classes\PluginManager::instance()->hasPlugin('Lovata.WishListShopaholic') && !\System\Classes\PluginManager::instance()->isDisabled('Lovata.WishListShopaholic');
-    $bHasCoupons = \System\Classes\PluginManager::instance()->hasPlugin('Lovata.CouponsShopaholic') && !\System\Classes\PluginManager::instance()->isDisabled('Lovata.CouponsShopaholic');
-    $bHasInstagramFeed = \System\Classes\PluginManager::instance()->hasPlugin('ArtDark.Instagram') && !\System\Classes\PluginManager::instance()->isDisabled('ArtDark.Instagram');
+    $bHasLabelsPlugin = \System\Classes\PluginManager::instance()->hasPlugin('Lovata.LabelsShopaholic') && !\System\Classes\PluginManager::instance()->isDisabled('Lovata.LabelsShopaholic');
 ?>
 <input type="checkbox" hidden name="ThemeData[check_wish_list]" <?php if ($bHasWishListPlugin) { ?>checked<?php }?>/>
-<input type="checkbox" hidden name="ThemeData[check_coupons]" <?php if ($bHasCoupons) { ?>checked<?php }?>/>
-<input type="checkbox" hidden name="ThemeData[check_instagram_feed]" <?php if ($bHasInstagramFeed) { ?>checked<?php }?>/>
+<input type="checkbox" hidden name="ThemeData[check_labels]" <?php if ($bHasLabelsPlugin) { ?>checked<?php }?>/>

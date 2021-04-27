@@ -211,5 +211,5 @@ tabs:
             commentHtml: true
             trigger:
                 action: enable
-                field: check_wish_list
+                field: check_labels
                 condition: checked
