@@ -232,3 +232,14 @@ tabs:
             defaul: on
             span: full
             tab: 'Functionality'
+        mighty_seo_heading_section:
+            label: 'Get Static Pages Heading from the Myghty SEO plugin'
+            type: section
+            span: full
+            tab: 'Functionality'
+        mighty_seo_heading_is_active:
+            label: 'Active'
+            type: switch
+            defaul: on
+            span: full
+            tab: 'Functionality'
