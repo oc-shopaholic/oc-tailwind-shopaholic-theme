@@ -237,12 +237,6 @@ tabs:
             type: section
             span: full
             tab: 'Functionality'
-        popular_products_is_active:
-            label: 'Active'
-            type: switch
-            defaul: on
-            span: full
-            tab: 'Functionality'
         mighty_seo_heading_section:
             label: 'Get Static Pages Heading from the Myghty SEO plugin'
             type: section
@@ -283,4 +277,40 @@ tabs:
             trigger:
                 action: enable
                 field: check_labels
+                condition: checked
+        has_popularity:
+            label: 'Popularity for Shopaholic'
+            type: switch
+            span: left
+            required: 0
+            tab: 'Plugins'
+            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-popularityshopaholic">Popularity for Shopaholic</a></strong>'
+            commentHtml: true
+            trigger:
+                action: enable
+                field: check_popularity
+                condition: checked
+        has_viewed_roducts:
+            label: 'Viewed Products for Shopaholic'
+            type: switch
+            span: left
+            required: 0
+            tab: 'Plugins'
+            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-viewedproductsshopaholic">Viewed Products for Shopaholic</a></strong>'
+            commentHtml: true
+            trigger:
+                action: enable
+                field: check_viewed_roducts
+                condition: checked
+        has_related_products:
+            label: 'Related product for Shopaholic'
+            type: switch
+            span: left
+            required: 0
+            tab: 'Plugins'
+            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-relatedproductsshopaholic">Related product for Shopaholic</a></strong>'
+            commentHtml: true
+            trigger:
+                action: enable
+                field: check_related_products
                 condition: checked

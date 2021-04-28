@@ -6,6 +6,8 @@ is_hidden = 0
 [ArticleList]
 sorting = "publish|desc"
 
+[ProductList]
+sorting = "popularity|desc"
 ==
 {##}
 
@@ -14,8 +16,15 @@ sorting = "publish|desc"
 {% if this.theme.latest_news_is_active %}
     {% partial 'news-list-latest/news-list-latest' arArticleList = arArticleList sSectionHeadingLevel = 2 %}
 {% endif %}
-{% if this.theme.popular_products_is_active %}
-    {% partial 'product-list-small/product-list-small' sSectionHeadingLevel = 2 sSectionHeading = 'Popular products' sBtnMore = true %}
+{% if this.theme.has_popularity %}
+    {% partial 'product-list-small/product-list-small'
+        sProductListSmallType = sProductListSmallTypePopularity
+        iTake = 4
+        sButtonName = 'More products'
+        sSectionHeadingLevel = 2
+        sSectionHeading = 'Popular products'
+        sBtnMore = true
+    %}
 {% endif %}
 {% if this.theme.page_seo_block_active %}
     {% partial 'page-seo-content/page-seo-content' %}

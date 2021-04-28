@@ -1,0 +1,24 @@
+{##}
+
+{% if arProductList is empty %}
+    {% set sProductListSmallType = sProductListSmallType|default(input('product_list_small_list_type')) %}
+    {% if sProductListSmallType == sProductListSmallTypePopularity %}
+        {% set obProductList = ProductList.make().active().sort('popularity|desc') %}
+    {% elseif sProductListSmallType == sProductListSmallTypeViewedProducts %}
+        {% set obProductList = ProductList.make().active().viewed() %}
+    {% elseif sProductListSmallType == sProductListSmallTypeViewedRelatedProducts %}
+        {% set iProductId = input('product_id') %}
+        {% set obProduct = ProductData.get(iProductId) %}
+        {% set obProductList = obProduct.related().active() %}
+    {% endif %}
+
+    {% set iPage = input('page') %}
+    {% set iTake = input('take') %}
+    {% set arProductList = obProductList.page(iPage, iTake) %}
+{% endif %}
+
+{% for obProduct in arProductList %}
+    <li>
+        {% partial 'product-card/product-card' obProduct=obProduct %}
+    </li>
+{% endfor %}
