@@ -9,6 +9,7 @@ sorting = "publish|desc"
 [ProductList]
 sorting = "popularity|desc"
 ==
+
 {##}
 
 {% set arArticleList = ArticleList.make().sort('publish|desc').published().take(4) %}
@@ -19,11 +20,11 @@ sorting = "popularity|desc"
 {% if this.theme.has_popularity %}
     {% partial 'product-list-small/product-list-small'
         sProductListSmallType = sProductListSmallTypePopularity
-        iTake = 4
-        sButtonName = 'More products'
-        sSectionHeadingLevel = 2
         sSectionHeading = 'Popular products'
+        sSectionHeadingLevel = 2
+        iTake = 4
         sBtnMore = true
+        sButtonName = 'Show more products'
     %}
 {% endif %}
 {% if this.theme.page_seo_block_active %}

@@ -18,7 +18,7 @@
 {% endif %}
 
 {% for obProduct in arProductList %}
-    <li>
-        {% partial 'product-card/product-card' obProduct=obProduct %}
+    <li class="h-full">
+        {% partial 'product-card/product-card' obProduct=obProduct sPartialClasses = 'h-full' %}
     </li>
 {% endfor %}
