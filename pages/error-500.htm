@@ -1,8 +1,9 @@
 title = "500 Internal Server Error"
 url = "/500"
-layout = "main"
+layout = "error"
 is_hidden = 0
 
 ==
 
 {##}
+{% partial 'error/error' sErrorCode = '500' sErrorMessage = 'We`re experiencing an internal server problem. We know about this mistake and are working to fix it. Please, reload page or try again later.' sBtn = true onclick = 'history.go(0)' %}
