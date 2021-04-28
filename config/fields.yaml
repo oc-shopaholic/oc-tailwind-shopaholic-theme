@@ -232,6 +232,17 @@ tabs:
             defaul: on
             span: full
             tab: 'Functionality'
+        popular_products_section:
+            label: 'Popular products block on the Index page'
+            type: section
+            span: full
+            tab: 'Functionality'
+        popular_products_is_active:
+            label: 'Active'
+            type: switch
+            defaul: on
+            span: full
+            tab: 'Functionality'
         mighty_seo_heading_section:
             label: 'Get Static Pages Heading from the Myghty SEO plugin'
             type: section
