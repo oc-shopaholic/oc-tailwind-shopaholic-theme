@@ -285,7 +285,7 @@ tabs:
                 action: enable
                 field: check_popularity
                 condition: checked
-        has_viewed_roducts:
+        has_viewed_products:
             label: 'Viewed Products for Shopaholic'
             type: switch
             span: left
@@ -295,7 +295,7 @@ tabs:
             commentHtml: true
             trigger:
                 action: enable
-                field: check_viewed_roducts
+                field: check_viewed_products
                 condition: checked
         has_related_products:
             label: 'Related product for Shopaholic'

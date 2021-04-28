@@ -14,7 +14,7 @@ Input values: sProductListSmallType, sButtonName, iTake, obProduct
     {% set obProductList = ProductList.make().active().sort('popularity|desc') %}
 {% elseif sProductListSmallType == sProductListSmallTypeViewedProducts %}
     {% set obProductList = ProductList.make().active().viewed() %}
-{% elseif sProductListSmallType == sProductListSmallTypeViewedRelatedProducts %}
+{% elseif sProductListSmallType == sProductListSmallTypeRelatedProducts %}
     {% set obProductList = obProduct.related().active() %}
 {% endif %}
 
