@@ -1,9 +1,0 @@
-{##}
-<div class="flex flex-col items-center text-gray-200">
-    <div class="font-black text-error">{{ sErrorCode }}</div>
-    <div class="text-3xl mt-8">Sorry!</div>
-    <div class="text-base md:text-lg mt-2">{{ sErrorMessage }}</div>
-    {% if sBtn %}
-        {% partial 'button/button' text = 'Go back' onclick = onclick %}
-    {% endif %}
-</div>
