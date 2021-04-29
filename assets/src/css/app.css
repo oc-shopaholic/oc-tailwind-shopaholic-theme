@@ -28,4 +28,7 @@
   .break-line {
     line-break: anywhere;
   }
+  .wishlist__empty{
+    background-image: url(/themes/lovata-tailwind-shopaholic/assets/images/wishlist.svg);
+  }
 }
