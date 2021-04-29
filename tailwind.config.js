@@ -10,9 +10,6 @@ module.exports = {
   ],
   darkMode: false,
   theme: {
-    fontSize: {
-      error: ['9rem', '1'],
-    },
     extend: {
       gridTemplateColumns: {
         'full': '100%',
@@ -28,11 +25,14 @@ module.exports = {
       backgroundSize: {
         '65': '65%',
       },
+      fontSize: {
+        error: ['9rem', '1'],
+      },
     }
   },
   variants: {
     extend: {
-      margin: ['first', "last"],
+      margin: ['first', 'last'],
       textColor: ['active', 'focus-visible', 'visited'],
       outline: ['focus-visible'],
       backgroundColor: ['group-focus', 'active', 'focus-visible', 'disabled'],
@@ -42,7 +42,8 @@ module.exports = {
       opacity: ['hover', 'focus'],
       fill: ['hover', 'group-hover', 'group-focus', 'focus'],
       stroke: ['hover', 'group-hover', 'group-focus', 'focus'],
-      width: ["hover"]
+      width: ['hover'],
+      borderWidth: ['first', 'last']
     }
   },
   plugins: [
