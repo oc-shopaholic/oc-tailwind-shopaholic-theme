@@ -1,7 +1,7 @@
 {% set labelStateClass = labelStateClass is not empty ? 'focuses' : '' %}
-<div class="{{ wrapperClass }}">
+<div class="{{ sPartialClasses }}">
     {% if labelText %}
-    <label for="{{ id }}" class="text-xs text-gray-600 inline-block mb-1 {{ labelClass }} {{ labelStateClass }}">{{ labelText }}</label>
+    <label for="{{ id }}" class="text-xs text-gray-600 inline-block mb-1 {{ sLabelClasses }} {{ labelStateClass }}">{{ sLabelText }}</label>
     {% endif %}
     <input
         type="{{ type|default('text') }}"
