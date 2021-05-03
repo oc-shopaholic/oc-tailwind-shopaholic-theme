@@ -232,3 +232,80 @@ tabs:
             defaul: on
             span: full
             tab: 'Functionality'
+        mighty_seo_heading_section:
+            label: 'Get Static Pages Heading from the Myghty SEO plugin'
+            type: section
+            span: full
+            tab: 'Functionality'
+        mighty_seo_heading_is_active:
+            label: 'Active'
+            type: switch
+            defaul: on
+            span: full
+            tab: 'Functionality'
+### Plugins
+        plugin_check:
+            tab: 'Plugins'
+            span: left
+            type: partial
+            path: ~/themes/lovata-tailwind-shopaholic/config/_plugin_check.htm
+        has_wish_list:
+            label: 'Wish List for Shopaholic'
+            type: switch
+            span: left
+            required: 0
+            tab: 'Plugins'
+            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-wishlistshopaholic">Wish List for Shopaholic</a></strong>'
+            commentHtml: true
+            trigger:
+                action: enable
+                field: check_wish_list
+                condition: checked
+        has_lables:
+            label: 'Labels for Shopaholic'
+            type: switch
+            span: left
+            required: 0
+            tab: 'Plugins'
+            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-labelsshopaholic">Labels for Shopaholic</a></strong>'
+            commentHtml: true
+            trigger:
+                action: enable
+                field: check_labels
+                condition: checked
+        has_popularity:
+            label: 'Popularity for Shopaholic'
+            type: switch
+            span: left
+            required: 0
+            tab: 'Plugins'
+            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-popularityshopaholic">Popularity for Shopaholic</a></strong>'
+            commentHtml: true
+            trigger:
+                action: enable
+                field: check_popularity
+                condition: checked
+        has_viewed_products:
+            label: 'Viewed Products for Shopaholic'
+            type: switch
+            span: left
+            required: 0
+            tab: 'Plugins'
+            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-viewedproductsshopaholic">Viewed Products for Shopaholic</a></strong>'
+            commentHtml: true
+            trigger:
+                action: enable
+                field: check_viewed_products
+                condition: checked
+        has_related_products:
+            label: 'Related product for Shopaholic'
+            type: switch
+            span: left
+            required: 0
+            tab: 'Plugins'
+            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-relatedproductsshopaholic">Related product for Shopaholic</a></strong>'
+            commentHtml: true
+            trigger:
+                action: enable
+                field: check_related_products
+                condition: checked

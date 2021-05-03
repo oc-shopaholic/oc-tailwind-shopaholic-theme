@@ -16,6 +16,7 @@
 {% else %}
     <button class="{{ defaultClass }} {{ sPartialClasses }}"
             type="{{ type|default('button') }}"
+            {{ sDataAtribute }}
         {% if onclick %}
             onclick="{{ onclick }}"
         {% endif %}

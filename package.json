@@ -27,8 +27,10 @@
     "vue-template-compiler": "^2.6.12"
   },
   "dependencies": {
+    "@lovata/shopaholic-wish-list": "^1.0.0",
     "@tailwindcss/aspect-ratio": "^0.2.0",
     "@tailwindcss/forms": "^0.3.2",
+    "@tailwindcss/line-clamp": "^0.2.0",
     "cross-env": "^7.0.2",
     "formbouncerjs": "^1.4.6",
     "jquery": "^3.6.0",

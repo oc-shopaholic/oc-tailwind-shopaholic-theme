@@ -94,5 +94,6 @@ node_modules/
 package-lock.json
 docs/
 meta/
+content/
 
 _ide_helper.php
