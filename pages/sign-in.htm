@@ -6,6 +6,12 @@ is_hidden = 0
 <?php
 function onInit()
 {
+    $obUser = $this['obUser'];
+
+    if (!empty($obUser)) {
+        return $this->controller->run('404');
+    }
+
     if ($this->theme->has_buddies) {
         $this->addComponent('Lovata\Buddies\Components\Login', 'Login', [
             'redirect_on' => 1,
