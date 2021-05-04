@@ -1,0 +1,17 @@
+title = "Log out"
+url = "/log-out"
+layout = "main"
+is_hidden = 0
+==
+<?php
+function onInit()
+{
+    if ($this->theme->has_buddies) {
+        $this->addComponent('Lovata\Buddies\Components\Logout', 'UserData', ['redirect_on' => 1, 'redirect_page' => 'index', 'mode' => 'submit']);
+    } else {
+        return $this->controller->run('404');
+    }
+}
+?>
+==
+{##}
