@@ -6,3 +6,20 @@ is_hidden = 0
 ==
 
 {##}
+<div class="max-w-xs mx-auto mt-7 mb-44 md:mb-14">
+    <h1 class="font-medium uppercase text-xl md:text-3xl mb-4">Sign in</h1>
+    <form class="_required">
+        {% partial 'input/input' sLabelText = 'E-mail' name = 'mail' required = 'required' %}
+        {% partial 'input/input' sLabelText = 'Password' name = 'password' required = 'required' type = 'password' sPartialClasses = 'mt-4' %}
+        <div class="mt-4 text-right">
+            <a href="#" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">Forgot password?</a>
+        </div>
+        <div class="mt-4 md:mt-3">
+            <label>
+                <input class="rounded-sm text-blue-800 focus-visible:outline-blue focus:outline-none" type="checkbox" checked/> Keep me signed in.
+            </label>
+        </div>
+        {% partial 'button/button' text = 'Sign in' type = 'submit' sPartialClasses = 'w-full mt-8 md:mt-6' %}
+    </form>
+    <div class="text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">Don’t have an account? <a href="{{ 'sign-up'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">Sign up</a></div>
+</div>
