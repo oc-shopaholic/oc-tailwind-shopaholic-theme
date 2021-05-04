@@ -10,9 +10,6 @@ module.exports = {
   ],
   darkMode: false,
   theme: {
-    fontSize: {
-      error: ['9rem', '1'],
-    },
     extend: {
       gridTemplateColumns: {
         'full': '100%',
@@ -27,6 +24,9 @@ module.exports = {
       },
       backgroundSize: {
         '65': '65%',
+      },
+      fontSize: {
+        error: ['9rem', '1'],
       },
     }
   },
