@@ -26,7 +26,7 @@ function onInit()
         {% partial 'input/input' sLabelText = 'E-mail' name = 'email' required = 'required' type = 'email' %}
         {% partial 'input/input' sLabelText = 'Password' name = 'password' required = 'required' type = 'password' sPartialClasses = 'mt-4' %}
         <div class="mt-4 text-right">
-            <a href="#" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">Forgot password?</a>
+            <a href="{{ 'restore-password'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">Forgot password?</a>
         </div>
         <div class="mt-4 md:mt-3">
             <label>
