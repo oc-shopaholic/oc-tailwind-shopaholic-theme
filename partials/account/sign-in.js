@@ -1,8 +1,8 @@
 export default new class SignIn {
   constructor() {
     this.sButtonSignInClass = '_button-sign-in';
-    this.obButton = null;
     this.sInvalidClass = '_invalid';
+    this.obButton = null;
 
     document.addEventListener('bouncerFormValid', () => {
       this.initLoginHandler();
