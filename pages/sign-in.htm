@@ -8,19 +8,15 @@ function onInit()
 {
     $obUser = $this['obUser'];
 
-    if (!empty($obUser)) {
+    if (!$this->theme->has_buddies || !empty($obUser)) {
         return $this->controller->run('404');
     }
 
-    if ($this->theme->has_buddies) {
-        $this->addComponent('Lovata\Buddies\Components\Login', 'Login', [
-            'redirect_on' => 1,
-            'redirect_page' => 'account',
-            'mode' => 'ajax',
-        ]);
-    } else {
-        return $this->controller->run('404');
-    }
+    $this->addComponent('Lovata\Buddies\Components\Login', 'Login', [
+        'redirect_on' => 1,
+        'redirect_page' => 'account',
+        'mode' => 'ajax',
+    ]);
 }
 ?>
 ==
