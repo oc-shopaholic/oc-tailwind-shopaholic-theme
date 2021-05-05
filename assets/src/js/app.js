@@ -8,3 +8,5 @@ import '/partials/top-info-block/top-info-block';
 import '/partials/product-card/wish-list';
 /* * Product list small * */
 import '/partials/product-list-small/product-list-small';
+/* * Account * */
+import '/partials/account/restore-password';
