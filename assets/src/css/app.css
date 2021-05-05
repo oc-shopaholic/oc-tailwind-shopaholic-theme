@@ -28,4 +28,7 @@
   .break-line {
     line-break: anywhere;
   }
+  .restore__sent{
+    background-image: url(/themes/lovata-tailwind-shopaholic/assets/images/mail.svg);
+  }
 }
