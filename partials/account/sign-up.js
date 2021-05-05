@@ -4,13 +4,13 @@ export default new class SignUpn {
     this.sInvalidClass = '_invalid';
     this.obButton = null;
 
-    this.initLoginHandler();
+    this.initHandler();
   }
 
   /**
-   * @description Init login handler.
+   * @description Init handler.
    */
-  initLoginHandler() {
+  initHandler() {
     $(document).on('click', `.${this.sButtonSignUpClass}`, (obEvent) => {
       // TODO: Understand why we use setTimeout ()
       setTimeout(() => {
