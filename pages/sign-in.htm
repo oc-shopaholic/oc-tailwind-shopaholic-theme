@@ -31,7 +31,7 @@ function onInit()
     <div class="max-w-xs">
         <form class="_required">
             {# TODO: To discuss validation message layout shift #}
-            {% partial 'input/input' sLabelText = 'E-mail' name = 'mail' required = 'required' id = 'email' type = 'email' %}
+            {% partial 'input/input' sLabelText = 'E-mail' name = 'email' required = 'required' id = 'email' type = 'email' %}
             {% partial 'input/input' sLabelText = 'Password' name = 'password' required = 'required' type = 'password' sPartialClasses = 'mt-4' id = 'password' %}
             <div class="mt-4 text-right">
                 <a href="{{ 'restore-password'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base">Forgot password?</a>
