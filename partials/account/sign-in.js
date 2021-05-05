@@ -12,6 +12,7 @@ export default new class SignIn {
    */
   initLoginHandler() {
     $(document).on('click', `.${this.sButtonSignInClass}`, (obEvent) => {
+      // TODO: Understand why we use setTimeout ()
       setTimeout(() => {
         this.sendRequest(obEvent);
       }, 0);
