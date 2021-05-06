@@ -32,8 +32,19 @@ function onInit()
             {% partial 'input/input' sId = 'form-password-confirm' sLabelText = 'Confirm password' name = 'password_confirmation' required = 'required' type = 'password' sPartialClasses = 'mt-4' %}
             <div class="mt-4 md:mt-3">
                 <label class="text-sm md:text-base text-gray-600">
-                    <input class="form-checkbox rounded-sm text-blue-800 focus-visible:outline-blue focus:outline-none" type="checkbox" checked required/>
-                    By registering, you agree with our <a href="#" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline">Terms & Conditions</a>, and <a href="#" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline">Privacy and Cookie Policy</a>
+                    <input class="form-checkbox rounded-sm text-blue-800 focus-visible:outline-blue focus:outline-none" type="checkbox" required/>
+                    I accept the
+                    {% if this.theme.sign_up_section_terms_link %}
+                        <a href="{{ this.theme.sign_up_section_terms_link }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline">Terms&nbsp;&amp;&nbsp;Conditions</a>
+                    {% else %}
+                        Terms&nbsp;&amp;&nbsp;Conditions</a>
+                    {% endif %}
+                    and
+                    {% if this.theme.sign_up_section_policy_link %}
+                        <a href="{{ this.theme.sign_up_section_policy_link }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline">Privacy&nbsp;&amp;&nbsp;Cookie&nbsp;Policy</a>.
+                    {% else %}
+                        Privacy&nbsp;&amp;&nbsp;Cookie&nbsp;Policy</a>.
+                    {% endif %}
                 </label>
             </div>
             {% partial 'button/button'
