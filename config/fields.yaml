@@ -309,3 +309,15 @@ tabs:
                 action: enable
                 field: check_related_products
                 condition: checked
+        has_buddies:
+            label: 'Buddies'
+            type: switch
+            span: left
+            required: 0
+            tab: 'Plugins'
+            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-buddies">Buddies</a></strong>'
+            commentHtml: true
+            trigger:
+                action: enable
+                field: check_buddies
+                condition: checked
