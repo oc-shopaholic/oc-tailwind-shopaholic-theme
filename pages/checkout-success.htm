@@ -1,8 +1,18 @@
 title = "Checkout Success"
-url = "/checkout/:slug"
+url = "/checkout/success"
 layout = "main"
 is_hidden = 0
 
 ==
 
 {##}
+<div class="flex flex-col items-center mt-28 md:mt-14 mb-8 md:mb-16">
+    <div class="w-40">
+        <div class="aspect-w-1 aspect-h-1 bg-cover bg-no-repeat checkout__success"></div>
+    </div>
+    <div class="max-w-xs text-center text-lg md:text-xl mt-16 md:mt-14">
+        <p class="text-gray-900">Your order <span class="font-medium">#2ХХХХХХ</span> is accepted.</p>
+        <p class="text-gray-600">Thank you for shopping at our shop!</p>
+        {% partial 'button/button' sText = 'Continue shopping' sPartialClasses = 'mt-36 md:mt-6 w-full md:w-auto' %}
+    </div>
+</div>
