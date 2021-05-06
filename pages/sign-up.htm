@@ -27,9 +27,9 @@ function onInit()
     <h1 class="font-medium uppercase text-xl md:text-3xl mb-4">sign up</h1>
     <div class="max-w-xs">
         <form class="_required">
-            {% partial 'input/input' sLabelText = 'E-mail' name = 'email' required = 'required' type = 'email' %}
-            {% partial 'input/input' sLabelText = 'Password' name = 'password' required = 'required' type = 'password' sPartialClasses = 'mt-4' %}
-            {% partial 'input/input' sLabelText = 'Confirm password' name = 'password_confirmation' required = 'required' type = 'password' sPartialClasses = 'mt-4' %}
+            {% partial 'input/input' sId = 'form-email' sLabelText = 'E-mail' name = 'email' required = 'required' type = 'email' %}
+            {% partial 'input/input' sId = 'form-password' sLabelText = 'Password' name = 'password' required = 'required' type = 'password' sPartialClasses = 'mt-4' %}
+            {% partial 'input/input' sId = 'form-password-confirm' sLabelText = 'Confirm password' name = 'password_confirmation' required = 'required' type = 'password' sPartialClasses = 'mt-4' %}
             <div class="mt-4 md:mt-3">
                 <label class="text-sm md:text-base text-gray-600">
                     <input class="form-checkbox rounded-sm text-blue-800 focus-visible:outline-blue focus:outline-none" type="checkbox" checked required/>
