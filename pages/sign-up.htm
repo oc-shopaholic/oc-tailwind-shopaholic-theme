@@ -31,7 +31,9 @@ function onInit()
             {% partial 'input/input' sId = 'form-password' sLabelText = 'Password' name = 'password' required = 'required' type = 'password' sPartialClasses = 'mt-4' %}
             {% partial 'input/input' sId = 'form-password-confirm' sLabelText = 'Confirm password' name = 'password_confirmation' required = 'required' type = 'password' sPartialClasses = 'mt-4' %}
             <div class="mt-4 md:mt-3">
+                {# TODO: The checkbox label should have margin on the left side #}
                 <label class="text-sm md:text-base text-gray-600">
+                    {# TODO: The checkbox input should be extracted to a partial #}
                     <input class="form-checkbox rounded-sm text-blue-800 focus-visible:outline-blue focus:outline-none" type="checkbox" required/>
                     I accept the
                     {% if this.theme.sign_up_section_terms_link %}
