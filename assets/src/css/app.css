@@ -29,14 +29,15 @@
     line-break: anywhere;
   }
   /* TODO: Consider to move <summary> and <details> styles directly to the component */
+  summary::-webkit-details-marker {
     display: none;
     list-style: none;
   }
-  summary{
+  summary {
     list-style: none;
     position: relative;
   }
-  summary::after{
+  summary::after {
     content: '';
     display: inline-block;
     width: 15px;
@@ -47,12 +48,6 @@
     right: 0;
     transition: .2s;
     transform: translateY(-50%);
-  }
-  details[open]{
-    padding-bottom: 16px;
-  }
-  details[open]>summary{
-    padding-bottom: 0;
   }
   details[open]>summary::after{
     transform: translateY(-50%) rotate(180deg);
