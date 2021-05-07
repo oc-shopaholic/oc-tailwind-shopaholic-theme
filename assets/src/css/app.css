@@ -28,7 +28,7 @@
   .break-line {
     line-break: anywhere;
   }
-  summary::-webkit-details-marker{
+  /* TODO: Consider to move <summary> and <details> styles directly to the component */
     display: none;
     list-style: none;
   }
