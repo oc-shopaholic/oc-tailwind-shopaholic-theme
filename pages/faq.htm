@@ -8,7 +8,7 @@ function onInit()
 {
     if ($this->theme->has_faq) {
         $this->addComponent('AndreiShilov\FAQ\Components\FAQ', 'FAQ', [
-            'add_jsonld' => 0,
+            'add_jsonld' => 1,
         ]);
     } else {
         return $this->controller->run('404');
