@@ -338,3 +338,15 @@ tabs:
                 action: enable
                 field: check_buddies
                 condition: checked
+        has_faq:
+            label: 'FAQ'
+            type: switch
+            span: left
+            required: 0
+            tab: 'Plugins'
+            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/andreishilov-faq">FAQ</a></strong>'
+            commentHtml: true
+            trigger:
+                action: enable
+                field: check_faq
+                condition: checked
