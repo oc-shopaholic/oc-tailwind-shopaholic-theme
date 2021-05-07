@@ -4,9 +4,11 @@
     $bHasPopularityPlugin = \System\Classes\PluginManager::instance()->hasPlugin('Lovata.PopularityShopaholic') && !\System\Classes\PluginManager::instance()->isDisabled('Lovata.PopularityShopaholic');
     $bHasViewedProducts = \System\Classes\PluginManager::instance()->hasPlugin('Lovata.ViewedProductsShopaholic') && !\System\Classes\PluginManager::instance()->isDisabled('Lovata.ViewedProductsShopaholic');
     $bHasRelatedProducts = \System\Classes\PluginManager::instance()->hasPlugin('Lovata.RelatedProductsShopaholic') && !\System\Classes\PluginManager::instance()->isDisabled('Lovata.RelatedProductsShopaholic');
+    $bHasBuddies = \System\Classes\PluginManager::instance()->hasPlugin('Lovata.Buddies') && !\System\Classes\PluginManager::instance()->isDisabled('Lovata.Buddies');
 ?>
-<input type="checkbox" hidden name="ThemeData[check_wish_list]" <?php if ($bHasWishListPlugin) { ?>checked<?php }?>/>
-<input type="checkbox" hidden name="ThemeData[check_labels]" <?php if ($bHasLabelsPlugin) { ?>checked<?php }?>/>
-<input type="checkbox" hidden name="ThemeData[check_popularity]" <?php if ($bHasPopularityPlugin) { ?>checked<?php }?>/>
-<input type="checkbox" hidden name="ThemeData[check_viewed_products]" <?php if ($bHasViewedProducts) { ?>checked<?php }?>/>
-<input type="checkbox" hidden name="ThemeData[check_related_products]" <?php if ($bHasRelatedProducts) { ?>checked<?php }?>/>
+<input type="checkbox" hidden name="ThemeData[check_wish_list]" <?php if ($bHasWishListPlugin) { ?>checked<?php }?>>
+<input type="checkbox" hidden name="ThemeData[check_labels]" <?php if ($bHasLabelsPlugin) { ?>checked<?php }?>>
+<input type="checkbox" hidden name="ThemeData[check_popularity]" <?php if ($bHasPopularityPlugin) { ?>checked<?php }?>>
+<input type="checkbox" hidden name="ThemeData[check_viewed_products]" <?php if ($bHasViewedProducts) { ?>checked<?php }?>>
+<input type="checkbox" hidden name="ThemeData[check_related_products]" <?php if ($bHasRelatedProducts) { ?>checked<?php }?>>
+<input type="checkbox" hidden name="ThemeData[check_buddies]" <?php if ($bHasBuddies) { ?>checked<?php }?>>

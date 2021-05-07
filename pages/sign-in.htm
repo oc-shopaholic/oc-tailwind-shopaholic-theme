@@ -1,8 +1,51 @@
 title = "Sign In"
-url = "/signin"
+url = "/sign-in"
 layout = "main"
 is_hidden = 0
-
 ==
+<?php
+function onInit()
+{
+    $obUser = $this['obUser'];
 
+    if (!$this->theme->has_buddies || !empty($obUser)) {
+        return $this->controller->run('404');
+    }
+
+    $this->addComponent('Lovata\Buddies\Components\Login', 'Login', [
+        'redirect_on' => 1,
+        'redirect_page' => 'account',
+        'mode' => 'ajax',
+    ]);
+}
+?>
+==
 {##}
+
+<div class="mt-7 mb-14 flex flex-col items-center">
+    <h1 class="font-medium uppercase text-xl md:text-3xl mb-4">Sign in</h1>
+    <div class="max-w-xs">
+        <form class="_required">
+            {# TODO: To discuss validation message layout shift #}
+            {% partial 'input/input' sId = 'form-email' sLabelText = 'E-mail' name = 'email' required = 'required' id = 'email' type = 'email' %}
+            {# TODO: Add inline ajax validation for email existing #}
+            {% partial 'input/input' sId = 'form-password' sLabelText = 'Password' name = 'password' required = 'required' type = 'password' sPartialClasses = 'mt-4' id = 'password' %}
+            <div class="mt-4 text-right">
+                <a href="{{ 'password-restore'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base">Forgot password?</a>
+            </div>
+            <div class="mt-4 md:mt-3">
+                {# TODO: Fix focus-visible state for checkbox   #}
+                <label>
+                    <input name="remember_me" class="rounded-sm text-blue-800 focus-visible:outline-blue focus:outline-none" type="checkbox"> Keep me signed in.
+                </label>
+            </div>
+            {% partial 'button/button'
+                sText = 'Sign in'
+                sType = 'submit'
+                sPartialClasses = '_button-sign-in w-full mt-8 md:mt-6'
+            %}
+            {# TODO: Add inline ajax validation #}
+        </form>
+        <span class="block text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">Don’t have an account? <a href="{{ 'sign-up'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base">Sign up</a></span>
+    </div>
+</div>

@@ -15,7 +15,7 @@
         </div>
         <div class="lg:pl-8 lg:ml-auto max-w-xs">
             {% if this.theme.business_card_image is not empty %}
-                <img class="block max-h-14" src="{{ this.theme.business_card_image|media }}" alt="{{ this.theme.business_card_image_alt }}" title="{{ this.theme.business_card_image_title }}" />
+                <img class="block max-h-14" src="{{ this.theme.business_card_image|media }}" alt="{{ this.theme.business_card_image_alt }}" title="{{ this.theme.business_card_image_title }}">
             {% endif %}
             {% if this.theme.business_card_description is not empty %}
                 <p class="mt-4 text-gray-600 text-sm">{{ this.theme.business_card_description }}</p>

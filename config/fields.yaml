@@ -159,7 +159,6 @@ tabs:
                         type: text
                         span: left
                         placeholder: 'lovata.toolbox::lang.field.slug'
-
         page_seo_block_section:
             label: 'Page SEO Block'
             type: section
@@ -209,6 +208,24 @@ tabs:
                 action: show
                 field: page_seo_block_active
                 condition: checked
+        sign_up_section:
+            label: 'Sign Up Settings'
+            type: section
+            span: full
+            tab: 'Content'
+        sign_up_section_terms_link:
+            label: 'Terms & Conditions page link'
+            type: text
+            placeholder: '/page-link'
+            span: left
+            tab: 'Content'
+        sign_up_section_policy_link:
+            label: 'Privacy & Cookie Policy page link'
+            type: text
+            placeholder: '/page-link'
+            span: right
+            tab: 'Content'
+
 ### Functionality
         shopaholic_bar_section:
             label: 'Powered by Shopaholic bar'
@@ -308,4 +325,16 @@ tabs:
             trigger:
                 action: enable
                 field: check_related_products
+                condition: checked
+        has_buddies:
+            label: 'Buddies'
+            type: switch
+            span: left
+            required: 0
+            tab: 'Plugins'
+            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-buddies">Buddies</a></strong>'
+            commentHtml: true
+            trigger:
+                action: enable
+                field: check_buddies
                 condition: checked
