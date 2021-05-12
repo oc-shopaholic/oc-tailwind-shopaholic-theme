@@ -3,7 +3,7 @@
 <ul>
     {% for review in 1..4 %}
     <li class="mt-4 md:mt-5 first:mt-0">
-        <div class="flex items-center">
+        <header class="flex items-center">
             <div class="mr-4 w-10 md:w-12 h-10 md:h-12 rounded-full overflow-hidden">
                 {% set user = true %}
                 {% if user %}
@@ -19,9 +19,9 @@
                 </div>
                     {% partial 'star-rating-static/star-rating-static' %}
             </div>
-        </div>
+        </header>
         <div class="mt-3">
-            <div class="text-gray-900 font-medium text-xs md:text-base mb-1">Jannet recommended this item</div>
+            <span class="text-gray-900 font-medium text-xs md:text-base mb-1">Jannet recommended this item</span>
             <div class="text-gray-600 text-xs md:text-base">
                 <p>I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!</p>
             </div>
