@@ -4,14 +4,12 @@
     {% for review in 1..4 %}
     <li class="mt-4 md:mt-5 first:mt-0">
         <header class="flex items-center">
-            {# <div class="mr-4 w-10 md:w-12 h-10 md:h-12 rounded-full overflow-hidden"> #}
             {% set user = true %}
             {% if user %}
                 <img src="{{ 'assets/images/temp_img/user.png'|theme }}" class="mr-4 w-10 md:w-12 h-10 md:h-12 rounded-full overflow-hidden" alt="Avatar of the User name"/>
             {% else %}
                 <img src="{{ 'assets/images/avatar-default.svg'|theme }}" class="mr-4 w-10 md:w-12 h-10 md:h-12 rounded-full overflow-hidden" alt="No avatar is presented."/>
             {% endif %}
-            {# </div> #}
             <div class="flex-1">
                 <div class="flex justify-between md:justify-start">
                     <span class="text-gray-900 font-medium text-xs md:text-base">Jannet Tan</span>
