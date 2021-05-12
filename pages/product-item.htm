@@ -1,9 +1,45 @@
 title = "Catalog Item"
-url = "/:slug_category/:slug"
+url = "/catalog/:category/:product"
 layout = "main"
 is_hidden = 0
 
-==
+[CategoryPage]
+slug = "{{ :category }}"
+slug_required = 1
+smart_url_check = 0
+has_wildcard = 0
+skip_error = 0
 
+[ProductPage]
+slug = "{{ :product }}"
+slug_required = 1
+smart_url_check = 0
+skip_error = 0
+
+[ProductList]
+sorting = "no"
+
+[ProductData]
+==
 {##}
+{% set obProduct = ProductPage.get() %}
+
 {% partial 'breadcrumbs/breadcrumbs' %}
+
+{% if this.theme.has_viewed_products %}
+    {% partial 'product-list-small/product-list-small'
+        sProductListSmallType = sProductListSmallTypeViewedProducts
+        sSectionHeading = 'Recently Viewed'
+        sSectionHeadingLevel = 2
+        iTake = 4
+    %}
+{% endif %}
+{% if this.theme.has_related_products %}
+    {% partial 'product-list-small/product-list-small'
+        sProductListSmallType = sProductListSmallTypeRelatedProducts
+        obProduct = obProduct
+        sSectionHeading = 'You might also like'
+        sSectionHeadingLevel = 2
+        iTake = 4
+    %}
+{% endif %}
