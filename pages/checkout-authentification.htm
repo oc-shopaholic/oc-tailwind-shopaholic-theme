@@ -16,7 +16,7 @@ is_hidden = 0
             {% partial 'input/input' sLabelText = 'E-mail' name = 'mail' id = 'mail' required = 'required' %}
             {% partial 'input/input' sLabelText = 'Password' name = 'password' id ='password' required = 'required' type = 'password' sPartialClasses = 'mt-4' %}
             <div class="mt-4 text-right">
-                <a href="#" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">Forgot password?</a>
+                <a href="{{ 'password-restore'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">Forgot password?</a>
             </div>
             <div class="mt-4 md:mt-3">
                 <label>
