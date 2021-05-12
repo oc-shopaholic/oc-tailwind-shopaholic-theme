@@ -8,7 +8,7 @@ is_hidden = 0
 {##}
 <div class="flex flex-col items-center mt-4 md:mt-6 mb-5 md:mb-16">
     <span class="text-gray-900 text-lg md:text-xl uppercase md:normal-case font-medium">Continue without authorization</span>
-    {% partial 'button/button' sText = 'Checkout as guest' sPartialClasses = 'w-full md:w-auto mt-4' %}
+    {% partial 'button/button' sText = 'Checkout as guest' sHref = 'checkout'|page sPartialClasses = 'w-full md:w-auto mt-4' %}
     <span class="inline-block mt-2 md:mt-4 text-gray-600 ">To use a promo code, sign in or <a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline" href="{{ 'sign-up'|page }}">create an account</a> first.</span>
     <h1 class="font-medium uppercase text-xl md:text-3xl mt-8 mb-4">Sign in</h1>
     <div class="max-w-xs">
