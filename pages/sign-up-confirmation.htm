@@ -1,0 +1,24 @@
+title = "Sign Up Confirmation"
+url = "/sign-up/confirmation/:slug"
+layout = "main"
+is_hidden = 0
+==
+<?php
+function onInit()
+{
+    $obUser = $this['obUser'];
+
+    if (!empty($obUser) || !$this->theme->has_buddies) {
+        return $this->controller->run('404');
+    }
+
+    $this->addComponent('Lovata\Buddies\Components\ActivationPage', 'ActivationPage', [
+        'slug' => '{{ :slug }}',
+        'force_login' => 0,
+        'redirect_on' => 0,
+        'redirect_page' => '',
+    ]);
+}
+?>
+==
+{##}
