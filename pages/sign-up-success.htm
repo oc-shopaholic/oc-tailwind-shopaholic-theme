@@ -1,0 +1,17 @@
+title = "Sign Up Success"
+url = "/sign-up/success"
+layout = "main"
+is_hidden = 0
+==
+<?php
+function onInit()
+{
+    $obUser = $this['obUser'];
+
+    if (!empty($obUser) || !$this->theme->has_buddies) {
+        return $this->controller->run('404');
+    }
+}
+?>
+==
+{##}
