@@ -28,9 +28,11 @@ sorting = "no"
 
 <section>
     <h3 class="text-lg md:text-3xl uppercase mb-4 md:mb-10">Customer reviews</h3>
-    {% partial 'review-list/review-list' %}
-    <a class="text-blue-800 underline text-base md:text-xl active:text-blue-900 hover:text-blue-700 hover:no-underline" href="#">Read more reviews &gt;</a>
-    {% partial 'button/button' sText = 'Write a review' %}
+    {% partial 'review-list/review-list'  %}
+    <div class="my-5">
+        <a class="text-blue-800 underline text-base md:text-xl active:text-blue-900 hover:text-blue-700 hover:no-underline" href="#">Read more reviews &gt;</a>
+    </div>
+    {% partial 'button/button' sText = 'Write a review' bGhost = true %}
 </section>
 {% if this.theme.has_viewed_products %}
     {% partial 'product-list-small/product-list-small'

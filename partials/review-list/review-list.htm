@@ -6,7 +6,7 @@
         <header class="flex items-center">
             {% set user = true %}
             {% if user %}
-                <img src="{{ 'assets/images/temp_img/user.png'|theme }}" class="mr-4 w-10 md:w-12 h-10 md:h-12 rounded-full overflow-hidden" alt="Avatar of the User name"/>
+                <img src="{{ 'assets/images/temp_img/user.png'|theme }}" class="mr-4 w-10 md:w-12 h-10 md:h-12 rounded-full overflow-hidden object-cover" alt="Avatar of the User name"/>
             {% else %}
                 <img src="{{ 'assets/images/avatar-default.svg'|theme }}" class="mr-4 w-10 md:w-12 h-10 md:h-12 rounded-full overflow-hidden" alt="No avatar is presented."/>
             {% endif %}
