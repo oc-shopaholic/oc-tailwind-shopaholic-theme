@@ -1,3 +1,8 @@
+[staticPage]
+useContent = 1
+default = 0
+
+[SeoToolbox]
 ==
 <?php
 function onInit()
@@ -6,6 +11,15 @@ function onInit()
     $this['path_js'] = mix('assets/dist/js/app.js', 'themes/lovata-tailwind-shopaholic');
     $this['path_manifest_js'] = mix('assets/dist/js/manifest.js', 'themes/lovata-tailwind-shopaholic');
     $this['path_vendor_js'] = mix('assets/dist/js/vendor.js', 'themes/lovata-tailwind-shopaholic');
+
+    $this['sProductListSmallTypePopularity'] = 'popularity';
+    $this['sProductListSmallTypeViewedProducts'] = 'viewed_products';
+    $this['sProductListSmallTypeRelatedProducts'] = 'related_products';
+
+    if ($this->theme->has_buddies) {
+        $this->addComponent('Lovata\Buddies\Components\UserData', 'UserData', []);
+        $this['obUser'] = $this->UserData->get();
+    }
 }
 function onStart()
 {
@@ -27,7 +41,17 @@ function onStart()
             {% partial 'header/header' %}
             <main>
                 {% partial 'breadcrumbs/breadcrumbs' %}
-                {% page %}
+                <div class="max-w-5xl mx-auto mb-6 md:mb-14">
+                    {% if SeoToolbox.getPageTitle is not empty and this.theme.mighty_seo_heading_is_active %}
+                        <h1 class="font-medium text-lg md:text-2xl mb-3 md:mb-6">{{ SeoToolbox.getPageTitle }}</h1>
+                    {% else %}
+                        <h1 class="font-medium text-lg md:text-2xl mb-3 md:mb-6">{{ this.page.title }}</h1>
+                    {% endif %}
+                    <div class="overflow-x-hidden prose max-w-none text-sm md:text-base">
+                        {% page %}
+                        {# TODO: Fix table on mobile #}
+                    </div>
+                </div>
             </main>
             {% partial 'footer/footer' %}
         </div>
