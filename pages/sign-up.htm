@@ -1,8 +1,62 @@
 title = "Sign Up"
-url = "/signup"
+url = "/sign-up"
 layout = "main"
 is_hidden = 0
-
 ==
+<?php
+function onInit()
+{
+    $obUser = $this['obUser'];
 
+    if (!$this->theme->has_buddies || !empty($obUser)) {
+        return $this->controller->run('404');
+    }
+
+    $this->addComponent('Lovata\Buddies\Components\Registration', 'Registration', [
+        'redirect_on' => 1,
+        'redirect_page' => 'sign-up-success',
+        'activation' => 'activation_mail',
+        'mode' => 'ajax',
+    ]);
+}
+?>
+==
 {##}
+
+<div class="mt-7 mb-14 flex flex-col items-center">
+    <h1 class="font-medium uppercase text-xl md:text-3xl mb-4">Sign up</h1>
+    <div class="max-w-xs">
+        <form class="_required">
+            {% partial 'input/input' sId = 'form-email' sLabelText = 'E-mail' name = 'email' required = 'required' type = 'email' %}
+            {# TODO: Add inline ajax validation for avaibility of the email #}
+            {% partial 'input/input' sId = 'form-password' sLabelText = 'Password' name = 'password' required = 'required' type = 'password' sPartialClasses = 'mt-4' %}
+            {# TODO: Add inline ajax validation for matching of the password fields values #}
+            {% partial 'input/input' sId = 'form-password-confirm' sLabelText = 'Confirm password' name = 'password_confirmation' required = 'required' type = 'password' sPartialClasses = 'mt-4' %}
+            <div class="mt-4 md:mt-3">
+                {# TODO: The checkbox label should have margin on the left side #}
+                <label class="text-sm md:text-base text-gray-600">
+                    {# TODO: The checkbox input should be extracted to a partial #}
+                    <input class="form-checkbox rounded-sm text-blue-800 focus-visible:outline-blue focus:outline-none" type="checkbox" required>
+                    I accept the
+                    {% if this.theme.sign_up_section_terms_link %}
+                        <a href="{{ this.theme.sign_up_section_terms_link }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline">Terms&nbsp;&amp;&nbsp;Conditions</a>
+                    {% else %}
+                        Terms&nbsp;&amp;&nbsp;Conditions</a>
+                    {% endif %}
+                    and
+                    {% if this.theme.sign_up_section_policy_link %}
+                        <a href="{{ this.theme.sign_up_section_policy_link }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline">Privacy&nbsp;&amp;&nbsp;Cookie&nbsp;Policy</a>.
+                    {% else %}
+                        Privacy&nbsp;&amp;&nbsp;Cookie&nbsp;Policy</a>.
+                    {% endif %}
+                </label>
+            </div>
+            {% partial 'button/button'
+                sText = 'Sign up'
+                sType = 'submit'
+                sPartialClasses = '_button-sign-up w-full mt-8 md:mt-6'
+            %}
+        </form>
+        <span class="block text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">Alredy have an account? <a href="{{ 'sign-in'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">Sign in</a></span>
+    </div>
+</div>

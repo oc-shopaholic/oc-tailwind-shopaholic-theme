@@ -8,3 +8,9 @@ import '/partials/top-info-block/top-info-block';
 import '/partials/product-card/wish-list';
 /* * Product list small * */
 import '/partials/product-list-small/product-list-small';
+/* * Account * */
+// TODO: To decide regarding the assets with no markup
+import '/partials/account/sign-up';
+import '/partials/account/sign-in';
+import '/partials/account/restore-password';
+import '/partials/account/account-change-password';
