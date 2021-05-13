@@ -53,6 +53,6 @@
     transform: translateY(-50%) rotate(180deg);
   }
   .wishlist__empty {
-    background-image: url('/themes/lovata-tailwind-shopaholic/assets/images/wishlist.svg') no-repeat;
+    background-image: url('/themes/lovata-tailwind-shopaholic/assets/images/wishlist.svg');
   }
 }

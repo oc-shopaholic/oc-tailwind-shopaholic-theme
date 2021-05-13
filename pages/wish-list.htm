@@ -16,12 +16,9 @@ is_hidden = 0
             {% endfor %}
         </div>
     {% else %}
-        <div class="flex flex-col items-center mt-28 md:mt-16">
-            <div class="w-40">
-                <div class="aspect-w-16 aspect-h-14 bg-contain bg-no-repeat wishlist__empty"></div>
-            </div>
-            <p class="text-lg md:text-xl text-gray-400 mt-11">Your wish list is empty.</p>
-            {% partial 'button/button' href = 'product-list'|page text = 'Start shopping' sPartialClasses = 'mt-24 md:mt-6' %}
+        <div class="flex flex-col items-center mt-28 md:mt-16 pt-48 md:pt-44 bg-no-repeat bg-top wishlist__empty">
+            <p class="text-lg md:text-xl text-gray-400">Your wish list is empty.</p>
+            {% partial 'button/button' href = 'product-list'|page sText = 'Start shopping' sPartialClasses = 'mt-24 md:mt-6' %}
         </div>
     {% endif %}
 </section>
