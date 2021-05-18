@@ -29,7 +29,7 @@ sorting = "no"
 {% if this.theme.has_viewed_products %}
     {% partial 'product-list-small/product-list-small'
         sProductListSmallType = sProductListSmallTypeViewedProducts
-        sSectionHeading = 'Recently Viewed'
+        sSectionHeading = 'product_list_small_recently_viewed_heading'|__
         sSectionHeadingLevel = 2
         iTake = 4
     %}
@@ -38,7 +38,7 @@ sorting = "no"
     {% partial 'product-list-small/product-list-small'
         sProductListSmallType = sProductListSmallTypeRelatedProducts
         obProduct = obProduct
-        sSectionHeading = 'You might also like'
+        sSectionHeading = 'product_list_small_you_might_also_like_heading'|__
         sSectionHeadingLevel = 2
         iTake = 4
     %}

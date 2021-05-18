@@ -41,6 +41,6 @@ last_button_number = 1
 {% set arPaginationList = Pagination.get(iPage, obArticleList.count()) %}
 
 {% partial 'breadcrumbs/breadcrumbs' %}
-<h1 class="container mx-auto mb-4 md:mb-10 text-lg md:text-3xl uppercase">News</h1>
+<h1 class="container mx-auto mb-4 md:mb-10 text-lg md:text-3xl uppercase">{{ 'page_news_list_heading'|__ }}</h1>
 {% partial 'news-list/news-list' arArticleList = arArticleList sCardHeadingLevel = 2 %}
 {% partial 'pagination/pagination' arPaginationList = arPaginationList iMaxPage = iMaxPage iPage = iPage sPartialClasses = 'mb-14' %}

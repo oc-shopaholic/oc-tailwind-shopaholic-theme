@@ -11,6 +11,6 @@
             {{ this.theme.page_seo_block_text|raw }}
         </div>
     {% else %}
-        <span class="block text-gray-400 text-center mb-4 md:mb-10">No page SEO text has been added yet.</span>
+        <span class="block text-gray-400 text-center mb-4 md:mb-10">{{ 'page_seo_content_not_found'|__ }}</span>
     {% endif %}
 </div>

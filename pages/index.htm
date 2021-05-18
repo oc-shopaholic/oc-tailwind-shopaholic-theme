@@ -20,11 +20,11 @@ sorting = "popularity|desc"
 {% if this.theme.has_popularity %}
     {% partial 'product-list-small/product-list-small'
         sProductListSmallType = sProductListSmallTypePopularity
-        sSectionHeading = 'Popular products'
+        sSectionHeading = 'product_list_small_popular_products_heading'|__
         sSectionHeadingLevel = 2
         iTake = 4
         sBtnMore = true
-        sButtonName = 'Show more products'
+        sButtonName = 'button_show_more_products'|__
     %}
     {# TODO: Change sSectionHeadingLevel to iSectionHeadingLevel overall #}
 {% endif %}

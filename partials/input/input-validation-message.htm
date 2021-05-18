@@ -1,29 +1,29 @@
 <script>
     window.messages = {
-		missingValue: {
-			checkbox: 'This field is required.',
-			radio: 'Please select a value.',
-			select: 'Please select a value.',
-			'select-multiple': 'Please select at least one value.',
-			default: 'Please fill out this field.'
-		},
-		patternMismatch: {
-			email: 'Please enter a valid email address.',
-			url: 'Please enter a URL.',
-			number: 'Please enter a number',
-			color: 'Please match the following format: #rrggbb',
-			date: 'Please use the YYYY-MM-DD format',
-			time: 'Please use the 24-hour time format. Ex. 23:00',
-			month: 'Please use the YYYY-MM format',
-			default: 'Please match the requested format.'
-		},
-		outOfRange: {
-			over: 'Please select a value that is no more than {max}.',
-			under: 'Please select a value that is no less than {min}.'
-		},
-		wrongLength: {
-			over: 'Please shorten this text to no more than {maxLength} characters. You are currently using {length} characters.',
-			under: 'Please lengthen this text to {minLength} characters or more. You are currently using {length} characters.'
-		}
-	};
+        'missingValue': {
+            'checkbox': {{ 'validation_missing_value_checkbox'|__ }},
+            'radio': {{ 'validation_missing_value_radio'|__ }},
+            'select': {{ 'validation_missing_value_select'|__ }},
+            'select-multiple': {{ 'validation_missing_value_select_multiple'|__ }},
+            'default': {{ 'validation_missing_value_default'|__ }}
+        },
+        'patternMismatch': {
+            'email': {{ 'validation_pattern_mismatch_email'|__ }},
+            'url': {{ 'validation_pattern_mismatch_url'|__ }},
+            'number': {{ 'validation_pattern_mismatch_number'|__ }},
+            'color': {{ 'validation_pattern_mismatch_color'|__ }},
+            'date': {{ 'validation_pattern_mismatch_date'|__ }},
+            'time': {{ 'validation_pattern_mismatch_time'|__ }},
+            'month': {{ 'validation_pattern_mismatch_month'|__ }},
+            'default': {{ 'validation_pattern_mismatch_default'|__ }}
+        },
+        'outOfRange': {
+            'over': {{ 'validation_out_of_range_over'|__ }},
+            'under': {{ 'validation_out_of_range_under'|__ }}
+        },
+        'wrongLength': {
+            'over': {{ 'validation_wrong_length_over'|__ }},
+            'under': {{ 'validation_wrong_length_under'|__ }}
+        }
+    };
 </script>

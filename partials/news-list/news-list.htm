@@ -10,6 +10,6 @@
             {% endfor %}
         </ul>
     {% else %}
-        <span class="block text-gray-400 text-center mb-4 md:mb-10">No news has been posted yet.</span>
+        <span class="block text-gray-400 text-center mb-4 md:mb-10">{{ 'news_list_not_found'|__ }}</span>
     {% endif %}
 </div>

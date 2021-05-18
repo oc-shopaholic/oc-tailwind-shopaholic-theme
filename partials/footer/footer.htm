@@ -5,7 +5,7 @@
         {% partial 'navigation-columns/navigation-columns' %}
             {% if this.theme.payment_methods_list_active %}
                 {% partial 'icon-list/icon-list'
-                    sSectionHeader = "icon_list_payment_methods_header"|__
+                    sSectionHeader = "icon_list_payment_methods_heading"|__
                     sPartialClasses = "lg:mt-8"
                     sUlClass = "gap-x-2"
                     arItemList = this.theme.payment_methods_list
@@ -47,7 +47,7 @@
                 {% endif %}
                 {% if this.theme.social_networks_list_active %}
                     {% partial 'icon-list/icon-list'
-                        sSectionHeader = "icon_list_our_social_media_header"|__
+                        sSectionHeader = "icon_list_our_social_media_heading"|__
                         sPartialClasses = "lg:mt-5"
                         arItemList = this.theme.social_networks_list
                         sItemClass = "w-10 aspect-w-1 aspect-h-1"

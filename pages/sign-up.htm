@@ -24,27 +24,27 @@ function onInit()
 {##}
 
 <div class="mt-7 mb-14 flex flex-col items-center">
-    <h1 class="font-medium uppercase text-xl md:text-3xl mb-4">Sign up</h1>
+    <h1 class="font-medium uppercase text-xl md:text-3xl mb-4">{{ 'page_sign_up_heading'|__ }}</h1>
     <div class="max-w-xs">
         <form class="_required">
-            {% partial 'input/input' sId = 'form-email' sLabelText = 'E-mail' name = 'email' required = 'required' type = 'email' %}
+            {% partial 'input/input' sId = 'form-email' sLabelText = 'field_email'|__ name = 'email' required = 'required' type = 'email' %}
             {# TODO: Add inline ajax validation for avaibility of the email #}
-            {% partial 'input/input' sId = 'form-password' sLabelText = 'Password' name = 'password' required = 'required' type = 'password' sPartialClasses = 'mt-4' %}
+            {% partial 'input/input' sId = 'form-password' sLabelText = 'field_password'|__ name = 'password' required = 'required' type = 'password' sPartialClasses = 'mt-4' %}
             {# TODO: Add inline ajax validation for matching of the password fields values #}
-            {% partial 'input/input' sId = 'form-password-confirm' sLabelText = 'Confirm password' name = 'password_confirmation' required = 'required' type = 'password' sPartialClasses = 'mt-4' %}
+            {% partial 'input/input' sId = 'form-password-confirm' sLabelText = 'field_сonfirm_password'|__ name = 'password_confirmation' required = 'required' type = 'password' sPartialClasses = 'mt-4' %}
             <div class="mt-4 md:mt-3">
                 {# TODO: The checkbox label should have margin on the left side #}
                 <label class="text-sm md:text-base text-gray-600">
                     {# TODO: The checkbox input should be extracted to a partial #}
                     <input class="form-checkbox rounded-sm text-blue-800 focus-visible:outline-blue focus:outline-none" type="checkbox" required>
                     I accept the
-                    {% if this.theme.sign_up_section_terms_link %}
+                    {% if this.theme.sign_up_section_terms_link is not empty %}
                         <a href="{{ this.theme.sign_up_section_terms_link }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline">Terms&nbsp;&amp;&nbsp;Conditions</a>
                     {% else %}
                         Terms&nbsp;&amp;&nbsp;Conditions</a>
                     {% endif %}
                     and
-                    {% if this.theme.sign_up_section_policy_link %}
+                    {% if this.theme.sign_up_section_policy_link is not empty %}
                         <a href="{{ this.theme.sign_up_section_policy_link }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline">Privacy&nbsp;&amp;&nbsp;Cookie&nbsp;Policy</a>.
                     {% else %}
                         Privacy&nbsp;&amp;&nbsp;Cookie&nbsp;Policy</a>.
@@ -52,11 +52,11 @@ function onInit()
                 </label>
             </div>
             {% partial 'button/button'
-                sText = 'Sign up'
+                sText = 'button_sign_up'|__
                 sType = 'submit'
                 sPartialClasses = '_button-sign-up w-full mt-8 md:mt-6'
             %}
         </form>
-        <span class="block text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">Alredy have an account? <a href="{{ 'sign-in'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">Sign in</a></span>
+        <span class="block text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">{{ 'message_already_have_an_account'|__ }} <a href="{{ 'sign-in'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">{{ 'button_sign_in'|__ }}</a></span>
     </div>
 </div>
