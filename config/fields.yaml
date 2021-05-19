@@ -2,94 +2,94 @@ tabs:
     fields:
 ### Content
         business_card_section:
-            label: 'Business Сard'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.business_card_section'
             type: section
             span: full
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         business_card_name:
-            label: 'Store name'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.business_card_name'
             type: text
             span: left
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         business_card_image:
-            label: 'Logo'
-            comment: 'Recommended resolution: 300×75px. The SVG format is supported.'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.logo'
+            comment: 'theme.lovata-tailwind-shopaholic::lang.comment.business_card_image'
             type: mediafinder
             span: right
             mode: image
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         business_card_description:
-            label: 'Store description or tagline'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.business_card_description'
             type: text
             span: left
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         business_card_image_alt:
-            label: 'Alternative text'
-            comment: 'This string will have been shown in case an image has not loaded on the page.'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.alt_text'
+            comment: 'theme.lovata-tailwind-shopaholic::lang.comment.image_alt_text'
             type: text
             span: right
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         business_card_phone:
-            label: 'Phone'
-            comment: 'This string will be rendered on the page as a clickable hyperlink.'
+            label: 'lovata.toolbox::lang.field.phone'
+            comment: 'theme.lovata-tailwind-shopaholic::lang.comment.business_card_phone'
             type: text
             span: left
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         business_card_image_title:
-            label: 'Title'
-            comment: 'This string will be shown on the mouse hover on the image.'
+            label: 'lovata.toolbox::lang.field.title'
+            comment: 'theme.lovata-tailwind-shopaholic::lang.comment.image_title'
             type: text
             span: right
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         business_card_email:
-            label: 'E-mail'
-            comment: 'This string will be rendered on the page as a clickable hyperlink.'
+            label: 'lovata.toolbox::lang.field.email'
+            comment: 'theme.lovata-tailwind-shopaholic::lang.comment.business_card_email'
             type: text
             span: left
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         business_card_address:
-            label: 'Address'
+            label: 'lovata.toolbox::lang.field.address'
             type: text
             span: full
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         business_card_copyright:
-            label: 'Page copyright'
-            placeholder: '© 2020 Atmosphere. All rights reserved.'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.page_copyright'
+            placeholder: 'theme.lovata-tailwind-shopaholic::lang.placeholder.business_card_copyright'
             type: text
             span: full
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
 
         top_info_block_section:
-            label: 'Top Info Block'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.top_info_block_section'
             type: section
             span: full
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         top_info_block_active:
             label: 'lovata.toolbox::lang.field.active'
             type: switch
             span: full
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         top_info_block:
             label: 'lovata.toolbox::lang.field.description'
             type: richeditor
             span: full
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
 
         payment_methods_list_section:
-            label: 'Payment Methods'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.payment_methods'
             type: section
             span: full
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         payment_methods_list_active:
             label: 'lovata.toolbox::lang.field.active'
             type: switch
             span: full
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         payment_methods_list:
             type: repeater
             span: full
             style: collapsed
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
             trigger:
                 action: show
                 field: payment_methods_list_active
@@ -97,41 +97,40 @@ tabs:
             form:
                 fields:
                     alt:
-                        label: 'Alternative text'
+                        label: 'theme.lovata-tailwind-shopaholic::lang.field.alt_text'
                         type: text
                         span: left
-                        comment: 'This string will have been shown in case an image has not loaded on the page.'
+                        comment: 'theme.lovata-tailwind-shopaholic::lang.comment.image_alt_text'
                     image:
                         label: 'lovata.toolbox::lang.field.image'
                         type: mediafinder
                         span: right
                         mode: image
-                        comment: 'Recommended resolution: 56×36px. The SVG format is supported.'
+                        comment: 'theme.lovata-tailwind-shopaholic::lang.comment.payment_methods_list_image'
                     title:
-                        label: 'Title'
+                        label: 'lovata.toolbox::lang.field.title'
                         type: text
                         span: left
-                        comment: 'This string will be shown on the mouse hover on the image.'
+                        comment: 'theme.lovata-tailwind-shopaholic::lang.comment.image_title'
                     url:
                         label: 'lovata.toolbox::lang.field.slug'
                         type: text
                         span: left
-
         social_networks_list_section:
-            label: 'Social Media'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.social_networks_list_section'
             type: section
             span: full
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         social_networks_list_active:
             label: 'lovata.toolbox::lang.field.active'
             type: switch
             span: full
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         social_networks_list:
             type: repeater
             span: full
             style: collapsed
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
             trigger:
                 action: show
                 field: social_networks_list_active
@@ -139,212 +138,211 @@ tabs:
             form:
                 fields:
                     alt:
-                        label: 'Alternative text'
+                        label: 'theme.lovata-tailwind-shopaholic::lang.field.alt_text'
                         type: text
                         span: left
-                        comment: 'This string will have been shown in case an image has not loaded on the page.'
+                        comment: 'theme.lovata-tailwind-shopaholic::lang.comment.image_alt_text'
                     image:
                         label: 'lovata.toolbox::lang.field.image'
                         type: mediafinder
                         span: right
                         mode: image
-                        comment: 'Recommended resolution: 40×40px. The SVG format is supported.'
+                        comment: 'theme.lovata-tailwind-shopaholic::lang.comment.social_networks_list_image'
                     title:
-                        label: 'Title'
+                        label: 'lovata.toolbox::lang.field.title'
                         type: text
                         span: left
-                        comment: 'This string will be shown on the mouse hover on the image.'
+                        comment: 'theme.lovata-tailwind-shopaholic::lang.comment.image_title'
                     url:
                         label: 'lovata.toolbox::lang.field.slug'
                         type: text
                         span: left
                         placeholder: 'lovata.toolbox::lang.field.slug'
         page_seo_block_section:
-            label: 'Page SEO Block'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.page_seo_block_section'
             type: section
             span: full
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         page_seo_block_active:
             label: 'lovata.toolbox::lang.field.active'
             type: switch
             span: full
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         page_seo_block_text:
-            label: 'SEO Text'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.seo_text'
             type: richeditor
             span: left
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
             trigger:
                 action: show
                 field: page_seo_block_active
                 condition: checked
         page_seo_block_image:
-            label: 'Image'
+            label: 'lovata.toolbox::lang.field.image'
             type: mediafinder
             span: right
             mode: image
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
             trigger:
                 action: show
                 field: page_seo_block_active
                 condition: checked
         page_seo_block_image_alt:
-            label: 'Alternative text'
-            comment: 'This string will have been shown in case an image has not loaded on the page.'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.alt_text'
+            comment: 'theme.lovata-tailwind-shopaholic::lang.comment.image_alt_text'
             type: text
             span: right
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
             trigger:
                 action: show
                 field: page_seo_block_active
                 condition: checked
         page_seo_block_image_title:
-            label: 'Title'
-            comment: 'This string will be shown on the mouse hover on the image.'
+            label: 'lovata.toolbox::lang.field.title'
+            comment: 'theme.lovata-tailwind-shopaholic::lang.comment.image_title'
             type: text
             span: right
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
             trigger:
                 action: show
                 field: page_seo_block_active
                 condition: checked
         sign_up_section:
-            label: 'Sign Up Settings'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.sign_up_section'
             type: section
             span: full
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         sign_up_section_terms_link:
-            label: 'Terms & Conditions page link'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.sign_up_section_terms_link'
             type: text
             placeholder: '/page-link'
             span: left
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         sign_up_section_policy_link:
-            label: 'Privacy & Cookie Policy page link'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.sign_up_section_policy_link'
             type: text
             placeholder: '/page-link'
             span: right
-            tab: 'Content'
-
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
 ### Functionality
         shopaholic_bar_section:
-            label: 'Powered by Shopaholic bar'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.shopaholic_bar_section'
             type: section
             span: full
-            tab: 'Functionality'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.functionality'
         shopaholic_bar:
-            label: 'Active'
+            label: 'lovata.toolbox::lang.field.active'
             type: switch
             defaul: on
             span: full
-            tab: 'Functionality'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.functionality'
         latest_news_section:
-            label: 'Latest News block on the Index page'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.latest_news_section'
             type: section
             span: full
-            tab: 'Functionality'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.functionality'
         latest_news_is_active:
-            label: 'Active'
+            label: 'lovata.toolbox::lang.field.active'
             type: switch
             defaul: on
             span: full
-            tab: 'Functionality'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.functionality'
         mighty_seo_heading_section:
-            label: 'Get Static Pages Heading from the Myghty SEO plugin'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.mighty_seo_heading_section'
             type: section
             span: full
-            tab: 'Functionality'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.functionality'
         mighty_seo_heading_is_active:
-            label: 'Active'
+            label: 'lovata.toolbox::lang.field.active'
             type: switch
             defaul: on
             span: full
-            tab: 'Functionality'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.functionality'
 ### Plugins
         plugin_check:
-            tab: 'Plugins'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.plugins'
             span: left
             type: partial
             path: ~/themes/lovata-tailwind-shopaholic/config/_plugin_check.htm
         has_wish_list:
-            label: 'Wish List for Shopaholic'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.plugin_wish_list_for_shopaholic'
             type: switch
             span: left
             required: 0
-            tab: 'Plugins'
-            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-wishlistshopaholic">Wish List for Shopaholic</a></strong>'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.plugins'
+            comment: 'theme.lovata-tailwind-shopaholic::lang.comment.plugin_wish_list_for_shopaholic'
             commentHtml: true
             # trigger:
             #     action: enable
             #     field: check_wish_list
             #     condition: checked
-        has_lables:
-            label: 'Labels for Shopaholic'
+        has_labels:
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.plugin_labels_shopaholic'
             type: switch
             span: left
             required: 0
-            tab: 'Plugins'
-            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-labelsshopaholic">Labels for Shopaholic</a></strong>'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.plugins'
+            comment: 'theme.lovata-tailwind-shopaholic::lang.comment.plugin_labels_shopaholic'
             commentHtml: true
             # trigger:
             #     action: enable
             #     field: check_labels
             #     condition: checked
         has_popularity:
-            label: 'Popularity for Shopaholic'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.plugin_popularity_shopaholic'
             type: switch
             span: left
             required: 0
-            tab: 'Plugins'
-            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-popularityshopaholic">Popularity for Shopaholic</a></strong>'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.plugins'
+            comment: 'theme.lovata-tailwind-shopaholic::lang.comment.plugin_popularity_shopaholic'
             commentHtml: true
             # trigger:
             #     action: enable
             #     field: check_popularity
             #     condition: checked
         has_viewed_products:
-            label: 'Viewed Products for Shopaholic'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.plugin_viewed_products_shopaholic'
             type: switch
             span: left
             required: 0
-            tab: 'Plugins'
-            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-viewedproductsshopaholic">Viewed Products for Shopaholic</a></strong>'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.plugins'
+            comment: 'theme.lovata-tailwind-shopaholic::lang.comment.plugin_viewed_products_shopaholic'
             commentHtml: true
             # trigger:
             #     action: enable
             #     field: check_viewed_products
             #     condition: checked
         has_related_products:
-            label: 'Related product for Shopaholic'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.plugin_related_products_shopaholic'
             type: switch
             span: left
             required: 0
-            tab: 'Plugins'
-            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-relatedproductsshopaholic">Related product for Shopaholic</a></strong>'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.plugins'
+            comment: 'theme.lovata-tailwind-shopaholic::lang.comment.plugin_related_products_shopaholic'
             commentHtml: true
             # trigger:
             #     action: enable
             #     field: check_related_products
             #     condition: checked
         has_buddies:
-            label: 'Buddies'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.plugin_buddies'
             type: switch
             span: left
             required: 0
-            tab: 'Plugins'
-            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-buddies">Buddies</a></strong>'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.plugins'
+            comment: 'theme.lovata-tailwind-shopaholic::lang.comment.plugin_buddies'
             commentHtml: true
             # trigger:
             #     action: enable
             #     field: check_buddies
             #     condition: checked
         has_faq:
-            label: 'FAQ'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.plugin_faq'
             type: switch
             span: left
             required: 0
-            tab: 'Plugins'
-            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/andreishilov-faq">FAQ</a></strong>'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.plugins'
+            comment: 'theme.lovata-tailwind-shopaholic::lang.comment.plugin_faq'
             commentHtml: true
             # trigger:
             #     action: enable

@@ -4,3 +4,13 @@ author: 'LOVATA'
 homepage: 'https://lovata.com'
 code: 'tailwind-shopaholic'
 form: config/fields.yaml
+require:
+    - RainLab.Pages
+    - RainLab.Translate
+    - VojtaSvoboda.TwigExtensions
+    - ToughDeveloper.ImageResizer
+    - Lovata.Toolbox
+    - Lovata.Shopaholic
+    - Lovata.OrdersShopaholic
+    - Lovata.PropertiesShopaholic
+    - Lovata.FilterShopaholic
