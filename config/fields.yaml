@@ -11,6 +11,7 @@ tabs:
             type: text
             span: left
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
+            translatable: true
         business_card_image:
             label: 'theme.lovata-tailwind-shopaholic::lang.field.logo'
             comment: 'theme.lovata-tailwind-shopaholic::lang.comment.business_card_image'
@@ -18,47 +19,54 @@ tabs:
             span: right
             mode: image
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
+            translatable: true
         business_card_description:
             label: 'theme.lovata-tailwind-shopaholic::lang.field.business_card_description'
             type: text
             span: left
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
+            translatable: true
         business_card_image_alt:
             label: 'theme.lovata-tailwind-shopaholic::lang.field.alt_text'
             comment: 'theme.lovata-tailwind-shopaholic::lang.comment.image_alt_text'
             type: text
             span: right
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
+            translatable: true
         business_card_phone:
             label: 'lovata.toolbox::lang.field.phone'
             comment: 'theme.lovata-tailwind-shopaholic::lang.comment.business_card_phone'
             type: text
             span: left
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
+            translatable: true
         business_card_image_title:
             label: 'lovata.toolbox::lang.field.title'
             comment: 'theme.lovata-tailwind-shopaholic::lang.comment.image_title'
             type: text
             span: right
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
+            translatable: true
         business_card_email:
             label: 'lovata.toolbox::lang.field.email'
             comment: 'theme.lovata-tailwind-shopaholic::lang.comment.business_card_email'
             type: text
             span: left
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
+            translatable: true
         business_card_address:
             label: 'lovata.toolbox::lang.field.address'
             type: text
             span: full
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
+            translatable: true
         business_card_copyright:
             label: 'theme.lovata-tailwind-shopaholic::lang.field.page_copyright'
             placeholder: 'theme.lovata-tailwind-shopaholic::lang.placeholder.business_card_copyright'
             type: text
             span: full
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
-
+            translatable: true
         top_info_block_section:
             label: 'theme.lovata-tailwind-shopaholic::lang.field.top_info_block_section'
             type: section
@@ -74,7 +82,7 @@ tabs:
             type: richeditor
             span: full
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
-
+            translatable: true
         payment_methods_list_section:
             label: 'theme.lovata-tailwind-shopaholic::lang.field.payment_methods'
             type: section
@@ -90,6 +98,7 @@ tabs:
             span: full
             style: collapsed
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
+            translatable: true
             trigger:
                 action: show
                 field: payment_methods_list_active
@@ -131,6 +140,7 @@ tabs:
             span: full
             style: collapsed
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
+            translatable: true
             trigger:
                 action: show
                 field: social_networks_list_active
@@ -173,6 +183,7 @@ tabs:
             type: richeditor
             span: left
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
+            translatable: true
             trigger:
                 action: show
                 field: page_seo_block_active
@@ -183,6 +194,7 @@ tabs:
             span: right
             mode: image
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
+            translatable: true
             trigger:
                 action: show
                 field: page_seo_block_active
@@ -193,6 +205,7 @@ tabs:
             type: text
             span: right
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
+            translatable: true
             trigger:
                 action: show
                 field: page_seo_block_active
@@ -203,6 +216,7 @@ tabs:
             type: text
             span: right
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
+            translatable: true
             trigger:
                 action: show
                 field: page_seo_block_active
@@ -218,13 +232,15 @@ tabs:
             placeholder: '/page-link'
             span: left
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
+            translatable: true
         sign_up_section_policy_link:
             label: 'theme.lovata-tailwind-shopaholic::lang.field.sign_up_section_policy_link'
             type: text
             placeholder: '/page-link'
             span: right
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
-### Functionality
+            translatable: true
+        ### Functionality
         shopaholic_bar_section:
             label: 'theme.lovata-tailwind-shopaholic::lang.field.shopaholic_bar_section'
             type: section
