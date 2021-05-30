@@ -274,10 +274,10 @@ tabs:
             tab: 'Plugins'
             comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-wishlistshopaholic">Wish List for Shopaholic</a></strong>'
             commentHtml: true
-            trigger:
-                action: enable
-                field: check_wish_list
-                condition: checked
+            # trigger:
+            #     action: enable
+            #     field: check_wish_list
+            #     condition: checked
         has_lables:
             label: 'Labels for Shopaholic'
             type: switch
@@ -286,10 +286,10 @@ tabs:
             tab: 'Plugins'
             comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-labelsshopaholic">Labels for Shopaholic</a></strong>'
             commentHtml: true
-            trigger:
-                action: enable
-                field: check_labels
-                condition: checked
+            # trigger:
+            #     action: enable
+            #     field: check_labels
+            #     condition: checked
         has_popularity:
             label: 'Popularity for Shopaholic'
             type: switch
@@ -298,10 +298,10 @@ tabs:
             tab: 'Plugins'
             comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-popularityshopaholic">Popularity for Shopaholic</a></strong>'
             commentHtml: true
-            trigger:
-                action: enable
-                field: check_popularity
-                condition: checked
+            # trigger:
+            #     action: enable
+            #     field: check_popularity
+            #     condition: checked
         has_viewed_products:
             label: 'Viewed Products for Shopaholic'
             type: switch
@@ -310,10 +310,10 @@ tabs:
             tab: 'Plugins'
             comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-viewedproductsshopaholic">Viewed Products for Shopaholic</a></strong>'
             commentHtml: true
-            trigger:
-                action: enable
-                field: check_viewed_products
-                condition: checked
+            # trigger:
+            #     action: enable
+            #     field: check_viewed_products
+            #     condition: checked
         has_related_products:
             label: 'Related product for Shopaholic'
             type: switch
@@ -322,10 +322,10 @@ tabs:
             tab: 'Plugins'
             comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-relatedproductsshopaholic">Related product for Shopaholic</a></strong>'
             commentHtml: true
-            trigger:
-                action: enable
-                field: check_related_products
-                condition: checked
+            # trigger:
+            #     action: enable
+            #     field: check_related_products
+            #     condition: checked
         has_buddies:
             label: 'Buddies'
             type: switch
@@ -334,7 +334,21 @@ tabs:
             tab: 'Plugins'
             comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-buddies">Buddies</a></strong>'
             commentHtml: true
-            trigger:
-                action: enable
-                field: check_buddies
-                condition: checked
+            # trigger:
+            #     action: enable
+            #     field: check_buddies
+            #     condition: checked
+        has_faq:
+            label: 'FAQ'
+            type: switch
+            span: left
+            required: 0
+            tab: 'Plugins'
+            comment: 'Requires to install <strong><a href="https://octobercms.com/plugin/andreishilov-faq">FAQ</a></strong>'
+            commentHtml: true
+            # trigger:
+            #     action: enable
+            #     field: check_faq
+            #     condition: checked
+
+            # TODO: Enable plugin check
