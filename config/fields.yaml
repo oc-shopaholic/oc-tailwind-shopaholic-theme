@@ -75,6 +75,47 @@ tabs:
             span: full
             tab: 'Content'
 
+        main_carousel_section:
+            label: 'Main Carousel'
+            type: section
+            span: full
+            tab: 'Content'
+        main_carousel_active:
+            label: 'lovata.toolbox::lang.field.active'
+            type: switch
+            span: full
+            tab: 'Content'
+        main_carousel:
+            type: repeater
+            span: full
+            tab: 'Content'
+            style: collapsed
+            trigger:
+                action: show
+                field: main_carousel_active
+                condition: checked
+            form:
+                fields:
+                    alt:
+                        label: 'Alternative text'
+                        type: text
+                        span: left
+                        comment: 'This string will have been shown in case an image has not loaded on the page.'
+                    image:
+                        label: 'lovata.toolbox::lang.field.image'
+                        type: mediafinder
+                        span: right
+                        mode: image
+                    title:
+                        label: 'Title'
+                        type: text
+                        span: left
+                        comment: 'This string will be shown on the mouse hover on the image.'
+                    url:
+                        label: 'lovata.toolbox::lang.field.slug'
+                        type: text
+                        span: left
+
         payment_methods_list_section:
             label: 'Payment Methods'
             type: section
