@@ -2,11 +2,11 @@
 
 <div class="{{ sPartialClasses }}">
     {% if sLabelText %}
-        <label for="{{ id }}" class="text-xs text-gray-600 inline-block mb-1 {{ sLabelClasses }}">{{ sLabelText }}</label>
+        <label for="{{ sId }}" class="text-xs text-gray-600 inline-block mb-1 {{ sLabelClasses }}">{{ sLabelText }}</label>
     {% endif %}
     <input
         type="{{ type|default('text') }}"
-        id="{{ id }}"
+        id="{{ sId }}"
         {% if name %}
             name="{{ name }}"
         {% endif %}
@@ -49,3 +49,5 @@
         <div class="{{ validationErrorSelector }} text-red-700 text-sm inline-block"></div>
     {% endif %}
 </div>
+
+{# TODO: Make boolean attributes required and disabled consistent #}
