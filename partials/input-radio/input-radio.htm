@@ -12,6 +12,9 @@
         {% if sValue %}
             value="{{ sValue }}"
         {% endif %}
+        {% if bIsRequired %}
+            required
+        {% endif %}
     >
     <label for="{{ sId }}">{{ sLabelText }}</label>
 </div>
