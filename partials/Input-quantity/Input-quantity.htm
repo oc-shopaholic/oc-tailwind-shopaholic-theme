@@ -1,12 +1,13 @@
 {##}
 <div class="inline-flex">
-    <button class="w-8 md:w-6 h-8 md:h-6 bg-blue-800 rounded-sm hover:bg-blue-700 active:bg-blue-900 text-white disabled:bg-gray-200 disabled:text-gray-600 focus-visible:outline-blue" type="button" disabled>
+    <button class="w-8 md:w-6 h-8 md:h-6 bg-blue-800 rounded-sm hover:bg-blue-700 active:bg-blue-900 text-white disabled:bg-gray-200 disabled:text-gray-600 focus-visible:outline-blue" type="button" aria-label="Decrease quantity" aria-controls="quantity" disabled>
         <svg class="m-auto" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M2.40039 7.99995C2.40039 7.78778 2.48468 7.5843 2.63471 7.43427C2.78473 7.28424 2.98822 7.19995 3.20039 7.19995H12.8004C13.0126 7.19995 13.216 7.28424 13.3661 7.43427C13.5161 7.5843 13.6004 7.78778 13.6004 7.99995C13.6004 8.21212 13.5161 8.41561 13.3661 8.56564C13.216 8.71567 13.0126 8.79995 12.8004 8.79995H3.20039C2.98822 8.79995 2.78473 8.71567 2.63471 8.56564C2.48468 8.41561 2.40039 8.21212 2.40039 7.99995Z" fill="currentColor"/>
         </svg>
     </button>
-    <input class="w-8 md:w-6 h-8 md:h-6 md:text-sm border border-gray-300 rounded-sm p-1.5 text-center mx-2 focus:outline-none focus-visible:border-blue-800 hover:border-blue-700 active:border-blue-900 text-gray-900" type="text" value="1" />
-    <button class="w-8 md:w-6 h-8 md:h-6 bg-blue-800 rounded-sm hover:bg-blue-700 active:bg-blue-900 text-white disabled:bg-gray-200 disabled:text-gray-600 focus-visible:outline-blue" type="button">
+    <label for="quantity" class="sr-only">Input quantity</label>
+    <input id="quantity" class="quantity_input w-8 md:w-6 h-8 md:h-6 md:text-sm border border-gray-300 rounded-sm p-1.5 text-center mx-2 focus:outline-none focus-visible:border-blue-800 hover:border-blue-700 active:border-blue-900 text-gray-900" type="number" value="1" />
+    <button class="w-8 md:w-6 h-8 md:h-6 bg-blue-800 rounded-sm hover:bg-blue-700 active:bg-blue-900 text-white disabled:bg-gray-200 disabled:text-gray-600 focus-visible:outline-blue" type="button" aria-label="Increase quantity" aria-controls="quantity">
         <svg class="m-auto" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M8 4C8.21217 4 8.41566 4.08429 8.56569 4.23431C8.71571 4.38434 8.8 4.58783 8.8 4.8V7.2H11.2C11.4122 7.2 11.6157 7.28429 11.7657 7.43431C11.9157 7.58434 12 7.78783 12 8C12 8.21217 11.9157 8.41566 11.7657 8.56569C11.6157 8.71571 11.4122 8.8 11.2 8.8H8.8V11.2C8.8 11.4122 8.71571 11.6157 8.56569 11.7657C8.41566 11.9157 8.21217 12 8 12C7.78783 12 7.58434 11.9157 7.43431 11.7657C7.28429 11.6157 7.2 11.4122 7.2 11.2V8.8H4.8C4.58783 8.8 4.38434 8.71571 4.23431 8.56569C4.08429 8.41566 4 8.21217 4 8C4 7.78783 4.08429 7.58434 4.23431 7.43431C4.38434 7.28429 4.58783 7.2 4.8 7.2H7.2V4.8C7.2 4.58783 7.28429 4.38434 7.43431 4.23431C7.58434 4.08429 7.78783 4 8 4Z" fill="currentColor"/>
         </svg>
