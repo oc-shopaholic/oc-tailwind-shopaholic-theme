@@ -7,4 +7,11 @@ is_hidden = 0
 
 {##}
 
-{% partial 'error/error' sErrorCode = '500' sErrorMessage = 'We`re experiencing an internal server problem. We know about this mistake and are working to fix it. Please, reload page or try again later.' bIsButton = true sOnClick = 'history.go(0)' %}
+{% partial 'error-message/error-message'
+    sErrorCode = '500'
+    sErrorMessage = 'We\'re experiencing an internal server problem. We know about this mistake and are working to fix it. Please, reload page or try again later.'
+    bIsButton = true
+    sButtonText = 'Reload page'
+    sButtonClass = 'mt-36 md:mt-10 w-full sm:w-auto'
+    sOnClick = 'history.go(0)'
+%}
