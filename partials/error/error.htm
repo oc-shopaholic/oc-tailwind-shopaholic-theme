@@ -4,7 +4,7 @@
     <span class="block font-black text-error">{{ sErrorCode }}</span>
     <span class="block text-3xl mt-8">Sorry!</span>
     <p class="text-base md:text-lg mt-2">{{ sErrorMessage }}</p>
-    {% if sBtn %}
-        {% partial 'button/button' text = 'Go back' onclick = onclick %}
+    {% if bIsButton %}
+        {% partial 'button/button' sText = 'Go back' onclick = onclick %}
     {% endif %}
 </div>
