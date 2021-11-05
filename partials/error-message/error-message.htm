@@ -4,6 +4,6 @@
     <span class="text-3xl mt-8 text-gray-400">Sorry!</span>
     <p class="text-base md:text-lg mt-2 text-gray-400">{{ sErrorMessage }}</p>
     {% if bIsButton %}
-        {% partial 'button/button' sText = sButtonText sPartialClasses = sButtonClass onclick = sOnClick %}
+        {% partial 'button/button' sText = sButtonText sPartialClasses = sButtonClass sOnClick = sOnClick %}
     {% endif %}
 </div>
