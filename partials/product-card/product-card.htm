@@ -2,7 +2,7 @@
 
 {% set obOffer = obProduct.offer.first() %}
 
-<div class="_shopaholic-product-wrapper flex flex-col relative border border-gray-200 rounded pb-2" data-product-id="{{ obProduct.id }}">
+<div class="_shopaholic-product-wrapper flex flex-col relative border border-gray-200 rounded pb-2 {{ sPartialClasses }}" data-product-id="{{ obProduct.id }}">
     <a class="text-xs md:text-lg font-bold text-gray-900 active:text-blue-900 hover:text-blue-700 focus-visible:outline-blue line-clamp-3 mb-auto mx-2" href="{{ obProduct.getPageUrl('product-item') }}">{{ obProduct.name }}</a>
     {% if this.theme.has_lables %}
         {% set obLabelList = obProduct.label.active().sort() %}
