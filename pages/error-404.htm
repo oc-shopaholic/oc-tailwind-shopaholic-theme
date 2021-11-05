@@ -2,7 +2,6 @@ title = "404 Not Found"
 url = "/404"
 layout = "main"
 is_hidden = 0
-
 ==
-
 {##}
+{% partial 'error-message/error-message' sPartialClasses = 'mt-28 md:mt-20 mb-8 md:mb-12' sErrorCode = '404' sErrorMessage = 'The page you are loking for doesn’t exist.' bIsButton = true sButtonText = 'Go back' sButtonClass = 'mt-36 md:mt-10 w-full sm:w-auto' sOnClick = 'history.go(-1)' %}
