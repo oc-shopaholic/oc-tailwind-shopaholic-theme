@@ -21,9 +21,13 @@ sorting = "no"
             {% endfor %}
         </div>
     {% else %}
-        <div class="flex flex-col items-center mt-28 md:mt-16 pt-48 md:pt-44 bg-no-repeat bg-top wishlist__empty">
-            <p class="text-lg md:text-xl text-gray-400">Your wish list is empty.</p>
-            {% partial 'button/button' href = 'product-list'|page sText = 'Start shopping' sPartialClasses = 'mt-24 md:mt-6' %}
-        </div>
+        {% partial 'info-message/info-message'
+            sPartialClasses = 'mt-20 md:mt-7'
+            sIconName = 'wishlist'
+            sEmptyPageMessage = 'Your wish list is empty.'
+            sHref = 'product-list'|page
+            sButtonText = 'Start shopping'
+            sButtonClasses = 'mt-24 md:mt-6'
+        %}
     {% endif %}
 </section>
