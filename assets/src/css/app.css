@@ -52,7 +52,7 @@
   details[open]>summary::after{
     transform: translateY(-50%) rotate(180deg);
   }
-  .restore__sent{
-    background-image: url(/themes/lovata-tailwind-shopaholic/assets/images/mail.svg);
+  .wishlist__empty {
+    background-image: url('/themes/lovata-tailwind-shopaholic/assets/images/wishlist.svg');
   }
 }

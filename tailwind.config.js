@@ -24,10 +24,15 @@ module.exports = {
       },
       backgroundSize: {
         '65': '65%',
+        'info-icon': '12.5rem',
       },
       fontSize: {
         error: ['9rem', '1'],
       },
+      padding: {
+        '54': '13.5rem',
+        '57': '14.25rem',
+      }
     }
   },
   variants: {
