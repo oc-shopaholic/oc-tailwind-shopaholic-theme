@@ -1,6 +1,6 @@
-name: ''
-description: ''
-author: Lovata
-homepage: ''
+name: 'Tailwind E-Commerce Theme for Shopaholic'
+description: 'Tailwind is a free multipurpose theme for Shopaholic designed especially to use as a basis for your next custom e-commerce project.'
+author: 'LOVATA'
+homepage: 'https://lovata.com'
 code: 'tailwind-shopaholic'
 form: config/fields.yaml

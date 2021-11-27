@@ -1,0 +1,37 @@
+title = "Sign Up Confirmation"
+url = "/user/activation/:slug"
+layout = "main"
+is_hidden = 0
+
+==
+
+<?php
+function onInit()
+{
+    $obUser = $this['obUser'];
+
+    if (!empty($obUser) || !$this->theme->has_buddies) {
+        return $this->controller->run('404');
+    }
+
+    $this->addComponent('Lovata\Buddies\Components\ActivationPage', 'ActivationPage', [
+        'slug' => '{{ :slug }}',
+        'force_login' => 0,
+        'redirect_on' => 0,
+        'redirect_page' => '',
+    ]);
+}
+?>
+
+==
+
+{##}
+
+{% partial 'info-message/info-message'
+    sPartialClasses = 'mt-20 md:mt-32 mb-8 md:mb-14 text-center'
+    sIconName = 'success.svg'
+    sEmptyPageMessage = 'Your email was confirmed. Now you can sign in.'
+    sHref = '/sign-in'
+    sButtonText = 'Sign In'
+    sButtonClasses = 'mt-36 md:mt-6 w-full md:w-auto'
+%}
