@@ -11,4 +11,4 @@
     </div>
 {% endif %}
 <h1 class="text-lg md:text-2xl text-gray-900 font-medium">{{ obArticle.title }}</h1>
-<time class="mt-2 md:mt-3 text-xs md:text-base text-gray-600 inline-block" datetime="2021-02-25">23.11.2020</time>
+<time class="mt-2 md:mt-3 text-xs md:text-base text-gray-600 inline-block" datetime="{{ obArticle.published_start.format('c') }}">{{ obArticle.published_start.format('d.m.Y') }}</time>
