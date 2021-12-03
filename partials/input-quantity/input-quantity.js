@@ -9,35 +9,69 @@ export default new class InputQuantity {
       this.increment();
     }
     
+    getInput(){
+       return $(`.${this.sInputQuantityCount}`)
+    }
+  
+    getValue(){
+       return this.getInput().val()
+    }
+  
+    setValue(value){
+       this.getInput().attr('value', value);
+    }
+  
+    getMax(){
+       return this.getInput().attr('max')
+    }
+  
+    getMin(){
+       return this.getInput().attr('min')
+    }
+  
+    isMin(){
+       return this.getValue() === this.getMin()
+    }
+  
+    isMax(){
+       return this.getValue() === this.getMax()
+    }
+    
+    stateButton(button, state){
+      $(`.${button}`).prop('disabled', state);
+    }
+    
     decrement(){
       $(document).on('click', `.${this.sInputQuantityDecrementCount}`, () => {
-        if($(`.${this.sInputQuantityCount}`).attr('value') !== $(`.${this.sInputQuantityCount}`).attr('min')){
+        if(!this.isMin()){
           this.sQuantityCount--;
-          $(`.${this.sInputQuantityCount}`).attr('value', this.sQuantityCount);
-          $(`.${this.sInputQuantityDecrementCount}`).prop('disabled', false);
+          this.setValue(this.sQuantityCount);
+          this.stateButton(this.sInputQuantityDecrementCount, false);
         }
-        if($(`.${this.sInputQuantityCount}`).attr('value') === $(`.${this.sInputQuantityCount}`).attr('min')){
-          $(`.${this.sInputQuantityDecrementCount}`).prop('disabled', true);
+        
+        if(this.isMin()){
+          this.stateButton(this.sInputQuantityDecrementCount, true);
         }
-        if($(`.${this.sInputQuantityCount}`).attr('value') !== $(`.${this.sInputQuantityCount}`).attr('max')){
-          $(`.${this.sInputQuantityIncrementCount}`).prop('disabled', false);
+        
+        if(!this.isMax()){
+          this.stateButton(this.sInputQuantityIncrementCount, false);
         }
       });
     }
     
     increment(){
       $(document).on('click', `.${this.sInputQuantityIncrementCount}`, () => {
-        if($(`.${this.sInputQuantityCount}`).attr('value') !== $(`.${this.sInputQuantityCount}`).attr('max')){
+        if(!this.isMax()){
           this.sQuantityCount++;
-          $(`.${this.sInputQuantityCount}`).attr('value', this.sQuantityCount);
-          $(`.${this.sInputQuantityIncrementCount}`).prop('disabled', false);
+          this.setValue(this.sQuantityCount);
+          this.stateButton(this.sInputQuantityIncrementCount, false);
         }
-        if($(`.${this.sInputQuantityCount}`).attr('value') === $(`.${this.sInputQuantityCount}`).attr('max')){
-          $(`.${this.sInputQuantityIncrementCount}`).prop('disabled', true);
+        if(this.isMax()){
+          this.stateButton(this.sInputQuantityIncrementCount, true);
         }
-        if($(`.${this.sInputQuantityCount}`).attr('value') !== $(`.${this.sInputQuantityCount}`).attr('min')){
-          $(`.${this.sInputQuantityDecrementCount}`).prop('disabled', false);
+        if(!this.isMin()){
+          this.stateButton(this.sInputQuantityDecrementCount, false);
         }
-      });
+      })
     }
   }();
