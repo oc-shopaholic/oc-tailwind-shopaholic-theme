@@ -28,6 +28,33 @@
   .break-line {
     line-break: anywhere;
   }
+  /* TODO: Consider to move <summary> and <details> styles directly to the component */
+  summary::-webkit-details-marker {
+    display: none;
+    list-style: none;
+  }
+  summary {
+    list-style: none;
+    position: relative;
+  }
+  summary::after {
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 10px;
+    background: url('/themes/lovata-tailwind-shopaholic/assets/images/marker.svg') no-repeat;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transition: .2s;
+    transform: translateY(-50%);
+  }
+  details[open]>summary::after{
+    transform: translateY(-50%) rotate(180deg);
+  }
+  .wishlist__empty {
+    background-image: url('/themes/lovata-tailwind-shopaholic/assets/images/wishlist.svg');
+  }
   .quantity_input::-webkit-inner-spin-button,
   .quantity_input::-webkit-outer-spin-button{
     -webkit-appearance: none;
