@@ -6,3 +6,25 @@ is_hidden = 0
 ==
 
 {##}
+<div class="flex flex-col items-center mt-4 md:mt-6 mb-5 md:mb-16">
+    <span class="text-gray-900 text-lg md:text-xl uppercase md:normal-case font-medium">Continue without authorization</span>
+    {% partial 'button/button' sText = 'Checkout as guest' sHref = 'checkout'|page bGhost = true sPartialClasses = 'w-full md:w-auto mt-4' %}
+    <span class="inline-block mt-2 md:mt-4 text-gray-600 ">To use a promo code, sign in or <a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline" href="{{ 'sign-up'|page }}">create an account</a> first.</span>
+    <h1 class="font-medium uppercase text-xl md:text-3xl mt-8 mb-4">Sign in</h1>
+    <div class="max-w-xs">
+        <form class="_required">
+            {% partial 'input/input' sId = 'form-email' sLabelText = 'E-mail' name = 'mail' id = 'mail' required = 'required' %}
+            {% partial 'input/input' sId = 'form-password' sLabelText = 'Password' name = 'password' id ='password' required = 'required' type = 'password' sPartialClasses = 'mt-4' %}
+            <div class="mt-4 text-right">
+                <a href="{{ 'password-restore'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">Forgot password?</a>
+            </div>
+            <div class="mt-4 md:mt-3">
+                <label>
+                    <input class="rounded-sm text-blue-800 focus-visible:outline-blue focus:outline-none" type="checkbox" /> Keep me signed in.
+                </label>
+            </div>
+            {% partial 'button/button' sText = 'Sign in' type = 'submit' sPartialClasses = 'w-full mt-8 md:mt-6' %}
+        </form>
+        <span class="block text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">Don’t have an account? <a href="{{ 'sign-up'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">Sign up</a></span>
+    </div>
+</div>

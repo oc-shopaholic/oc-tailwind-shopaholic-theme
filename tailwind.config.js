@@ -10,9 +10,6 @@ module.exports = {
   ],
   darkMode: false,
   theme: {
-    fontSize: {
-      error: ['9rem', '1'],
-    },
     extend: {
       gridTemplateColumns: {
         'full': '100%',
@@ -27,13 +24,21 @@ module.exports = {
       },
       backgroundSize: {
         '65': '65%',
+        'info-icon': '12.5rem',
       },
+      fontSize: {
+        error: ['9rem', '1'],
+      },
+      padding: {
+        '54': '13.5rem',
+        '57': '14.25rem',
+      }
     }
   },
   variants: {
     extend: {
-      margin: ['first', 'last'],
-      textColor: ['active', 'focus-visible', 'visited'],
+      margin: ['first', "last"],
+      textColor: ['active', 'focus-visible', 'visited', 'disabled'],
       outline: ['focus-visible'],
       backgroundColor: ['group-focus', 'active', 'focus-visible', 'disabled'],
       ringWidth: ['focus-visible'],
@@ -43,10 +48,12 @@ module.exports = {
       fill: ['hover', 'group-hover', 'group-focus', 'focus'],
       stroke: ['hover', 'group-hover', 'group-focus', 'focus'],
       width: ['hover'],
-      borderWidth: ['first', 'last']
+      borderWidth: ['first', 'last'],
+      borderColor: ['focus-visible']
     }
   },
   plugins: [
+    require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('tailwindcss-scroll-snap'),
     require('@tailwindcss/aspect-ratio'),
