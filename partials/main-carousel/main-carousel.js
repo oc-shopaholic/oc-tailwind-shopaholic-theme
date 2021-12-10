@@ -1,9 +1,9 @@
-import Swiper from 'swiper';
+import Swiper, { Navigation, Pagination } from 'swiper';
 
 export default new class MainCarousel {
   constructor() {
     this.sliderContainerSelector = 'main-carousel';
-    this.paginationSelector = 'slider__pagination';
+    this.paginationSelector = 'swiper-pagination';
     this.nextBulletSelector = 'slider__bullet';
     this.nextBulletActiveSelector = 'slider__bullet_active';
     this.activeSlideSelector = 'main-slider__item_active';

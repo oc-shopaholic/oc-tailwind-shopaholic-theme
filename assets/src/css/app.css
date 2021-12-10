@@ -79,4 +79,4 @@
     -moz-appearance: textfield;
   }
 }
-@import "../../../node_modules/swiper/css/swiper.css";
+@import "../../../node_modules/swiper/swiper-bundle.min.css";
