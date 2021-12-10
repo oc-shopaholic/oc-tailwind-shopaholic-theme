@@ -10,7 +10,7 @@ sorting = "publish|desc"
         <a class="text-blue-800 underline text-base md:text-xl active:text-blue-900 hover:text-blue-700 hover:no-underline" href="{{ 'news-list'|page }}">See all</a>
     </div>
     {% if arArticleList is not empty %}
-        <ul class="grid grid-flow-col md:grid-flow-row md:grid-cols-4 gap-x-2 md:gap-x-4 snap snap-x snap-mandatory overflow-x-scroll xl:overflow-visible snap-px-4 scrollbar-x-none">
+        <ul class="grid grid-flow-col md:grid-flow-row md:grid-cols-4 gap-x-2 md:gap-x-4 overflow-x-scroll xl:overflow-visible scrollbar-x-none snap-x snap-mandatory">
             {% if arArticleList is not empty %}
                 {% for obArticle in arArticleList %}
                     <li class="snap-start w-40 md:w-auto">
