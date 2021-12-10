@@ -29,13 +29,11 @@
     "tailwindcss": "^3.0.0",
     "tailwindcss-pseudo-elements": "^1.5.1",
     "tailwindcss-scroll-snap": "^1.1.0",
+    "vue-template-compiler": "^2.6.14"
   },
   "dependencies": {
-    "@lovata/shopaholic-wish-list": "^1.0.0",
-    "@tailwindcss/line-clamp": "^0.2.0",
-    "cross-env": "^7.0.2",
+    "cross-env": "^7.0.3",
     "formbouncerjs": "^1.4.6",
-    "jquery": "^3.6.0",
-    "tailwindcss-scroll-snap": "^1.1.0"
+    "jquery": "^3.6.0"
   }
 }
