@@ -13,3 +13,6 @@ skip_error = 0
 {##}
 
 {% partial 'breadcrumbs/breadcrumbs' %}
+
+{% set obArticle = ArticlePage.get() %}
+{% partial 'news-header/news-header' obArticle = obArticle %}

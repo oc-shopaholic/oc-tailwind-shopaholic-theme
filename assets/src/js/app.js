@@ -15,3 +15,5 @@ import '/partials/account/sign-in';
 import '/partials/account/restore-password';
 import '/partials/account/account-change-password';
 import '/partials/main-carousel/main-carousel';
+/* * Input Quantity * */
+import '/partials/input-quantity/input-quantity';

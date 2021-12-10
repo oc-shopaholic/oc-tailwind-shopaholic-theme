@@ -3,12 +3,11 @@ const plugin = require('tailwindcss/plugin')
 module.exports = {
   corePlugins: {
   },
-  purge: [
+  content: [
     './layouts/**/*.htm',
     './pages/**/*.htm',
     './partials/**/*.htm',
   ],
-  darkMode: false,
   theme: {
     extend: {
       gridTemplateColumns: {
@@ -24,32 +23,20 @@ module.exports = {
       },
       backgroundSize: {
         '65': '65%',
+        'info-icon': '12.5rem',
       },
       fontSize: {
         error: ['9rem', '1'],
       },
-    }
-  },
-  variants: {
-    extend: {
-      margin: ['first', 'last'],
-      textColor: ['active', 'focus-visible', 'visited'],
-      outline: ['focus-visible'],
-      backgroundColor: ['group-focus', 'active', 'focus-visible', 'disabled'],
-      ringWidth: ['focus-visible'],
-      ringColor: ['hover', 'active', 'focus', 'focus-visible'],
-      ringOffsetWidth: ['responsive', 'focus-visible', 'focus'],
-      opacity: ['hover', 'focus'],
-      fill: ['hover', 'group-hover', 'group-focus', 'focus'],
-      stroke: ['hover', 'group-hover', 'group-focus', 'focus'],
-      width: ['hover'],
-      borderWidth: ['first', 'last']
+      padding: {
+        '54': '13.5rem',
+        '57': '14.25rem',
+      }
     }
   },
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
-    require('tailwindcss-scroll-snap'),
     require('@tailwindcss/aspect-ratio'),
     require('tailwindcss-pseudo-elements'),
     require('@tailwindcss/line-clamp'),
