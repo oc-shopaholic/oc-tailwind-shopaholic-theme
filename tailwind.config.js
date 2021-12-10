@@ -3,12 +3,11 @@ const plugin = require('tailwindcss/plugin')
 module.exports = {
   corePlugins: {
   },
-  purge: [
+  content: [
     './layouts/**/*.htm',
     './pages/**/*.htm',
     './partials/**/*.htm',
   ],
-  darkMode: false,
   theme: {
     extend: {
       gridTemplateColumns: {
@@ -35,27 +34,9 @@ module.exports = {
       }
     }
   },
-  variants: {
-    extend: {
-      margin: ['first', "last"],
-      textColor: ['active', 'focus-visible', 'visited', 'disabled'],
-      outline: ['focus-visible'],
-      backgroundColor: ['group-focus', 'active', 'focus-visible', 'disabled'],
-      ringWidth: ['focus-visible'],
-      ringColor: ['hover', 'active', 'focus', 'focus-visible'],
-      ringOffsetWidth: ['responsive', 'focus-visible', 'focus'],
-      opacity: ['hover', 'focus'],
-      fill: ['hover', 'group-hover', 'group-focus', 'focus'],
-      stroke: ['hover', 'group-hover', 'group-focus', 'focus'],
-      width: ['hover'],
-      borderWidth: ['first', 'last'],
-      borderColor: ['focus-visible']
-    }
-  },
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
-    require('tailwindcss-scroll-snap'),
     require('@tailwindcss/aspect-ratio'),
     require('tailwindcss-pseudo-elements'),
     require('@tailwindcss/line-clamp'),
