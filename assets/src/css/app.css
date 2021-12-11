@@ -52,4 +52,15 @@
   details[open]>summary::after{
     transform: translateY(-50%) rotate(180deg);
   }
+  .wishlist__empty {
+    background-image: url('/themes/lovata-tailwind-shopaholic/assets/images/wishlist.svg');
+  }
+  .quantity_input::-webkit-inner-spin-button,
+  .quantity_input::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .quantity_input{
+    -moz-appearance: textfield;
+  }
 }

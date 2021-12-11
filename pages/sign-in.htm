@@ -5,19 +5,19 @@ is_hidden = 0
 ==
 <?php
 function onInit()
-{
-    $obUser = $this['obUser'];
+    {
+        $obUser = $this['obUser'];
 
-    if (!$this->theme->has_buddies || !empty($obUser)) {
-        return $this->controller->run('404');
+        if (!$this->theme->has_buddies || !empty($obUser)) {
+            return $this->controller->run('404');
+        }
+
+        $this->addComponent('Lovata\Buddies\Components\Login', 'Login', [
+            'redirect_on' => 1,
+            'redirect_page' => 'account',
+            'mode' => 'ajax',
+        ]);
     }
-
-    $this->addComponent('Lovata\Buddies\Components\Login', 'Login', [
-        'redirect_on' => 1,
-        'redirect_page' => 'account',
-        'mode' => 'ajax',
-    ]);
-}
 ?>
 ==
 {##}
@@ -33,12 +33,12 @@ function onInit()
             <div class="mt-4 text-right">
                 <a href="{{ 'password-restore'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base">{{ 'message_forgot_password'|__ }}</a>
             </div>
-            <div class="mt-4 md:mt-3">
-                {# TODO: Fix focus-visible state for checkbox   #}
-                <label>
-                    <input name="remember_me" class="rounded-sm text-blue-800 focus-visible:outline-blue focus:outline-none" type="checkbox"> {{ 'field_remember_me'|__ }}
-                </label>
-            </div>
+            {% partial 'input-checkbox/input-checkbox'
+                sPartialClasses = 'mt-4 md:mt-3 flex items-center'
+                sId = 'remember_me'
+                sName = 'remember_me'
+                sLabelText = '{{ \'field_remember_me\'|__ }}'
+            %}
             {% partial 'button/button'
                 sText = 'button_sign_in'|__
                 sType = 'submit'
