@@ -24,27 +24,50 @@ function onInit()
 {##}
 
 <div class="mt-7 mb-14 flex flex-col items-center">
-    <h1 class="font-medium uppercase text-xl md:text-3xl mb-4">{{ 'page_sign_up_heading'|__ }}</h1>
+    <h1 class="font-medium uppercase text-xl md:text-3xl mb-4">{{ 'page_heading_sign_up'|_ }}</h1>
     <div class="max-w-xs">
         <form class="_required">
-            {% partial 'input/input' sId = 'form-email' sLabelText = 'field_email'|__ name = 'email' required = 'required' type = 'email' %}
+            {% partial 'input/input'
+                sId = 'form-email'
+                sLabelText = 'input_email'|_
+                name = 'email'
+                required = 'required'
+                type = 'email'
+            %}
             {# TODO: Add inline ajax validation for avaibility of the email #}
-            {% partial 'input/input' sId = 'form-password' sLabelText = 'field_password'|__ name = 'password' required = 'required' type = 'password' sPartialClasses = 'mt-4' %}
+            {% partial 'input/input'
+                sId = 'form-password'
+                sLabelText = 'input_password'|_
+                name = 'password'
+                required = 'required'
+                type = 'password'
+                sPartialClasses = 'mt-4'
+            %}
             {# TODO: Add inline ajax validation for matching of the password fields values #}
-            {% partial 'input/input' sId = 'form-password-confirm' sLabelText = 'field_сonfirm_password'|__ name = 'password_confirmation' required = 'required' type = 'password' sPartialClasses = 'mt-4' %}
+            {% partial 'input/input'
+                sId = 'form-password-confirm'
+                sLabelText = 'input_password_confirmation'|_
+                name = 'password_confirmation'
+                required = 'required'
+                type = 'password'
+                sPartialClasses = 'mt-4'
+            %}
+            {% set text_rules_acceptence_link_terms_conditions = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~( 'terms-conditions'|staticPage )~'">'~('text_rules_acceptence_link_terms_conditions'|_)|raw ~'</a>' %}
+            {% set text_rules_acceptence_link_privacy_cookie_policy = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~( 'privacy-cookie-policy'|staticPage )~'">'~('text_rules_acceptence_link_privacy_cookie_policy'|_)~'</a>' %}
             {% partial 'input-checkbox/input-checkbox'
                 sPartialClasses = 'mt-4 md:mt-3'
                 sId = 'remember_me'
                 sName = 'remember_me'
-                sLabelText = 'I accept the Terms&Conditions and Privacy&Cookie Policy.'
+                sLabelText = 'text_rules_acceptence'|transRaw({text_rules_acceptence_link_terms_conditions: text_rules_acceptence_link_terms_conditions, text_rules_acceptence_link_privacy_cookie_policy: text_rules_acceptence_link_privacy_cookie_policy}) | raw
                 bIsRequired = true
             %}
             {% partial 'button/button'
-                sText = 'button_sign_up'|__
+                sText = 'button_sign_up'|_
                 sType = 'submit'
                 sPartialClasses = '_button-sign-up w-full mt-8 md:mt-6'
             %}
         </form>
-        <span class="block text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">{{ 'message_already_have_an_account'|__ }} <a href="{{ 'sign-in'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">{{ 'button_sign_in'|__ }}</a></span>
+        {% set text_has_account_link_sign_in = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~( 'sign-in'|page )~'">'~('text_has_account_link_sign_in'|_)~'</a>' %}
+        <span class="block text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">{{ 'text_has_account' | transRaw({text_has_account_link_sign_in: text_has_account_link_sign_in}) }}</span>
     </div>
 </div>

@@ -9,22 +9,24 @@ sorting = "publish|desc"
 [ProductList]
 sorting = "popularity|desc"
 ==
-
 {##}
 
 {% set arArticleList = ArticleList.make().sort('publish|desc').published().take(4) %}
 
 {% if this.theme.latest_news_is_active %}
-    {% partial 'news-list-latest/news-list-latest' arArticleList = arArticleList sSectionHeadingLevel = 2 %}
+    {% partial 'news-list-latest/news-list-latest'
+        arArticleList = arArticleList
+        sSectionHeadingLevel = 2
+    %}
 {% endif %}
 {% if this.theme.has_popularity %}
     {% partial 'product-list-small/product-list-small'
         sProductListSmallType = sProductListSmallTypePopularity
-        sSectionHeading = 'product_list_small_popular_products_heading'|__
+        sSectionHeading = 'heading_product_list_small_popular_products'|_
         sSectionHeadingLevel = 2
         iTake = 4
         sBtnMore = true
-        sButtonName = 'button_show_more_products'|__
+        sButtonName = 'button_show_more_products'|_
     %}
     {# TODO: Change sSectionHeadingLevel to iSectionHeadingLevel overall #}
 {% endif %}
