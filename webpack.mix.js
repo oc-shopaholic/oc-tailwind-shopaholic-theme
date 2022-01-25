@@ -1,27 +1,34 @@
-const mix = require('laravel-mix');
+const mix = require('laravel-mix')
 
-let postCssPlugins = [
-    require('tailwindcss'),
-];
+let postCssPlugins = [require('tailwindcss')]
 
-mix.setPublicPath('./');
+mix.setPublicPath('./')
 
-mix.setResourceRoot('/themes/lovata-tailwind-shopaholic');
+mix.setResourceRoot('/themes/lovata-tailwind-shopaholic')
 
-mix.webpackConfig(webpack =>({
-  plugins:[
+mix.webpackConfig((webpack) => ({
+  // module: {
+  //   rules: [
+  //     {
+  //       test: /\.htm?$/,
+  //       use: 'prettier-loader',
+  //       exclude: [/node_modules/],
+  //     },
+  //   ],
+  // },
+  plugins: [ 
     new webpack.ProvidePlugin({
       $: require.resolve('jquery'),
       jQuery: require.resolve('jquery'),
       'window.jQuery': require.resolve('jquery'),
       'window.$': require.resolve('jquery'),
-    })
-  ]
+    }),
+  ],
 }))
 
-mix.js('assets/src/js/app.js', 'assets/dist/js');
+mix.js('assets/src/js/app.js', 'assets/dist/js')
 
-mix.postCss('assets/src/css/app.css', 'assets/dist/css', postCssPlugins);
+mix.postCss('assets/src/css/app.css', 'assets/dist/css', postCssPlugins)
 
 mix.browserSync({
   proxy: '172.17.0.1',
@@ -31,10 +38,10 @@ mix.browserSync({
     './content/**/*.htm',
     './layouts/*.htm',
     './pages/*.htm',
-    './partials/**/*.htm'
+    './partials/**/*.htm',
   ],
-});
+})
 
-mix.sourceMaps(true, 'source-map');
-mix.extract(['jquery']);
-mix.version();
+mix.sourceMaps(true, 'source-map')
+mix.extract(['jquery'])
+mix.version()
