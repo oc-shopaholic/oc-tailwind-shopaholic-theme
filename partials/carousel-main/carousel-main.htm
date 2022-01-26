@@ -1,5 +1,6 @@
 {##}
-<div class="main-carousel swiper-container full-width">
+
+<div class="carousel-main swiper-container full-width">
     <ul class="swiper-wrapper">
         {% for obItem in arCarouselList %}
             <li class="aspect-w-16 aspect-h-7 swiper-slide">
@@ -7,14 +8,13 @@
                     <a href="{{ obItem.url }}">
                         <picture>
                             <source srcset="{{ obItem.image|media|resize(1440, 640, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
-                            <source srcset="{{ obItem.image|media|resize(1440, 640, {'quality': 80}) }}" type="image/jpeg">
+                            {# TODO: Add resize for mobile screen resolution #}
                             <img class="w-full h-full object-cover" src="{{ obItem.image|media|resize(1440, 640, {'quality': 80}) }}" alt="{{ obItem.description }}" title="{{ obItem.title }}">
                         </picture>
                     </a>
                 {% else %}
                     <picture>
                         <source srcset="{{ obItem.image|media|resize(1440, 640, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
-                        <source srcset="{{ obItem.image|media|resize(1440, 640, {'quality': 80}) }}" type="image/jpeg">
                         <img class="w-full h-full object-cover" src="{{ obItem.image|media|resize(1440, 640, {'quality': 80}) }}" alt="{{ obItem.description }}" title="{{ obItem.title }}">
                     </picture>
                 {% endif %}

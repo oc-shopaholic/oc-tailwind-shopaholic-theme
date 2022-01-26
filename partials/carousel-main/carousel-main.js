@@ -2,7 +2,7 @@ import Swiper, { Navigation, Pagination } from 'swiper';
 
 export default new class MainCarousel {
   constructor() {
-    this.sliderContainerSelector = 'main-carousel';
+    this.sliderContainerSelector = 'carousel-main';
     this.paginationSelector = 'swiper-pagination';
     this.nextBulletSelector = 'slider__bullet';
     this.nextBulletActiveSelector = 'slider__bullet_active';
