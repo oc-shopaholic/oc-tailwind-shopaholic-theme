@@ -18,6 +18,13 @@
         'top_info_block_section'             => 'Верхний информационный блок',
         'top_info_block_active'              => 'Активность',
         'top_info_block_content'             => 'Содержимое',
+        'carousel_main_section'              => 'Главная карусель',
+
+
+
+
+
+
         'payment_methods_list_section'       => 'Методы оплаты',
         'payment_methods_list_active'        => 'Активность',
         'payment_methods_list_image_alt'     => 'Альтернативный текст',

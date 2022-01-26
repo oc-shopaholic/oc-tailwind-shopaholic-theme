@@ -18,6 +18,10 @@
         'top_info_block_section'             => 'Top Info Block',
         'top_info_block_active'              => 'Active',
         'top_info_block_content'             => 'Content',
+        'carousel_main_section'              => 'Main Carousel',
+
+
+
         'payment_methods_list_section'       => 'Payment methods',
         'payment_methods_list_active'        => 'Active',
         'payment_methods_list_image_alt'     => 'Alternative text',

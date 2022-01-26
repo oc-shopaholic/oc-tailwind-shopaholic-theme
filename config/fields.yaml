@@ -83,11 +83,13 @@ tabs:
             span: full
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
             translatable: true
-        main_carousel_section:
-            label: 'Main Carousel'
+        carousel_main_section:
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.carousel_main_section'
             type: section
             span: full
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
+            translatable: true
+
         main_carousel_active:
             label: 'lovata.toolbox::lang.field.active'
             type: switch
@@ -123,6 +125,7 @@ tabs:
                         label: 'lovata.toolbox::lang.field.slug'
                         type: text
                         span: left
+
 
         payment_methods_list_section:
             label: 'theme.lovata-tailwind-shopaholic::lang.field.payment_methods_list_section'
