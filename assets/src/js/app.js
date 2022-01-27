@@ -16,3 +16,5 @@ import '/partials/account/restore-password';
 import '/partials/account/account-change-password';
 /* * Input Quantity * */
 import '/partials/input-quantity/input-quantity';
+/* * Sidebar * */
+import '/partials/sidebar/sidebar';

@@ -1,0 +1,34 @@
+{% if buttonMobile == true %}
+    {% set sDefaultClass = 'flex justify-between' %}
+{% else %}
+    {% set sDefaultClass = 'flex justify-end lg:justify-between' %}
+{% endif %}
+
+<div class="hidden box-border fixed top-0 right-0 w-full p-4 bg-gray-200 z-50 h-full max-h-full	overflow-auto duration-1000	_nav lg:w-1/2" data-side="{{side}}">
+    <div class="{{sDefaultClass}}">
+        {% if buttonMobile == true %}
+            <div class="_hide flex items-center lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                <p class="text-base uppercase pl-2">Go back</p>
+            </div>
+        {% else %}
+            <button class="_hide block lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        {% endif %}
+        <h2 class="text-lg md:text-xl uppercase hidden lg:block">Heading</h2>
+        <button class="_hide hidden lg:block">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+    {% if content %}
+        {{content}}
+    {% endif %}
+</div>
+<div class="hidden w-full h-full fixed bg-gray-400 opacity-80 inset-0 z-40 _backdrop"></div>
