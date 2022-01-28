@@ -88,18 +88,17 @@ tabs:
             type: section
             span: full
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
-            translatable: true
-
         main_carousel_active:
             label: 'lovata.toolbox::lang.field.active'
             type: switch
             span: full
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         main_carousel:
             type: repeater
             span: full
-            tab: 'Content'
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
             style: collapsed
+            translatable: true
             trigger:
                 action: show
                 field: main_carousel_active
