@@ -31,6 +31,9 @@ module.exports = {
       padding: {
         '54': '13.5rem',
         '57': '14.25rem',
+      },
+      maxHeight: {
+        '160': '40rem',
       }
     }
   },

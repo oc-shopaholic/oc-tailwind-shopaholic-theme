@@ -3,7 +3,7 @@
 <div class="carousel-main swiper-container full-width">
     <ul class="swiper-wrapper">
         {% for obItem in arCarouselList %}
-            <li class="aspect-w-16 aspect-h-7 swiper-slide">
+            <li class="swiper-slide lg:max-h-160 overflow-hidden">
                 {% if obItem.url is not empty %}
                     <a href="{{ obItem.url }}">
                         <picture>
