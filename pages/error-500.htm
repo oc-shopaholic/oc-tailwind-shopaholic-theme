@@ -2,16 +2,15 @@ title = "500 Internal Server Error"
 url = "/500"
 layout = "error"
 is_hidden = 0
-
 ==
-
 {##}
+
 {% partial 'error-message/error-message'
     sPartialClasses = 'min-h-screen justify-center px-4 py-8 max-w-2xl mx-auto text-center'
     sErrorCode = '500'
-    sErrorMessage = 'We\'re experiencing an internal server problem. We know about this mistake and are working to fix it. Please, reload page or try again later.'
+    sErrorMessage = 'text_error_500'|_
     bIsButton = true
-    sButtonText = 'Reload page'
+    sButtonText = 'button_reload_page'|_
     sButtonClass = 'mt-36 sm:mt-10 w-full sm:w-auto'
     sOnClick = 'history.go(0)'
 %}

@@ -14,7 +14,7 @@
                 <img class="w-full h-full rounded object-cover" src="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" alt="{{ obArticle.preview_image.description }}">
             </picture>
         {% else %}
-            <img class="w-full h-full rounded object-cover" src="{{ 'assets/images/no-photo.svg'|theme }}" alt="No article image">
+            <img class="w-full h-full rounded object-cover" src="{{ 'assets/images/no-photo.svg'|theme }}" alt="{{ 'text_no_image_article'|_ }}">
         {% endif %}
     </div>
 </article>

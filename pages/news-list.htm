@@ -29,9 +29,7 @@ last-more_button_limit = 4
 last_button_name = "Last"
 last_button_limit = 3
 last_button_number = 1
-
 ==
-
 {##}
 
 {% set obArticleList = ArticleList.make().sort('publish|desc').published() %}
@@ -40,7 +38,16 @@ last_button_number = 1
 {% set iMaxPage = Pagination.getMaxPage(obArticleList.count()) %}
 {% set arPaginationList = Pagination.get(iPage, obArticleList.count()) %}
 
+{# TODO: Fix wrong breadcrumbs #}
 {% partial 'breadcrumbs/breadcrumbs' %}
-<h1 class="container mx-auto mb-4 md:mb-10 text-lg md:text-3xl uppercase">News</h1>
-{% partial 'news-list/news-list' arArticleList = arArticleList sCardHeadingLevel = 2 %}
-{% partial 'pagination/pagination' arPaginationList = arPaginationList iMaxPage = iMaxPage iPage = iPage sPartialClasses = 'mb-14' %}
+<h1 class="container mx-auto mb-4 md:mb-10 text-lg md:text-3xl uppercase">{{ 'page_heading_news_list'|_ }}</h1>
+{% partial 'news-list/news-list'
+    arArticleList = arArticleList
+    sCardHeadingLevel = 2
+%}
+{% partial 'pagination/pagination'
+    arPaginationList = arPaginationList
+    iMaxPage = iMaxPage
+    iPage = iPage
+    sPartialClasses = 'mb-14'
+%}

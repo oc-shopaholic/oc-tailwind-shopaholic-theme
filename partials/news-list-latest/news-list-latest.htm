@@ -1,25 +1,27 @@
 [ArticleList]
 sorting = "publish|desc"
 ==
-
 {##}
 
 <div class="mt-10 mb-10 {{ sPartialClasses }}">
     <div class="flex justify-between items-center mb-4 md:mb-10">
-        <h{{ sSectionHeadingLevel }} class="text-lg md:text-3xl uppercase">News</h{{ sSectionHeadingLevel }}>
-        <a class="text-blue-800 underline text-base md:text-xl active:text-blue-900 hover:text-blue-700 hover:no-underline" href="{{ 'news-list'|page }}">See all</a>
+        <h{{ sSectionHeadingLevel }} class="text-lg md:text-3xl uppercase">{{ 'heading_news_list_latest'|_ }}</h{{ sSectionHeadingLevel }}>
+        <a class="text-blue-800 underline text-base md:text-xl active:text-blue-900 hover:text-blue-700 hover:no-underline" href="{{ 'news-list'|page }}">{{ 'link_see_all'|_ }}</a>
     </div>
     {% if arArticleList is not empty %}
-        <ul class="grid grid-flow-col md:grid-flow-row md:grid-cols-4 gap-x-2 md:gap-x-4 snap snap-x snap-mandatory overflow-x-scroll xl:overflow-visible snap-px-4 scrollbar-x-none">
+        <ul class="grid grid-flow-col md:grid-flow-row md:grid-cols-4 gap-x-2 md:gap-x-4 overflow-x-scroll xl:overflow-visible scrollbar-x-none snap-x snap-mandatory">
             {% if arArticleList is not empty %}
                 {% for obArticle in arArticleList %}
                     <li class="snap-start w-40 md:w-auto">
-                        {% partial 'news-card/news-card' obArticle = obArticle sCardHeadingLevel = 3 %}
+                        {% partial 'news-card/news-card'
+                            obArticle = obArticle
+                            sCardHeadingLevel = 3
+                        %}
                     </li>
                 {% endfor %}
             {% endif %}
         </ul>
     {% else %}
-        <span class="block text-gray-400 text-center mb-4 md:mb-10">No news has been posted yet.</span>
+        <span class="block text-gray-400 text-center mb-4 md:mb-10">{{ 'text_news_list_latest_not_found'|_ }}</span>
     {% endif %}
 </div>
