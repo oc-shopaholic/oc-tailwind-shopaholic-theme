@@ -36,7 +36,7 @@ module.exports = {
         '160': '40rem',
       },
       maxWidth: {
-        'screen-3xl': '120rem'
+        'screen-3xl': '1920px'
       }
     }
   },
