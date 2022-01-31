@@ -34,6 +34,9 @@ module.exports = {
       },
       maxHeight: {
         '160': '40rem',
+      },
+      maxWidth: {
+        'screen-3xl': '120rem'
       }
     }
   },
