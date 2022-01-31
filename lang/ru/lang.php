@@ -19,9 +19,8 @@
         'top_info_block_active'              => 'Активность',
         'top_info_block_content'             => 'Содержимое',
         'carousel_main_section'              => 'Главная карусель',
-
-
-
+        'main_carousel_alt'                  => 'Альтернативный текст',
+        'main_carousel_title'                => 'Всплывающая подсказка',
 
 
 
@@ -82,6 +81,9 @@
         'plugin_related_products_shopaholic' => 'Требуется установка <strong><a href="https://octobercms.com/plugin/lovata-relatedproductsshopaholic">Related product for Shopaholic</a></strong>',
         'plugin_buddies'                     => 'Требуется установка <strong><a href="https://octobercms.com/plugin/lovata-buddies">Buddies</a></strong>',
         'plugin_faq'                         => 'Требуется установка <strong><a href="https://octobercms.com/plugin/andreishilov-faq">FAQ</a></strong>',
+        'main_carousel_alt'                  => 'Эта строка будет показана в случае, если изображение не загружено на страницу.',
+        'main_carousel_image'                => 'Рекомендуемое разрешение: 1440×640 пикселей. Поддерживается формат SVG.',
+        'main_carousel_title'                => 'Эта строка будет отображаться при наведении курсора мыши на изображение.',
     ],
     'placeholder' => [
         'business_card_copyright' => '© 2020 Атмосфера. Все права защищены.',

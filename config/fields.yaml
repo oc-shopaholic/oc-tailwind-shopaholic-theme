@@ -106,20 +106,21 @@ tabs:
             form:
                 fields:
                     alt:
-                        label: 'Alternative text'
+                        label: 'theme.lovata-tailwind-shopaholic::lang.field.main_carousel_alt'
                         type: text
                         span: left
-                        comment: 'This string will have been shown in case an image has not loaded on the page.'
+                        comment: 'theme.lovata-tailwind-shopaholic::lang.comment.main_carousel_alt'
                     image:
                         label: 'lovata.toolbox::lang.field.image'
                         type: mediafinder
                         span: right
                         mode: image
+                        comment: 'theme.lovata-tailwind-shopaholic::lang.comment.main_carousel_image'
                     title:
-                        label: 'Title'
+                        label: 'theme.lovata-tailwind-shopaholic::lang.field.main_carousel_title'
                         type: text
                         span: left
-                        comment: 'This string will be shown on the mouse hover on the image.'
+                        comment: 'theme.lovata-tailwind-shopaholic::lang.comment.main_carousel_title'
                     url:
                         label: 'lovata.toolbox::lang.field.slug'
                         type: text
