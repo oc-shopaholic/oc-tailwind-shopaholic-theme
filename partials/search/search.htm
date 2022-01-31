@@ -1,0 +1,21 @@
+<div class="p-0 mt-2 md:p-4">
+    <div class="flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <div class="flex w-full items-center border-b border-gray-400 ml-1 md:ml-0 md:border-0">
+            {% partial 'input/input'
+                type='text'
+                inputClass='bg-transparent border-none pl-0 _shopaholic-search-input'
+                maxLength='100'
+                sPartialClasses='w-full'
+            %}
+            <svg xmlns="http://www.w3.org/2000/svg" class="_clear h-6 w-6 ml-2 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </div>
+    </div>
+    <div class="search-result-wrapper">
+        {% partial 'search/search-result' %}
+    </div>
+</div>

@@ -6,7 +6,7 @@
 
 <template class="_sidebarTemplate">
     <div class="_sidebarContainer">
-        <div class="hidden box-border fixed top-0 right-0 w-full p-4 bg-gray-200 z-50 h-full max-h-full	overflow-auto duration-1000	_nav lg:w-1/2" data-side="{{side}}">
+        <div class="_nav hidden box-border fixed top-0 right-0 w-full p-4 bg-gray-200 z-50 h-full max-h-full	overflow-auto duration-1000 lg:w-1/2" data-side="{{side}}">
             <div class="{{sDefaultClass}}">
                 {% if buttonMobile == true %}
                     <div class="_hide flex items-center lg:hidden">
@@ -33,6 +33,6 @@
                 {{content}}
             {% endif %}
         </div>
-        <div class="hidden w-full h-full fixed bg-gray-400 opacity-80 inset-0 z-40 _backdrop"></div>
+        <div class="_backdrop hidden w-full h-full fixed bg-gray-400 opacity-80 inset-0 z-40"></div>
     </div>
 </template>

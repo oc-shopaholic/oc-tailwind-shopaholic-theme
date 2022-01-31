@@ -18,3 +18,5 @@ import '/partials/account/account-change-password';
 import '/partials/input-quantity/input-quantity';
 /* * Sidebar * */
 import '/partials/sidebar/sidebar';
+/* * Search * */
+import '/partials/search/search';
