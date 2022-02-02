@@ -1,26 +1,3 @@
-<!-- <dialog id="favDialog">
-    <form id="formTest" method="dialog">
-      <section>
-        <p><label for="favAnimal">Favorite animal:</label>
-        <select id="favAnimal" name="favAnimal">
-          <option></option>
-          <option>Brine shrimp</option>
-          <option>Red panda</option>
-          <option>Spider monkey</option>
-        </select></p>
-      </section>
-      <menu>
-        <button id="cancel" type="reset">Cancel</button>
-        <button type="submit">Confirm</button>
-      </menu>
-    </form>
-  </dialog>
-
-  <menu>
-    <button id="updateDetails">Update details</button>
-  </menu>
- -->
-
 {% if buttonMobile == 'left' %}
     {% set sDefaultClass = 'flex justify-between' %}
 {% else %}
@@ -28,8 +5,8 @@
 {% endif %}
 
 <template class="_sidebarTemplate">
-    <dialog class="_sidebarContainer bg-red-200 h-full w-1/2 mr-0" id="favDialog">
-        <div class="hidden box-border top-0 right-0 w-full p-4 z-50 h-full max-h-full overflow-auto duration-1000 _nav" data-side="{{position}}">
+    <dialog class="_sidebarContainer bg-transparent p-0 w-full min-w-full h-full min-h-full my-0 mr-0 backdrop:bg-gray-400 backdrop:opacity-60">
+        <div class="_nav hidden box-border fixed bg-gray-200 top-0 right-0 w-full p-4 h-full max-h-full w-1/2 overflow-auto duration-1000" data-side="{{position}}">
             <div class="{{sDefaultClass}}">
                 {% if buttonMobile == 'left' %}
                     <button class="_hide flex items-center text-base uppercase lg:hidden">
@@ -56,6 +33,5 @@
                 {{content}}
             {% endif %}
         </div>
-        <!-- <div class="hidden w-full h-full fixed bg-gray-400 opacity-80 inset-0 z-40 _backdrop"></div> -->
     </dialog>
 </template>

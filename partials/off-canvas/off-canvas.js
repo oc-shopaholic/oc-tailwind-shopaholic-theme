@@ -1,56 +1,4 @@
-// import dialogPolyfill from 'dialog-polyfill'
-
-// (function() {
-//   var updateButton = document.getElementById('updateDetails');
-//   var cancelButton = document.getElementById('cancel');
-//   var dialog = document.getElementById('favDialog');
-//   var formTest = $('#formTest');
-
-//   dialogPolyfill.registerDialog(dialog);
-
-//   function openCheck(dialog) {
-//     if(dialog.open) {
-//       console.log('Dialog open');
-//     } else {
-//       console.log('Dialog closed');
-//     }
-//   }
-
-//   function events() {
-//     $(dialog).mouseup(function (e) {
-//       console.log()
-//       if (!formTest.is(e.target) && formTest.has(e.target).length === 0) {
-//         console.log('не туда');
-//         dialog.close('animalNotChosen');
-//         $(dialog).off();
-//         $(document).off();
-//         $('body').css('overflow-y', 'auto')
-//         $('body').css('padding-right', '0')
-//       }
-//     });
-//   }
-  
-//     // Update button opens a modal dialog
-//     updateButton.addEventListener('click', function() {
-//       dialog.showModal();
-//       openCheck(dialog);
-//       events();
-//       $('body').css('overflow-y', 'hidden')
-//       $('body').css('padding-right', '15px')
-//     });
-
-//   // Form cancel button closes the dialog box
-//   cancelButton.addEventListener('click', function() {
-//     dialog.close('animalNotChosen');
-//     $('body').css('overflow-y', 'auto')
-//     $('body').css('padding-right', '0')
-//     openCheck(dialog);
-//   });
-
-// })();
-
-
-// import dialogPolyfill from 'dialog-polyfill'
+import dialogPolyfill from 'dialog-polyfill'
 
 export default new class Sidebar {
   constructor() {
@@ -62,20 +10,24 @@ export default new class Sidebar {
         let $vNav = $(this);
         let $vShow = $vNav.find("._show");
         let $vContainer = null;
-        let $vBackdrop = null;
         let $vTemplateNav = null;
         let $vTemplate = null;
         let $vSidebarRemove = null;
+        let sDialog = null;
 
         function initSidebar(){
           $vTemplateNav = $vNav.find("._sidebarTemplate");
-          console.log('create')
           $vTemplate = $vTemplateNav[0].content.cloneNode(true);
           $($vTemplate).appendTo($vNav);
-          var dialog = document.getElementById('favDialog');
-          dialog.showModal();
+
+          sDialog = document.querySelectorAll('._sidebarContainer')[0];
+          dialogPolyfill.registerDialog(sDialog);
+          sDialog.showModal();
+
+          $('body').css('overflow-y', 'hidden')
+          $('body').css('padding-right', '15px')
+
           $vContainer = $vNav.find("._nav");
-          $vBackdrop = $vNav.find("._backdrop");
         }
 
         function initEvents(){
@@ -106,7 +58,6 @@ export default new class Sidebar {
             $vContainer.css($vContainer.attr('data-side'), '-100%');
           }
           $vContainer.css('display', 'block');
-          $vBackdrop.css('display', 'none');
           animOpen();
         }
 
@@ -122,7 +73,6 @@ export default new class Sidebar {
             $vContainer.css($vContainer.attr('data-side'), '-100%');
             $vContainer.css('display', 'block');
           }
-          $vBackdrop.css('display', 'none');
         }
 
         function animOpen(){
@@ -132,14 +82,15 @@ export default new class Sidebar {
             }else{
               $vContainer.css($vContainer.attr('data-side'), '0');
             }
-            $vBackdrop.css('display', 'block');
           }, 100);
         }
 
         function animClose(){
           setTimeout(() => {
-            var dialog = document.getElementById('favDialog');
-            dialog.close();
+            sDialog.close();
+            $('body').css('overflow-y', 'auto')
+            $('body').css('padding-right', '0')
+
             $vSidebarRemove = $vNav.find('._sidebarContainer');
             $vSidebarRemove.remove();
           }, 400);
