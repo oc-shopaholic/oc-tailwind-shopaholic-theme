@@ -54,5 +54,10 @@ module.exports = {
       }
       addUtilities(newUtilities, ['before'])
     }),
+    plugin(({ addVariant, e }) => {
+      addVariant('backdrop', ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => `.${e(`backdrop${separator}${className}`)}::backdrop`)
+      })
+    }),
   ]
 }
