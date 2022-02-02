@@ -1,5 +1,5 @@
-<dialog id="favDialog">
-    <form method="dialog">
+<!-- <dialog id="favDialog">
+    <form id="formTest" method="dialog">
       <section>
         <p><label for="favAnimal">Favorite animal:</label>
         <select id="favAnimal" name="favAnimal">
@@ -19,17 +19,17 @@
   <menu>
     <button id="updateDetails">Update details</button>
   </menu>
+ -->
 
-
-<!-- {% if buttonMobile == 'left' %}
+{% if buttonMobile == 'left' %}
     {% set sDefaultClass = 'flex justify-between' %}
 {% else %}
     {% set sDefaultClass = 'flex justify-end lg:justify-between' %}
-{% endif %} -->
+{% endif %}
 
-<!-- <template class="_sidebarTemplate">
-    <div class="_sidebarContainer">
-        <div class="hidden box-border fixed top-0 right-0 w-full p-4 bg-gray-200 z-50 h-full max-h-full	overflow-auto duration-1000	_nav lg:w-1/2" data-side="{{position}}">
+<template class="_sidebarTemplate">
+    <dialog class="_sidebarContainer bg-red-200 h-full w-1/2 mr-0" id="favDialog">
+        <div class="hidden box-border top-0 right-0 w-full p-4 z-50 h-full max-h-full overflow-auto duration-1000 _nav" data-side="{{position}}">
             <div class="{{sDefaultClass}}">
                 {% if buttonMobile == 'left' %}
                     <button class="_hide flex items-center text-base uppercase lg:hidden">
@@ -56,6 +56,6 @@
                 {{content}}
             {% endif %}
         </div>
-        <div class="hidden w-full h-full fixed bg-gray-400 opacity-80 inset-0 z-40 _backdrop"></div>
-    </div>
-</template> -->
+        <!-- <div class="hidden w-full h-full fixed bg-gray-400 opacity-80 inset-0 z-40 _backdrop"></div> -->
+    </dialog>
+</template>
