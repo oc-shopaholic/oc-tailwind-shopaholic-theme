@@ -18,4 +18,4 @@ import '/partials/carousel-main/carousel-main';
 /* * Input Quantity * */
 import '/partials/input-quantity/input-quantity';
 /* * Sidebar * */
-import '/partials/sidebar/sidebar';
+import '/partials/off-canvas/off-canvas';

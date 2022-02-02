@@ -13,10 +13,11 @@
 <header class="bg-white relative full-width">
     <div class="_container-nav">
         <button class="_show ml-10 rounded-md bg-gray-200">sidebar button</button>
-        {% partial 'sidebar/sidebar'
+        {% partial 'off-canvas/off-canvas'
             content = content
-            side = 'right'
-            buttonMobile = true
+            position = 'right'
+            buttonMobile = 'right'
+            title = 'Heading'
         %}
     </div>
     {% partial 'top-info-block/top-info-block' %}
