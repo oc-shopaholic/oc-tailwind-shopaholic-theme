@@ -83,6 +83,50 @@ tabs:
             span: full
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
             translatable: true
+        carousel_main_section:
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.carousel_main_section'
+            type: section
+            span: full
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
+        main_carousel_active:
+            label: 'lovata.toolbox::lang.field.active'
+            type: switch
+            span: full
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
+        main_carousel:
+            type: repeater
+            span: full
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
+            style: collapsed
+            translatable: true
+            trigger:
+                action: show
+                field: main_carousel_active
+                condition: checked
+            form:
+                fields:
+                    alt:
+                        label: 'theme.lovata-tailwind-shopaholic::lang.field.main_carousel_alt'
+                        type: text
+                        span: left
+                        comment: 'theme.lovata-tailwind-shopaholic::lang.comment.main_carousel_alt'
+                    image:
+                        label: 'lovata.toolbox::lang.field.image'
+                        type: mediafinder
+                        span: right
+                        mode: image
+                        comment: 'theme.lovata-tailwind-shopaholic::lang.comment.main_carousel_image'
+                    title:
+                        label: 'theme.lovata-tailwind-shopaholic::lang.field.main_carousel_title'
+                        type: text
+                        span: left
+                        comment: 'theme.lovata-tailwind-shopaholic::lang.comment.main_carousel_title'
+                    url:
+                        label: 'lovata.toolbox::lang.field.slug'
+                        type: text
+                        span: left
+
+
         payment_methods_list_section:
             label: 'theme.lovata-tailwind-shopaholic::lang.field.payment_methods_list_section'
             type: section
