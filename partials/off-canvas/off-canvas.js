@@ -1,10 +1,11 @@
 import dialogPolyfill from 'dialog-polyfill'
+import * as focusTrap from 'focus-trap'
 
-export default new class Sidebar {
+export default new class offCanvas {
   constructor() {
-      this.initialization();
+    this.initialization();
   }
-  
+
   initialization(){
     $("._container-nav").each(function(){
         let $vNav = $(this);
@@ -12,22 +13,65 @@ export default new class Sidebar {
         let $vContainer = null;
         let $vTemplateNav = null;
         let $vTemplate = null;
-        let $vSidebarRemove = null;
-        let sDialog = null;
+        let $vOffCanvasRemove = null;
+        let $sDialog = null;
+        let $sScrollWidth = null;
+        let $sBackdrop = null;
+        let $sFocus = null;
 
-        function initSidebar(){
-          $vTemplateNav = $vNav.find("._sidebarTemplate");
+        function initOffCanvas(){
+          $vTemplateNav = $vNav.find("._offCanvasTemplate");
           $vTemplate = $vTemplateNav[0].content.cloneNode(true);
           $($vTemplate).appendTo($vNav);
 
-          sDialog = document.querySelectorAll('._sidebarContainer')[0];
-          dialogPolyfill.registerDialog(sDialog);
-          sDialog.showModal();
+          $sDialog = document.querySelectorAll('._offCanvasContainer')[0];
+          dialogPolyfill.registerDialog($sDialog);
+          $sDialog.showModal();
 
           $('body').css('overflow-y', 'hidden')
-          $('body').css('padding-right', '15px')
+          $('body').css('padding-right', $sScrollWidth)
 
           $vContainer = $vNav.find("._nav");
+        }
+
+        function initFocus() {
+          $sFocus = focusTrap.createFocusTrap('._offCanvasContainer');
+
+          $sFocus.activate()
+        }
+
+        function initScrollWidth() {
+          let div = document.createElement('div');
+
+          div.style.overflowY = 'scroll';
+          div.style.width = '50px';
+          div.style.height = '50px';
+
+          document.body.append(div);
+
+          let scrollWidth = div.offsetWidth - div.clientWidth;
+
+          div.remove();
+
+          $sScrollWidth = scrollWidth;
+        }
+
+        function initBackdrop() {
+          $sBackdrop = $vNav.find(".backdrop");
+          if($sBackdrop[0]){
+            $sBackdrop.addClass('fixed top-0 right-0 bg-gray-400')
+            $sBackdrop.css({
+              "left": "0",
+              "bottom": "0",
+              "opacity": "0.6"
+            })
+            $sDialog.style.minHeight = '100vh';
+            $sDialog.style.top = '0';
+            $sDialog.style.right = '0';
+            $sDialog.style.left = '0';
+            $sDialog.style.bottom = '0';
+            $sDialog.style.position = 'fixed';
+          }
         }
 
         function initEvents(){
@@ -49,50 +93,49 @@ export default new class Sidebar {
         }
 
         function initAnimOpen(){
-          if($vContainer.attr('data-side') === 'bottom'){
-            $vContainer.css({
-              'top': '100%',
-              'width': '100%'
-            });
+          if($vContainer.attr('data-position') === 'bottom'){
+            $vContainer.css(
+              {
+                'top': '100%',
+                'width': '100%'
+              }
+            )
           }else{
-            $vContainer.css($vContainer.attr('data-side'), '-100%');
+            $vContainer.css($vContainer.attr('data-position'), '-100%');
           }
-          $vContainer.css('display', 'block');
+          $vContainer.css('display', 'block')
+          initBackdrop();
           animOpen();
         }
 
         function initAnimClose(){
-          if($vContainer.attr('data-side') === 'bottom'){
-            $vContainer.css({
-              'top': '150%',
-              'width': '100%',
-              'height': '100%',
-              'display': 'block'
-            });
+          if($vContainer.attr('data-position') === 'bottom'){
+            $vContainer.addClass('block w-full h-full')
+            $vContainer.css('top', '150%')
           }else{
-            $vContainer.css($vContainer.attr('data-side'), '-100%');
-            $vContainer.css('display', 'block');
+            $vContainer.css($vContainer.attr('data-position'), '-100%');
+            $vContainer.addClass('block')
           }
         }
 
         function animOpen(){
           setTimeout(() => {
-            if($vContainer.attr('data-side') === 'bottom'){
+            if($vContainer.attr('data-position') === 'bottom'){
               $vContainer.css('top', '50%');
             }else{
-              $vContainer.css($vContainer.attr('data-side'), '0');
+              $vContainer.css($vContainer.attr('data-position'), '0');
             }
+            initFocus()
           }, 100);
         }
 
         function animClose(){
           setTimeout(() => {
-            sDialog.close();
             $('body').css('overflow-y', 'auto')
             $('body').css('padding-right', '0')
-
-            $vSidebarRemove = $vNav.find('._sidebarContainer');
-            $vSidebarRemove.remove();
+            $sFocus.deactivate()
+            $vOffCanvasRemove = $vNav.find('._offCanvasContainer');
+            $vOffCanvasRemove.remove();
           }, 400);
         }
 
@@ -107,13 +150,14 @@ export default new class Sidebar {
           animClose();
         }
 
-        function activeSidebar(){
-          initSidebar();
+        function activeOffCanvas(){
+          initScrollWidth();
+          initOffCanvas();
           initAnimOpen();
         }
 
         $vShow.on("click", () => {
-          activeSidebar();
+          activeOffCanvas();
           initEvents();
         })
     });
