@@ -18,6 +18,12 @@
         'top_info_block_section'             => 'Top Info Block',
         'top_info_block_active'              => 'Active',
         'top_info_block_content'             => 'Content',
+        'carousel_main_section'              => 'Main Carousel',
+        'main_carousel_alt'                  => 'Alternative text',
+        'main_carousel_title'                => 'Title',
+
+
+
         'payment_methods_list_section'       => 'Payment methods',
         'payment_methods_list_active'        => 'Active',
         'payment_methods_list_image_alt'     => 'Alternative text',
@@ -75,6 +81,9 @@
         'plugin_related_products_shopaholic' => 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-relatedproductsshopaholic">Related product for Shopaholic</a></strong>',
         'plugin_buddies'                     => 'Requires to install <strong><a href="https://octobercms.com/plugin/lovata-buddies">Buddies</a></strong>',
         'plugin_faq'                         => 'Requires to install <strong><a href="https://octobercms.com/plugin/andreishilov-faq">FAQ</a></strong>',
+        'main_carousel_alt'                  => 'This string will have been shown in case an image has not loaded on the page.',
+        'main_carousel_image'                => 'Recommended resolution: 1920×640px. The SVG format is supported.',
+        'main_carousel_title'                => 'This string will be shown on the mouse hover on the image.',
         ],
     'placeholder' => [
         'business_card_copyright' => '© 2020 Atmosphere. All rights reserved.',

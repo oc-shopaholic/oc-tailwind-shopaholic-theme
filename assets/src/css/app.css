@@ -4,6 +4,21 @@
 
 @import "tailwindcss/utilities";
 
+@layer components {
+  .slider__pagination{
+    @apply flex justify-center mt-5 lg:mt-12
+  }
+  .slider__pagination-hidden{
+    @apply hidden
+  }
+  .slider__bullet{
+    @apply w-1 lg:w-3 h-1 lg:h-3 ml-2 lg:ml-6 first:ml-0 bg-gray-400 rounded-full
+  }
+  .slider__bullet_active{
+    @apply bg-blue-800
+  }
+}
+
 @layer utilities {
   .snap::after{
     content: '';
@@ -64,3 +79,4 @@
     -moz-appearance: textfield;
   }
 }
+@import "../../../node_modules/swiper/swiper-bundle.min.css";
