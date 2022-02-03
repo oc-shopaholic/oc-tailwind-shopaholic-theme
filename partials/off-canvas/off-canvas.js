@@ -75,8 +75,8 @@ export default new class offCanvas {
         }
 
         function initEvents(){
-          $(document).keyup(function(e) {
-            if (e.keyCode == 27) {
+          $(document).keydown(function(e) {
+            if (e.keyCode === 27) {
               clearEvents();
             }   
           });
