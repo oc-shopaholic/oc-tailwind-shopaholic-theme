@@ -17,5 +17,5 @@ import '/partials/account/account-change-password';
 import '/partials/carousel-main/carousel-main';
 /* * Input Quantity * */
 import '/partials/input-quantity/input-quantity';
-/* * Sidebar * */
+/* * Off Canvas * */
 import '/partials/off-canvas/off-canvas';

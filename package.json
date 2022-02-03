@@ -34,6 +34,7 @@
   "dependencies": {
     "cross-env": "^7.0.3",
     "dialog-polyfill": "^0.5.6",
+    "focus-trap": "^6.7.2",
     "formbouncerjs": "^1.4.6",
     "jquery": "^3.6.0"
   }
