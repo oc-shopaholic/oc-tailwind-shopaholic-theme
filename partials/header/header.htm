@@ -1,11 +1,6 @@
 {##}
 
 <header class="bg-white relative full-width">
-    {% partial 'input-quantity/input-quantity' 
-        iMin = '1'
-        iMax = '10'
-        iValue = '5'
-    %}
     {% partial 'top-info-block/top-info-block' %}
     <div class="container mx-auto px-4 py-4 sm:py-5 flex items-center">
         {% if this.theme.business_card_image is not empty and this.page.id == 'index' %}
