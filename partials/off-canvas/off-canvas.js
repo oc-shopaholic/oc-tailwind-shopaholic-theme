@@ -37,16 +37,20 @@ export default class offCanvas {
   }
 
   initScrollWidth() {
-    let div = document.createElement('div');
+    let div = $("<div></div>");
 
-    div.style.overflowY = 'scroll';
-    div.style.width = '50px';
-    div.style.height = '50px';
+    div.css({
+     "overflow-y": "scroll",
+     "width": "50px",
+     "height": "50px"
+    })
 
-    document.body.append(div);
+    $('body').append(div)
 
-    let scrollWidth = div.offsetWidth - div.clientWidth;
-
+    let scrollWidth = div[0].offsetWidth - div[0].clientWidth;
+    console.log(scrollWidth)
+    console.log(div[0].offsetWidth)
+    console.log(div)
     div.remove();
 
     this.$sScrollWidth = scrollWidth;
