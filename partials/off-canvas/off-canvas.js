@@ -79,16 +79,16 @@ export default class offCanvas {
     $(document).keydown(function(e) {
       if (e.keyCode === 27) {
         app.clearEvents();
-      }   
+      }
     });
-    
-    $(this.$vNav).mouseup(function (e){ 
+
+    $(this.$vNav).mouseup(function (e){
       if (!app.$vContainer.is(e.target) && app.$vContainer.has(e.target).length === 0) {
         app.clearEvents();
       }
     });
 
-    this.$vNav.on('click', '._hide', function(){ 
+    this.$vNav.on('click', '._hide', function(){
       app.clearEvents();
     });
   }
@@ -171,4 +171,4 @@ export default class offCanvas {
     });
   }
 }
-offCanvas.make('._container-nav')
+offCanvas.make('._off-canavas')
