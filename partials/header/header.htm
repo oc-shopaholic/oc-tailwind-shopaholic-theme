@@ -1,17 +1,35 @@
 {##}
 
-{% set content %}
-    {% partial 'search/search' %}
-{% endset %}
-
 <header class="bg-white relative full-width">
-    <div class="_container-nav">
-        <button class="_show ml-10 rounded-md bg-gray-200">sidebar button</button>
-        {% partial 'sidebar/sidebar'
-            content = content
-            side = 'right'
-            buttonMobile = true
+    <div class="_off-canvas">
+        <button class="_show ml-10 rounded-md bg-gray-200">off canvas button</button>
+        {% partial 'off-canvas/off-canvas'
+            sPosition = 'right'
+            sHeading = 'Heading'
+            body
         %}
+            {% partial 'search/search' %}
+        {% endpartial %}
+    </div>
+    <div class="_off-canvas">
+        <button class="_show ml-10 rounded-md bg-gray-200">off canvas button</button>
+        {% partial 'off-canvas/off-canvas'
+            sPosition = 'left'
+            sHeading = 'Heading'
+            body
+        %}
+            {% partial 'search/search' %}
+        {% endpartial %}
+    </div>
+    <div class="_off-canvas">
+        <button class="_show ml-10 rounded-md bg-gray-200">off canvas button</button>
+        {% partial 'off-canvas/off-canvas'
+            sPosition = 'bottom'
+            sHeading = 'Heading'
+            body
+        %}
+            {% partial 'search/search' %}
+        {% endpartial %}
     </div>
     {% partial 'top-info-block/top-info-block' %}
     <div class="container mx-auto px-4 py-4 sm:py-5 flex items-center">
