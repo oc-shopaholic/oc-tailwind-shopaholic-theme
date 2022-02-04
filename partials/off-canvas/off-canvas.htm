@@ -1,16 +1,15 @@
 {##}
 
-{% if sButtonType == 'arrow' %}
+{% if sButtonType %}
     {% set sPartialClasses = 'flex justify-between' %}
 {% else %}
     {% set sPartialClasses = 'flex justify-end lg:justify-between' %}
 {% endif %}
-
 <template class="_offCanvasTemplate">
     <dialog class="_offCanvasContainer z-50 bg-transparent p-0 w-full min-w-full h-full min-h-full my-0 mr-0 backdrop:bg-gray-400 backdrop:opacity-60">
         <div class="_nav hidden box-border fixed bg-gray-200 right-0 w-full p-4 h-full max-h-full overflow-auto duration-1000 md:w-1/2" data-position="{{sPosition}}">
             <div class="{{sPartialClasses}}">
-                {% if sButtonType == 'arrow' %}
+                {% if sButtonType %}
                     <button class="_hide flex items-center text-base uppercase hover:text-blue-700 active:text-blue-900 lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -31,9 +30,7 @@
                     </svg>
                 </button>
             </div>
-            {% if vContent %}
-                {{vContent}}
-            {% endif %}
+            {{body|raw}}
         </div>
     </dialog>
 </template>

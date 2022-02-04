@@ -1,165 +1,170 @@
 import dialogPolyfill from 'dialog-polyfill'
 import * as focusTrap from 'focus-trap'
 
-export default new class offCanvas {
-  constructor() {
-    this.initialization();
+export default class offCanvas {
+  constructor(app) {
+    this.$vNav = app;
+    this.$vShow = this.$vNav.find("._show");
+    this.$vContainer = null;
+    this.$vTemplateNav = null;
+    this.$vTemplate = null;
+    this.$vOffCanvasRemove = null;
+    this.$sDialog = null;
+    this.$sScrollWidth = null;
+    this.$sBackdrop = null;
+    this.$sFocus = null;
   }
 
-  initialization(){
-    $("._container-nav").each(function(){
-        let $vNav = $(this);
-        let $vShow = $vNav.find("._show");
-        let $vContainer = null;
-        let $vTemplateNav = null;
-        let $vTemplate = null;
-        let $vOffCanvasRemove = null;
-        let $sDialog = null;
-        let $sScrollWidth = null;
-        let $sBackdrop = null;
-        let $sFocus = null;
+  initOffCanvas(){
+    this.$vTemplateNav = this.$vNav.find("._offCanvasTemplate");
+    this.$vTemplate = this.$vTemplateNav[0].content.cloneNode(true);
+    $(this.$vTemplate).appendTo(this.$vNav);
 
-        function initOffCanvas(){
-          $vTemplateNav = $vNav.find("._offCanvasTemplate");
-          $vTemplate = $vTemplateNav[0].content.cloneNode(true);
-          $($vTemplate).appendTo($vNav);
+    this.$sDialog = document.querySelectorAll('._offCanvasContainer')[0];
+    dialogPolyfill.registerDialog(this.$sDialog);
+    this.$sDialog.showModal();
 
-          $sDialog = document.querySelectorAll('._offCanvasContainer')[0];
-          dialogPolyfill.registerDialog($sDialog);
-          $sDialog.showModal();
+    $('body').css('overflow-y', 'hidden')
+    $('body').css('padding-right', this.$sScrollWidth)
 
-          $('body').css('overflow-y', 'hidden')
-          $('body').css('padding-right', $sScrollWidth)
+    this.$vContainer = this.$vNav.find("._nav");
+  }
 
-          $vContainer = $vNav.find("._nav");
+  initFocus() {
+    this.$sFocus = focusTrap.createFocusTrap('._offCanvasContainer');
+
+    this.$sFocus.activate()
+  }
+
+  initScrollWidth() {
+    let div = document.createElement('div');
+
+    div.style.overflowY = 'scroll';
+    div.style.width = '50px';
+    div.style.height = '50px';
+
+    document.body.append(div);
+
+    let scrollWidth = div.offsetWidth - div.clientWidth;
+
+    div.remove();
+
+    this.$sScrollWidth = scrollWidth;
+  }
+
+  initBackdrop() {
+    this.$sBackdrop = this.$vNav.find(".backdrop");
+    if(this.$sBackdrop[0]){
+      this.$sBackdrop.addClass('fixed top-0 right-0 bg-gray-400')
+      this.$sBackdrop.css({
+        "left": "0",
+        "bottom": "0",
+        "opacity": "0.6"
+      })
+      this.$sDialog.style.minHeight = '100vh';
+      this.$sDialog.style.top = '0';
+      this.$sDialog.style.right = '0';
+      this.$sDialog.style.left = '0';
+      this.$sDialog.style.bottom = '0';
+      this.$sDialog.style.position = 'fixed';
+    }
+  }
+
+  initEvents(){
+    let app = this;
+    $(document).keydown(function(e) {
+      if (e.keyCode === 27) {
+        app.clearEvents();
+      }   
+    });
+    
+    $(this.$vNav).mouseup(function (e){ 
+      if (!app.$vContainer.is(e.target) && app.$vContainer.has(e.target).length === 0) {
+        app.clearEvents();
+      }
+    });
+
+    this.$vNav.on('click', '._hide', function(){ 
+      app.clearEvents();
+    });
+  }
+
+  initAnimOpen(){
+    if(this.$vContainer.attr('data-position') === 'bottom'){
+      this.$vContainer.css(
+        {
+          'top': '100%',
+          'width': '100%'
         }
+      )
+    }else{
+      this.$vContainer.css(this.$vContainer.attr('data-position'), '-100%');
+    }
+    this.$vContainer.css('display', 'block')
+    this.initBackdrop();
+    this.animOpen();
+  }
 
-        function initFocus() {
-          $sFocus = focusTrap.createFocusTrap('._offCanvasContainer');
+  initAnimClose(){
+    if(this.$vContainer.attr('data-position') === 'bottom'){
+      this.$vContainer.addClass('block w-full h-full')
+      this.$vContainer.css('top', '150%')
+    }else{
+      this.$vContainer.css(this.$vContainer.attr('data-position'), '-100%');
+      this.$vContainer.addClass('block')
+    }
+  }
 
-          $sFocus.activate()
-        }
+  animOpen(){
+    setTimeout(() => {
+      if(this.$vContainer.attr('data-position') === 'bottom'){
+        this.$vContainer.css('top', '50%');
+      }else{
+        this.$vContainer.css(this.$vContainer.attr('data-position'), '0');
+      }
+      this.initFocus()
+    }, 100);
+  }
 
-        function initScrollWidth() {
-          let div = document.createElement('div');
+  animClose(){
+    setTimeout(() => {
+      $('body').css('overflow-y', 'auto')
+      $('body').css('padding-right', '0')
+      this.$sFocus.deactivate()
+      this.$vOffCanvasRemove = this.$vNav.find('._offCanvasContainer');
+      this.$vOffCanvasRemove.remove();
+    }, 400);
+  }
 
-          div.style.overflowY = 'scroll';
-          div.style.width = '50px';
-          div.style.height = '50px';
+  clearEvents(){
+    $(this.$vNav).off();
+    $(document).off();
+    this.clear();
+  }
 
-          document.body.append(div);
+  clear(){
+    this.initAnimClose();
+    this.animClose();
+  }
 
-          let scrollWidth = div.offsetWidth - div.clientWidth;
+  activeOffCanvas(){
+    this.initScrollWidth();
+    this.initOffCanvas();
+    this.initAnimOpen();
+  }
 
-          div.remove();
+  showMethod(){
+    this.$vShow.on("click", () => {
+      this.activeOffCanvas();
+      this.initEvents();
+    })
+  }
 
-          $sScrollWidth = scrollWidth;
-        }
-
-        function initBackdrop() {
-          $sBackdrop = $vNav.find(".backdrop");
-          if($sBackdrop[0]){
-            $sBackdrop.addClass('fixed top-0 right-0 bg-gray-400')
-            $sBackdrop.css({
-              "left": "0",
-              "bottom": "0",
-              "opacity": "0.6"
-            })
-            $sDialog.style.minHeight = '100vh';
-            $sDialog.style.top = '0';
-            $sDialog.style.right = '0';
-            $sDialog.style.left = '0';
-            $sDialog.style.bottom = '0';
-            $sDialog.style.position = 'fixed';
-          }
-        }
-
-        function initEvents(){
-          $(document).keydown(function(e) {
-            if (e.keyCode === 27) {
-              clearEvents();
-            }   
-          });
-          
-          $($vNav).mouseup(function (e){ 
-            if (!$vContainer.is(e.target) && $vContainer.has(e.target).length === 0) {
-              clearEvents();
-            }
-          });
-
-          $vNav.on('click', '._hide', function(){ 
-            clearEvents();
-          });
-        }
-
-        function initAnimOpen(){
-          if($vContainer.attr('data-position') === 'bottom'){
-            $vContainer.css(
-              {
-                'top': '100%',
-                'width': '100%'
-              }
-            )
-          }else{
-            $vContainer.css($vContainer.attr('data-position'), '-100%');
-          }
-          $vContainer.css('display', 'block')
-          initBackdrop();
-          animOpen();
-        }
-
-        function initAnimClose(){
-          if($vContainer.attr('data-position') === 'bottom'){
-            $vContainer.addClass('block w-full h-full')
-            $vContainer.css('top', '150%')
-          }else{
-            $vContainer.css($vContainer.attr('data-position'), '-100%');
-            $vContainer.addClass('block')
-          }
-        }
-
-        function animOpen(){
-          setTimeout(() => {
-            if($vContainer.attr('data-position') === 'bottom'){
-              $vContainer.css('top', '50%');
-            }else{
-              $vContainer.css($vContainer.attr('data-position'), '0');
-            }
-            initFocus()
-          }, 100);
-        }
-
-        function animClose(){
-          setTimeout(() => {
-            $('body').css('overflow-y', 'auto')
-            $('body').css('padding-right', '0')
-            $sFocus.deactivate()
-            $vOffCanvasRemove = $vNav.find('._offCanvasContainer');
-            $vOffCanvasRemove.remove();
-          }, 400);
-        }
-
-        function clearEvents(){
-          $($vNav).off();
-          $(document).off();
-          clear();
-        }
-      
-        function clear(){
-          initAnimClose();
-          animClose();
-        }
-
-        function activeOffCanvas(){
-          initScrollWidth();
-          initOffCanvas();
-          initAnimOpen();
-        }
-
-        $vShow.on("click", () => {
-          activeOffCanvas();
-          initEvents();
-        })
+  static make(container) {
+    $(container).each(function(e) {
+      const containerNav = new offCanvas($(this));
+      containerNav.showMethod();
     });
   }
 }
+offCanvas.make('._container-nav')

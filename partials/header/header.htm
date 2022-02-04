@@ -1,26 +1,32 @@
 {##}
 
-{% set content %}
-    <div>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam ea dicta modi eius assumenda architecto aperiam, nobis error, impedit sapiente fugit vitae eaque ipsum. Mollitia neque nostrum culpa impedit temporibus.</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam ea dicta modi eius assumenda architecto aperiam, nobis error, impedit sapiente fugit vitae eaque ipsum. Mollitia neque nostrum culpa impedit temporibus.</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam ea dicta modi eius assumenda architecto aperiam, nobis error, impedit sapiente fugit vitae eaque ipsum. Mollitia neque nostrum culpa impedit temporibus.</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam ea dicta modi eius assumenda architecto aperiam, nobis error, impedit sapiente fugit vitae eaque ipsum. Mollitia neque nostrum culpa impedit temporibus.</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam ea dicta modi eius assumenda architecto aperiam, nobis error, impedit sapiente fugit vitae eaque ipsum. Mollitia neque nostrum culpa impedit temporibus.</p>
-        <input type="text">
-    </div>
-    <input type="text">
-{% endset %}
-
 <header class="bg-white relative full-width">
     <div class="_container-nav">
         <button id="activate-default" class="_show ml-10 rounded-md bg-gray-200">offCanvas button</button>
-        {% partial 'off-canvas/off-canvas'
-            vContent = content
+        {% partial 'off-canvas/off-canvas' 
             sPosition = 'right'
-            sButtonType = 'arrow'
             sHeading = 'Heading'
+            body
         %}
+            <div>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam ea dicta modi eius assumenda architecto
+                    aperiam, nobis error, impedit sapiente fugit vitae eaque ipsum. Mollitia neque nostrum culpa impedit temporibus.
+                </p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam ea dicta modi eius assumenda architecto
+                    aperiam, nobis error, impedit sapiente fugit vitae eaque ipsum. Mollitia neque nostrum culpa impedit temporibus.
+                </p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam ea dicta modi eius assumenda architecto
+                    aperiam, nobis error, impedit sapiente fugit vitae eaque ipsum. Mollitia neque nostrum culpa impedit temporibus.
+                </p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam ea dicta modi eius assumenda architecto
+                    aperiam, nobis error, impedit sapiente fugit vitae eaque ipsum. Mollitia neque nostrum culpa impedit temporibus.
+                </p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam ea dicta modi eius assumenda architecto
+                    aperiam, nobis error, impedit sapiente fugit vitae eaque ipsum. Mollitia neque nostrum culpa impedit temporibus.
+                </p>
+                <input type="text">
+            </div>
+        {% endpartial %}
     </div>
     {% partial 'top-info-block/top-info-block' %}
     <div class="container mx-auto px-4 py-4 sm:py-5 flex items-center">
