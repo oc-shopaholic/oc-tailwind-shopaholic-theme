@@ -31,6 +31,12 @@ module.exports = {
       padding: {
         '54': '13.5rem',
         '57': '14.25rem',
+      },
+      maxHeight: {
+        '160': '40rem',
+      },
+      maxWidth: {
+        'screen-3xl': '1920px'
       }
     }
   },
@@ -47,6 +53,11 @@ module.exports = {
         }
       }
       addUtilities(newUtilities, ['before'])
+    }),
+    plugin(({ addVariant, e }) => {
+      addVariant('backdrop', ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => `.${e(`backdrop${separator}${className}`)}::backdrop`)
+      })
     }),
   ]
 }

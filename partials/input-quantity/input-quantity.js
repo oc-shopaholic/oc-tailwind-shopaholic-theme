@@ -1,77 +1,107 @@
 export default new class InputQuantity {
-    constructor() {
-      this.sInputQuantityDecrementCount = '_decrement';
-      this.sInputQuantityIncrementCount = '_increment';
-      this.sInputQuantityCount = '_count';
-      this.sQuantityCount = $(`.${this.sInputQuantityCount}`).attr('value');
-      
-      this.decrement();
-      this.increment();
-    }
-    
-    getInput(){
-       return $(`.${this.sInputQuantityCount}`)
-    }
-  
-    getValue(){
-       return this.getInput().val()
-    }
-  
-    setValue(value){
-       this.getInput().attr('value', value);
-    }
-  
-    getMax(){
-       return this.getInput().attr('max')
-    }
-  
-    getMin(){
-       return this.getInput().attr('min')
-    }
-  
-    isMin(){
-       return this.getValue() === this.getMin()
-    }
-  
-    isMax(){
-       return this.getValue() === this.getMax()
-    }
-    
-    stateButton(button, state){
-      $(`.${button}`).prop('disabled', state);
-    }
-    
-    decrement(){
-      $(document).on('click', `.${this.sInputQuantityDecrementCount}`, () => {
-        if(!this.isMin()){
-          this.sQuantityCount--;
-          this.setValue(this.sQuantityCount);
-          this.stateButton(this.sInputQuantityDecrementCount, false);
+  constructor() {
+    this.initialization();
+  }
+
+  initialization() {
+    $("._counter").each(function () {
+      let $counter = $(this);
+      let $minus = $counter.find("._decrement");
+      let $plus = $counter.find("._increment");
+      let $count = $counter.find("._count");
+      let sInputQuantityCount = '_count';
+      let sQuantityCount = $count.attr('value');
+
+      (function () {
+        counterInitialization();
+      })()
+
+      $count.on("input", (ev) => {
+        setValue($(ev.target).val());
+        sQuantityCount = $(ev.target).val()
+
+        counterInitialization();
+      });
+
+      function getInput() {
+        return $count
+      }
+
+      function getValue() {
+        return getInput().val()
+      }
+
+      function setValue(value) {
+        getInput().attr('value', value);
+        getInput().val(value);
+      }
+
+      function getMax() {
+        return getInput().attr('max')
+      }
+
+      function getMin() {
+        return getInput().attr('min')
+      }
+
+      function isMin() {
+        return Number(getValue()) <= Number(getMin())
+      }
+
+      function isMax() {
+        return Number(getValue()) >= Number(getMax())
+      }
+
+      function stateButton(button, state) {
+        button.prop('disabled', state);
+      }
+
+      function counterInitialization() {
+        if (!isMin()) {
+          stateButton($minus, false);
         }
-        
-        if(this.isMin()){
-          this.stateButton(this.sInputQuantityDecrementCount, true);
+        if (isMin()) {
+          stateButton($minus, true);
         }
-        
-        if(!this.isMax()){
-          this.stateButton(this.sInputQuantityIncrementCount, false);
+
+        if (!isMax()) {
+          stateButton($plus, false);
+        }
+
+        if (isMax()) {
+          stateButton($plus, true);
+        }
+      }
+
+      $minus.on("click", () => {
+        if (!isMin()) {
+          sQuantityCount--;
+          setValue(sQuantityCount);
+          stateButton($minus, false);
+        }
+
+        if (isMin()) {
+          stateButton($minus, true);
+        }
+
+        if (!isMax()) {
+          stateButton($plus, false);
         }
       });
-    }
-    
-    increment(){
-      $(document).on('click', `.${this.sInputQuantityIncrementCount}`, () => {
-        if(!this.isMax()){
-          this.sQuantityCount++;
-          this.setValue(this.sQuantityCount);
-          this.stateButton(this.sInputQuantityIncrementCount, false);
+
+      $plus.on("click", () => {
+        if (!isMax()) {
+          sQuantityCount++;
+          setValue(sQuantityCount);
+          stateButton($plus, false);
         }
-        if(this.isMax()){
-          this.stateButton(this.sInputQuantityIncrementCount, true);
+        if (isMax()) {
+          stateButton($plus, true);
         }
-        if(!this.isMin()){
-          this.stateButton(this.sInputQuantityDecrementCount, false);
+        if (!isMin()) {
+          stateButton($minus, false);
         }
       })
-    }
-  }();
+    });
+  }
+}
