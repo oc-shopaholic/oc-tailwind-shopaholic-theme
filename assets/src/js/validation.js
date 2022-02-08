@@ -16,7 +16,7 @@ export default new class Validation {
   validate(selector) {
     this.validation = new Bouncer(selector, {
       fieldClass: 'validation-error',
-      errorClass: 'validation-error__message text-red-700',
+      errorClass: 'validation-error__message text-red-700 text-sm',
       fieldPrefix: 'validation-error-',
       errorPrefix: 'validation-error-',
       messageAfterField: true,
