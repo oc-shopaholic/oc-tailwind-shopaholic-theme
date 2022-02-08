@@ -3,7 +3,7 @@
 {% if arPaginationList is not empty and iMaxPage > 1 %}
     <nav class="flex items-center justify-center {{ sPartialClasses }}" role="navigation" aria-label="{{ 'aria_label_pagination'|_ }}">
         {% if iPage != 1 %}
-            <a class="bg-gray-200 w-6 md:w-10 h-6 md:h-10 inline-flex justify-center items-center rounded-sm text-gray-500 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue focus-visible:text-blue-800 mr-5 flex-shrink-0" href="{{ url_current() ~ '?page=' ~ (iPage - 1) }}" data-page="{{ iPage - 1 }}" aria-label="{{ 'aria_label_pagination_page_previous'|_ }}">
+            <a class="bg-gray-200 w-6 md:w-10 h-6 md:h-10 inline-flex justify-center items-center rounded-sm text-gray-500 hover:text-blue-700 active:text-blue-900 focus:outline-none focus:rounded focus:border-2 focus:border-gray-600 mr-5 flex-shrink-0" href="{{ url_current() ~ '?page=' ~ (iPage - 1) }}" data-page="{{ iPage - 1 }}" aria-label="{{ 'aria_label_pagination_page_previous'|_ }}">
                 <svg class="w-3 md:w-5 h-3 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
@@ -13,15 +13,15 @@
             {% for arPagination in arPaginationList %}
                 <li class="mr-5 last:mr-0">
                     {% if arPagination.value != iPage %}
-                        <a class="w-6 md:w-10 h-6 md:h-10 inline-flex justify-center items-center bg-transparent text-gray-500 hover:text-blue-700 hover:underline focus-visible:outline-blue focus-visible:text-blue-800" data-page="{{ arPagination.value }}" href="{{ url_current() ~ '?page=' ~ arPagination.value }}">{{ arPagination.name }}</a>
+                        <a class="w-6 md:w-10 h-6 md:h-10 inline-flex justify-center items-center bg-transparent text-gray-500 hover:text-blue-700 hover:underline focus-visible:outline-blue focus-visible:text-blue-800 focus:outline-none focus:rounded focus:border-2 focus:border-blue-800" data-page="{{ arPagination.value }}" href="{{ url_current() ~ '?page=' ~ arPagination.value }}">{{ arPagination.name }}</a>
                     {% else %}
-                        <span class="inline-flex items-center justify-center w-6 md:w-10 h-6 md:h-10 rounded-sm bg-blue-800 text-white" aria-current="true">{{ arPagination.name }}</span>
+                        <span class="inline-flex items-center justify-center w-6 md:w-10 h-6 md:h-10 rounded-sm bg-blue-800 text-white focus:outline-none focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:text-white focus:bg-blue-800" aria-current="true">{{ arPagination.name }}</span>
                     {% endif %}
                 </li>
             {% endfor %}
         </ul>
         {% if iMaxPage > iPage %}
-            <a class="bg-gray-200 w-6 md:w-10 h-6 md:h-10 inline-flex justify-center items-center rounded-sm text-gray-500 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue focus-visible:text-blue-800 ml-5 flex-shrink-0" href="{{ url_current() ~ '?page=' ~ (iPage + 1) }}" data-page="{{ iPage + 1 }}" aria-label="{{ 'aria_label_pagination_page_next'|_ }}">
+            <a class="bg-gray-200 w-6 md:w-10 h-6 md:h-10 inline-flex justify-center items-center rounded-sm text-gray-500 hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white ml-5 flex-shrink-0" href="{{ url_current() ~ '?page=' ~ (iPage + 1) }}" data-page="{{ iPage + 1 }}" aria-label="{{ 'aria_label_pagination_page_next'|_ }}">
                 <svg class="w-3 md:w-5 h-3 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
