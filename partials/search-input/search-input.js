@@ -50,7 +50,7 @@ export default class Search {
   initSearch() {
     const obHelper = new ShopaholicSearch();
     obHelper.setSearchLimit(1).setAjaxRequestCallback(function (obRequestData) {
-      obRequestData.update = { 'search/search-result': '.search-result-wrapper' };
+      obRequestData.update = { 'search-input/search-result': '.search-result-wrapper' };
 
       return obRequestData;
     }).init();
