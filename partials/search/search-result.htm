@@ -16,9 +16,9 @@ sorting = "popularity|desc"
 <ul>
     {% for obProduct in arProductList %}
     {% set obOffer = obProduct.offer.first() %}
-    <li class="p-2 pl-0 cursor-pointer hover:bg-inherit pr-0 md:pr-2 md:hover:bg-gray-300">
-        <a href="{{ obProduct.getPageUrl('product-item') }}">
-            <div class="_shopaholic-product-wrapper flex my-2 ml-1 relative">
+    <li class="p-1 pl-0 cursor-pointer hover:bg-inherit pr-0 md:pr-2 md:hover:bg-gray-100">
+        <div class="focus:outline-none focus:text-blue-800 focus:border-solid focus:border-2 focus:border-blue-800 focus:no-underline" tabindex="0">
+            <a class="_shopaholic-product-wrapper focus:outline-none flex my-2 ml-1 relative" href="{{ obProduct.getPageUrl('product-item') }}" tabindex="-1">
                 <div>
                     <picture class="object-cover">
                         {# TODO: Add images quality value to the theme settings #}
@@ -34,30 +34,30 @@ sorting = "popularity|desc"
                         <source media="(max-width:768px)"
                             srcset="{{ obProduct.preview_image.getThumb(500, 373, {'quality': 80}) }}"
                             type="image/jpeg">
-                        <img class="object-cover w-20 h-14"
+                        <img class="object-cover w-8 h-8"
                             src="{{ obProduct.preview_image.preview_image.getThumb(500, 373, {'quality': 80}) }}"
                             itemprop="image" alt="{{ obProduct.preview_image.description }}"
                             title="{{ obProduct.preview_image.title }}">
                     </picture>
                 </div>
                 <div class="ml-2 border-b border-gray-400 w-full md:border-0 md:w-auto">
-                    <h1 class="md:text-base font-bold text-gray-900 line-clamp-3 mb-auto">{{ obProduct.name }}</h1>
-                    <div class="mb-4 flex flex-wrap md:mt-2 md:mb-0">
-                        <span class="break-line md:text-sm text-gray-900 font-medium mr-2">{{ obOffer.currency }}{{
+                    <h1 class="_product-name w-max text-sm font-normal text-gray-900 line-clamp-3 mb-auto">{{ obProduct.name }}</h1>
+                    <div class="mb-3 flex flex-wrap md:mb-0">
+                        <span class="break-line text-xs text-gray-900 font-medium mr-2">{{ obOffer.currency }}{{
                             obOffer.price }}</span>
                         {% if obOffer.old_price_value > obOffer.price_value %}
-                        <span class="break-line md:text-sm text-gray-600 font-medium">{{ obOffer.currency }}{{
+                        <span class="break-line text-xs text-gray-600 font-medium">{{ obOffer.currency }}{{
                             obOffer.old_price
                             }}</span>
                         {% endif %}
                     </div>
                 </div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 absolute right-0 top-4 block md:hidden"
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 absolute right-4 top-2.5 block md:hidden md:right-0 md:top-4"
                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
-            </div>
-        </a>
+            </a>
+        </div>
     </li>
     {% endfor %}
 </ul>
