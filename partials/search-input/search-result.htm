@@ -7,14 +7,12 @@ sorting = "popularity|desc"
 {# Get product collection #}
 {% set obProductList = ProductList.make().active().search(sSearch) %}
 
-{# Get first 5 products #}
-{% set arProductList = obProductList.take(5) %}
 {# Render product list #}
 
 {##}
 
-<ul>
-    {% for obProduct in arProductList %}
+<ul class="_product-container">
+    {% for obProduct in obProductList %}
     {% set obOffer = obProduct.offer.first() %}
     <li class="p-1 pl-0 cursor-pointer hover:bg-inherit pr-0 md:pr-2 md:hover:bg-gray-100">
         <div class="focus:outline-none focus:text-blue-800 focus:border-solid focus:border-2 focus:border-blue-800 focus:no-underline" tabindex="0">
@@ -40,7 +38,7 @@ sorting = "popularity|desc"
                             title="{{ obProduct.preview_image.title }}">
                     </picture>
                 </div>
-                <div class="ml-2 border-b border-gray-400 w-full md:border-0 md:w-auto">
+                <div class="ml-2 border-b border-gray-200 w-full md:border-0 md:w-auto">
                     <h1 class="_product-name w-max text-sm font-normal text-gray-900 line-clamp-3 mb-auto">{{ obProduct.name }}</h1>
                     <div class="mb-3 flex flex-wrap md:mb-0">
                         <span class="break-line text-xs text-gray-900 font-medium mr-2">{{ obOffer.currency }}{{

@@ -1,7 +1,7 @@
 {##}
 
 <div class="mt-10">
-    <div class="flex items-center mr-4 md:mr-0">
+    <div class="flex items-center mr-4 mb-4 md:mr-0">
         <div class="flex w-full relative items-center ml-1 md:ml-0">
             {% partial 'input/input'
                 inputClass='_shopaholic-search-input relative z-10 bg-transparent border-gray-400 focus:border-gray-600 pl-12'
@@ -19,30 +19,67 @@
             </button>
         </div>
     </div>
-    <div>
-        <div class="_tag hidden w-max mt-6 mb-1 shadow rounded bg-white px-2.5 py-2 ml-1 md:ml-0">
+    <div class="_recently-container hidden">
+        <h1 class="text-gray-400 font-medium text-base text-left ml-1 mt-4 uppercase">Search History</h1>
+        <!-- <div class="_tag hidden w-max mt-6 mb-1 shadow rounded bg-white px-2.5 py-2 ml-1 md:ml-0">
             <p class="_tag-text text-left text-sm"></p>
-        </div>
-        <div class="_recently hidden flex w-full relative items-center ml-1 mb-1 md:ml-0">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            {% partial 'input/input'
-            type='text'
-            inputClass='_recently-text font-bold text-gray-900 bg-transparent border-none px-0'
-            maxLength='100'
-            sPartialClasses='w-full border-b border-gray-400 md:border-0'
-            disabled = true
-            %}
-            <button class="_clear absolute right-4 top-4 cursor-pointer hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800 md:right-0">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </div> -->
+        <template class="_recently-template">
+            <div class="_recently flex w-full relative items-center ml-1 mb-1 md:ml-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-            </button>
-        </div>
+                {% partial 'input/input'
+                type='text'
+                inputClass='_recently-text font-bold text-gray-900 bg-transparent border-none px-0'
+                maxLength='100'
+                sPartialClasses='w-full border-b border-gray-200 md:border-0'
+                disabled = true
+                %}
+                <button class="_clear-recently absolute right-4 top-4 cursor-pointer hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800 md:right-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </template>
     </div>
-    <div class="search-result-wrapper">
+    <div class="search-result-wrapper hidden">
         {% partial 'search-input/search-result' %}
     </div>
+    <div class="flex justify-center">
+        {% partial 'button/button'
+            sText = 'Show more'
+            sPartialClasses = '_show-more hidden relative w-60 mt-8'
+        %}
+
+        {% partial 'button/button'
+            sText = 'Loading…'
+            sPartialClasses = '_show-more-hidden hidden relative w-60 pl-12 mt-8'
+            bDisabled = true
+            body
+        %}
+            <svg class="animate-spin absolute top-4 left-14 w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                </path>
+            </svg>
+        {% endpartial %}
+    </div>
+</div>
+<div class="_preloader hidden justify-center items-center h-4/5">
+    <svg class="animate-spin h-11 w-11 text-gray-400"
+        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+        </path>
+    </svg>
+</div>
+<div class="_no-result flex-col	items-center justify-center	h-4/5 hidden">
+    <h1 class="text-gray-400 text-2xl mb-2 font-medium">No results found</h1>
+    <p class="text-gray-400 text-base w-80">We couldn't find a match for "Abcdef". Please, try another search.</p>
 </div>

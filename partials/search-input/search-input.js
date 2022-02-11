@@ -10,21 +10,41 @@ export default class Search {
     this.$sClear = null;
     this.$vTag = null;
     this.$vRecently = null;
+    this.$vRecentlyContainer = null;
     this.$vTagText = null;
     this.$vRecentlyText = null;
+    this.$vPreloader = null;
+    this.$vResultWrapper = null;
+    this.$vNoResult = null;
+    this.$vRecentlyTemplate = null;
+    this.$vTemplate = null;
+    this.$vProductContainer = null;
+    this.$vShowMore = null;
+    this.$vShowMoreHidden = null;
+
+    this.vPagination = 5;
+    this.vPaginationZapas = this.vPagination;
+    this.vPaginationContainer = [];
+    this.bOpenRecently = false;
   }
 
   initVariables(){
+    this.bOpenRecently = false;
     this.$vPlaceholder = this.$vNav.find("._placeholder");
     this.$sInput = this.$vNav.find("._shopaholic-search-input");
     this.$sClear = this.$vNav.find("._clear");
+    this.$vPreloader = this.$vNav.find("._preloader");
+    this.$vResultWrapper = this.$vNav.find(".search-result-wrapper");
+    this.$vNoResult = this.$vNav.find("._no-result");
+    this.$vRecentlyContainer = this.$vNav.find("._recently-container");
+    this.$vRecentlyTemplate = this.$vNav.find("._recently-template");
+    this.$vShowMore = this.$vNav.find("._show-more");
+    this.$vShowMoreHidden = this.$vNav.find("._show-more-hidden");
   }
 
   initOthersVariables(){
     this.$vRecently = this.$vNav.find("._recently");
-    this.$vTag = this.$vNav.find("._tag");
     this.$vProductTitle = this.$vNav.find("._product-name");
-    this.$vTagText = this.$vNav.find("._tag-text");
     this.$vRecentlyText = this.$vNav.find("._recently-text");
   }
 
@@ -33,18 +53,22 @@ export default class Search {
     this.$vNav.on('click', '._clear', function () {
       const searchResultWrapper = $(app.$vNav.find(".search-result-wrapper"));
       const childrenNode = searchResultWrapper.children();
-      app.hiddenTags();
       app.$sClear.css('display', 'none');
+      app.$vShowMore.css('display', 'none');
       $(app.$sInput.val(''));
       childrenNode.remove();
     })
     $(document).ready(function() {
       $('._shopaholic-search-input').keydown(function(e) {
-        if(e.keyCode === 13 && app.$vProductTitle && app.$vProductTitle.length > 0 ) {
+        if(e.keyCode === 39 && app.$vProductTitle && app.$vProductTitle.length > 0 ) {
           app.useHint();
         }
       });
     });
+    this.initSearchResult();
+    this.historyResult();
+    this.recentlyElem();
+    this.showMore();
   }
 
   initSearch() {
@@ -61,9 +85,17 @@ export default class Search {
       if($(ev.target).val()){
         this.$sClear.css('display', 'block');
         this.$vPlaceholder.css('display', 'none');
+        this.$vPreloader.css('display', 'flex');
+        this.$vShowMore.css('display', 'none');
+        this.$vResultWrapper.css('display', 'none');
+        this.$vRecentlyContainer.css('display', 'none');
       }else{
         this.$sClear.css('display', 'none');
+        this.$vPreloader.css('display', 'none');
+        this.$vPlaceholder.text('Search');
       }
+      this.$vNoResult.css('display', 'none');
+      this.$vShowMore.css('display', 'none');
     });
   }
 
@@ -77,9 +109,10 @@ export default class Search {
 
     const callback = function (mutationsList, observer) {
       for (let mutation of mutationsList) {
-        if (mutation.type === 'childList') {
+        if (mutation.type === 'childList' && app.$sInput.val()[0] !== ' ') {
           app.initOthersVariables();
           app.hints();
+          app.historyResult()
         }
       }
     };
@@ -87,6 +120,57 @@ export default class Search {
     const observer = new MutationObserver(callback);
 
     observer.observe(target, config);
+  }
+
+  initSearchResult(){
+    let history = JSON.parse(localStorage.searchHistory);
+    if(history.length){
+      for(let i = 0; i < history.length; i++){
+        this.$vTemplate = this.$vRecentlyTemplate[0].content.cloneNode(true);
+        let container = this.$vTemplate.querySelectorAll("input");
+        container[0].value = history[i];
+        $(this.$vTemplate).appendTo(this.$vRecentlyContainer);
+      }
+      this.$vRecentlyContainer.css('display', 'block')
+    }
+  }
+
+  initPagination(){
+    if(this.vPagination !== this.vPaginationZapas){
+      this.vPagination = this.vPaginationZapas
+    }
+
+    this.$vProductContainer = this.$vNav.find("._product-container li");
+    
+    if(this.$vProductContainer.length > this.vPagination){
+      let count = this.$vProductContainer.length - this.vPagination
+      let finalScore = this.$vProductContainer.length - count
+      this.vPaginationContainer = [];
+
+      for(let i = finalScore; i < this.$vProductContainer.length; i++){
+        this.vPaginationContainer.push(this.$vProductContainer[i]);
+        this.$vProductContainer[i].remove();
+      }
+    }
+  }
+
+  historyResult(){
+    if(!localStorage.searchHistory){
+      localStorage.searchHistory = JSON.stringify([])
+    }
+    let history = JSON.parse(localStorage.searchHistory);
+    if(history.length >= 10){
+      history = history.slice(1)
+    }
+    let uniqueness = history.indexOf(this.$sInput.val()) != -1
+    if(!uniqueness && this.$sInput.val() !== '' && this.$sInput.val()[0] !== ' ' && this.$sInput.val().length > 2){
+      history.push(this.$sInput.val());
+   
+      let finalHistory = JSON.stringify(history);
+      localStorage.searchHistory = finalHistory;
+      this.bOpenRecently = true;
+      this.$vRecentlyContainer.css('display', 'none');
+    }
   }
 
   highlightMatches(){
@@ -106,43 +190,72 @@ export default class Search {
 
   useHint(){
     this.$sInput.val(this.$vPlaceholder.text());
-    this.$vTagText.text(this.$sInput.val());
-    this.$vRecentlyText.val(this.$sInput.val());
     this.$vProductTitle.css('display', 'block');
-    this.$vRecently.css('display', 'flex');
     this.highlightMatches();
     this.whitewashPlaceholder();
   }
 
-  changeTags(){
-    if(this.$sInput.val()){
-      this.$vTagText.text(this.$sInput.val());
-      this.$vRecentlyText.val(this.$sInput.val());
-      this.$vTag.css('display', 'block');
-      this.$vRecently.css('display', 'flex');
-    }
+  hintsActive(){
+    this.$vPlaceholder.css('display', 'block');
+    this.$vPlaceholder.text(this.$vProductTitle[0].innerText);
+    this.$vResultWrapper.css('display', 'block');
+    this.$vPreloader.css('display', 'none');
+    this.$vNoResult.css('display', 'none');
+    this.$vShowMore.css('display', 'block');
+    this.initPagination();
+    if (!this.bOpenRecently) this.$vRecentlyContainer.css('display', 'block');
+    this.whitewashPlaceholder();
   }
 
-  hiddenTags() {
-    this.$vRecently.css('display', 'none');
-    this.$vTag.css('display', 'none');
+  hintsActiveNotActive(){
+    this.$vPlaceholder.text('Search');
+    this.$vPlaceholder.css('display', 'block');
+    this.$vResultWrapper.css('display', 'none');
+    this.$vNoResult.css('display', 'none');
   }
 
+  hintsOther(){
+    this.$vShowMore.css('display', 'none');
+    this.$vPlaceholder.css('display', 'none');
+    this.$vPreloader.css('display', 'none');
+    this.$vNoResult.css('display', 'flex');
+    this.$vRecentlyContainer.css('display', 'none');
+  }
+    
   hints(){
-    if (this.$vProductTitle.length) {
-      this.$vPlaceholder.css('display', 'block');
-      this.$vPlaceholder.text(this.$vProductTitle[0].innerText);
-      this.changeTags();
-      this.whitewashPlaceholder();
-    } else if(this.$sInput.val() === ''){
-      this.$vPlaceholder.text('Search');
-      this.$vPlaceholder.css('display', 'block');
-      this.hiddenTags();
+    if (this.$vProductTitle.length && this.$sInput.val().length) {
+      this.hintsActive();
+    } else if(!this.$sInput.val().length){
+      this.hintsActiveNotActive();
     }else {
-      this.$vPlaceholder.css('display', 'none');
-      this.hiddenTags();
+      this.hintsOther();
     }
     this.highlightMatches();
+  }
+
+  showMore(){
+    let count = this.vPagination;
+    this.$vShowMore.on("click", () => {
+      let container = this.$vNav.find("._product-container");
+      if(this.$vProductContainer.length === this.vPagination){
+        this.$vShowMore.css('display', 'none');
+      }else{
+        this.$vShowMoreHidden.css('display', 'block')
+        this.$vShowMore.css('display', 'none');
+        if(this.$vProductContainer.length > this.vPagination){
+          setTimeout(()=>{
+            for(let i = 0; i < this.vPagination; i++){
+              $(this.vPaginationContainer[i]).appendTo(container);
+            }
+            this.vPagination += 5;
+            if(count !== this.vPagination){
+              this.$vShowMoreHidden.css('display', 'none')
+              this.$vShowMore.css('display', 'block');
+            }
+          },500)
+        }
+      }
+    })
   }
 
   show() {
@@ -153,6 +266,28 @@ export default class Search {
       this.initProductWatch();
       this.initButtonClear();
     })
+  }
+
+  recentlyElem(){
+    $('._recently').each(function(e) {
+      let $vRecentlyContainer = $(this);
+      let $vClear = $vRecentlyContainer.find('._clear-recently');
+      let $vText = $vRecentlyContainer.find('._recently-text');
+      
+      let vHeader = $("._recently-container h1");
+      $vClear.on("click", () => {
+        let history = JSON.parse(localStorage.searchHistory);
+        history = history.filter((item) => {
+          return item !== $vText.val()
+        })
+        if(!history.length){
+          vHeader.css('display', 'none');
+        }
+        let finalHistory = JSON.stringify(history);
+        localStorage.searchHistory = finalHistory;
+        $vRecentlyContainer.remove();
+      })
+    });
   }
 
   static make(container) {
