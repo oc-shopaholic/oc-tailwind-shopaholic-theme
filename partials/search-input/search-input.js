@@ -123,6 +123,9 @@ export default class Search {
   }
 
   initSearchResult(){
+    if(!localStorage.searchHistory){
+      localStorage.searchHistory = JSON.stringify([])
+    }
     let history = JSON.parse(localStorage.searchHistory);
     if(history.length){
       for(let i = 0; i < history.length; i++){
