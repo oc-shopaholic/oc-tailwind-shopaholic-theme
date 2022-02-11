@@ -92,10 +92,11 @@ export default class Search {
       }else{
         this.$sClear.css('display', 'none');
         this.$vPreloader.css('display', 'none');
-        this.$vPlaceholder.text('Search');
+        this.$vPlaceholder.text('');
       }
       this.$vNoResult.css('display', 'none');
       this.$vShowMore.css('display', 'none');
+      this.$vResultWrapper.css('display', 'none');
     });
   }
 
@@ -112,7 +113,7 @@ export default class Search {
         if (mutation.type === 'childList' && app.$sInput.val()[0] !== ' ') {
           app.initOthersVariables();
           app.hints();
-          app.historyResult()
+          app.historyResult();
         }
       }
     };
@@ -162,7 +163,7 @@ export default class Search {
       localStorage.searchHistory = JSON.stringify([])
     }
     let history = JSON.parse(localStorage.searchHistory);
-    if(history.length >= 10){
+    if(history.length >= 5){
       history = history.slice(1)
     }
     let uniqueness = history.indexOf(this.$sInput.val()) != -1
@@ -204,14 +205,14 @@ export default class Search {
     this.$vResultWrapper.css('display', 'block');
     this.$vPreloader.css('display', 'none');
     this.$vNoResult.css('display', 'none');
-    this.$vShowMore.css('display', 'block');
     this.initPagination();
+    if(this.$vProductContainer.length !== this.vPagination) this.$vShowMore.css('display', 'block');
     if (!this.bOpenRecently) this.$vRecentlyContainer.css('display', 'block');
     this.whitewashPlaceholder();
   }
 
   hintsActiveNotActive(){
-    this.$vPlaceholder.text('Search');
+    this.$vPlaceholder.text('');
     this.$vPlaceholder.css('display', 'block');
     this.$vResultWrapper.css('display', 'none');
     this.$vNoResult.css('display', 'none');
@@ -224,7 +225,7 @@ export default class Search {
     this.$vNoResult.css('display', 'flex');
     this.$vRecentlyContainer.css('display', 'none');
   }
-    
+
   hints(){
     if (this.$vProductTitle.length && this.$sInput.val().length) {
       this.hintsActive();
@@ -240,23 +241,20 @@ export default class Search {
     let count = this.vPagination;
     this.$vShowMore.on("click", () => {
       let container = this.$vNav.find("._product-container");
-      if(this.$vProductContainer.length === this.vPagination){
-        this.$vShowMore.css('display', 'none');
-      }else{
+      if (this.$vProductContainer.length > this.vPagination && this.$vProductContainer.length !== this.vPagination) {
         this.$vShowMoreHidden.css('display', 'block')
         this.$vShowMore.css('display', 'none');
-        if(this.$vProductContainer.length > this.vPagination){
-          setTimeout(()=>{
-            for(let i = 0; i < this.vPagination; i++){
-              $(this.vPaginationContainer[i]).appendTo(container);
-            }
-            this.vPagination += 5;
-            if(count !== this.vPagination){
-              this.$vShowMoreHidden.css('display', 'none')
-              this.$vShowMore.css('display', 'block');
-            }
-          },500)
-        }
+        setTimeout(() => {
+          for (let i = 0; i < this.vPagination; i++) {
+            $(this.vPaginationContainer[i]).appendTo(container);
+          }
+          this.vPagination += 5;
+          if (count !== this.vPagination) {
+            this.$vShowMoreHidden.css('display', 'none')
+            this.$vShowMore.css('display', 'block');
+            if(this.$vProductContainer.length === this.vPagination) this.$vShowMore.css('display', 'none');
+          }
+        }, 400)
       }
     })
   }
