@@ -37,7 +37,7 @@ export default class Search {
 
   initVariables(){
     this.bOpenRecently = false;
-    this.vPagination = 5;
+    this.vPagination = 3;
     this.$vPlaceholder = this.$vNav.find("._placeholder");
     this.$sInput = this.$vNav.find("._shopaholic-search-input");
     this.$sClear = this.$vNav.find("._clear");
@@ -70,6 +70,7 @@ export default class Search {
     this.historyResult();
     this.recentlyElem();
     this.showMore();
+    this.stubLink();
   }
 
   initSearch() {
@@ -233,7 +234,7 @@ export default class Search {
     this.$vPreloader.css('display', 'none');
     this.$vSearchIcon.css('display', 'block');
     this.$vNoResult.css('display', 'none');
-    if(this.$vProductTitle.length && this.$vProductContainer.length !== this.vPagination) this.$vShowMore.css('display', 'block');
+    if(this.$vProductTitle.length && this.$vProductContainer.length > this.vPagination && this.$vProductContainer.length !== this.vPagination) this.$vShowMore.css('display', 'block');
     if (!this.bOpenRecently) this.$vRecentlyContainer.css('display', 'block');
   }
 
@@ -327,6 +328,7 @@ export default class Search {
       localStorage.searchHistory = JSON.stringify([]);
       this.$vRecently.remove();
       this.$vHeader.css('display', 'none');
+      this.$vClearRecentlyAll.css('display', 'none');
     })
   }
 
@@ -336,12 +338,13 @@ export default class Search {
     this.$vPreloader.css('display', 'flex');
     this.$vSearchIcon.css('display', 'none');
     this.$vShowMore.css('display', 'none');
-    // this.$vRecentlyContainer.css('display', 'none');
     this.$vHeader.css('display', 'none');
+    this.$vClearRecentlyAll.css('display', 'none');
   }
 
   watchInputNotActive(){
     let history = JSON.parse(localStorage.searchHistory);
+    let rerunRecently = this.$vNav.find("._recently");
     this.$sClear.css('display', 'none');
     this.$vPreloader.css('display', 'none');
     this.$vSearchIcon.css('display', 'block');
@@ -353,23 +356,28 @@ export default class Search {
     if(this.$vRecently && this.$vRecently.length && this.$sInput.val().length < 1 && history.length){
       this.$vRecentlyContainer.css('display', 'block');
       this.$vHeader.css('display', 'flex');
-      // if(history.length > 1){
-      //   this.$vClearRecentlyAll.css('display', 'block')
-      // }else{
-      //   this.$vClearRecentlyAll.css('display', 'none')
-      // }
+    }
+    if(rerunRecently.length > 1){
+      this.$vClearRecentlyAll.css('display', 'block');
     }
     if(this.$sInput.val().length){
       this.$vHeader.css('display', 'none');
+      this.$vClearRecentlyAll.css('display', 'none');
     }
+
     this.removalSelection();
   }
 
   watchInputOther(){
     this.$vNoResult.css('display', 'none');
     this.$vShowMore.css('display', 'none');
-    // this.$vHeader.css('display', 'none');
     this.filterRecently();
+  }
+
+  stubLink(){
+    $('a[href="#"]').click(function(e) {
+      e.preventDefault ? e.preventDefault() : e.returnValue = false;
+    });
   }
 
   show() {
