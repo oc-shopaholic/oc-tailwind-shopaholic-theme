@@ -26,6 +26,7 @@ export default class Search {
     this.$vClearRecentlyAll = null;
     this.$vSearchIcon = null;
     this.$vCategoryTitle = null;
+    this.$vRecentlyList = null;
 
     this.vPagination = 5;
     this.vPaginationZapas = this.vPagination;
@@ -36,6 +37,7 @@ export default class Search {
 
   initVariables(){
     this.bOpenRecently = false;
+    this.vPagination = 5;
     this.$vPlaceholder = this.$vNav.find("._placeholder");
     this.$sInput = this.$vNav.find("._shopaholic-search-input");
     this.$sClear = this.$vNav.find("._clear");
@@ -50,6 +52,7 @@ export default class Search {
     this.$vHeader = this.$vNav.find("._recently-container ._recently-header");
     this.$vClearRecentlyAll = this.$vNav.find("._clear-recently-all");
     this.$vSearchIcon = this.$vNav.find("._search-icon");
+    this.$vRecentlyList = this.$vNav.find("._recently-list");
   }
 
   initOthersVariables(){
@@ -71,7 +74,7 @@ export default class Search {
 
   initSearch() {
     const obHelper = new ShopaholicSearch();
-    obHelper.setSearchLimit(1).setAjaxRequestCallback(function (obRequestData) {
+    obHelper.setSearchLimit(3).setAjaxRequestCallback(function (obRequestData) {
       obRequestData.update = { 'search-input/search-result': '.search-result-wrapper' };
       
       return obRequestData;
@@ -80,7 +83,7 @@ export default class Search {
 
   initWatchInput(){
     this.$sInput.on("input", (ev) => {
-      if($(ev.target).val()){
+      if($(ev.target).val().length > 2){
         this.watchInputActive();
       }else{
         this.watchInputNotActive();
@@ -122,7 +125,12 @@ export default class Search {
         this.$vTemplate = this.$vRecentlyTemplate[0].content.cloneNode(true);
         let container = this.$vTemplate.querySelectorAll("span");
         container[0].innerText = history[i];
-        $(this.$vTemplate).appendTo(this.$vRecentlyContainer);
+        $(this.$vTemplate).appendTo(this.$vRecentlyList);
+      }
+      if(history.length > 1){
+        this.$vClearRecentlyAll.css('display', 'block')
+      }else{
+        this.$vClearRecentlyAll.css('display', 'none')
       }
       this.$vRecentlyContainer.css('display', 'block');
       this.initOthersVariables();
@@ -191,10 +199,12 @@ export default class Search {
   }
 
   removalSelection(){
+   if(this.aRecentlyTextDefault.length){
     for (let i = 0; i < this.$vRecentlyText.length; i++) {
       this.$vRecently[i].classList.remove('hidden');
       this.$vRecentlyText[i].innerText = this.aRecentlyTextDefault[i].innerText;
     }
+   }
   }
 
   filterRecently(){
@@ -214,15 +224,17 @@ export default class Search {
 
   hintsActive(){
     this.$vPlaceholder.css('display', 'block');
-    this.$vPlaceholder.text(this.$vProductTitle[0].innerText);
+    if(this.$vProductTitle.length){
+      this.$vPlaceholder.text(this.$vProductTitle[0].innerText);
+      this.initPagination();
+      this.whitewashPlaceholder();
+    }
     this.$vResultWrapper.css('display', 'block');
     this.$vPreloader.css('display', 'none');
     this.$vSearchIcon.css('display', 'block');
     this.$vNoResult.css('display', 'none');
-    this.initPagination();
-    if(this.$vProductContainer.length !== this.vPagination) this.$vShowMore.css('display', 'block');
+    if(this.$vProductTitle.length && this.$vProductContainer.length !== this.vPagination) this.$vShowMore.css('display', 'block');
     if (!this.bOpenRecently) this.$vRecentlyContainer.css('display', 'block');
-    this.whitewashPlaceholder();
   }
 
   hintsNotActive(){
@@ -236,15 +248,17 @@ export default class Search {
     this.$vPlaceholder.css('display', 'none');
     this.$vPreloader.css('display', 'none');
     this.$vSearchIcon.css('display', 'block');
-    if(!this.$vCategoryTitle.length){
+    if(!this.$vCategoryTitle.length && this.$sInput.val().length > 2){
       this.$vNoResult.css('display', 'flex');
       this.$vRecentlyContainer.css('display', 'none');
+    }else{
+      this.$vRecentlyContainer.css('display', 'block');
     }
     this.$vNoResultText.text("We couldn't" +' find a match for "' + this.$sInput.val() + '". Please, try another search.')
   }
 
   hints(){
-    if (this.$vProductTitle.length && this.$sInput.val().length) {
+    if ((this.$vProductTitle.length || this.$vCategoryTitle.length) && this.$sInput.val().length) {
       this.hintsActive();
     } else if(!this.$sInput.val().length){
       this.hintsNotActive();
@@ -270,7 +284,7 @@ export default class Search {
           if (count !== this.vPagination) {
             this.$vShowMoreHidden.css('display', 'none')
             this.$vShowMore.css('display', 'block');
-            if(this.$vProductContainer.length === this.vPagination) this.$vShowMore.css('display', 'none');
+            if(this.$vProductContainer.length <= this.vPagination) this.$vShowMore.css('display', 'none');
           }
         }, 400)
       }
@@ -281,6 +295,7 @@ export default class Search {
     this.$vNav.on('click', '._clear', () => {
       const searchResultWrapper = $(this.$vNav.find(".search-result-wrapper"));
       const childrenNode = searchResultWrapper.children();
+      let history = JSON.parse(localStorage.searchHistory);
       this.$sClear.css('display', 'none');
       this.$vShowMore.css('display', 'none');
       this.bOpenRecently = false;
@@ -289,7 +304,7 @@ export default class Search {
       this.$vRecently.remove();
       this.initSearchResult();
       this.recentlyElem();
-      if(this.$vRecently.length){
+      if(this.$vRecently.length && history.length){
         this.$vRecentlyContainer.css('display', 'block');
         this.$vHeader.css('display', 'flex');
       }
@@ -326,14 +341,26 @@ export default class Search {
   }
 
   watchInputNotActive(){
+    let history = JSON.parse(localStorage.searchHistory);
     this.$sClear.css('display', 'none');
     this.$vPreloader.css('display', 'none');
     this.$vSearchIcon.css('display', 'block');
     this.$vPlaceholder.text('');
     this.$vResultWrapper.css('display', 'none');
-    if(this.$vRecently.length){
+    if(this.$sInput.val().length){
+      this.$sClear.css('display', 'block');
+    }
+    if(this.$vRecently && this.$vRecently.length && this.$sInput.val().length < 1 && history.length){
       this.$vRecentlyContainer.css('display', 'block');
       this.$vHeader.css('display', 'flex');
+      // if(history.length > 1){
+      //   this.$vClearRecentlyAll.css('display', 'block')
+      // }else{
+      //   this.$vClearRecentlyAll.css('display', 'none')
+      // }
+    }
+    if(this.$sInput.val().length){
+      this.$vHeader.css('display', 'none');
     }
     this.removalSelection();
   }
@@ -341,6 +368,7 @@ export default class Search {
   watchInputOther(){
     this.$vNoResult.css('display', 'none');
     this.$vShowMore.css('display', 'none');
+    // this.$vHeader.css('display', 'none');
     this.filterRecently();
   }
 
@@ -359,9 +387,11 @@ export default class Search {
       let $vRecentlyContainer = $(this);
       let $vClear = $vRecentlyContainer.find('._clear-recently');
       let $vText = $vRecentlyContainer.find('._recently-text');
-      let $sInput = $("._shopaholic-search-input");
 
       let vHeader = $("._recently-container ._recently-header");
+      let vInput = $("._shopaholic-search-input");
+      let vClearAll = $("._clear-recently-all");
+
       $vClear.on("click", () => {
         let history = JSON.parse(localStorage.searchHistory);
         history = history.filter((item) => {
@@ -369,6 +399,8 @@ export default class Search {
         })
         if(!history.length){
           vHeader.css('display', 'none');
+        }else if(history.length <= 1){
+          vClearAll.css('display', 'none');
         }
         let finalHistory = JSON.stringify(history);
         localStorage.searchHistory = finalHistory;
@@ -376,7 +408,7 @@ export default class Search {
       })
 
       $vRecentlyContainer.on("click", () => {
-        $sInput.val($vText.text()).trigger('input');
+        vInput.val($vText.text()).trigger('input');
       })
     });
   }
