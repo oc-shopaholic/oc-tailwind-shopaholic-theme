@@ -163,10 +163,11 @@ export default class Search {
     }
     let history = JSON.parse(localStorage.searchHistory);
     let uniqueness = history.indexOf(this.$sInput.val()) != -1
+    let lastSign = this.$sInput.val()[this.$sInput.val().length -1]
     if(history.length >= 5 && !uniqueness){
       history = history.slice(1)
     }
-    if(!uniqueness && this.$sInput.val() !== '' && this.$sInput.val()[0] !== ' ' && this.$sInput.val().length > 2 && (this.$vProductTitle.length || this.$vCategoryTitle.length)){
+    if(!uniqueness && this.$sInput.val() !== '' && this.$sInput.val()[0] !== ' ' && this.$sInput.val().length > 2 && (this.$vProductTitle.length || this.$vCategoryTitle.length) && lastSign !== ' '){
       history.push(this.$sInput.val());
    
       let finalHistory = JSON.stringify(history);
@@ -243,8 +244,8 @@ export default class Search {
   }
 
   hintsActive(){
-    this.$vPlaceholder.css('display', 'block');
     if(this.$vProductTitle.length){
+      this.$vPlaceholder.css('display', 'block');
       this.$vPlaceholder.text(this.$vProductTitle[0].innerText);
       this.initPagination();
       this.whitewashPlaceholder();
@@ -436,7 +437,6 @@ export default class Search {
       })
 
       $vRecentlyContainer.on('keypress', function (e) {
-        console.log(e.target.classList[0])
         if (e.which === 13 && e.target.classList[0] === '_recently') {
           $vRecentlyContainer.trigger('click');
         } else if (e.which === 13 && e.target.classList[0] === '_clear-recently') {
