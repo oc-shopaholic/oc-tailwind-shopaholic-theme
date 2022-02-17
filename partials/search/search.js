@@ -231,7 +231,7 @@ export default class Search {
   filterRecently(){
     if(this.$sInput.val().length && this.$vRecentlyText){
       for (let i = 0; i < this.$vRecentlyText.length; i++) {
-        if(this.aRecentlyTextDefault.length !== this.$vRecentlyText.length) this.aRecentlyTextDefault.push(this.$vRecentlyText[i])
+        if(this.aRecentlyTextDefault.length <= this.$vRecentlyText.length) this.aRecentlyTextDefault.push(this.$vRecentlyText[i])
         if(this.$vRecentlyText[i].innerText.toLowerCase().indexOf(this.$sInput.val().toLowerCase()) !== -1) {
           let text = this.$vRecentlyText[i].innerText;
           this.$vRecently[i].classList.remove('hidden');
