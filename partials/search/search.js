@@ -71,7 +71,6 @@ export default class Search {
     this.historyResult();
     this.recentlyElem();
     this.showMore();
-    this.stubLink();
   }
 
   initSearch() {
@@ -397,12 +396,6 @@ export default class Search {
     this.filterRecently();
   }
 
-  stubLink(){
-    $('a[href="#"]').click(function(e) {
-      e.preventDefault ? e.preventDefault() : e.returnValue = false;
-    });
-  }
-
   show() {
     this.$vShow.on("click", () => {
       this.initVariables();
@@ -441,8 +434,18 @@ export default class Search {
       $vRecentlyContainer.on("click", () => {
         vInput.val($vText.text()).trigger('input');
       })
+
+      $vRecentlyContainer.on('keypress', function (e) {
+        console.log(e.target.classList[0])
+        if (e.which === 13 && e.target.classList[0] === '_recently') {
+          $vRecentlyContainer.trigger('click');
+        } else if (e.which === 13 && e.target.classList[0] === '_clear-recently') {
+          $vClear.trigger('click');
+        }
+      });
     });
   }
+
 
   static make(container) {
     $(container).each(function(e) {
