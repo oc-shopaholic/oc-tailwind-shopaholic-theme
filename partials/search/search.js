@@ -33,6 +33,7 @@ export default class Search {
     this.vPaginationContainer = [];
     this.bOpenRecently = false;
     this.aRecentlyTextDefault = [];
+    this.sSplitSpaces = null;
   }
 
   initVariables(){
@@ -76,7 +77,7 @@ export default class Search {
   initSearch() {
     const obHelper = new ShopaholicSearch();
     obHelper.setSearchLimit(3).setAjaxRequestCallback(function (obRequestData) {
-      obRequestData.update = { 'search-input/search-result': '.search-result-wrapper' };
+      obRequestData.update = { 'search/search-result': '.search-result-wrapper' };
       
       return obRequestData;
     }).init();
@@ -180,15 +181,34 @@ export default class Search {
     if(content.length){
       for (let i = 0; i < content.length; i++) {
         let text = content[i].innerText;
-        content[i].innerHTML = text.replace(new RegExp(this.$sInput.val(), 'gi'), "<span class='font-bold'>$&</span>");
+        this.workingSpaces(text);
+        content[i].innerHTML = text.replace(new RegExp(this.sSplitSpaces, 'gi'), "<span class='font-bold'>$&</span>");
       }
     }
   }
 
   whitewashPlaceholder(){
-    let enteredText = this.$vProductTitle[0].innerText.substring(this.$sInput.val().length, this.$vProductTitle[0].innerText.length);
+    if(this.$vProductTitle.length){
+      this.workingSpaces(this.$vProductTitle[0].innerText);
+    }
+    let enteredText = this.$vProductTitle[0].innerText.substring(this.sSplitSpaces.trim().length, this.$vProductTitle[0].innerText.length);
     let finalText = ('<span class="text-gray-200">' + this.$sInput.val() + '</span>') + enteredText;
     this.$vPlaceholder.html(finalText);
+  }
+
+  workingSpaces(content){
+    this.sSplitSpaces = this.$sInput.val().replace(/[ ]+/g, '');
+    let space = [];
+    for (let i = 0; i < content.length; i++) {
+      if (content[i] === " ") {
+        space.push(i)
+      }
+    }
+    for (let i = 0; i < space.length; i++) {
+      if (this.sSplitSpaces.length >= space[i]) {
+        this.sSplitSpaces = this.sSplitSpaces.substring(0, space[i]) + ' ' + this.sSplitSpaces.substring(space[i], this.sSplitSpaces.length)
+      }
+    }
   }
 
   useHint(){
@@ -212,7 +232,7 @@ export default class Search {
     if(this.$sInput.val().length && this.$vRecentlyText){
       for (let i = 0; i < this.$vRecentlyText.length; i++) {
         if(this.aRecentlyTextDefault.length !== this.$vRecentlyText.length) this.aRecentlyTextDefault.push(this.$vRecentlyText[i])
-        if (this.$vRecentlyText[i].innerText.toLowerCase().indexOf(this.$sInput.val().toLowerCase()) !== -1) {
+        if(this.$vRecentlyText[i].innerText.toLowerCase().indexOf(this.$sInput.val().toLowerCase()) !== -1) {
           let text = this.$vRecentlyText[i].innerText;
           this.$vRecently[i].classList.remove('hidden');
           this.$vRecentlyText[i].innerHTML = text.replace(new RegExp(this.$sInput.val(), 'gi'), "<span class='font-bold'>$&</span>");
@@ -236,6 +256,9 @@ export default class Search {
     this.$vNoResult.css('display', 'none');
     if(this.$vProductTitle.length && this.$vProductContainer.length > this.vPagination && this.$vProductContainer.length !== this.vPagination) this.$vShowMore.css('display', 'block');
     if (!this.bOpenRecently) this.$vRecentlyContainer.css('display', 'block');
+    this.$vRecentlyContainer.css('display', 'block');
+    this.$vClearRecentlyAll.css('display', 'none');
+    this.filterRecently();
   }
 
   hintsNotActive(){

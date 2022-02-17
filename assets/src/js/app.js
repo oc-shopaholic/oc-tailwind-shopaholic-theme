@@ -20,4 +20,4 @@ import '/partials/input-quantity/input-quantity';
 /* * Off Canvas * */
 import '/partials/off-canvas/off-canvas';
 /* * Search Input* */
-import '/partials/search-input/search-input';
+import '/partials/search/search';
