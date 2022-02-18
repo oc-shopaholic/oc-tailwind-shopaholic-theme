@@ -50,9 +50,10 @@
         </li>
     </template>
 </section>
-<div class="search-result-wrapper">
+<section class="search-result-wrapper">
+    <h2 class="sr-only">Search results</h2>
     {% partial 'search/search-result' %}
-</div>
+</section>
 {% partial 'button/button'
     sText = 'Show more'
     sPartialClasses = '_show-more mx-auto hidden relative w-60 mt-8'
