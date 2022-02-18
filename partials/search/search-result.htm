@@ -17,7 +17,7 @@ sorting = "popularity|desc"
 
 {# Render product list #}
 
-<h2 class="sr-only">Search results</h2>
+<h2 class="sr-only">{{ 'heading_search_result'|_ }}</h2>
 <ul class="-mx-4 pl-4 md:mx-0 md:pl-0">
     {% for obCategory in arCategoryList %}
     {% set obOffer = obCategory.offer.first() %}
@@ -28,7 +28,7 @@ sorting = "popularity|desc"
             </svg>
             <div class="after:content-[''] after:absolute after:inset-0 after:border-b after:left-10 after:border-gray-200 pb-3 md:after:border-0 md:ml-1 md:pb-0">
                 <span class="_category-name w-max line-clamp-3 mb-auto">{{ obCategory.name }}</span>
-                <span class="text-gray-600 text-xs">Category</span>
+                <span class="text-gray-600 text-xs">{{ 'text_search_category'|_ }}</span>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 absolute right-4 top-3.5 block md:hidden md:right-0 md:top-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />

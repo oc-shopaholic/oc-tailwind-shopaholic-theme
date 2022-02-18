@@ -45,7 +45,7 @@ export default class Search {
     this.$vPreloader = this.$vNav.find("._preloader");
     this.$vResultWrapper = this.$vNav.find(".search-result-wrapper");
     this.$vNoResult = this.$vNav.find("._no-result");
-    this.$vNoResultText = this.$vNav.find("._no-result p");
+    this.$vNoResultText = this.$vNav.find("._no-result-text");
     this.$vRecentlyContainer = this.$vNav.find("._recently-container");
     this.$vRecentlyTemplate = this.$vNav.find("._recently-template");
     this.$vShowMore = this.$vNav.find("._show-more");
@@ -279,7 +279,7 @@ export default class Search {
     }else{
       this.$vRecentlyContainer.css('display', 'block');
     }
-    this.$vNoResultText.text("We couldn't" +' find a match for "' + this.$sInput.val() + '". Please, try another search.');
+    this.$vNoResultText.html(' &nbsp"' + this.$sInput.val() + '". &nbsp');
   }
 
   hints(){
