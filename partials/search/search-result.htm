@@ -4,6 +4,7 @@ sorting = "popularity|desc"
 [CategoryList]
 sorting = "popularity|desc"
 ==
+{##}
 
 {# Get search string #}
 {% set sSearch = input('search') %}
@@ -16,8 +17,6 @@ sorting = "popularity|desc"
 
 {# Render product list #}
 
-{##}
-
 <ul class="-mx-4 pl-4 md:mx-0 md:pl-0">
     {% for obCategory in arCategoryList %}
     {% set obOffer = obCategory.offer.first() %}
@@ -25,13 +24,12 @@ sorting = "popularity|desc"
         <a class="_shopaholic-product-wrapper mb-1 pb-2 pl-0 mt-4 flex items-center relative hover:bg-inherit md:hover:bg-gray-100 md:px-2 md:mb-0 md:pt-1 md:pb-1 md:mt-0" href="{{ obCategory.getPageUrl('product-item') }}">
             <svg class="h-6 w-6 mr-4 mb-3 md:mb-0 md:mr-2.5 md:ml-2" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2.5 5.83329V14.1666C2.5 15.0871 3.24619 15.8333 4.16667 15.8333H15.8333C16.7538 15.8333 17.5 15.0871 17.5 14.1666V7.49996C17.5 6.57949 16.7538 5.83329 15.8333 5.83329H10.8333L9.16667 4.16663H4.16667C3.24619 4.16663 2.5 4.91282 2.5 5.83329Z" stroke="#4B5563" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>                                  
+            </svg>
             <div class="after:content-[''] after:absolute after:inset-0 after:border-b after:left-10 after:border-gray-200 pb-3 md:after:border-0 md:ml-1 md:pb-0">
-                <strong class="_category-name w-max line-clamp-3 mb-auto">{{ obCategory.name }}</strong>
+                <span class="_category-name w-max line-clamp-3 mb-auto">{{ obCategory.name }}</span>
                 <span class="text-gray-600 text-xs">Category</span>
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 absolute right-4 top-3.5 block md:hidden md:right-0 md:top-4"
-                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 absolute right-4 top-3.5 block md:hidden md:right-0 md:top-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
         </a>
@@ -64,18 +62,13 @@ sorting = "popularity|desc"
                     title="{{ obProduct.preview_image.title }}">
             </picture>
             <div class="after:content-[''] after:absolute after:inset-0 after:border-b after:left-10 after:border-gray-200 pb-3 md:after:border-0 md:pb-0">
-                <strong class="_product-name w-max text-sm font-normal text-gray-900 line-clamp-3 mb-auto">{{ obProduct.name
-                    }}</strong>
-                <span class="break-line text-xs text-gray-900 font-medium">{{ obOffer.currency }}{{
-                    obOffer.price }}</span>
+                <span class="_product-name w-max text-sm font-normal text-gray-900 line-clamp-3 mb-auto">{{ obProduct.name }}</span>
+                <span class="break-line text-xs text-gray-900 font-medium">{{ obOffer.currency }}{{ obOffer.price }}</span>
                 {% if obOffer.old_price_value > obOffer.price_value %}
-                <span class="break-line text-xs text-gray-600 font-medium">{{ obOffer.currency }}{{
-                    obOffer.old_price
-                    }}</span>
+                    <span class="break-line text-xs text-gray-600 font-medium">{{ obOffer.currency }}{{ obOffer.old_price }}</span>
                 {% endif %}
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 absolute right-4 top-5 block md:hidden md:right-0 md:top-4"
-                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 absolute right-4 top-5 block md:hidden md:right-0 md:top-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
         </a>

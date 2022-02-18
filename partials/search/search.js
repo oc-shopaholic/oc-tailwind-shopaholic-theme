@@ -77,7 +77,7 @@ export default class Search {
     const obHelper = new ShopaholicSearch();
     obHelper.setSearchLimit(3).setAjaxRequestCallback(function (obRequestData) {
       obRequestData.update = { 'search/search-result': '.search-result-wrapper' };
-      
+
       return obRequestData;
     }).init();
   }
@@ -145,7 +145,7 @@ export default class Search {
     }
 
     this.$vProductContainer = this.$vNav.find("._product-container li");
-    
+
     if(this.$vProductContainer.length > this.vPagination){
       let count = this.$vProductContainer.length - this.vPagination
       let finalScore = this.$vProductContainer.length - count
@@ -170,7 +170,7 @@ export default class Search {
     }
     if(!uniqueness && this.$sInput.val() !== '' && this.$sInput.val()[0] !== ' ' && this.$sInput.val().length > 2 && (this.$vProductTitle.length || this.$vCategoryTitle.length) && lastSign !== ' '){
       history.push(this.$sInput.val());
-   
+
       let finalHistory = JSON.stringify(history);
       localStorage.searchHistory = finalHistory;
       this.bOpenRecently = true;
@@ -183,7 +183,7 @@ export default class Search {
       for (let i = 0; i < content.length; i++) {
         let text = content[i].innerText;
         this.workingSpaces(text);
-        content[i].innerHTML = text.replace(new RegExp(this.sSplitSpaces, 'gi'), "<span class='font-bold'>$&</span>");
+        content[i].innerHTML = text.replace(new RegExp(this.sSplitSpaces, 'gi'), "<b class='font-bold'>$&</b>");
       }
     }
   }
@@ -236,7 +236,7 @@ export default class Search {
         if(this.$vRecentlyText[i].innerText.toLowerCase().indexOf(this.$sInput.val().toLowerCase()) !== -1) {
           let text = this.$vRecentlyText[i].innerText;
           this.$vRecently[i].classList.remove('hidden');
-          this.$vRecentlyText[i].innerHTML = text.replace(new RegExp(this.$sInput.val(), 'gi'), "<span class='font-bold'>$&</span>");
+          this.$vRecentlyText[i].innerHTML = text.replace(new RegExp(this.$sInput.val(), 'gi'), "<b class='font-bold'>$&</b>");
         }else{
           this.$vRecently[i].classList.add('hidden')
         }
