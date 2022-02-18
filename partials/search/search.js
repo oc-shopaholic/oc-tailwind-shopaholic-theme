@@ -279,7 +279,7 @@ export default class Search {
     }else{
       this.$vRecentlyContainer.css('display', 'block');
     }
-    this.$vNoResultText.html(' &nbsp"' + this.$sInput.val() + '". &nbsp');
+    this.$vNoResultText.html('&nbsp"' + this.$sInput.val() + '". &nbsp');
   }
 
   hints(){
