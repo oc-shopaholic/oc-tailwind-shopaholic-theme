@@ -129,9 +129,10 @@ export default class Search {
         $(this.$vTemplate).appendTo(this.$vRecentlyList);
       }
       if(history.length > 1){
-        this.$vClearRecentlyAll.css('display', 'block')
+        this.$vClearRecentlyAll.css('display', 'block');
+        this.$vHeader.css('display', 'flex');
       }else{
-        this.$vClearRecentlyAll.css('display', 'none')
+        this.$vClearRecentlyAll.css('display', 'none');
       }
       this.$vRecentlyContainer.css('display', 'block');
       this.initOthersVariables();
@@ -278,7 +279,7 @@ export default class Search {
     }else{
       this.$vRecentlyContainer.css('display', 'block');
     }
-    this.$vNoResultText.text("We couldn't" +' find a match for "' + this.$sInput.val() + '". Please, try another search.')
+    this.$vNoResultText.text("We couldn't" +' find a match for "' + this.$sInput.val() + '". Please, try another search.');
   }
 
   hints(){
@@ -322,12 +323,7 @@ export default class Search {
       let history = JSON.parse(localStorage.searchHistory);
       this.$sClear.css('display', 'none');
       this.$vShowMore.css('display', 'none');
-      this.bOpenRecently = false;
-      this.removalSelection();
-      this.aRecentlyTextDefault = [];
-      this.$vRecently.remove();
-      this.initSearchResult();
-      this.recentlyElem();
+      this.clearingHints();
       if(this.$vRecently.length && history.length){
         this.$vRecentlyContainer.css('display', 'block');
         this.$vHeader.css('display', 'flex');
@@ -379,6 +375,9 @@ export default class Search {
     if(this.$vRecently && this.$vRecently.length && this.$sInput.val().length < 1 && history.length){
       this.$vRecentlyContainer.css('display', 'block');
       this.$vHeader.css('display', 'flex');
+    }
+    if(this.$sInput.val().length < 1 && history.length){
+      this.clearingHints();
     }
     if(rerunRecently.length > 1){
       this.$vClearRecentlyAll.css('display', 'block');
@@ -446,6 +445,14 @@ export default class Search {
     });
   }
 
+  clearingHints(){
+    this.bOpenRecently = false;
+    this.removalSelection();
+    this.aRecentlyTextDefault = [];
+    this.$vRecently.remove();
+    this.initSearchResult();
+    this.recentlyElem();
+  }
 
   static make(container) {
     $(container).each(function(e) {
