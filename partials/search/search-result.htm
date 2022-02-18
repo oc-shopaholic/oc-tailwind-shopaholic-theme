@@ -17,6 +17,7 @@ sorting = "popularity|desc"
 
 {# Render product list #}
 
+<h2 class="sr-only">Search results</h2>
 <ul class="-mx-4 pl-4 md:mx-0 md:pl-0">
     {% for obCategory in arCategoryList %}
     {% set obOffer = obCategory.offer.first() %}
