@@ -22,20 +22,18 @@ sorting = "popularity|desc"
     {% for obCategory in arCategoryList %}
     {% set obOffer = obCategory.offer.first() %}
     <li class="w-full cursor-pointer">
-        <a class="_shopaholic-product-wrapper mb-1 pb-2 pl-0 flex flex-col hover:bg-inherit md:hover:bg-gray-100 md:px-2 md:mb-0 md:pt-1 md:pb-1" href="{{ obCategory.getPageUrl('product-item') }}">
-            <div class="flex items-center relative">
-                <svg class="h-6 w-6 mr-4 mb-3 md:mb-0 md:mr-2.5 md:ml-2" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2.5 5.83329V14.1666C2.5 15.0871 3.24619 15.8333 4.16667 15.8333H15.8333C16.7538 15.8333 17.5 15.0871 17.5 14.1666V7.49996C17.5 6.57949 16.7538 5.83329 15.8333 5.83329H10.8333L9.16667 4.16663H4.16667C3.24619 4.16663 2.5 4.91282 2.5 5.83329Z" stroke="#4B5563" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>                                  
-                <div class="after:content-[''] after:absolute after:inset-0 after:border-b after:left-10 after:border-gray-200 pb-3 md:after:border-0 md:ml-1 md:pb-0">
-                    <h1 class="_category-name w-max line-clamp-3 mb-auto">{{ obCategory.name }}</h1>
-                    <span class="text-gray-600 text-xs">Category</span>
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 absolute right-4 top-3.5 block md:hidden md:right-0 md:top-4"
-                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
+        <a class="_shopaholic-product-wrapper mb-1 pb-2 pl-0 mt-4 flex items-center relative hover:bg-inherit md:hover:bg-gray-100 md:px-2 md:mb-0 md:pt-1 md:pb-1 md:mt-0" href="{{ obCategory.getPageUrl('product-item') }}">
+            <svg class="h-6 w-6 mr-4 mb-3 md:mb-0 md:mr-2.5 md:ml-2" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.5 5.83329V14.1666C2.5 15.0871 3.24619 15.8333 4.16667 15.8333H15.8333C16.7538 15.8333 17.5 15.0871 17.5 14.1666V7.49996C17.5 6.57949 16.7538 5.83329 15.8333 5.83329H10.8333L9.16667 4.16663H4.16667C3.24619 4.16663 2.5 4.91282 2.5 5.83329Z" stroke="#4B5563" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>                                  
+            <div class="after:content-[''] after:absolute after:inset-0 after:border-b after:left-10 after:border-gray-200 pb-3 md:after:border-0 md:ml-1 md:pb-0">
+                <h1 class="_category-name w-max line-clamp-3 mb-auto">{{ obCategory.name }}</h1>
+                <span class="text-gray-600 text-xs">Category</span>
             </div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 absolute right-4 top-3.5 block md:hidden md:right-0 md:top-4"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
         </a>
     </li>
     {% endfor %}
