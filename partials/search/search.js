@@ -34,10 +34,12 @@ export default class Search {
     this.bOpenRecently = false;
     this.aRecentlyTextDefault = [];
     this.sSplitSpaces = null;
+    this.sNoResultSearchText = /:text_search_query/g;
   }
 
   initVariables(){
     this.bOpenRecently = false;
+    this.sNoResultSearchText = /:text_search_query/g;
     this.vPagination = 3;
     this.$vPlaceholder = this.$vNav.find("._placeholder");
     this.$sInput = this.$vNav.find("._shopaholic-search-input");
@@ -279,7 +281,9 @@ export default class Search {
     }else{
       this.$vRecentlyContainer.css('display', 'block');
     }
-    this.$vNoResultText.html('&nbsp"' + this.$sInput.val() + '". &nbsp');
+    let finnalText = this.$vNoResultText.text().replace(this.sNoResultSearchText, this.$sInput.val());
+    this.$vNoResultText.text(finnalText);
+    this.sNoResultSearchText = new RegExp( `${this.$sInput.val()}`, 'g');
   }
 
   hints(){

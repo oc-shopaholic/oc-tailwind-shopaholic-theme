@@ -78,7 +78,7 @@ text_sign_up_email-confirmation: 'Please, check your email to confirm the addres
 text_sign_up_success: 'Your email was confirmed. Now you can sign in.'
 text_sorry: 'Sorry!'
 text_wish_list_empty: 'Your wish list is empty.'
-text_search_no_results: 'We couldn’t find a match for :text_search_query . Please, try another search.'
+text_search_no_results: 'We couldn’t find a match for :text_search_query. Please, try another search.'
 text_search_clear_all: 'Clear all search queries.'
 text_search_remove_query: 'Remove this search query.'
 text_remove: 'Remove'
