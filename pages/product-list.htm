@@ -54,7 +54,7 @@ function onInit()
     $arFilterValue = (array) input('property');
     if (!empty($arFilterValue)) {
         foreach($arFilterValue as $sKey => &$sValue) {
-        $sValue = explode('|', $sValue);
+            $sValue = explode('|', $sValue);
         }
     }
 
