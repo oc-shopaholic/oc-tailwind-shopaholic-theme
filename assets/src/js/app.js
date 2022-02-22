@@ -19,3 +19,5 @@ import '/partials/carousel-main/carousel-main';
 import '/partials/input-quantity/input-quantity';
 /* * Off Canvas * */
 import '/partials/off-canvas/off-canvas';
+
+import '/partials/product-list/product-list';

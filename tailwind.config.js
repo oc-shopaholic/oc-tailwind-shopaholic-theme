@@ -23,7 +23,11 @@ module.exports = {
       },
       backgroundSize: {
         '65': '65%',
+        '75': '75%',
         'info-icon': '12.5rem',
+      },
+      backgroundImage: {
+        'test': "url('/themes/lovata-tailwind-shopaholic/assets/images/check.svg')"
       },
       fontSize: {
         error: ['9rem', '1'],
