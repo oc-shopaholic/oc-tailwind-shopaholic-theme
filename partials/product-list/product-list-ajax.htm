@@ -1,0 +1,5 @@
+{% for obProduct in arProductList if arProductList is not empty %}
+    {% partial 'product-card/product-card' obProduct = obProduct %}
+{% else %}
+    products not found
+{% endfor %}

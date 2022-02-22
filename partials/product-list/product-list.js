@@ -11,7 +11,7 @@ export default new class ProductList {
         console.log('poschlo')
         const obListHelper = new ShopaholicProductList();
         obListHelper.setAjaxRequestCallback((obRequestData) => {
-        obRequestData.update = {'product/product-card/product-card': '.catalog_wrapper'};
+        obRequestData.update = {'product-card/product-card': '.catalog_wrapper'};
         console.log('gog')
         return obRequestData;
         });
