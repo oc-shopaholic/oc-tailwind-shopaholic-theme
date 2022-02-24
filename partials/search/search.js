@@ -71,7 +71,7 @@ export default class Search {
     this.clearRecently();
     this.initSearchResult();
     this.historyResult();
-    this.recentlyElem();
+    RecentlyElem.make('._recently');
     this.showMore();
   }
 
@@ -410,52 +410,13 @@ export default class Search {
     })
   }
 
-  recentlyElem(){
-    $('._recently').each(function(e) {
-      let $vRecentlyContainer = $(this);
-      let $vClear = $vRecentlyContainer.find('._clear-recently');
-      let $vText = $vRecentlyContainer.find('._recently-text');
-
-      let vHeader = $("._recently-container ._recently-header");
-      let vInput = $("._shopaholic-search-input");
-      let vClearAll = $("._clear-recently-all");
-
-      $vClear.on("click", () => {
-        let history = JSON.parse(localStorage.searchHistory);
-        history = history.filter((item) => {
-          return item !== $vText.text()
-        })
-        if(!history.length){
-          vHeader.css('display', 'none');
-        }else if(history.length <= 1){
-          vClearAll.css('display', 'none');
-        }
-        let finalHistory = JSON.stringify(history);
-        localStorage.searchHistory = finalHistory;
-        $vRecentlyContainer.remove();
-      })
-
-      $vRecentlyContainer.on("click", () => {
-        vInput.val($vText.text()).trigger('input');
-      })
-
-      $vRecentlyContainer.on('keypress', function (e) {
-        if (e.which === 13 && e.target.classList[0] === '_recently') {
-          $vRecentlyContainer.trigger('click');
-        } else if (e.which === 13 && e.target.classList[0] === '_clear-recently') {
-          $vClear.trigger('click');
-        }
-      });
-    });
-  }
-
   clearingHints(){
     this.bOpenRecently = false;
     this.removalSelection();
     this.aRecentlyTextDefault = [];
     this.$vRecently.remove();
     this.initSearchResult();
-    this.recentlyElem();
+    RecentlyElem.make('._recently');
   }
 
   static make(container) {
@@ -466,3 +427,62 @@ export default class Search {
   }
 }
 Search.make('._off-canvas');
+
+export class RecentlyElem {
+  constructor(app) {
+    this.$vNav = app;
+    this.$vClear = this.$vNav.find('._clear-recently');
+    this.$vText = this.$vNav.find('._recently-text');
+
+    this.vHeader = $("._recently-container ._recently-header");
+    this.vInput = $("._shopaholic-search-input");
+    this.vClearAll = $("._clear-recently-all");
+  }
+
+  clear() {
+    this.$vClear.on("click", () => {
+      let history = JSON.parse(localStorage.searchHistory);
+      history = history.filter((item) => {
+        return item !== this.$vText.text()
+      })
+      if (!history.length) {
+        this.vHeader.css('display', 'none');
+      } else if (history.length <= 1) {
+        this.vClearAll.css('display', 'none');
+      }
+      let finalHistory = JSON.stringify(history);
+      localStorage.searchHistory = finalHistory;
+      this.$vNav.remove();
+    })
+  }
+
+  trigger() {
+    this.$vNav.on("click", () => {
+      this.vInput.val(this.$vText.text()).trigger('input');
+    })
+  }
+
+  behaviorEmulation() {
+    this.$vNav.on('keypress', function (e) {
+      if (e.which === 13 && e.target.classList[0] === '_recently') {
+        this.$vNav.trigger('click');
+      } else if (e.which === 13 && e.target.classList[0] === '_clear-recently') {
+        this.$vClear.trigger('click');
+      }
+    });
+  }
+
+  show() {
+    this.clear();
+    this.trigger();
+    this.behaviorEmulation();
+  }
+
+  static make(container) {
+    $(container).each(function (e) {
+      const containerNav = new RecentlyElem($(this));
+      containerNav.show();
+    });
+  }
+}
+
