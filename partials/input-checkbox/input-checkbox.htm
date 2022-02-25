@@ -16,6 +16,12 @@
         {% if bIsRequired %}
             required
         {% endif %}
+        {% if sChecked %}
+            checked
+        {% endif %}
+        {% if sDisabled %}
+            disabled
+        {% endif %}
     > {# TODO: Fix focus-visible state for checkbox #}
     <label for="{{ sId }}" class="text-sm md:text-base text-gray-600 {{sLabelClasses}}">{{ sLabelText|raw}}</label>
 </div>

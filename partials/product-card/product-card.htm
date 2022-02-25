@@ -1,6 +1,3 @@
-{# Get products proeprty list for property sets with code 'main', enabled how filters #}
-{% set obPropertyList = FilterPanel.getProductPropertyList(['main'], obProductList) %}
-
 {% set obOffer = obProduct.offer.first() %}
 
 <div class="_shopaholic-product-wrapper flex flex-col relative border border-gray-200 rounded pb-2 {{ sPartialClasses }}" data-product-id="{{ obProduct.id }}">

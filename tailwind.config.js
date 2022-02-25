@@ -22,6 +22,7 @@ module.exports = {
         blue: ['1px dashed #1E40AF', '1px'],
       },
       backgroundSize: {
+        '45': '45%',
         '65': '65%',
         '75': '75%',
         'info-icon': '12.5rem',
