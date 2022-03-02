@@ -3,16 +3,16 @@
 {# @var obPrevArticle \Lovata\GoodNews\Classes\Item\ArticleItem #}
 {# @var obNextArticle \Lovata\GoodNews\Classes\Item\ArticleItem #}
 {% set obArticleList = ArticleList.make().sort('publish|asc').published() %}
-{% set obPrevArticle = obArticleList.getNearestPrev(obArticle.id).first() %}
-{% set obNextArticle = obArticleList.getNearestNext(obArticle.id).first() %}
+{% set obNextArticle = obArticleList.getNearestPrev(obArticle.id).first() %}
+{% set obPrevArticle = obArticleList.getNearestNext(obArticle.id).first() %}
 
 
 <div class="{{ sPartialClasses|default('flex my-6 flex-col justify-between md:flex-row') }}">
-    {% if obNextArticle.isNotEmpty() %}
+    {% if obPrevArticle.isNotEmpty() %}
         {% partial 'button/button'
             sPartialClasses = 'flex border-2 bg-transparent relative border-blue-800 text-blue-800 py-3 pl-14 pr-10 rounded mt-2 order-1 md:order-none md:mt-0'
             sText = 'Previous article'
-            sHref = obNextArticle.getPageUrl(this.page.id)
+            sHref = obPrevArticle.getPageUrl(this.page.id)
             bGhost = true
             body
         %}
@@ -21,11 +21,11 @@
             </svg>   
         {% endpartial %}
     {% endif %}
-    {% if obPrevArticle.isNotEmpty() %}
+    {% if obNextArticle.isNotEmpty() %}
         {% partial 'button/button'
-            sPartialClasses = 'flex border-2 relative bg-transparent border-blue-800 text-blue-800 py-3 pr-14 pl-10 rounded ml-auto'
+            sPartialClasses = 'flex border-2 relative bg-transparent border-blue-800 text-blue-800 py-3 pr-14 pl-10 rounded md:ml-auto'
             sText = 'Next article'
-            sHref = obPrevArticle.getPageUrl(this.page.id)
+            sHref = obNextArticle.getPageUrl(this.page.id)
             bGhost = true
             body
         %}
