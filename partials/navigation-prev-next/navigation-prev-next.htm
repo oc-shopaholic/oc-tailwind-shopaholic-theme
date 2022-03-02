@@ -15,10 +15,10 @@
 <div class="{{ sPartialClasses|default('flex my-6 flex-col md:flex-row') }} {{ sPosition }}">
     {% if obNextArticle.isNotEmpty() %}
         {% partial 'button/button'
-            sPartialClasses = 'flex border-2 bg-transparent relative border-blue-800 text-blue-800 py-3 pl-14 pr-10 rounded mt-2 order-1 hover:bg-blue-700 hover:text-white focus:outline-none focus-visible:bg-blue-800 focus-visible:text-white focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white active:bg-blue-900 active:text-white md:order-none md:mt-0'
+            sPartialClasses = 'flex border-2 bg-transparent relative border-blue-800 text-blue-800 py-3 pl-14 pr-10 rounded mt-2 order-1 md:order-none md:mt-0'
             sText = 'Previous article'
             sHref = obNextArticle.getPageUrl(this.page.id)
-            sNotDefaultClass = true
+            bGhost = true
             body
         %}
             <svg class="absolute left-6" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -28,10 +28,10 @@
     {% endif %}
     {% if obPrevArticle.isNotEmpty() %}
         {% partial 'button/button'
-            sPartialClasses = 'flex border-2 relative bg-transparent border-blue-800 text-blue-800 py-3 pr-14 pl-10 rounded hover:bg-blue-700 hover:text-white focus:outline-none focus-visible:bg-blue-800 focus-visible:text-white focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white active:bg-blue-900 active:text-white'
+            sPartialClasses = 'flex border-2 relative bg-transparent border-blue-800 text-blue-800 py-3 pr-14 pl-10 rounded'
             sText = 'Next article'
             sHref = obPrevArticle.getPageUrl(this.page.id)
-            sNotDefaultClass = true
+            bGhost = true
             body
         %}
             <svg class="absolute right-0 left-32 md:right-6" width="25" height="24" viewBox="0 0 25 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
