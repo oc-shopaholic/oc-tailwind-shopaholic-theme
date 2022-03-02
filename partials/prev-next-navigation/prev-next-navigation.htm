@@ -2,7 +2,6 @@
 
 {# @var obPrevArticle \Lovata\GoodNews\Classes\Item\ArticleItem #}
 {# @var obNextArticle \Lovata\GoodNews\Classes\Item\ArticleItem #}
-{% set obArticle = ArticlePage.get() %}
 {% set obArticleList = ArticleList.make().sort('publish|asc').published() %}
 {% set obPrevArticle = obArticleList.getNearestPrev(obArticle.id).first() %}
 {% set obNextArticle = obArticleList.getNearestNext(obArticle.id).first() %}
