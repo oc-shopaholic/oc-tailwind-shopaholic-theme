@@ -12,9 +12,33 @@ skip_error = 0
 [ArticleList]
 sorting = "publish|desc"
 ==
+function onInit()
+{
+    $arBreadcrumbs = [
+        ['name' => 'News', 'url' => \Cms\Classes\Page::url('news-list', ['news' => false])],
+    ];
+
+    $obNews = $this->ArticlePage->get();
+
+    if (!empty($obNews)) {
+        $arBreadcrumbs[] = ['name' => $obNews->title, 'url' => $obNews->getPageUrl('news-item')];
+    }
+
+    $this['arBreadcrumbs'] = $arBreadcrumbs;
+}
+?>
+==
 {##}
+
 {% set obArticle = ArticlePage.get() %}
 
 {% partial 'breadcrumbs/breadcrumbs' %}
 {% partial 'news-header/news-header' obArticle = obArticle %}
-{% partial 'navigation-prev-next/navigation-prev-next' obArticle = obArticle %}
+{% if obArticle.content is not empty %}
+    <div class="mt-6">
+        <div class="overflow-x-hidden prose max-w-none text-sm md:text-base">{{ obArticle.content|raw }}</div>
+    </div>
+{% endif %}
+{% partial 'navigation-prev-next/navigation-prev-next' 
+    obArticle = obArticle 
+%}

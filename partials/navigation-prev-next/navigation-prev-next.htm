@@ -7,7 +7,7 @@
 {% set obPrevArticle = obArticleList.getNearestNext(obArticle.id).first() %}
 
 
-<div class="{{ sPartialClasses|default('flex my-6 flex-col justify-between md:flex-row') }}">
+<div class="{{ sPartialClasses|default('flex my-10 flex-col justify-between md:flex-row') }}">
     {% if obPrevArticle.isNotEmpty() %}
         {% partial 'button/button'
             sPartialClasses = 'flex border-2 bg-transparent border-blue-800 text-blue-800 py-3 pl-7 pr-10 rounded mt-2 order-1 md:order-none md:mt-0'
