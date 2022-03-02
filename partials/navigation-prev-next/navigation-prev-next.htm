@@ -6,13 +6,8 @@
 {% set obPrevArticle = obArticleList.getNearestPrev(obArticle.id).first() %}
 {% set obNextArticle = obArticleList.getNearestNext(obArticle.id).first() %}
 
-{% if obNextArticle.isNotEmpty() %}
-    {% set sPosition = 'justify-between' %}
-{% else %}
-    {% set sPosition = 'justify-end' %}
-{% endif %}
 
-<div class="{{ sPartialClasses|default('flex my-6 flex-col md:flex-row') }} {{ sPosition }}">
+<div class="{{ sPartialClasses|default('flex my-6 flex-col justify-between md:flex-row') }}">
     {% if obNextArticle.isNotEmpty() %}
         {% partial 'button/button'
             sPartialClasses = 'flex border-2 bg-transparent relative border-blue-800 text-blue-800 py-3 pl-14 pr-10 rounded mt-2 order-1 md:order-none md:mt-0'
@@ -28,7 +23,7 @@
     {% endif %}
     {% if obPrevArticle.isNotEmpty() %}
         {% partial 'button/button'
-            sPartialClasses = 'flex border-2 relative bg-transparent border-blue-800 text-blue-800 py-3 pr-14 pl-10 rounded'
+            sPartialClasses = 'flex border-2 relative bg-transparent border-blue-800 text-blue-800 py-3 pr-14 pl-10 rounded ml-auto'
             sText = 'Next article'
             sHref = obPrevArticle.getPageUrl(this.page.id)
             bGhost = true
