@@ -30,6 +30,16 @@ last_button_name = "Last"
 last_button_limit = 3
 last_button_number = 1
 ==
+function onInit()
+{
+    $arBreadcrumbs = [
+        ['name' => 'News', 'url' => \Cms\Classes\Page::url('news-list', ['news' => false])],
+    ];
+
+    $this['arBreadcrumbs'] = $arBreadcrumbs;
+}
+?>
+==
 {##}
 
 {% set obArticleList = ArticleList.make().sort('publish|desc').published() %}
