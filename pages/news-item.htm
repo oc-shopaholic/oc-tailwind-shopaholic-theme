@@ -14,6 +14,8 @@ sorting = "publish|desc"
 ==
 function onInit()
 {
+    $this['path_page_js'] = mix('assets/dist/js/news-item.js', 'themes/lovata-tailwind-shopaholic');
+
     $arBreadcrumbs = [
         ['name' => 'News', 'url' => \Cms\Classes\Page::url('news-list', ['news' => false])],
     ];

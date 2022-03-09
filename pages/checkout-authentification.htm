@@ -3,7 +3,15 @@ url = "/checkout-authentification"
 layout = "main"
 is_hidden = 0
 ==
+<?php
+function onInit()
+{
+    $this['path_page_js'] = mix('assets/dist/js/checkout-authentification.js', 'themes/lovata-tailwind-shopaholic');
+}
+?>
+==
 {##}
+
 
 <div class="flex flex-col items-center mt-4 md:mt-6 mb-5 md:mb-16">
     <span class="text-gray-900 text-lg md:text-xl uppercase md:normal-case font-medium">{{ 'text_continue_without_sign_in'|_ }}</span>

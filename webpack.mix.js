@@ -1,5 +1,36 @@
 const mix = require('laravel-mix');
 
+const jsFileList = [
+  'assets/src/js/app',
+  'pages/account-credentials',
+  'pages/account-details',
+  'pages/account-order-list',
+  'pages/account-password-change',
+  'pages/account',
+  'pages/chackout-failure',
+  'pages/checkout-authentification',
+  'pages/checkout-success',
+  'pages/checkout',
+  'pages/contact',
+  'pages/error-404',
+  'pages/error-500',
+  'pages/error-503',
+  'pages/faq',
+  'pages/index',
+  'pages/log-out',
+  'pages/news-item',
+  'pages/news-list',
+  'pages/password-restore-success',
+  'pages/password-restore',
+  'pages/product-item',
+  'pages/product-list',
+  'pages/sign-in',
+  'pages/sign-up-confirmation',
+  'pages/sign-up-success',
+  'pages/sign-up',
+  'pages/wish-list',
+];
+
 let postCssPlugins = [
     require('tailwindcss'),
 ];
@@ -19,7 +50,7 @@ mix.webpackConfig(webpack =>({
   ]
 }))
 
-mix.js('assets/src/js/app.js', 'assets/dist/js');
+jsFileList.forEach(fileName => mix.js(`./${fileName}.js`, 'assets/dist/js'));
 
 mix.postCss('assets/src/css/app.css', 'assets/dist/css', postCssPlugins);
 

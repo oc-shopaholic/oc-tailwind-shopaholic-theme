@@ -9,6 +9,8 @@ add_jsonld = 1
 <?php
 function onInit()
 {
+    $this['path_page_js'] = mix('assets/dist/js/faq.js', 'themes/lovata-tailwind-shopaholic');
+
     if ($this->theme->has_faq) {
         $this->addComponent('AndreiShilov\FAQ\Components\FAQ', 'FAQ', [
             'add_jsonld' => 1,

@@ -6,6 +6,8 @@ is_hidden = 0
 <?php
 function onInit()
 {
+    $this['path_page_js'] = mix('assets/dist/js/log-out.js', 'themes/lovata-tailwind-shopaholic');
+
     $obUser = $this['obUser'];
 
     if (!empty($obUser) || !$this->theme->has_buddies) {

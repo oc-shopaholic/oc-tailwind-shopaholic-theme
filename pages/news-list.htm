@@ -32,6 +32,8 @@ last_button_number = 1
 ==
 function onInit()
 {
+    $this['path_page_js'] = mix('assets/dist/js/news-list.js', 'themes/lovata-tailwind-shopaholic');
+
     $arBreadcrumbs = [
         ['name' => 'News', 'url' => \Cms\Classes\Page::url('news-list', ['news' => false])],
     ];

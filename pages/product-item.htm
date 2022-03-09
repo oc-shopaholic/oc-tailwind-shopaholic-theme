@@ -21,6 +21,13 @@ sorting = "no"
 
 [ProductData]
 ==
+<?php
+function onInit()
+{
+    $this['path_page_js'] = mix('assets/dist/js/product-item.js', 'themes/lovata-tailwind-shopaholic');
+}
+?>
+==
 {##}
 
 {% set obProduct = ProductPage.get() %}

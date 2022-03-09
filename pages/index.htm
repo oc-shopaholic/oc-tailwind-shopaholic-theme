@@ -9,6 +9,13 @@ sorting = "publish|desc"
 [ProductList]
 sorting = "popularity|desc"
 ==
+<?php
+function onInit()
+{
+    $this['path_page_js'] = mix('assets/dist/js/index.js', 'themes/lovata-tailwind-shopaholic');
+}
+?>
+==
 {##}
 
 {% set arArticleList = ArticleList.make().sort('publish|desc').published().take(4) %}

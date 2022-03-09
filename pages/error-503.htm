@@ -3,4 +3,11 @@ url = "/503"
 layout = "main"
 is_hidden = 0
 ==
+<?php
+function onInit()
+{
+    $this['path_page_js'] = mix('assets/dist/js/error-503.js', 'themes/lovata-tailwind-shopaholic');
+}
+?>
+==
 {##}

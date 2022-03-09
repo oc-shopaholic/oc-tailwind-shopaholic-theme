@@ -6,7 +6,13 @@ is_hidden = 0
 [ProductList]
 sorting = "no"
 ==
-
+<?php
+function onInit()
+{
+    $this['path_page_js'] = mix('assets/dist/js/wish-list.js', 'themes/lovata-tailwind-shopaholic');
+}
+?>
+==
 {##}
 
 {% set arProductList = ProductList.make().active().wishList() %}

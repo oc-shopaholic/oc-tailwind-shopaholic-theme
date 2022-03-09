@@ -3,6 +3,13 @@ url = "/account/details"
 layout = "main"
 is_hidden = 0
 ==
+<?php
+function onInit()
+{
+    $this['path_page_js'] = mix('assets/dist/js/account-details.js', 'themes/lovata-tailwind-shopaholic');
+}
+?>
+==
 {##}
 
 {% partial 'breadcrumbs/breadcrumbs' %}
