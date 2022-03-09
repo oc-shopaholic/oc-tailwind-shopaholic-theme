@@ -7,7 +7,7 @@
             {% for obItem in arItemList %}
                 <li>
                     {% if obItem.url is not empty %}
-                        <a class="bg-gray-200 block rounded hover:opacity-75 focus-visible:outline-blue focus:outline-none focus:rounded-lg focus:border-dotted focus:border focus:border-blue-800 focus:no-underline {{ sItemClass }}" href="{{ obItem.url }}" target="_blank">
+                        <a class="bg-gray-200 block rounded hover:opacity-75 focus-visible:rounded-lg focus-visible:outline-dotted focus-visible:outline focus-visible:outline-blue-800 focus-visible:no-underline {{ sItemClass }}" href="{{ obItem.url }}" target="_blank">
                             <img src="{{ obItem.image|media }}" alt="{{ obItem.alt }}" title="{{ obItem.title }}">
                         </a>
                     {% else %}

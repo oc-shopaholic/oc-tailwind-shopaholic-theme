@@ -12,7 +12,7 @@ code = "navigation-footer"
                     {% set sCode = arItemMenu.code is not empty ? 'data-code='~arItemMenu.code %}
                     {% if arItemMenu.url is not empty %}
                         {% set sExternal = arItemMenu.viewBag.isExternal ? 'target=_blank' : '' %}
-                        <a href={{ arItemMenu.url }} {{ sExternal }} class="uppercase mb-5 md:mb-6 inline-block text-gray-900 text-xl underline hover:text-blue-700 hover:no-underline active:text-blue-900 focus-visible:outline-blue focus:outline-none focus:text-blue-800 focus:border-solid focus:border-2 focus:border-blue-800 focus:no-underline {{ arItemMenu.viewBag.cssClass }}" {{ sCode }}>{{ arItemMenu.title }}</a>
+                        <a href={{ arItemMenu.url }} {{ sExternal }} class="uppercase mb-5 md:mb-6 inline-block text-gray-900 text-xl underline hover:text-blue-700 hover:no-underline active:text-blue-900 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:no-underline {{ arItemMenu.viewBag.cssClass }}" {{ sCode }}>{{ arItemMenu.title }}</a>
                     {% else %}
                         <span class="uppercase mb-5 md:mb-6 inline-block text-gray-900 text-xl {{ arItemMenu.viewBag.cssClass }}" {{ sCode }}>{{ arItemMenu.title }}</span>
                     {% endif %}
@@ -24,7 +24,7 @@ code = "navigation-footer"
                                     {% set sCode =  arSubItemMenu.code is not empty ? 'data-code='~arSubItemMenu.code %}
                                     {% if arSubItemMenu.url is not empty %}
                                         {% set sExternal = arSubItemMenu.viewBag.isExternal ? 'target=_blank' : '' %}
-                                        <a href="{{ arSubItemMenu.url }}" {{ sExternal }} class="text-gray-600 text-base underline hover:text-blue-700 hover:no-underline active:text-blue-900 focus-visible:outline-blue focus:outline-none focus:text-blue-800 focus:border-solid focus:border-2 focus:border-blue-800 focus:no-underline {{ arSubItemMenu.viewBag.cssClass }}" {{ sCode }}>{{ arSubItemMenu.title }}</a>
+                                        <a href="{{ arSubItemMenu.url }}" {{ sExternal }} class="text-gray-600 text-base underline hover:text-blue-700 hover:no-underline active:text-blue-900 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:no-underline {{ arSubItemMenu.viewBag.cssClass }}" {{ sCode }}>{{ arSubItemMenu.title }}</a>
                                     {% else %}
                                         <span class="text-gray-600 text-base {{ arSubItemMenu.viewBag.cssClass }}" {{ sCode }}>{{ arSubItemMenu.title }}</span>
                                     {% endif %}

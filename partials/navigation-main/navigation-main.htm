@@ -12,7 +12,7 @@ code = "navigation-main"
                     {% set sCode = arItemMenu.code is not empty ? 'data-code='~arItemMenu.code %}
                     {% if arItemMenu.url is not empty %}
                         {% set sExternal = arItemMenu.viewBag.isExternal ? 'target=_blank' : '' %}
-                        <a href="{{ arItemMenu.url }}" {{ sExternal }} class="text-gray-900 text-base hover:text-blue-700 hover:underline active:text-blue-900 focus-visible:outline-blue focus:outline-none focus:text-blue-800 focus:border-dotted focus:rounded focus:border-2 focus:border-blue-800 {{ arItemMenu.viewBag.cssClass }}" {{ sCode }}>{{ arItemMenu.title }}</a>
+                        <a href="{{ arItemMenu.url }}" {{ sExternal }} class="text-gray-900 text-base hover:text-blue-700 hover:underline active:text-blue-900 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 {{ arItemMenu.viewBag.cssClass }}" {{ sCode }}>{{ arItemMenu.title }}</a>
                     {% else %}
                         <span class="text-gray-900 text-base {{ arItemMenu.viewBag.cssClass }}" {{ sCode }}>{{ arItemMenu.title }}</span>
                     {% endif %}

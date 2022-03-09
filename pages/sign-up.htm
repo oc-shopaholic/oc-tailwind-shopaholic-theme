@@ -52,8 +52,8 @@ function onInit()
                 type = 'password'
                 sPartialClasses = 'mt-4'
             %}
-            {% set text_rules_acceptence_link_terms_conditions = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm focus:outline-none focus:text-blue-800 focus:border-solid focus:border-2 focus:border-blue-800 focus:no-underline md:text-base" href="'~( 'terms-conditions'|staticPage )~'">'~('text_rules_acceptence_link_terms_conditions'|_)|raw ~'</a>' %}
-            {% set text_rules_acceptence_link_privacy_cookie_policy = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm focus:outline-none focus:text-blue-800 focus:border-solid focus:border-2 focus:border-blue-800 focus:no-underline md:text-base" href="'~( 'privacy-cookie-policy'|staticPage )~'">'~('text_rules_acceptence_link_privacy_cookie_policy'|_)~'</a>' %}
+            {% set text_rules_acceptence_link_terms_conditions = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 underline hover:no-underline text-sm md:text-base focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:no-underline" href="'~( 'terms-conditions'|staticPage )~'">'~('text_rules_acceptence_link_terms_conditions'|_)|raw ~'</a>' %}
+            {% set text_rules_acceptence_link_privacy_cookie_policy = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 underline hover:no-underline text-sm md:text-base focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:no-underline" href="'~( 'privacy-cookie-policy'|staticPage )~'">'~('text_rules_acceptence_link_privacy_cookie_policy'|_)~'</a>' %}
             {% partial 'input-checkbox/input-checkbox'
                 sPartialClasses = 'mt-4 md:mt-3'
                 sId = 'remember_me'
@@ -67,7 +67,7 @@ function onInit()
                 sPartialClasses = '_button-sign-up w-full mt-8 md:mt-6'
             %}
         </form>
-        {% set text_has_account_link_sign_in = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm focus:outline-none focus:text-blue-800 focus:border-solid focus:border-2 focus:border-blue-800 focus:no-underline md:text-base" href="'~( 'sign-in'|page )~'">'~('text_has_account_link_sign_in'|_)~'</a>' %}
+        {% set text_has_account_link_sign_in = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 underline hover:no-underline text-sm md:text-base focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:no-underline" href="'~( 'sign-in'|page )~'">'~('text_has_account_link_sign_in'|_)~'</a>' %}
         <span class="block text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">{{ 'text_has_account' | transRaw({text_has_account_link_sign_in: text_has_account_link_sign_in}) }}</span>
     </div>
 </div>

@@ -2,8 +2,8 @@
 
 <section class="mx-auto mt-4 mb-10">
     {% for obItem in obFAQ %}
-        <details class="border-t border-gray-200 last:border-b">
-            <summary class="font-medium text-blue-800 md:hover:bg-gray-100 text-sm md:text-xl focus-visible:outline-blue py-3 focus:outline-none focus:text-blue-800 focus:border-solid focus:border-2 focus:border-blue-800 focus:no-underline md:py-4">
+        <details class="border-t border-gray-200 cursor-pointer last:border-b">
+            <summary class="font-medium text-blue-800 md:hover:bg-gray-100 text-sm md:text-xl py-3 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 md:py-4 ">
                 {{ obItem.question|raw }}
             </summary>
             <div class="prose max-w-none mb-5 md:mt-5 text-sm md:text-base text-gray-600">

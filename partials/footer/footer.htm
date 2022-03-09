@@ -33,12 +33,12 @@
                     <ul class="mt-4">
                         {% if this.theme.business_card_phone is not empty %}
                             <li>
-                                <a class="text-blue-800 underline hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus-visible:outline-blue focus:outline-none focus:text-blue-800 focus:border-solid focus:border-2 focus:border-blue-800 focus:no-underline" href="tel:{{ this.theme.business_card_phone|replace({'-': '', '(': '', ')': '', ' ': ''}) }}">{{ this.theme.business_card_phone }}</a>
+                                <a class="text-blue-800 underline hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:no-underline" href="tel:{{ this.theme.business_card_phone|replace({'-': '', '(': '', ')': '', ' ': ''}) }}">{{ this.theme.business_card_phone }}</a>
                             </li>
                         {% endif %}
                         {% if this.theme.business_card_email is not empty %}
                             <li class="mt-4 lg:mt-2">
-                                <a class="text-blue-800 underline hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus-visible:outline-blue focus:outline-none focus:text-blue-800 focus:border-solid focus:border-2 focus:border-blue-800 focus:no-underline" href="mailto:{{ this.theme.business_card_email }}">{{ this.theme.business_card_email }}</a>
+                                <a class="text-blue-800 underline hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:no-underline" href="mailto:{{ this.theme.business_card_email }}">{{ this.theme.business_card_email }}</a>
                             </li>
                         {% endif %}
                         {% if this.theme.business_card_address is not empty %}
@@ -65,8 +65,8 @@
         <div class="text-center text-gray-600 p-2.5 text-xs md:text">
             {% set sPoweredByPluginUrl = 'https://shopaholic.one' %}
             {% set sPoweredByThemeUrl = 'https://octobercms.com/theme/lovata-tailwind-shopaholic' %}
-            {% set text_powered_by_plugin = '<a class="underline text-blue-800 hover:text-blue-700 hover:no-underline focus-visible:outline-blue active:text-blue-900 visited:text-purple-800 focus:outline-none focus:text-blue-800 focus:border-solid focus:border-2 focus:border-blue-800 focus:no-underline" href="'~ sPoweredByPluginUrl ~'" target="_blank" rel="noopener noreferrer">'~('text_powered_by_plugin'|_)~'</a>' %}
-            {% set text_powered_by_theme = '<a class="underline text-blue-800 hover:text-blue-700 hover:no-underline focus-visible:outline-blue active:text-blue-900 visited:text-purple-800 focus:outline-none focus:text-blue-800 focus:border-solid focus:border-2 focus:border-blue-800 focus:no-underline" href="'~ sPoweredByThemeUrl ~'" target="_blank" rel="noopener noreferrer">'~('text_powered_by_theme'|_)~'</a>' %}
+            {% set text_powered_by_plugin = '<a class="underline text-blue-800 hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:no-underline" href="'~ sPoweredByPluginUrl ~'" target="_blank" rel="noopener noreferrer">'~('text_powered_by_plugin'|_)~'</a>' %}
+            {% set text_powered_by_theme = '<a class="underline text-blue-800 hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:no-underline" href="'~ sPoweredByThemeUrl ~'" target="_blank" rel="noopener noreferrer">'~('text_powered_by_theme'|_)~'</a>' %}
             {{ 'text_powered_by' | transRaw({text_powered_by_plugin: text_powered_by_plugin, text_powered_by_theme: text_powered_by_theme}, ) }}
         </div>
     {% endif %}

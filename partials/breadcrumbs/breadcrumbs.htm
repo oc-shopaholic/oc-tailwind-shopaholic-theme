@@ -3,14 +3,14 @@
 <nav class="my-4 md:my-6 overflow-auto xl:overflow-hidden scrollbar-x-none {{ sPartialClasses }}" role="navigation">
     <ul class="flex flex-nowrap xl:flex-wrap text-gray-600" aria-label="{{ 'aria_label_breadcrumbs'|_ }}">
         <li>
-            <a class="underline focus:outline-none focus:text-blue-800 focus:border-solid focus:border-2 focus:border-blue-800 focus:no-underline" href="{{ 'index'|page }}">{{ 'breadcrumbs_page_home'|_ }}</a>
+            <a class="underline hover:text-blue-700 hover:no-underline active:text-blue-900 active:no-underline focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:no-underline" href="{{ 'index'|page }}">{{ 'breadcrumbs_page_home'|_ }}</a>
         </li>
         {% for arItem in arBreadcrumbs %}
             <li class="pl-3 inline-flex before:separator whitespace-nowrap">
                 {% if loop.last %}
                     <span class="ml-3">{{ arItem.name }}</span>
                 {% else %}
-                    <a class="underline hover:text-blue-700 focus:text-blue-800 active:text-blue-900 ml-3" href="{{ arItem.url }}">{{ arItem.name }}</a>
+                    <a class="underline ml-3 hover:text-blue-700 hover:no-underline active:text-blue-900 active:no-underline focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:no-underline" href="{{ arItem.url }}">{{ arItem.name }}</a>
                 {% endif %}
             </li>
         {% endfor %}
