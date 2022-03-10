@@ -27,6 +27,15 @@ sorting = "no"
 
 {% partial 'breadcrumbs/breadcrumbs' %} {# TODO: Fix wrong breadcrumbs #}
 
+<div class="w-full">
+    <div class="md:w-1/2">
+        {% partial 'product-item/gallery' arImages=obProduct.images %}
+    </div>
+    <div class="md:w-1/2">
+
+    </div>
+</div>
+
 {% if this.theme.has_viewed_products %}
     {% partial 'product-list-small/product-list-small'
         sProductListSmallType = sProductListSmallTypeViewedProducts
