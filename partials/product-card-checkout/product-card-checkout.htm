@@ -10,14 +10,14 @@
                     <source media="(min-width:769px)" srcset="{{ obProduct.preview_image.getThumb(420, 315, {'quality': 80}) }}" type="image/jpeg">
                     <source media="(max-width:768px)" srcset="{{ obProduct.preview_image.getThumb(500, 373, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
                     <source media="(max-width:768px)" srcset="{{ obProduct.preview_image.getThumb(500, 373, {'quality': 80}) }}" type="image/jpeg">
-                    <img class="object-cover h-full w-full"
+                    <img class="object-cover h-full w-full lazyload"
                         src="{{ obProduct.preview_image.preview_image.getThumb(500, 373, {'quality': 80}) }}"
                         itemprop="image"
                         alt="{{ obProduct.preview_image.description }}"
                         title="{{ obProduct.preview_image.title }}"
                     >
                 </picture>#}
-                <img class="w-full h-full object-cover" src="{{ 'assets/images/temp_img/product1.jpg'|theme }}"/>
+                <img class="w-full h-full object-cover lazyload" src="{{ 'assets/images/temp_img/product1.jpg'|theme }}"/>
             </div>
             {% if obLabelList.count() == 1 %}
                 <div class="absolute z-10 -top-px -left-px overflow-hidden rounded-br rounded-tl flex">

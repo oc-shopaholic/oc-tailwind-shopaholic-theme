@@ -8,11 +8,11 @@
                 <li>
                     {% if obItem.url is not empty %}
                         <a class="bg-gray-200 block rounded hover:opacity-75 focus-visible:outline-blue {{ sItemClass }}" href="{{ obItem.url }}" target="_blank">
-                            <img src="{{ obItem.image|media }}" alt="{{ obItem.alt }}" title="{{ obItem.title }}">
+                            <img src="{{ obItem.image|media }}" class="lazyload" alt="{{ obItem.alt }}" title="{{ obItem.title }}">
                         </a>
                     {% else %}
                         <span class="bg-gray-200 block rounded {{ sItemClass }}">
-                            <img src="{{ obItem.image|media }}" alt="{{ obItem.alt }}" title="{{ obItem.title }}">
+                            <img src="{{ obItem.image|media }}" class="lazyload" alt="{{ obItem.alt }}" title="{{ obItem.title }}">
                         </span>
                     {% endif %}
                 </li>

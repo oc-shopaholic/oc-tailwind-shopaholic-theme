@@ -11,10 +11,10 @@
                 <source media="(min-width:769px)" data-srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" type="image/jpeg">
                 <source media="(max-width:768px)" data-srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100, 'extension': 'webp'}) }}" type="image/webp">
                 <source media="(max-width:768px)" data-srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" type="image/jpeg">
-                <img class="w-full h-full rounded object-cover" src="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" alt="{{ obArticle.preview_image.description }}">
+                <img class="w-full h-full rounded object-cover lazyload" src="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" alt="{{ obArticle.preview_image.description }}">
             </picture>
         {% else %}
-            <img class="w-full h-full rounded object-cover" src="{{ 'assets/images/no-photo.svg'|theme }}" alt="{{ 'text_no_image_article'|_ }}">
+            <img class="w-full h-full rounded object-cover lazyload" src="{{ 'assets/images/no-photo.svg'|theme }}" alt="{{ 'text_no_image_article'|_ }}">
         {% endif %}
     </div>
 </article>
