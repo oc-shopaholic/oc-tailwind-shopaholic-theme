@@ -171,4 +171,4 @@ export default class offCanvas {
     });
   }
 }
-offCanvas.make('._off-canavas')
+offCanvas.make('._off-canvas')
