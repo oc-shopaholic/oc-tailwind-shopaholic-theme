@@ -1,5 +1,6 @@
 import '../../../../../modules/system/assets/js/framework';
 import '../../../../../modules/system/assets/js/framework.extras';
+import '../../../node_modules/lazysizes/plugins/parent-fit/ls.parent-fit';
 import './validation';
 
 /* * Top Info Block * */
