@@ -17,6 +17,12 @@
   .slider__bullet_active{
     @apply bg-blue-800
   }
+  .gallery-thumbs .swiper-slide {
+    opacity: 0.4;
+  }
+  .gallery-thumbs .swiper-slide-active {
+    opacity: 1;
+  }
 }
 
 @layer utilities {
@@ -79,4 +85,5 @@
     -moz-appearance: textfield;
   }
 }
+
 @import "../../../node_modules/swiper/swiper-bundle.min.css";

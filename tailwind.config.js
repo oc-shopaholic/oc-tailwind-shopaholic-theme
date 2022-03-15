@@ -43,7 +43,8 @@ module.exports = {
         '225': '900px',
       },
       maxWidth: {
-        'screen-3xl': '1920px'
+        'screen-3xl': '1920px',
+        '225': '900px',
       }
     }
   },

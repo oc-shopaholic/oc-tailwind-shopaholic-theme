@@ -1,9 +1,9 @@
-<div class="my-7 overflow-hidden md:w-174">
-    <div class="swiper-container gallery-top m-x-auto">
+<div class="md:w-174">
+    <div class="gallery-top swiper-container m-x-auto overflow-hidden">
         <ul class="swiper-wrapper">
             {% for obImage in arImages %}
             <li class="swiper-slide">
-                <picture class="swiper-slide-container">
+                <picture class="swiper-slide-container max-w-225">
                     <source srcset="{{ obImage.getThumb(696, 524, {'quality': 80}) }}" type="image/jpeg">
                     <img class="object-cover h-auto md:w-174" src="{{ obImage.preview_image|media|resize(696, 524, {'quality': 80}) }}" alt="{{ obItem.description }}" title="{{ obItem.title }}" />
                 </picture>
@@ -11,34 +11,16 @@
             {% endfor %}
         </ul>
     </div>
-    <div class="swiper-container gallery-thumbs mt-2 m-x-auto h-20 md:h-24">
+    <div class="swiper-container gallery-thumbs mt-2 m-x-auto h-20 md:h-24 overflow-hidden">
         <ul class="swiper-wrapper">
             {% for obImage in arImages %}
-            <li class="swiper-slide w-20 h-20 md:w-24 md:h-24">
+            <li class="swiper-slide w-20 h-20">
                 <picture>
                     <source srcset="{{ obImage.getThumb(92, 92, {'quality': 80}) }}" type="image/jpeg">
-                    <img class="object-cover" src="{{ obImage.preview_image|media|resize(92, 92, {'quality': 80}) }}" alt="{{ obItem.description }}" title="{{ obItem.title }}" />
+                    <img class="object-cover w-full h-full" src="{{ obImage.preview_image|media|resize(92, 92, {'quality': 80}) }}" alt="{{ obItem.description }}" title="{{ obItem.title }}" />
                 </picture>
             </li>
             {% endfor %}
         </ul>
     </div>
 </div>
-<style>
-    .gallery-thumbs .swiper-slide {
-        opacity: 0.4;
-    }
-    .gallery-thumbs .swiper-slide-active {
-        opacity: 1;
-    }
-    .gallery-overlay {
-        --tw-bg-opacity: 0.5;
-        background-color: rgba(17, 24, 39, var(--tw-bg-opacity));
-    }
-    .gallery-overlay .swiper-slide-container {
-        max-width: 900px;
-        -webkit-box-pack: center;
-    }
-</style>
-
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

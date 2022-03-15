@@ -1,9 +1,9 @@
-// import Swiper from 'swiper';
+// import Swiper from "swiper";
 
 export default new class Gallery {
   constructor() {
-    const paginationSelector = 'gallery-thumbs';
-    const gallerySelector = 'gallery-top';
+    const paginationSelector = "gallery-thumbs";
+    const gallerySelector = "gallery-top";
     $(() => {
       const galleryThumbs = new Swiper(`.${paginationSelector}`, {
         spaceBetween: 10,
