@@ -20,7 +20,7 @@ code = "navigation-main"
     %}
         {% if arMenuList is not empty %}
             <ul class="flex flex-col mb-2">
-                <li class="py-4 flex -mx-4 pl-4 md:mx-0 md:pl-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 md:after:border-0 md:ml-1 md:pb-0">
+                <li class="py-4 flex -mx-4 px-4 md:mx-0 md:px-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 md:after:border-0 md:ml-1 md:pb-0">
                     <button class="_hide p-2 -m-2 hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800 lg:block">
                         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 1L21 21M1 21L21 1L1 21Z" stroke="#111827" stroke-linecap="round" stroke-linejoin="round"/>
@@ -28,11 +28,11 @@ code = "navigation-main"
                     </button>
                     <h2 class="uppercase ml-6 text-base font-medium">{{'heading_mobile_menu_logo'|_}}</h2>
                 </li>
-                <li class="py-3 -mx-4 pl-4 md:mx-0 md:pl-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 pb-3 md:after:border-0 md:ml-1 md:pb-0">
+                <li class="py-3 -mx-4 px-4 md:mx-0 md:px-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 pb-3 md:after:border-0 md:ml-1 md:pb-0">
                     <a href="/" class="text-sm font-medium text-blue-800">{{'breadcrumbs_page_home'|_}}</a>
                 </li>
                 {% for arItemMenu in arMenuList if not arItemMenu.viewBag.isHidden %}
-                    <li class="py-3 -mx-4 pl-4 md:mx-0 md:pl-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 pb-3 md:after:border-0 md:ml-1 md:pb-0">
+                    <li class="py-3 -mx-4 px-4 md:mx-0 md:px-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 pb-3 md:after:border-0 md:ml-1 md:pb-0">
                         <a href="{{ arItemMenu.url }}" class="text-sm font-medium text-blue-800">{{ arItemMenu.title }}</a>
                     </li>
                 {% endfor %}
