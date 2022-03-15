@@ -48,9 +48,6 @@ export default class offCanvas {
     $('body').append(div)
 
     let scrollWidth = div[0].offsetWidth - div[0].clientWidth;
-    console.log(scrollWidth)
-    console.log(div[0].offsetWidth)
-    console.log(div)
     div.remove();
 
     this.$sScrollWidth = scrollWidth;
