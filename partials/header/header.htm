@@ -3,7 +3,7 @@
 <header class="bg-white relative full-width">
     {% partial 'top-info-block/top-info-block' %}
     <div class="container mx-auto px-4 py-4 sm:py-5 flex items-center">
-        {% partial 'navigation-main-mobile-block/navigation-main-mobile-block' %}
+        {% partial 'navigation-main-mobile/navigation-main-mobile' %}
         {% if this.theme.business_card_image is not empty and this.page.id == 'index' %}
             <span class="flex-shrink-0 w-36 mr-20">
                 <img class="" src="{{ this.theme.business_card_image|media }}" alt="{{ this.theme.business_card_image_alt }}" title="{{ this.theme.business_card_image_title }}">
