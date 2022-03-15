@@ -26,10 +26,10 @@ code = "navigation-main"
                             <path d="M1 1L21 21M1 21L21 1L1 21Z" stroke="#111827" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>                                                                                
                     </button>
-                    <h2 class="uppercase ml-6 text-base font-medium">atmosphere</h2>
+                    <h2 class="uppercase ml-6 text-base font-medium">{{'heading_mobile_menu_logo'|_}}</h2>
                 </li>
                 <li class="py-3 -mx-4 pl-4 md:mx-0 md:pl-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 pb-3 md:after:border-0 md:ml-1 md:pb-0">
-                    <a href="/" class="text-sm font-medium text-blue-800">Home</a>
+                    <a href="/" class="text-sm font-medium text-blue-800">{{'breadcrumbs_page_home'|_}}</a>
                 </li>
                 {% for arItemMenu in arMenuList if not arItemMenu.viewBag.isHidden %}
                     <li class="py-3 -mx-4 pl-4 md:mx-0 md:pl-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 pb-3 md:after:border-0 md:ml-1 md:pb-0">
@@ -37,13 +37,13 @@ code = "navigation-main"
                     </li>
                 {% endfor %}
             </ul>
-            <h2 class="uppercase font-medium text-lg text-gray-900 mb-4 mt-8">My account</h2>
+            <h2 class="uppercase font-medium text-lg text-gray-900 mb-4 mt-8">{{'heading_mobile_menu_account'|_}}</h2>
             {% partial 'button/button' 
-                sText = 'Sign in'
+                sText = 'button_sign_in'|_
                 sPartialClasses = 'font-medium text-lg w-full mb-4 text-center'
                 sHref='sign-in'|page
             %}
-            <span class="flex justify-center text-sm">Don’t have an account?&nbsp;
+            <span class="flex justify-center text-sm">{{'text_no_account_not_others'|_}}&nbsp;
                 <a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href='sign-up'|page>{{'text_no_account_link_sign_up'|_}}</a>
             </span>
         {% endif %}
