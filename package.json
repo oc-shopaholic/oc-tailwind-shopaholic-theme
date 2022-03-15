@@ -26,7 +26,7 @@
     "laravel-mix-purgecss": "^6.0.0",
     "postcss": "^8.4.4",
     "resolve-url-loader": "^3.1.4",
-    "swiper": "^7.3.1",
+    "swiper": "^8.0.7",
     "tailwindcss": "^3.0.0",
     "tailwindcss-pseudo-elements": "^1.5.1",
     "vue-template-compiler": "^2.6.14"
