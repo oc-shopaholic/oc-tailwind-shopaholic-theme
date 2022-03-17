@@ -2,12 +2,15 @@
 code = "navigation-main"
 ==
 {##}
+{# TODO: Add animation for the burger button. #}
 
 {% set arMenuList = MainMenu.menuItems %}
 <div class="_off-canvas block mr-3.5 cursor-pointer lg:hidden">
-    <svg class="_show" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M6.6665 30H33.3332M6.6665 10H33.3332H6.6665ZM6.6665 20H33.3332H6.6665Z" stroke="#111827" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>   
+    <button class="_show hover:text-blue-700 active:text-blue-900 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:rounded-sm">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.6665 30H33.3332M6.6665 10H33.3332H6.6665ZM6.6665 20H33.3332H6.6665Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>            
+    </button> 
     {% partial 'off-canvas/off-canvas'
         sPosition = 'left'
         sHeading = 'heading_search'|_
@@ -20,21 +23,21 @@ code = "navigation-main"
     %}
         {% if arMenuList is not empty %}
             <div class="py-4 flex -mx-4 px-4 md:mx-0 md:px-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 md:after:border-0 md:ml-1 md:pb-0">
-                <button class="_hide p-2 -m-2 hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800 lg:block">
-                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 1L21 21M1 21L21 1L1 21Z" stroke="#111827" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>                                                                                
+                <button class="_hide p-2 -m-2 hover:text-blue-700 active:text-blue-900 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:rounded-sm lg:block">    
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 10L30 30M10 30L30 10L10 30Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                                                                                                  
                 </button>
                 <img class="ml-6 w-36" src="{{ this.theme.business_card_image|media }}" alt="{{ this.theme.business_card_image_alt }}" title="{{ this.theme.business_card_image_title }}">
             </div>
             <nav>
                 <ul class="flex flex-col mb-2">
                     <li class="py-3 -mx-4 px-4 md:mx-0 md:px-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 pb-3 md:after:border-0 md:ml-1 md:pb-0">
-                        <a href="/" class="text-sm font-medium text-blue-800">{{'breadcrumbs_page_home'|_}}</a>
+                        <a href="/" class="text-sm font-medium text-blue-800 hover:text-blue-700 hover:underline active:text-blue-900 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800">{{'breadcrumbs_page_home'|_}}</a>
                     </li>
                     {% for arItemMenu in arMenuList if not arItemMenu.viewBag.isHidden %}
                         <li class="py-3 -mx-4 px-4 md:mx-0 md:px-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 pb-3 md:after:border-0 md:ml-1 md:pb-0">
-                            <a href="{{ arItemMenu.url }}" class="text-sm font-medium text-blue-800">{{ arItemMenu.title }}</a>
+                            <a href="{{ arItemMenu.url }}" class="text-sm font-medium text-blue-800 hover:text-blue-700 hover:underline active:text-blue-900 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800">{{ arItemMenu.title }}</a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -46,7 +49,7 @@ code = "navigation-main"
                 sHref='sign-in'
             %}
             <span class="flex justify-center text-sm">{{'text_no_account_not_others'|_}}&nbsp;
-                <a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href='sign-up'|page>{{'text_no_account_link_sign_up'|_}}</a>
+                <a class="text-blue-800 hover:text-blue-700 active:text-blue-900 underline hover:no-underline text-sm md:text-base focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:no-underline" href='sign-up'|page>{{'text_no_account_link_sign_up'|_}}</a>
             </span>
         {% endif %}
     {% endpartial %}
