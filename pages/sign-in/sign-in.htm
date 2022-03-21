@@ -48,7 +48,7 @@ function onInit()
                 id = 'password'
             %}
             <div class="mt-4 text-right">
-                <a href="{{ 'password-restore'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base">{{ 'link_password_restore'|_ }}</a>
+                <a href="{{ 'password-restore/password-restore'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base">{{ 'link_password_restore'|_ }}</a>
             </div>
             {% partial 'input-checkbox/input-checkbox'
                 sPartialClasses = 'mt-4 md:mt-3 flex items-center'
@@ -63,7 +63,7 @@ function onInit()
             %}
             {# TODO: Add inline ajax validation #}
         </form>
-        {% set text_no_account_link_sign_up = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~( 'sign-up'|page )~'">'~('text_no_account_link_sign_up'|_)~'</a>' %}
+        {% set text_no_account_link_sign_up = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~( 'sign-up/sign-up'|page )~'">'~('text_no_account_link_sign_up'|_)~'</a>' %}
         <span class="block text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">{{ 'text_no_account' | transRaw({text_no_account_link_sign_up: text_no_account_link_sign_up}) }}</span>
     </div>
 </div>

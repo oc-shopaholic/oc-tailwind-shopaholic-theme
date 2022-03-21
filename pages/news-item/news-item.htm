@@ -1,6 +1,6 @@
-title = "News Item"
 url = "/news/:article"
 layout = "main"
+title = "News Item"
 is_hidden = 0
 
 [ArticlePage]
@@ -12,12 +12,13 @@ skip_error = 0
 [ArticleList]
 sorting = "publish|desc"
 ==
+<?php
 function onInit()
 {
     $this['path_page_js'] = mix('assets/dist/js/news-item.js', 'themes/lovata-tailwind-shopaholic');
 
     $arBreadcrumbs = [
-        ['name' => 'News', 'url' => \Cms\Classes\Page::url('news-list', ['news' => false])],
+        ['name' => 'News', 'url' => \Cms\Classes\Page::url('news-list/news-list', ['news' => false])],
     ];
 
     $obNews = $this->ArticlePage->get();
