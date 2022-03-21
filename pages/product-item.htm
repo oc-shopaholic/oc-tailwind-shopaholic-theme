@@ -21,6 +21,28 @@ sorting = "no"
 
 [ProductData]
 ==
+<?php
+function onInit()
+{
+    $arBreadcrumbs = [
+        ['name' => 'Catalog', 'url' => \Cms\Classes\Page::url('product-list', ['category' => false])],
+    ];
+
+    $obCategory = $this->CategoryPage->get();
+    $obProductItem = $this->ProductPage->get();
+
+    if (!empty($obCategory)) {
+        $arBreadcrumbs[] = ['name' => $obCategory->name, 'url' => $obCategory->getPageUrl('product-list')];
+    }
+
+    if (!empty($obProductItem)) {
+        $arBreadcrumbs[] = ['name' => $obProductItem->name, 'url' => $obProductItem->getPageUrl('product-item')];
+    }
+
+    $this['arBreadcrumbs'] = $arBreadcrumbs;
+}
+?>
+==
 {##}
 
 {% set obProduct = ProductPage.get() %}

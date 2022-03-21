@@ -20,6 +20,12 @@ function onInit()
         $this->addComponent('Lovata\Buddies\Components\UserData', 'UserData', []);
         $this['obUser'] = $this->UserData->get();
     }
+
+    $arBreadcrumbs = [
+        ['name' => $this->page->title, 'url' => \Cms\Classes\Page::url('static', ['static' => false])],
+    ];
+
+    $this['arBreadcrumbs'] = $arBreadcrumbs;
 }
 function onStart()
 {

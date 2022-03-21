@@ -13,13 +13,24 @@ export default class offCanvas {
     this.$sScrollWidth = null;
     this.$sBackdrop = null;
     this.$sFocus = null;
+    this.test = null;
+    this.newRend = false;
+  }
+
+  onNewRend(){
+    this.newRend = this.$vNav.find('._offCanvasContainer').attr('data-type');
   }
 
   initOffCanvas(){
-    this.$vTemplateNav = this.$vNav.find("._offCanvasTemplate");
-    this.$vTemplate = this.$vTemplateNav[0].content.cloneNode(true);
-    $(this.$vTemplate).appendTo(this.$vNav);
-
+    if(this.newRend !== 'detach'){
+      this.$vTemplateNav = this.$vNav.find("._offCanvasTemplate");
+      this.$vTemplate = this.$vTemplateNav[0].content.cloneNode(true);
+      $(this.$vTemplate).appendTo(this.$vNav);
+      this.test = this.$vNav.find('._offCanvasContainer');
+      this.onNewRend();
+    }else{
+      $(this.test).appendTo(this.$vNav);
+    }
     this.$sDialog = document.querySelectorAll('._offCanvasContainer')[0];
     dialogPolyfill.registerDialog(this.$sDialog);
     this.$sDialog.showModal();
@@ -48,9 +59,6 @@ export default class offCanvas {
     $('body').append(div)
 
     let scrollWidth = div[0].offsetWidth - div[0].clientWidth;
-    console.log(scrollWidth)
-    console.log(div[0].offsetWidth)
-    console.log(div)
     div.remove();
 
     this.$sScrollWidth = scrollWidth;
@@ -136,7 +144,11 @@ export default class offCanvas {
       $('body').css('padding-right', '0')
       this.$sFocus.deactivate()
       this.$vOffCanvasRemove = this.$vNav.find('._offCanvasContainer');
-      this.$vOffCanvasRemove.remove();
+      if(this.newRend === 'detach'){
+        this.$vOffCanvasRemove.removeAttr('open').detach();
+      }else{
+        this.$vOffCanvasRemove.remove();
+      }
     }, 400);
   }
 
@@ -144,6 +156,10 @@ export default class offCanvas {
     $(this.$vNav).off();
     $(document).off();
     this.clear();
+  }
+
+  testik(){
+    console.log('okay boy')
   }
 
   clear(){

@@ -6,7 +6,17 @@ is_hidden = 0
 [ProductList]
 sorting = "no"
 ==
+<?php
+function onInit()
+{
+    $arBreadcrumbs = [
+        ['name' => 'Wish List', 'url' => \Cms\Classes\Page::url('wish-list', ['wish' => false])],
+    ];
 
+    $this['arBreadcrumbs'] = $arBreadcrumbs;
+}
+?>
+==
 {##}
 
 {% set arProductList = ProductList.make().active().wishList() %}
