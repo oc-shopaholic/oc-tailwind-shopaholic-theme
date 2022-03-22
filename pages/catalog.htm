@@ -111,14 +111,11 @@ function onInit() {
                     ->setPropertySetRelation($arProductPropertyList)
                     ->setModel(Lovata\Shopaholic\Models\Product::class)
                     ->setProductList($obProductList);
-                //TODO: подумать, стоит ли здесь использовать $obOfferList и $obOfferPropertyList,
-                //в $obOfferList могут попасть офферы от неактивных товаров, поэтому могут быть заведомо лишние свойства
-                $obOfferList = \Lovata\Shopaholic\Classes\Collection\OfferCollection::make()->active();
                 $obOfferPropertyList = \Lovata\FilterShopaholic\Classes\Collection\FilterPropertyCollection::make()
                     ->active()
                     ->setPropertySetRelation($arOfferPropertyList)
                     ->setModel(Lovata\Shopaholic\Models\Offer::class)
-                    ->setOfferList($obOfferList);
+                    ->setProductList($obProductList);
 
                 $arProductPropertyIdList = $obProductPropertyList->getIDList();
                 $arOfferPropertyIdList = $obOfferPropertyList->getIDList();
