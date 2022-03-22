@@ -149,12 +149,10 @@ function onInit() {
                 $arFilterValueWithoutProperty[$iPropertyID] = $arFilterValueTemp;
             }
 
-            if (!empty($obProductPropertyList)) {
-                $obProductList = $obProductList->copy()
-                    ->filterByProperty($arFilterValue, $obProductPropertyList)
-                    ->filterByProperty($arFilterValue, $obOfferPropertyList)
-                    ->filterByPrice($fMinPriceFilterValue, $fMaxPriceFilterValue);
-            }
+            $obProductList = $obProductList->copy()
+                ->filterByProperty($arFilterValue, $obProductPropertyList)
+                ->filterByProperty($arFilterValue, $obOfferPropertyList)
+                ->filterByPrice($fMinPriceFilterValue, $fMaxPriceFilterValue);
 
             $this['bShowFilter'] = true;
 
