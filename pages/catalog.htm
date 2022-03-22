@@ -161,17 +161,23 @@ function onInit() {
             $this['obProductPropertyList'] = $obProductPropertyList;
             $this['obOfferPropertyList'] = $obOfferPropertyList;
         }
+        $obProductList = $obProductList->copy()->filterByPrice($fMinPriceFilterValue, $fMaxPriceFilterValue);
 
         $arProductList = $obProductList->page($iPage, $this->Pagination->getCountPerPage());
         $iMaxPage = $this->Pagination->getMaxPage($obProductList->count());
         $iCount = $obProductList->count();
 
+        $this['fMinPriceFilterValue'] = $fMinPriceFilterValue;
+        $this['fMaxPriceFilterValue'] = $fMaxPriceFilterValue;
+
         $this['sActiveSorting'] = $sActiveSorting;
         $this['iPage'] = $iPage;
         $this['iCount'] = $iCount;
         $this['iMaxPage'] = $iMaxPage;
+
         $this['arProductList'] = $arProductList;
         $this['obProductList'] = $obProductList;
+
         $this['obActiveCategory'] = $obActiveCategoryItem;
         $this['obCategoryList'] = $this->CategoryList->make()->active();
     }
