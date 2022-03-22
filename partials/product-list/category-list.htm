@@ -1,0 +1,10 @@
+<section class="">
+    {% if obCategoryList.isNotEmpty() %}
+        <h2 class="text-gray-900 text-lg font-medium mb-3">Categories</h2>
+        <ul>
+            {% for obCategory in obCategoryList %}
+                <li><a href="{{ obCategory.getPageUrl() }}">{{ obCategory.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</section>

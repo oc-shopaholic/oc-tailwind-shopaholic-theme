@@ -1,0 +1,227 @@
+url = "/catalog/:category?*/:slug?"
+layout = "main"
+title = "Catalog"
+
+[CategoryPage MainCategoryPage]
+slug = "{{ :category }}"
+slug_required = 0
+smart_url_check = 1
+has_wildcard = 1
+skip_error = 1
+
+[CategoryPage]
+slug = "{{ :slug }}"
+slug_required = 0
+smart_url_check = 1
+has_wildcard = 0
+skip_error = 1
+
+[ProductPage]
+slug = "{{ :slug }}"
+slug_required = 0
+smart_url_check = 1
+skip_error = 1
+
+[Pagination]
+available_count_per_page = 24
+count_per_page = 15
+pagination_limit = 5
+active_class = "_act"
+button_list = "first,prev,main,next,last"
+first_button_limit = 3
+first-more_button_name = "..."
+first-more_button_limit = 1
+prev_button_name = "Prev"
+prev_button_limit = 1
+prev-more_button_name = "..."
+prev-more_button_limit = 1
+next-more_button_name = "..."
+next-more_button_limit = 1
+next_button_name = "Next"
+next_button_limit = 1
+last-more_button_name = "..."
+last-more_button_limit = 1
+last_button_limit = 3
+
+[ProductList]
+sorting = "popularity|desc"
+
+[CategoryList]
+==
+<?php
+function onInit() {
+    /** @var \Lovata\Shopaholic\Classes\Item\ProductItem $obProductItem */
+    /** @var \Lovata\Shopaholic\Classes\Item\CategoryItem $obCategoryItem */
+    /** @var \Lovata\Shopaholic\Classes\Item\CategoryItem $obMainCategoryItem */
+    /** @var \Lovata\Shopaholic\Classes\Collection\ProductCollection $obProductList */
+    /** @var \Lovata\Shopaholic\Classes\Collection\CategoryCollection $obCategoryList */
+    $obProductItem = $this->ProductPage->get();
+    $obCategoryItem = $this->CategoryPage->get();
+    $obMainCategoryItem = $this->MainCategoryPage->get();
+    $obActiveCategory = null;
+
+    if (!empty($this->param('slug')) && (empty($obProductItem)) && empty($obCategoryItem)) {
+        return $this->ProductPage->getErrorResponse();
+    }
+
+    if (!empty($this->param('category')) && empty($obMainCategoryItem)) {
+        return $this->CategoryPage->getErrorResponse();
+    }
+
+    if(!empty($obProductItem)) {
+        //Product item data
+        $this['obProduct'] = $obProductItem;
+    } else {
+        //Product list data
+        if (!empty($obMainCategoryItem) && empty($obCategoryItem)) {
+            $obCategoryItem = $obMainCategoryItem;
+        }
+
+        $sActiveSorting = $this->ProductList->getSorting();
+        $iPage = $this->Pagination->getPageFromRequest();
+
+        //Get price filter
+        $arPriceFilterValue = explode('|', input('price'));
+        $fMinPriceFilterValue = array_get($arPriceFilterValue, 0);
+        $fMaxPriceFilterValue = array_get($arPriceFilterValue, 1);
+
+        //Get filter by properties
+        $arFilterValue = (array) input('property');
+        if (!empty($arFilterValue)) {
+            foreach($arFilterValue as $sKey => &$sValue) {
+                $sValue = explode('|', $sValue);
+            }
+        }
+
+        $arFilterValueWithoutProperty = [];
+
+        $obProductList = $this->ProductList->make()->active()->sort($sActiveSorting);
+
+        if (!empty($obCategoryItem)) {
+            $obCategoryProductList = $obProductList->category($obCategoryItem->id, true);
+            $obProductPropertyList = $obCategoryItem->product_filter_property;
+            $obOfferPropertyList = $obCategoryItem->offer_filter_property;
+            $arProductPropertyIdList = !empty($obProductPropertyList) ? $obProductPropertyList->getIDList() : [];
+            $arOfferPropertyIdList = !empty($obOfferPropertyList) ? $obOfferPropertyList->getIDList() : [];
+        } else {
+            $obProductPropertyList = \Lovata\FilterShopaholic\Classes\Collection\FilterPropertyCollection::make()
+                ->active()
+                ->setModel(Lovata\Shopaholic\Models\Product::class)
+                ->setProductList($obProductList);
+            //TODO: подумать, стоит ли здесь использовать $obOfferList и $obOfferPropertyList,
+            //в $obOfferList могут попасть офферы от неактивных товаров, поэтому могут быть заведомо лишние свойства
+            $obOfferList = \Lovata\Shopaholic\Classes\Collection\OfferCollection::make()->active();
+            $obOfferPropertyList = \Lovata\FilterShopaholic\Classes\Collection\FilterPropertyCollection::make()
+                ->active()
+                ->setModel(Lovata\Shopaholic\Models\Offer::class)
+                ->setOfferList($obOfferList);
+
+            $arProductPropertyIdList = $obProductPropertyList->getIDList();
+            $arOfferPropertyIdList = $obOfferPropertyList->getIDList();
+        }
+
+        foreach($arProductPropertyIdList as $iPropertyID) {
+            $arFilterValueTemp = $arFilterValue;
+            if (isset($arFilterValueTemp[$iPropertyID])) {
+                unset($arFilterValueTemp[$iPropertyID]);
+            }
+
+            $arFilterValueWithoutProperty[$iPropertyID] = $arFilterValueTemp;
+        }
+
+        foreach($arOfferPropertyIdList as $iPropertyID) {
+            $arFilterValueTemp = $arFilterValue;
+            if (isset($arFilterValueTemp[$iPropertyID])) {
+                unset($arFilterValueTemp[$iPropertyID]);
+            }
+
+            $arFilterValueWithoutProperty[$iPropertyID] = $arFilterValueTemp;
+        }
+
+        if (!empty($obProductPropertyList)) {
+            $obProductList = $obProductList->copy()
+                ->filterByProperty($arFilterValue, $obProductPropertyList)
+                ->filterByProperty($arFilterValue, $obOfferPropertyList);
+        }
+
+        $iMaxPage = $this->Pagination->getMaxPage($obProductList->count());
+        $obActiveCategory = $obCategoryItem;
+
+        $arProductList = $obProductList->page($iPage, $this->Pagination->getCountPerPage());
+        $iMaxPage = $this->Pagination->getMaxPage($obProductList->count());
+        $iCount = $obProductList->count();
+
+        $this['sActiveSorting'] = $sActiveSorting;
+        $this['iPage'] = $iPage;
+        $this['iCount'] = $iCount;
+        $this['iMaxPage'] = $iMaxPage;
+        $this['arProductList'] = $arProductList;
+        $this['obProductList'] = $obProductList;
+        $this['arFilterValue'] = $arFilterValue;
+        $this['arFilterValueWithoutProperty'] = $arFilterValueWithoutProperty;
+        $this['obProductPropertyList'] = $obProductPropertyList;
+        $this['obOfferPropertyList'] = !empty($obOfferPropertyList) ? $obOfferPropertyList : [];
+        $this['obActiveCategory'] = $obActiveCategory;
+        $this['obCategoryList'] = $this->CategoryList->make()->active();
+    }
+
+    //Get breadcrumbs
+    $arBreadcrumbs = [];
+    if (!empty($obProductItem)) {
+        $arBreadcrumbs[] = [
+            'name'   => $obProductItem->name,
+            'url'    => $obProductItem->getPageUrl(),
+            'active' => true,
+        ];
+    }
+
+    $obCurrentCategory = !empty($obProductItem) ? $obProductItem->category : $obActiveCategory;
+
+    while (!empty($obCurrentCategory) && $obCurrentCategory->isNotEmpty()) {
+        $arBreadcrumbs[] = [
+            'name'   => $obCurrentCategory->name,
+            'url'    => $obCurrentCategory->getPageUrl(),
+            'active' => empty($obProductItem) && $obCurrentCategory->id == $obActiveCategory->id,
+        ];
+
+        $obCurrentCategory = $obCurrentCategory->parent;
+    }
+
+    $arBreadcrumbs[] = [
+        'name'   => $this->page->title,
+        'url'    => \Cms\Classes\Page::url($this->page->baseFileName, ['category' => false, 'slug' => false]),
+        'active' => empty($obProductItem) && empty($obActiveCategory),
+    ];
+
+    $this['arBreadcrumbs'] = array_reverse($arBreadcrumbs);
+}
+
+function onStart()
+{
+    //$this['path_page_js'] = mix('js/catalog.js', 'themes/lovata-tailwind-shopaholic/assets');
+    //$this['path_page_css'] = mix('css/catalog.css', 'themes/lovata-tailwind-shopaholic/assets');
+}
+?>
+==
+{% partial 'breadcrumbs/breadcrumbs' %} {# TODO: Fix wrong breadcrumbs #}
+
+{% if obProduct.isNotEmpty() %}
+    {# Product card #}
+    {% partial 'product-card/product-card' %}
+{% else %}
+    {# Product list #}
+    <div class="flex justify-between flex-col md:flex-row">
+        {% partial 'product-list/filter/filter' %}
+        <div class="w-full">
+            <!-- <div class="flex items-center justify-between mb-5 md:mb-16 md:justify-end">
+                <p class="cursor-pointer">Sort by:&nbsp; &nbsp; &nbsp; Price Low to High</p>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M5.29279 7.29296C5.48031 7.10549 5.73462 7.00017 5.99979 7.00017C6.26495 7.00017 6.51926 7.10549 6.70679 7.29296L9.99979 10.586L13.2928 7.29296C13.385 7.19745 13.4954 7.12127 13.6174 7.06886C13.7394 7.01645 13.8706 6.98886 14.0034 6.98771C14.1362 6.98655 14.2678 7.01186 14.3907 7.06214C14.5136 7.11242 14.6253 7.18667 14.7192 7.28056C14.8131 7.37446 14.8873 7.48611 14.9376 7.60901C14.9879 7.7319 15.0132 7.86358 15.012 7.99636C15.0109 8.12914 14.9833 8.26036 14.9309 8.38236C14.8785 8.50437 14.8023 8.61471 14.7068 8.70696L10.7068 12.707C10.5193 12.8944 10.2649 12.9997 9.99979 12.9997C9.73462 12.9997 9.48031 12.8944 9.29279 12.707L5.29279 8.70696C5.10532 8.51943 5 8.26512 5 7.99996C5 7.7348 5.10532 7.48049 5.29279 7.29296Z"
+                        fill="#374151" />
+                </svg>
+            </div> -->
+            {% partial 'product-list/product-list' %}
+        </div>
+    </div>
+{% endif %}

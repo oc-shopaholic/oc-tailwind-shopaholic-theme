@@ -1,3 +1,5 @@
+{% partial 'product-list/category-list' %}
+
 <div class="flex justify-between mb-5 md:hidden">
     <button class="flex border border-gray-300 py-3 pr-8 pl-3 mr-2 rounded items-center">
         <svg class="mr-4" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,7 +57,7 @@
                                 {% set obPropertyValueList = obProperty.property_value.sort() %}
                                 {% for obValue in obPropertyValueList %}
                                     {% set bChecked = arFilterValue[obProperty.id] is not empty and obValue.slug in arFilterValue[obProperty.id] %}
-                                    
+
                                     {% partial 'input-checkbox/input-checkbox'
                                     sLabelText = 'Show only discount products'
                                     sPartialClasses = 'flex items-center mb-3 mx-4'
@@ -101,7 +103,7 @@
                                             <legend class="sr-only">{{ obProperty.name }}</legend>
                                             {% for obValue in obPropertyValueList %}
                                                 {% set bChecked = arFilterValue[obProperty.id] is not empty and obValue.slug in arFilterValue[obProperty.id] %}
-            
+
                                                 {% partial 'input-checkbox/input-checkbox'
                                                     sLabelText = obValue.value
                                                     sPartialClasses = 'flex items-center mb-4'
@@ -118,7 +120,7 @@
                                             <legend class="sr-only">{{ obProperty.name }}</legend>
                                             {% for obValue in obPropertyValueList %}
                                                 {% set bChecked = arFilterValue[obProperty.id] is not empty and obValue.slug in arFilterValue[obProperty.id] %}
-            
+
                                                 {% if obValue.value == 'White' %}
                                                     {% set test = 'rounded bg-white w-12 h-12 text-white !mr-0 !border-gray-300 checked:bg-45 checked:bg-test' %}
                                                 {% elseif obValue.value == 'Gray' %}
@@ -140,7 +142,7 @@
                                                 {% elseif obValue.value == 'Brown' %}
                                                     {% set test = 'rounded bg-yellow-900 w-12 h-12 text-yellow-900 !mr-0 border-0 checked:bg-75 checked:border-0' %}
                                                 {% endif %}
-                                                
+
                                                 {% partial 'input-checkbox/input-checkbox'
                                                     sLabelText = obValue.value
                                                     sPartialClasses = 'w-max flex flex-col items-center mb-4 mr-3'
@@ -217,7 +219,7 @@
                     </div>
                 {% endfor %}
             </details>
-        
+
             {% for obProperty in obProductPropertyList if obProperty.hasValue() and obProperty.name != 'Sale' %}
                 <details>
                     <summary class="text-base font-medium text-gray-900 cursor-pointer mb-4 focus:outline-none focus:text-blue-800 focus:border-solid focus:border focus:border-blue-800 focus:no-underline">
@@ -288,7 +290,7 @@
                                         {% elseif obValue.value == 'Brown' %}
                                             {% set test = 'rounded bg-yellow-900 w-9 h-9 text-yellow-900 !mr-0 border-0 checked:bg-75 checked:border-0' %}
                                         {% endif %}
-                                        
+
                                         {% partial 'input-checkbox/input-checkbox'
                                             sLabelText = obValue.value
                                             sPartialClasses = 'w-max flex flex-col items-center mb-4 mr-2'
