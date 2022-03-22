@@ -51,16 +51,16 @@ sorting = "popularity|desc"
 <?php
 function onInit() {
     /** @var \Lovata\Shopaholic\Classes\Item\ProductItem $obProductItem */
-    /** @var \Lovata\Shopaholic\Classes\Item\CategoryItem $obCategoryItem */
+    /** @var \Lovata\Shopaholic\Classes\Item\CategoryItem $obActiveCategoryItem */
     /** @var \Lovata\Shopaholic\Classes\Item\CategoryItem $obMainCategoryItem */
     /** @var \Lovata\Shopaholic\Classes\Collection\ProductCollection $obProductList */
     /** @var \Lovata\Shopaholic\Classes\Collection\CategoryCollection $obCategoryList */
     $obProductItem = $this->ProductPage->get();
-    $obCategoryItem = $this->CategoryPage->get();
+    $obActiveCategoryItem = $this->CategoryPage->get();
     $obMainCategoryItem = $this->MainCategoryPage->get();
     $obActiveCategory = null;
 
-    if (!empty($this->param('slug')) && (empty($obProductItem)) && empty($obCategoryItem)) {
+    if (!empty($this->param('slug')) && (empty($obProductItem)) && empty($obActiveCategoryItem)) {
         return $this->ProductPage->getErrorResponse();
     }
 
@@ -73,79 +73,97 @@ function onInit() {
         $this['obProduct'] = $obProductItem;
     } else {
         //Product list data
-        if (!empty($obMainCategoryItem) && empty($obCategoryItem)) {
-            $obCategoryItem = $obMainCategoryItem;
+        $obPluginManager = \System\Classes\PluginManager::instance();
+
+        if (!empty($obMainCategoryItem) && empty($obActiveCategoryItem)) {
+            $obActiveCategoryItem = $obMainCategoryItem;
         }
 
         $sActiveSorting = $this->ProductList->getSorting();
         $iPage = $this->Pagination->getPageFromRequest();
 
-        //Get price filter
-        $arPriceFilterValue = explode('|', input('price'));
-        $fMinPriceFilterValue = array_get($arPriceFilterValue, 0);
-        $fMaxPriceFilterValue = array_get($arPriceFilterValue, 1);
-
-        //Get filter by properties
-        $arFilterValue = (array) input('property');
-        if (!empty($arFilterValue)) {
-            foreach($arFilterValue as $sKey => &$sValue) {
-                $sValue = explode('|', $sValue);
-            }
-        }
-
-        $arFilterValueWithoutProperty = [];
-
+        //Get product list
         $obProductList = $this->ProductList->make()->active()->sort($sActiveSorting);
 
-        if (!empty($obCategoryItem)) {
-            $obCategoryProductList = $obProductList->category($obCategoryItem->id, true);
-            $obProductPropertyList = $obCategoryItem->product_filter_property;
-            $obOfferPropertyList = $obCategoryItem->offer_filter_property;
-            $arProductPropertyIdList = !empty($obProductPropertyList) ? $obProductPropertyList->getIDList() : [];
-            $arOfferPropertyIdList = !empty($obOfferPropertyList) ? $obOfferPropertyList->getIDList() : [];
-        } else {
-            $obProductPropertyList = \Lovata\FilterShopaholic\Classes\Collection\FilterPropertyCollection::make()
-                ->active()
-                ->setModel(Lovata\Shopaholic\Models\Product::class)
-                ->setProductList($obProductList);
-            //TODO: подумать, стоит ли здесь использовать $obOfferList и $obOfferPropertyList,
-            //в $obOfferList могут попасть офферы от неактивных товаров, поэтому могут быть заведомо лишние свойства
-            $obOfferList = \Lovata\Shopaholic\Classes\Collection\OfferCollection::make()->active();
-            $obOfferPropertyList = \Lovata\FilterShopaholic\Classes\Collection\FilterPropertyCollection::make()
-                ->active()
-                ->setModel(Lovata\Shopaholic\Models\Offer::class)
-                ->setOfferList($obOfferList);
-
-            $arProductPropertyIdList = $obProductPropertyList->getIDList();
-            $arOfferPropertyIdList = $obOfferPropertyList->getIDList();
+        //Get category product list
+        if (!empty($obActiveCategoryItem)) {
+            $obProductList = $obProductList->category($obActiveCategoryItem->id, true);
         }
 
-        foreach($arProductPropertyIdList as $iPropertyID) {
-            $arFilterValueTemp = $arFilterValue;
-            if (isset($arFilterValueTemp[$iPropertyID])) {
-                unset($arFilterValueTemp[$iPropertyID]);
+        //Get filters
+        if ($obPluginManager->exists('Lovata.FilterShopaholic')) {
+            //Get price filter
+            $arPriceFilterValue = explode('|', input('price'));
+            $fMinPriceFilterValue = array_get($arPriceFilterValue, 0);
+            $fMaxPriceFilterValue = array_get($arPriceFilterValue, 1);
+
+            if(!empty($obActiveCategoryItem)) {
+                $obProductPropertyList = $obActiveCategoryItem->product_filter_property;
+                $obOfferPropertyList = $obActiveCategoryItem->offer_filter_property;
+                $arProductPropertyIdList = $obProductPropertyList->getIDList();
+                $arOfferPropertyIdList = $obOfferPropertyList->getIDList();
+            } else {
+                $obPropertySetCollection = \Lovata\PropertiesShopaholic\Classes\Collection\PropertySetCollection::make()->sort();
+                $arProductPropertyList = $obPropertySetCollection->getProductPropertyList();
+                $arOfferPropertyList = $obPropertySetCollection->getOfferPropertyList();
+                $obProductPropertyList = \Lovata\FilterShopaholic\Classes\Collection\FilterPropertyCollection::make()
+                    ->active()
+                    ->setPropertySetRelation($arProductPropertyList)
+                    ->setModel(Lovata\Shopaholic\Models\Product::class)
+                    ->setProductList($obProductList);
+                //TODO: подумать, стоит ли здесь использовать $obOfferList и $obOfferPropertyList,
+                //в $obOfferList могут попасть офферы от неактивных товаров, поэтому могут быть заведомо лишние свойства
+                $obOfferList = \Lovata\Shopaholic\Classes\Collection\OfferCollection::make()->active();
+                $obOfferPropertyList = \Lovata\FilterShopaholic\Classes\Collection\FilterPropertyCollection::make()
+                    ->active()
+                    ->setPropertySetRelation($arOfferPropertyList)
+                    ->setModel(Lovata\Shopaholic\Models\Offer::class)
+                    ->setOfferList($obOfferList);
+
+                $arProductPropertyIdList = $obProductPropertyList->getIDList();
+                $arOfferPropertyIdList = $obOfferPropertyList->getIDList();
             }
 
-            $arFilterValueWithoutProperty[$iPropertyID] = $arFilterValueTemp;
-        }
+            //Get filter by properties
+            $arFilterValue = (array) input('property');
 
-        foreach($arOfferPropertyIdList as $iPropertyID) {
-            $arFilterValueTemp = $arFilterValue;
-            if (isset($arFilterValueTemp[$iPropertyID])) {
-                unset($arFilterValueTemp[$iPropertyID]);
+            if (!empty($arFilterValue)) {
+                foreach($arFilterValue as $sKey => &$sValue) {
+                    $sValue = explode('|', $sValue);
+                }
             }
 
-            $arFilterValueWithoutProperty[$iPropertyID] = $arFilterValueTemp;
-        }
+            $arFilterValueWithoutProperty = [];
 
-        if (!empty($obProductPropertyList)) {
-            $obProductList = $obProductList->copy()
-                ->filterByProperty($arFilterValue, $obProductPropertyList)
-                ->filterByProperty($arFilterValue, $obOfferPropertyList);
-        }
+            foreach($arProductPropertyIdList as $iPropertyID) {
+                $arFilterValueTemp = $arFilterValue;
+                if (isset($arFilterValueTemp[$iPropertyID])) {
+                    unset($arFilterValueTemp[$iPropertyID]);
+                }
 
-        $iMaxPage = $this->Pagination->getMaxPage($obProductList->count());
-        $obActiveCategory = $obCategoryItem;
+                $arFilterValueWithoutProperty[$iPropertyID] = $arFilterValueTemp;
+            }
+
+            foreach($arOfferPropertyIdList as $iPropertyID) {
+                $arFilterValueTemp = $arFilterValue;
+                if (isset($arFilterValueTemp[$iPropertyID])) {
+                    unset($arFilterValueTemp[$iPropertyID]);
+                }
+
+                $arFilterValueWithoutProperty[$iPropertyID] = $arFilterValueTemp;
+            }
+
+            if (!empty($obProductPropertyList)) {
+                $obProductList = $obProductList->copy()
+                    ->filterByProperty($arFilterValue, $obProductPropertyList)
+                    ->filterByProperty($arFilterValue, $obOfferPropertyList);
+            }
+
+            $this['arFilterValue'] = $arFilterValue;
+            $this['arFilterValueWithoutProperty'] = $arFilterValueWithoutProperty;
+            $this['obProductPropertyList'] = $obProductPropertyList;
+            $this['obOfferPropertyList'] = $obOfferPropertyList;
+        }
 
         $arProductList = $obProductList->page($iPage, $this->Pagination->getCountPerPage());
         $iMaxPage = $this->Pagination->getMaxPage($obProductList->count());
@@ -157,11 +175,7 @@ function onInit() {
         $this['iMaxPage'] = $iMaxPage;
         $this['arProductList'] = $arProductList;
         $this['obProductList'] = $obProductList;
-        $this['arFilterValue'] = $arFilterValue;
-        $this['arFilterValueWithoutProperty'] = $arFilterValueWithoutProperty;
-        $this['obProductPropertyList'] = $obProductPropertyList;
-        $this['obOfferPropertyList'] = !empty($obOfferPropertyList) ? $obOfferPropertyList : [];
-        $this['obActiveCategory'] = $obActiveCategory;
+        $this['obActiveCategory'] = $obActiveCategoryItem;
         $this['obCategoryList'] = $this->CategoryList->make()->active();
     }
 
@@ -175,13 +189,13 @@ function onInit() {
         ];
     }
 
-    $obCurrentCategory = !empty($obProductItem) ? $obProductItem->category : $obActiveCategory;
+    $obCurrentCategory = !empty($obProductItem) ? $obProductItem->category : $obActiveCategoryItem;
 
     while (!empty($obCurrentCategory) && $obCurrentCategory->isNotEmpty()) {
         $arBreadcrumbs[] = [
             'name'   => $obCurrentCategory->name,
             'url'    => $obCurrentCategory->getPageUrl(),
-            'active' => empty($obProductItem) && $obCurrentCategory->id == $obActiveCategory->id,
+            'active' => empty($obProductItem) && $obCurrentCategory->id == $obActiveCategoryItem->id,
         ];
 
         $obCurrentCategory = $obCurrentCategory->parent;
@@ -189,8 +203,8 @@ function onInit() {
 
     $arBreadcrumbs[] = [
         'name'   => $this->page->title,
-        'url'    => \Cms\Classes\Page::url($this->page->baseFileName, ['category' => false, 'slug' => false]),
-        'active' => empty($obProductItem) && empty($obActiveCategory),
+        'url'    => $this->pageUrl($this->page->baseFileName, false),
+        'active' => empty($obProductItem) && empty($obActiveCategoryItem),
     ];
 
     $this['arBreadcrumbs'] = array_reverse($arBreadcrumbs);
