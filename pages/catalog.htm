@@ -153,22 +153,24 @@ function onInit() {
             if (!empty($obProductPropertyList)) {
                 $obProductList = $obProductList->copy()
                     ->filterByProperty($arFilterValue, $obProductPropertyList)
-                    ->filterByProperty($arFilterValue, $obOfferPropertyList);
+                    ->filterByProperty($arFilterValue, $obOfferPropertyList)
+                    ->filterByPrice($fMinPriceFilterValue, $fMaxPriceFilterValue);
             }
+
+            $this['bShowFilter'] = true;
+
+            $this['fMinPriceFilterValue'] = $fMinPriceFilterValue;
+            $this['fMaxPriceFilterValue'] = $fMaxPriceFilterValue;
 
             $this['arFilterValue'] = $arFilterValue;
             $this['arFilterValueWithoutProperty'] = $arFilterValueWithoutProperty;
             $this['obProductPropertyList'] = $obProductPropertyList;
             $this['obOfferPropertyList'] = $obOfferPropertyList;
         }
-        $obProductList = $obProductList->copy()->filterByPrice($fMinPriceFilterValue, $fMaxPriceFilterValue);
 
         $arProductList = $obProductList->page($iPage, $this->Pagination->getCountPerPage());
         $iMaxPage = $this->Pagination->getMaxPage($obProductList->count());
         $iCount = $obProductList->count();
-
-        $this['fMinPriceFilterValue'] = $fMinPriceFilterValue;
-        $this['fMaxPriceFilterValue'] = $fMaxPriceFilterValue;
 
         $this['sActiveSorting'] = $sActiveSorting;
         $this['iPage'] = $iPage;
@@ -228,7 +230,9 @@ function onStart()
 {% else %}
     {# Product list #}
     <div class="flex justify-between flex-col md:flex-row">
-        {% partial 'product-list/filter/filter' %}
+        {% if bShowFilter %}
+            {% partial 'product-list/filter/filter' %}
+        {% endif %}
         <div class="w-full">
             <!-- <div class="flex items-center justify-between mb-5 md:mb-16 md:justify-end">
                 <p class="cursor-pointer">Sort by:&nbsp; &nbsp; &nbsp; Price Low to High</p>
