@@ -1,4 +1,4 @@
-<div class="gallery-overlay absolute w-full h-full top-0 left-0 z-10 flex flex-row items-center hidden">
+<div class="gallery-overlay bg-gray-900 bg-opacity-50 absolute w-full h-full top-0 left-0 z-10 flex flex-row items-center hidden">
     <div class="gallery-popup swiper-container mx-auto overflow-hidden">
         <ul class="swiper-wrapper">
             {% for obImage in arImages %}
@@ -10,16 +10,16 @@
             </li>
             {% endfor %}
         </ul>
-        <div class="swiper-button-next bg-white w-16 h-16 rounded">
+        <button class="swiper-button-next bg-opacity-40 bg-white w-16 h-16 rounded">
             <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M0.66963 15.5313C0.369677 15.2313 0.201172 14.8244 0.201172 14.4001C0.201172 13.9759 0.369677 13.569 0.66963 13.2689L5.93843 8.00011L0.66963 2.73131C0.378178 2.42955 0.216906 2.02539 0.220551 1.60587C0.224197 1.18636 0.392467 0.785058 0.68912 0.488405C0.985773 0.191752 1.38707 0.0234813 1.80659 0.0198359C2.2261 0.0161904 2.63027 0.177462 2.93203 0.468915L9.33203 6.86892C9.63198 7.16896 9.80049 7.57585 9.80049 8.00011C9.80049 8.42438 9.63198 8.83127 9.33203 9.13132L2.93203 15.5313C2.63199 15.8313 2.22509 15.9998 1.80083 15.9998C1.37657 15.9998 0.969675 15.8313 0.66963 15.5313Z" fill="#111827"/>
             </svg>
-        </div>
-        <div class="swiper-button-prev bg-white w-16 h-16 rounded">
+        </button>
+        <button class="swiper-button-prev bg-opacity-40 bg-white w-16 h-16 rounded">
             <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M9.33105 0.468703C9.63101 0.768747 9.79951 1.17564 9.79951 1.5999C9.79951 2.02416 9.63101 2.43106 9.33105 2.7311L4.06225 7.9999L9.33105 13.2687C9.62251 13.5705 9.78378 13.9746 9.78013 14.3941C9.77649 14.8137 9.60822 15.215 9.31156 15.5116C9.01491 15.8083 8.61361 15.9765 8.1941 15.9802C7.77458 15.9838 7.37042 15.8226 7.06865 15.5311L0.668654 9.1311C0.3687 8.83106 0.200195 8.42416 0.200195 7.9999C0.200195 7.57564 0.3687 7.16875 0.668654 6.8687L7.06865 0.468703C7.3687 0.168749 7.77559 0.000244141 8.19985 0.000244141C8.62412 0.000244141 9.03101 0.168749 9.33105 0.468703Z" fill="#111827"/>
             </svg>
-        </div>
+        </button>
     </div>
     <div class="absolute top-0 right-0 flex flex-row justify-between items-center z-10 w-72 h-16 bg-white py-3.5 px-7">
         <span class="text-2xl text-gray-600">1&nbsp;/&nbsp;9</span>
@@ -42,16 +42,8 @@
 </div>
 
 <style>
-    .gallery-overlay {
-        --tw-bg-opacity: 0.5;
-        background-color: rgba(17, 24, 39, var(--tw-bg-opacity));
-    }
     .gallery-overlay .swiper-slide-container {
         -webkit-box-pack: center;
-    }
-    .swiper-button-prev, .swiper-button-next {
-        --tw-bg-opacity: 0.4;
-        background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
     }
    .swiper-button-prev::after, .swiper-button-next::after {
         content: none;

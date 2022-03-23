@@ -1,0 +1,50 @@
+<div class="flex flex-row items-center space-x-6 mt-7 text-base">
+    <div class="w-23 h-23 rounded" style="
+        background-image: url('{{ obProduct.images[0].path }}');
+        background-size: cover;
+    "></div>
+    <div class="flex flex-col">
+        <p>{{ obProduct.name }}</p>
+        <p>Model number: {{ modelNumber }}</p>
+    </div>
+</div>
+
+{% partial 'product-item/customer-ratings'
+    obProduct = obProduct
+    rating = rating
+    customersTotal = customersTotal
+    customersRecommended = customersRecommended
+    customersVoted = customersVoted
+%}
+
+<!-- Reviews -->
+<button class="font-bold text-blue-800 border-2 rounded border-blue-800 my-8 py-3 px-16">
+    Write a review
+</button>
+
+<div class="flex flex-row items-center justify-between mt-3 mb-5 text-base text-gray-600">
+    {{ arReviews|length }} reviews
+    <div class="flex flex-row">
+        Sort by:
+        <ul id="sort-reviews" class="ml-2">
+            <li id="sort-reviews-desc">
+                <button class="flex flex-row items-center">
+                    <span class="mr-3">Newest to oldest</span>
+                    {% partial 'button/arrow' %}
+                </button>
+            </li>
+            <li id="sort-reviews-asc" class="hidden">
+                <button class="flex flex-row items-center">
+                    <span class="mr-3">Oldest to newest</span>
+                    {% partial 'button/arrow' rotate = 180 %}
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{% partial 'product-item/reviews-list' arReviews = arReviews %}
+
+<button class="font-bold text-blue-800 border-2 rounded border-blue-800 mt-4 py-3 px-16">
+    Read more
+</button>

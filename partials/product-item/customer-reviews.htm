@@ -1,38 +1,6 @@
-<div class="w-full">
+<section class="md:w-1/2 flex flex-col">
     <h1 class="text-gray-900 text-2xl font-medium uppercase mb-5">Customer Reviews</h1>
-    <ul>
-        {% for obReview in arReviews %}
-        <li class="flex flex-col mb-5">
-            <div class="flex flex-row mb-3">
-                <img src="{{ obReview.ava }}" class="mr-4" />
-                <div class="flex flex-col">
-                    <div class="flex flex-row mb-1.5">
-                        <span class="mr-4 font-bold">{{ obReview.username }}</span>
-                        <span class="text-gray-600">{{ obReview.date }}</span>
-                    </div>
-                    <div class="flex flex-row space-x-1">
-                        {% for i in range(1, 5) %}
-                            {% if (i <= obReview.rating) %}
-                                {% set fill = 'F59E0B' %}
-                            {% else %}
-                                {% set fill = 'D1D5DB' %}
-                            {% endif %}
-                            {% partial 'product-item/star' fill=fill width=16 height=16 %}
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-            <div>
-                {% if (obReview.stars > 3) %}
-                    <p class="mb-1 font-bold">Jannet recommended this item</p>
-                {% endif %}
-                <p class="text-gray-600">
-                    {{ obReview.text }}
-                </p>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
+    {% partial 'product-item/reviews-list' arReviews = arReviews %}
     <button class="flex flex-row items-center text-blue-800" id="show-more-reviews">
         <span class="mr-2">Read more reviews</span>
         <svg width="8" height="12" viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,4 +10,4 @@
     <button class="font-bold text-blue-800 border-2 rounded border-blue-800 mt-8 py-3 px-16">
         Write a review
     </button>
-</div>
+</section>

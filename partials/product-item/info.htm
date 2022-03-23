@@ -1,47 +1,45 @@
-<div class="w-full">
-    <nav class="flex flex-row justify-start space-x-8 tab-nav text-xl border-b-2 border-gray-200 mb-5">
-        <button class="px-0.5 pb-4 border-b-4 border-blue-800" data-tab="details">Details</button>
-        <button class="px-0.5 pb-4" data-tab="shipping">Shipping & Returns</button>
-    </nav>
-    <div id="tab-details" class="tab flex md:flex-row">
-        <div class="md:w-1/2">
-            <b>Product measurements:</b>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>Height</td>
-                        <td class="pl-1.5">39 cm</td>
-                    </tr>
-                    <tr>
-                        <td>Width</td>
-                        <td class="pl-1.5">10 cm</td>
-                    </tr>
-                    <tr>
-                        <td>Depth</td>
-                        <td class="pl-1.5">2 cm</td>
-                    </tr>
-                    <tr>
-                        <td>Weight</td>
-                        <td class="pl-1.5">1,5 kg</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="md:w-1/2">
-            <b>Materials:</b>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>Iron</td>
-                        <td class="pl-1.5">100%</td>
-                    </tr>
-                    <tr>
-                        <td>Brass</td>
-                        <td class="pl-1.5">100%</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div id="tab-shipping" class="tab flex md:flex-row hidden"></div>
-</div>
+<nav class="flex flex-row justify-start space-x-8 tab-nav text-xl border-b-2 border-gray-200 mt-10 mb-5">
+    <button class="px-0.5 pb-4 border-b-4 border-blue-800" data-tab="details">Details</button>
+    <button class="px-0.5 pb-4" data-tab="shipping">Shipping & Returns</button>
+</nav>
+<ul id="tab-details" class="tab flex md:flex-row">
+    <li class="md:w-1/2">
+        <b>Product measurements:</b>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Height</td>
+                    <td class="pl-1.5">39 cm</td>
+                </tr>
+                <tr>
+                    <td>Width</td>
+                    <td class="pl-1.5">10 cm</td>
+                </tr>
+                <tr>
+                    <td>Depth</td>
+                    <td class="pl-1.5">2 cm</td>
+                </tr>
+                <tr>
+                    <td>Weight</td>
+                    <td class="pl-1.5">1,5 kg</td>
+                </tr>
+            </tbody>
+        </table>
+    </li>
+    <li class="md:w-1/2">
+        <b>Materials:</b>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Iron</td>
+                    <td class="pl-1.5">100%</td>
+                </tr>
+                <tr>
+                    <td>Brass</td>
+                    <td class="pl-1.5">100%</td>
+                </tr>
+            </tbody>
+        </table>
+    </li>
+</ul>
+<div id="tab-shipping" class="tab flex md:flex-row hidden"></div>

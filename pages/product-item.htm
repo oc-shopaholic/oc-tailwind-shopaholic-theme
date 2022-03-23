@@ -24,51 +24,98 @@ sorting = "no"
 {##}
 
 {% set obProduct = ProductPage.get() %}
+{% set arReviews = [
+    {
+        "username": "Jannet Tan",
+        "date": "1 day ago",
+        "text": "I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!",
+        "ava": "/storage/app/uploads/public/0a1/faa/684/user-photo-1.png",
+        "rating": 5,
+    },
+    {
+        "username": "Nik Wansky",
+        "date": "4 month ago",
+        "text": "I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!",
+        "ava": "/storage/app/uploads/public/0a1/faa/684/user-photo-2.png",
+        "rating": 4,
+    },
+    {
+        "username": "Jannet Tan",
+        "date": "1 year ago",
+        "text": "I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!",
+        "ava": "/storage/app/uploads/public/0a1/faa/684/user-photo-3.png",
+        "rating": 3,
+    },
+] %}
 
 {% partial 'breadcrumbs/breadcrumbs' %} {# TODO: Fix wrong breadcrumbs #}
+
+{% set rating = 3.7 %}
+{% set ratings = 18 %}
+{% set customersTotal = 52 %}
+{% set customersRecommended = 45 %}
+{% set customersVoted = {
+    1: 16,
+    2: 9,
+    3: 18,
+    4: 21,
+    5: 54,
+} %}
+
+{% set content %}
+    {% partial 'product-item/customer-reviews-and-ratings'
+        obProduct=obProduct
+        rating = rating
+        customersTotal = customersTotal
+        customersRecommended = customersRecommended
+        customersVoted = customersVoted
+        arReviews = arReviews
+        modelNumber = 501480005082
+    %}
+{% endset %}
 
 <div class="w-full flex flex-col">
     <div class="w-full flex flex-row space-x-16">
         <div class="md:w-1/2 flex flex-col">
-            {% partial 'product-item/gallery' arImages=obProduct.images %}
-            {% partial 'product-item/gallery-popup' arImages=obProduct.images %}
-            {% partial 'product-item/description' stDescription=obProduct.description %}
-            {% partial 'product-item/info' obInfo=obProduct.info %}
+            {% partial 'product-item/gallery' arImages = obProduct.images %}
+            {% partial 'product-item/gallery-popup' arImages = obProduct.images %}
+            {% partial 'product-item/description' stDescription = obProduct.description %}
+            {% partial 'product-item/info' obInfo = obProduct.info %}
         </div>
-        <div class="md:w-1/2 flex flex-col">
-            {% partial 'product-item/options' obProduct=obProduct %}
-        </div>
+        <section class="md:w-1/2 flex flex-col">
+            {% partial 'product-item/options'
+                obProduct = obProduct
+                rating = rating
+                ratings = ratings
+            %}
+        </section>
     </div>
     <div class="w-full flex flex-row space-x-16 mt-10">
-        <div class="md:w-1/2 flex flex-col">
-            {% partial 'product-item/customer-reviews' arReviews=[
-                {
-                    "username": "Jannet Tan",
-                    "date": "1 day ago",
-                    "text": "I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!",
-                    "ava": "/storage/app/uploads/public/0a1/faa/684/user-photo-1.png",
-                    "rating": 5,
-                },
-                {
-                    "username": "Nik Wansky",
-                    "date": "4 month ago",
-                    "text": "I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!",
-                    "ava": "/storage/app/uploads/public/0a1/faa/684/user-photo-2.png",
-                    "rating": 4,
-                },
-                {
-                    "username": "Jannet Tan",
-                    "date": "1 year ago",
-                    "text": "I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!",
-                    "ava": "/storage/app/uploads/public/0a1/faa/684/user-photo-3.png",
-                    "rating": 3,
-                },
-            ] %}
-        </div>
-        <div class="md:w-1/2 flex flex-col">
-            {% partial 'product-item/customer-ratings' obProduct=obProduct %}
-        </div>
+        {% partial 'product-item/customer-reviews' arReviews = arReviews %}
+        <section class="md:w-1/2 flex flex-col">
+            <h1 class="text-gray-900 text-2xl font-medium uppercase mb-5">Customer ratings</h1>
+            {% partial 'product-item/customer-ratings'
+                obProduct = obProduct
+                rating = rating
+                customersTotal = customersTotal
+                customersRecommended = customersRecommended
+                customersVoted = customersVoted
+            %}
+        </section>
     </div>
+</div>
+
+<div class="_container-nav">
+    <!--<button class="_show font-bold text-blue-800 border-2 rounded border-blue-800 mt-8 py-3 px-16">
+        show customer ratings
+    </button>-->
+    {% partial 'sidebar/sidebar'
+        content = content
+        side = 'right'
+        buttonMobile = true
+        heading = 'Customer reviews & ratings'
+        bg = 'bg-gray-50'
+    %}
 </div>
 
 {% if this.theme.has_viewed_products %}

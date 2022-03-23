@@ -1,8 +1,6 @@
-{% set rating = 3.7 %}
-{% set ratings = 18 %}
 <h1 class="text-gray-900 text-3xl uppercase">{{ obProduct.name }}</h1>
 <div class="flex flex-row items-center space-x-4 mt-3 text-gray-600 text-base">
-    {% partial 'product-item/rating' rating=rating %}
+    {% partial 'product-item/rating' rating = rating %}
     <div>
         ({{ rating }})
     </div>
@@ -22,33 +20,31 @@
     </div>
 </div>
 <div class="flex flex-col mb-12">
-    <div>
-        Colors
-    </div>
-    <div class="flex flex-row space-x-2 mt-2 text-xs text-gray-600">
-        <div class="flex flex-col items-center space-y-1">
+    Colors
+    <ul class="flex flex-row space-x-2 mt-2 text-xs text-gray-600">
+        <li class="flex flex-col items-center space-y-1">
             <img class="w-9 h-9" src="/storage/app/media/content/color-1.png"/>
             <span>Silver</span>
-        </div>
-        <div class="flex flex-col items-center space-y-1">
+        </li>
+        <li class="flex flex-col items-center space-y-1">
             <img class="w-9 h-9" src="/storage/app/media/content/color-2.png"/>
             <span>Gold</span>
-        </div>
-    </div>
+        </li>
+    </ul>
     <div class="flex flex-row items-center space-x-2 mt-12">
-        <div class="flex flex-row justify-center items-center bg-gray-200 w-9 h-9">
+        <button class="flex flex-row justify-center items-center bg-gray-200 w-9 h-9" id="minus-btn">
             <svg width="18" height="4" viewBox="0 0 18 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M0.599609 1.99999C0.599609 1.68173 0.726038 1.3765 0.951081 1.15146C1.17612 0.926416 1.48135 0.799988 1.79961 0.799988H16.1996C16.5179 0.799988 16.8231 0.926416 17.0481 1.15146C17.2732 1.3765 17.3996 1.68173 17.3996 1.99999C17.3996 2.31825 17.2732 2.62347 17.0481 2.84852C16.8231 3.07356 16.5179 3.19999 16.1996 3.19999H1.79961C1.48135 3.19999 1.17612 3.07356 0.951081 2.84852C0.726038 2.62347 0.599609 2.31825 0.599609 1.99999Z" fill="#4B5563"/>
             </svg>
+        </button>
+        <div class="flex flex-row justify-center items-center border border-gray-300 w-9 h-9" id="counter">
+            1
         </div>
-        <div class="flex flex-row justify-center items-center border border-gray-300 w-9 h-9">
-            <span>1</span>
-        </div>
-        <div class="flex flex-row justify-center items-center bg-blue-800 w-9 h-9">
+        <button class="flex flex-row justify-center items-center bg-blue-800 w-9 h-9" id="plus-btn">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M6 0C6.31826 0 6.62348 0.126428 6.84853 0.351472C7.07357 0.576516 7.2 0.88174 7.2 1.2V4.8H10.8C11.1183 4.8 11.4235 4.92643 11.6485 5.15147C11.8736 5.37652 12 5.68174 12 6C12 6.31826 11.8736 6.62348 11.6485 6.84853C11.4235 7.07357 11.1183 7.2 10.8 7.2H7.2V10.8C7.2 11.1183 7.07357 11.4235 6.84853 11.6485C6.62348 11.8736 6.31826 12 6 12C5.68174 12 5.37652 11.8736 5.15147 11.6485C4.92643 11.4235 4.8 11.1183 4.8 10.8V7.2H1.2C0.88174 7.2 0.576516 7.07357 0.351472 6.84853C0.126428 6.62348 0 6.31826 0 6C0 5.68174 0.126428 5.37652 0.351472 5.15147C0.576516 4.92643 0.88174 4.8 1.2 4.8H4.8V1.2C4.8 0.88174 4.92643 0.576516 5.15147 0.351472C5.37652 0.126428 5.68174 0 6 0Z" fill="white"/>
             </svg>
-        </div>
+        </button>
     </div>
     <div class="flex flex-row items-center space-x-2 mt-10">
         <button class="font-bold text-white bg-blue-800 rounded w-60 py-3 px-16">

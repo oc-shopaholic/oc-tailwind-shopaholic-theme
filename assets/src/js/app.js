@@ -19,7 +19,11 @@ import '/partials/product-item/gallery';
 import '/partials/product-item/gallery-popup';
 import '/partials/product-item/description';
 import '/partials/product-item/info';
+import '/partials/product-item/customer-reviews-and-ratings';
+import '/partials/product-item/options';
 /* * Input Quantity * */
 import '/partials/input-quantity/input-quantity';
 /* * Off Canvas * */
 import '/partials/off-canvas/off-canvas';
+/* * Sidebar * */
+import '/partials/sidebar/sidebar';
