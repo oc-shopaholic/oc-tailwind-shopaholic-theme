@@ -28,13 +28,12 @@ code = "navigation-main"
                         <path d="M10 10L30 30M10 30L30 10L10 30Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>                                                                                                  
                 </button>
-                <img class="ml-6 w-36" src="{{ this.theme.business_card_image|media }}" alt="{{ this.theme.business_card_image_alt }}" title="{{ this.theme.business_card_image_title }}">
+                <a href="/" class="ml-6 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:rounded-sm">
+                    <img class="w-36" src="{{ this.theme.business_card_image|media }}" alt="{{ this.theme.business_card_image_alt }}" title="{{ this.theme.business_card_image_title }}">
+                </a>
             </div>
             <nav>
                 <ul class="flex flex-col mb-2">
-                    <li class="py-3 -mx-4 px-4 md:mx-0 md:px-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 pb-3 md:after:border-0 md:ml-1 md:pb-0">
-                        <a href="/" class="text-sm font-medium text-blue-800 hover:text-blue-700 hover:underline active:text-blue-900 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800">{{'breadcrumbs_page_home'|_}}</a>
-                    </li>
                     {% for arItemMenu in arMenuList if not arItemMenu.viewBag.isHidden %}
                         <li class="py-3 -mx-4 px-4 md:mx-0 md:px-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 pb-3 md:after:border-0 md:ml-1 md:pb-0">
                             <a href="{{ arItemMenu.url }}" class="text-sm font-medium text-blue-800 hover:text-blue-700 hover:underline active:text-blue-900 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800">{{ arItemMenu.title }}</a>
@@ -42,15 +41,14 @@ code = "navigation-main"
                     {% endfor %}
                 </ul>
             </nav>
-            <h2 class="uppercase font-medium text-lg text-gray-900 mb-4 mt-8">{{'heading_mobile_menu_account'|_}}</h2>
+            <h2 class="uppercase font-medium text-lg text-gray-900 mb-4 mt-8">{{'heading_account'|_}}</h2>
             {% partial 'button/button' 
                 sText = 'button_sign_in'|_
                 sPartialClasses = 'font-medium text-lg w-full mb-4 text-center'
                 sHref='sign-in'
             %}
-            <span class="flex justify-center text-sm">{{'text_no_account_not_others'|_}}&nbsp;
-                <a class="text-blue-800 hover:text-blue-700 active:text-blue-900 underline hover:no-underline text-sm md:text-base focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:no-underline" href='sign-up'|page>{{'text_no_account_link_sign_up'|_}}</a>
-            </span>
+            {% set text_no_account_link_sign_up = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~( 'sign-up'|page )~'">'~('text_no_account_link_sign_up'|_)~'</a>' %}
+            <span class="block text-center text-gray-600 text-sm">{{ 'text_no_account' | transRaw({text_no_account_link_sign_up: text_no_account_link_sign_up}) }}</span>
         {% endif %}
     {% endpartial %}
 </div>
