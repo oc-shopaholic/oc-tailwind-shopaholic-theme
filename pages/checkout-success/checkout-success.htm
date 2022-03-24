@@ -1,0 +1,13 @@
+title = "Checkout Success"
+url = "/checkout/:slug"
+layout = "main"
+is_hidden = 0
+==
+<?php
+function onInit()
+{
+    $this['path_page_js'] = mix('assets/dist/js/checkout-success.js', 'themes/lovata-tailwind-shopaholic');
+}
+?>
+==
+{##}
