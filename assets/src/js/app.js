@@ -11,6 +11,8 @@ import '/partials/account/sign-in';
 import '/partials/account/restore-password';
 import '/partials/account/account-change-password';
 import '/partials/carousel-main/carousel-main';
+import '/partials/product-item/gallery';
+import '/partials/product-item/gallery-popup';
 /* * Input Quantity * */
 import '/partials/input-quantity/input-quantity';
 /* * Off Canvas * */

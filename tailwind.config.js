@@ -32,11 +32,19 @@ module.exports = {
         '54': '13.5rem',
         '57': '14.25rem',
       },
+      height: {
+        '131': '524px'
+      },
       maxHeight: {
         '160': '40rem',
       },
+      width: {
+        '174': '696px',
+        '225': '900px',
+      },
       maxWidth: {
-        'screen-3xl': '1920px'
+        'screen-3xl': '1920px',
+        '225': '900px',
       }
     }
   },
