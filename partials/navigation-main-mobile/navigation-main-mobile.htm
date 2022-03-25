@@ -5,7 +5,7 @@ code = "navigation-main"
 {# TODO: Add animation for the burger button. #}
 
 {% set arMenuList = MainMenu.menuItems %}
-<div class="_off-canvas block mr-3.5 cursor-pointer lg:hidden">
+<div class="_off-canvas block mr-3.5 lg:hidden">
     <button class="_show hover:text-blue-700 active:text-blue-900 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:rounded-sm">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M6.6665 30H33.3332M6.6665 10H33.3332H6.6665ZM6.6665 20H33.3332H6.6665Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
@@ -14,7 +14,6 @@ code = "navigation-main"
     {% partial 'off-canvas/off-canvas'
         sPosition = 'left'
         sHeading = 'heading_search'|_
-        sCanvasClasses = 'cursor-auto'
         sIndentsClass = 'px-4 py-0 md:px-10'
         sBackgroundClass = 'bg-white'
         sHeaderClasses = 'mb-0'
