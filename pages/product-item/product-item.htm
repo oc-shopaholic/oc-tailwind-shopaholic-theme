@@ -46,6 +46,29 @@ function onInit()
     </div>
     <div class="w-full flex flex-row space-x-16 mt-10">
         <div class="md:w-1/2 flex flex-col">
+            {% partial 'product-item/customer-reviews' arReviews=[
+                {
+                    "username": "Jannet Tan",
+                    "date": "1 day ago",
+                    "text": "I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!",
+                    "ava": "/storage/app/uploads/public/0a1/faa/684/user-photo-1.png",
+                    "rating": 5,
+                },
+                {
+                    "username": "Nik Wansky",
+                    "date": "4 month ago",
+                    "text": "I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!",
+                    "ava": "/storage/app/uploads/public/0a1/faa/684/user-photo-2.png",
+                    "rating": 4,
+                },
+                {
+                    "username": "Jannet Tan",
+                    "date": "1 year ago",
+                    "text": "I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!",
+                    "ava": "/storage/app/uploads/public/0a1/faa/684/user-photo-3.png",
+                    "rating": 3,
+                },
+            ] %}
         </div>
         <div class="md:w-1/2 flex flex-col">
             {% partial 'product-item/customer-ratings' obProduct=obProduct %}
