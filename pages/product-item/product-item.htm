@@ -39,6 +39,7 @@ function onInit()
         <div class="md:w-1/2 flex flex-col">
             {% partial 'product-item/gallery' arImages=obProduct.images %}
             {% partial 'product-item/gallery-popup' arImages=obProduct.images %}
+            {% partial 'product-item/description' stDescription=obProduct.description %}
         </div>
         <div class="md:w-1/2 flex flex-col">
         </div>

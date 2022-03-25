@@ -13,6 +13,7 @@ import '/partials/account/account-change-password';
 import '/partials/carousel-main/carousel-main';
 import '/partials/product-item/gallery';
 import '/partials/product-item/gallery-popup';
+import '/partials/product-item/description';
 /* * Input Quantity * */
 import '/partials/input-quantity/input-quantity';
 /* * Off Canvas * */
