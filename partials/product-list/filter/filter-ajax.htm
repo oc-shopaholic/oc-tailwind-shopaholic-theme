@@ -1,11 +1,11 @@
-{% partial 'product-list/category-list' %}
+{##}
 
 <div class="flex justify-between mb-5 md:hidden">
     <button class="flex border border-gray-300 py-3 pr-8 pl-3 mr-2 rounded items-center">
         <svg class="mr-4" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9.99967 13.3334C10.9163 13.3334 11.6663 14.0834 11.6663 15C11.6663 15.9167 10.9163 16.6667 9.99967 16.6667C9.08301 16.6667 8.33301 15.9167 8.33301 15C8.33301 14.0834 9.08301 13.3334 9.99967 13.3334ZM9.99967 8.33337C10.9163 8.33337 11.6663 9.08337 11.6663 10C11.6663 10.9167 10.9163 11.6667 9.99967 11.6667C9.08301 11.6667 8.33301 10.9167 8.33301 10C8.33301 9.08337 9.08301 8.33337 9.99967 8.33337ZM9.99967 3.33337C10.9163 3.33337 11.6663 4.08337 11.6663 5.00004C11.6663 5.91671 10.9163 6.66671 9.99967 6.66671C9.08301 6.66671 8.33301 5.91671 8.33301 5.00004C8.33301 4.08337 9.08301 3.33337 9.99967 3.33337ZM4.99967 13.3334C5.91634 13.3334 6.66634 14.0834 6.66634 15C6.66634 15.9167 5.91634 16.6667 4.99967 16.6667C4.08301 16.6667 3.33301 15.9167 3.33301 15C3.33301 14.0834 4.08301 13.3334 4.99967 13.3334ZM4.99967 8.33337C5.91634 8.33337 6.66634 9.08337 6.66634 10C6.66634 10.9167 5.91634 11.6667 4.99967 11.6667C4.08301 11.6667 3.33301 10.9167 3.33301 10C3.33301 9.08337 4.08301 8.33337 4.99967 8.33337ZM4.99967 3.33337C5.91634 3.33337 6.66634 4.08337 6.66634 5.00004C6.66634 5.91671 5.91634 6.66671 4.99967 6.66671C4.08301 6.66671 3.33301 5.91671 3.33301 5.00004C3.33301 4.08337 4.08301 3.33337 4.99967 3.33337ZM14.9997 13.3334C15.9163 13.3334 16.6663 14.0834 16.6663 15C16.6663 15.9167 15.9163 16.6667 14.9997 16.6667C14.083 16.6667 13.333 15.9167 13.333 15C13.333 14.0834 14.083 13.3334 14.9997 13.3334ZM14.9997 8.33337C15.9163 8.33337 16.6663 9.08337 16.6663 10C16.6663 10.9167 15.9163 11.6667 14.9997 11.6667C14.083 11.6667 13.333 10.9167 13.333 10C13.333 9.08337 14.083 8.33337 14.9997 8.33337ZM14.9997 3.33337C15.9163 3.33337 16.6663 4.08337 16.6663 5.00004C16.6663 5.91671 15.9163 6.66671 14.9997 6.66671C14.083 6.66671 13.333 5.91671 13.333 5.00004C13.333 4.08337 14.083 3.33337 14.9997 3.33337Z" fill="#4B5563"/>
         </svg>
-        <span>Category</span>
+        <span>{{'text_heading_category'|_}}</span>
     </button>
     <div class="_off-canvas">
         <button class="_show flex border border-gray-300 py-3 pr-16 pl-3 rounded items-center">
@@ -14,27 +14,28 @@
                 <rect x="4" y="9" width="12" height="1.4" rx="0.7" fill="#4B5563"/>
                 <rect x="6" y="13" width="8" height="1.4" rx="0.7" fill="#4B5563"/>
             </svg>
-            <p>Filter</p>
+            <span>{{'text_heading_filter'|_}}</span>
         </button>
         {% partial 'off-canvas/off-canvas'
             sPosition = 'right'
-            sHeading = 'Filters'
-            sCanvasClasses = 'bg-white pl-0 pr-0 cursor-auto md:pr-20 md:pl-10'
+            sHeading = 'heading_filters'|_
+            sCanvasClasses = 'pl-0 pr-0 cursor-auto md:pr-20 md:pl-10'
+            sBackgroundClass = 'bg-white'
             sHeaderClasses = 'mr-4 ml-4 md:mr-0 md:ml-0'
             sTemplateWorkType = 'detach'
             body
         %}
             <div class="mt-6">
                 <div>
-                    <details class="mb-3 border-t border-b border-gray-300">
-                        <summary class="text-base font-medium text-gray-900 cursor-pointer mb-4 mt-4 ml-4 mr-5 focus:outline-none focus:text-blue-800 focus:border-solid focus:border focus:border-blue-800 focus:no-underline">
-                            Price
+                    <details class="border-t border-b border-gray-300">
+                        <summary class="text-base font-medium text-blue-800 cursor-pointer pb-4 pt-4 pl-4 pr-5 after:right-5 after:text-blue-800 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
+                            {{'heading_filter_price'|_}}
                         </summary>
-                        <div class="flex mb-4 ml-4 mr-5">
+                        <div class="flex mb-4 ml-4 mt-3 mr-5">
                             <fieldset class="mr-3 w-full">
-                                <legend class="sr-only">PriceMin</legend>
+                                <legend class="sr-only">{{'heading_filter_price'|_}}&nbsp;{{'text_properties_filter_min'|_}}</legend>
                                 {% partial 'input/input'
-                                sLabelText = 'Min'
+                                sLabelText = 'text_properties_filter_min'|_
                                 inputClass = '_shopaholic-price-filter appearance-none'
                                 type= 'number'
                                 name= 'filter-min-price'
@@ -42,9 +43,9 @@
                                 %}
                             </fieldset>
                             <fieldset class="w-full">
-                                <legend class="sr-only">PriceMax</legend>
+                                <legend class="sr-only">{{'heading_filter_price'|_}}&nbsp;{{'text_properties_filter_max'|_}}</legend>
                                 {% partial 'input/input'
-                                sLabelText = 'Max'
+                                sLabelText = 'text_properties_filter_max'|_
                                 inputClass = '_shopaholic-price-filter appearance-none'
                                 type= 'number'
                                 name= 'filter-max-price'
@@ -59,7 +60,7 @@
                                     {% set bChecked = arFilterValue[obProperty.id] is not empty and obValue.slug in arFilterValue[obProperty.id] %}
 
                                     {% partial 'input-checkbox/input-checkbox'
-                                    sLabelText = 'Show only discount products'
+                                    sLabelText = 'input_checkbox_discount'|_
                                     sPartialClasses = 'flex items-center mb-3 mx-4'
                                     sInputClass = 'rounded-sm'
                                     sChecked= bChecked ? 'checked' : ''
@@ -71,32 +72,34 @@
                         {% endfor %}
                     </details>
                     {% for obProperty in obProductPropertyList if obProperty.hasValue() and obProperty.name != 'Sale' %}
-                        <details class="mb-3 border-b border-gray-300">
-                            <summary class="text-base font-medium text-gray-900 cursor-pointer mb-4 mt-4 ml-4 mr-5 focus:outline-none focus:text-blue-800 focus:border-solid focus:border focus:border-blue-800 focus:no-underline">
+                        <details class="border-b border-gray-300">
+                            <summary class="text-base font-medium text-blue-800 cursor-pointer pb-4 pt-4 pl-4 pr-5 after:right-5 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
                                 {{ obProperty.name }}
                             </summary>
                             {% if obProperty.filter_type == 'between' %}
-                                <div class="flex mb-7 ml-4 mr-5 _shopaholic-filter-wrapper" data-filter-type="{{ obProperty.filter_type }}" data-property-id="{{ obProperty.id }}">
-                                    <fieldset class="mr-3 w-full">
-                                        <legend class="sr-only">{{ obProperty.name }}Min</legend>
-                                        {% partial 'input/input'
-                                        sLabelText = 'Min'
-                                        inputClass = 'appearance-none'
-                                        value=fMinWidthFilterValue
-                                        %}
-                                    </fieldset>
-                                    <fieldset class="w-full">
-                                        <legend class="sr-only">{{ obProperty.name }}Max</legend>
-                                        {% partial 'input/input'
-                                        sLabelText = 'Max'
-                                        inputClass = 'appearance-none'
-                                        value=fMaxWidthFilterValue
-                                        %}
-                                    </fieldset>
+                                <div class="flex mb-7 ml-4 mr-5 mt-3 _shopaholic-filter-wrapper" data-filter-type="{{ obProperty.filter_type }}" data-property-id="{{ obProperty.id }}">
+                                    <div class="_filter-range flex" data-filter-id="{{ obProperty.id }}">
+                                        <fieldset class="mr-3 w-full">
+                                            <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'text_properties_filter_min'|_}}</legend>
+                                            {% partial 'input/input'
+                                            sLabelText = 'text_properties_filter_min'|_
+                                            inputClass = '_min appearance-none'
+                                            value=fMinWidthFilterValue
+                                            %}
+                                        </fieldset>
+                                        <fieldset class="w-full">
+                                            <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'text_properties_filter_min'|_}}</legend>
+                                            {% partial 'input/input'
+                                            sLabelText = 'text_properties_filter_max'|_
+                                            inputClass = '_max appearance-none'
+                                            value=fMaxWidthFilterValue
+                                            %}
+                                        </fieldset>
+                                    </div>
                                 </div>
                             {% endif %}
                             {% if obProperty.filter_type == 'checkbox' %}
-                                <div class="flex mb-2 ml-4 mr-5 _shopaholic-filter-wrapper" data-filter-type="{{ obProperty.filter_type }}" data-property-id="{{ obProperty.id }}">
+                                <div class="flex mb-2 ml-4 mt-3 mr-5 _shopaholic-filter-wrapper" data-filter-type="{{ obProperty.filter_type }}" data-property-id="{{ obProperty.id }}">
                                     {% set obPropertyValueList = obProperty.property_value.sort() %}
                                     {% if obProperty.name != 'Color' %}
                                         <fieldset class="mr-3 w-full">
@@ -122,33 +125,33 @@
                                                 {% set bChecked = arFilterValue[obProperty.id] is not empty and obValue.slug in arFilterValue[obProperty.id] %}
 
                                                 {% if obValue.value == 'White' %}
-                                                    {% set test = 'rounded bg-white w-12 h-12 text-white !mr-0 !border-gray-300 checked:bg-45 checked:bg-test' %}
+                                                    {% set checkboxStyle = 'rounded bg-white w-12 h-12 text-white !mr-0 !border-gray-300 checked:bg-45 checked:bg-test' %}
                                                 {% elseif obValue.value == 'Gray' %}
-                                                    {% set test = 'rounded bg-gray-300 w-12 h-12 text-gray-300 !mr-0 border-0 checked:bg-45 checked:bg-test checked:border-0' %}
+                                                    {% set checkboxStyle = 'rounded bg-gray-300 w-12 h-12 text-gray-300 !mr-0 border-0 checked:bg-75 checked:border-0' %}
                                                 {% elseif obValue.value == 'Black' %}
-                                                    {% set test = 'rounded bg-gray-900 w-12 h-12 !text-gray-900 !mr-0 border-0 checked:bg-75 checked:border-0' %}
+                                                    {% set checkboxStyle = 'rounded bg-gray-900 w-12 h-12 !text-gray-900 !mr-0 border-0 checked:bg-75 checked:border-0' %}
                                                 {% elseif obValue.value == 'Purple' %}
-                                                    {% set test = 'rounded bg-purple-900 w-12 h-12 text-purple-900 !mr-0 border-0 checked:bg-75 checked:border-0' %}
+                                                    {% set checkboxStyle = 'rounded bg-purple-900 w-12 h-12 text-purple-900 !mr-0 border-0 checked:bg-75 checked:border-0' %}
                                                 {% elseif obValue.value == 'Blue' %}
-                                                    {% set test = 'rounded bg-blue-900 w-12 h-12 text-blue-900 !mr-0 border-0 checked:bg-75 checked:border-0' %}
+                                                    {% set checkboxStyle = 'rounded bg-blue-900 w-12 h-12 text-blue-900 !mr-0 border-0 checked:bg-75 checked:border-0' %}
                                                 {% elseif obValue.value == 'Green' %}
-                                                    {% set test = 'rounded bg-green-900 w-12 h-12 text-green-900 !mr-0 border-0 checked:bg-75 checked:border-0' %}
+                                                    {% set checkboxStyle = 'rounded bg-green-900 w-12 h-12 text-green-900 !mr-0 border-0 checked:bg-75 checked:border-0' %}
                                                 {% elseif obValue.value == 'Yellow' %}
-                                                    {% set test = 'rounded bg-yellow-300 w-12 h-12 text-yellow-300 !mr-0 border-0 checked:bg-75 checked:border-0' %}
+                                                    {% set checkboxStyle = 'rounded bg-yellow-300 w-12 h-12 text-yellow-300 !mr-0 border-0 checked:bg-75 checked:border-0' %}
                                                 {% elseif obValue.value == 'Orange' %}
-                                                    {% set test = 'rounded bg-yellow-600 w-12 h-12 text-yellow-600 !mr-0 border-0 checked:bg-75 checked:border-0' %}
+                                                    {% set checkboxStyle = 'rounded bg-yellow-600 w-12 h-12 text-yellow-600 !mr-0 border-0 checked:bg-75 checked:border-0' %}
                                                 {% elseif obValue.value == 'Red' %}
-                                                    {% set test = 'rounded bg-red-700 w-12 h-12 text-red-700 !mr-0 border-0 checked:bg-75 checked:border-0' %}
+                                                    {% set checkboxStyle = 'rounded bg-red-700 w-12 h-12 text-red-700 !mr-0 border-0 checked:bg-75 checked:border-0' %}
                                                 {% elseif obValue.value == 'Brown' %}
-                                                    {% set test = 'rounded bg-yellow-900 w-12 h-12 text-yellow-900 !mr-0 border-0 checked:bg-75 checked:border-0' %}
+                                                    {% set checkboxStyle = 'rounded bg-yellow-900 w-12 h-12 text-yellow-900 !mr-0 border-0 checked:bg-75 checked:border-0' %}
                                                 {% endif %}
 
                                                 {% partial 'input-checkbox/input-checkbox'
                                                     sLabelText = obValue.value
                                                     sPartialClasses = 'w-max flex flex-col items-center mb-4 mr-3'
-                                                    sInputClass = test
                                                     sLabelClasses = '!text-xs'
                                                     sChecked= bChecked ? 'checked' : ''
+                                                    sInputClass = checkboxStyle
                                                     sId = obValue.slug
                                                     sValue = obValue.slug
                                                 %}
@@ -162,8 +165,8 @@
                 </div>
                 <div class="ml-4 mr-5">
                     {% partial 'button/button'
-                        sText = 'See all (26)'
-                        sPartialClasses = 'w-full mt-8'
+                        sText = 'link_see_all'|_
+                        sPartialClasses = '_hide _product-count w-full mt-8'
                     %}
                 </div>
             </div>
@@ -174,16 +177,16 @@
 <template class="_filterTemplate">
     <div class="pr-12 hidden md:block">
         <div class="w-72">
-            <h2 class="text-gray-900 text-lg font-medium mb-3">Filters</h2>
+            <h2 class="text-gray-900 text-lg font-medium mb-3">{{'heading_filters'|_}}</h2>
             <details>
-                <summary class="text-base font-medium text-gray-900 cursor-pointer mb-4 focus:outline-none focus:text-blue-800 focus:border-solid focus:border focus:border-blue-800 focus:no-underline">
-                    Price
+                <summary class="text-base font-medium text-blue-800 cursor-pointer mb-4 after:text-blue-800 hover:text-blue-700 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
+                    {{'heading_filter_price'|_}}
                 </summary>
                 <div class="flex mb-4">
                     <fieldset class="mr-3">
-                        <legend class="sr-only">PriceMin</legend>
+                        <legend class="sr-only">{{'heading_filter_price'|_}}&nbsp;{{'text_properties_filter_min'|_}}</legend>
                         {% partial 'input/input'
-                        sLabelText = 'Min'
+                        sLabelText = 'text_properties_filter_min'|_
                         inputClass = '_shopaholic-price-filter appearance-none'
                         type= 'number'
                         name= 'filter-min-price'
@@ -191,9 +194,9 @@
                         %}
                     </fieldset>
                     <fieldset>
-                        <legend class="sr-only">PriceMax</legend>
+                        <legend class="sr-only">{{'heading_filter_price'|_}}&nbsp;{{'text_properties_filter_max'|_}}</legend>
                         {% partial 'input/input'
-                        sLabelText = 'Max'
+                        sLabelText = 'text_properties_filter_max'|_
                         inputClass = '_shopaholic-price-filter appearance-none'
                         type= 'number'
                         name= 'filter-max-price'
@@ -208,7 +211,7 @@
                             {% set bChecked = arFilterValue[obProperty.id] is not empty and obValue.slug in arFilterValue[obProperty.id] %}
 
                             {% partial 'input-checkbox/input-checkbox'
-                            sLabelText = 'Show only discount products'
+                            sLabelText = 'input_checkbox_discount'|_
                             sPartialClasses = 'flex items-center'
                             sInputClass = 'rounded-sm'
                             sChecked= bChecked ? 'checked' : ''
@@ -222,27 +225,29 @@
 
             {% for obProperty in obProductPropertyList if obProperty.hasValue() and obProperty.name != 'Sale' %}
                 <details>
-                    <summary class="text-base font-medium text-gray-900 cursor-pointer mb-4 focus:outline-none focus:text-blue-800 focus:border-solid focus:border focus:border-blue-800 focus:no-underline">
+                    <summary class="text-base font-medium text-blue-800 cursor-pointer mb-4 hover:text-blue-700 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
                         {{ obProperty.name }}
                     </summary>
                     <div class="flex mb-4 _shopaholic-filter-wrapper" data-filter-type="{{ obProperty.filter_type }}" data-property-id="{{ obProperty.id }}">
                         {% if obProperty.filter_type == 'between' %}
-                            <fieldset class="mr-3">
-                                <legend class="sr-only">{{ obProperty.name }}Min</legend>
-                                {% partial 'input/input'
-                                sLabelText = 'Min'
-                                inputClass = 'appearance-none'
-                                value=fMinWidthFilterValue
-                                %}
-                            </fieldset>
-                            <fieldset>
-                                <legend class="sr-only">{{ obProperty.name }}Max</legend>
-                                {% partial 'input/input'
-                                sLabelText = 'Max'
-                                inputClass = 'appearance-none'
-                                value=fMaxWidthFilterValue
-                                %}
-                            </fieldset>
+                            <div class="_filter-range flex" data-filter-id="{{ obProperty.id }}">
+                                <fieldset class="mr-3">
+                                    <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'text_properties_filter_min'|_}}</legend>
+                                    {% partial 'input/input'
+                                    sLabelText = 'text_properties_filter_min'|_
+                                    inputClass = '_min appearance-none'
+                                    value=fMinWidthFilterValue
+                                    %}
+                                </fieldset>
+                                <fieldset>
+                                    <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'text_properties_filter_max'|_}}</legend>
+                                    {% partial 'input/input'
+                                    sLabelText = 'text_properties_filter_max'|_
+                                    inputClass = '_max appearance-none'
+                                    value=fMaxWidthFilterValue
+                                    %}
+                                </fieldset>
+                            </div>
                         {% endif %}
                         {% if obProperty.filter_type == 'checkbox' %}
                             {% set obPropertyValueList = obProperty.property_value.sort() %}
@@ -251,11 +256,17 @@
                                     <legend class="sr-only">{{ obProperty.name }}</legend>
                                     {% for obValue in obPropertyValueList %}
                                         {% set bChecked = arFilterValue[obProperty.id] is not empty and obValue.slug in arFilterValue[obProperty.id] %}
+                                        {% set bDisabled = false %}
+                                        {% if bChecked == false and arFilterValueWithoutProperty[obProperty.id] is not empty %}
+                                            {% set obProductListTemp = obFilteredProductList.copy().filterByProperty(arFilterValueWithoutProperty[obProperty.id], obProductPropertyList).filterByProperty(arFilterValueWithoutProperty[obProperty.id], obOfferPropertyList) %}
+                                            {% set bDisabled = obValue.isDisabled(obProductListTemp) %}
+                                        {% endif %}
 
                                         {% partial 'input-checkbox/input-checkbox'
                                             sLabelText = obValue.value
                                             sPartialClasses = 'flex items-center mb-4'
-                                            sInputClass = 'rounded-sm'
+                                            sInputClass = 'rounded-sm disabled:opacity-20'
+                                            sDisabled = bDisabled ? 'disabled' : ''
                                             sChecked= bChecked ? 'checked' : ''
                                             sId = obValue.slug
                                             sValue = obValue.slug
@@ -266,41 +277,10 @@
                             {% if obProperty.name == 'Color' %}
                                 <fieldset class="flex flex-wrap">
                                     <legend class="sr-only">{{ obProperty.name }}</legend>
-                                    {% for obValue in obPropertyValueList %}
-                                        {% set bChecked = arFilterValue[obProperty.id] is not empty and obValue.slug in arFilterValue[obProperty.id] %}
-
-                                        {% if obValue.value == 'White' %}
-                                            {% set test = 'rounded bg-white w-9 h-9 text-white !mr-0 !border-gray-300 checked:bg-45 checked:bg-test' %}
-                                        {% elseif obValue.value == 'Gray' %}
-                                            {% set test = 'rounded bg-gray-300 w-9 h-9 text-gray-300 !mr-0 border-0 checked:bg-45 checked:bg-test checked:border-0' %}
-                                        {% elseif obValue.value == 'Black' %}
-                                            {% set test = 'rounded bg-gray-900 w-9 h-9 !text-gray-900 !mr-0 border-0 checked:bg-75 checked:border-0' %}
-                                        {% elseif obValue.value == 'Purple' %}
-                                            {% set test = 'rounded bg-purple-900 w-9 h-9 text-purple-900 !mr-0 border-0 checked:bg-75 checked:border-0' %}
-                                        {% elseif obValue.value == 'Blue' %}
-                                            {% set test = 'rounded bg-blue-900 w-9 h-9 text-blue-900 !mr-0 border-0 checked:bg-75 checked:border-0' %}
-                                        {% elseif obValue.value == 'Green' %}
-                                            {% set test = 'rounded bg-green-900 w-9 h-9 text-green-900 !mr-0 border-0 checked:bg-75 checked:border-0' %}
-                                        {% elseif obValue.value == 'Yellow' %}
-                                            {% set test = 'rounded bg-yellow-300 w-9 h-9 text-yellow-300 !mr-0 border-0 checked:bg-75 checked:border-0' %}
-                                        {% elseif obValue.value == 'Orange' %}
-                                            {% set test = 'rounded bg-yellow-600 w-9 h-9 text-yellow-600 !mr-0 border-0 checked:bg-75 checked:border-0' %}
-                                        {% elseif obValue.value == 'Red' %}
-                                            {% set test = 'rounded bg-red-700 w-9 h-9 text-red-700 !mr-0 border-0 checked:bg-75 checked:border-0' %}
-                                        {% elseif obValue.value == 'Brown' %}
-                                            {% set test = 'rounded bg-yellow-900 w-9 h-9 text-yellow-900 !mr-0 border-0 checked:bg-75 checked:border-0' %}
-                                        {% endif %}
-
-                                        {% partial 'input-checkbox/input-checkbox'
-                                            sLabelText = obValue.value
-                                            sPartialClasses = 'w-max flex flex-col items-center mb-4 mr-2'
-                                            sInputClass = test
-                                            sLabelClasses = '!text-xs'
-                                            sChecked= bChecked ? 'checked' : ''
-                                            sId = obValue.slug
-                                            sValue = obValue.slug
-                                        %}
-                                    {% endfor %}
+                                    {% partial 'input-checkbox-color/input-checkbox-color' 
+                                        obPropertyValueList = obPropertyValueList
+                                        obProperty = obProperty
+                                    %}
                                 </fieldset>
                             {% endif %}
                         {% endif %}

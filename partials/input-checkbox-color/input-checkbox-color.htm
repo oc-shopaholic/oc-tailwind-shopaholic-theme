@@ -1,0 +1,55 @@
+{##}
+
+{% for obValue in obPropertyValueList %}
+    {% set bChecked = arFilterValue[obProperty.id] is not empty and obValue.slug in arFilterValue[obProperty.id] %}
+    {% set bDisabled = false %}
+    {% if bChecked == false and arFilterValueWithoutProperty[obProperty.id] is not empty %}
+        {% set obProductListTemp = obFilteredProductList.copy().filterByProperty(arFilterValueWithoutProperty[obProperty.id], obProductPropertyList).filterByProperty(arFilterValueWithoutProperty[obProperty.id], obOfferPropertyList) %}
+        {% set bDisabled = obValue.isDisabled(obProductListTemp) %}
+    {% endif %}
+
+    {% if obValue.value == 'White' %}
+        {% set checkboxStyle = 'rounded bg-white w-9 h-9 text-white mr-0 border-gray-300 checked:bg-45 checked:bg-check checked:border-gray-300 checked:hover:border-gray-300
+        disabled:opacity-30' %}
+    {% elseif obValue.value == 'Gray' %}
+        {% set checkboxStyle = 'rounded bg-gray-300 w-9 h-9 text-gray-300 mr-0 border-0 checked:bg-75 checked:bg-checkboxStyle
+        checked:border-0 disabled:opacity-30' %}
+    {% elseif obValue.value == 'Black' %}
+        {% set checkboxStyle = 'rounded bg-gray-900 w-9 h-9 !text-gray-900 mr-0 border-0 checked:bg-75 checked:border-0
+        disabled:opacity-30' %}
+    {% elseif obValue.value == 'Purple' %}
+        {% set checkboxStyle = 'rounded bg-purple-900 w-9 h-9 text-purple-900 mr-0 border-0 checked:bg-75 checked:border-0
+        disabled:opacity-30' %}
+    {% elseif obValue.value == 'Blue' %}
+        {% set checkboxStyle = 'rounded bg-blue-900 w-9 h-9 text-blue-900 mr-0 border-0 checked:bg-75 checked:border-0
+        disabled:opacity-30' %}
+    {% elseif obValue.value == 'Green' %}
+        {% set checkboxStyle = 'rounded bg-green-900 w-9 h-9 text-green-900 mr-0 border-0 checked:bg-75 checked:border-0
+        disabled:opacity-30' %}
+    {% elseif obValue.value == 'Yellow' %}
+        {% set checkboxStyle = 'rounded bg-yellow-300 w-9 h-9 text-yellow-300 mr-0 border-0 checked:bg-75 checked:border-0
+        disabled:opacity-30' %}
+    {% elseif obValue.value == 'Orange' %}
+        {% set checkboxStyle = 'rounded bg-yellow-600 w-9 h-9 text-yellow-600 mr-0 border-0 checked:bg-75 checked:border-0
+        disabled:opacity-30' %}
+    {% elseif obValue.value == 'Red' %}
+        {% set checkboxStyle = 'rounded bg-red-700 w-9 h-9 text-red-700 mr-0 border-0 checked:bg-75 checked:border-0
+        disabled:opacity-30' %}
+    {% elseif obValue.value == 'Brown' %}
+        {% set checkboxStyle = 'rounded bg-yellow-900 w-9 h-9 text-yellow-900 mr-0 border-0 checked:bg-75 checked:border-0
+        disabled:opacity-30' %}
+    {% endif %}
+
+    
+    <div class="w-max flex flex-col items-center mb-4 mr-2">
+        <input
+            class="text-blue-800 focus:outline-none focus-visible:border-blue-800 {{checkboxStyle}}"
+            type="checkbox"
+            id="{{obValue.slug}}"
+            value="{{obValue.slug}}"
+            {{bDisabled ? 'disabled'}}
+            {{bChecked ? 'checked'}}
+        >
+        <label for="{{ obValue.slug }}" class="text-gray-600 text-xs">{{ obValue.value|raw}}</label>
+    </div>
+{% endfor %}

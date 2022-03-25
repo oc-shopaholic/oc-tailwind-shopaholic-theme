@@ -28,7 +28,7 @@ module.exports = {
         'info-icon': '12.5rem',
       },
       backgroundImage: {
-        'test': "url('/themes/lovata-tailwind-shopaholic/assets/images/check.svg')"
+        'check': "url('/themes/lovata-tailwind-shopaholic/assets/images/check.svg')"
       },
       fontSize: {
         error: ['9rem', '1'],

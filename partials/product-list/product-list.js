@@ -5,24 +5,42 @@ import ShopaholicFilterPanel from "@lovata/shopaholic-filter-panel/shopaholic-fi
 export default new class ProductList {
     constructor(){
         this.$vContainer = $("._filter");
+        this.$vTemplate = null;
+
+        this.$vProductCount = null
         this.$vResult = null;
         this.$vClear = null;
 
-        this.show = $('._show');
+        this.show = this.$vContainer.find('._show');
 
-        this.test();
+        this.adaptation();
     }
     
-    test(){
+    adaptation(){
         if($(window).width() <= '768' && this.$vContainer.length){
             this.show.on('click', () => {
                 this.initPlugins();
+                this.activeProductUpdate();
             })
         }
         this.initPlugins();
         this.clear();
         this.watchResult();
-        this.catalogCss();
+        this.catalogPosition();
+    }
+
+    updateFilters(){
+        this.$vTemplate = this.$vContainer.find("._filterTemplate");
+        this.vContainer = this.$vTemplate;
+        let container = this.vContainer[0].content.cloneNode(true);
+        $(container).appendTo(this.$vContainer);
+    }
+
+    activeProductUpdate(){
+        this.$vProductCount = this.$vContainer.find('._product-count');
+        let seeAll = this.$vProductCount.text().split('(')[0]
+        let product = $('.catalog_wrapper ._shopaholic-product-wrapper')
+        this.$vProductCount.text(seeAll + ' (' + product.length +')')
     }
 
     watchResult(){
@@ -36,9 +54,10 @@ export default new class ProductList {
         const callback = function (mutationsList, observer) {
           for (let mutation of mutationsList) {
             if (mutation.type === 'childList') {
-              console.log('изменилось')
               app.clear();
-              app.catalogCss();
+              app.catalogPosition();
+              app.activeProductUpdate();
+              app.updateFilters();
             }
           }
         };
@@ -48,37 +67,36 @@ export default new class ProductList {
         if(target) observer.observe(target, config);
     }
 
-    catalogCss(){
-        let a = $('._shopaholic-product-wrapper');
-        if(!a.length){
-            console.log('minus')
+    catalogPosition(){
+        let container = $('._shopaholic-product-wrapper');
+        if(!container.length){
             this.$vResult.css('display', 'flex');
-            this.$vResult.css('justify-content', 'center');
         }else{
             this.$vResult.css('display', 'grid');
-            this.$vResult.css('justify-content', 'center');
         }
+        this.$vResult.css('justify-content', 'center');
     }
 
     clear(){
         this.$vResult = $(".catalog_wrapper");
         this.$vClear = this.$vResult.find("._clearFilter");
-        console.log('Кнопка очистки', this.$vClear)
         this.$vClear.on('click', () => {
-            console.log('вызван')
-            var b = window.location.href.split('?')[0];
-            window.location.href = b;
+            let url = window.location.href.split('?')[0];
+            window.location.href = url;
         })
     }
-
+    // попробуй через detach пофиксить закрытие тегов dialog
     initPlugins(){
         const obListHelper = new ShopaholicProductList();
         obListHelper.setAjaxRequestCallback((obRequestData) => {
-            obRequestData.update = { 'product-list/product-list-ajax': '.catalog_wrapper' };
-            console.log('отправка')
+            obRequestData.update = { 
+                'product-list/product-list-ajax': '.catalog_wrapper',
+                'product-list/filter/filter-ajax': '._filter',
+            };
+            console.log('product')
             return obRequestData;
         });
-
+        
         const obFilterPrice = new ShopaholicFilterPrice(obListHelper);
         obFilterPrice.init();
 
