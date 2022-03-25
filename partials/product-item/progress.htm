@@ -1,0 +1,10 @@
+{% set widthTotal = 182 %}
+{% set width = count / countTotal * 100 %}
+<div class="relative" style="width:{{ widthTotal }}px">
+    <svg class="absolute left-0" width="{{ widthTotal }}" height="4" viewBox="0 0 182 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="182" height="4" rx="2" fill="#D1D5DB"/>
+    </svg>
+    <svg class="absolute left-0" width="{{ width | round }}" height="4" viewBox="0 0 88 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="88" height="4" rx="2" fill="#1E40AF"/>
+    </svg>
+</div>

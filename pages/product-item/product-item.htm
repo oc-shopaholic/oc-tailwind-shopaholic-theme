@@ -43,6 +43,7 @@ function onInit()
             {% partial 'product-item/info' obInfo=obProduct.info %}
         </div>
         <div class="md:w-1/2 flex flex-col">
+            {% partial 'product-item/options' obProduct=obProduct %}
         </div>
     </div>
     <div class="w-full flex flex-row space-x-16 mt-10">
