@@ -258,7 +258,7 @@
                                         {% set bChecked = arFilterValue[obProperty.id] is not empty and obValue.slug in arFilterValue[obProperty.id] %}
                                         {% set bDisabled = false %}
                                         {% if bChecked == false and arFilterValueWithoutProperty[obProperty.id] is not empty %}
-                                            {% set obProductListTemp = obFilteredProductList.copy().filterByProperty(arFilterValueWithoutProperty[obProperty.id], obProductPropertyList).filterByProperty(arFilterValueWithoutProperty[obProperty.id], obOfferPropertyList) %}
+                                            {% set obProductListTemp = obProductList.copy().filterByProperty(arFilterValueWithoutProperty[obProperty.id], obProductPropertyList).filterByProperty(arFilterValueWithoutProperty[obProperty.id], obOfferPropertyList) %}
                                             {% set bDisabled = obValue.isDisabled(obProductListTemp) %}
                                         {% endif %}
 
@@ -277,7 +277,7 @@
                             {% if obProperty.name == 'Color' %}
                                 <fieldset class="flex flex-wrap">
                                     <legend class="sr-only">{{ obProperty.name }}</legend>
-                                    {% partial 'input-checkbox-color/input-checkbox-color' 
+                                    {% partial 'input-checkbox-color/input-checkbox-color'
                                         obPropertyValueList = obPropertyValueList
                                         obProperty = obProperty
                                     %}
