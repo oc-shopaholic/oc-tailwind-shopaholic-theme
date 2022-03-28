@@ -1,0 +1,23 @@
+{% set rating = 3.7 %}
+{% set ratings = 18 %}
+<h1 class="text-gray-900 text-xl md:text-3xl uppercase">{{ obProduct.name }}</h1>
+<div class="flex flex-row items-center space-x-4 mt-4 md:mt-3 text-gray-600 text-sm md:text-base">
+    {% partial 'product-item/rating' rating=rating %}
+    <span>
+        ({{ rating }})
+    </span>
+    <span class="underline">
+        {{ ratings }} ratings
+    </span>
+    <span class="underline">
+        88 reviews
+    </span>
+</div>
+<div class="flex flex-row items-center space-x-4 mt-4 md:mt-7 mb-7">
+    <span class="text-xl md:text-3xl">
+        €74.56
+    </span>
+    <span class="text-gray-600 text-base md:text-3xl line-through md:no-underline">
+        €113.99
+    </span>
+</div>

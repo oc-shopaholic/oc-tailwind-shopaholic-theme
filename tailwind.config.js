@@ -37,7 +37,20 @@ module.exports = {
       },
       maxWidth: {
         'screen-3xl': '1920px'
-      }
+      },
+      height: {
+        3.35: '13.4px',
+        4.47: '17.86px',
+      },
+      spacing: {
+        2.25: '9px',
+        1.75: '7px',
+        0.25: '1px',
+      },
+      width: {
+        3.5: '14px',
+        4.5: '18px',
+      },
     }
   },
   plugins: [
