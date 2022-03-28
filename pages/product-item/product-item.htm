@@ -34,6 +34,16 @@ function onInit()
 
 {% partial 'breadcrumbs/breadcrumbs' %} {# TODO: Fix wrong breadcrumbs #}
 
+<div class="flex flex-col">
+    <div class="flex flex-col md:flex-row space-y-16 md:space-x-16 mt-10">
+        <div class="w-full md:w-1/2 flex flex-col">
+        </div>
+        <div class="w-full md:w-1/2 flex flex-col">
+            {% partial 'product-item/customer-ratings' obProduct=obProduct %}
+        </div>
+    </div>
+</div>
+
 {% if this.theme.has_viewed_products %}
     {% partial 'product-list-small/product-list-small'
         sProductListSmallType = sProductListSmallTypeViewedProducts
