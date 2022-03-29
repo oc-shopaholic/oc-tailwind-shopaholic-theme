@@ -40,6 +40,7 @@ function onInit()
     <div class="flex flex-row space-x-16">
         <div class="w-full md:w-1/2 flex flex-col">
             {% partial 'product-item/gallery' arImages = obProduct.images %}
+            {% partial 'product-item/gallery-popup' arImages = obProduct.images %}
         </div>
     </div>
 </div>
