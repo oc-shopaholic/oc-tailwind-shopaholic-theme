@@ -1,0 +1,29 @@
+<div class="md:w-174">
+    <div class="gallery-top swiper-container m-x-auto overflow-hidden">
+        <ul class="swiper-wrapper">
+            {% for obImage in arImages %}
+            <li class="swiper-slide">
+                <button class="_shopaholic-add-wish-list-button absolute top-4 right-4 md:hidden  text-white hover:text-red-400 active:text-red-500 w-11 md:w-12 h-11 md:h-12 bg-gray-400 hover:bg-gray-500 group hover:bg-opacity-40 focus:outline-none flex justify-center items-center rounded-sm md:rounded focus-visible:outline-blue focus-visible:text-red-500" type="button">
+                    {% partial 'product-card/heart' %}
+                </button>
+                <picture class="swiper-slide-container max-w-225">
+                    <source srcset="{{ obImage.getThumb(696, 524, {'quality': 80}) }}" type="image/jpeg">
+                    <img class="object-cover h-auto md:w-174" src="{{ obImage.preview_image|media|resize(696, 524, {'quality': 80}) }}" alt="{{ obItem.description }}" title="{{ obItem.title }}" />
+                </picture>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="swiper-container gallery-thumbs mt-2 m-x-auto h-20 md:h-24 overflow-hidden">
+        <ul class="swiper-wrapper">
+            {% for obImage in arImages %}
+            <li class="swiper-slide w-20 h-20">
+                <picture>
+                    <source srcset="{{ obImage.getThumb(92, 92, {'quality': 80}) }}" type="image/jpeg">
+                    <img class="object-cover w-full h-full" src="{{ obImage.preview_image|media|resize(92, 92, {'quality': 80}) }}" alt="{{ obItem.description }}" title="{{ obItem.title }}" />
+                </picture>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
