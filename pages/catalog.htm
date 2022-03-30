@@ -156,8 +156,15 @@ function onInit() {
 
             $this['bShowFilter'] = true;
 
+            $bSaleFilter = (bool) input('sale');
+
+            if ($bSaleFilter) {
+                $obProductList->filterByDiscount();
+            }
+
             $this['fMinPriceFilterValue'] = $fMinPriceFilterValue;
             $this['fMaxPriceFilterValue'] = $fMaxPriceFilterValue;
+            $this['bSaleFilter'] = $bSaleFilter;
 
             $this['arFilterValue'] = $arFilterValue;
             $this['arFilterValueWithoutProperty'] = $arFilterValueWithoutProperty;

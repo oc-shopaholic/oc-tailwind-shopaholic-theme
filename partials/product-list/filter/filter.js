@@ -1,12 +1,13 @@
-export default new class Filter{
+export default class Filter{
     constructor(){
         this.$vContainer = $("._filter");
         this.$vTemplate = this.$vContainer.find("._filterTemplate");
         this.$vFilterRange = null;
+        this.$vFilterDetails = null;
 
         this.sUrl = null;
         this.nAmountProperties = null;
-        this.vContainer = null;
+        this.vLocalContainer = null;
         this.show = $('._show');
         this.vFilterProperties = [];
 
@@ -16,8 +17,8 @@ export default new class Filter{
 
     adaptation(){   
         if($(window).width() >= '768' && this.$vContainer.length){
-            this.vContainer = this.$vTemplate;
-            let container = this.vContainer[0].content.cloneNode(true);
+            this.vLocalContainer = this.$vTemplate;
+            let container = this.vLocalContainer[0].content.cloneNode(true);
             $(container).appendTo(this.$vContainer);
         }
     }
@@ -26,6 +27,7 @@ export default new class Filter{
         if($(window).width() <= '768' && this.$vContainer.length){
             this.show.on('click', () => {
                 this.initAutocompleteFilters();
+                console.log('Hello im Filter')
             })
         }else{
             this.initAutocompleteFilters();
@@ -69,8 +71,25 @@ export default new class Filter{
             $(this.$vFilterRange).each(function () {
                 let filterId = $(this).attr('data-filter-id')
                 if(filterId === app.vFilterProperties[i].id){
-                    $(this).find('._min').val(app.vFilterProperties[i].min)
-                    $(this).find('._max').val(app.vFilterProperties[i].max)
+                    if(app.vFilterProperties[i].min && app.vFilterProperties[i].max){
+                        $(this).find('._min').val(app.vFilterProperties[i].min);
+                        $(this).find('._max').val(app.vFilterProperties[i].max);
+                    } else if(app.vFilterProperties[i].min){
+                        $(this).find('._min').val(app.vFilterProperties[i].min);
+                        $(this).find('._max').val(app.vFilterProperties[i].min).trigger('change');
+                    }
+
+                    // else if(app.vFilterProperties[i].min){
+                    //     $(this).find('._min').val(app.vFilterProperties[i].min);
+                    //     $(this).find('._max').val(app.vFilterProperties[i].min).trigger('change');
+                    //     console.log('only min')
+                    // }
+                }
+            });
+            $(this.$vFilterDetails).each(function () {
+                let filterId = $(this).attr('id');
+                if(filterId === app.vFilterProperties[i].id){
+                    $(this).attr('open', '')
                 }
             });
         }
@@ -79,10 +98,13 @@ export default new class Filter{
     initAutocompleteFilters(){
         this.sUrl = location.search;
         this.nAmountProperties = 0;
+        this.vFilterProperties = [];
         this.$vFilterRange = this.$vContainer.find('._filter-range');
+        this.$vFilterDetails = this.$vContainer.find('._filter-details');
         this.propertyСount();
         this.linkSorting();
         this.autocompleteFilters();
     }
-}();
+}
 
+new Filter();

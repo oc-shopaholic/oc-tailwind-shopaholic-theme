@@ -1,6 +1,8 @@
 import ShopaholicProductList from "@lovata/shopaholic-product-list/shopaholic-product-list";
 import ShopaholicFilterPrice from '@lovata/shopaholic-filter-panel/shopaholic-filter-price';
 import ShopaholicFilterPanel from "@lovata/shopaholic-filter-panel/shopaholic-filter-panel";
+import Filter from "./filter/filter";
+import offCanvas from "../off-canvas/off-canvas";
 
 export default new class ProductList {
     constructor(){
@@ -12,7 +14,7 @@ export default new class ProductList {
         this.$vClear = null;
 
         this.show = this.$vContainer.find('._show');
-
+        this.hide = null;
         this.adaptation();
     }
     
@@ -21,6 +23,7 @@ export default new class ProductList {
             this.show.on('click', () => {
                 this.initPlugins();
                 this.activeProductUpdate();
+                console.log('Hello im Product List')
             })
         }
         this.initPlugins();
@@ -30,13 +33,31 @@ export default new class ProductList {
     }
 
     updateFilters(){
-        this.$vTemplate = this.$vContainer.find("._filterTemplate");
-        this.vContainer = this.$vTemplate;
-        let container = this.vContainer[0].content.cloneNode(true);
-        $(container).appendTo(this.$vContainer);
+        offCanvas.make('._off-canvas');
+        // offCanvas.removeFocus();
+        this.show = this.$vContainer.find('._show');
+        this.show.on('click', () => {
+            this.initPlugins();
+            this.activeProductUpdate();
+            console.log('Hello im Product List')
+        })
+        new Filter();
+        // this.show.trigger('click');
+        // let a = $('._offCanvasContainer');
+        // a.removeAttr('open');
+        // this.$vContainer = $("._filter");
+        // this.show = this.$vContainer.find('._show');
+        // console.log(this.$vContainer, this.show)
+        // this.show.on('click', () => {
+        //     console.log('update')
+        // })
+        // this.show.trigger('click')
+        //вызов из жс работает ок, значит дело в доступности из визуала
+        //ибо не будь кнопки, он бы и из жс не вызвал
     }
 
     activeProductUpdate(){
+        console.log('f')
         this.$vProductCount = this.$vContainer.find('._product-count');
         let seeAll = this.$vProductCount.text().split('(')[0]
         let product = $('.catalog_wrapper ._shopaholic-product-wrapper')
@@ -85,15 +106,18 @@ export default new class ProductList {
             window.location.href = url;
         })
     }
-    // попробуй через detach пофиксить закрытие тегов dialog
     initPlugins(){
         const obListHelper = new ShopaholicProductList();
         obListHelper.setAjaxRequestCallback((obRequestData) => {
+            // let sFocus = focusTrap.createFocusTrap('._offCanvasContainer');
+            // sFocus.deactivate()
+            console.log('wqwew')
+            this.hide = this.$vContainer.find('._hide');
+            this.hide.trigger('click');
             obRequestData.update = { 
                 'product-list/product-list-ajax': '.catalog_wrapper',
                 'product-list/filter/filter-ajax': '._filter',
             };
-            console.log('product')
             return obRequestData;
         });
         
@@ -102,5 +126,12 @@ export default new class ProductList {
 
         const obFilterPanel = new ShopaholicFilterPanel(obListHelper);
         obFilterPanel.init();
+
+        const obFilterPanelDiscount = new ShopaholicFilterPanel(obListHelper);
+        obFilterPanelDiscount
+            .setWrapperSelector('._shopaholic-sale-filter-wrapper')
+            .setFieldName('sale')
+            .init();
+
     }
 }();
