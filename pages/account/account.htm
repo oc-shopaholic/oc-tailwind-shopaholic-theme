@@ -1,0 +1,29 @@
+title = "Account"
+url = "/account"
+layout = "main"
+is_hidden = 0
+==
+<?php
+function onInit()
+{
+    $this['path_page_js'] = mix('assets/dist/js/account.js', 'themes/lovata-tailwind-shopaholic');
+
+    if ($this->theme->has_buddies) {
+        $this->addComponent('Lovata\Buddies\Components\UserPage', 'UserPage', [
+            'slug' => '{{ :slug }}',
+            'slug_required' => 0,
+            'mode' => 'ajax',
+            'flash_on' => 0,
+            'redirect_on' => 0,
+            'redirect_page' => 'error-404',
+            'login_page' => 'error-404',
+        ]);
+    } else {
+        return $this->controller->run('404');
+    }
+}
+?>
+==
+{##}
+
+{% partial 'breadcrumbs/breadcrumbs' %}

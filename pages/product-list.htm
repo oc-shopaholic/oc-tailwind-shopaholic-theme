@@ -37,6 +37,8 @@ last_button_number = 1
 ==
 function onInit()
 {
+    $this['path_page_js'] = mix('assets/dist/js/product-list.js', 'themes/lovata-tailwind-shopaholic');
+
     $arBreadcrumbs = [
         ['name' => 'Catalog', 'url' => \Cms\Classes\Page::url('product-list', ['category' => false])],
     ];

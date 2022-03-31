@@ -1,0 +1,23 @@
+title = "404 Not Found"
+url = "/404"
+layout = "main"
+is_hidden = 0
+==
+<?php
+function onInit()
+{
+    $this['path_page_js'] = mix('assets/dist/js/error-404.js', 'themes/lovata-tailwind-shopaholic');
+}
+?>
+==
+{##}
+
+{% partial 'error-message/error-message'
+    sPartialClasses = 'mt-28 md:mt-20 mb-8 md:mb-12'
+    sErrorCode = '404'
+    sErrorMessage = 'text_error_404'|_
+    bIsButton = true
+    sButtonText = 'button_go_back'|_
+    sButtonClass = 'mt-36 md:mt-10 w-full sm:w-auto'
+    sOnClick = 'history.go(-1)'
+%}
