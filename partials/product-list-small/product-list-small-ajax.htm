@@ -19,6 +19,10 @@
 
 {% for obProduct in arProductList %}
     <li class="h-full">
-        {% partial 'product-card/product-card' obProduct=obProduct sPartialClasses = 'h-full' %}
+        {% partial 'product-card/product-card' 
+            obProduct=obProduct 
+            sPartialClasses = 'h-full'
+            sLoopIndex = loop.index
+        %}
     </li>
 {% endfor %}
