@@ -7,7 +7,7 @@
             <source media="(min-width:769px)" srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" type="image/jpeg">
             <source media="(max-width:768px)" srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100, 'extension': 'webp'}) }}" type="image/webp">
             <source media="(max-width:768px)" srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" type="image/jpeg">
-            <img loading="lazy" class="w-full h-full object-cover" src="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" alt="{{ obArticle.preview_image.description }}">
+            <img class="w-full h-full object-cover" src="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" alt="{{ obArticle.preview_image.description }}">
         </picture>
     </div>
 {% endif %}

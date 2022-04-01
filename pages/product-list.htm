@@ -69,7 +69,7 @@ function onInit()
     {% for obProduct in arProductList %}
         {% partial 'product-card/product-card' 
             obProduct = obProduct 
-            sLoopIndex = loop.index
+            iLoopIndex = loop.index
             iShowIndex = 8
         %}
     {% endfor %}
