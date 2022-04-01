@@ -20,8 +20,8 @@ sorting = "no"
             {% for obProduct in arProductList %}
                 {% partial 'product-card/product-card' 
                     obProduct = obProduct
-                    sLoopIndex = loop.index
-                    sShowIndex = 0
+                    iLoopIndex = loop.index
+                    iShowIndex = 0
                 %}
             {% endfor %}
         </div>

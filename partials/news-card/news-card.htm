@@ -15,7 +15,7 @@
                     class="rounded w-full h-full object-cover"     
                     src="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" 
                     alt="{{ obArticle.preview_image.description }}"
-                    {{ sLoopIndex > sShowIndex ? 'loading="lazy"' }} 
+                    {{ iLoopIndex > iShowIndex ? 'loading="lazy"' }} 
                 >
             </picture>
         {% else %}
@@ -23,7 +23,7 @@
                 class="w-full h-full rounded object-cover" 
                 src="{{ 'assets/images/no-photo.svg'|theme }}" 
                 alt="{{ 'text_no_image_article'|_ }}"
-                {{ sLoopIndex > sShowIndex ? 'loading="lazy"' }} 
+                {{ iLoopIndex > iShowIndex ? 'loading="lazy"' }} 
             >
         {% endif %}
     </div>
