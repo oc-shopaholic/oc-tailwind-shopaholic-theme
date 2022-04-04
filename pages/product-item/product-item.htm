@@ -34,37 +34,36 @@ function onInit()
 
 {% partial 'breadcrumbs/breadcrumbs' %} {# TODO: Fix wrong breadcrumbs #}
 
-<div class="w-full flex flex-col">
-    <div class="w-full flex flex-col md:flex-row space-y-16 md:space-x-16 mt-10">
-        <div class="w-full md:w-1/2 flex flex-col">
-            {% partial 'product-item/customer-reviews' arReviews=[
-                {
-                    "name": "Jannet",
-                    "surname": "Tan",
-                    "date": "1 day ago",
-                    "text": "I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!",
-                    "ava": "/storage/app/uploads/public/0a1/faa/684/user-photo-1.png",
-                    "rating": 5,
-                },
-                {
-                    "name": "Nik",
-                    "surname": "Wansky",
-                    "date": "4 month ago",
-                    "text": "I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!",
-                    "ava": "/storage/app/uploads/public/0a1/faa/684/user-photo-2.png",
-                    "rating": 4,
-                },
-                {
-                    "name": "Jannet",
-                    "surname": "Tan",
-                    "date": "1 year ago",
-                    "text": "I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!",
-                    "ava": "/storage/app/uploads/public/0a1/faa/684/user-photo-3.png",
-                    "rating": 3,
-                },
-            ] %}
-        </div>
-    </div>
+<div class="w-full md:w-1/2 flex flex-col">
+    {% partial 'product-item/customer-reviews'
+        arReviews = [
+        {
+            "name": "Jannet",
+            "surname": "Tan",
+            "date": "1 day ago",
+            "text": "I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!",
+            "ava": "/storage/app/uploads/public/0a1/faa/684/user-photo-1.png",
+            "rating": 5,
+        },
+        {
+            "name": "Nik",
+            "surname": "Wansky",
+            "date": "4 month ago",
+            "text": "I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!",
+            "ava": "/storage/app/uploads/public/0a1/faa/684/user-photo-2.png",
+            "rating": 4,
+        },
+        {
+            "name": "Jannet",
+            "surname": "Tan",
+            "date": "1 year ago",
+            "text": "I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!",
+            "ava": "/storage/app/uploads/public/0a1/faa/684/user-photo-3.png",
+            "rating": 3,
+        },
+    ]
+    sSectionHeader = "heading_customer_reviews"|_
+    %}
 </div>
 
 {% if this.theme.has_viewed_products %}
@@ -75,6 +74,7 @@ function onInit()
         iTake = 4
     %}
 {% endif %}
+
 {% if this.theme.has_related_products %}
     {% partial 'product-list-small/product-list-small'
         sProductListSmallType = sProductListSmallTypeRelatedProducts
