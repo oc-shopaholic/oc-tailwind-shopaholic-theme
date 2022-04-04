@@ -1,6 +1,6 @@
 import Swiper from 'swiper/bundle';
 
-export default new class Gallery {
+export default new class ProductGallery {
   constructor() {
     this.gallerySelector = 'gallery-top';
     this.paginationSelector = 'gallery-thumbs';
@@ -23,19 +23,16 @@ export default new class Gallery {
   init() {
     const galleryThumbs = new Swiper(`.${this.paginationSelector}`, {
       spaceBetween: 10,
-      slidesPerView: 4,
-      loop: true,
+      slidesPerView: 8,
       freeMode: true,
-      loopedSlides: 5, // looped slides should be the same
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
     });
     const galleryTop = new Swiper(`.${this.gallerySelector}`, {
-      spaceBetween: 10,
-      loop: true,
+      spaceBetween: 0,
       allowSlidePrev: true,
-      loopedSlides: 5, // looped slides should be the same
       thumbs: {
+        // slideThumbActiveClass: "border border-blue-800",
         swiper: galleryThumbs,
       },
     });
