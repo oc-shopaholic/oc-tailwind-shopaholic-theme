@@ -77,7 +77,7 @@ text_password_restore: 'The link for restoring the password was sent to your ema
 text_powered_by: 'Powered by :text_powered_by_plugin and the :text_powered_by_theme theme.'
 text_powered_by_plugin: 'Shopaholic'
 text_powered_by_theme: 'Tailwind'
-text_recommended: 'Recommended'
+text_recommended: ':text_percent Recommended'
 text_rules_acceptence: 'By registering, you agree with our :text_rules_acceptence_link_terms_conditions, and :text_rules_acceptence_link_privacy_cookie_policy.'
 text_rules_acceptence_link_terms_conditions: 'Terms & Conditions'
 text_rules_acceptence_link_privacy_cookie_policy: 'Privacy & Cookie Policy'
