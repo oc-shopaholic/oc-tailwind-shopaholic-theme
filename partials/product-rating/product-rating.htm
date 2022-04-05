@@ -19,7 +19,7 @@
         <div class="text-gray-900 font-medium text-base md:text-lg">
             {{ rating }}
         </div>
-        {% partial 'product-item/rating' rating=rating %}
+        {% partial 'product-rating/rating' rating=rating %}
         <div class="text-gray-600 text-sm md:text-base">
             ({{ customersVotedTotal }} ratings)
         </div>
@@ -38,8 +38,11 @@
     <div class="flex flex-col-reverse space-y-reverse-2 mt-4">
         {% for count in customersVoted %}
             <div class="flex flex-row items-center space-x-4">
-                {% partial 'product-item/rating' rating = loop.index + 1 %}
-                {% partial 'product-item/progress' count=count countTotal=customersVotedTotal %}
+                {% partial 'product-rating/rating' rating = loop.index + 1 %}
+                {% partial 'product-rating/progress'
+                    count = count
+                    countTotal = customersVotedTotal
+                %}
                 <div class="text-gray-900 text-sm md:text-base">
                     {{ count }}
                 </div>
