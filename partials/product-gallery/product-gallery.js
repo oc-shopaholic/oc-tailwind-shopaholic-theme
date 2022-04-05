@@ -32,7 +32,7 @@ export default new class ProductGallery {
       spaceBetween: 0,
       allowSlidePrev: true,
       thumbs: {
-        // slideThumbActiveClass: "border border-blue-800",
+        slideThumbActiveClass: "border border-blue-800",
         swiper: galleryThumbs,
       },
     });
