@@ -17,29 +17,29 @@
 <section class="w-full">
     <h2 class="text-gray-900 text-lg md:text-2xl font-medium uppercase">{{ 'heading_customers_ratings'|_ }}</h2>
     <div class="flex flex-row items-center space-x-4 mt-4 md:mt-5">
-        <div class="text-gray-900 font-medium text-base md:text-lg">
+        <span class="text-gray-900 font-medium text-base md:text-lg">
             {{ rating }}
-        </div>
+        </span>
         {% partial 'product-rating/rating' rating=rating %}
-        <div class="text-gray-600 text-sm md:text-base">
+        <span class="text-gray-600 text-sm md:text-base">
             {{ 'text_customers_voted'|transRaw({
                 text_customers_voted_total: customersVotedTotal,
             }) }}
-        </div>
+        </span>
     </div>
     <div class="flex flex-row items-center space-x-4 mt-2">
-        <div class="text-gray-900 font-medium text-base md:text-lg">
+        <span class="text-gray-900 font-medium text-base md:text-lg">
             {{ percent | round }}%
-        </div>
-        <div class="text-gray-900 font-medium text-base md:text-lg">
+        </span>
+        <span class="text-gray-900 font-medium text-base md:text-lg">
             {{ 'text_recommended'|_ }}
-        </div>
-        <div class="text-gray-600 text-sm md:text-base">
+        </span>
+        <span class="text-gray-600 text-sm md:text-base">
             {{ 'text_customers_recommended'|transRaw({
                 text_customers_recommended: customersRecommended,
                 text_customers_total: customersTotal,
             }) }}
-        </div>
+        </span>
     </div>
     <div class="flex flex-col-reverse space-y-reverse-2 mt-4">
         {% for count in customersVoted %}
