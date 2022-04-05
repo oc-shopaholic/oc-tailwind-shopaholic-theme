@@ -12,7 +12,13 @@
                 <picture class="swiper-slide-container w-90 md:w-174">
                     <source srcset="{{ obImage.getThumb(696, 524, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
                     <source srcset="{{ obImage.getThumb(696, 524, {'quality': 80}) }}" type="image/jpeg">
-                    <img class="object-cover h-auto" src="{{ obImage.preview_image|media|resize(696, 524, {'quality': 80}) }}" alt="{{ obItem.description }}" title="{{ obItem.title }}" />
+                    <img
+                        class="object-cover h-auto"
+                        src="{{ obImage.preview_image|media|resize(696, 524, {'quality': 80}) }}"
+                        alt="{{ obItem.description }}"
+                        title="{{ obItem.title }}"
+                        {% if loop.index > 1 %} loading="lazy" {% endif %}
+                    />
                 </picture>
             </li>
             {% endfor %}
@@ -26,7 +32,13 @@
                     <picture>
                         <source srcset="{{ obImage.getThumb(92, 92, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
                         <source srcset="{{ obImage.getThumb(92, 92, {'quality': 80}) }}" type="image/jpeg">
-                        <img class="object-cover w-full md:h-full" src="{{ obImage.preview_image|media|resize(92, 92, {'quality': 80}) }}" alt="{{ obItem.description }}" title="{{ obItem.title }}" />
+                        <img
+                            class="object-cover w-full md:h-full"
+                            src="{{ obImage.preview_image|media|resize(92, 92, {'quality': 80}) }}"
+                            alt="{{ obItem.description }}"
+                            title="{{ obItem.title }}"
+                            {% if loop.index > 5 %} loading="lazy" {% endif %}
+                        />
                     </picture>
                 </button>
             </li>
