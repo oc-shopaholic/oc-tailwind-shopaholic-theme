@@ -4,15 +4,15 @@
 {% set customersRecommended = 45 %}
 {% set percent = customersRecommended / customersTotal * 100 %}
 {% set customersVoted = {
-    1: 16,
-    2: 9,
-    3: 18,
-    4: 21,
     5: 54,
+    4: 21,
+    3: 18,
+    2: 9,
+    1: 16,
 } %}
 {% set customersVotedTotal = 0 %}
 {% for count in customersVoted %}
-{% set customersVotedTotal = customersVotedTotal + count %}
+    {% set customersVotedTotal = customersVotedTotal + count %}
 {% endfor %}
 <section class="w-full">
     <h2 class="text-gray-900 text-lg md:text-2xl font-medium uppercase">{{ 'heading_customers_ratings'|_ }}</h2>
@@ -41,18 +41,18 @@
             }) }}
         </span>
     </div>
-    <div class="flex flex-col-reverse space-y-reverse-2 mt-4">
+    <ul class="flex flex-col md:space-y-2 mt-4">
         {% for count in customersVoted %}
-            <div class="flex flex-row items-center space-x-4">
-                {% partial 'product-rating/rating' rating = loop.index + 1 %}
+            <li class="flex flex-row items-center space-x-4">
+                {% partial 'product-rating/rating' rating = 7 - loop.index %}
                 {% partial 'product-rating/progress'
                     count = count
                     countTotal = customersVotedTotal
                 %}
-                <div class="text-gray-900 text-sm md:text-base">
+                <span class="text-gray-900 text-sm md:text-base">
                     {{ count }}
-                </div>
-            </div>
+                </span>
+            </li>
         {% endfor %}
-    </div>
+    </ul>
 </section>
