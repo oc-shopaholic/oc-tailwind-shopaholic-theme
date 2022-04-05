@@ -38,21 +38,23 @@
                             <fieldset class="mr-3 w-full">
                                 <legend class="sr-only">{{'heading_filter_price'|_}}&nbsp;{{'text_properties_filter_min'|_}}</legend>
                                 {% partial 'input/input'
-                                sLabelText = 'text_properties_filter_min'|_
-                                inputClass = '_shopaholic-price-filter appearance-none'
-                                type= 'number'
-                                name= 'filter-min-price'
-                                value= fMinPriceFilterValue
+                                    sLabelText = 'text_properties_filter_min'|_
+                                    inputClass = '_shopaholic-price-filter appearance-none'
+                                    type = 'number'
+                                    name = 'filter-min-price'
+                                    value = fMinPriceFilterValue
+                                    sId = 'min-price'
                                 %}
                             </fieldset>
                             <fieldset class="w-full">
                                 <legend class="sr-only">{{'heading_filter_price'|_}}&nbsp;{{'text_properties_filter_max'|_}}</legend>
                                 {% partial 'input/input'
-                                sLabelText = 'text_properties_filter_max'|_
-                                inputClass = '_shopaholic-price-filter appearance-none'
-                                type= 'number'
-                                name= 'filter-max-price'
-                                value= fMaxPriceFilterValue
+                                    sLabelText = 'text_properties_filter_max'|_
+                                    inputClass = '_shopaholic-price-filter appearance-none'
+                                    type= 'number'
+                                    name= 'filter-max-price'
+                                    value = fMaxPriceFilterValue
+                                    sId = 'max-price'
                                 %}
                             </fieldset>
                         </div>
@@ -61,7 +63,7 @@
                                 sLabelText = 'input_checkbox_discount'|_
                                 sPartialClasses = 'flex items-center mb-3 mx-4'
                                 sInputClass = 'rounded-sm'
-                                sChecked= bSaleFilter
+                                sChecked = bSaleFilter
                                 sId = 'sale-filter'
                                 sName = 'sale'
                                 sValue = 1
@@ -73,7 +75,7 @@
                             class="_filter-details border-b border-gray-300"
                             id = "{{obProperty.id}}"
                         >
-                            <summary class="text-base font-medium text-blue-800 cursor-pointer pb-4 pt-4 pl-4 pr-5 after:right-5 after:duration-0 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
+                            <summary class="text-base font-medium text-blue-800 cursor-pointer pb-4 pt-4 pl-4 pr-5 after:right-5 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
                                 {{ obProperty.name }}
                             </summary>
                             {% if obProperty.filter_type == 'between' %}
@@ -82,17 +84,19 @@
                                         <fieldset class="mr-3 w-full">
                                             <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'text_properties_filter_min'|_}}</legend>
                                             {% partial 'input/input'
-                                            sLabelText = 'text_properties_filter_min'|_
-                                            inputClass = '_min appearance-none'
-                                            value=fMinWidthFilterValue
+                                                sLabelText = 'text_properties_filter_min'|_
+                                                inputClass = '_min appearance-none'
+                                                value = fMinWidthFilterValue
+                                                sId = obProperty.name ~ 'min'
                                             %}
                                         </fieldset>
                                         <fieldset class="w-full">
                                             <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'text_properties_filter_min'|_}}</legend>
                                             {% partial 'input/input'
-                                            sLabelText = 'text_properties_filter_max'|_
-                                            inputClass = '_max appearance-none'
-                                            value=fMaxWidthFilterValue
+                                                sLabelText = 'text_properties_filter_max'|_
+                                                inputClass = '_max appearance-none'
+                                                value = fMaxWidthFilterValue
+                                                sId = obProperty.name ~ 'max'
                                             %}
                                         </fieldset>
                                     </div>
@@ -117,7 +121,7 @@
                                                     sPartialClasses = 'flex items-center mb-4'
                                                     sInputClass = 'rounded-sm disabled:opacity-20'
                                                     sDisabled = bDisabled
-                                                    sChecked= bChecked
+                                                    sChecked = bChecked
                                                     sId = obValue.slug
                                                     sValue = obValue.slug
                                                 %}
@@ -157,28 +161,30 @@
             <details
                 {{fMinPriceFilterValue or fMaxPriceFilterValue or bSaleFilter ? 'open'}}
             >
-                <summary class="text-base font-medium text-blue-800 cursor-pointer mb-4 after:text-blue-800 after:duration-0 hover:text-blue-700 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
+                <summary class="text-base font-medium text-blue-800 cursor-pointer mb-4 after:text-blue-800 hover:text-blue-700 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
                     {{'heading_filter_price'|_}}
                 </summary>
                 <div class="flex mb-4">
                     <fieldset class="mr-3">
                         <legend class="sr-only">{{'heading_filter_price'|_}}&nbsp;{{'text_properties_filter_min'|_}}</legend>
                         {% partial 'input/input'
-                        sLabelText = 'text_properties_filter_min'|_
-                        inputClass = '_shopaholic-price-filter appearance-none'
-                        type= 'number'
-                        name= 'filter-min-price'
-                        value= fMinPriceFilterValue
+                            sLabelText = 'text_properties_filter_min'|_
+                            inputClass = '_shopaholic-price-filter appearance-none'
+                            type = 'number'
+                            name = 'filter-min-price'
+                            value = fMinPriceFilterValue
+                            sId = 'min-price'
                         %}
                     </fieldset>
                     <fieldset>
                         <legend class="sr-only">{{'heading_filter_price'|_}}&nbsp;{{'text_properties_filter_max'|_}}</legend>
                         {% partial 'input/input'
-                        sLabelText = 'text_properties_filter_max'|_
-                        inputClass = '_shopaholic-price-filter appearance-none'
-                        type= 'number'
-                        name= 'filter-max-price'
-                        value= fMaxPriceFilterValue
+                            sLabelText = 'text_properties_filter_max'|_
+                            inputClass = '_shopaholic-price-filter appearance-none'
+                            type = 'number'
+                            name = 'filter-max-price'
+                            value = fMaxPriceFilterValue
+                            sId = 'max-price'
                         %}
                     </fieldset>
                 </div>
@@ -187,7 +193,7 @@
                         sLabelText = 'input_checkbox_discount'|_
                         sPartialClasses = 'flex items-center'
                         sInputClass = 'rounded-sm'
-                        sChecked= bSaleFilter
+                        sChecked = bSaleFilter
                         sId = 'sale-filter'
                         sName = 'sale'
                         sValue = 1
@@ -200,7 +206,7 @@
                     class="_filter-details"
                     id = "{{obProperty.id}}"
                 >
-                    <summary class="text-base font-medium text-blue-800 cursor-pointer mb-3 after:duration-0 hover:text-blue-700 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
+                    <summary class="text-base font-medium text-blue-800 cursor-pointer mb-3 hover:text-blue-700 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
                         {{ obProperty.name }}
                     </summary>
                     <div class="flex _shopaholic-filter-wrapper {{obProperty.filter_type == 'between' ? 'mb-4' : ''}}" data-filter-type="{{ obProperty.filter_type }}" data-property-id="{{ obProperty.id }}">
@@ -209,15 +215,17 @@
                                 <fieldset class="mr-3">
                                     <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'text_properties_filter_min'|_}}</legend>
                                     {% partial 'input/input'
-                                    sLabelText = 'text_properties_filter_min'|_
-                                    inputClass = '_min appearance-none'
+                                        sLabelText = 'text_properties_filter_min'|_
+                                        inputClass = '_min appearance-none'
+                                        sId = obProperty.name ~ 'min'
                                     %}
                                 </fieldset>
                                 <fieldset>
                                     <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'text_properties_filter_max'|_}}</legend>
                                     {% partial 'input/input'
-                                    sLabelText = 'text_properties_filter_max'|_
-                                    inputClass = '_max appearance-none'
+                                        sLabelText = 'text_properties_filter_max'|_
+                                        inputClass = '_max appearance-none'
+                                        sId = obProperty.name ~ 'max'
                                     %}
                                 </fieldset>
                             </div>
