@@ -10,6 +10,7 @@ export default new class ProductList {
         this.$vTemplate = null;
 
         this.$vProductCount = null
+        this.$vButtonLoading = null;
         this.$vResult = null;
         this.$vClear = null;
 
@@ -52,16 +53,23 @@ export default new class ProductList {
         //     console.log('update')
         // })
         // this.show.trigger('click')
-        //вызов из жс работает ок, значит дело в доступности из визуала
-        //ибо не будь кнопки, он бы и из жс не вызвал
     }
 
     activeProductUpdate(){
-        console.log('f')
         this.$vProductCount = this.$vContainer.find('._product-count');
-        let seeAll = this.$vProductCount.text().split('(')[0]
-        let product = $('.catalog_wrapper ._shopaholic-product-wrapper')
-        this.$vProductCount.text(seeAll + ' (' + product.length +')')
+        let seeAll = this.$vProductCount.text().split('(')[0];
+        let product = $('.catalog_wrapper ._shopaholic-product-wrapper');
+        this.$vProductCount.text(seeAll + ' (' + product.length +')');
+    }
+
+    showLoading(){
+        this.$vProductCount.css('display', 'none');
+        this.$vButtonLoading = this.$vContainer.find('._show-more-hidden');
+        this.$vButtonLoading.css('display', 'block');
+        setTimeout(() => {
+            this.$vProductCount.css('display', 'block');
+            this.$vButtonLoading.css('display', 'none');
+        }, 400);
     }
 
     watchResult(){
@@ -79,6 +87,7 @@ export default new class ProductList {
               app.catalogPosition();
               app.activeProductUpdate();
               app.updateFilters();
+              app.showLoading();
             }
           }
         };
@@ -111,7 +120,6 @@ export default new class ProductList {
         obListHelper.setAjaxRequestCallback((obRequestData) => {
             // let sFocus = focusTrap.createFocusTrap('._offCanvasContainer');
             // sFocus.deactivate()
-            console.log('wqwew')
             this.hide = this.$vContainer.find('._hide');
             this.hide.trigger('click');
             obRequestData.update = { 
