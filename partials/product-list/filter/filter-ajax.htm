@@ -39,7 +39,7 @@
                                 <legend class="sr-only">{{'heading_filter_price'|_}}&nbsp;{{'text_properties_filter_min'|_}}</legend>
                                 {% partial 'input/input'
                                     sLabelText = 'text_properties_filter_min'|_
-                                    inputClass = '_shopaholic-price-filter appearance-none'
+                                    inputClass = '_shopaholic-price-filter appearance-none quantity_input'
                                     type = 'number'
                                     name = 'filter-min-price'
                                     value = fMinPriceFilterValue
@@ -50,7 +50,7 @@
                                 <legend class="sr-only">{{'heading_filter_price'|_}}&nbsp;{{'text_properties_filter_max'|_}}</legend>
                                 {% partial 'input/input'
                                     sLabelText = 'text_properties_filter_max'|_
-                                    inputClass = '_shopaholic-price-filter appearance-none'
+                                    inputClass = '_shopaholic-price-filter appearance-none quantity_input'
                                     type= 'number'
                                     name= 'filter-max-price'
                                     value = fMaxPriceFilterValue
@@ -85,18 +85,20 @@
                                             <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'text_properties_filter_min'|_}}</legend>
                                             {% partial 'input/input'
                                                 sLabelText = 'text_properties_filter_min'|_
-                                                inputClass = '_min appearance-none'
+                                                inputClass = '_min appearance-none quantity_input'
                                                 value = fMinWidthFilterValue
                                                 sId = obProperty.name ~ 'min'
+                                                type = 'number'
                                             %}
                                         </fieldset>
                                         <fieldset class="w-full">
                                             <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'text_properties_filter_min'|_}}</legend>
                                             {% partial 'input/input'
                                                 sLabelText = 'text_properties_filter_max'|_
-                                                inputClass = '_max appearance-none'
+                                                inputClass = '_max appearance-none quantity_input'
                                                 value = fMaxWidthFilterValue
                                                 sId = obProperty.name ~ 'max'
+                                                type = 'number'
                                             %}
                                         </fieldset>
                                     </div>
