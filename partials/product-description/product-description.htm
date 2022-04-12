@@ -1,11 +1,12 @@
+{##}
+
 <section class="text-gray-900 text-base mt-1">
-    <div style="overflow: hidden; display: -webkit-box;
--webkit-box-orient: vertical; -webkit-line-clamp: 3; max-height: 7.5rem;" id="description">
-        {{ stDescription | raw }}
+    <div class="_description line-clamp-3">
+        <span>{{ sDescription | raw }}</span>
     </div>
-    <button class="flex flex-row items-center space-x-2 mt-2 text-blue-800" id="description-toggle">
-        <span>Read full description</span>
-        <svg style="transition: all 0.3s;" width="12" height="8" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <button class="_description-toggle flex flex-row items-center space-x-2 mt-2 duration-300 text-blue-800">
+        <span aria-live="polite">{{ 'button_show_description'|_ }}</span>
+        <svg class="duration-300" width="12" height="8" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
@@ -16,4 +17,9 @@
     </button>
 </section>
 
-
+<script>
+    window.stateButton = {
+        'show': "{{ 'button_show_description'|_ }}",
+        'hide': "{{ 'button_hide_description'|_ }}",
+    };
+</script>
