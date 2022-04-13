@@ -8,23 +8,24 @@ export default new class ProductDescription {
   }
 
   changeVisibly(text){
-    this.vButton.addClass('opacity-0');
+    this.vButton.css('opacity', '0');
     setTimeout(()=>{
       this.vSpan.text(text)
-      this.vButton.removeClass('opacity-0');
+      this.vButton.css('opacity', '1');
     },600)
   }
 
   changeVisiblyDescription(){
     this.vButton.on('click', ()=>{
-      if(this.vDescription.hasClass('line-clamp-none')){
-        this.vDescription.removeClass('line-clamp-none');
-        this.vSvg.removeClass('rotate-180');
+      if(this.vDescription.css('-webkit-line-clamp') !== '3'){
+        this.vDescription.css('-webkit-line-clamp', '3');
+        this.vSvg.css('transform', 'rotate(0deg)');
         this.changeVisibly(window.stateButton.show);
       }else {
+        console.log(this.vDescription.css('-webkit-line-clamp'))
         this.changeVisibly(window.stateButton.hide);
-        this.vDescription.addClass('line-clamp-none');
-        this.vSvg.addClass('rotate-180');
+        this.vDescription.css('-webkit-line-clamp', 'unset');
+        this.vSvg.css('transform', 'rotate(180deg)');
       }
     })
   }
