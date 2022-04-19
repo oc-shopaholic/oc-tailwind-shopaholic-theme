@@ -1,55 +1,70 @@
 {##}
-{% set rating = 3.7 %}
-{% set customersTotal = 52 %}
-{% set customersRecommended = 45 %}
-{% set percent = customersRecommended / customersTotal * 100 %}
-{% set customersVoted = {
-    5: 54,
-    4: 21,
-    3: 18,
-    2: 9,
-    1: 16,
-} %}
-{% set customersVotedTotal = 0 %}
-{% for count in customersVoted %}
-    {% set customersVotedTotal = customersVotedTotal + count %}
-{% endfor %}
+
+{#
+    {% set customersTotal = 118 %}
+    {% set customersRecommended = 75 %}
+    {% set percent = customersRecommended / customersTotal * 100 %}
+#}
+
 <section class="w-full">
+    {% set iReviewCount = obProduct.review.active().count() %}
     <h2 class="text-gray-900 text-lg md:text-2xl font-medium uppercase">{{ 'heading_customers_ratings'|_ }}</h2>
-    <div class="flex flex-row items-center space-x-4 mt-4 md:mt-5">
-        <span class="text-gray-900 font-medium text-base md:text-lg">
-            {{ rating }}
+    <div class="flex flex-row items-center space-x-4 mt-4 md:mt-5" aria-label="{{ 'aria_label_customers_rating'|transRaw({
+        aria_label_customers_rating: obProduct.rating,
+        text_customers_total: iReviewCount,
+    })}}">
+        <span aria-hidden="true" class="text-gray-900 font-medium text-base md:text-lg">
+            {{ obProduct.rating }}
         </span>
-        {% partial 'product-rating/rating' rating = rating %}
-        <span class="text-gray-600 text-sm md:text-base">
+        <div aria-hidden="true" class="flex flex-row items-center space-x-1">
+            {% partial 'product-rating/rating-image' maxRating='5' rating=obProduct.rating unique_id='product' %}
+        </div>
+        <span aria-hidden="true" class="text-gray-600 text-sm md:text-base">
             {{ 'text_customers_voted'|transRaw({
-                text_customers_voted_total: customersVotedTotal,
+                text_customers_voted_total: iReviewCount,
             }) }}
         </span>
     </div>
-    <div class="flex flex-row items-center mt-2">
-        <span class="text-gray-900 font-medium text-base md:text-lg mr-3">
-            {{ 'text_recommended'|transRaw({
-                text_percent: percent | round,
-            }) }}
-        </span>
-        <span class="text-gray-600 text-sm md:text-base">
-            {{ 'text_customers_recommended'|transRaw({
-                text_customers_recommended: customersRecommended,
-                text_customers_total: customersTotal,
-            }) }}
-        </span>
-    </div>
-    <ul class="flex flex-col md:space-y-2 mt-4">
-        {% for count in customersVoted %}
-            <li class="flex flex-row items-center space-x-4">
-                {% partial 'product-rating/rating' rating = 7 - loop.index %}
-                {% partial 'product-rating/progress'
-                    count = count
-                    countTotal = customersVotedTotal
-                %}
-                <span class="text-gray-900 text-sm md:text-base">
-                    {{ count }}
+    {# TODO: Add real data in the block
+        <div class="flex flex-row items-center mt-2" aria-label="{{ 'text_recommended'|transRaw({
+            text_percent: percent | round ~ '%',
+        })}} {{ 'text_customers_recommended'|transRaw({
+            text_customers_recommended: customersRecommended,
+            text_customers_total: customersTotal,
+        })}}">
+            <span aria-hidden="true" class="text-gray-900 font-medium text-base md:text-lg mr-3">
+                {{ 'text_recommended'|transRaw({
+                    text_percent: percent | round ~ '%',
+                }) }}
+            </span>
+            <span aria-hidden="true" class="text-gray-600 text-sm md:text-base">
+                {{ 'text_customers_recommended'|transRaw({
+                    text_customers_recommended: customersRecommended,
+                    text_customers_total: customersTotal,
+                }) }}
+            </span>
+        </div>
+    #}
+    <ul class="flex flex-col-reverse md:space-y-2 md:space-y-reverse mt-4">
+        {% for i in 1..5 %}
+            {% set iCount = obProduct.getRatingCount(i) %}
+            {% set customersVotedTotal = ((iCount * 100) / iReviewCount) * 1.75 %}
+            {% set votedTotal = (iCount * 100) / iReviewCount %}
+            
+            <li class="flex items-center space-x-4" aria-label="{{ 'aria_label_customers_rating_all'|transRaw({
+                aria_label_customers_rating_all: i,
+                text_customers_total: votedTotal | round ~ '%',
+                text_customers_count: iCount
+            })}}">
+                <div class="flex flex-row space-x-1">
+                    {% partial 'product-rating/rating-image' maxRating='5' rating=i unique_id='total-rating-'~i %}
+                </div>
+                <svg aria-hidden="true" class="w-44 h-1" viewBox="0 0 182 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="w-44 h-1" rx="2" fill="#D1D5DB"/>
+                    <rect width="{{ customersVotedTotal | round }}" class="h-1" rx="2" fill="#1E40AF"/>
+                </svg>
+                <span aria-hidden="true" class="text-gray-900 text-sm md:text-base">
+                    {{ iCount }}
                 </span>
             </li>
         {% endfor %}
