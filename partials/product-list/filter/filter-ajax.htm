@@ -70,80 +70,9 @@
                             %}
                         </div>
                     </details>
-                    {% for obProperty in obProductPropertyList if obProperty.hasValue() %}
-                        <details 
-                            class="_filter-details border-b border-gray-300"
-                            id = "{{obProperty.id}}"
-                        >
-                            <summary class="text-base font-medium text-blue-800 cursor-pointer pb-4 pt-4 pl-4 pr-5 after:right-5 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
-                                {{ obProperty.name }}
-                            </summary>
-                            {% if obProperty.filter_type == 'between' %}
-                                <div class="flex mb-7 ml-4 mr-5 mt-3 _shopaholic-filter-wrapper" data-filter-type="{{ obProperty.filter_type }}" data-property-id="{{ obProperty.id }}">
-                                    <div class="_filter-range flex" data-filter-id="{{ obProperty.id }}">
-                                        <fieldset class="mr-3 w-full">
-                                            <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'text_properties_filter_min'|_}}</legend>
-                                            {% partial 'input/input'
-                                                sLabelText = 'text_properties_filter_min'|_
-                                                inputClass = '_min appearance-none quantity_input'
-                                                value = fMinWidthFilterValue
-                                                sId = obProperty.name ~ 'min'
-                                                type = 'number'
-                                            %}
-                                        </fieldset>
-                                        <fieldset class="w-full">
-                                            <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'text_properties_filter_min'|_}}</legend>
-                                            {% partial 'input/input'
-                                                sLabelText = 'text_properties_filter_max'|_
-                                                inputClass = '_max appearance-none quantity_input'
-                                                value = fMaxWidthFilterValue
-                                                sId = obProperty.name ~ 'max'
-                                                type = 'number'
-                                            %}
-                                        </fieldset>
-                                    </div>
-                                </div>
-                            {% endif %}
-                            {% if obProperty.filter_type == 'checkbox' %}
-                                <div class="flex mb-2 ml-4 mt-3 mr-5 _shopaholic-filter-wrapper" data-filter-type="{{ obProperty.filter_type }}" data-property-id="{{ obProperty.id }}">
-                                    {% set obPropertyValueList = obProperty.property_value.sort() %}
-                                    {% if obProperty.code != 'Color' %}
-                                        <fieldset class="mr-3 w-full">
-                                            <legend class="sr-only">{{ obProperty.name }}</legend>
-                                            {% for obValue in obPropertyValueList %}
-                                                {% set bChecked = arFilterValue[obProperty.id] is not empty and obValue.slug in arFilterValue[obProperty.id] %}
-                                                {% set bDisabled = false %}
-                                                {% if bChecked == false and arFilterValueWithoutProperty[obProperty.id] is not empty %}
-                                                    {% set obProductListTemp = obProductList.copy().filterByProperty(arFilterValueWithoutProperty[obProperty.id], obProductPropertyList).filterByProperty(arFilterValueWithoutProperty[obProperty.id], obOfferPropertyList) %}
-                                                    {% set bDisabled = obValue.isDisabled(obProductListTemp) %}
-                                                {% endif %}
-
-                                                {% partial 'input-checkbox/input-checkbox'
-                                                    sLabelText = obValue.value
-                                                    sPartialClasses = 'flex items-center mb-4'
-                                                    sInputClass = 'rounded-sm disabled:opacity-20'
-                                                    sDisabled = bDisabled
-                                                    sChecked = bChecked
-                                                    sId = obValue.slug
-                                                    sValue = obValue.slug
-                                                %}
-                                            {% endfor %}
-                                        </fieldset>
-                                    {% endif %}
-                                    {% if obProperty.code == 'Color' %}
-                                        <fieldset class="flex flex-wrap">
-                                            <legend class="sr-only">{{ obProperty.name }}</legend>
-                                            {% partial 'input-checkbox-color/input-checkbox-color'
-                                                obPropertyValueList = obPropertyValueList
-                                                obProperty = obProperty
-                                                sPartialClasses = 'mr-3'
-                                            %}
-                                        </fieldset>
-                                    {% endif %}
-                                </div>
-                            {% endif %}
-                        </details>
-                    {% endfor %}
+                    <div class="_filters-mobile">
+                        {% partial 'product-list/filter/filters-mobile-ajax'%}
+                    </div>
                 </div>
                 <div class="ml-4 mr-5">
                     {% partial 'button/button'
@@ -175,7 +104,7 @@
             <details
                 {{fMinPriceFilterValue or fMaxPriceFilterValue or bSaleFilter ? 'open'}}
             >
-                <summary class="text-base font-medium text-blue-800 cursor-pointer mb-4 after:text-blue-800 hover:text-blue-700 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
+                <summary class="text-base font-medium text-blue-800 cursor-pointer mb-3 after:text-blue-800 hover:text-blue-700 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
                     {{'heading_filter_price'|_}}
                 </summary>
                 <div class="flex mb-4">
@@ -214,76 +143,9 @@
                     %}
                 </div>
             </details>
-
-            {% for obProperty in obProductPropertyList if obProperty.hasValue() %}
-                <details
-                    class="_filter-details"
-                    id = "{{obProperty.id}}"
-                >
-                    <summary class="text-base font-medium text-blue-800 cursor-pointer mb-3 hover:text-blue-700 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
-                        {{ obProperty.name }}
-                    </summary>
-                    <div class="flex _shopaholic-filter-wrapper {{obProperty.filter_type == 'between' ? 'mb-4' : ''}}" data-filter-type="{{ obProperty.filter_type }}" data-property-id="{{ obProperty.id }}">
-                        {% if obProperty.filter_type == 'between' %}
-                            <div class="_filter-range flex" data-filter-id="{{ obProperty.id }}">
-                                <fieldset class="mr-3">
-                                    <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'text_properties_filter_min'|_}}</legend>
-                                    {% partial 'input/input'
-                                        sLabelText = 'text_properties_filter_min'|_
-                                        inputClass = '_min appearance-none quantity_input'
-                                        sId = obProperty.name ~ 'min'
-                                        type = 'number'
-                                    %}
-                                </fieldset>
-                                <fieldset>
-                                    <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'text_properties_filter_max'|_}}</legend>
-                                    {% partial 'input/input'
-                                        sLabelText = 'text_properties_filter_max'|_
-                                        inputClass = '_max appearance-none quantity_input'
-                                        sId = obProperty.name ~ 'max'
-                                        type = 'number'
-                                    %}
-                                </fieldset>
-                            </div>
-                        {% endif %}
-                        {% if obProperty.filter_type == 'checkbox' %}
-                            {% set obPropertyValueList = obProperty.property_value.sort() %}
-                            {% if obProperty.code != 'Color' %}
-                                <fieldset class="flex flex-col">
-                                    <legend class="sr-only">{{ obProperty.name }}</legend>
-                                    {% for obValue in obPropertyValueList %}
-                                        {% set bChecked = arFilterValue[obProperty.id] is not empty and obValue.slug in arFilterValue[obProperty.id] %}
-                                        {% set bDisabled = false %}
-                                        {% if bChecked == false and arFilterValueWithoutProperty[obProperty.id] is not empty %}
-                                            {% set obProductListTemp = obProductList.copy().filterByProperty(arFilterValueWithoutProperty[obProperty.id], obProductPropertyList).filterByProperty(arFilterValueWithoutProperty[obProperty.id], obOfferPropertyList) %}
-                                            {% set bDisabled = obValue.isDisabled(obProductListTemp) %}
-                                        {% endif %}
-
-                                        {% partial 'input-checkbox/input-checkbox'
-                                            sLabelText = obValue.value
-                                            sPartialClasses = 'flex items-center mb-4'
-                                            sInputClass = 'rounded-sm disabled:opacity-20'
-                                            sDisabled = bDisabled
-                                            sChecked= bChecked
-                                            sId = obValue.slug
-                                            sValue = obValue.slug
-                                        %}
-                                    {% endfor %}
-                                </fieldset>
-                            {% endif %}
-                            {% if obProperty.code == 'Color' %}
-                                <fieldset class="flex flex-wrap">
-                                    <legend class="sr-only">{{ obProperty.name }}</legend>
-                                    {% partial 'input-checkbox-color/input-checkbox-color'
-                                        obPropertyValueList = obPropertyValueList
-                                        obProperty = obProperty
-                                    %}
-                                </fieldset>
-                            {% endif %}
-                        {% endif %}
-                    </div>
-                </details>
-            {% endfor %}
+            <div class="_filters-desktop">
+                {% partial 'product-list/filter/filters-desktop-ajax'%}
+            </div>
         </div>
     </div>
 </template>

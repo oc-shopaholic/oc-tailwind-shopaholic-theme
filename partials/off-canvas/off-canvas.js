@@ -13,7 +13,7 @@ export default class offCanvas {
     this.$sScrollWidth = null;
     this.$sBackdrop = null;
     this.$sFocus = null;
-    this.test = null;
+    this.$sContainerRend = null;
     this.newRend = false;
   }
 
@@ -26,10 +26,10 @@ export default class offCanvas {
       this.$vTemplateNav = this.$vNav.find("._offCanvasTemplate");
       this.$vTemplate = this.$vTemplateNav[0].content.cloneNode(true);
       $(this.$vTemplate).appendTo(this.$vNav);
-      this.test = this.$vNav.find('._offCanvasContainer');
+      this.$sContainerRend = this.$vNav.find('._offCanvasContainer');
       this.onNewRend();
     }else{
-      $(this.test).appendTo(this.$vNav);
+      $(this.$sContainerRend).appendTo(this.$vNav);
     }
     this.$sDialog = document.querySelectorAll('._offCanvasContainer')[0];
     dialogPolyfill.registerDialog(this.$sDialog);
@@ -140,9 +140,9 @@ export default class offCanvas {
 
   animClose(){
     setTimeout(() => {
-      $('body').css('overflow-y', 'auto')
-      $('body').css('padding-right', '0')
-      this.$sFocus.deactivate()
+      $('body').css('overflow-y', 'auto');
+      $('body').css('padding-right', '0');
+      this.$sFocus.deactivate();
       this.$vOffCanvasRemove = this.$vNav.find('._offCanvasContainer');
       if(this.newRend === 'detach'){
         this.$vOffCanvasRemove.removeAttr('open').detach();
@@ -156,10 +156,6 @@ export default class offCanvas {
     $(this.$vNav).off();
     $(document).off();
     this.clear();
-  }
-
-  testik(){
-    console.log('okay boy')
   }
 
   clear(){

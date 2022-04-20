@@ -2,7 +2,6 @@ import ShopaholicProductList from "@lovata/shopaholic-product-list/shopaholic-pr
 import ShopaholicFilterPrice from '@lovata/shopaholic-filter-panel/shopaholic-filter-price';
 import ShopaholicFilterPanel from "@lovata/shopaholic-filter-panel/shopaholic-filter-panel";
 import Filter from "./filter/filter";
-import offCanvas from "../off-canvas/off-canvas";
 
 export default new class ProductList {
     constructor(){
@@ -24,35 +23,17 @@ export default new class ProductList {
             this.show.on('click', () => {
                 this.initPlugins();
                 this.activeProductUpdate();
-                console.log('Hello im Product List')
             })
+        }else{
+            this.initPlugins();
         }
-        this.initPlugins();
         this.clear();
         this.watchResult();
         this.catalogPosition();
     }
 
     updateFilters(){
-        offCanvas.make('._off-canvas');
-        // offCanvas.removeFocus();
-        this.show = this.$vContainer.find('._show');
-        this.show.on('click', () => {
-            this.initPlugins();
-            this.activeProductUpdate();
-            console.log('Hello im Product List')
-        })
         new Filter();
-        // this.show.trigger('click');
-        // let a = $('._offCanvasContainer');
-        // a.removeAttr('open');
-        // this.$vContainer = $("._filter");
-        // this.show = this.$vContainer.find('._show');
-        // console.log(this.$vContainer, this.show)
-        // this.show.on('click', () => {
-        //     console.log('update')
-        // })
-        // this.show.trigger('click')
     }
 
     activeProductUpdate(){
@@ -118,13 +99,10 @@ export default new class ProductList {
     initPlugins(){
         const obListHelper = new ShopaholicProductList();
         obListHelper.setAjaxRequestCallback((obRequestData) => {
-            // let sFocus = focusTrap.createFocusTrap('._offCanvasContainer');
-            // sFocus.deactivate()
-            this.hide = this.$vContainer.find('._hide');
-            this.hide.trigger('click');
             obRequestData.update = { 
                 'product-list/product-list-ajax': '.catalog_wrapper',
-                'product-list/filter/filter-ajax': '._filter',
+                'product-list/filter/filters-desktop-ajax': '._filters-desktop',
+                'product-list/filter/filters-mobile-ajax': '._filters-mobile',
             };
             return obRequestData;
         });
@@ -140,6 +118,5 @@ export default new class ProductList {
             .setWrapperSelector('._shopaholic-sale-filter-wrapper')
             .setFieldName('sale')
             .init();
-
     }
 }();

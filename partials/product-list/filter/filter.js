@@ -16,7 +16,7 @@ export default class Filter{
     }
 
     adaptation(){   
-        if($(window).width() >= '768' && this.$vContainer.length){
+        if($(window).width() >= '768' && this.$vContainer.length && this.$vContainer[0].childElementCount <= 2){
             this.vLocalContainer = this.$vTemplate;
             let container = this.vLocalContainer[0].content.cloneNode(true);
             $(container).appendTo(this.$vContainer);
@@ -25,9 +25,9 @@ export default class Filter{
 
     variationInit(){
         if($(window).width() <= '768' && this.$vContainer.length){
+            this.initAutocompleteFilters();
             this.show.on('click', () => {
                 this.initAutocompleteFilters();
-                console.log('Hello im Filter')
             })
         }else{
             this.initAutocompleteFilters();
@@ -71,19 +71,8 @@ export default class Filter{
             $(this.$vFilterRange).each(function () {
                 let filterId = $(this).attr('data-filter-id')
                 if(filterId === app.vFilterProperties[i].id){
-                    if(app.vFilterProperties[i].min && app.vFilterProperties[i].max){
-                        $(this).find('._min').val(app.vFilterProperties[i].min);
-                        $(this).find('._max').val(app.vFilterProperties[i].max);
-                    } else if(app.vFilterProperties[i].min){
-                        $(this).find('._min').val(app.vFilterProperties[i].min);
-                        $(this).find('._max').val(app.vFilterProperties[i].min).trigger('change');
-                    }
-
-                    // else if(app.vFilterProperties[i].min){
-                    //     $(this).find('._min').val(app.vFilterProperties[i].min);
-                    //     $(this).find('._max').val(app.vFilterProperties[i].min).trigger('change');
-                    //     console.log('only min')
-                    // }
+                    $(this).find('._min').val(app.vFilterProperties[i].min);
+                    $(this).find('._max').val(app.vFilterProperties[i].max);
                 }
             });
             $(this.$vFilterDetails).each(function () {
