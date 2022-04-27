@@ -15,9 +15,11 @@
     </svg>
 </button>
 
-<script>
-    window.stateButton = {
-        'show': "{{ 'button_show_description'|_ }}",
-        'hide': "{{ 'button_hide_description'|_ }}",
-    };
-</script>
+{% put scripts %}
+    <script>
+        window.stateButton = {
+            'show': "{{ 'button_show_description'|_ }}",
+            'hide': "{{ 'button_hide_description'|_ }}",
+        };
+    </script>
+{% endput %}
