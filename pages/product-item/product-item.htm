@@ -35,12 +35,8 @@ function onInit()
 {% partial 'breadcrumbs/breadcrumbs' %} {# TODO: Fix wrong breadcrumbs #}
 
 {% if obProduct.description is not empty %}
-    <div class="w-full flex flex-col">
-        <div class="w-full flex flex-row space-x-16">
-            <div class="md:w-1/2 flex flex-col">
-                {% partial 'product-description/product-description' sDescription=obProduct.description %}
-            </div>
-        </div>
+    <div class="w-full flex flex-col md:w-1/2">
+        {% partial 'product-description/product-description' sDescription=obProduct.description %}
     </div>
 {% endif %}
 
