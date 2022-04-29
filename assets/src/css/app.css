@@ -78,5 +78,8 @@
   .quantity_input{
     -moz-appearance: textfield;
   }
+  .progress_bar_evaluation{
+    width: var(--progress-bar-evaluation-width);
+  }
 }
 @import "../../../node_modules/swiper/swiper-bundle.min.css";

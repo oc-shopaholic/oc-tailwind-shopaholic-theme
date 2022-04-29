@@ -61,7 +61,12 @@
                 </div>
                 <svg aria-hidden="true" class="w-44 h-1" viewBox="0 0 182 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect class="w-44 h-1" rx="2" fill="#D1D5DB"/>
-                    <rect width="{{ customersVotedTotal | round }}" class="h-1" rx="2" fill="#1E40AF"/>
+                    <rect 
+                        class="progress_bar_evaluation h-1" 
+                        style="--progress-bar-evaluation-width:{{ customersVotedTotal | round }}px" 
+                        rx="2" 
+                        fill="#1E40AF"
+                    />
                 </svg>
                 <span aria-hidden="true" class="text-gray-900 text-sm md:text-base">
                     {{ iCount }}
