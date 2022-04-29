@@ -50,7 +50,7 @@
             {% set iCount = obProduct.getRatingCount(i) %}
             {% set customersVotedTotal = ((iCount * 100) / iReviewCount) * 1.75 %}
             {% set votedTotal = (iCount * 100) / iReviewCount %}
-            
+
             <li class="flex items-center space-x-4" aria-label="{{ 'aria_label_customers_rating_all'|transRaw({
                 aria_label_customers_rating_all: i,
                 text_customers_total: votedTotal | round ~ '%',
@@ -61,10 +61,10 @@
                 </div>
                 <svg aria-hidden="true" class="w-44 h-1" viewBox="0 0 182 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect class="w-44 h-1" rx="2" fill="#D1D5DB"/>
-                    <rect 
-                        class="progress_bar_evaluation h-1" 
-                        style="--progress-bar-evaluation-width:{{ customersVotedTotal | round }}px" 
-                        rx="2" 
+                    <rect
+                        class="progress_bar_evaluation h-1"
+                        style="--progress-bar-evaluation-width:{{ votedTotal | round }}%"
+                        rx="2"
                         fill="#1E40AF"
                     />
                 </svg>
