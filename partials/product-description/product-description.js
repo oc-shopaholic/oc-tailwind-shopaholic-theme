@@ -9,8 +9,8 @@ export default new class ProductDescription {
     this.sMinHeight = '';
     this.sMaxHeight = '';
 
-    // this.btnInit();
     this.animInit();
+    this.btnInit();
     this.changeVisiblyDescription();
   }
 
@@ -23,11 +23,14 @@ export default new class ProductDescription {
     this.obDescriptionText.css('max-height', this.sMinHeight);
   }
 
-  // btnInit(){
-  //   if(this.obDescriptionText[0] && this.obDescriptionText[0].childElementCount < 3){
-  //     this.obButton.addClass('hidden');
-  //   }
-  // }
+  btnInit(){
+    if(this.sMaxHeight){
+      let sMaxHeight = this.sMaxHeight.slice(0, -2);
+      if(sMaxHeight && Number(sMaxHeight) < 90){
+        this.obButton.addClass('hidden');
+      }
+    }
+  }
 
   changeVisibly(text){
     this.obButton.addClass('opacity-0');
