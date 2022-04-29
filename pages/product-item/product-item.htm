@@ -43,6 +43,12 @@ function onInit()
 
 {% partial 'breadcrumbs/breadcrumbs' %} {# TODO: Fix wrong breadcrumbs #}
 
+{% if obProduct.description is not empty %}
+    <div class="w-full flex flex-col md:w-1/2">
+        {% partial 'product-description/product-description' sDescription=obProduct.description %}
+    </div>
+{% endif %}
+
 <div class="flex flex-col">
     <div class="flex flex-col md:flex-row space-y-16 md:space-x-16 mt-10">
         <div class="flex flex-col">
@@ -57,8 +63,10 @@ function onInit()
         sSectionHeading = 'heading_product_list_small_recently_viewed'|_
         sSectionHeadingLevel = 2
         iTake = 4
+        iShowIndex = 0
     %}
 {% endif %}
+
 {% if this.theme.has_related_products %}
     {% partial 'product-list-small/product-list-small'
         sProductListSmallType = sProductListSmallTypeRelatedProducts
@@ -66,5 +74,6 @@ function onInit()
         sSectionHeading = 'heading_product_list_small_you_might_also_like'|_
         sSectionHeadingLevel = 2
         iTake = 4
+        iShowIndex = 0
     %}
 {% endif %}
