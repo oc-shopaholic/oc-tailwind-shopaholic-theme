@@ -45,8 +45,8 @@
             </span>
         </div>
     #}
-    <ul class="flex flex-col-reverse md:space-y-2 md:space-y-reverse mt-4">
-        {% for i in 1..5 %}
+    <ul class="flex flex-col md:space-y-2 md:space-y mt-4">
+        {% for i in 5..1 %}
             {% set iCount = obProduct.getRatingCount(i) %}
             {% set customersVotedTotal = ((iCount * 100) / iReviewCount) * 1.75 %}
             {% set votedTotal = (iCount * 100) / iReviewCount %}
