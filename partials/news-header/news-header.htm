@@ -3,10 +3,10 @@
 {% if obArticle.preview_image is not empty %}
     <div class="aspect-w-16 aspect-h-7 mb-4 md:mb-6">
         <picture>
-            <source media="(min-width:769px)" data-srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100, 'extension': 'webp'}) }}" type="image/webp">
-            <source media="(min-width:769px)" data-srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" type="image/jpeg">
-            <source media="(max-width:768px)" data-srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100, 'extension': 'webp'}) }}" type="image/webp">
-            <source media="(max-width:768px)" data-srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" type="image/jpeg">
+            <source media="(min-width:769px)" srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100, 'extension': 'webp'}) }}" type="image/webp">
+            <source media="(min-width:769px)" srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" type="image/jpeg">
+            <source media="(max-width:768px)" srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100, 'extension': 'webp'}) }}" type="image/webp">
+            <source media="(max-width:768px)" srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" type="image/jpeg">
             <img class="w-full h-full object-cover" src="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" alt="{{ obArticle.preview_image.description }}">
         </picture>
     </div>

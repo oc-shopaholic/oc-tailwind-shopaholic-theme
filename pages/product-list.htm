@@ -67,8 +67,12 @@ function onInit()
 {##}
 
 {% partial 'breadcrumbs/breadcrumbs' %}
-<div class="grid grid-cols-4 gap-x-4 gap-y-6">
+<div class="grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-4">
     {% for obProduct in arProductList %}
-        {% partial 'product-card/product-card' obProduct = obProduct %}
+        {% partial 'product-card/product-card' 
+            obProduct = obProduct 
+            iLoopIndex = loop.index
+            iShowIndex = 8
+        %}
     {% endfor %}
 </div>
