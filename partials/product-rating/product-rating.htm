@@ -17,7 +17,7 @@
             {{ obProduct.rating }}
         </span>
         <div aria-hidden="true" class="flex flex-row items-center space-x-1">
-            {% partial 'product-rating/rating-image' maxRating='5' rating=obProduct.rating unique_id='product' %}
+            {% partial 'product-rating/product-rating-image' maxRating='5' rating=obProduct.rating unique_id='product' %}
         </div>
         <span aria-hidden="true" class="text-gray-600 text-sm md:text-base">
             {{ 'text_customers_voted'|transRaw({
@@ -57,7 +57,7 @@
                 text_customers_count: iCount
             })}}">
                 <div class="flex flex-row space-x-1">
-                    {% partial 'product-rating/rating-image' maxRating='5' rating=i unique_id='total-rating-'~i %}
+                    {% partial 'product-rating/product-rating-image' maxRating='5' rating=i unique_id='total-rating-'~i %}
                 </div>
                 <svg aria-hidden="true" class="w-44 h-1" viewBox="0 0 182 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect class="w-44 h-1" rx="2" fill="#D1D5DB"/>
