@@ -1,0 +1,79 @@
+title = "Catalog Item"
+url = "/catalog/:category/:product"
+layout = "main"
+is_hidden = 0
+
+[CategoryPage]
+slug = "{{ :category }}"
+slug_required = 1
+smart_url_check = 0
+has_wildcard = 0
+skip_error = 0
+
+[ProductPage]
+slug = "{{ :product }}"
+slug_required = 1
+smart_url_check = 0
+skip_error = 0
+
+[ProductList]
+sorting = "no"
+
+[ProductData]
+==
+<?php
+function onStart()
+{
+    //Get product and first offer item
+    $obProductItem = $this->ProductPage->get();
+    if (empty($obProductItem)) {
+        return;
+    }
+
+    $this['obProduct'] = $obProductItem;
+}
+
+function onInit()
+{
+    $this['path_page_js'] = mix('assets/dist/js/product-item.js', 'themes/lovata-tailwind-shopaholic');
+}
+?>
+==
+{##}
+
+{% partial 'breadcrumbs/breadcrumbs' %} {# TODO: Fix wrong breadcrumbs #}
+
+{% if obProduct.description is not empty %}
+    <div class="w-full flex flex-col md:w-1/2">
+        {% partial 'product-description/product-description' sDescription=obProduct.description %}
+    </div>
+{% endif %}
+
+<div class="flex flex-col">
+    <div class="flex flex-col md:flex-row space-y-16 md:space-x-16 mt-10">
+        <div class="flex flex-col">
+            {% partial 'product-rating/product-rating' obProduct=obProduct %}
+        </div>
+    </div>
+</div>
+
+{% if this.theme.has_viewed_products %}
+    {% partial 'product-list-small/product-list-small'
+        sProductListSmallType = sProductListSmallTypeViewedProducts
+        sSectionHeading = 'heading_product_list_small_recently_viewed'|_
+        sSectionHeadingLevel = 2
+        iTake = 4
+        iShowIndex = 0
+    %}
+{% endif %}
+
+{% if this.theme.has_related_products %}
+    {% partial 'product-list-small/product-list-small'
+        sProductListSmallType = sProductListSmallTypeRelatedProducts
+        obProduct = obProduct
+        sSectionHeading = 'heading_product_list_small_you_might_also_like'|_
+        sSectionHeadingLevel = 2
+        iTake = 4
+        iShowIndex = 0
+    %}
+{% endif %}

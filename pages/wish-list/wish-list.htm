@@ -1,0 +1,44 @@
+url = "/wish-list"
+layout = "main"
+title = "Wish List"
+is_hidden = 0
+
+[ProductList]
+sorting = "no"
+==
+<?php
+function onInit()
+{
+    $this['path_page_js'] = mix('assets/dist/js/wish-list.js', 'themes/lovata-tailwind-shopaholic');
+}
+?>
+==
+{##}
+
+{% set arProductList = ProductList.make().active().wishList() %}
+
+{% partial 'breadcrumbs/breadcrumbs' %}
+<section class="pb-10 md:pb-16">
+    <h1 class="uppercase font-medium text-xl md:text-3xl">{{ 'heading_page_wish_list'|_ }}</h1>
+    {# TODO: Add check for theme settings #}
+    {% if arProductList is not empty %}
+        <div class="grid grid-cols-2 gap-x-4 gap-y-6 mt-4 md:grid-cols-4">
+            {% for obProduct in arProductList %}
+                {% partial 'product-card/product-card' 
+                    obProduct = obProduct
+                    iLoopIndex = loop.index
+                    iShowIndex = 8
+                %}
+            {% endfor %}
+        </div>
+    {% else %}
+        {% partial 'info-message/info-message'
+            sPartialClasses = 'mt-20 md:mt-7'
+            sIconName = 'wishlist.svg'
+            sEmptyPageMessage = 'text_wish_list_empty'|_
+            sHref = 'product-list'|page
+            sButtonText = 'button_start_shopping'|_
+            sButtonClasses = 'mt-24 md:mt-6'
+        %}
+    {% endif %}
+</section>

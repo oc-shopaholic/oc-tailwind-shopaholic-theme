@@ -1,0 +1,31 @@
+url = "/faq"
+layout = "main"
+title = "F.A.Q."
+is_hidden = 0
+
+[faq]
+add_jsonld = 1
+==
+<?php
+function onInit()
+{
+    $this['path_page_js'] = mix('assets/dist/js/faq.js', 'themes/lovata-tailwind-shopaholic');
+
+    if ($this->theme->has_faq) {
+        $this->addComponent('AndreiShilov\FAQ\Components\FAQ', 'FAQ', [
+            'add_jsonld' => 1,
+        ]);
+    } else {
+        return $this->controller->run('404');
+    }
+}
+?>
+==
+{##}
+
+{% set obFAQ = FAQ.faq %}
+{% partial 'breadcrumbs/breadcrumbs' %}
+<h1 class="text-lg md:text-2xl text-gray-900 font-medium">{{ 'page_heading_faq'|_ }}</h1>
+{% if obFAQ.isNotEmpty() %}
+    {% partial 'accordion/accordion' obFAQ=obFAQ %}
+{% endif %}

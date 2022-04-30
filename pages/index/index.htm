@@ -1,0 +1,45 @@
+title = "Home"
+url = "/"
+layout = "main"
+is_hidden = 0
+
+[ArticleList]
+sorting = "publish|desc"
+
+[ProductList]
+sorting = "popularity|desc"
+==
+<?php
+function onInit()
+{
+    $this['path_page_js'] = mix('assets/dist/js/index.js', 'themes/lovata-tailwind-shopaholic');
+}
+?>
+==
+{##}
+
+{% set arArticleList = ArticleList.make().sort('publish|desc').published().take(4) %}
+{% if this.theme.main_carousel_active and this.theme.main_carousel is not empty %}
+    {% partial 'carousel-main/carousel-main' arCarouselList = this.theme.main_carousel %}
+{% endif %}
+{% if this.theme.latest_news_is_active %}
+    {% partial 'news-list-latest/news-list-latest'
+        arArticleList = arArticleList
+        sSectionHeadingLevel = 2
+    %}
+{% endif %}
+{% if this.theme.has_popularity %}
+    {% partial 'product-list-small/product-list-small'
+        sProductListSmallType = sProductListSmallTypePopularity
+        sSectionHeading = 'heading_product_list_small_popular_products'|_
+        sSectionHeadingLevel = 2
+        iTake = 4
+        sBtnMore = true
+        sButtonName = 'button_show_more_products'|_
+        iShowIndex = 4
+    %}
+    {# TODO: Change sSectionHeadingLevel to iSectionHeadingLevel overall #}
+{% endif %}
+{% if this.theme.page_seo_block_active %}
+    {% partial 'page-seo-content/page-seo-content' %}
+{% endif %}
