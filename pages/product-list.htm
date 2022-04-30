@@ -230,19 +230,6 @@ function onStart()
 {##}
 
 {% partial 'breadcrumbs/breadcrumbs' %}
-<div>
-    {% for obProperty in obProductPropertyList if obProperty.hasValue() %}
-        {% set obPropertyValueList = obProperty.property_value.sort() %}
-        {% if obProperty.code == 'Color' %}
-            <fieldset class="flex flex-wrap">
-                {% partial 'input-checkbox-color/input-checkbox-color' 
-                    obPropertyValueList = obPropertyValueList
-                    obProperty = obProperty
-                %}
-            </fieldset>
-        {% endif %}
-    {% endfor %}
-</div>
 <div class="grid grid-cols-4 gap-x-4 gap-y-6">
     {% for obProduct in arProductList %}
         {% partial 'product-card/product-card' obProduct = obProduct %}
