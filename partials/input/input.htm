@@ -45,6 +45,7 @@
         {% endif %}
         {{ attribute|raw }}
     >
+    {{body|raw}}
     {% if validationErrorSelector is not same as(null) %}
         <div class="{{ validationErrorSelector }} text-red-700 text-sm inline-block"></div>
     {% endif %}

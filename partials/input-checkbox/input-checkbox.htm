@@ -23,5 +23,5 @@
             disabled
         {% endif %}
     > {# TODO: Fix focus-visible state for checkbox #}
-    <label for="{{ sId }}" class="text-sm md:text-base text-gray-600 {{sLabelClasses}}">{{ sLabelText|raw}}</label>
+    <label for="{{ sId }}" class="text-gray-600 {{sTextSize|default('text-sm md:text-base')}}">{{ sLabelText|raw}}</label>
 </div>
