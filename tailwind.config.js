@@ -7,6 +7,7 @@ module.exports = {
     './layouts/**/*.htm',
     './pages/**/*.htm',
     './partials/**/*.htm',
+    './partials/**/*.js',
   ],
   theme: {
     extend: {
@@ -22,8 +23,13 @@ module.exports = {
         blue: ['1px dashed #1E40AF', '1px'],
       },
       backgroundSize: {
-        65: '65%',
+        '45': '45%',
+        '65': '65%',
+        '75': '75%',
         'info-icon': '12.5rem',
+      },
+      backgroundImage: {
+        'check': "url('/themes/lovata-tailwind-shopaholic/assets/images/check.svg')"
       },
       fontSize: {
         error: ['9rem', '1'],
@@ -35,9 +41,27 @@ module.exports = {
       maxHeight: {
         160: '40rem',
       },
+      height: {
+        23: '92px',
+        131: '524px'
+      },
+      maxHeight: {
+        160: '40rem',
+      },
+      width: {
+        23: '92px',
+        174: '696px',
+        225: '900px',
+      },
       maxWidth: {
-        'screen-3xl': '1920px'
-      }
+        'screen-3xl': '1920px',
+        225: '900px',
+      },
+      spacing: {
+        2.25: '9px',
+        1.75: '7px',
+        0.25: '1px',
+      },
     }
   },
   plugins: [

@@ -22,6 +22,17 @@ sorting = "no"
 [ProductData]
 ==
 <?php
+function onStart()
+{
+    //Get product and first offer item
+    $obProductItem = $this->ProductPage->get();
+    if (empty($obProductItem)) {
+        return;
+    }
+
+    $this['obProduct'] = $obProductItem;
+}
+
 function onInit()
 {
     $this['path_page_js'] = mix('assets/dist/js/product-item.js', 'themes/lovata-tailwind-shopaholic');
@@ -29,8 +40,6 @@ function onInit()
 ?>
 ==
 {##}
-
-{% set obProduct = ProductPage.get() %}
 
 {% partial 'breadcrumbs/breadcrumbs' %} {# TODO: Fix wrong breadcrumbs #}
 
@@ -67,6 +76,19 @@ function onInit()
         ]
         sSectionHeading = 'heading_customer_reviews'|_
     %}
+
+{% if obProduct.description is not empty %}
+    <div class="w-full flex flex-col md:w-1/2">
+        {% partial 'product-description/product-description' sDescription=obProduct.description %}
+    </div>
+{% endif %}
+
+<div class="flex flex-col">
+    <div class="flex flex-col md:flex-row space-y-16 md:space-x-16 mt-10">
+        <div class="flex flex-col">
+            {% partial 'product-rating/product-rating' obProduct=obProduct %}
+        </div>
+    </div>
 </div>
 
 {% if this.theme.has_viewed_products %}
