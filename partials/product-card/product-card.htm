@@ -25,16 +25,17 @@
     {% endif %}
     <div class="order-first mb-2 rounded-tl rounded-tr overflow-hidden aspect-w-16 aspect-h-12">
         <picture class="object-cover h-full w-full">
-            {# TODO: Add images quality value to the theme settings #}
             <source media="(min-width:769px)" srcset="{{ obProduct.preview_image.getThumb(420, 315, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
             <source media="(min-width:769px)" srcset="{{ obProduct.preview_image.getThumb(420, 315, {'quality': 80}) }}" type="image/jpeg">
             <source media="(max-width:768px)" srcset="{{ obProduct.preview_image.getThumb(500, 373, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
             <source media="(max-width:768px)" srcset="{{ obProduct.preview_image.getThumb(500, 373, {'quality': 80}) }}" type="image/jpeg">
-            <img class="object-cover h-full w-full"
-                 src="{{ obProduct.preview_image.preview_image.getThumb(500, 373, {'quality': 80}) }}"
-                 itemprop="image"
-                 alt="{{ obProduct.preview_image.description }}"
-                 title="{{ obProduct.preview_image.title }}"
+            <img 
+                class="object-cover h-full w-full"
+                src="{{ obProduct.preview_image.getThumb(500, 373, {'quality': 80}) }}"
+                itemprop="image"
+                alt="{{ obProduct.preview_image.description }}"
+                title="{{ obProduct.preview_image.title }}"
+                {{ iLoopIndex > iShowIndex ? 'loading="lazy"' }} 
             >
         </picture>
     </div>

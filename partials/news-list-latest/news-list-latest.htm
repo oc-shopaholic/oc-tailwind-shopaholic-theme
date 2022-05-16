@@ -16,6 +16,8 @@ sorting = "publish|desc"
                         {% partial 'news-card/news-card'
                             obArticle = obArticle
                             sCardHeadingLevel = 3
+                            iLoopIndex = loop.index
+                            iShowIndex = 4
                         %}
                     </li>
                 {% endfor %}
