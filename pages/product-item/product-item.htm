@@ -20,6 +20,30 @@ skip_error = 0
 sorting = "no"
 
 [ProductData]
+
+[Pagination]
+count_per_page = 3
+pagination_limit = 5
+active_class = "pagination__link_current"
+button_list = "last-more,last"
+first_button_name = "First"
+first_button_limit = 3
+first_button_number = 1
+first-more_button_name = "..."
+first-more_button_limit = 3
+prev_button_name = "Prev"
+prev_button_limit = 1
+prev-more_button_name = "..."
+prev-more_button_limit = 1
+next-more_button_name = "..."
+next-more_button_limit = 1
+next_button_name = "Next"
+next_button_limit = 1
+last-more_button_name = "..."
+last-more_button_limit = 3
+last_button_name = "Last"
+last_button_limit = 3
+last_button_number = 1
 ==
 <?php
 function onStart()
@@ -40,43 +64,14 @@ function onInit()
 ?>
 ==
 {##}
-
 {% partial 'breadcrumbs/breadcrumbs' %} {# TODO: Fix wrong breadcrumbs #}
 
 <div class="w-full md:w-1/2 flex flex-col">
     {% partial 'product-item/customer-reviews'
-        arReviews = [
-            {
-                "name": "Jannet",
-                "surname": "Tan",
-                "date": "1 day ago",
-                "datetime": "2018-07-07",
-                "text": "I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!",
-                "ava": "/storage/app/uploads/public/0a1/faa/684/user-photo-1.png",
-                "rating": 5,
-            },
-            {
-                "name": "Nik",
-                "surname": "Wansky",
-                "date": "4 month ago",
-                "datetime": "2018-07-07",
-                "text": "I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!",
-                "ava": "/storage/app/uploads/public/0a1/faa/684/user-photo-2.png",
-                "rating": 4,
-            },
-            {
-                "name": "Jannet",
-                "surname": "Tan",
-                "date": "1 year ago",
-                "datetime": "2018-07-07",
-                "text": "I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!",
-                "ava": "/storage/app/uploads/public/0a1/faa/684/user-photo-3.png",
-                "rating": 3,
-            },
-        ]
         sSectionHeading = 'heading_customer_reviews'|_
+        obReviewList=obReviewList
     %}
-
+</div>
 {% if obProduct.description is not empty %}
     <div class="w-full flex flex-col md:w-1/2">
         {% partial 'product-description/product-description' sDescription=obProduct.description %}

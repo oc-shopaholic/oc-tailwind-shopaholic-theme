@@ -1,0 +1,16 @@
+{##}
+
+{% if obReviewList is empty %}
+    {% set obProduct = ProductPage.get() %}
+    {% set obReviewList = obProduct.review.active().sort() %}
+
+    {% set iPage = Pagination.getPageFromRequest() %}
+    {% set iMaxPage = Pagination.getMaxPage(iReviewCount) %}
+{% endif %}
+{% set arReviewList = obReviewList.page(iPage, Pagination.getCountPerPage()) %}
+{% for obReview in arReviewList %}
+    {% partial 'product-item/customer-reviews-card' 
+        obReview=obReview
+        obProduct=obProduct
+    %}
+{% endfor %}
