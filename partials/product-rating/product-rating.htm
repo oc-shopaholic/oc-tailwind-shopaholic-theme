@@ -20,9 +20,9 @@
             {% partial 'product-rating/product-rating-image' maxRating='5' rating=obProduct.rating unique_id='product' %}
         </div>
         <span aria-hidden="true" class="text-gray-600 text-sm md:text-base">
-            {{ 'text_customers_voted'|transRaw({
+            ({{ 'text_customers_voted'|transRaw({
                 text_customers_voted_total: iReviewCount,
-            }) }}
+            }) }})
         </span>
     </div>
     {# TODO: Add real data in the block

@@ -65,7 +65,7 @@ text_checkout: 'To use a promo code, sign in or :text_checkout_link_sign_in firs
 text_checkout_link_sign_in: 'create an account'
 text_continue_without_sign_in: 'Continue without authorization'
 text_customers_recommended: '(:text_customers_recommended of :text_customers_total customers)'
-text_customers_voted: '(:text_customers_voted_total ratings)'
+text_customers_voted: ':text_customers_voted_total ratings'
 text_error_404: 'The page you are loking for doesn’t exist.'
 text_error_500: 'We’re experiencing an internal server problem. We know about this mistake and are working to fix it. Please, reload page or try again later.'
 text_has_account: 'Don’t have an account? :text_has_account_link_sign_in'

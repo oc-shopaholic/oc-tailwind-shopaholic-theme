@@ -5,10 +5,10 @@ is_hidden = 0
 
 [CategoryPage]
 slug = "{{ :category }}"
-slug_required = 1
-smart_url_check = 0
+slug_required = 0
+smart_url_check = 1
 has_wildcard = 0
-skip_error = 0
+skip_error = 1
 
 [ProductPage]
 slug = "{{ :product }}"
@@ -30,7 +30,35 @@ function onStart()
         return;
     }
 
+    $arBreadcrumbs = [];
+    if (!empty($obProductItem)) {
+        $arBreadcrumbs[] = [
+            'name'   => $obProductItem->name,
+            'url'    => $obProductItem->getPageUrl(),
+            'active' => true,
+        ];
+    }
+
+    $obCurrentCategory = !empty($obProductItem) ? $obProductItem->category : $obActiveCategoryItem;
+
+    while (!empty($obCurrentCategory) && $obCurrentCategory->isNotEmpty()) {
+        $arBreadcrumbs[] = [
+            'name'   => $obCurrentCategory->name,
+            'url' => \Cms\Classes\Page::url('product-list/product-list', 
+            ['product-list' => false])
+        ];
+
+        $obCurrentCategory = $obCurrentCategory->parent;
+    }
+
+    $arBreadcrumbs[] = [
+        'name' => $this->page->title, 
+        'url' => \Cms\Classes\Page::url('product-list/product-list', 
+        ['product-list' => true])
+    ];
+
     $this['obProduct'] = $obProductItem;
+    $this['arBreadcrumbs'] = array_reverse($arBreadcrumbs);
 }
 
 function onInit()
@@ -40,8 +68,9 @@ function onInit()
 ?>
 ==
 {##}
+{% partial 'breadcrumbs/breadcrumbs' %}
 
-{% partial 'breadcrumbs/breadcrumbs' %} {# TODO: Fix wrong breadcrumbs #}
+{% partial 'product-item/product-info' %}
 
 {% if this.theme.has_viewed_products %}
     {% partial 'product-list-small/product-list-small'

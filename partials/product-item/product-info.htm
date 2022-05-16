@@ -1,23 +1,50 @@
-{% set rating = 3.7 %}
-{% set ratings = 18 %}
+{##}
+
+{% set obReviewList = obProduct.review.active().sort() %}
+{% set iReviewCount = 0 %}
+{% set iRatingCount = 0 %}
+{% for obReview in obReviewList %}
+    {% if obReview.comment %}
+        {% set iReviewCount = iReviewCount + 1 %}
+    {% endif %}
+    {% if obReview.rating %}
+        {% set iRatingCount = iRatingCount + 1 %}
+    {% endif %}
+{% endfor %}
+
 <h1 class="text-gray-900 text-xl md:text-3xl uppercase">{{ obProduct.name }}</h1>
-<div class="flex flex-row items-center space-x-4 mt-4 md:mt-3 text-gray-600 text-sm md:text-base">
-    {% partial 'product-item/rating' rating=rating %}
+<div class="_evaluation flex flex-row items-center space-x-4 mt-4 md:mt-3 text-gray-600 text-sm md:text-base">
+    <div aria-hidden="true" class="flex flex-row items-center space-x-1">
+        {% partial 'product-rating/product-rating-image' maxRating='5' rating=obProduct.rating unique_id='product' %}
+    </div>
     <span>
-        ({{ rating }})
+        ({{ obProduct.rating }})
     </span>
-    <span class="underline">
-        {{ ratings }} ratings
+    <span class="_rating underline cursor-pointer">
+        {{ 'text_customers_voted'|transRaw({
+            text_customers_voted_total: iRatingCount,
+        }) }}
     </span>
-    <span class="underline">
-        88 reviews
+    <span class="_review underline cursor-pointer">
+        {{ iReviewCount }} reviews
     </span>
 </div>
 <div class="flex flex-row items-center space-x-4 mt-4 md:mt-7 mb-7">
     <span class="text-xl md:text-3xl">
-        €74.56
+        <span>€</span>74.56
     </span>
     <span class="text-gray-600 text-base md:text-3xl line-through md:no-underline">
-        €113.99
+        <span>€</span>113.99
     </span>
+</div>
+
+<div>
+    <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur explicabo optio ipsam esse perferendis impedit ex quidem distinctio voluptatibus veritatis rerum voluptatem perspiciatis, dolorem nihil magni tempore eaque quibusdam recusandae! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates ipsum impedit dicta facilis dignissimos exercitationem hic optio sapiente, ipsa dolorem voluptas magnam deserunt ut distinctio aliquam quis iste laudantium repellendus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis corporis omnis sapiente. Sunt suscipit animi culpa eius, saepe iusto placeat quasi? Maiores eveniet fugiat illum cumque exercitationem, vitae minus dolorum. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, dolores? Ipsa nesciunt maiores eum aut sit cumque voluptatem necessitatibus pariatur atque? Minus cum labore fugit asperiores aliquid facere totam optio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa aperiam eaque officia nobis, nostrum nihil dolores. Architecto nostrum esse voluptatibus voluptas ducimus, eaque laboriosam minus in, distinctio non aut fugiat. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, error non minus commodi explicabo enim, asperiores rem cumque laudantium obcaecati suscipit vero fugit! Vitae, impedit obcaecati saepe distinctio aut dolor. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus repellat maxime facilis rem ullam, iusto dicta sed placeat cumque eum assumenda, inventore nesciunt dolores odio distinctio maiores omnis. Cum, dolore? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, dicta dignissimos laborum doloribus asperiores voluptatibus corrupti temporibus fugiat a, consectetur expedita quae incidunt delectus obcaecati eligendi quis perspiciatis ullam nemo? Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque perspiciatis deserunt illum praesentium nobis neque laboriosam quas quisquam magni fugit iusto eveniet facilis delectus explicabo exercitationem, amet aspernatur quidem ut. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, qui sit! Rerum vitae distinctio assumenda harum, voluptates ut placeat nostrum fugiat quod, ipsam eligendi sapiente voluptate, deserunt expedita. Inventore, consequatur. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo eligendi fugit, nemo id debitis provident sunt beatae enim necessitatibus illum dolores quasi dolor harum quisquam minus unde atque laudantium ipsam?
+    </p>
+</div>
+
+<div>
+    <p id="_customer-ratings">Rating Scroll</p>
+    <p id="_customer-reviews">Review Scroll</p>
 </div>
