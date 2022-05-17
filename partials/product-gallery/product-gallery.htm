@@ -25,7 +25,7 @@
                         <source srcset="{{ obImage.getThumb(696, 524, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
                         <source srcset="{{ obImage.getThumb(696, 524, {'quality': 80}) }}" type="image/jpeg">
                         <img
-                            class="object-cover h-auto"
+                            class="object-contain h-auto"
                             src="{{ obImage.preview_image|media|resize(696, 524, {'quality': 80}) }}"
                             alt="{{ obItem.description }}"
                             title="{{ obItem.title }}"
@@ -48,7 +48,7 @@
                             <source srcset="{{ obImage.getThumb(92, 92, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
                             <source srcset="{{ obImage.getThumb(92, 92, {'quality': 80}) }}" type="image/jpeg">
                             <img
-                                class="object-cover w-full md:h-full"
+                                class="object-contain w-full md:h-full"
                                 src="{{ obImage.preview_image|media|resize(92, 92, {'quality': 80}) }}"
                                 alt="{{ obItem.description }}"
                                 title="{{ obItem.title }}"
