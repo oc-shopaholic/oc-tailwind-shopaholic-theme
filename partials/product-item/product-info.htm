@@ -3,6 +3,7 @@
 {% set obReviewList = obProduct.review.active().sort() %}
 {% set iReviewCount = 0 %}
 {% set iRatingCount = 0 %}
+{% set iReviewCount = obProduct.review.active().count() %}
 {% for obReview in obReviewList %}
     {% if obReview.comment %}
         {% set iReviewCount = iReviewCount + 1 %}
@@ -17,7 +18,10 @@
     <div aria-hidden="true" class="flex flex-row items-center space-x-1">
         {% partial 'product-rating/product-rating-image' maxRating='5' rating=obProduct.rating unique_id='product' %}
     </div>
-    <span>
+    <span aria-label="{{ 'aria_label_customers_rating'|transRaw({
+        aria_label_customers_rating: obProduct.rating,
+        text_customers_total: iReviewCount,
+    })}}">
         ({{ obProduct.rating }})
     </span>
     <span class="_rating underline cursor-pointer">
