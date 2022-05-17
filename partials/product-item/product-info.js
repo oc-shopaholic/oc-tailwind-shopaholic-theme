@@ -10,21 +10,18 @@ export default new class productInfo {
     }
 
     init(){
-        console.log('Gogo')
         this.ratingScroll();
         this.reviewScroll();
     }
 
     ratingScroll(){
         this.obRatingScroll.on('click', ()=>{
-            console.log('Rating')
             this.obCustomerRatings[0].scrollIntoView({ behavior: "smooth" });
         })
     }
 
     reviewScroll(){
         this.obReviewScroll.on('click', ()=>{
-            console.log('Review')
             this.obCustomerReviews[0].scrollIntoView({ behavior: "smooth" });
         })
     }
