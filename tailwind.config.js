@@ -11,6 +11,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      transitionDuration: {
+        '0': '0ms',
+      },
       gridTemplateColumns: {
         'full': '100%',
         'social': 'repeat(auto-fill, 40px)',

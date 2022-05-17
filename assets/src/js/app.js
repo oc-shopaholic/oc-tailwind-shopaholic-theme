@@ -15,6 +15,9 @@ import '/partials/carousel-main/carousel-main';
 import '/partials/input-quantity/input-quantity';
 /* * Off Canvas * */
 import '/partials/off-canvas/off-canvas';
+/* * Product List * */
+import '/partials/product-list/product-list';
+/* * Filter * */
+import '/partials/product-list/filter/filter';
 /* * Search Input* */
 import '/partials/search/search';
-
