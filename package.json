@@ -15,6 +15,8 @@
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@lovata/popup-helper": "^1.0.1",
+    "@lovata/shopaholic-cart": "^1.1.1",
+    "@lovata/shopaholic-coupon": "^1.0.0",
     "@lovata/shopaholic-filter-panel": "^1.1.1",
     "@lovata/shopaholic-product-list": "^1.0.1",
     "@lovata/shopaholic-search": "^1.1.4",

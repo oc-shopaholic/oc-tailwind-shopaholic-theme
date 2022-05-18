@@ -18,6 +18,12 @@ function onInit()
     } else {
         return $this->controller->run('404');
     }
+
+    $arBreadcrumbs = [
+        ['name' => 'FAQ', 'url' => \Cms\Classes\Page::url('faq', ['faq' => false])],
+    ];
+
+    $this['arBreadcrumbs'] = $arBreadcrumbs;
 }
 ?>
 ==

@@ -1,0 +1,19 @@
+title = "Contact"
+url = "/contact"
+layout = "main"
+is_hidden = 0
+==
+<?php
+function onInit()
+{
+    $arBreadcrumbs = [
+        ['name' => 'Contact', 'url' => \Cms\Classes\Page::url('contact', ['contact' => false])],
+    ];
+
+    $this['arBreadcrumbs'] = $arBreadcrumbs;
+}
+?>
+==
+{##}
+
+{% partial 'breadcrumbs/breadcrumbs' %}

@@ -404,10 +404,12 @@ export default class Search {
   show() {
     this.$vShow.on("click", () => {
       this.initVariables();
-      this.initSearch();
-      this.initEvents();
-      this.initProductWatch();
-      this.initWatchInput();
+      if(this.$vResultWrapper.length){
+        this.initSearch();
+        this.initEvents();
+        this.initProductWatch();
+        this.initWatchInput();
+      }
     })
   }
 
