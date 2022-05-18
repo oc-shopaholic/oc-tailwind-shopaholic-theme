@@ -8,9 +8,11 @@
     {% set iMaxPage = Pagination.getMaxPage(iReviewCount) %}
 {% endif %}
 {% set arReviewList = obReviewList.page(iPage, Pagination.getCountPerPage()) %}
+
 {% for obReview in arReviewList %}
-    {% partial 'product-item/customer-reviews-card' 
+    {% partial 'review-card/review-card-item' 
         obReview=obReview
         obProduct=obProduct
     %}
 {% endfor %}
+
