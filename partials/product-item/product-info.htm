@@ -14,24 +14,28 @@
 {% endfor %}
 
 <h1 class="text-gray-900 text-xl md:text-3xl uppercase">{{ obProduct.name }}</h1>
-<div class="_evaluation flex flex-row items-center space-x-4 mt-4 md:mt-3 text-gray-600 text-sm md:text-base">
-    <div aria-hidden="true" class="flex flex-row items-center space-x-1">
-        {% partial 'product-rating/product-rating-image' maxRating='5' rating=obProduct.rating unique_id='product' %}
+<div class="_evaluation w-max flex flex-col mt-4 md:mt-3 text-gray-600 text-sm md:text-base md:flex-row md:items-center md:space-x-4">
+    <div class="flex">
+        <div aria-hidden="true" class="flex flex-row items-center space-x-1 mr-4 mb-2 md:mb-0">
+            {% partial 'product-rating/product-rating-image' maxRating='5' rating=obProduct.rating unique_id='product' %}
+        </div>
+        <span aria-label="{{ 'aria_label_customers_rating'|transRaw({
+            aria_label_customers_rating: obProduct.rating,
+            text_customers_total: iReviewCount,
+        })}}">
+            ({{ obProduct.rating }})
+        </span>
     </div>
-    <span aria-label="{{ 'aria_label_customers_rating'|transRaw({
-        aria_label_customers_rating: obProduct.rating,
-        text_customers_total: iReviewCount,
-    })}}">
-        ({{ obProduct.rating }})
-    </span>
-    <span class="_rating underline cursor-pointer">
-        {{ 'text_customers_voted'|transRaw({
-            text_customers_voted_total: iRatingCount,
-        }) }}
-    </span>
-    <span class="_review underline cursor-pointer">
-        {{ iReviewCount }} reviews
-    </span>
+    <div>
+        <span class="_rating underline cursor-pointer mr-4">
+            {{ 'text_customers_voted'|transRaw({
+                text_customers_voted_total: iRatingCount,
+            }) }}
+        </span>
+        <span class="_review underline cursor-pointer">
+            {{ iReviewCount }} reviews
+        </span>
+    </div>
 </div>
 <div class="flex flex-row items-center space-x-4 mt-4 md:mt-7 mb-7">
     <span class="text-xl md:text-3xl">
