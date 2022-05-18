@@ -70,7 +70,8 @@ function onInit()
 {% set obProduct = ProductPage.get() %}
 
 {% partial 'breadcrumbs/breadcrumbs' %}
-<div class="flex flex-col-reverse xl:flex-row">
+<div class="flex flex-col xl:flex-row-reverse xl:justify-end">
+    {% partial 'product-item/product-info' %}
     <div class="md:w-min md:mr-14">
         {% partial 'product-gallery/product-gallery' arImages = obProduct.images %}
 
@@ -80,16 +81,11 @@ function onInit()
             </div>
         {% endif %}
     </div>
-    <div>
-        {% partial 'product-item/product-info' %}
-    </div>
 </div>
-<div class="flex flex-col">
-    <div class="flex flex-col md:flex-row space-y-16 md:space-x-16 mt-10">
-        <div class="flex flex-col">
-            {% partial 'product-rating/product-rating' obProduct=obProduct %}
-        </div>
-    </div>
+<div class="flex flex-col mt-10">
+    {% partial 'product-rating/product-rating' 
+        obProduct=obProduct 
+    %}
 </div>
 
 {% if this.theme.has_viewed_products %}

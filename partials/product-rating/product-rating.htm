@@ -6,7 +6,7 @@
     {% set percent = customersRecommended / customersTotal * 100 %}
 #}
 
-<section class="w-full">
+<section>
     {% set iReviewCount = obProduct.review.active().count() %}
     <h2 class="text-gray-900 text-lg md:text-2xl font-medium uppercase">{{ 'heading_customers_ratings'|_ }}</h2>
     <div class="flex flex-row items-center space-x-4 mt-4 md:mt-5" aria-label="{{ 'aria_label_customers_rating'|transRaw({
