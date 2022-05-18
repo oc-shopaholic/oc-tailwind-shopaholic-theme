@@ -87,6 +87,8 @@ text_powered_by: 'Powered by :text_powered_by_plugin and the :text_powered_by_th
 text_powered_by_plugin: 'Shopaholic'
 text_powered_by_theme: 'Tailwind'
 text_recommended: ':text_percent Recommended'
+text_slider: ':text_slider_index out of :text_slider_max'
+text_slider_active: 'active slider'
 text_rules_acceptence: 'By registering, you agree with our :text_rules_acceptence_link_terms_conditions, and :text_rules_acceptence_link_privacy_cookie_policy.'
 text_rules_acceptence_link_terms_conditions: 'Terms & Conditions'
 text_rules_acceptence_link_privacy_cookie_policy: 'Privacy & Cookie Policy'
