@@ -13,9 +13,9 @@
     {% endif %}
 {% endfor %}
 <div>
-    <h1 class="text-gray-900 text-xl md:text-3xl uppercase">{{ obProduct.name }}</h1>
-    <div class="_evaluation flex flex-wrap flex-row md:space-x-4 mt-4 md:mt-3 text-gray-600 text-sm md:text-base md:items-center">
-        <div class="flex mr-3 md:mr-0">
+    <h1 class="text-gray-900 text-xl md:text-2xl xl:text-3xl uppercase">{{ obProduct.name }}</h1>
+    <div class="_evaluation flex flex-wrap flex-row mt-4 md:mt-3 text-gray-600 text-sm md:text-base md:items-center">
+        <div class="flex mr-3 md:mr-4">
             <div aria-hidden="true" class="flex flex-row items-center space-x-1 mr-4 mb-2 md:mb-0">
                 {% partial 'product-rating/product-rating-image' maxRating='5' rating=obProduct.rating unique_id='product' %}
             </div>
