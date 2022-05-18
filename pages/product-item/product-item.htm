@@ -70,18 +70,21 @@ function onInit()
 {##}
 {% set obProduct = ProductPage.get() %}
 
-{% partial 'breadcrumbs/breadcrumbs' %}  {# TODO: Fix wrong breadcrumbs #}
+{% partial 'breadcrumbs/breadcrumbs' %} {# TODO: Fix wrong breadcrumbs #}
+<div class="flex flex-col-reverse md:flex-row">
+    <div class="md:w-min md:mr-14">
+        {% partial 'product-gallery/product-gallery' arImages = obProduct.images %}
 
-{% partial 'product-item/product-info' %}
-
-{% partial 'product-gallery/product-gallery' arImages = obProduct.images %}
-
-{% if obProduct.description is not empty %}
-    <div class="w-full flex flex-col md:w-1/2">
-        {% partial 'product-description/product-description' sDescription=obProduct.description %}
+        {% if obProduct.description is not empty %}
+            <div class="w-full flex flex-col mt-7 md:mt-11">
+                {% partial 'product-description/product-description' sDescription=obProduct.description %}
+            </div>
+        {% endif %}
     </div>
-{% endif %}
-
+    <div>
+        {% partial 'product-item/product-info' %}
+    </div>
+</div>
 <div class="flex flex-col">
     <div class="flex flex-col md:flex-row space-y-16 md:space-x-16 mt-10">
         <div class="flex flex-col">
