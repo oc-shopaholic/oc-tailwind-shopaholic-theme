@@ -236,7 +236,7 @@ function onStart()
     {# Product list #}
     <div class="flex justify-between flex-col md:flex-row">
         {% if bShowFilter %}
-            {% partial 'product-list/filter/filter' %}
+            {% partial 'filter/filter' %}
         {% endif %}
         <div class="w-full">
             {% partial 'product-list/product-list' %}

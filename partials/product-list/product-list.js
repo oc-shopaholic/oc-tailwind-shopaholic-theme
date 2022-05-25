@@ -1,7 +1,7 @@
 import ShopaholicProductList from "@lovata/shopaholic-product-list/shopaholic-product-list";
 import ShopaholicFilterPrice from '@lovata/shopaholic-filter-panel/shopaholic-filter-price';
 import ShopaholicFilterPanel from "@lovata/shopaholic-filter-panel/shopaholic-filter-panel";
-import Filter from "./filter/filter";
+import Filter from "../filter/filter";
 
 export default new class ProductList {
     constructor(){
@@ -101,8 +101,8 @@ export default new class ProductList {
         obListHelper.setAjaxRequestCallback((obRequestData) => {
             obRequestData.update = { 
                 'product-list/product-list-ajax': '.catalog_wrapper',
-                'product-list/filter/filters-desktop-ajax': '._filters-desktop',
-                'product-list/filter/filters-mobile-ajax': '._filters-mobile',
+                'filter/filters-desktop-ajax': '._filters-desktop',
+                'filter/filters-mobile-ajax': '._filters-mobile',
             };
             return obRequestData;
         });
