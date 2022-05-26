@@ -1,38 +1,47 @@
 {##}
 
-{# TODO:Add svg reusability for whole project #}
-{% set iPage = Pagination.getPageFromRequest() %}
-{% set iMaxPage = Pagination.getMaxPage(obReview.count()) %}
-
 <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
-    <symbol id="arrow-right" fill="none" viewBox="0 0 6 8">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M0.834815 7.7656C0.684838 7.61557 0.600586 7.41213 0.600586 7.2C0.600586 6.98786 0.684838 6.78442 0.834815 6.6344L3.46922 4L0.834815 1.3656C0.689089 1.21471 0.608453 1.01263 0.610276 0.802875C0.612098 0.593118 0.696234 0.392468 0.84456 0.244141C0.992887 0.095815 1.19354 0.0116796 1.40329 0.0098569C1.61305 0.00803417 1.81513 0.08867 1.96601 0.234396L5.16602 3.4344C5.31599 3.58442 5.40024 3.78786 5.40024 4C5.40024 4.21213 5.31599 4.41557 5.16602 4.5656L1.96601 7.7656C1.81599 7.91557 1.61255 7.99983 1.40042 7.99983C1.18828 7.99983 0.984837 7.91557 0.834815 7.7656Z" fill="#1E40AF"/>
+    <symbol id="anonim-avatar" fill="none" viewBox="0 0 18 19">
+        <path d="M8.99961 7.79998C10.9878 7.79998 12.5996 6.1882 12.5996 4.19998C12.5996 2.21175 10.9878 0.599976 8.99961 0.599976C7.01138 0.599976 5.39961 2.21175 5.39961 4.19998C5.39961 6.1882 7.01138 7.79998 8.99961 7.79998Z" fill="#9CA3AF"/>
+        <path d="M0.599609 18.6C0.599609 13.9608 4.36042 10.2 8.99961 10.2C13.6388 10.2 17.3996 13.9608 17.3996 18.6H0.599609Z" fill="#9CA3AF"/>
     </symbol>
 </svg>
-<section class="w-full">
-    {% if sReviewList == true %}
-        <ul class="_review-list">
-            {% partial 'review-card/review-card-ajax' 
-                obReviewList = obReview
-            %}
-        </ul>
-        {% if iMaxPage > iPage %}
-            <button 
-                class="_show-more-reviews flex flex-row items-center text-blue-800"
-                data-max-page="{{iMaxPage}}" data-page="1"
-            >
-                <span class="mr-2 text-sm md:text-base">{{ 'text_read_more_reviews'|_ }}</span>
-                <svg width="8" height="12">
-                    <use href="#arrow-right"></use>
+<article>
+    <div class="flex flex-row">
+        {% if obReview.image %}
+            <picture>
+                <source srcset="{{ obImage.getThumb(48, 48, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
+                <source srcset="{{ obImage.getThumb(48, 48, {'quality': 80}) }}" type="image/jpeg">
+                <img
+                    alt="{{ obReview.name }} {{ obReview.surname }}" 
+                    class="rounded-3xl mr-4 w-12 h-12"
+                    loading="lazy"
+                />
+            </picture>
+        {% else %}
+            <div class="flex justify-center items-center mr-4 bg-gray-200 w-12 h-12 rounded-3xl">
+                <svg width="18" height="19">
+                    <use href="#anonim-avatar"></use>
                 </svg>
-            </button>
+            </div>                             
         {% endif %}
-    {% else %}
-        {% for obRev in obReview %}
-            {% partial 'review-card/review-card-item' 
-                obReview=obRev
-                obProduct=obProduct
-            %}
-        {% endfor %}
-    {% endif %}
-</section>
+        <div class="flex flex-col mb-3">
+            <div class="flex flex-row mb-1.5">
+                <span class="mr-4 font-bold">{{ obReview.name }} {{ obReview.surname }}</span>
+                <time class="text-gray-600" datetime="{{ obReview.created_at }}">{{ obReview.created_at|time_diff }}</time>
+            </div>
+            <div
+                aria-label="{{ 'aria_label_rating_static'|transRaw({
+                    aria_label_rating_static:obReview.rating 
+                }) }}"
+                class="flex flex-row space-x-1">
+                {% partial 'product-rating/product-rating-image' maxRating='5' rating=obReview.rating unique_id='total-rating-'~obReview.rating %}
+            </div>
+        </div>
+    </div>
+    <div class="prose prose-p:text-gray-600">
+        <p>
+            {{ obReview.comment }}
+        </p>
+    </div>
+</article>

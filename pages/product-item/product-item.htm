@@ -69,9 +69,8 @@ function onInit()
 
 <div class="w-full md:w-1/2 flex flex-col">
     <h2 class="text-gray-900 text-2xl font-medium uppercase mb-5">{{ 'heading_customer_reviews'|_ }}</h2>
-    {% partial 'review-card/review-card'
+    {% partial 'review-list/review-list'
         obReview = obReviewList
-        sReviewList = true
     %}
     {% partial 'button/button'
         sText = 'button_write_review'|_

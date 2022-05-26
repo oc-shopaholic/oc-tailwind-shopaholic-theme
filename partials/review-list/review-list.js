@@ -25,7 +25,7 @@ export default new class CustomerReviews {
   sendAjax(iNextPage) {
     $.request('ProductData::onAjaxRequest', {
       data: { page: iNextPage },
-      update: { 'review-card/review-card-ajax': `@.${this.obListWrapper}` }
+      update: { 'review-list/review-list-ajax': `@.${this.obListWrapper}` }
     });
   }
 }();
