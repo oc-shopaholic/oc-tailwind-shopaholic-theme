@@ -7,16 +7,18 @@ code = "navigation-main"
 {% if arMenuList is not empty %}
     <nav class="hidden lg:block">
         <ul class="flex flex-wrap space-x-20">
-            {% for arItemMenu in arMenuList if not arItemMenu.viewBag.isHidden %}
-                <li>
-                    {% set sCode = arItemMenu.code is not empty ? 'data-code='~arItemMenu.code %}
-                    {% if arItemMenu.url is not empty %}
-                        {% set sExternal = arItemMenu.viewBag.isExternal ? 'target=_blank' : '' %}
-                        <a href="{{ arItemMenu.url }}" {{ sExternal }} class="text-gray-900 text-base hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue {{ arItemMenu.viewBag.cssClass }}" {{ sCode }}>{{ arItemMenu.title }}</a>
-                    {% else %}
-                        <span class="text-gray-900 text-base {{ arItemMenu.viewBag.cssClass }}" {{ sCode }}>{{ arItemMenu.title }}</span>
-                    {% endif %}
-                </li>
+            {% for arItemMenu in arMenuList %}
+                {% if not arItemMenu.viewBag.isHidden %}
+                    <li>
+                        {% set sCode = arItemMenu.code is not empty ? 'data-code='~arItemMenu.code %}
+                        {% if arItemMenu.url is not empty %}
+                            {% set sExternal = arItemMenu.viewBag.isExternal ? 'target=_blank' : '' %}
+                            <a href="{{ arItemMenu.url }}" {{ sExternal }} class="text-gray-900 text-base hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue {{ arItemMenu.viewBag.cssClass }}" {{ sCode }}>{{ arItemMenu.title }}</a>
+                        {% else %}
+                            <span class="text-gray-900 text-base {{ arItemMenu.viewBag.cssClass }}" {{ sCode }}>{{ arItemMenu.title }}</span>
+                        {% endif %}
+                    </li>
+                {% endif %}
             {% endfor %}
         </ul>
     </nav>
