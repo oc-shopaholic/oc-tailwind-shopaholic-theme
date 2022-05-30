@@ -1,0 +1,24 @@
+{##}
+
+{# TODO:Add svg reusability for whole project #}
+{% set iPage = Pagination.getPageFromRequest() %}
+{% set iMaxPage = Pagination.getMaxPage(obReview.count()) %}
+
+<section class="w-full">
+    <ul class="_review-list">
+        {% partial 'review-list/review-list-ajax' 
+            obReviewList = obReview
+        %}
+    </ul>
+    {% if iMaxPage > iPage %}
+        <button 
+            class="_show-more-reviews flex flex-row items-center text-blue-800"
+            data-max-page="{{iMaxPage}}" data-page="1"
+        >
+            <span class="mr-2 text-sm md:text-base">{{ 'text_read_more_reviews'|_ }}</span>
+            <svg width="8" height="12">
+                <use href="../../themes/lovata-tailwind-shopaholic/assets/images/sprite.svg#arrow-right"></use>
+            </svg>
+        </button>
+    {% endif %}
+</section>

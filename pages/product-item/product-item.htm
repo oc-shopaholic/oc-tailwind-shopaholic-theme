@@ -1,0 +1,148 @@
+title = "Catalog Item"
+url = "/catalog/:category?/:product?"
+layout = "main"
+is_hidden = 0
+
+[CategoryPage]
+slug = "{{ :category }}"
+slug_required = 0
+smart_url_check = 1
+has_wildcard = 0
+skip_error = 1
+
+[ProductPage]
+slug = "{{ :product }}"
+slug_required = 1
+smart_url_check = 0
+skip_error = 0
+
+[ProductList]
+sorting = "no"
+
+[ProductData]
+
+[Pagination]
+count_per_page = 3
+pagination_limit = 5
+active_class = "pagination__link_current"
+button_list = "last-more,last"
+first_button_name = "First"
+first_button_limit = 3
+first_button_number = 1
+first-more_button_name = "..."
+first-more_button_limit = 3
+prev_button_name = "Prev"
+prev_button_limit = 1
+prev-more_button_name = "..."
+prev-more_button_limit = 1
+next-more_button_name = "..."
+next-more_button_limit = 1
+next_button_name = "Next"
+next_button_limit = 1
+last-more_button_name = "..."
+last-more_button_limit = 3
+last_button_name = "Last"
+last_button_limit = 3
+last_button_number = 1
+==
+<?php
+function onStart()
+{
+    //Get product and first offer item
+    $obProductItem = $this->ProductPage->get();
+    if (empty($obProductItem)) {
+        return;
+    }
+
+    $arBreadcrumbs = [];
+    if (!empty($obProductItem)) {
+        $arBreadcrumbs[] = [
+            'name'   => $obProductItem->name,
+            'url'    => $obProductItem->getPageUrl(),
+            'active' => true,
+        ];
+    }
+
+    $obCurrentCategory = !empty($obProductItem) ? $obProductItem->category : $obActiveCategoryItem;
+
+    while (!empty($obCurrentCategory) && $obCurrentCategory->isNotEmpty()) {
+        $arBreadcrumbs[] = [
+            'name'   => $obCurrentCategory->name,
+            'url' => \Cms\Classes\Page::url('catalog/catalog', 
+            ['catalog' => false])
+        ];
+
+        $obCurrentCategory = $obCurrentCategory->parent;
+    }
+
+    $arBreadcrumbs[] = [
+        'name' => $this->page->title, 
+        'url' => $this->pageUrl($this->page->baseFileName, false),
+    ];
+
+    $this['obProduct'] = $obProductItem;
+    $this['arBreadcrumbs'] = array_reverse($arBreadcrumbs);
+}
+
+function onInit()
+{
+    $this['path_page_js'] = mix('assets/dist/js/product-item.js', 'themes/lovata-tailwind-shopaholic');
+}
+?>
+==
+{##}
+
+{% set obReviewList = obProduct.review.active().sort() %}
+{% set obProduct = ProductPage.get() %}
+
+{% partial 'breadcrumbs/breadcrumbs' %}
+<div class="flex flex-col lg:flex-row-reverse lg:justify-end">
+    {% partial 'product-info/product-info' %}
+    <div class="md:w-min">
+        {% partial 'product-gallery/product-gallery' arImages = obProduct.images %}
+
+        {% if obProduct.description is not empty %}
+            <div class="w-full flex flex-col mt-7 md:mt-11">
+                {% partial 'product-description/product-description' sDescription=obProduct.description %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+<div class="flex items-end items-baseline mt-10 flex-col lg:flex-row lg:max-w-6xl lg:justify-between">
+    <div class="w-full md:w-1/2 flex flex-col mt-10">
+        <h2 class="text-gray-900 text-2xl font-medium uppercase mb-5">{{ 'heading_customer_reviews'|_ }}</h2>
+        {% partial 'review-list/review-list'
+            obReview = obReviewList
+        %}
+        {% partial 'button/button'
+            sText = 'button_write_review'|_
+            sPartialClasses = 'w-full md:w-72 mt-8 p-2'
+            bGhost = true
+        %}
+    </div>
+    {% partial 'product-rating/product-rating' 
+        obProduct=obProduct
+        sPartialClass = 'mt-6 lg:mt-0 lg:mr-20'
+    %}
+</div>
+
+{% if this.theme.has_viewed_products %}
+    {% partial 'product-list-small/product-list-small'
+        sProductListSmallType = sProductListSmallTypeViewedProducts
+        sSectionHeading = 'heading_product_list_small_recently_viewed'|_
+        sSectionHeadingLevel = 2
+        iTake = 4
+        iShowIndex = 0
+    %}
+{% endif %}
+
+{% if this.theme.has_related_products %}
+    {% partial 'product-list-small/product-list-small'
+        sProductListSmallType = sProductListSmallTypeRelatedProducts
+        obProduct = obProduct
+        sSectionHeading = 'heading_product_list_small_you_might_also_like'|_
+        sSectionHeadingLevel = 2
+        iTake = 4
+        iShowIndex = 0
+    %}
+{% endif %}

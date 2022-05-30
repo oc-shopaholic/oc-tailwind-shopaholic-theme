@@ -1,0 +1,21 @@
+{##}
+
+<div class="{{ sPartialClasses }}">
+    <input
+        class="text-blue-800 border-gray-600 mr-2.5 focus:outline-none focus-visible:border-blue-800"
+        type="radio"
+        {% if sName %}
+            name="{{ sName }}"
+        {% endif %}
+        {% if sId %}
+            id="{{ sId }}"
+        {% endif %}
+        {% if sValue %}
+            value="{{ sValue }}"
+        {% endif %}
+        {% if bIsRequired %}
+            required
+        {% endif %}
+    >
+    <label for="{{ sId }}" class="text-sm md:text-base text-gray-600">{{ sLabelText }}</label>
+</div>

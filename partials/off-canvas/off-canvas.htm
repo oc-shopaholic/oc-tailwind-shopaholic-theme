@@ -1,0 +1,47 @@
+{##}
+
+{% if sButtonType %}
+    {% set sPartialClasses = 'flex justify-between' %}
+{% else %}
+    {% set sPartialClasses = 'flex justify-end lg:justify-between' %}
+{% endif %}
+
+{% if sButtonHeadingHidden %}
+    {% set sHeadingHidden = 'hidden lg:block' %}
+{% else %}
+    {% set sHeadingHidden = 'flex justify-between' %}
+{% endif %}
+
+{# TODO: Markup should be changed after removing <dialog> polyfill. #}
+
+<template class="_offCanvasTemplate">
+    <dialog class="_offCanvasContainer cursor-auto z-50 bg-transparent p-0 w-full min-w-full h-full min-h-full my-0 mr-0 backdrop:bg-gray-400 backdrop:opacity-60">
+        <div class="_nav hidden box-border fixed right-0 w-full h-full max-h-full overflow-auto duration-1000 md:w-1/2 {{ sCanvasClasses }} {{ sIndentsClass|default('py-10 pr-20 pl-10') }} {{ sBackgroundClass|default('bg-gray-200') }}" data-position="{{sPosition}}">
+            <div class="{{sPartialClasses}} {{sHeaderClasses}} mb-10 {{sHeadingHidden}}">
+                {% if sHiddenDefaultHeader == false %}
+                    <h2 class="text-lg md:text-xl uppercase {{sHeadingHidden}}">{{sHeading}}</h2>
+                    {% if sButtonType %}
+                        <button class="_hide flex items-center text-base uppercase p-2 -m-2 hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                            Go back
+                        </button>
+                    {% else %}
+                        <button class="_hide block p-2 -m-2 hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    {% endif %}
+                    <button class="_hide hidden p-2 -m-2 hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800 lg:block">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                {% endif %}
+            </div>
+            {{body|raw}}
+        </div>
+    </dialog>
+</template>

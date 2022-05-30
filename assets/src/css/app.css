@@ -4,6 +4,21 @@
 
 @import "tailwindcss/utilities";
 
+@layer components {
+  .slider__pagination{
+    @apply flex justify-center mt-5 lg:mt-12
+  }
+  .slider__pagination-hidden{
+    @apply hidden
+  }
+  .slider__bullet{
+    @apply w-1 lg:w-3 h-1 lg:h-3 ml-2 lg:ml-6 first:ml-0 bg-gray-400 rounded-full
+  }
+  .slider__bullet_active{
+    @apply bg-blue-800
+  }
+}
+
 @layer utilities {
   .snap::after{
     content: '';
@@ -52,4 +67,26 @@
   details[open]>summary::after{
     transform: translateY(-50%) rotate(180deg);
   }
+  .wishlist__empty {
+    background-image: url('/themes/lovata-tailwind-shopaholic/assets/images/wishlist.svg');
+  }
+  .quantity_input::-webkit-inner-spin-button,
+  .quantity_input::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .quantity_input{
+    -moz-appearance: textfield;
+  }
+  ._input-checkbox-color{
+    color: var(--input-checkbox-color);
+    background-color: var(--input-checkbox-color);
+  }
+  .progress_bar_evaluation{
+    width: var(--progress-bar-evaluation-width);
+  }
+  ._description-text{
+    max-height: var(--description-text-max-height);
+  }
 }
+@import "../../../node_modules/swiper/swiper-bundle.min.css";

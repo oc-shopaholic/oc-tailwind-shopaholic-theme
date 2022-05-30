@@ -1,0 +1,27 @@
+{##}
+
+<div class="{{ sPartialClasses }}">
+    <input
+        class="text-blue-800 focus:outline-none focus-visible:border-blue-800 {{sInputClass}} {{sIndentsClass|default('border-gray-600 mr-2.5')}}"
+        type="checkbox"
+        {% if sName %}
+            name="{{ sName }}"
+        {% endif %}
+        {% if sId %}
+            id="{{ sId }}"
+        {% endif %}
+        {% if sValue %}
+            value="{{ sValue }}"
+        {% endif %}
+        {% if bIsRequired %}
+            required
+        {% endif %}
+        {% if sChecked %}
+            checked
+        {% endif %}
+        {% if sDisabled %}
+            disabled
+        {% endif %}
+    > {# TODO: Fix focus-visible state for checkbox #}
+    <label for="{{ sId }}" class="text-gray-600 {{sTextSize|default('text-sm md:text-base')}}">{{ sLabelText|raw}}</label>
+</div>
