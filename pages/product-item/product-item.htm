@@ -66,7 +66,6 @@ function onInit()
 {##}
 {% partial 'breadcrumbs/breadcrumbs' %} {# TODO: Fix wrong breadcrumbs #}
 {% set obReviewList = obProduct.review.active().sort() %}
-
 <div class="w-full md:w-1/2 flex flex-col">
     <h2 class="text-gray-900 text-2xl font-medium uppercase mb-5">{{ 'heading_customer_reviews'|_ }}</h2>
     {% partial 'review-list/review-list'
