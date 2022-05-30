@@ -17,7 +17,7 @@
     <div class="_evaluation flex flex-wrap flex-row mt-4 md:mt-3 text-gray-600 text-sm md:text-base md:items-center">
         <div class="flex mr-3 md:mr-4">
             <div aria-hidden="true" class="flex flex-row items-center space-x-1 mr-4 mb-2 md:mb-0">
-                {% partial 'product-rating/product-rating-image' maxRating='5' rating=obProduct.rating unique_id='product' %}
+                {% partial 'product-rating/product-rating-star' maxRating='5' rating=obProduct.rating unique_id='product' %}
             </div>
             <span aria-label="{{ 'aria_label_customers_rating'|transRaw({
                 aria_label_customers_rating: obProduct.rating,
