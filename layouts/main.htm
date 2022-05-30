@@ -25,7 +25,7 @@ function onStart()
 
 {##}
 
-{% spaceless %}
+{% apply spaceless %}
 <!DOCTYPE html>
 <html lang="{{ activeLocale ? activeLocale : 'en' }}">
     <head>
@@ -44,4 +44,4 @@ function onStart()
         {% partial 'input/input-validation-message' %}
     </body>
 </html>
-{% endspaceless %}
+{% endapply %}
