@@ -39,10 +39,12 @@ code = "navigation-main"
             </div>
             <nav>
                 <ul class="flex flex-col mb-2">
-                    {% for arItemMenu in arMenuList if not arItemMenu.viewBag.isHidden %}
-                        <li class="py-3 -mx-4 px-4 md:mx-0 md:px-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 pb-3 md:after:border-0 md:ml-1 md:pb-0">
-                            <a href="{{ arItemMenu.url }}" class="text-sm font-medium text-blue-800 hover:text-blue-700 hover:underline active:text-blue-900 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800">{{ arItemMenu.title }}</a>
-                        </li>
+                    {% for arItemMenu in arMenuList %}
+                        {% if not arItemMenu.viewBag.isHidden %}
+                            <li class="py-3 -mx-4 px-4 md:mx-0 md:px-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 pb-3 md:after:border-0 md:ml-1 md:pb-0">
+                                <a href="{{ arItemMenu.url }}" class="text-sm font-medium text-blue-800 hover:text-blue-700 hover:underline active:text-blue-900 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800">{{ arItemMenu.title }}</a>
+                            </li>
+                        {% endif %}
                     {% endfor %}
                 </ul>
             </nav>
