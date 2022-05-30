@@ -92,7 +92,6 @@ function onInit()
 ==
 {##}
 
-{% partial 'breadcrumbs/breadcrumbs' %} {# TODO: Fix wrong breadcrumbs #}
 {% set obReviewList = obProduct.review.active().sort() %}
 {% set obProduct = ProductPage.get() %}
 
@@ -109,21 +108,21 @@ function onInit()
         {% endif %}
     </div>
 </div>
-<div class="flex flex-col items-end mt-10">
+<div class="flex items-end items-baseline mt-10 flex-col lg:flex-row lg:max-w-6xl lg:justify-between">
+    <div class="w-full md:w-1/2 flex flex-col mt-10">
+        <h2 class="text-gray-900 text-2xl font-medium uppercase mb-5">{{ 'heading_customer_reviews'|_ }}</h2>
+        {% partial 'review-list/review-list'
+            obReview = obReviewList
+        %}
+        {% partial 'button/button'
+            sText = 'button_write_review'|_
+            sPartialClasses = 'w-full md:w-72 mt-8 p-2'
+            bGhost = true
+        %}
+    </div>
     {% partial 'product-rating/product-rating' 
-        obProduct=obProduct 
-    %}
-</div>
-
-<div class="w-full md:w-1/2 flex flex-col mt-10">
-    <h2 class="text-gray-900 text-2xl font-medium uppercase mb-5">{{ 'heading_customer_reviews'|_ }}</h2>
-    {% partial 'review-list/review-list'
-        obReview = obReviewList
-    %}
-    {% partial 'button/button'
-        sText = 'button_write_review'|_
-        sPartialClasses = 'w-full md:w-72 mt-8 p-2'
-        bGhost = true
+        obProduct=obProduct
+        sPartialClass = 'mt-6 lg:mt-0 lg:mr-20'
     %}
 </div>
 
