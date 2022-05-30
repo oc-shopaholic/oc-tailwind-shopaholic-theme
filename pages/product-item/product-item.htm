@@ -67,18 +67,6 @@ function onInit()
 
 {% partial 'breadcrumbs/breadcrumbs' %} {# TODO: Fix wrong breadcrumbs #}
 {% set obReviewList = obProduct.review.active().sort() %}
-<div class="w-full md:w-1/2 flex flex-col">
-    <h2 class="text-gray-900 text-2xl font-medium uppercase mb-5">{{ 'heading_customer_reviews'|_ }}</h2>
-    {% partial 'review-list/review-list'
-        obReview = obReviewList
-    %}
-    {% partial 'button/button'
-        sText = 'button_write_review'|_
-        sPartialClasses = 'w-full md:w-72 mt-8 p-2'
-        bGhost = true
-    %}
-</div>
-
 {% set obProduct = ProductPage.get() %}
 
 {% partial 'product-gallery/product-gallery' arImages = obProduct.images %}
@@ -95,6 +83,18 @@ function onInit()
             {% partial 'product-rating/product-rating' obProduct=obProduct %}
         </div>
     </div>
+</div>
+
+<div class="w-full md:w-1/2 flex flex-col mt-10">
+    <h2 class="text-gray-900 text-2xl font-medium uppercase mb-5">{{ 'heading_customer_reviews'|_ }}</h2>
+    {% partial 'review-list/review-list'
+        obReview = obReviewList
+    %}
+    {% partial 'button/button'
+        sText = 'button_write_review'|_
+        sPartialClasses = 'w-full md:w-72 mt-8 p-2'
+        bGhost = true
+    %}
 </div>
 
 {% if this.theme.has_viewed_products %}
