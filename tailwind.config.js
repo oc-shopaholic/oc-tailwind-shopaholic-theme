@@ -1,4 +1,4 @@
-const plugin = require('tailwindcss/plugin')
+const plugin = require('tailwindcss/plugin');
 
 module.exports = {
   corePlugins: {
@@ -79,7 +79,7 @@ module.exports = {
         '.separator': {
           content: 'url(/themes/lovata-tailwind-shopaholic/assets/images/separator.svg)',
         }
-      }
+      };
       addUtilities(newUtilities, ['before'])
     }),
     plugin(({ addVariant, e }) => {
@@ -88,4 +88,4 @@ module.exports = {
       })
     }),
   ]
-}
+};
