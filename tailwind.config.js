@@ -11,6 +11,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      transitionDuration: {
+        '0': '0ms',
+      },
       gridTemplateColumns: {
         'full': '100%',
         'social': 'repeat(auto-fill, 40px)',
@@ -41,21 +44,20 @@ module.exports = {
       maxHeight: {
         160: '40rem',
       },
-      height: {
-        23: '92px',
-        131: '524px'
-      },
-      maxHeight: {
-        160: '40rem',
+      maxWidth: {
+        'screen-3xl': '1920px',
+        225: '900px',
       },
       width: {
+        90: '360px',
+        174: '696px',
         23: '92px',
         174: '696px',
         225: '900px',
       },
-      maxWidth: {
-        'screen-3xl': '1920px',
-        225: '900px',
+      height: {
+        23: '92px',
+        131: '524px'
       },
       spacing: {
         2.25: '9px',

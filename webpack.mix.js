@@ -23,7 +23,7 @@ const jsFileList = [
   'pages/password-restore-success/password-restore-success',
   'pages/password-restore/password-restore',
   'pages/product-item/product-item',
-  'pages/product-list/product-list',
+  'pages/catalog/catalog',
   'pages/sign-in/sign-in',
   'pages/sign-up-confirmation/sign-up-confirmation',
   'pages/sign-up-success/sign-up-success',

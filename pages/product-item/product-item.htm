@@ -64,6 +64,7 @@ function onInit()
 ?>
 ==
 {##}
+
 {% partial 'breadcrumbs/breadcrumbs' %} {# TODO: Fix wrong breadcrumbs #}
 {% set obReviewList = obProduct.review.active().sort() %}
 <div class="w-full md:w-1/2 flex flex-col">
@@ -77,6 +78,11 @@ function onInit()
         bGhost = true
     %}
 </div>
+
+{% set obProduct = ProductPage.get() %}
+
+{% partial 'product-gallery/product-gallery' arImages = obProduct.images %}
+
 {% if obProduct.description is not empty %}
     <div class="w-full flex flex-col md:w-1/2">
         {% partial 'product-description/product-description' sDescription=obProduct.description %}
