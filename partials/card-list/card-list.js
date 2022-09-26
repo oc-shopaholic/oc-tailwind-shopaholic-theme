@@ -59,8 +59,8 @@ export default new class ProductCardCheckout {
                 let a = price + '';
                 $(document).ready(() => {
                     $item.text('(' + quantity + ' ' + window.subtotal.item + ')');
+                    $price.text(window.subtotal.currency + a.substring(0,6));
                 })
-                $price.text('€' + a.substring(0,6));
             })()
         })
     }
