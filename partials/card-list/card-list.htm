@@ -10,7 +10,15 @@
 <div class="_subtotal flex mt-6 mb-7 justify-between md:justify-start">
     <div class="flex">
         <output class="font-medium">{{'text_subtotal'|_}}</output>&nbsp
-        <p class="_item"></p>:
+        <span class="_item"></span>:
     </div>
     <output class="_price font-medium pl-4"></output>
 </div>
+
+{% put scripts %}
+    <script>
+        window.subtotal = {
+            'item': "{{ 'text_item'|_ }}",
+        };
+    </script>
+{% endput %}
