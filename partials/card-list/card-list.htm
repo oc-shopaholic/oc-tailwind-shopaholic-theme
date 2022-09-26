@@ -8,10 +8,12 @@
     {% endfor %}
 </ul>
 <div class="_subtotal flex mt-6 mb-7 justify-between md:justify-start">
-    <div class="flex">
-        <output class="font-medium">{{'text_subtotal'|_}}</output>&nbsp;
-        <span class="_item"></span>:
-    </div>
+    <span class="flex text-gray-900 font-medium">
+        {{'text_subtotal'|_}}&nbsp;
+        <span class="text-gray-600">
+            <output class="_item"></output> :
+        </span>
+    </span>
     <output class="_price font-medium pl-4"></output>
 </div>
 
