@@ -2,6 +2,9 @@ title = "Account Details"
 url = "/account/details"
 layout = "main"
 is_hidden = 0
+
+[UserData]
+[UserAddress]
 ==
 <?php
 function onInit()
@@ -13,3 +16,16 @@ function onInit()
 {##}
 
 {% partial 'breadcrumbs/breadcrumbs' %}
+
+{% set obUserAddress = UserAddress.get() %}
+
+{{obUserAddress.id}}
+<section class="mb-16">
+    <h1 class="font-medium uppercase mb-4 text-gray-900 text-xl lg:text-3xl">my details</h1>
+    <div class="_test-container">
+        {% if obUserAddress %}
+            <p>okay</p>
+        {% endif %}
+        {% partial 'account-details/user-info' %}
+    </div>
+</section>

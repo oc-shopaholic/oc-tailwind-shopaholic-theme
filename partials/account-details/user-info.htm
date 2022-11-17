@@ -1,0 +1,55 @@
+{##}
+
+{% set obUser = UserData.get %}
+
+<form class="{{sPartialClasses}} _qwer _required lg:w-fit">
+    <span class="text-gray-600 text-sm lg:text-base">* — required fields</span>
+    <div class="flex flex-col mt-4 space-y-4">
+        {% partial 'input/input' 
+            sId = 'name'
+            name = 'name'
+            sLabelText = 'Your name *'
+            value = obUser.name ~ ' ' ~ obUser.last_name
+            required = 'required'
+        %}
+        {% partial 'input/input' 
+            sId = 'email'
+            name = 'email'
+            type = 'email'
+            value = obUser.email
+            sLabelText = 'E-mail *'
+            required = 'required'
+        %}
+        {% partial 'input/input' 
+            sId = 'phone'
+            name = 'phone'
+            type = 'phone'
+            value = obUser.phone
+            sLabelText = 'Phone number'
+        %}
+        {% partial 'input/input' 
+            sId = 'country'
+            name = 'country'
+            sLabelText = 'Country'
+        %}
+        {% partial 'input/input' 
+            sId = 'city'
+            name = 'city'
+            sLabelText = 'City'
+        %}
+        {% partial 'input/input' 
+            sId = 'zip-code'
+            name = 'zip-code'
+            sLabelText = 'Zip code'
+        %}
+        {% partial 'input/input' 
+            sId = 'postal-address'
+            name = 'postal-address'
+            sLabelText = 'Postal address'
+        %}
+    </div>
+    {% partial 'button/button' 
+        sText = 'Save changes'
+        sPartialClasses = '_very-test-button w-full mt-8 font-medium lg:mt-10 lg:w-auto'
+    %}
+</form>
