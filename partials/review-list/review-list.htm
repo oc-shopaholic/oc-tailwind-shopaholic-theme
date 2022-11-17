@@ -1,29 +1,81 @@
 {##}
 
-<ul>
-    {% for review in 1..4 %}
-    <li class="mt-4 md:mt-5 first:mt-0">
-        <header class="flex items-center">
-            {% set user = true %}
-            {% if user %}
-                <img src="{{ 'assets/images/temp_img/user.png'|theme }}" class="mr-4 w-10 md:w-12 h-10 md:h-12 rounded-full overflow-hidden object-cover" alt="Avatar of the User name"/>
-            {% else %}
-                <img src="{{ 'assets/images/avatar-default.svg'|theme }}" class="mr-4 w-10 md:w-12 h-10 md:h-12 rounded-full overflow-hidden" alt="No avatar is presented."/>
+
+{# TODO:Add svg reusability for whole project #}
+{% set iPage = Pagination.getPageFromRequest() %}
+{% set iMaxPage = Pagination.getMaxPage(obReview.count()) %}
+
+<section class="w-full {{sPartialClass}}">
+    {% if sReviewsCount == true or sSortingPanel == true %}
+        <div class="flex justify-between mb-5 items-baseline">
+            {% if sReviewsCount == true %}
+                {% set nReviewsCount = obProduct.review.active().sort()|length %}
+                <span class="text-gray-600 text-base">{{nReviewsCount}} {{'text_reviews'|_}}</span>
             {% endif %}
-            <div class="flex-1">
-                <div class="flex justify-between md:justify-start">
-                    <span class="text-gray-900 font-medium text-xs md:text-base">Jannet Tan</span>
-                    <time datetime="2021-02-25" class="md:ml-4 text-xs md:text-base text-gray-600">1 day ago</time>
+            {% if sSortingPanel == true %}
+                <div class="_sorting-reviews flex items-center mb-4 md:justify-end" data-pagination-page="{{iPage}}" data-pagination-max="{{iMaxPage}}" data-active-text="{{ 'text_sort_by'|_ }}">
+                    <select class="_sorting-choice bg-transparent w-full border-0 outline-none focus:outline-none focus:border-0 md:w-auto" id="sort-select" name="sort">
+                        <option value="popularity|desc" {{ (sActiveSorting == 'popularity|desc' or sActiveSorting is empty) ? 'selected' : '' }} class="text-gray-600">{{'text_newest_to_oldest'|_}}</option>
+                        <option value="price|desc" {{ sActiveSorting == 'price|desc' ? 'selected' : '' }} class="text-gray-600">{{'text_oldest_to_newest'|_}}</option>
+                    </select>
                 </div>
-                {% partial 'star-rating-static/star-rating-static' %}
-            </div>
-        </header>
-        <div class="mt-3">
-            <span class="text-gray-900 font-medium text-xs md:text-base mb-1">Jannet recommended this item</span>
-            <div class="text-gray-600 text-xs md:text-base">
-                <p>I ordered this mirror with delivery. When I opened the package, I carefully examined the entire mirror. The quality of the product is excellent! I didn't expect it to fit so perfectly into my living room interior. I'm very happy!</p>
-            </div>
+            {% endif %}
         </div>
-    </li>
-    {% endfor %}
-</ul>
+    {% endif %}
+    <ul class="{{sListClass}}">
+        {% partial 'review-list/review-list-ajax' 
+            obReviewList = obReview
+        %}
+    </ul>
+    {% if iMaxPage > iPage %}
+        <div class="_off-canvas">
+            <button 
+                class="_show flex flex-row items-center text-blue-800"
+                data-max-page="{{iMaxPage}}"
+                data-page="1"
+                type="button"
+            >
+                <span class="mr-2 text-sm md:text-base">{{ 'text_read_more_reviews'|_ }}</span>
+                <svg width="8" height="12">
+                    <use href="../../themes/lovata-tailwind-shopaholic/assets/images/sprite.svg#arrow-right"></use>
+                </svg>
+            </button>
+            {% partial 'off-canvas/off-canvas'
+                sPosition = 'right'
+                sHeading = 'heading_customer_reviews_ratings'|_
+                sHeaderClasses = 'items-center mb-7'
+                sCanvasClasses = 'cursor-auto'
+                sIndentsClass = 'px-4 py-10 md:px-10'
+                sBackgroundClass = 'bg-white'
+                body
+            %}  
+                {% partial 'review-card-info/review-card-info' 
+                    obProduct = obProduct
+                %}
+                {% partial 'product-rating/product-rating' 
+                    obProduct=obProduct
+                    sPartialClass = 'mt-7'
+                    sHeaderHidden = true
+                %}
+                {% partial 'button/button'
+                    sText = 'button_write_review'|_
+                    sPartialClasses = '_write-review w-full md:w-72 mt-10 p-2'
+                    bGhost = true
+                %}
+                {% partial 'review-list/review-list'
+                    obReview = obReviewList
+                    sPartialClass = 'mt-10'
+                    sReviewsCount = true
+                    sSortingPanel = true
+                    sListClass = '_review-list'
+                %}
+                {% partial 'button/button'
+                    sText = 'button_read_mode'|_
+                    sPartialClasses = '_show-more-reviews w-full md:w-72 mt-3 p-2'
+                    bGhost = true
+                    sDataAtribute = 'data-max-page=' ~ iMaxPage ~ ' data-page=1'
+                %}
+            {% endpartial %}
+        </div>
+    {% endif %}
+</section>

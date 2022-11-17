@@ -1,0 +1,53 @@
+{##}
+
+<div class="_off-canvas _write-review">
+    {% partial 'button/button'
+        sText = 'button_write_review'|_
+        sPartialClasses = '_show w-full md:w-72 mt-8 p-2'
+        bGhost = true
+    %}
+    {% partial 'off-canvas/off-canvas'
+        sPosition = 'right'
+        sHeading = 'heading_review_add'|_
+        sHeaderClasses = 'items-center mb-7'
+        sCanvasClasses = 'cursor-auto'
+        sIndentsClass = 'px-4 py-10 md:px-10'
+        sBackgroundClass = 'bg-white'
+        body
+    %}  
+        {% partial 'review-card-info/review-card-info' 
+            obProduct = obProduct
+        %}
+        <form class="_review-container">
+            <input type="hidden" name="product_id" value="{{obProduct.id}}">
+            {% partial 'product-review-rating/product-review-rating' %}
+            <fieldset class="mb-7 lg:mb-6">
+                {# TODO: Add the ability to send product recommendations #}
+                <legend class="text-gray-900 font-medium text-base mb-4 lg:mb-2">{{'text_you_recommend_product'|_}}</legend>
+                <div class="flex space-x-7">
+                    {% partial 'input-radio/input-radio' 
+                        sName = 'recommended'
+                        sId = 'recommended'
+                        sLabelText = 'input_yes'|_
+                        sPartialClasses = 'flex items-center'
+                    %}
+                    {% partial 'input-radio/input-radio' 
+                        sName = 'recommended'
+                        sId = 'non-recommended'
+                        sLabelText = 'input_no'|_
+                        sPartialClasses = 'flex items-center'
+                    %}
+                </div>
+            </fieldset>
+            <div>
+                <label class="text-gray-900 font-medium text-base" for="review">{{'text_share_experience'|_}}</label>
+                <textarea class="w-full mt-4 rounded border-gray-400 resize-none placeholder:text-gray-400 placeholder:text-base lg:mt-2" id="review" name="comment" rows="5" cols="50" placeholder="{{'input_placeholder_do_you_like_or_dislike'|_}}"></textarea>
+            </div>
+            {% partial 'button/button'
+                sType = 'submit'
+                sText = 'button_submit_review'|_
+                sPartialClasses = '_send-review w-full md:w-72 mt-8 p-2'
+            %}
+        </form>
+    {% endpartial %}
+</div>

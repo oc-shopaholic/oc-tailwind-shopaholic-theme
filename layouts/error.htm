@@ -1,0 +1,34 @@
+[staticPage]
+useContent = 1
+default = 0
+
+[SeoToolbox]
+==
+<?php
+function onInit()
+{
+    $this['path_css'] = mix('assets/dist/css/app.css', 'themes/lovata-tailwind-shopaholic');
+    $this['path_js'] = mix('assets/dist/js/app.js', 'themes/lovata-tailwind-shopaholic');
+    $this['path_manifest_js'] = mix('assets/dist/js/manifest.js', 'themes/lovata-tailwind-shopaholic');
+    $this['path_vendor_js'] = mix('assets/dist/js/vendor.js', 'themes/lovata-tailwind-shopaholic');
+}
+function onStart()
+{
+    $this['sTopInfoBlockHash'] = $this->theme->top_info_block_active && !empty($this->theme->top_info_block) ? md5($this->theme->top_info_block) : '';
+}
+?>
+==
+
+{##}
+
+{% spaceless %}
+<!DOCTYPE html>
+<html lang="{{ activeLocale ? activeLocale : 'en' }}">
+    <head>
+        {% partial 'head/head' %}
+    </head>
+    <body class="bg-gray-50" itemscope itemtype="http://schema.org/WebPage">
+        {% page %}
+    </body>
+</html>
+{% endspaceless %}

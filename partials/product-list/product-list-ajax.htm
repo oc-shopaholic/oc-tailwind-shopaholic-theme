@@ -1,0 +1,15 @@
+{% for obProduct in arProductList if arProductList is not empty %}
+    {% partial 'product-card/product-card' obProduct = obProduct %}
+{% else %}
+    <div class="flex flex-col items-center pb-20">
+        <svg class="mb-5" width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M175 175L125 125L175 175ZM141.667 83.3333C141.667 90.9938 140.158 98.5792 137.226 105.657C134.295 112.734 129.998 119.164 124.581 124.581C119.164 129.998 112.734 134.295 105.657 137.226C98.5792 140.158 90.9938 141.667 83.3333 141.667C75.6729 141.667 68.0875 140.158 61.0101 137.226C53.9328 134.295 47.5022 129.998 42.0854 124.581C36.6687 119.164 32.3719 112.734 29.4404 105.657C26.5088 98.5792 25 90.9938 25 83.3333C25 67.8624 31.1458 53.0251 42.0854 42.0854C53.0251 31.1458 67.8624 25 83.3333 25C98.8043 25 113.642 31.1458 124.581 42.0854C135.521 53.0251 141.667 67.8624 141.667 83.3333Z" stroke="#E5E7EB" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>  
+        <h2 class="text-gray-400 text-3xl font-medium mb-2">{{'heading_search_no_results'|_}}</h2>
+        <p class="text-gray-400 text-base text-center mb-6">{{'text_no_result_filter'|_}}</p>
+        {% partial 'button/button'
+            sText = 'button_clear_filters'|_
+            sPartialClasses = '_clearFilter text-xl'
+        %}
+    </div>
+{% endfor %}

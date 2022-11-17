@@ -1,0 +1,55 @@
+{##}
+
+{% for i in 0..maxRating-1 %}
+{% set id = unique_id~loop.index %}
+    {% if rating >= loop.index %}
+        <svg class="rating__image w-4 h-4" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns:sketchjs="https://sketch.io/dtd/" width="30" height="30" viewBox="0 0 30 30">
+            <defs>
+                <linearGradient id="{{ id }}" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="1" style="stop-color:#F59E0B;" />
+                    <stop offset="1" style="stop-color:#D1D5DB;" />
+                </linearGradient>
+            </defs>
+            <g transform="matrix(1.0263157894736834,0,0,1,-1,-0.9999999999999986)">
+                <path d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,
+                        31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,
+                        12.118l11.547-1.2L16.026,0.6L20.388,10.918z"
+                    style="fill: url(#{{ id }}); stroke: #D1D5DB; stroke-width: 1;" />
+            </g>
+        </svg>
+    {% elseif loop.index - rating < 1 %}
+        {% set index = 1 - (loop.index - rating) %}
+        <svg class="rating__image w-4 h-4 {{ index }}" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns:sketchjs="https://sketch.io/dtd/" width="30" height="30" viewBox="0 0 30 30">
+            <defs>
+                <linearGradient id="{{ id }}" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="{{ index }}" style="stop-color:#F59E0B;" />
+                    <stop offset="{{ index }}" style="stop-color:#D1D5DB;" />
+                </linearGradient>
+            </defs>
+            <g transform="matrix(1.0263157894736834,0,0,1,-1,-0.9999999999999986)">
+                <path d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,
+                        31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,
+                        12.118l11.547-1.2L16.026,0.6L20.388,10.918z"
+                    style="fill: url(#{{ id }}); stroke: #D1D5DB; stroke-width: 1;" />
+            </g>
+        </svg>
+    {% else %}
+        <svg class="rating__image w-4 h-4" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns:sketchjs="https://sketch.io/dtd/" width="30" height="30" viewBox="0 0 30 30">
+            <defs>
+                <linearGradient id="{{ id }}" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0" style="stop-color:#F59E0B;" />
+                    <stop offset="0" style="stop-color:#D1D5DB;" />
+                </linearGradient>
+            </defs>
+            <g transform="matrix(1.0263157894736834,0,0,1,-1,-0.9999999999999986)">
+                <path d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,
+                            31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,
+                            12.118l11.547-1.2L16.026,0.6L20.388,10.918z"
+                    style="fill: url(#{{ id }}); stroke: #D1D5DB; stroke-width: 1;" />
+            </g>
+        </svg>
+    {% endif %}
+{% endfor %}
