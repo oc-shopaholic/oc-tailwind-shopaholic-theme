@@ -35,7 +35,22 @@ export default new class accountDetails{
         //     this.test = $('._very-test-link');
         //     this.qq();
         // },
-      })
-    })
+      });
+
+      let address = {
+        'country': formData.country,
+        'city': formData.city,
+        'address1': formData['postal-address'],
+        'postcode': formData['zip-code'],
+        'id': formData['address_id'],
+        'type': 'shipping',
+      };
+
+      let requestHandler = (address.id) ? 'onUpdate' : onAdd;
+
+      $.request('UserAddress::' + requestHandler, {
+        data: address
+      });
+    });
   }
 }();

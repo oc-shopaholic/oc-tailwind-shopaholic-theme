@@ -16,6 +16,12 @@ login_page = "sign-in/sign-in"
 <?php
 function onInit()
 {
+    $this['obUserAddressList'] = \Lovata\OrdersShopaholic\Classes\Collection\UserAddressCollection::make()->user($this->UserData->get()->id);
+    $this['obUserAddress'] = $this['obUserAddressList']->first();
+}
+
+function onStart()
+{
     $this['path_page_js'] = mix('assets/dist/js/account-details.js', 'themes/lovata-tailwind-shopaholic');
 }
 ?>
