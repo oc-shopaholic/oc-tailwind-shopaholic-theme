@@ -16,6 +16,14 @@ is_hidden = 0
 function onInit()
 {
     $this['path_page_js'] = mix('assets/dist/js/checkout.js', 'themes/lovata-tailwind-shopaholic');
+
+    $this->addComponent('Lovata\OrdersShopaholic\Components\MakeOrder', 'MakeOrder', [
+        'slug' => '{{ :slug }}',
+        'slug_required' => 0,    
+        'redirect_on' => 1,
+        'redirect_page' => 'checkout-success/checkout-success',
+        'mode' => 'ajax',
+    ]);
 }
 ?>
 ==
