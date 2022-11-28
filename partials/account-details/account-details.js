@@ -1,4 +1,5 @@
 import request from 'oc-request';
+import Modal from '../modal/modal'
 
 export default new class accountDetails{
   constructor(){
@@ -61,7 +62,6 @@ export default new class accountDetails{
     this.obAvatar = null;
     if(!document.getElementsByClassName('_shipping-container')[0]) return
     this.obShippingContainer = document.getElementsByClassName('_shipping-container')[0];
-    this.obShippingRemove = this.obShippingContainer.querySelectorAll('._remove');
     this.obChangeShipping = this.obShippingContainer.querySelectorAll('._change-shipping');
   }
 
@@ -107,9 +107,15 @@ export default new class accountDetails{
   }
 
   shippingRemove(){
-    if(!this.obShippingRemove) return
-    for (let address of this.obShippingRemove) {
-      address.addEventListener('click', (event)=>{   
+    setTimeout(()=>{
+      this.obShippingRemove = this.obShippingContainer.querySelectorAll('._remove')[0];
+      if(!this.obShippingRemove) return;
+      this.obShippingRemove.addEventListener('click', (event)=>{   
+        document.querySelector('dialog').querySelector('._hide').dispatchEvent(
+        new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+        }));
         const data = {
           'id': event.target.closest('button').dataset.id
         }   
@@ -118,14 +124,10 @@ export default new class accountDetails{
           update: {'account-details/shipping-address': '._shipping-address-container'},
           complete: ()=>{
             this.init();
-            if(this.obShippingContainer.childElementCount < 1){
-              document.getElementsByClassName('_shipping-address-container')[0].classList.add('hidden')
-              location.href=location.href;
-            }
           }
         });
       })
-    }
+    }, 100);
   }
 
   changeAddress(id){
@@ -151,12 +153,12 @@ export default new class accountDetails{
   }
 
   changeShipping(){
-    if(!this.obChangeShipping || !this.obChangeShipping.length) return
+    if(!this.obChangeShipping || !this.obChangeShipping.length) return;
     for (let address of this.obChangeShipping) {
       address.addEventListener('click', (event)=>{
         const str = event.target.closest('div').querySelectorAll('span._address-info')[0].innerText.trim();
         const arr = str.split(',');
-        const id = event.target.closest('div').querySelectorAll('._remove')[0].dataset.id;
+        const id = event.target.dataset.id;
   
         request.sendData('onAjax', {
           update: { 'account-details/add-address': '._add-address' },
@@ -168,7 +170,7 @@ export default new class accountDetails{
             for(let i = 0; i < arr.length; i++){
               document.getElementsByClassName('_add-address')[0].querySelectorAll('input')[i].value = arr[i]
             }
-            this.changeAddress(id)
+            this.changeAddress(id);
           },
         });
       })
@@ -177,15 +179,10 @@ export default new class accountDetails{
 
   saveUserInfo(){
     const app = this;
-    if(!this.obSaveUserInfo) return
+    if(!this.obSaveUserInfo) return;
     this.obSaveUserInfo.addEventListener('click', ()=>{
       const formDataUnindexed = app.obSaveUserInfo.closest('form');
-      let avatar = null;
-      if(this.obAvatar){
-        avatar = this.obAvatar;
-      }else{
-        avatar = $('._avatar-input').prop('files')[0];
-      }
+      const avatar = document.querySelector("._avatar-input").files[0];
       const formData = {
         'name': formDataUnindexed.querySelector('[name="name"]').value,
         'email': formDataUnindexed.querySelector('[name="email"]').value,
@@ -195,12 +192,12 @@ export default new class accountDetails{
         'address1': formDataUnindexed.querySelector('[name="postal-address"]').value,
         'postcode': formDataUnindexed.querySelector('[name="zip-code"]').value,
         'id': formDataUnindexed.querySelector('[name="address_id"]').value,
-        avatar: avatar
+        'avatar': avatar
       };
-      //TODO: Исправить что не сохраняется аватар и name если стоит files: true
+      //TODO: Add save picture
       request.sendData('onAjax', {
         data: formData,
-        files: true,
+        files: false
       });
 
       const address = {
@@ -223,14 +220,21 @@ export default new class accountDetails{
   }
 
   init(){
+    Modal.make('_modal');
+
     this.initVariables();
     this.changeShipping();
-    this.shippingRemove();
     this.saveNewAddress();
     this.addNewAddress();
     this.avatarRemove();
     this.avatarLoad();
     this.changeInfo();
     this.saveUserInfo();
+
+    for (let modal of document.querySelectorAll('._modal')) {
+      modal.addEventListener('click', (event)=>{
+        this.shippingRemove();
+      })
+    }
   }
 }();

@@ -1,0 +1,46 @@
+{##}
+
+{% if sButtonType %}
+    {% set sPartialClasses = 'flex' %}
+{% else %}
+    {% set sPartialClasses = 'flex justify-end' %}
+{% endif %}
+
+{% if sButtonHeadingHidden %}
+    {% set sHeadingHidden = 'hidden lg:block' %}
+{% else %}
+    {% set sHeadingHidden = 'flex' %}
+{% endif %}
+
+<template class="_modalTemplate">
+    <dialog class="_modalContainer cursor-auto z-50 bg-transparent p-0 w-full min-w-full h-full min-h-full my-0 mr-0 backdrop:bg-gray-800 backdrop:opacity-40">
+        <div class="_nav box-border fixed top-1/2 left-1/2 -mr-1/2 -translate-y-2/4 -translate-x-2/4 overflow-auto rounded {{sModalWidthContainer|default('w-full max-w-xs lg:max-w-xl')}} {{ sCanvasClasses }} {{ sIndentsClass|default('p-4 lg:p-10') }} {{ sBackgroundClass|default('bg-white') }}">
+            <div class="flex flex-col items-center">
+                <svg class="mb-5 w-16 h-16 lg:w-24 lg:h-24 lg:mb-7" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M45 10C44.0717 10.0005 43.1618 10.2594 42.3724 10.7478C41.5829 11.2361 40.945 11.9346 40.53 12.765L36.91 20H20C18.6739 20 17.4021 20.5268 16.4645 21.4645C15.5268 22.4021 15 23.6739 15 25C15 26.3261 15.5268 27.5979 16.4645 28.5355C17.4021 29.4732 18.6739 30 20 30V80C20 82.6522 21.0536 85.1957 22.9289 87.0711C24.8043 88.9464 27.3478 90 30 90H70C72.6522 90 75.1957 88.9464 77.0711 87.0711C78.9464 85.1957 80 82.6522 80 80V30C81.3261 30 82.5979 29.4732 83.5355 28.5355C84.4732 27.5979 85 26.3261 85 25C85 23.6739 84.4732 22.4021 83.5355 21.4645C82.5979 20.5268 81.3261 20 80 20H63.09L59.47 12.765C59.055 11.9346 58.4171 11.2361 57.6276 10.7478C56.8382 10.2594 55.9283 10.0005 55 10H45ZM35 40C35 38.6739 35.5268 37.4021 36.4645 36.4645C37.4021 35.5268 38.6739 35 40 35C41.3261 35 42.5979 35.5268 43.5355 36.4645C44.4732 37.4021 45 38.6739 45 40V70C45 71.3261 44.4732 72.5979 43.5355 73.5355C42.5979 74.4732 41.3261 75 40 75C38.6739 75 37.4021 74.4732 36.4645 73.5355C35.5268 72.5979 35 71.3261 35 70V40ZM60 35C58.6739 35 57.4021 35.5268 56.4645 36.4645C55.5268 37.4021 55 38.6739 55 40V70C55 71.3261 55.5268 72.5979 56.4645 73.5355C57.4021 74.4732 58.6739 75 60 75C61.3261 75 62.5979 74.4732 63.5355 73.5355C64.4732 72.5979 65 71.3261 65 70V40C65 38.6739 64.4732 37.4021 63.5355 36.4645C62.5979 35.5268 61.3261 35 60 35Z" fill="#E5E7EB"/>
+                </svg>                    
+                {% if sHeading %}
+                    <span class="text-gray-900 text-sm mb-4 lg:text-base {{sHeadingClasses}}">{{sHeading}}</span>
+                {% endif %}
+                {% if sText %}
+                    <span class="mb-4 text-gray-900 text-sm lg:mb-8 lg:text-base {{sTextClasses}}">{{sText|raw}}</span>
+                {% endif %}
+                <div class="w-full flex justify-between space-x-2 lg:space-x-4">
+                    {% partial 'button/button' 
+                        sText = sButtonCloseText
+                        sButtonType = 'cancel'
+                        sPartialClasses = '_hide'
+                    %}
+                    {% if sButtonConfirmText %}
+                        {% partial 'button/button' 
+                            sText = sButtonConfirmText
+                            sButtonType = 'confirm'
+                            sPartialClasses = sButtonConfirmClasses
+                            sDataAtribute = sButtonConfirmData
+                        %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </dialog>
+</template>
