@@ -32,7 +32,12 @@ function onStart()
 
 <section class="mb-16">
     <h1 class="font-medium uppercase mb-4 text-gray-900 text-xl lg:text-3xl">my details</h1>
-    <div class="_test-container">
+    {% if obUserAddress.country == '' or obUserAddress.city == '' or obUserAddress.postcode == '' or obUserAddress.address1 == '' %}
         {% partial 'account-details/user-info' %}
-    </div>
+    {% else %}
+        {% partial 'account-details/contact-information' %}
+        <div class="_shipping-address-container">
+            {% partial 'account-details/shipping-address' %}
+        </div>
+    {% endif %}
 </section>
