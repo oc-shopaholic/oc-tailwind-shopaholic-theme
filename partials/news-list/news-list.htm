@@ -5,11 +5,16 @@
         <ul class="grid grid-cols-2 md:grid-cols-4 gap-x-2 gap-y-4 md:gap-x-4 md:gap-y-12">
             {% for obArticle in arArticleList %}
                 <li class="w-auto">
-                    {% partial 'news-card/news-card' obArticle = obArticle sSectionHeadingLevel = 2 %}
+                    {% partial 'news-card/news-card'
+                        obArticle = obArticle
+                        sSectionHeadingLevel = 2
+                        iLoopIndex = loop.index
+                        iShowIndex = 8
+                    %}
                 </li>
             {% endfor %}
         </ul>
     {% else %}
-        <span class="block text-gray-400 text-center mb-4 md:mb-10">No news has been posted yet.</span>
+        <span class="block text-gray-400 text-center mb-4 md:mb-10">{{ 'text_news_list_not_found'|_ }}</span>
     {% endif %}
 </div>

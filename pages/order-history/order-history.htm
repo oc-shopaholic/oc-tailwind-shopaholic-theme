@@ -1,0 +1,78 @@
+url = "/order-history"
+layout = "main"
+title = "Order history"
+is_hidden = 0
+
+[UserData]
+
+[ProductData]
+
+[Pagination]
+count_per_page = 5
+pagination_limit = 10
+active_class = "pagination__link_current"
+button_list = "last-more,last"
+first_button_name = "First"
+first_button_limit = 3
+first_button_number = 1
+first-more_button_name = "..."
+first-more_button_limit = 3
+prev_button_name = "Prev"
+prev_button_limit = 1
+prev-more_button_name = "..."
+prev-more_button_limit = 1
+next-more_button_name = "..."
+next-more_button_limit = 1
+next_button_name = "Next"
+next_button_limit = 1
+last-more_button_name = "..."
+last-more_button_limit = 3
+last_button_name = "Last"
+last_button_limit = 3
+last_button_number = 1
+==
+<?php
+function onInit()
+{
+    if(input('delete_all_orders')) {
+        \Lovata\OrdersShopaholic\Models\Order::where('user_id', $obUser->id)->delete();    
+    }
+}
+
+function onStart()
+{
+    $this['path_page_js'] = mix('assets/dist/js/order-history.js', 'themes/lovata-tailwind-shopaholic');
+    $obUser = $this->UserData->get();
+
+    $arBreadcrumbs = [
+        ['name' => 'My account', 'url' => \Cms\Classes\Page::url('account/account', ['account' => false])],
+    ];
+
+    $arBreadcrumbs[] = ['name' => 'My orders', 'url' => 'order-history/order-history'];
+
+    $this['arBreadcrumbs'] = $arBreadcrumbs;
+}
+?>
+==
+{##}
+
+{% partial 'breadcrumbs/breadcrumbs' %}
+
+{% set obUser = UserData.get() %}
+{% set obOrderList = obUser.order %}
+
+<div class="mb-8 mt-1 lg:mb-16">
+    <h1 class="uppercase text-xl mb-4 font-medium lg:text-3xl">{{'heading_my_orders'|_}}</h1>
+    {% if obOrderList|length > 0 %}
+        {% partial 'order-list/order-list' %}
+    {% else %}
+        {% partial 'info-message/info-message'
+            sPartialClasses = 'mt-28 md:mt-14'
+            sIconName = 'empty.svg'
+            sEmptyPageMessage = 'text_have_no_orders'|_
+            sHref = '/catalog'
+            sButtonText = 'button_start_shopping'|_
+            sButtonClasses = 'mt-24 w-full text-center md:px-16 md:mt-6 md:w-auto'
+        %}
+    {% endif %}
+</div>

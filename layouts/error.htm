@@ -21,14 +21,12 @@ function onStart()
 
 {##}
 
-{% spaceless %}
 <!DOCTYPE html>
 <html lang="{{ activeLocale ? activeLocale : 'en' }}">
     <head>
         {% partial 'head/head' %}
     </head>
-    <body class="bg-white" itemscope itemtype="http://schema.org/WebPage">
+    <body class="bg-gray-50" itemscope itemtype="http://schema.org/WebPage">
         {% page %}
     </body>
 </html>
-{% endspaceless %}

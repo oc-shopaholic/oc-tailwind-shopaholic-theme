@@ -1,0 +1,254 @@
+url = "/catalog/:category?"
+layout = "main"
+title = "Catalog"
+
+[CategoryPage MainCategoryPage]
+slug = "{{ :category }}"
+slug_required = 0
+smart_url_check = 1
+has_wildcard = 1
+skip_error = 1
+
+[CategoryPage]
+slug = "{{ :slug }}"
+slug_required = 0
+smart_url_check = 1
+has_wildcard = 0
+skip_error = 1
+
+[ProductPage]
+slug = "{{ :slug }}"
+slug_required = 0
+smart_url_check = 1
+skip_error = 1
+
+[Pagination]
+count_per_page = 15
+pagination_limit = 5
+active_class = "pagination__link_current"
+button_list = "first,first-more,main,last-more,last"
+first_button_name = "First"
+first_button_limit = 3
+first_button_number = 1
+first-more_button_name = "..."
+first-more_button_limit = 4
+prev_button_name = "Prev"
+prev_button_limit = 1
+prev-more_button_name = "..."
+prev-more_button_limit = 1
+next-more_button_name = "..."
+next-more_button_limit = 1
+next_button_name = "Next"
+next_button_limit = 1
+last-more_button_name = "..."
+last-more_button_limit = 4
+last_button_name = "Last"
+last_button_limit = 3
+last_button_number = 1
+
+[ProductList]
+sorting = "popularity|desc"
+
+[CategoryList]
+==
+<?php
+function onInit() {
+    /** @var \Lovata\Shopaholic\Classes\Item\ProductItem $obProductItem */
+    /** @var \Lovata\Shopaholic\Classes\Item\CategoryItem $obActiveCategoryItem */
+    /** @var \Lovata\Shopaholic\Classes\Item\CategoryItem $obMainCategoryItem */
+    /** @var \Lovata\Shopaholic\Classes\Collection\ProductCollection $obProductList */
+    /** @var \Lovata\Shopaholic\Classes\Collection\CategoryCollection $obCategoryList */
+    $obProductItem = $this->ProductPage->get();
+    $obActiveCategoryItem = $this->CategoryPage->get();
+    $obMainCategoryItem = $this->MainCategoryPage->get();
+
+    if (!empty($this->param('slug')) && (empty($obProductItem)) && empty($obActiveCategoryItem)) {
+        return $this->ProductPage->getErrorResponse();
+    }
+
+    if (!empty($this->param('category')) && empty($obMainCategoryItem)) {
+        return $this->CategoryPage->getErrorResponse();
+    }
+
+    if(!empty($obProductItem)) {
+        //Product item data
+        $this['obProduct'] = $obProductItem;
+    } else {
+        //Product list data
+        $obPluginManager = \System\Classes\PluginManager::instance();
+
+        if (!empty($obMainCategoryItem) && empty($obActiveCategoryItem)) {
+            $obActiveCategoryItem = $obMainCategoryItem;
+        }
+
+        $sActiveSorting = $this->ProductList->getSorting();
+        $iPage = $this->Pagination->getPageFromRequest();
+
+        //Get product list
+        $obProductList = $this->ProductList->make()->active()->sort($sActiveSorting);
+
+        //Get category product list
+        if (!empty($obActiveCategoryItem)) {
+            $obProductList = $obProductList->category($obActiveCategoryItem->id, true);
+        }
+
+        //Get filters
+        if ($obPluginManager->exists('Lovata.FilterShopaholic')) {
+            //Get price filter
+            $arPriceFilterValue = explode('|', input('price'));
+            $fMinPriceFilterValue = array_get($arPriceFilterValue, 0);
+            $fMaxPriceFilterValue = array_get($arPriceFilterValue, 1);
+
+            if(!empty($obActiveCategoryItem)) {
+                $obProductPropertyList = $obActiveCategoryItem->product_filter_property;
+                $obOfferPropertyList = $obActiveCategoryItem->offer_filter_property;
+                $arProductPropertyIdList = $obProductPropertyList->getIDList();
+                $arOfferPropertyIdList = $obOfferPropertyList->getIDList();
+            } else {
+                $obPropertySetCollection = \Lovata\PropertiesShopaholic\Classes\Collection\PropertySetCollection::make()->sort();
+                $arProductPropertyList = $obPropertySetCollection->getProductPropertyList();
+                $arOfferPropertyList = $obPropertySetCollection->getOfferPropertyList();
+                $obProductPropertyList = \Lovata\FilterShopaholic\Classes\Collection\FilterPropertyCollection::make()
+                    ->active()
+                    ->setPropertySetRelation($arProductPropertyList)
+                    ->setModel(Lovata\Shopaholic\Models\Product::class)
+                    ->setProductList($obProductList);
+                $obOfferPropertyList = \Lovata\FilterShopaholic\Classes\Collection\FilterPropertyCollection::make()
+                    ->active()
+                    ->setPropertySetRelation($arOfferPropertyList)
+                    ->setModel(Lovata\Shopaholic\Models\Offer::class)
+                    ->setProductList($obProductList);
+
+                $arProductPropertyIdList = $obProductPropertyList->getIDList();
+                $arOfferPropertyIdList = $obOfferPropertyList->getIDList();
+            }
+
+            //Get filter by properties
+            $arFilterValue = (array) input('property');
+
+            if (!empty($arFilterValue)) {
+                foreach($arFilterValue as $sKey => &$sValue) {
+                    $sValue = explode('|', $sValue);
+                }
+            }
+
+            $arFilterValueWithoutProperty = [];
+
+            foreach($arProductPropertyIdList as $iPropertyID) {
+                $arFilterValueTemp = $arFilterValue;
+                if (isset($arFilterValueTemp[$iPropertyID])) {
+                    unset($arFilterValueTemp[$iPropertyID]);
+                }
+
+                $arFilterValueWithoutProperty[$iPropertyID] = $arFilterValueTemp;
+            }
+
+            foreach($arOfferPropertyIdList as $iPropertyID) {
+                $arFilterValueTemp = $arFilterValue;
+                if (isset($arFilterValueTemp[$iPropertyID])) {
+                    unset($arFilterValueTemp[$iPropertyID]);
+                }
+
+                $arFilterValueWithoutProperty[$iPropertyID] = $arFilterValueTemp;
+            }
+
+            $obProductList = $obProductList->copy()
+                ->filterByProperty($arFilterValue, $obProductPropertyList)
+                ->filterByProperty($arFilterValue, $obOfferPropertyList)
+                ->filterByPrice($fMinPriceFilterValue, $fMaxPriceFilterValue);
+
+            $this['bShowFilter'] = true;
+
+            $bSaleFilter = (bool) input('sale');
+
+            if ($bSaleFilter) {
+                $obProductList->filterByDiscount();
+            }
+
+            $this['fMinPriceFilterValue'] = $fMinPriceFilterValue;
+            $this['fMaxPriceFilterValue'] = $fMaxPriceFilterValue;
+            $this['bSaleFilter'] = $bSaleFilter;
+
+            $this['arFilterValue'] = $arFilterValue;
+            $this['arFilterValueWithoutProperty'] = $arFilterValueWithoutProperty;
+            $this['obProductPropertyList'] = $obProductPropertyList;
+            $this['obOfferPropertyList'] = $obOfferPropertyList;
+        }
+
+        $arProductList = $obProductList->page($iPage, $this->Pagination->getCountPerPage());
+        $iMaxPage = $this->Pagination->getMaxPage($obProductList->count());
+        $iCount = $obProductList->count();
+        $this['sActiveSorting'] = $sActiveSorting;
+        $this['iPage'] = $iPage;
+        $this['iCount'] = $iCount;
+        $this['iMaxPage'] = $iMaxPage;
+
+        $this['arProductList'] = $arProductList;
+        $this['obProductList'] = $obProductList;
+
+        $this['obActiveCategory'] = $obActiveCategoryItem;
+        $this['obCategoryList'] = $this->CategoryList->make()->active();
+    }
+
+    //Get breadcrumbs
+    $arBreadcrumbs = [];
+    if (!empty($obProductItem)) {
+        $arBreadcrumbs[] = [
+            'name'   => $obProductItem->name,
+            'url'    => $obProductItem->getPageUrl(),
+            'active' => true,
+        ];
+    }
+
+    $obCurrentCategory = !empty($obProductItem) ? $obProductItem->category : $obActiveCategoryItem;
+
+    while (!empty($obCurrentCategory) && $obCurrentCategory->isNotEmpty()) {
+        $arBreadcrumbs[] = [
+            'name'   => $obCurrentCategory->name,
+            'url'    => $obCurrentCategory->getPageUrl(),
+            'active' => empty($obProductItem) && $obCurrentCategory->id == $obActiveCategoryItem->id,
+        ];
+
+        $obCurrentCategory = $obCurrentCategory->parent;
+    }
+
+    $arBreadcrumbs[] = [
+        'name'   => $this->page->title,
+        'url'    => $this->pageUrl($this->page->baseFileName, false),
+        'active' => empty($obProductItem) && empty($obActiveCategoryItem),
+    ];
+
+    $this['arBreadcrumbs'] = array_reverse($arBreadcrumbs);
+}
+
+function onStart()
+{
+    $this['path_page_js'] = mix('assets/dist/js/catalog.js', 'themes/lovata-tailwind-shopaholic');
+}
+?>
+==
+
+{% partial 'breadcrumbs/breadcrumbs' %} {# TODO: Fix wrong breadcrumbs #}
+
+{# TODO: Finish stylization of the select box. #}
+
+{% if obProduct.isNotEmpty() %}
+    {# Product card #}
+    {% partial 'product-card/product-card' %}
+{% else %}
+    {# Product list #}
+    <div class="grid md:grid-cols-4">
+        {% if bShowFilter %}
+            {% partial 'filter/filter'
+                sPartialClass='md:col-span-1'
+            %}
+        {% endif %}
+        <div class="_sorting-container w-full md:col-span-3">
+            <div class="_sorting">
+                {% partial 'sorting/sorting' %}
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{# TODO: Rename partial to 'catalog-list' #}

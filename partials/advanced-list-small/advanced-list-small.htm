@@ -1,0 +1,12 @@
+{##}
+
+<div class="mb-7">
+    {% if arCategoryList|length > 0 %}
+        <h2 class="text-gray-900 text-xl font-medium mb-3">Categories</h2>
+        <ul>
+            {% for obCategory in arCategoryList %}
+                <li class="mb-3"><a href="{{ obCategory.getPageUrl('catalog/catalog') }}" class="text-blue-800">{{ obCategory.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>

@@ -2,7 +2,7 @@
 
 <div class="{{ sPartialClasses }}">
     {% if sLabelText %}
-        <label for="{{ sId }}" class="text-xs text-gray-600 inline-block mb-1 {{ sLabelClasses }}">{{ sLabelText }}</label>
+        <label for="{{ sId }}" class="{{ sLabelClasses|default('text-sm text-gray-600 inline-block mb-1') }}">{{ sLabelText }}</label>
     {% endif %}
     <input
         type="{{ type|default('text') }}"
@@ -16,6 +16,7 @@
         {% if value is not same as(null) %}
             value="{{ value }}"
         {% endif %}
+        {{sDataAtributes}}
         {% if placeholder %}
             placeholder="{{ placeholder }}"
         {% endif %}
@@ -45,6 +46,7 @@
         {% endif %}
         {{ attribute|raw }}
     >
+    {{body|raw}}
     {% if validationErrorSelector is not same as(null) %}
         <div class="{{ validationErrorSelector }} text-red-700 text-sm inline-block"></div>
     {% endif %}

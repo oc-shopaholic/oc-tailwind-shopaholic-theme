@@ -1,0 +1,41 @@
+{##}
+
+{% for obValue in obPropertyValueList %}
+    {% if obValue.label == 'White' %}
+        {% set checkboxStyle = 'border border-gray-300 disabled:opacity-30' %}
+    {% else %}
+        {% set checkboxStyle = 'border-0 disabled:opacity-30' %}
+    {% endif %}
+
+    {% if bChecked and obValue.label == 'White' %}
+        {% set sChecked = 'relative after:content-[""] after:absolute after:bg-75 after:border-gray-300 after:inset-0 after:bg-check-black after:bg-no-repeat after:bg-center' %}
+    {% elseif bChecked %}
+        {% set sChecked = 'relative after:content-[""] after:absolute after:bg-75 after:border-0 after:inset-0 after:bg-check after:bg-no-repeat after:bg-center' %}
+    {% endif %}  
+
+    {% if sHref %}
+        {% set sTags = 'a' %}
+    {% else %}
+        {% set sTags = 'div' %}
+    {% endif %}
+
+    <li class="flex">
+        <{{sTags}} class="w-max flex flex-col items-center mb-4 {{sPartialClasses}}" 
+            {% if sHref %}
+                href="{{sHref}}"
+            {% endif %}
+        >
+            <div class="_input-checkbox-color rounded w-12 h-12 mr-0 focus:outline-none focus-visible:border-blue-800 md:w-9 md:h-9 {{checkboxStyle}} {{sChecked}}" style="--input-checkbox-color: {{obValue.value}};"></div>
+            <span class="text-gray-600 text-xs pt-1">{{ obValue.label|raw}}</span>
+            <input
+                class="_input-checkbox-color hidden"
+                type="{{sType|default('checkbox')}}"
+                id="{{obValue.slug}}"
+                value="{{sValue}}"
+                name="{{sName}}"
+                {{bDisabled ? 'disabled'}}
+                {{bChecked ? 'checked'}}
+            >
+        </{{sTags}}>
+    </li>
+{% endfor %}

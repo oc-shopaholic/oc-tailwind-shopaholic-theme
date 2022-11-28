@@ -1,0 +1,37 @@
+{##}
+
+<div class="carousel-main swiper-container full-width bg-gray-100">
+    <ul class="swiper-wrapper max-w-screen-3xl my-0	mx-auto">
+        {% for obItem in arCarouselList %}
+            <li class="swiper-slide lg:max-h-160 overflow-hidden">
+                {% if obItem.url is not empty %}
+                    <a href="{{ obItem.url }}">
+                        <picture>
+                            <source srcset="{{ obItem.image|media|resize(1440, 640, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
+                            {# TODO: Add resize for mobile screen resolution #}
+                            <img  
+                                class="w-full h-full object-cover" 
+                                src="{{ obItem.image|media|resize(1440, 640, {'quality': 80}) }}" 
+                                alt="{{ obItem.description }}" 
+                                title="{{ obItem.title }}"
+                                {{ loop.index > 1 ? 'loading="lazy"' }}
+                            >
+                        </picture>
+                    </a>
+                {% else %}
+                    <picture>
+                        <source srcset="{{ obItem.image|media|resize(1440, 640, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
+                        <img 
+                            class="w-full h-full object-cover" 
+                            src="{{ obItem.image|media|resize(1440, 640, {'quality': 80}) }}" 
+                            alt="{{ obItem.description }}" 
+                            title="{{ obItem.title }}"
+                            {{ loop.index > 1 ? 'loading="lazy"' }} 
+                        >
+                    </picture>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="swiper-pagination"></div>
+</div>
