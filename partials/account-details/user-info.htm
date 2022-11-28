@@ -3,7 +3,7 @@
 {% set obUser = UserData.get %}
 
 <form class="{{sPartialClasses}} _required lg:w-fit">
-    <span class="text-gray-600 text-sm lg:text-base">* — required fields</span>
+    <span class="text-gray-600 text-sm lg:text-base">{{'text_required_fileds'|_}}</span>
     <div class="flex flex-col mt-4 space-y-4">
         <div class="flex space-x-6 items-center">
             {% if obUser.avatar %}
@@ -27,7 +27,7 @@
                         {% partial 'button/button' 
                             sPartialClasses = '_avatar-load'
                             sButtonType = 'link'
-                            sText = 'Change'
+                            sText = 'button_change'|_
                             body
                         %}
                             <svg class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,7 +38,7 @@
                         {% partial 'button/button' 
                             sPartialClasses = '_avatar-remove'
                             sButtonType = 'link'
-                            sText = 'Remove'
+                            sText = 'button_remove'|_
                             body
                         %}
                             <svg class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,7 +50,7 @@
                     {% partial 'button/button' 
                         sPartialClasses = '_avatar-load'
                         sButtonType = 'link'
-                        sText = 'Upload a photo'
+                        sText = 'button_upload_photo'|_
                         body
                     %}
                         <svg class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -65,7 +65,7 @@
         {% partial 'input/input'
             sId = 'name'
             name = 'name'
-            sLabelText = 'Your name *'
+            sLabelText = 'input_your_name'|_
             value = obUser.name
             required = 'required'
         %}
@@ -74,7 +74,7 @@
             name = 'email'
             type = 'email'
             value = obUser.email
-            sLabelText = 'E-mail *'
+            sLabelText = 'input_your_email'|_
             required = 'required'
         %}
         {% partial 'input/input'
@@ -82,36 +82,36 @@
             name = 'phone'
             type = 'phone'
             value = obUser.phone
-            sLabelText = 'Phone number'
+            sLabelText = 'input_phone_number'|_
         %}
         {% partial 'input/input'
             sId = 'country'
             name = 'country'
-            sLabelText = 'Country'
+            sLabelText = 'input_country'|_
             value = obUserAddress.country
         %}
         {% partial 'input/input'
             sId = 'city'
             name = 'city'
-            sLabelText = 'City'
+            sLabelText = 'input_city'|_
             value = obUserAddress.city
         %}
         {% partial 'input/input'
             sId = 'zip-code'
             name = 'zip-code'
-            sLabelText = 'Zip code'
+            sLabelText = 'input_zip_code'|_
             value = obUserAddress.postcode
         %}
         {% partial 'input/input'
             sId = 'postal-address'
             name = 'postal-address'
-            sLabelText = 'Postal address'
+            sLabelText = 'input_postal_address'|_
             value = obUserAddress.address1
         %}
         <input type="hidden" name="address_id" value="{{ obUserAddress.id }}">
     </div>
     {% partial 'button/button'
-        sText = 'Save changes'
+        sText = 'button_save_changes'|_
         sPartialClasses = '_save-user-info w-full mt-8 font-medium lg:mt-10 lg:w-auto'
     %}
 </form>

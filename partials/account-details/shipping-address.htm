@@ -2,7 +2,7 @@
 
 {% if obUserAddressList|length != 0 %}
     <section class="mt-10">
-        <h2 class="font-medium text-gray-900 text-base mb-4 lg:text-xl">Shippng addresses</h2>
+        <h2 class="font-medium text-gray-900 text-base mb-4 lg:text-xl">{{'heading_shipping_addresses'|_}}</h2>
         <div class="_add-address hidden lg:w-1/4"></div>
         <div class="_shipping-container grid grid-cols-1 gap-4 lg:grid-cols-5">
             {% for address in obUserAddressList %}
@@ -22,7 +22,7 @@
                     {% partial 'button/button' 
                         sPartialClasses = '_change-shipping mt-6'
                         sButtonType = 'link'
-                        sText = 'Edit address'
+                        sText = 'button_edit_address'|_
                         body
                     %}
                         <svg class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,7 +34,7 @@
         </div>  
         {% partial 'button/button' 
             sPartialClasses = '_add-new-address mt-4'
-            sText = 'Add new address'
+            sText = 'button_add_new_address'|_
             bGhost = 'true'
         %}
     </section>

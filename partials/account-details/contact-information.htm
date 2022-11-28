@@ -3,7 +3,7 @@
 {% set obUser = UserData.get %}
 
 <section class="{{sPartialClasses}} _account-details-change lg:w-1/4">
-    <h2 class="font-medium text-gray-900 text-base mb-4 lg:text-xl">Contact information</h2>
+    <h2 class="font-medium text-gray-900 text-base mb-4 lg:text-xl">{{'heading_contact_information'|_}}</h2>
     <div class="border bg-white p-4 rounded border-gray-200">
         <div class="flex flex-col space-y-4">
             {% if obUser.avatar %}
@@ -50,7 +50,7 @@
         {% partial 'button/button' 
             sPartialClasses = '_change-contact-info mt-6'
             sButtonType = 'link'
-            sText = 'Edit contact information'
+            sText = 'button_edit_contact'|_
             body
         %}
             <svg class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

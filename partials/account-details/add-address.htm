@@ -5,25 +5,25 @@
         {% partial 'input/input'
             sId = 'country'
             name = 'country'
-            sLabelText = 'Country'
+            sLabelText = 'input_country'|_
             required = 'required'
         %}
         {% partial 'input/input'
             sId = 'city'
             name = 'city'
-            sLabelText = 'City'
+            sLabelText = 'input_city'|_
             required = 'required'
         %}
         {% partial 'input/input'
             sId = 'zip-code'
             name = 'zip-code'
-            sLabelText = 'Zip code'
+            sLabelText = 'input_zip_code'|_
             required = 'required'
         %}
         {% partial 'input/input'
             sId = 'postal-address'
             name = 'postal-address'
-            sLabelText = 'Postal address'
+            sLabelText = 'input_postal_address'|_
             required = 'required'
         %}
         <input type="hidden" name="address_id" value="{{ obUserAddress.id }}">
@@ -31,11 +31,11 @@
     {% partial 'button/button' 
         sType = 'submit'
         sPartialClasses = '_save-new-address mt-8 hidden lg:mt-10'
-        sText = 'Add new address'
+        sText = 'button_add_new_address'|_
     %}
     {% partial 'button/button'
         sType = 'submit'
         sPartialClasses = '_change-address hidden mt-8 lg:mt-10'
-        sText = 'Save address'
+        sText = 'button_save_address'|_
     %}
 </form>
