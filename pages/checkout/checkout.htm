@@ -8,22 +8,17 @@ is_hidden = 0
 [ShippingTypeList]
 
 [MakeOrder]
+mode = "ajax"
+redirect_on = 1
+redirect_page = "checkout-success/checkout-success"
 
 [PaymentMethodList]
 
 ==
 <?php
-function onInit()
+function onStart()
 {
     $this['path_page_js'] = mix('assets/dist/js/checkout.js', 'themes/lovata-tailwind-shopaholic');
-
-    $this->addComponent('Lovata\OrdersShopaholic\Components\MakeOrder', 'MakeOrder', [
-        'slug' => '{{ :slug }}',
-        'slug_required' => 0,    
-        'redirect_on' => 1,
-        'redirect_page' => 'checkout-success/checkout-success',
-        'mode' => 'ajax',
-    ]);
 }
 ?>
 ==
@@ -45,7 +40,7 @@ function onInit()
         <h1 class="mb-6 text-gray-900 font-medium text-xl uppercase md:text-3xl">{{'heading_checkout'|_}}</h1>
         {% partial 'checkout-list/checkout-list' %}
         <div class="flex mb-7 flex-col mt-7 items-start md:items-end md:flex-row">
-            {% partial 'input/input' 
+            {% partial 'input/input'
                 sLabelText='input_you_have_coupon'|_
                 placeholder='input_coupon_code'|_
                 name='coupon'
@@ -142,7 +137,7 @@ function onInit()
                 <span class="text-sm font-light text-gray-600 md:text-base">* — {{'text_required_fields'|_}}</span>
                 <div class="flex flex-col space-y-4 mt-4 mb-7 lg:mt-3">
                     {% partial 'input/input'
-                        sLabelClasses = 'text-sm mb-1 text-gray-600'	
+                        sLabelClasses = 'text-sm mb-1 text-gray-600'
                         sLabelText = 'input_your_name'|_ ~ '*'
                         inputClass = '_shopaholic-order-field'
                         type = 'text'
