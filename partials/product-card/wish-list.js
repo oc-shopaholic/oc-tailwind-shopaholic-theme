@@ -46,6 +46,7 @@ export default new class WishList {
       this.obButton = $(obButton);
       this.obButton.attr('disabled', 'disabled');
       const self = this;
+      obRequestData.update = {'wish-list/wish-list': '._wish-list-wrapper'};
       obRequestData.complete = () => {
         const obButton = self.obButton;
         const sType = self.sTypeAdd;

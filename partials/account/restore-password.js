@@ -13,9 +13,7 @@ export default new class RestorePassword {
   initHandler() {
     $(document).on('click', `.${this.sButtonRestorePasswordClass}`, (obEvent) => {
       // TODO: Understand why we use setTimeout ()
-      setTimeout(() => {
-        this.sendRequest(obEvent);
-      }, 0);
+      this.sendRequest(obEvent);
     });
   }
 

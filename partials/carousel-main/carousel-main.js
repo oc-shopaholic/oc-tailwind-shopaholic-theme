@@ -1,4 +1,4 @@
-import Swiper, { Navigation, Pagination } from 'swiper';
+import Swiper from 'swiper/bundle';
 
 export default new class MainCarousel {
   constructor() {
@@ -33,10 +33,10 @@ export default new class MainCarousel {
       pagination: {
         el: `.${this.paginationSelector}`,
         type: 'bullets',
-        bulletActiveClass: this.nextBulletActiveSelector,
-        bulletClass: this.nextBulletSelector,
-        lockClass: this.uselessPaginationSelector,
         clickable: true,
+        clickableClass: 'relative mt-5 md:mt-12',
+        bulletClass: 'w-2 h-2 rounded-full bg-gray-400 inline-block mx-3',
+        bulletActiveClass: '!bg-blue-800',
       }
     });
   }

@@ -8,7 +8,14 @@
             {% if obLabelList.count() == 1 %}
                 <div class="absolute z-10 -top-px -left-px overflow-hidden rounded-br rounded-tl flex">
                     {% for obLabel in obLabelList %}
-                        <div class="text-white bg-red-700 px-4 py-2 whitespace-nowrap">{{ obLabel.name }}</div>
+                        {% if obLabel.code == 'new' %}
+                            {% set sColorState = 'bg-green-900' %}
+                        {% elseif obLabel.code == 'sale' %}
+                            {% set sColorState = 'bg-red-700' %}
+                        {% else %}
+                            {% set sColorState = 'bg-red-700' %}
+                        {% endif %}
+                        <div class="{{sColorState}} text-white px-4 py-2 whitespace-nowrap text-xs lg:text-sm">{{ obLabel.name }}</div>
                     {% endfor %}
                 </div>
             {% else %}
