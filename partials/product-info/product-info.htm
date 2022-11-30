@@ -4,6 +4,9 @@
 {% set iReviewCount = 0 %}
 {% set iRatingCount = 0 %}
 {% set iReviewCount = obProduct.review.active().count() %}
+{% set obOffer = obProduct.offer.first() %}
+{% set iTotalQuantity = obOfferList.getTotalQuantity() %}
+
 {% for obReview in obReviewList %}
     {% if obReview.comment %}
         {% set iReviewCount = iReviewCount + 1 %}
@@ -12,7 +15,7 @@
         {% set iRatingCount = iRatingCount + 1 %}
     {% endif %}
 {% endfor %}
-<div class="w-full md:pl-14">
+<div class="w-full xl:pl-14 {{sPartialClass}}">
     <h1 class="text-gray-900 text-xl md:text-2xl xl:text-3xl uppercase">{{ obProduct.name }}</h1>
     <div class="_evaluation flex flex-wrap flex-row mt-4 md:mt-3 text-gray-600 text-sm md:text-base md:items-center">
         <div class="flex mr-3 md:mr-4">
@@ -27,22 +30,27 @@
             </span>
         </div>
         <div>
-            <a href="#ratings" class="underline cursor-pointer mr-4">
+            <a href="#ratings" class="underline cursor-pointer mr-2 md:mr-4">
                 {{ 'text_customers_voted'|transRaw({
                     text_customers_voted_total: iRatingCount,
                 }) }}
             </a>
             <a href="#reviews" class="underline cursor-pointer">
-                {{ iReviewCount }} reviews
+                {{ iReviewCount }} {{'link_reviews'|_}}
             </a>
         </div>
     </div>
-    <div class="flex flex-row items-center space-x-4 mt-4 md:mt-7 mb-7">
-        <span class="text-xl md:text-3xl">
-            <span>€</span>74.56
-        </span>
-        <span class="text-gray-600 text-base md:text-3xl line-through md:no-underline">
-            <span>€</span>113.99
-        </span>
-    </div>
+
+    {% if iTotalQuantity > 0 %}
+        <div class="flex flex-row items-center mt-4 mb-7 space-x-2 md:space-x-4 md:mt-7">
+            <span class="text-xl text-gray-900 font-medium md:text-3xl">{{ obOffer.currency }}{{ obOffer.price }}</span>
+            {% if obOffer.old_price_value > obOffer.price_value %}
+                <span class="text-gray-600 text-base font-medium line-through md:text-3xl">{{ obOffer.currency }}{{ obOffer.old_price }}</span>
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="mb-7 mt-4 md:my-7">
+            <span class="font-medium text-sm md:text-lg">{{'text_not_avalable'|_}}</span>
+        </div>
+    {% endif %}
 </div>

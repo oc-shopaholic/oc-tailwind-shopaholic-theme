@@ -15,7 +15,7 @@ export default class Filter{
         this.variationInit();
     }
 
-    adaptation(){   
+    adaptation(){
         if($(window).width() >= '768' && this.$vContainer.length && this.$vContainer[0].childElementCount <= 2){
             this.vLocalContainer = this.$vTemplate;
             let container = this.vLocalContainer[0].content.cloneNode(true);
@@ -78,7 +78,11 @@ export default class Filter{
             $(this.$vFilterDetails).each(function () {
                 let filterId = $(this).attr('id');
                 if(filterId === app.vFilterProperties[i].id){
-                    $(this).attr('open', '')
+                    $(this).find('summary').addClass('after:transition-none');
+                    $(this).attr('open', '');
+                    setTimeout(()=>{
+                        $(this).find('summary').removeClass('after:transition-none');
+                    }, 100)
                 }
             });
         }
@@ -95,5 +99,3 @@ export default class Filter{
         this.autocompleteFilters();
     }
 }
-
-new Filter();

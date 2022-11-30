@@ -18,20 +18,67 @@
                 </button>
             {% endif %}
         {% endif %}
-        <ul class="swiper-wrapper">
+        {% if this.theme.has_labels %}
+            {% set obLabelList = obProduct.label.active().sort() %}
+            {% if obLabelList.isNotEmpty() %}
+                {% if obLabelList.count() == 1 %}
+                    <div class="absolute z-10 top-4 left-4 overflow-hidden rounded-br rounded-tl flex md:-left-px md:top-7">
+                        {% for obLabel in obLabelList %}
+                            {% if obLabel.code == 'new' %}
+                                {% set sColorState = 'bg-green-900' %}
+                            {% elseif obLabel.code == 'sale' %}
+                                {% set sColorState = 'bg-red-700' %}
+                            {% else %}
+                                {% set sColorState = 'bg-red-700' %}
+                            {% endif %}
+                            <div class="{{sColorState}} text-white px-4 py-2 whitespace-nowrap text-xs lg:text-sm">{{ obLabel.name }}</div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <ul class="absolute z-10 top-4 left-4 flex w-2/3 scrollbar-x-none overflow-x-scroll space-x-0.5 md:space-x-1 md:overflow-auto md:hover:w-auto md:-left-px md:top-7">
+                        {% for obLabel in obLabelList %}
+                            {% if obLabel.code == 'new' %}
+                                {% set sColorState = 'bg-green-900' %}
+                            {% elseif obLabel.code == 'sale' %}
+                                {% set sColorState = 'bg-red-700' %}
+                            {% else %}
+                                {% set sColorState = 'bg-red-700' %}
+                            {% endif %}
+                            {% if loop.index == 1 %}
+                                {% set sRounded = 'rounded-br rounded-tl' %}
+                            {% else %}
+                                {% set sRounded = 'rounded-b-lg' %}
+                            {% endif %}
+                            <li>
+                                <div class="{{sRounded}} {{sColorState}} text-white px-4 py-2 whitespace-nowrap">{{ obLabel.name }}</div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+        <ul class="swiper-wrapper pswp-gallery pswp-gallery--single-column" id="my-gallery">
             {% for obImage in arImages %}
                 <li class="swiper-slide cursor-pointer">
-                    <picture class="swiper-slide-container w-90 md:w-174">
-                        <source srcset="{{ obImage.getThumb(696, 524, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
-                        <source srcset="{{ obImage.getThumb(696, 524, {'quality': 80}) }}" type="image/jpeg">
-                        <img
-                            class="object-contain h-auto"
-                            src="{{ obImage.preview_image|media|resize(696, 524, {'quality': 80}) }}"
-                            alt="{{ obItem.description }}"
-                            title="{{ obItem.title }}"
-                            {% if loop.index > 1 %} loading="lazy" {% endif %}
-                        />
-                    </picture>
+                    <a 
+                        href="{{ obImage.getThumb(696, 524, {'quality': 80}) }}" 
+                        role="button"
+                        data-pswp-width="1200" 
+                        data-pswp-height="1000" 
+                        target="_blank"
+                    >
+                        <picture class="swiper-slide-container w-90 md:w-174">
+                            <source srcset="{{ obImage.getThumb(696, 524, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
+                            <source srcset="{{ obImage.getThumb(696, 524, {'quality': 80}) }}" type="image/jpeg">
+                            <img
+                                class="object-contain h-auto"
+                                src="{{ obImage.preview_image|media|resize(696, 524, {'quality': 80}) }}"
+                                alt="{{ obItem.description }}"
+                                title="{{ obItem.title }}"
+                                {% if loop.index > 1 %} loading="lazy" {% endif %}
+                            />
+                        </picture>
+                    </a>
                 </li>
             {% endfor %}
         </ul>

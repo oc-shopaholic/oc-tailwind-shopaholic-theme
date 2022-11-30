@@ -32,21 +32,29 @@ module.exports = {
         'info-icon': '12.5rem',
       },
       backgroundImage: {
-        'check': "url('/themes/lovata-tailwind-shopaholic/assets/images/check.svg')"
+        'check': "url('/themes/lovata-tailwind-shopaholic/assets/images/check.svg')",
+        'check-black': "url('/themes/lovata-tailwind-shopaholic/assets/images/check-black.svg')"
       },
       fontSize: {
         error: ['9rem', '1'],
+      },
+      maxWidth: {
+        'screen': '100vw',
+        'screen-3xl': '1920px',
+        225: '900px',
       },
       padding: {
         54: '13.5rem',
         57: '14.25rem',
       },
+      margin: {
+        '-screen-1/2': '-50vw',
+      },
       maxHeight: {
         160: '40rem',
       },
-      maxWidth: {
-        'screen-3xl': '1920px',
-        225: '900px',
+      minWidth: {
+        18: '72px'
       },
       width: {
         90: '360px',
@@ -66,6 +74,21 @@ module.exports = {
         1.75: '7px',
         0.25: '1px',
       },
+      screens: {
+        'ml': '840px',
+      },
+      // margin: ['first', 'last'],
+      // textColor: ['active', 'focus-visible', 'visited'],
+      // outline: ['focus-visible'],
+      // backgroundColor: ['group-focus', 'active', 'focus-visible', 'disabled', 'even'],
+      // ringWidth: ['focus-visible'],
+      // ringColor: ['hover', 'active', 'focus', 'focus-visible'],
+      // ringOffsetWidth: ['responsive', 'focus-visible', 'focus'],
+      // opacity: ['hover', 'focus'],
+      // fill: ['hover', 'group-hover', 'group-focus', 'focus'],
+      // stroke: ['hover', 'group-hover', 'group-focus', 'focus'],
+      // width: ['hover'],
+      // borderWidth: ['first', 'last']
     }
   },
   plugins: [

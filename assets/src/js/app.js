@@ -23,3 +23,7 @@ import '/partials/product-list/product-list';
 import '/partials/filter/filter';
 /* * Search Input* */
 import '/partials/search/search';
+import '/partials/product-card-checkout/product-card-checkout';
+import '/partials/button-wish-list/button-wish-list';
+import '/partials/product-choose/product-choose';
+import '../../dist/js/node_modules_photoswipe_dist_photoswipe_esm_js';

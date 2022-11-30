@@ -1,7 +1,7 @@
 {##}
 
-<section class="mt-6 {{ sPartialClasses }}">
-    <h2 class="sr-only">{{ sSectionHeader }}</h2>
+<div class="mt-6 {{ sPartialClasses }}">
+    <span class="sr-only">{{ sSectionHeader }}</span>
     {% if arItemList is not empty %}
         <ul class="flex flex-wrap gap-4 {{ sUlClass }}">
             {% for obItem in arItemList %}
@@ -21,4 +21,4 @@
     {% else %}
         <span class="block text-gray-400 text-center mb-4 md:mb-10">{{ sNotFoundResultsMessage }}</span>
     {% endif %}
-</section>
+</div>

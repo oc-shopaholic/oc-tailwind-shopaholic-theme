@@ -412,3 +412,36 @@ tabs:
             #     condition: checked
 
             # TODO: Enable plugin check
+### Product Page
+        product_page:
+            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.product-page'
+            label: 'theme.lovata-tailwind-shopaholic::lang.field.product_page_type'
+            type: repeater
+            span: full
+            form:
+                fields:
+                    title:
+                        label: 'theme.lovata-tailwind-shopaholic::lang.field.main_carousel_title'
+                        type: text
+                        span: left
+                        translatable: true
+                    dropdown:
+                        label: 'theme.lovata-tailwind-shopaholic::lang.field.product_page_type'
+                        type: dropdown
+                        span: right
+                        translatable: true
+                        showSearch: false
+                        default: product_detail
+                        options:
+                            product_detail: Product detail
+                            richeditor: Richeditor
+                    richeditor:
+                        label: 'theme.lovata-tailwind-shopaholic::lang.field.page_seo_block_content'
+                        type: richeditor
+                        span: right
+                        translatable: true
+                        trigger:
+                            action: show
+                            field: dropdown
+                            condition: value[richeditor]
+        

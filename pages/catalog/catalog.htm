@@ -23,14 +23,15 @@ smart_url_check = 1
 skip_error = 1
 
 [Pagination]
-available_count_per_page = 24
 count_per_page = 15
 pagination_limit = 5
-active_class = "_act"
-button_list = "first,prev,main,next,last"
+active_class = "pagination__link_current"
+button_list = "first,first-more,main,last-more,last"
+first_button_name = "First"
 first_button_limit = 3
+first_button_number = 1
 first-more_button_name = "..."
-first-more_button_limit = 1
+first-more_button_limit = 4
 prev_button_name = "Prev"
 prev_button_limit = 1
 prev-more_button_name = "..."
@@ -40,8 +41,10 @@ next-more_button_limit = 1
 next_button_name = "Next"
 next_button_limit = 1
 last-more_button_name = "..."
-last-more_button_limit = 1
+last-more_button_limit = 4
+last_button_name = "Last"
 last_button_limit = 3
+last_button_number = 1
 
 [ProductList]
 sorting = "popularity|desc"
@@ -175,8 +178,6 @@ function onInit() {
         $arProductList = $obProductList->page($iPage, $this->Pagination->getCountPerPage());
         $iMaxPage = $this->Pagination->getMaxPage($obProductList->count());
         $iCount = $obProductList->count();
-        $this['fMinPriceFilterValue'] = $fMinPriceFilterValue;
-        $this['fMaxPriceFilterValue'] = $fMaxPriceFilterValue;
         $this['sActiveSorting'] = $sActiveSorting;
         $this['iPage'] = $iPage;
         $this['iCount'] = $iCount;
@@ -222,24 +223,30 @@ function onInit() {
 
 function onStart()
 {
-    //$this['path_page_js'] = mix('js/catalog.js', 'themes/lovata-tailwind-shopaholic/assets');
-    //$this['path_page_css'] = mix('css/catalog.css', 'themes/lovata-tailwind-shopaholic/assets');
+    $this['path_page_js'] = mix('assets/dist/js/catalog.js', 'themes/lovata-tailwind-shopaholic');
 }
 ?>
 ==
 
 {% partial 'breadcrumbs/breadcrumbs' %} {# TODO: Fix wrong breadcrumbs #}
+
+{# TODO: Finish stylization of the select box. #}
+
 {% if obProduct.isNotEmpty() %}
     {# Product card #}
     {% partial 'product-card/product-card' %}
 {% else %}
     {# Product list #}
-    <div class="flex justify-between flex-col md:flex-row">
+    <div class="grid md:grid-cols-4">
         {% if bShowFilter %}
-            {% partial 'filter/filter' %}
+            {% partial 'filter/filter'
+                sPartialClass='md:col-span-1'
+            %}
         {% endif %}
-        <div class="w-full">
-            {% partial 'product-list/product-list' %}
+        <div class="_sorting-container w-full md:col-span-3">
+            <div class="_sorting">
+                {% partial 'sorting/sorting' %}
+            </div>
         </div>
     </div>
 {% endif %}

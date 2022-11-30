@@ -62,10 +62,11 @@
             {% if obProperty.code == 'Color' %}
                 <fieldset class="flex flex-wrap">
                     <legend class="sr-only">{{ obProperty.name }}</legend>
-                    {% partial 'input-checkbox-color/input-checkbox-color'
+                    {% partial 'input-color-choose/input-color-choose'
                         obPropertyValueList = obPropertyValueList
                         obProperty = obProperty
                         sPartialClasses = 'mr-3'
+                        sContainerClasses = 'flex flex-wrap'
                     %}
                 </fieldset>
             {% endif %}

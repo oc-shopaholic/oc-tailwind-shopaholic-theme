@@ -1,3 +1,6 @@
+[Cart]
+[ProductList]
+
 [Logout]
 
 ==
@@ -28,13 +31,12 @@ function onStart()
 
 {##}
 
-{% spaceless %}
 <!DOCTYPE html>
-<html lang="{{ activeLocale ? activeLocale : 'en' }}">
+<html class="scroll-smooth" lang="{{ activeLocale ? activeLocale : 'en' }}">
     <head>
         {% partial 'head/head' %}
     </head>
-    <body class="bg-white lg:overflow-x-hidden" itemscope itemtype="http://schema.org/WebPage">
+    <body class="bg-gray-50 lg:overflow-x-hidden" itemscope itemtype="http://schema.org/WebPage">
     {# TODO: Fix horizontal scroll on the lg breakpoint. lg:overflow-x-hidden is a temporary solution. #}
         <div class="sm:container sm:mx-auto px-4 min-h-screen l grid grid-cols-full grid-rows-auto-fr-auto">
             {% partial 'header/header' %}
@@ -47,4 +49,3 @@ function onStart()
         {% partial 'input/input-validation-message' %}
     </body>
 </html>
-{% endspaceless %}

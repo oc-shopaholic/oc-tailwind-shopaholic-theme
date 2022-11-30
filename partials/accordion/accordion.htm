@@ -1,13 +1,32 @@
 {##}
 
-<section class="mx-auto mt-4 mb-10">
-    {% for obItem in obFAQ %}
+{% if obType == 'markup' %}
+    {% set markup = true %}
+{% else %}
+    {% set markup = false %}
+{% endif %}
+
+{% set obPropertyList = obProduct.property %}
+
+<section class="mx-auto mt-4 mb-10 {{sPartialClasses}}">
+    {% for obItem in obContent %}
         <details class="border-t border-gray-200 last:border-b">
             <summary class="font-medium text-blue-800 md:hover:bg-gray-100 text-sm md:text-xl focus-visible:outline-blue py-3 md:py-4">
-                {{ obItem.question|raw }}
+                {% if markup %}
+                    {{ obItem.question|raw }}
+                {% else %}
+                    {{ obItem.title }}
+                {% endif %}
             </summary>
-            <div class="prose max-w-none mb-5 md:mt-5 text-sm md:text-base text-gray-600">
-                {{ obItem.answer|raw }}
+            {% if obItem.dropdown != 'product_detail' %}
+                {% set prose = 'prose max-w-none' %}
+            {% else %}
+                {% set prose = 'w-max' %}
+            {% endif %}
+            <div class="mb-5 md:mt-5 text-sm md:text-base text-gray-600 {{prose}}">
+                {% if markup %}
+                    {{ obItem.answer|raw }}
+                {% endif %}
             </div>
         </details>
     {% endfor %}

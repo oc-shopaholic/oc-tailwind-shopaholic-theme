@@ -23,6 +23,7 @@ export default new class ProductList {
             this.show.on('click', () => {
                 this.initPlugins();
                 this.activeProductUpdate();
+                this.updateFilters();
             })
         }else{
             this.initPlugins();
@@ -55,7 +56,7 @@ export default new class ProductList {
 
     watchResult(){
         let app = this;
-        var target = $('.catalog_wrapper')[0];
+        var target = $('._sorting')[0];
     
         const config = {
           childList: true,
@@ -103,6 +104,7 @@ export default new class ProductList {
                 'product-list/product-list-ajax': '.catalog_wrapper',
                 'filter/filters-desktop-ajax': '._filters-desktop',
                 'filter/filters-mobile-ajax': '._filters-mobile',
+                'sorting/sorting': `._sorting`,
             };
             return obRequestData;
         });

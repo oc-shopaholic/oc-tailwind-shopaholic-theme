@@ -37,13 +37,12 @@ function onStart()
 
 {##}
 
-{% spaceless %}
 <!DOCTYPE html>
 <html lang="{{ activeLocale ? activeLocale : 'en' }}">
     <head>
         {% partial 'head/head' %}
     </head>
-    <body class="bg-white" itemscope itemtype="http://schema.org/WebPage">
+    <body class="bg-gray-50" itemscope itemtype="http://schema.org/WebPage">
         <div class="sm:container sm:mx-auto px-4 min-h-screen grid grid-cols-full grid-rows-auto-fr-auto">
             {% partial 'header/header' %}
             <main>
@@ -65,4 +64,3 @@ function onStart()
         {% partial 'scripts/scripts' %}
     </body>
 </html>
-{% endspaceless %}

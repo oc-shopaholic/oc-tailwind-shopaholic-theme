@@ -1,8 +1,10 @@
 {##}
 
-<section class="{{sPartialClass}}" >
+<section id="ratings" class="{{sPartialClass}}">
     {% set iReviewCount = obProduct.review.active().count() %}
-    <h2 class="text-gray-900 text-lg md:text-2xl font-medium uppercase">{{ 'heading_customers_ratings'|_ }}</h2>
+    {% if sHeaderHidden != true %}
+        <h2 class="text-gray-900 text-lg md:text-2xl font-medium uppercase">{{ 'heading_customers_ratings'|_ }}</h2>
+    {% endif %}
     <div class="flex flex-row items-center space-x-4 mt-4 md:mt-5" aria-label="{{ 'aria_label_customers_rating'|transRaw({
         aria_label_customers_rating: obProduct.rating,
         text_customers_total: iReviewCount,
