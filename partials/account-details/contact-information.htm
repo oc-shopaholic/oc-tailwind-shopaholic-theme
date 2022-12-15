@@ -19,39 +19,39 @@
                     <rect width="48" height="48" rx="24" fill="#E5E7EB"/>
                     <path d="M24.0016 22.8C25.9898 22.8 27.6016 21.1882 27.6016 19.2C27.6016 17.2118 25.9898 15.6 24.0016 15.6C22.0133 15.6 20.4016 17.2118 20.4016 19.2C20.4016 21.1882 22.0133 22.8 24.0016 22.8Z" fill="#9CA3AF"/>
                     <path d="M15.6016 33.6C15.6016 28.9608 19.3624 25.2 24.0016 25.2C28.6408 25.2 32.4016 28.9608 32.4016 33.6H15.6016Z" fill="#9CA3AF"/>
-                </svg> 
+                </svg>
             {% endif %}
             <div class="flex space-x-3">
                 <svg class="shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5.121 17.804C7.21942 16.6179 9.58958 15.9963 12 16C14.5 16 16.847 16.655 18.879 17.804M15 10C15 10.7956 14.6839 11.5587 14.1213 12.1213C13.5587 12.6839 12.7956 13 12 13C11.2044 13 10.4413 12.6839 9.87868 12.1213C9.31607 11.5587 9 10.7956 9 10C9 9.20435 9.31607 8.44129 9.87868 7.87868C10.4413 7.31607 11.2044 7 12 7C12.7956 7 13.5587 7.31607 14.1213 7.87868C14.6839 8.44129 15 9.20435 15 10ZM21 12C21 13.1819 20.7672 14.3522 20.3149 15.4442C19.8626 16.5361 19.1997 17.5282 18.364 18.364C17.5282 19.1997 16.5361 19.8626 15.4442 20.3149C14.3522 20.7672 13.1819 21 12 21C10.8181 21 9.64778 20.7672 8.55585 20.3149C7.46392 19.8626 6.47177 19.1997 5.63604 18.364C4.80031 17.5282 4.13738 16.5361 3.68508 15.4442C3.23279 14.3522 3 13.1819 3 12C3 9.61305 3.94821 7.32387 5.63604 5.63604C7.32387 3.94821 9.61305 3 12 3C14.3869 3 16.6761 3.94821 18.364 5.63604C20.0518 7.32387 21 9.61305 21 12Z" stroke="#9CA3AF" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <span class="break-all text-gray-900 text-base">{{obUser.name}} {{obUser.last_name}}</span>         
-            </div> 
+                <span class="break-all text-gray-900 text-base">{{obUser.name}} {{obUser.last_name}}</span>
+            </div>
             <div class="flex space-x-3">
                 <svg class="shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M3 8L10.8906 13.2604C11.5624 13.7083 12.4376 13.7083 13.1094 13.2604L21 8M5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19Z" stroke="#9CA3AF" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>                
+                </svg>
                 <span class="break-all text-gray-900 text-base">{{obUser.email}}</span>
             </div>
-            {% if obUser.phone != '' %}
+            {% if obUser.phone is not empty %}
                 <div class="flex space-x-3">
                     <svg class="shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 5C3 3.89543 3.89543 3 5 3H8.27924C8.70967 3 9.09181 3.27543 9.22792 3.68377L10.7257 8.17721C10.8831 8.64932 10.6694 9.16531 10.2243 9.38787L7.96701 10.5165C9.06925 12.9612 11.0388 14.9308 13.4835 16.033L14.6121 13.7757C14.8347 13.3306 15.3507 13.1169 15.8228 13.2743L20.3162 14.7721C20.7246 14.9082 21 15.2903 21 15.7208V19C21 20.1046 20.1046 21 19 21H18C9.71573 21 3 14.2843 3 6V5Z" stroke="#9CA3AF" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>                
+                    </svg>
                     <span class="break-all text-gray-900 text-base">{{obUser.phone}}</span>
                 </div>
             {% endif %}
-            {% if obUserAddress.country != '' and obUserAddress.city != '' and obUserAddress.postcode != '' and obUserAddress.address1 != '' %}
+            {% if obUserAddress.country is not empty and obUserAddress.city is not empty and obUserAddress.postcode is not empty and obUserAddress.address1 is not empty %}
                 <div class="flex space-x-3">
                     <svg class="shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17.6569 16.6569C16.7202 17.5935 14.7616 19.5521 13.4138 20.8999C12.6327 21.681 11.3677 21.6814 10.5866 20.9003C9.26234 19.576 7.34159 17.6553 6.34315 16.6569C3.21895 13.5327 3.21895 8.46734 6.34315 5.34315C9.46734 2.21895 14.5327 2.21895 17.6569 5.34315C20.781 8.46734 20.781 13.5327 17.6569 16.6569Z" stroke="#9CA3AF" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M15 11C15 12.6569 13.6569 14 12 14C10.3431 14 9 12.6569 9 11C9 9.34315 10.3431 8 12 8C13.6569 8 15 9.34315 15 11Z" stroke="#9CA3AF" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>     
-                    <span class="break-all text-gray-900 text-base">{{obUserAddress.country}}, {{obUserAddress.city}}, {{obUserAddress.postcode}}, {{obUserAddress.address1}}</span>                        
+                    </svg>
+                    <span class="break-all text-gray-900 text-base">{{obUserAddress.country}}, {{obUserAddress.city}}, {{obUserAddress.postcode}}, {{obUserAddress.address1}}</span>
                 </div>
-            {% endif %} 
+            {% endif %}
         </div>
-        {% partial 'button/button' 
+        {% partial 'button/button'
             sPartialClasses = '_change-contact-info mt-6'
             sButtonType = 'link'
             sText = 'button_edit_contact'|_

@@ -84,7 +84,7 @@ export default new class accountDetails{
     const app = this;
     if(!this.obSaveNewAddress) return
     this.obSaveNewAddress.addEventListener('click', ()=>{
-      if (document.getElementsByClassName('_add-address')[0].querySelector('form').classList.contains('_invalid')) {
+      if (document.querySelector('._add-address form').classList.contains('_invalid')) {
         return;
       }
       const formDataUnindexed = app.obSaveNewAddress.closest('form');
@@ -110,15 +110,15 @@ export default new class accountDetails{
     setTimeout(()=>{
       this.obShippingRemove = this.obShippingContainer.querySelectorAll('._remove')[0];
       if(!this.obShippingRemove) return;
-      this.obShippingRemove.addEventListener('click', (event)=>{   
-        document.querySelector('dialog').querySelector('._hide').dispatchEvent(
+      this.obShippingRemove.addEventListener('click', (event)=>{
+        document.querySelector('dialog ._hide').dispatchEvent(
         new MouseEvent('click', {
           bubbles: true,
           cancelable: true,
         }));
         const data = {
           'id': event.target.closest('button').dataset.id
-        }   
+        }
         request.sendData('UserAddress::onRemove', {
           'data': data,
           update: {'account-details/shipping-address': '._shipping-address-container'},
@@ -131,14 +131,15 @@ export default new class accountDetails{
   }
 
   changeAddress(id){
+    console.log("changeAddress")
     this.obChangeAddress.addEventListener('click', ()=>{
-      const form = $('._add-address').find('form');
+      const form = document.querySelector('._add-address form')
 
       const data = {
-        'country': form[0].querySelectorAll('[name="country"]')[0].value,
-        'city': form[0].querySelectorAll('[name="city"]')[0].value,
-        'address1': form[0].querySelectorAll('[name="postal-address"]')[0].value,
-        'postcode': form[0].querySelectorAll('[name="zip-code"]')[0].value,
+        'country': form.querySelector('[name="country"]').value,
+        'city': form.querySelector('[name="city"]').value,
+        'address1': form.querySelector('[name="postal-address"]').value,
+        'postcode': form.querySelector('[name="zip-code"]').value,
         'id': id,
         'type': 'shipping',
       }
@@ -159,7 +160,7 @@ export default new class accountDetails{
         const str = event.target.closest('div').querySelectorAll('span._address-info')[0].innerText.trim();
         const arr = str.split(',');
         const id = event.target.dataset.id;
-  
+
         request.sendData('onAjax', {
           update: { 'account-details/add-address': '._add-address' },
           complete: () => {
@@ -168,7 +169,7 @@ export default new class accountDetails{
             this.obAddNewAddress.classList.add('hidden');
             this.obChangeAddress.classList.remove('hidden');
             for(let i = 0; i < arr.length; i++){
-              document.getElementsByClassName('_add-address')[0].querySelectorAll('input')[i].value = arr[i]
+              document.querySelectorAll('._add-address input')[i].value = arr[i]
             }
             this.changeAddress(id);
           },
