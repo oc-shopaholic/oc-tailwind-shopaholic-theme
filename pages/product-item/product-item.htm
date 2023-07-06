@@ -54,7 +54,7 @@ function onStart()
     $obProductItem = $this->ProductPage->get();
 
     $obOfferList = $obProductItem->offer;
-    
+
     if (empty($obProductItem)) {
         return;
     }
@@ -73,7 +73,7 @@ function onStart()
     while (!empty($obCurrentCategory) && $obCurrentCategory->isNotEmpty()) {
         $arBreadcrumbs[] = [
             'name'   => $obCurrentCategory->name,
-            'url' => \Cms\Classes\Page::url('catalog/catalog', 
+            'url' => \Cms\Classes\Page::url('catalog/catalog',
             ['catalog' => false])
         ];
 
@@ -81,7 +81,7 @@ function onStart()
     }
 
     $arBreadcrumbs[] = [
-        'name' => $this->page->title, 
+        'name' => $this->page->title,
         'url' => $this->pageUrl($this->page->baseFileName, false),
     ];
 
@@ -109,7 +109,7 @@ function onInit()
 
 <div class="_shopaholic-product-wrapper grid grid-cols-1 xl:grid-cols-2 xl:justify-items-center 2xl:justify-items-start" data-product-id="{{ obProduct.id }}">
     <div class="w-full">
-        {% partial 'product-info/product-info' 
+        {% partial 'product-info/product-info'
             sPartialClass = 'xl:w-auto xl:absolute xl:invisible'
         %}
         {% partial 'product-gallery/product-gallery' arImages = obProduct.images %}
@@ -118,7 +118,7 @@ function onInit()
                 {% partial 'product-description/product-description' sDescription=obProduct.description %}
             </div>
         {% endif %}
-        {% partial 'tabs/tabs' 
+        {% partial 'tabs/tabs'
             sPartialClasses = '_tabs-product'
             sPartialContainer = 'mt-4 mb-7 lg:my-10'
             body
@@ -133,11 +133,11 @@ function onInit()
                                         <caption class="text-left w-max font-bold pb-2">{{'text_product_meauserements'|_}}:</caption>
                                         <tbody class="flex flex-col space-y-2">
                                             {% if obPropertyList.isNotEmpty() %}
-                                                {% for obProperty in obPropertyList if (obProperty.name !='Color' and obProperty.name !='Sale' and obProperty.name !='Materials') %}
-                                                    {% if obProperty.property_value.getValueString() %}    
+                                                {% for obProperty in obPropertyList %}
+                                                    {% if (obProperty.name !='Color' and obProperty.name !='Sale' and obProperty.name !='Materials') and obProperty.property_value.getValueString() %}
                                                         <tr>
                                                             <th class="text-left min-w-18 font-normal text-gray-600">{{ obProperty.name }}</th>
-                                                            <td class="pl-1.5">{{ obProperty.property_value.getValueString() }} 
+                                                            <td class="pl-1.5">{{ obProperty.property_value.getValueString() }}
                                                                 {% if obProperty.name == 'Weight' %}
                                                                     kg
                                                                 {% else %}
@@ -158,13 +158,15 @@ function onInit()
                                         <caption class="text-left w-max font-bold pb-2">{{'text_materials'|_}}:</caption>
                                         <tbody class="flex flex-col space-y-2">
                                             {% if obPropertyList.isNotEmpty() %}
-                                                {% for obProperty in obPropertyList if (obProperty.name !='Width' and obProperty.name !='Color' and obProperty.name !='Sale' and obProperty.name !='Height' and obProperty.name !='Depth' and obProperty.name !='Weight') %}
-                                                    {% for obPropertyValue in obProperty.property_value %}
-                                                        <tr>
-                                                            <th class="text-left min-w-18 font-normal text-gray-600">{{ obPropertyValue.value }}</th>
-                                                            <td class="pl-1.5">100%</td>
-                                                        </tr>
-                                                    {% endfor %}
+                                                {% for obProperty in obPropertyList %}
+                                                    {% if (obProperty.name !='Width' and obProperty.name !='Color' and obProperty.name !='Sale' and obProperty.name !='Height' and obProperty.name !='Depth' and obProperty.name !='Weight') and obPropertyList.isNotEmpty() %}
+                                                        {% for obPropertyValue in obProperty.property_value %}
+                                                            <tr>
+                                                                <th class="text-left min-w-18 font-normal text-gray-600">{{ obPropertyValue.value }}</th>
+                                                                <td class="pl-1.5">100%</td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                    {% endif %}
                                                 {% endfor %}
                                             {% endif %}
                                         </tbody>
@@ -184,7 +186,7 @@ function onInit()
         {% endpartial %}
     </div>
     <div class="flex flex-col">
-        {% partial 'product-info/product-info' 
+        {% partial 'product-info/product-info'
             sPartialClass = 'absolute invisible w-auto xl:w-full xl:static xl:visible'
         %}
         <div class="flex mt-7 flex-col xl:mt-0 xl:flex-row xl:pl-14">
@@ -193,20 +195,20 @@ function onInit()
 
             <div class="flex flex-col mb-12">
                 {% if obPropertyList.getByCode('Color').property_value.first().value or obRelatedProductList|length > 0 %}
-                    {% partial 'product-choose/product-choose' 
-                        obProduct=obProduct 
+                    {% partial 'product-choose/product-choose'
+                        obProduct=obProduct
                     %}
                 {% endif %}
                 {% if iTotalQuantity > 0 %}
                     <div class="flex flex-row items-center mt-7 md:mt-10">
-                        {% partial 'input-quantity/input-quantity' 
+                        {% partial 'input-quantity/input-quantity'
                             iMin = 1
                             iMax = iTotalQuantity
                             iValue = 1
                             sPartialWidth = "w-9 h-9"
-                            sName = "quantity" 
+                            sName = "quantity"
                             sInputClass = "_shopaholic-cart-quantity"
-                            
+
                         %}
                     </div>
                     <div class="flex flex-row items-center space-x-2 mt-8 md:mt-10">
@@ -240,11 +242,11 @@ function onInit()
             sPartialClass = '_review-list-container'
             sListClass = '_review-list-update'
         %}
-       {% partial 'review-add/review-add' 
+       {% partial 'review-add/review-add'
             obProduct = obProduct
        %}
     </div>
-    {% partial 'product-rating/product-rating' 
+    {% partial 'product-rating/product-rating'
         obProduct=obProduct
         sPartialClass = 'mt-6 xl:mt-14 xl:pl-11 2xl:pl-14'
     %}

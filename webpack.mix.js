@@ -1,5 +1,5 @@
 const mix = require('laravel-mix');
-
+const webpackConfig = require('./webpack.config');
 const jsFileList = [
   'assets/src/js/app',
   'pages/account-credentials/account-credentials',
@@ -41,15 +41,17 @@ mix.setPublicPath('./');
 mix.setResourceRoot('/themes/lovata-tailwind-shopaholic');
 
 mix.webpackConfig(webpack =>({
+  devtool: 'inline-source-map',
   plugins:[
     new webpack.ProvidePlugin({
-      $: require.resolve('jquery'),
-      jQuery: require.resolve('jquery'),
-      'window.jQuery': require.resolve('jquery'),
-      'window.$': require.resolve('jquery'),
-    })
-  ]
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      'window.$': 'jquery',
+    }),
+  ],
 }))
+  // .copy('node_modules/jquery/dist/jquery.min.js', 'assets/vendor/jquery.min.js')
 
 jsFileList.forEach(fileName => mix.js(`./${fileName}.js`, 'assets/dist/js'));
 
@@ -68,5 +70,5 @@ mix.browserSync({
 });
 
 mix.sourceMaps(true, 'source-map');
-mix.extract(['jquery']);
+mix.extract(['jQuery']);
 mix.version();
