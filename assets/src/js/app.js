@@ -1,3 +1,5 @@
+//import '../../../../modules/system/assets/js/framework';
+//import '../../../../modules/system/assets/js/framework-extras';
 import '/partials/top-info-block/top-info-block';
 
 import '/partials/product-list-small/product-list-small';
@@ -24,3 +26,4 @@ import '/partials/product-card-checkout/product-card-checkout';
 import '/partials/button-wish-list/button-wish-list';
 import '/partials/product-choose/product-choose';
 import '../../dist/js/node_modules_photoswipe_dist_photoswipe_esm_js';
+

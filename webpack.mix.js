@@ -36,22 +36,12 @@ let postCssPlugins = [
     require('tailwindcss'),
 ];
 
+
+
+//mix.setResourceRoot('/themes/lovata-tailwind-shopaholic');
 mix.setPublicPath('./');
-
-mix.setResourceRoot('/themes/lovata-tailwind-shopaholic');
-
-mix.webpackConfig(webpack =>({
-  devtool: 'inline-source-map',
-  plugins:[
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
-      'window.$': 'jquery',
-    }),
-  ],
-}))
-  // .copy('node_modules/jquery/dist/jquery.min.js', 'assets/vendor/jquery.min.js')
+mix.webpackConfig(webpackConfig)
+  .copy('node_modules/jquery/dist/jquery.min.js', 'assets/vendor/jquery.min.js');
 
 jsFileList.forEach(fileName => mix.js(`./${fileName}.js`, 'assets/dist/js'));
 
