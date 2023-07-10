@@ -1,10 +1,12 @@
+import request from 'oc-request';
+
 export default new class productReviewRating {
     constructor(){
         this.obContainerStarReview = null;
         this.obContainerReview = null;
 
-        this.obShow = $('._off-canvas._write-review ._show');
-        this.obShowParents = $('._review-list-container ._show');
+        this.obShow = document.querySelector('._off-canvas._write-review ._show');
+        this.obShowParents = document.querySelector('._review-list-container ._show');
         this.obShowImitation = null;
         this.nActive = null;
 
@@ -15,13 +17,13 @@ export default new class productReviewRating {
     }
 
     sendReview(){
-        this.obContainerReview = $('._review-container button');
-        $(this.obContainerReview).on('click', (event) => {
+        this.obContainerReview = document.querySelector('._review-container button');
+        this.obContainerReview.addEventListener('click', (event) => {
             event.preventDefault();
 
             const form = document.querySelector('._review-container');
-  
-            $(form).request('MakeReview::onCreate', {
+
+            request.sendForm(form, 'MakeReview::onCreate', {
                 update: {
                     'review-list/review-list-ajax': `.${this.obListWrapper}`
                 },
@@ -35,33 +37,35 @@ export default new class productReviewRating {
     starState(state, count){
        if(state){
             for(let i = 0; count > i; i++){
-                this.obContainerStarReview[i].querySelectorAll('path')[0].style.fill = this.sActiveStar;
+                this.obContainerStarReview[i].querySelector('path').style.fill = this.sActiveStar;
             }
        }else{
             for(let i = 0; count > i; i++){
-                this.obContainerStarReview[i].querySelectorAll('path')[0].style.fill = this.sDefaultStar;
+                this.obContainerStarReview[i].querySelector('path').style.fill = this.sDefaultStar;
             }
        }
     }
 
     starSelect(){
         const app = this;
-        this.obContainerStarReview.on('click', function(){
-            let active = Number($(this).attr('data-rating'));
-            if(active < app.nActive){
-                app.starState(false, app.nActive);
-                app.starState(true, active);
-            }else{
-                app.starState(true, active);
-            }
-            app.nActive = active;
-        })
+        for (let star of this.obContainerStarReview) {
+            star.addEventListener('click', (elem)=>{
+                let active = elem.target.closest('label').dataset.rating;
+                if(active < app.nActive){
+                    app.starState(false, app.nActive);
+                    app.starState(true, active);
+                }else{
+                    app.starState(true, active);
+                }
+                app.nActive = active;
+            });
+        }
     }
 
     windowHover(){
         const app = this;
-        $(window).hover(function(e){
-            if(!app.obContainerStarReview.is(e.target) && app.obContainerStarReview.has(e.target).length === 0){
+        window.addEventListener('mouseover', (elem) =>{
+            if(!document.getElementsByClassName('_container-star-review')[0].contains(elem.target)){
                 if(app.nActive){
                     app.starState(false, 5);
                     app.starState(true, app.nActive);
@@ -74,10 +78,12 @@ export default new class productReviewRating {
 
     starHover(){
         const app = this;
-        this.obContainerStarReview.hover(function(){
-            let active = Number($(this).attr('data-rating'));
-            app.starState(true, active);
-        })
+        for (let star of this.obContainerStarReview) {
+            star.addEventListener('mouseover', (elem)=>{
+                let active = elem.target.closest('label').dataset.rating;
+                app.starState(true, active);
+            });
+        }
     }
 
     initEvents(){
@@ -88,20 +94,30 @@ export default new class productReviewRating {
     }
 
     init(){
-        this.obShowParents.on('click', ()=>{
-            this.obShowImitation = $('._review-list-container ._write-review');
-            this.obShowImitation.on('click', ()=>{
-                $('._review-list-container ._hide').trigger('click');
+        this.obShowParents.addEventListener('click', ()=>{
+            this.obShowImitation = document.querySelector('._review-list-container ._write-review');
+            this.obShowImitation.addEventListener('click', ()=>{
+              document.querySelectorAll('._review-list-container ._hide').dispatchEvent(
+                new InputEvent('click', {
+                    bubbles: true,
+                    cancelable: true,
+                }));
                 setTimeout(()=>{
-                    this.obShow.trigger('click');
+                    this.obShow.dispatchEvent(
+                    new InputEvent('click', {
+                        bubbles: true,
+                        cancelable: true,
+                    }));
                 }, 400)
-            })           
+            })
         })
-        this.obShow.on('click', ()=>{
-            this.obContainerStarReview = $('._container-star-review label');
-            this.starState(true, 5);
-            this.nActive = 5;
-            this.initEvents();
+        this.obShow.addEventListener('click', ()=>{
+            setTimeout(()=>{
+                this.obContainerStarReview = document.querySelectorAll('._container-star-review label');
+                this.starState(true, 5);
+                this.nActive = 5;
+                this.initEvents();
+            }, 10)
         })
     }
 }

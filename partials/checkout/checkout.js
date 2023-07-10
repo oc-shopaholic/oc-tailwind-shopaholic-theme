@@ -2,11 +2,11 @@ import ShopaholicCartShippingType from '@lovata/shopaholic-cart/shopaholic-cart-
 
 export default new class Checkout {
    constructor(){
-       this.sDeliveryInfo = "._delivery-info";
-       this.sDeliveryToggle = "._delivery-toggle";
-       this.sCash = "._cash";
-       this.sCard = "._card";
-       this.sPaymentCard = "._payment-card";
+       this.sDeliveryInfo = "_delivery-info";
+       this.sDeliveryToggle = "_delivery-toggle";
+       this.sCash = "_cash";
+       this.sCard = "_card";
+       this.sPaymentCard = "_payment-card";
 
        this.init();
        this.deliveryTerms();
@@ -15,7 +15,11 @@ export default new class Checkout {
 
    init(){
         setTimeout(()=>{
-            $('#delivery_1').trigger('change')
+            document.getElementById('delivery_1').dispatchEvent(
+                new InputEvent('change', {
+                    bubbles: true,
+                    cancelable: true,
+                }));
         }, 10)
         const obShopaholicCartShippingType = new ShopaholicCartShippingType();
         obShopaholicCartShippingType.setAjaxRequestCallback((obRequestData, obButton) => {
@@ -27,31 +31,33 @@ export default new class Checkout {
    }
 
     deliveryTerms(){
-        $('._delivery-terms').on('click', () => {
-            if($(this.sDeliveryInfo).hasClass('hidden')){
-                $(this.sDeliveryInfo).removeClass('hidden');
+        document.getElementsByClassName('_delivery-terms')[0].addEventListener('click', () => {
+            if(document.getElementsByClassName(this.sDeliveryInfo)[0].classList.contains('hidden')){
+                document.getElementsByClassName(this.sDeliveryInfo)[0].classList.remove('hidden');
                 // $(this.sDeliveryInfo).removeAttr('aria-hidden');
-                $(this.sDeliveryToggle).removeClass('rotate-180');
-                $('._delivery-terms').attr('aria-expanded', true);
+                document.getElementsByClassName(this.sDeliveryToggle)[0].classList.remove('rotate-180');
+                document.getElementsByClassName('_delivery-terms')[0].setAttribute('aria-expanded', true);
             }else {
-                $(this.sDeliveryInfo).addClass('hidden');
+                document.getElementsByClassName(this.sDeliveryInfo)[0].classList.add('hidden');
                 // $(this.sDeliveryInfo).attr('aria-hidden', true);
-                $(this.sDeliveryToggle).addClass('rotate-180');
-                $('._delivery-terms').attr('aria-expanded', false);
+                document.getElementsByClassName(this.sDeliveryToggle)[0].classList.add('rotate-180');
+                document.getElementsByClassName('_delivery-terms')[0].setAttribute('aria-expanded', false);
 
             }
         })
     }
 
     paymentMethod(){
-        $('._payment-method').on('click', 'input', () => {
-            if($(this.sCash).prop('checked')){
-                $(this.sPaymentCard).addClass('hidden');
-                $(this.sPaymentCard).attr('aria-hidden', true);
-            }
-            if($(this.sCard).prop('checked')){
-                $(this.sPaymentCard).removeClass('hidden');
-                $(this.sPaymentCard).removeAttr('aria-hidden');
+        document.getElementsByClassName('_payment-method')[0].addEventListener('click', (event) => {
+            if(event.target.tagName === 'INPUT'){
+                if(document.getElementsByClassName(this.sCash)[0].checked){
+                    document.getElementsByClassName(this.sPaymentCard)[0].classList.add('hidden');
+                    document.getElementsByClassName(this.sPaymentCard)[0].setAttribute('aria-hidden', true);
+                }
+                if(document.getElementsByClassName(this.sCard)[0].checked){
+                    document.getElementsByClassName(this.sPaymentCard)[0].classList.remove('hidden');
+                    document.getElementsByClassName(this.sPaymentCard)[0].removeAttribute('aria-hidden');
+                }
             }
         })
     }

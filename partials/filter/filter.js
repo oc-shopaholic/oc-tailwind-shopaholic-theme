@@ -1,32 +1,43 @@
 export default class Filter{
     constructor(){
-        this.$vContainer = $("._filter");
-        this.$vTemplate = this.$vContainer.find("._filterTemplate");
-        this.$vFilterRange = null;
-        this.$vFilterDetails = null;
+        this.obContainer = null;
+        this.obTemplate = null;
+        this.obFilterRange = null;
+        this.obFilterDetails = null;
 
         this.sUrl = null;
         this.nAmountProperties = null;
-        this.vLocalContainer = null;
-        this.show = $('._show');
-        this.vFilterProperties = [];
+        this.obLocalContainer = null;
+        this.obShow = null
+        this.obFilterProperties = [];
+
+        this.init();
+    }
+
+    init(){
+        if(!document.getElementsByClassName('_filter')[0]) return
+        this.obContainer = document.getElementsByClassName('_filter')[0];
+        this.obTemplate = this.obContainer.querySelectorAll('._filterTemplate');
+        this.obShow = this.obContainer.querySelectorAll('._show');
 
         this.adaptation();
         this.variationInit();
     }
 
-    adaptation(){
-        if($(window).width() >= '768' && this.$vContainer.length && this.$vContainer[0].childElementCount <= 2){
-            this.vLocalContainer = this.$vTemplate;
-            let container = this.vLocalContainer[0].content.cloneNode(true);
-            $(container).appendTo(this.$vContainer);
+    adaptation(){ 
+        if(window.innerWidth >= '768' && this.obContainer && this.obContainer.childElementCount <= 2){
+            this.obLocalContainer = this.obTemplate;
+
+            const obLocalNodeContainer = this.obLocalContainer[0].content.cloneNode(true);
+
+            this.obContainer.appendChild(obLocalNodeContainer);
         }
     }
 
     variationInit(){
-        if($(window).width() <= '768' && this.$vContainer.length){
+        if(window.innerWidth <= '768' && this.obContainer){
             this.initAutocompleteFilters();
-            this.show.on('click', () => {
+            this.obShow[0].addEventListener('click', () => {
                 this.initAutocompleteFilters();
             })
         }else{
@@ -36,7 +47,7 @@ export default class Filter{
 
     propertyСount(){
         for (let i = 0; i < this.sUrl.length; i++){
-            let searchSeparator = this.sUrl[i].indexOf('=');
+            const searchSeparator = this.sUrl[i].indexOf('=');
             if(searchSeparator === 0){
                 this.nAmountProperties++;
             }
@@ -44,44 +55,44 @@ export default class Filter{
     }
 
     linkSorting(){
-        let exceptions = ['property', 'price'];
-        let regProp = new RegExp(exceptions[0], "g");
-        let regPrice = new RegExp(exceptions[1], "g");
+        const exceptions = ['property', 'price'];
+        const regProp = new RegExp(exceptions[0], "g");
+        const regPrice = new RegExp(exceptions[1], "g");
 
         if(!this.sUrl) return
         
         this.sUrl = this.sUrl.split('?')[1]
 
         for (let i = 0; i < this.nAmountProperties; i++){
-            let properties = this.sUrl.replace(regProp, '').replace(regPrice, '').split('&')[i];
+            const properties = this.sUrl.replace(regProp, '').replace(regPrice, '').split('&')[i];
             let propertiesId = properties.split('=')[0];
-            let propertiesValues = properties.split('=')[1];
-            let min = propertiesValues.split('|')[0];
-            let max = propertiesValues.split('|')[1];
+            const propertiesValues = properties.split('=')[1];
+            const min = propertiesValues.split('|')[0];
+            const max = propertiesValues.split('|')[1];
             if(propertiesId !== ''){
                 propertiesId = propertiesId.replace('[', '').replace(']', '')
-                this.vFilterProperties.push({id: propertiesId, min: min, max: max})
+                this.obFilterProperties.push({id: propertiesId, min: min, max: max})
             }
         }
     }
 
     autocompleteFilters(){
-        for (let i = 0; i < this.vFilterProperties.length; i++){
-            let app = this;
-            $(this.$vFilterRange).each(function () {
-                let filterId = $(this).attr('data-filter-id')
-                if(filterId === app.vFilterProperties[i].id){
-                    $(this).find('._min').val(app.vFilterProperties[i].min);
-                    $(this).find('._max').val(app.vFilterProperties[i].max);
+        for (let i = 0; i < this.obFilterProperties.length; i++){
+            const app = this;
+            this.obFilterRange.forEach(function (elem) {
+                const filterId = elem.dataset.filterId;
+                if(filterId === app.obFilterProperties[i].id){
+                    elem.querySelectorAll('._min')[0].value = app.obFilterProperties[i].min;
+                    elem.querySelectorAll('._max')[0].value = app.obFilterProperties[i].max;
                 }
             });
-            $(this.$vFilterDetails).each(function () {
-                let filterId = $(this).attr('id');
-                if(filterId === app.vFilterProperties[i].id){
-                    $(this).find('summary').addClass('after:transition-none');
-                    $(this).attr('open', '');
+            this.obFilterDetails.forEach(function (elem) {
+                const filterId = elem.id;
+                if(filterId === app.obFilterProperties[i].id){
+                    elem.setAttribute('open', '')
+                    elem.querySelectorAll('summary')[0].classList.add('after:transition-none');
                     setTimeout(()=>{
-                        $(this).find('summary').removeClass('after:transition-none');
+                        elem.querySelectorAll('summary')[0].classList.remove('after:transition-none');
                     }, 100)
                 }
             });
@@ -91,9 +102,9 @@ export default class Filter{
     initAutocompleteFilters(){
         this.sUrl = location.search;
         this.nAmountProperties = 0;
-        this.vFilterProperties = [];
-        this.$vFilterRange = this.$vContainer.find('._filter-range');
-        this.$vFilterDetails = this.$vContainer.find('._filter-details');
+        this.obFilterProperties = [];
+        this.obFilterRange = this.obContainer.querySelectorAll('._filter-range');
+        this.obFilterDetails = this.obContainer.querySelectorAll('._filter-details');
         this.propertyСount();
         this.linkSorting();
         this.autocompleteFilters();

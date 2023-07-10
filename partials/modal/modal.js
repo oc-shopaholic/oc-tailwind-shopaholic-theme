@@ -3,117 +3,139 @@ import * as focusTrap from 'focus-trap'
 
 export default class Modal{
     constructor(app) {
-        this.$vNav = app;
-        this.$vShow = this.$vNav.find("._show");
-        this.$vContainer = null;
-        this.$vTemplateNav = null;
-        this.$vTemplate = null;
-        this.$vOffCanvasRemove = null;
-        this.$sDialog = null;
-        this.$sScrollWidth = null;
-        this.$sBackdrop = null;
-        this.$sFocus = null;
-        this.$sContainerRend = null;
-        this.newRend = false;
+      this.obNav = app;
+      this.obShow = this.obNav.querySelectorAll("._show");
+      this.obContainer = null;
+      this.obTemplateNav = null;
+      this.obTemplate = null;
+      this.obOffCanvasRemove = null;
+      this.obDialog = null;
+      this.sScrollWidth = null;
+      this.obBackdrop = null;
+      this.obFocus = null;
+      this.obContainerRend = null;
     }
 
     initOffCanvas(){
-        this.$vTemplateNav = this.$vNav.find("._modalTemplate");
-        this.$vTemplate = this.$vTemplateNav[0].content.cloneNode(true);
-        $(this.$vTemplate).appendTo(this.$vNav);
-        this.$sContainerRend = this.$vNav.find('._modalContainer');
-        this.$sDialog = document.querySelectorAll('._modalContainer')[0];
-        dialogPolyfill.registerDialog(this.$sDialog);
-        this.$sDialog.showModal();
-    
-        $('body').css('overflow-y', 'hidden')
-        $('body').css('padding-right', this.$sScrollWidth)
-    
-        this.$vContainer = this.$vNav.find("._nav");
+      this.obTemplateNav = this.obNav.querySelectorAll("._modalTemplate");
+      this.obTemplate = this.obTemplateNav[0].content.cloneNode(true);
+      this.obNav.appendChild(this.obTemplate);
+      this.obDialog = document.querySelectorAll('._modalContainer')[0];
+      
+      dialogPolyfill.registerDialog(this.obDialog);
+      this.obDialog.showModal();
+
+      document.body.style.overflowY = 'hidden';
+      document.body.style.paddingRight = this.sScrollWidth + 'px';
+
+  
+      this.obContainer = this.obNav.querySelectorAll("._nav");
     }
 
     initFocus() {
-        this.$sFocus = focusTrap.createFocusTrap('._modalContainer');
+      this.obFocus = focusTrap.createFocusTrap('._modalContainer');
 
-        this.$sFocus.activate()
+      this.obFocus.activate()
     }
 
     initScrollWidth() {
-        let div = $("<div></div>");
-    
-        div.css({
-         "overflow-y": "scroll",
-         "width": "50px",
-         "height": "50px"
-        })
-    
-        $('body').append(div)
-    
-        let scrollWidth = div[0].offsetWidth - div[0].clientWidth;
-        div.remove();
-    
-        this.$sScrollWidth = scrollWidth;
+      const div = document.createElement('div');
+
+      div.style.overflowY = 'scroll';
+      div.style.width = '50px';
+      div.style.height = '50px';
+      
+      document.body.appendChild(div)
+  
+      const scrollWidth = div.offsetWidth - div.clientWidth;
+      div.remove();
+      this.sScrollWidth = scrollWidth;
+    }
+
+    initBackdrop() {
+      this.obBackdrop = this.obNav.querySelectorAll(".backdrop");
+      if(this.obBackdrop[0]){
+        this.obBackdrop.classList.add('fixed top-0 right-0 bg-gray-400')
+        this.obBackdrop.style.left = '0';
+        this.obBackdrop.style.bottom = '0';
+        this.obBackdrop.style.opacity = '0.6';
+        this.obDialog.style.minHeight = '100vh';
+        this.obDialog.style.top = '0';
+        this.obDialog.style.right = '0';
+        this.obDialog.style.left = '0';
+        this.obDialog.style.bottom = '0';
+        this.obDialog.style.position = 'fixed';
+      }
     }
 
     initEvents(){
-        let app = this;
-        $(document).keydown(function(e) {
-          if (e.keyCode === 27) {
-            app.clearEvents();
-          }   
-        });
-        
-        $(this.$vNav).mouseup(function (e){ 
-          if (!app.$vContainer.is(e.target) && app.$vContainer.has(e.target).length === 0) {
-            app.clearEvents();
-          }
-        });
-    
-        this.$vNav.on('click', '._hide', function(){ 
+      const app = this;
+
+      this.obEvents[0] = (function(e) {
+        if (e.keyCode === 27) {
           app.clearEvents();
-        });
+        }   
+      });
+      
+      this.obEvents[1] = (function (e){ 
+        if(!app.obContainer[0].contains(e.target)){
+          app.clearEvents();
+        }
+      });
+  
+      this.obEvents[2] = (function(event){ 
+        if(event.target.closest('button') && event.target.closest('button').classList.contains('_hide')){
+          app.clearEvents();
+        }
+      });
+  
+      document.addEventListener('keydown', this.obEvents[0]);
+      this.obNav.addEventListener('mouseup', this.obEvents[1]);
+      this.obNav.addEventListener('click', this.obEvents[2]);
     }
 
     clearEvents(){
-        $(this.$vNav).off();
-        $(document).off();
-        this.clear();
+      document.removeEventListener('keydown', this.obEvents[0]);
+      this.obNav.removeEventListener('mouseup', this.obEvents[1]);
+      this.obNav.removeEventListener('click', this.obEvents[2]);
+      this.clear();
     }
     
     initAnimOpen(){
-        this.initFocus();
+      this.initFocus();
     }
 
     animClose(){
-        $('body').css('overflow-y', 'auto');
-        $('body').css('padding-right', '0');
-        this.$sFocus.deactivate();
-        this.$vOffCanvasRemove = this.$vNav.find('._modalContainer');
-        this.$vOffCanvasRemove.remove();
+      document.body.style.overflowY = 'auto';
+      document.body.style.paddingRight = '0px';
+      this.obFocus.deactivate();
+      this.obOffCanvasRemove = this.obNav.querySelectorAll('._modalContainer');
+      this.obOffCanvasRemove[0].remove();
     }
 
     clear(){
-        this.animClose();
+      this.animClose();
     }
     
     activeOffCanvas(){
-        this.initScrollWidth();
-        this.initOffCanvas();
-        this.initAnimOpen();
+      this.initScrollWidth();
+      this.initOffCanvas();
+      this.initAnimOpen();
     }
 
     showMethod(){
-        this.$vShow.on("click", () => {
-          this.activeOffCanvas();
-          this.initEvents();
-        })
+      this.obShow[0].addEventListener("click", () => {
+        this.activeOffCanvas();    
+        this.initEvents();
+      })
     }
     
     static make(container) {
-        $(container).each(function(e) {
-          const containerNav = new Modal($(this));
-          containerNav.showMethod();
-        });
+      const obContainer = document.getElementsByClassName(`${container}`);
+      Array.from(obContainer).forEach(function(e) {
+        const containerNav = new Modal(e);
+        containerNav.showMethod();
+      });
     }
 }
-Modal.make('._modal')
+Modal.make('_modal')

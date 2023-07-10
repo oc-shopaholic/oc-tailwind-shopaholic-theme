@@ -1,9 +1,10 @@
+import request from 'oc-request';
 import Choices from 'choices.js';
 
 export default new class CustomerReviews {
   constructor() {
+    this.obShow = document.getElementsByClassName('_review-list-container')[0].querySelectorAll('._show')[0];
     this.obLoadMore = null;
-    this.obShow = $('._review-list-container ._show');
     this.obListWrapper = '_review-list';
     
     this.init();
@@ -24,7 +25,7 @@ export default new class CustomerReviews {
       callbackOnCreateTemplates: function(template) {
           return {
             item: ({ classNames }, data) => {
-              let active = $('._sorting-reviews').attr('data-active-text');
+              let active = document.getElementsByClassName('_sorting-reviews')[0].dataset.activeText;
               return template(`
                   <div class="${classNames.item} ${
                   data.highlighted
@@ -45,33 +46,36 @@ export default new class CustomerReviews {
   }
 
   initLoadMore(){
-    this.obLoadMore = $('._show-more-reviews');
-    this.obLoadMore.on("click", () => {
-      const iPage = parseInt(this.obLoadMore.attr('data-page'), 10);
+    this.obLoadMore = document.getElementsByClassName('_show-more-reviews')[0];
+    if(!this.obLoadMore) return;
+    this.obLoadMore.addEventListener("click", () => {
+      const iPage = parseInt(this.obLoadMore.dataset.page, 10);
       const iNextPage = iPage + 1;
-      const iMaxPage = parseInt(this.obLoadMore.attr('data-max-page'), 10);
+      const iMaxPage = parseInt(this.obLoadMore.dataset.maxPage, 10);
       
       this.sendAjax(iNextPage);
 
       if (iNextPage >= iMaxPage) {
         this.obLoadMore.remove();
       } else {
-        this.obLoadMore.attr('data-page', iNextPage);
+        this.obLoadMore.setAttribute('data-page', iNextPage);
       }
     });
   }
 
   init(){
-    this.obShow.on('click', ()=>{
-      this.initChoices();
-      this.initLoadMore();
-    })
+    if(this.obShow){
+      this.obShow.addEventListener('click', ()=>{
+        this.initChoices();
+        this.initLoadMore();
+      })
+    }
   }
 
   sendAjax(iNextPage) {
-    $.request('ProductData::onAjaxRequest', {
+    request.sendData('ProductData::onAjaxRequest', {
       data: { page: iNextPage },
-      update: { 'review-list/review-list-ajax': `@.${this.obListWrapper}` }
+      update: {'review-list/review-list-ajax': `@.${this.obListWrapper}`}
     });
   }
 }();

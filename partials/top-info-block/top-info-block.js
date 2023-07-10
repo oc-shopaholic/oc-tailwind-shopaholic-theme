@@ -1,3 +1,5 @@
+import request from 'oc-request';
+
 export default new class TopInfoBlock {
   constructor() {
     this.sTopInfoBlockWrapperClass = '_top-info-block';
@@ -12,7 +14,6 @@ export default new class TopInfoBlock {
     this.sOldHash = '';
 
     this.initData();
-    this.hide();
     this.show();
   }
 
@@ -27,7 +28,7 @@ export default new class TopInfoBlock {
       this.bActive = false;
     }
 
-    this.sNewHash = $(`.${this.sTopInfoBlockWrapperClass}`).attr('data-hash');
+    this.sNewHash = document.getElementsByClassName(this.sTopInfoBlockWrapperClass)[0].dataset.hash;
     if (this.sNewHash === undefined) {
       this.sNewHash = '';
     }
@@ -39,8 +40,8 @@ export default new class TopInfoBlock {
    * @description Hide block.
    */
   hide() {
-    $(document).on('click', `.${this.sTopInfoBlockButtonClosedClass}`, () => {
-      $(`.${this.sTopInfoBlockWrapperClass}`).addClass(this.sHiddenClass);
+    document.getElementsByClassName(this.sTopInfoBlockButtonClosedClass)[0].addEventListener('click', () => {
+      document.getElementsByClassName(this.sTopInfoBlockWrapperClass)[0].classList.add(this.sHiddenClass);
 
       this.updateLocalStorage(false, this.sNewHash);
     });
@@ -56,10 +57,11 @@ export default new class TopInfoBlock {
 
     const self = this;
 
-    $.request('onInit', {
+    request.sendData('onInit', {
       update: {'top-info-block/top-info-block-ajax': `.${this.sTopInfoBlockWrapperClass}`},
       complete: function () {
-        $(`.${self.sTopInfoBlockWrapperClass}`).removeClass(self.sHiddenClass);
+        self.hide();
+        document.getElementsByClassName(self.sTopInfoBlockWrapperClass)[0].classList.remove(self.sHiddenClass);
       },
     });
   }

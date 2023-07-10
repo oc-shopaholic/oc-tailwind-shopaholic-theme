@@ -1,13 +1,24 @@
 export default new class ProductDescription {
   constructor() {
-    this.obDescription = $("._description");
-    this.obButton = $("._description-toggle");
-    this.obSvg = this.obButton.find("._arrow");
-    this.obSpan = this.obButton.find("._status");
-    this.obDescriptionText = this.obDescription.find("._description-text");
+    this.obDescription = null;
+    this.obButton = null
+    this.obSvg = null;
+    this.obSpan = null;
+    this.obDescriptionText = null;
 
     this.sMinHeight = '';
     this.sMaxHeight = '';
+
+    this.init();
+  }
+
+  init(){
+    this.obDescription = document.getElementsByClassName('_description')[0];
+    if(!this.obDescription) return;
+    this.obButton = document.getElementsByClassName('_description-toggle')[0];
+    this.obSvg = this.obButton.querySelectorAll("._arrow");
+    this.obSpan = this.obButton.querySelectorAll("._status");
+    this.obDescriptionText = this.obDescription.querySelectorAll("._description-text");
 
     this.animInit();
     this.btnInit();
@@ -15,51 +26,48 @@ export default new class ProductDescription {
   }
 
   animInit(){
-    this.sMinHeight = this.obDescriptionText.css('height');
-    this.obDescription.addClass('line-clamp-none');
-    this.sMaxHeight = this.obDescriptionText.css('height');
-    this.obDescription.removeClass('line-clamp-none');
+    this.sMinHeight = this.obDescriptionText[0].clientHeight;
+    this.obDescription.classList.add('line-clamp-none');
+    this.sMaxHeight = this.obDescriptionText[0].clientHeight;
+    this.obDescription.classList.remove('line-clamp-none');
 
-    this.obDescriptionText.css('--description-text-max-height', this.sMinHeight);
+    this.obDescriptionText[0].setAttribute('style', '--description-text-max-height:' + this.sMinHeight + 'px;');
   }
 
   btnInit(){
-    if(this.sMaxHeight){
-      let sMaxHeight = this.sMaxHeight.slice(0, -2);
-      if(sMaxHeight && Number(sMaxHeight) < 90){
-        this.obButton.addClass('hidden');
-      }
+    if(this.sMaxHeight && this.sMaxHeight < 90){
+      this.obButton.classList.add('hidden');
     }
   }
 
   changeVisibly(text){
-    this.obButton.addClass('opacity-0');
+    this.obButton.classList.add('opacity-0');
     setTimeout(()=>{
-      this.obSpan.text(text);
-      this.obButton.removeClass('opacity-0');
+      this.obSpan[0].innerHTML = text;
+      this.obButton.classList.remove('opacity-0');
     },200)
   }
 
   animClose(){
-    this.obDescriptionText.css('--description-text-max-height', this.sMinHeight);
+    this.obDescriptionText[0].setAttribute('style', '--description-text-max-height:' + this.sMinHeight + 'px;');
     setTimeout(()=>{
-      this.obDescription.removeClass('line-clamp-none');
+      this.obDescription.classList.remove('line-clamp-none');
     },600)
   }
 
   changeVisiblyDescription(){
-    this.obButton.on('click', ()=>{
-      if(this.obButton.attr('aria-expanded') !== 'false'){
-        this.obSvg.removeClass('rotate-180');
+    this.obButton.addEventListener('click', ()=>{
+      if(this.obButton.getAttribute('aria-expanded') !== 'false'){
+        this.obSvg[0].classList.remove('rotate-180');
         this.animClose();
         this.changeVisibly(window.stateButton.show);
-        this.obButton.attr('aria-expanded', 'false');
+        this.obButton.setAttribute('aria-expanded', 'false');
       }else {
         this.changeVisibly(window.stateButton.hide);
-        this.obDescription.addClass('line-clamp-none');
-        this.obSvg.addClass('rotate-180');
-        this.obButton.attr('aria-expanded', 'true');
-        this.obDescriptionText.css('--description-text-max-height', this.sMaxHeight);
+        this.obDescription.classList.add('line-clamp-none');
+        this.obSvg[0].classList.add('rotate-180');
+        this.obButton.setAttribute('aria-expanded', 'true');
+        this.obDescriptionText[0].setAttribute('style', '--description-text-max-height:' + this.sMaxHeight + 'px;');
       }
     })
   }

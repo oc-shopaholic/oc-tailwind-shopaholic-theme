@@ -3,35 +3,33 @@ import RecentlyElem from "./recently-elem";
 
 export default class Search {
   constructor(app) {
-    this.$vNav = app;
-    this.$vShow = this.$vNav.find("._show");
-    this.$vPlaceholder = null;
-    this.$vProductTitle = null;
-    this.$sInput = null;
-    this.$sClear = null;
-    this.$vTag = null;
-    this.$vRecently = null;
-    this.$vRecentlyContainer = null;
-    this.$vTagText = null;
-    this.$vRecentlyText = null;
-    this.$vPreloader = null;
-    this.$vResultWrapper = null;
-    this.$vNoResult = null;
-    this.$vNoResultText = null;
-    this.$vRecentlyTemplate = null;
-    this.$vTemplate = null;
-    this.$vProductContainer = null;
-    this.$vShowMore = null;
-    this.$vShowMoreHidden = null;
-    this.$vHeader = null;
-    this.$vClearRecentlyAll = null;
-    this.$vSearchIcon = null;
-    this.$vCategoryTitle = null;
-    this.$vRecentlyList = null;
+    this.obNav = app;
+    this.obShow = this.obNav.querySelectorAll("._show");
+    this.obPlaceholder = null;
+    this.obProductTitle = null;
+    this.obInput = null;
+    this.obClear = null;
+    this.obRecently = null;
+    this.obRecentlyContainer = null;
+    this.obRecentlyText = null;
+    this.obPreloader = null;
+    this.obResultWrapper = null;
+    this.obNoResult = null;
+    this.obNoResultText = null;
+    this.obRecentlyTemplate = null;
+    this.obTemplate = null;
+    this.obProductContainer = null;
+    this.obShowMore = null;
+    this.obShowMoreHidden = null;
+    this.obHeader = null;
+    this.obClearRecentlyAll = null;
+    this.obSearchIcon = null;
+    this.obCategoryTitle = null;
+    this.obRecentlyList = null;
 
-    this.vPagination = 5;
-    this.vPaginationZapas = this.vPagination;
-    this.vPaginationContainer = [];
+    this.nPagination = 5;
+    this.nPaginationSpare = this.nPagination;
+    this.aPaginationContainer = [];
     this.bOpenRecently = false;
     this.aRecentlyTextDefault = [];
     this.sSplitSpaces = null;
@@ -41,38 +39,38 @@ export default class Search {
   initVariables(){
     this.bOpenRecently = false;
     this.sNoResultSearchText = /:text_search_query/g;
-    this.vPagination = 3;
-    this.$vPlaceholder = this.$vNav.find("._placeholder");
-    this.$sInput = this.$vNav.find("._shopaholic-search-input");
-    this.$sClear = this.$vNav.find("._clear");
-    this.$vPreloader = this.$vNav.find("._preloader");
-    this.$vResultWrapper = this.$vNav.find(".search-result-wrapper");
-    this.$vNoResult = this.$vNav.find("._no-result");
-    this.$vNoResultText = this.$vNav.find("._no-result-text");
-    this.$vRecentlyContainer = this.$vNav.find("._recently-container");
-    this.$vRecentlyTemplate = this.$vNav.find("._recently-template");
-    this.$vShowMore = this.$vNav.find("._show-more");
-    this.$vShowMoreHidden = this.$vNav.find("._show-more-hidden");
-    this.$vHeader = this.$vNav.find("._recently-container ._recently-header");
-    this.$vClearRecentlyAll = this.$vNav.find("._clear-recently-all");
-    this.$vSearchIcon = this.$vNav.find("._search-icon");
-    this.$vRecentlyList = this.$vNav.find("._recently-list");
+    this.nPagination = 3;
+    this.obPlaceholder = this.obNav.querySelectorAll("._placeholder");
+    this.obInput = this.obNav.querySelectorAll("._shopaholic-search-input");
+    this.obClear = this.obNav.querySelectorAll("._clear");
+    this.obPreloader = this.obNav.querySelectorAll("._preloader");
+    this.obResultWrapper = this.obNav.querySelectorAll(".search-result-wrapper");
+    this.obNoResult = this.obNav.querySelectorAll("._no-result");
+    this.obNoResultText = this.obNav.querySelectorAll("._no-result-text");
+    this.obRecentlyContainer = this.obNav.querySelectorAll("._recently-container");
+    this.obRecentlyTemplate = this.obNav.querySelectorAll("._recently-template");
+    this.obShowMore = this.obNav.querySelectorAll("._show-more");
+    this.obShowMoreHidden = this.obNav.querySelectorAll("._show-more-hidden");
+    this.obHeader = this.obNav.querySelectorAll("._recently-container ._recently-header");
+    this.obClearRecentlyAll = this.obNav.querySelectorAll("._clear-recently-all");
+    this.obSearchIcon = this.obNav.querySelectorAll("._search-icon");
+    this.obRecentlyList = this.obNav.querySelectorAll("._recently-list");
   }
 
   initOthersVariables(){
-    this.$vRecently = this.$vNav.find("._recently");
-    this.$vProductTitle = this.$vNav.find("._product-name");
-    this.$vCategoryTitle = this.$vNav.find("._category-name");
-    this.$vRecentlyText = this.$vNav.find("._recently-text");
+    this.obRecently = this.obNav.querySelectorAll("._recently");
+    this.obProductTitle = this.obNav.querySelectorAll("._product-name");
+    this.obCategoryTitle = this.obNav.querySelectorAll("._category-name");
+    this.obRecentlyText = this.obNav.querySelectorAll("._recently-text");
   }
 
   initEvents() {
     this.clearSearchResult();
-    this.useHintTipo();
+    this.useHintEmulation();
     this.clearRecently();
     this.initSearchResult();
     this.historyResult();
-    RecentlyElem.make('._recently');
+    RecentlyElem.make('_recently');
     this.showMore();
   }
 
@@ -80,14 +78,13 @@ export default class Search {
     const obHelper = new ShopaholicSearch();
     obHelper.setSearchLimit(3).setAjaxRequestCallback(function (obRequestData) {
       obRequestData.update = { 'search/search-result': '.search-result-wrapper' };
-
       return obRequestData;
     }).init();
   }
 
   initWatchInput(){
-    this.$sInput.on("input", (ev) => {
-      if($(ev.target).val().length > 2){
+    this.obInput[0].addEventListener("input", (ev) => {
+      if(ev.target.value.length > 2){
         this.watchInputActive();
       }else{
         this.watchInputNotActive();
@@ -97,8 +94,8 @@ export default class Search {
   }
 
   initProductWatch(){
-    let app = this;
-    var target = $('.search-result-wrapper')[0];
+    const app = this;
+    const target = document.getElementsByClassName('search-result-wrapper')[0];
 
     const config = {
       childList: true,
@@ -106,7 +103,7 @@ export default class Search {
 
     const callback = function (mutationsList, observer) {
       for (let mutation of mutationsList) {
-        if (mutation.type === 'childList' && app.$sInput.val()[0] !== ' ') {
+        if (mutation.type === 'childList' && app.obInput[0].value[0] !== ' ') {
           app.initOthersVariables();
           app.hints();
           app.historyResult();
@@ -121,42 +118,45 @@ export default class Search {
 
   initSearchResult(){
     if(!localStorage.searchHistory){
+
       localStorage.searchHistory = JSON.stringify([])
     }
-    let history = JSON.parse(localStorage.searchHistory);
+    const history = JSON.parse(localStorage.searchHistory);
     if(history.length){
+      this.obRecentlyList[0].innerHTML = '';
       for(let i = 0; i < history.length; i++){
-        this.$vTemplate = this.$vRecentlyTemplate[0].content.cloneNode(true);
-        let container = this.$vTemplate.querySelectorAll("span");
+        this.obTemplate = this.obRecentlyTemplate[0].content.cloneNode(true);
+        let container = this.obTemplate.querySelectorAll("span");
         container[0].innerText = history[i];
-        $(this.$vTemplate).appendTo(this.$vRecentlyList);
+        this.obRecentlyList[0].appendChild(this.obTemplate);
       }
       if(history.length > 1){
-        this.$vClearRecentlyAll.css('display', 'block');
-        this.$vHeader.css('display', 'flex');
+
+        this.obClearRecentlyAll[0].style.display = 'block';
+        this.obHeader[0].style.display = 'flex';
       }else{
-        this.$vClearRecentlyAll.css('display', 'none');
+        this.obClearRecentlyAll[0].style.display = 'none';
       }
-      this.$vRecentlyContainer.css('display', 'block');
+      this.obRecentlyContainer[0].style.display = 'block';
       this.initOthersVariables();
     }
   }
 
   initPagination(){
-    if(this.vPagination !== this.vPaginationZapas){
-      this.vPagination = this.vPaginationZapas
+    if(this.nPagination !== this.nPaginationSpare){
+      this.nPagination = this.nPaginationSpare;
     }
 
-    this.$vProductContainer = this.$vNav.find("._product-container li");
+    this.obProductContainer = this.obNav.querySelectorAll("._product-container li");
 
-    if(this.$vProductContainer.length > this.vPagination){
-      let count = this.$vProductContainer.length - this.vPagination
-      let finalScore = this.$vProductContainer.length - count
-      this.vPaginationContainer = [];
+    if(this.obProductContainer.length > this.nPagination){
+      const count = this.obProductContainer.length - this.nPagination;
+      const finalScore = this.obProductContainer.length - count;
+      this.aPaginationContainer = [];
 
-      for(let i = finalScore; i < this.$vProductContainer.length; i++){
-        this.vPaginationContainer.push(this.$vProductContainer[i]);
-        this.$vProductContainer[i].remove();
+      for(let i = finalScore; i < this.obProductContainer.length; i++){
+        this.aPaginationContainer.push(this.obProductContainer[i]);
+        this.obProductContainer[i].remove();
       }
     }
   }
@@ -165,26 +165,27 @@ export default class Search {
     if(!localStorage.searchHistory){
       localStorage.searchHistory = JSON.stringify([])
     }
+    if(!this.obInput[0].value) return
     let history = JSON.parse(localStorage.searchHistory);
-    let uniqueness = history.indexOf(this.$sInput.val()) != -1
-    let lastSign = this.$sInput.val()[this.$sInput.val().length -1]
+    const uniqueness = history.indexOf(this.obInput[0].value) != -1;
+    const lastSign = this.obInput[0].value[this.obInput[0].value.length -1];
     if(history.length >= 5 && !uniqueness){
-      history = history.slice(1)
+      history = history.slice(1);
     }
-    if(!uniqueness && this.$sInput.val() !== '' && this.$sInput.val()[0] !== ' ' && this.$sInput.val().length > 2 && (this.$vProductTitle.length || this.$vCategoryTitle.length) && lastSign !== ' '){
-      history.push(this.$sInput.val());
+    if(!uniqueness && this.obInput[0].value !== '' && this.obInput[0].value[0] !== ' ' && this.obInput[0].value.length > 2 && (this.obProductTitle.length || this.obCategoryTitle.length) && lastSign !== ' '){
+      history.push(this.obInput[0].value);
 
       let finalHistory = JSON.stringify(history);
       localStorage.searchHistory = finalHistory;
       this.bOpenRecently = true;
-      this.$vRecentlyContainer.css('display', 'none');
+      this.obRecentlyContainer[0].style.display = 'none';
     }
   }
 
   highlightMatches(content){
     if(content.length){
       for (let i = 0; i < content.length; i++) {
-        let text = content[i].innerText;
+        const text = content[i].innerText;
         this.workingSpaces(text);
         content[i].innerHTML = text.replace(new RegExp(this.sSplitSpaces, 'gi'), "<b class='font-bold'>$&</b>");
       }
@@ -192,129 +193,134 @@ export default class Search {
   }
 
   whitewashPlaceholder(){
-    if(this.$vProductTitle.length){
-      this.workingSpaces(this.$vProductTitle[0].innerText);
+    if(this.obProductTitle.length){
+      this.workingSpaces(this.obProductTitle[0].innerText);
     }
-    let enteredText = this.$vProductTitle[0].innerText.substring(this.sSplitSpaces.trim().length, this.$vProductTitle[0].innerText.length);
-    let finalText = ('<span class="text-gray-200">' + this.$sInput.val() + '</span>') + enteredText;
-    this.$vPlaceholder.html(finalText);
+    const enteredText = this.obProductTitle[0].innerText.substring(this.sSplitSpaces.trim().length, this.obProductTitle[0].innerText.length);
+    const finalText = ('<span class="text-gray-200">' + this.obInput[0].value + '</span>') + enteredText;
+    this.obPlaceholder[0].innerHTML = finalText;
   }
 
   workingSpaces(content){
-    this.sSplitSpaces = this.$sInput.val().replace(/[ ]+/g, '');
+    this.sSplitSpaces = this.obInput[0].value.replace(/[ ]+/g, '');
     let space = [];
     for (let i = 0; i < content.length; i++) {
       if (content[i] === " ") {
-        space.push(i)
+        space.push(i);
       }
     }
     for (let i = 0; i < space.length; i++) {
       if (this.sSplitSpaces.length >= space[i]) {
-        this.sSplitSpaces = this.sSplitSpaces.substring(0, space[i]) + ' ' + this.sSplitSpaces.substring(space[i], this.sSplitSpaces.length)
+        this.sSplitSpaces = this.sSplitSpaces.substring(0, space[i]) + ' ' + this.sSplitSpaces.substring(space[i], this.sSplitSpaces.length);
       }
     }
   }
 
   useHint(){
-    this.$sInput.val(this.$vPlaceholder.text()).trigger('input');
-    this.$vProductTitle.css('display', 'block');
-    this.highlightMatches(this.$vProductTitle);
-    this.highlightMatches(this.$vCategoryTitle);
+    this.obInput[0].value = this.obPlaceholder[0].innerText;
+    this.obInput[0].dispatchEvent(
+      new InputEvent('input', {
+          bubbles: true,
+          cancelable: true,
+    }));
+    this.obProductTitle[0].style.display = 'block';
+    this.highlightMatches(this.obProductTitle);
+    this.highlightMatches(this.obCategoryTitle);
     this.whitewashPlaceholder();
   }
 
   removalSelection(){
    if(this.aRecentlyTextDefault.length){
-    for (let i = 0; i < this.$vRecentlyText.length; i++) {
-      this.$vRecently[i].classList.remove('hidden');
-      this.$vRecentlyText[i].innerText = this.aRecentlyTextDefault[i].innerText;
+    for (let i = 0; i < this.obRecentlyText.length; i++) {
+      this.obRecently[i].classList.remove('hidden');
+      this.obRecentlyText[i].innerText = this.aRecentlyTextDefault[i].innerText;
     }
    }
   }
 
   filterRecently(){
-    if(this.$sInput.val().length && this.$vRecentlyText){
-      for (let i = 0; i < this.$vRecentlyText.length; i++) {
-        if(this.aRecentlyTextDefault.length <= this.$vRecentlyText.length) this.aRecentlyTextDefault.push(this.$vRecentlyText[i])
-        if(this.$vRecentlyText[i].innerText.toLowerCase().indexOf(this.$sInput.val().toLowerCase()) !== -1) {
-          let text = this.$vRecentlyText[i].innerText;
-          this.$vRecently[i].classList.remove('hidden');
-          this.$vRecentlyText[i].innerHTML = text.replace(new RegExp(this.$sInput.val(), 'gi'), "<b class='font-bold'>$&</b>");
+    if(this.obInput[0].value.length && this.obRecentlyText){
+      for (let i = 0; i < this.obRecentlyText.length; i++) {
+        if(this.aRecentlyTextDefault.length <= this.obRecentlyText.length) this.aRecentlyTextDefault.push(this.obRecentlyText[i])
+        if(this.obRecentlyText[i].innerText.toLowerCase().indexOf(this.obInput[0].value.toLowerCase()) !== -1) {
+          const text = this.obRecentlyText[i].innerText;
+          this.obRecently[i].classList.remove('hidden');
+          this.obRecentlyText[i].innerHTML = text.replace(new RegExp(this.obInput[0].value, 'gi'), "<b class='font-bold'>$&</b>");
         }else{
-          this.$vRecently[i].classList.add('hidden')
+          this.obRecently[i].classList.add('hidden');
         }
       }
     }
   }
 
   hintsActive(){
-    if(this.$vProductTitle.length){
-      this.$vPlaceholder.css('display', 'block');
-      this.$vPlaceholder.text(this.$vProductTitle[0].innerText);
+    if(this.obProductTitle.length){
+      this.obPlaceholder[0].style.display = 'block';
+      this.obPlaceholder.innerHTML = this.obProductTitle[0].innerText;
       this.initPagination();
       this.whitewashPlaceholder();
     }
-    this.$vResultWrapper.css('display', 'block');
-    this.$vPreloader.css('display', 'none');
-    this.$vSearchIcon.css('display', 'block');
-    this.$vNoResult.css('display', 'none');
-    if(this.$vProductTitle.length && this.$vProductContainer.length > this.vPagination && this.$vProductContainer.length !== this.vPagination) this.$vShowMore.css('display', 'block');
-    if (!this.bOpenRecently) this.$vRecentlyContainer.css('display', 'block');
-    this.$vRecentlyContainer.css('display', 'block');
-    this.$vClearRecentlyAll.css('display', 'none');
+    this.obResultWrapper[0].style.display = 'block';
+    this.obPreloader[0].style.display = 'none';
+    this.obSearchIcon[0].style.display = 'block';
+    this.obNoResult[0].style.display = 'none';
+    if(this.obProductTitle.length && this.obProductContainer.length > this.nPagination && this.obProductContainer.length !== this.nPagination) this.obShowMore[0].style.display = 'block';
+    if (!this.bOpenRecently) this.obRecentlyContainer[0].style.display = 'block';
+    this.obRecentlyContainer[0].style.display = 'block';
+    this.obClearRecentlyAll[0].style.display = 'none';
     this.filterRecently();
   }
 
   hintsNotActive(){
-    this.$vPlaceholder.text('');
-    this.$vPlaceholder.css('display', 'block');
-    this.$vNoResult.css('display', 'none');
+    this.obPlaceholder[0].innerHTML = '';
+    this.obPlaceholder[0].style.display = 'block';
+    this.obNoResult[0].style.display = 'none';
   }
 
   hintsOther(){
-    this.$vShowMore.css('display', 'none');
-    this.$vPlaceholder.css('display', 'none');
-    this.$vPreloader.css('display', 'none');
-    this.$vSearchIcon.css('display', 'block');
-    if(!this.$vCategoryTitle.length && this.$sInput.val().length > 2){
-      this.$vNoResult.css('display', 'flex');
-      this.$vRecentlyContainer.css('display', 'none');
+    this.obShowMore[0].style.display = 'none';
+    this.obPlaceholder[0].style.display = 'none';
+    this.obPreloader[0].style.display = 'none';
+    this.obSearchIcon[0].style.display = 'block';
+    if(!this.obCategoryTitle.length && this.obInput[0].value.length > 2){
+      this.obNoResult[0].style.display = 'flex';
+      this.obRecentlyContainer[0].style.display = 'none';
     }else{
-      this.$vRecentlyContainer.css('display', 'block');
+      this.obRecentlyContainer[0].style.display = 'block';
     }
-    let finnalText = this.$vNoResultText.text().replace(this.sNoResultSearchText, this.$sInput.val());
-    this.$vNoResultText.text(finnalText);
-    this.sNoResultSearchText = new RegExp( `${this.$sInput.val()}`, 'g');
+    const finnalText = this.obNoResultText[0].innerText.replace(this.sNoResultSearchText, this.obInput[0].value);
+    this.obNoResultText[0].innerText = finnalText;
+    this.sNoResultSearchText = new RegExp( `${this.obInput[0].value}`, 'g');
   }
 
   hints(){
-    if ((this.$vProductTitle.length || this.$vCategoryTitle.length) && this.$sInput.val().length) {
+    if ((this.obProductTitle.length || this.obCategoryTitle.length) && this.obInput[0].value.length) {
       this.hintsActive();
-    } else if(!this.$sInput.val().length){
+    } else if(!this.obInput[0].value.length){
       this.hintsNotActive();
     }else {
       this.hintsOther();
     }
-    this.highlightMatches(this.$vProductTitle);
-    this.highlightMatches(this.$vCategoryTitle);
+    this.highlightMatches(this.obProductTitle);
+    this.highlightMatches(this.obCategoryTitle);
   }
 
   showMore(){
-    let count = this.vPagination;
-    this.$vShowMore.on("click", () => {
-      let container = this.$vNav.find("._product-container");
-      if (this.$vProductContainer.length > this.vPagination && this.$vProductContainer.length !== this.vPagination) {
-        this.$vShowMoreHidden.css('display', 'block')
-        this.$vShowMore.css('display', 'none');
+    const count = this.nPagination;
+    this.obShowMore[0].addEventListener("click", () => {
+      let container = this.obNav.querySelectorAll("._product-container");
+      if (this.obProductContainer.length > this.nPagination && this.obProductContainer.length !== this.vPagination) {
+        this.obShowMoreHidden[0].style.display = 'block';
+        this.obShowMore[0].style.display = 'none';
         setTimeout(() => {
-          for (let i = 0; i < this.vPagination; i++) {
-            $(this.vPaginationContainer[i]).appendTo(container);
+          for (let i = 0; i < this.nPagination; i++) {
+            container[0].appendChild(this.aPaginationContainer[i]);
           }
-          this.vPagination += 5;
-          if (count !== this.vPagination) {
-            this.$vShowMoreHidden.css('display', 'none')
-            this.$vShowMore.css('display', 'block');
-            if(this.$vProductContainer.length <= this.vPagination) this.$vShowMore.css('display', 'none');
+          this.nPagination += 5;
+          if (count !== this.nPagination) {
+            this.obShowMoreHidden[0].style.display = 'none';
+            this.obShowMore[0].style.display = 'block';
+            if(this.obProductContainer.length <= this.nPagination) this.obShowMore[0].style.display = 'none';
           }
         }, 400)
       }
@@ -322,89 +328,89 @@ export default class Search {
   }
 
   clearSearchResult(){
-    this.$vNav.on('click', '._clear', () => {
-      const searchResultWrapper = $(this.$vNav.find(".search-result-wrapper"));
-      const childrenNode = searchResultWrapper.children();
-      let history = JSON.parse(localStorage.searchHistory);
-      this.$sClear.css('display', 'none');
-      this.$vShowMore.css('display', 'none');
+    this.obClear[0].addEventListener('click', () => {
+      const searchResultWrapper = this.obNav.querySelectorAll(".search-result-wrapper");
+      const childrenNode = searchResultWrapper;
+      const history = JSON.parse(localStorage.searchHistory);
+      this.obClear[0].style.display = 'none';
+      this.obShowMore[0].style.display = 'none';
       this.clearingHints();
-      if(this.$vRecently.length && history.length){
-        this.$vRecentlyContainer.css('display', 'block');
-        this.$vHeader.css('display', 'flex');
+      if(this.obRecently.length && history.length){
+        this.obRecentlyContainer[0].style.display = 'block';
+        this.obHeader[0].style.display = 'flex';
       }
-      $(this.$sInput.val(''));
-      childrenNode.remove();
+      this.obInput[0].value = '';
+      childrenNode[0].innerHTML = '';
     })
   }
 
-  useHintTipo(){
-    let app = this
-    $('._shopaholic-search-input').keydown(function(e) {
-      if(e.keyCode === 39 && app.$vProductTitle && app.$vProductTitle.length > 0 ) {
+  useHintEmulation(){
+    const app = this;
+    document.getElementsByClassName('_shopaholic-search-input')[0].addEventListener('keydown', function(e) {
+      if(e.keyCode === 39 && app.obProductTitle && app.obProductTitle.length > 0 ) {
         app.useHint();
       }
     });
   }
 
   clearRecently(){
-    this.$vClearRecentlyAll.on('click', () => {
+    this.obClearRecentlyAll[0].addEventListener('click', () => {
       localStorage.searchHistory = JSON.stringify([]);
-      this.$vRecently.remove();
-      this.$vHeader.css('display', 'none');
-      this.$vClearRecentlyAll.css('display', 'none');
+      this.obRecentlyList[0].innerHTML = '';
+      this.obHeader[0].style.display = 'none';
+      this.obClearRecentlyAll[0].style.display = 'none';
     })
   }
 
   watchInputActive(){
-    this.$sClear.css('display', 'block');
-    this.$vPlaceholder.css('display', 'none');
-    this.$vPreloader.css('display', 'flex');
-    this.$vSearchIcon.css('display', 'none');
-    this.$vShowMore.css('display', 'none');
-    this.$vHeader.css('display', 'none');
-    this.$vClearRecentlyAll.css('display', 'none');
+    this.obClear[0].style.display = 'block';
+    this.obPlaceholder[0].style.display = 'none';
+    this.obPreloader[0].style.display = 'flex';
+    this.obSearchIcon[0].style.display = 'none';
+    this.obShowMore[0].style.display = 'none';
+    this.obHeader[0].style.display = 'none';
+    this.obClearRecentlyAll[0].style.display = 'none';
   }
 
   watchInputNotActive(){
-    let history = JSON.parse(localStorage.searchHistory);
-    let rerunRecently = this.$vNav.find("._recently");
-    this.$sClear.css('display', 'none');
-    this.$vPreloader.css('display', 'none');
-    this.$vSearchIcon.css('display', 'block');
-    this.$vPlaceholder.text('');
-    this.$vResultWrapper.css('display', 'none');
-    if(this.$sInput.val().length){
-      this.$sClear.css('display', 'block');
+    const history = JSON.parse(localStorage.searchHistory);
+    const rerunRecently = this.obNav.querySelectorAll("._recently");
+    this.obClear[0].style.display = 'none';
+    this.obPreloader[0].style.display = 'none';
+    this.obSearchIcon[0].style.display = 'block';
+    this.obPlaceholder[0].innerHTML = '';
+    this.obResultWrapper[0].style.display = 'none';
+    if(this.obInput[0].value.length){
+      this.obClear[0].style.display = 'block';
     }
-    if(this.$vRecently && this.$vRecently.length && this.$sInput.val().length < 1 && history.length){
-      this.$vRecentlyContainer.css('display', 'block');
-      this.$vHeader.css('display', 'flex');
+    if(this.obRecently && this.obRecently.length && this.obInput[0].value.length < 1 && history.length){
+      this.obRecentlyContainer[0].style.display = 'block';
+      this.obHeader[0].style.display = 'flex';
     }
-    if(this.$sInput.val().length < 1 && history.length){
+    if(this.obInput[0].value.length < 1 && history.length){
       this.clearingHints();
     }
     if(rerunRecently.length > 1){
-      this.$vClearRecentlyAll.css('display', 'block');
+      this.obClearRecentlyAll[0].style.display = 'block';
     }
-    if(this.$sInput.val().length){
-      this.$vHeader.css('display', 'none');
-      this.$vClearRecentlyAll.css('display', 'none');
+    if(this.obInput[0].value.length){
+      this.obHeader[0].style.display = 'none';
+      this.obClearRecentlyAll[0].style.display = 'none';
     }
 
     this.removalSelection();
   }
 
   watchInputOther(){
-    this.$vNoResult.css('display', 'none');
-    this.$vShowMore.css('display', 'none');
+    this.obNoResult[0].style.display = 'none';
+    this.obShowMore[0].style.display = 'none';
     this.filterRecently();
   }
 
   show() {
-    this.$vShow.on("click", () => {
+    this.obShow[0].addEventListener("click", () => {
       this.initVariables();
-      if(this.$vResultWrapper.length){
+      if(this.obResultWrapper.length){
         this.initSearch();
         this.initEvents();
         this.initProductWatch();
@@ -417,16 +423,18 @@ export default class Search {
     this.bOpenRecently = false;
     this.removalSelection();
     this.aRecentlyTextDefault = [];
-    this.$vRecently.remove();
+    if(this.obRecently.length) this.obRecently.innerHTML = '';
     this.initSearchResult();
-    RecentlyElem.make('._recently');
+    RecentlyElem.make('_recently');
   }
 
   static make(container) {
-    $(container).each(function(e) {
-      const containerNav = new Search($(this));
+    const obContainer = document.getElementsByClassName(`${container}`);
+    Array.from(obContainer).forEach(function(e) {
+      const containerNav = new Search(e);
       containerNav.show();
     });
   }
 }
-Search.make('._off-canvas');
+
+Search.make('_off-canvas');

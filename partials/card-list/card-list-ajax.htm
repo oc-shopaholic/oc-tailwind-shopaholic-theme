@@ -18,7 +18,7 @@
         <div class="flex justify-between lg:justify-start">
             <span class="flex text-gray-900 text-base font-medium">
                 {{'text_subtotal'|_}}&nbsp;
-                <span class="text-gray-600 _shopaholic-cart _item">
+                <span class="text-gray-600 _item">
                     ({{obCartList.getTotalQuantity()}} {{'text_item'|_}})
                 </span>
                 :
@@ -27,7 +27,7 @@
         </div>
         {% if bButton != true %}
             {% partial 'button/button' 
-                sPartialClasses = '_checkout-button px-16 mt-28 text-center text-lg lg:text-base lg:mt-0'
+                sPartialClasses = '_checkout-button px-16 mt-28 text-center text-lg lg:text-base lg:mt-px'
                 sText = 'button_checkout'|_ ~ ' (' ~ obCartList.getTotalQuantity() ~ ')'
                 sHref = '/checkout'
             %}

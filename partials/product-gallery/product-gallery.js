@@ -6,13 +6,18 @@ export default new class ProductGallery {
   constructor() {
     this.sGallerySelector = 'gallery-top';
     this.sPaginationSelector = 'gallery-thumbs';
-    this.obSwiperContainer = $('._swiper-container');
-    this.obSlide = this.obSwiperContainer.find('.swiper-slide');
+    this.obSwiperContainer = null;
+    this.obSlide = null;
 
     this.handler();
   }
 
   handler() {
+    this.obSwiperContainer = document.getElementsByClassName('_swiper-container')[0];
+
+    if(!this.obSwiperContainer) return;
+    
+    this.obSlide = this.obSwiperContainer.querySelectorAll('.swiper-slide');
     const slider = document.querySelector(`.${this.sGallerySelector}`);
 
     if (!slider) {
@@ -78,7 +83,7 @@ export default new class ProductGallery {
       oldSliderText = this.obSlide[0].ariaLabel;
       this.obSlide[0].ariaLabel = window.slider.active + ' ' + this.obSlide[0].ariaLabel;
     }
-    this.obSlide.on('click', ()=>{
+    this.obSlide[0].addEventListener('click', ()=>{
       this.obSlide[oldSliderIndex].ariaLabel = oldSliderText;
       oldSliderText = this.obSlide[slider.clickedIndex].ariaLabel;
       this.obSlide[slider.clickedIndex].ariaLabel = window.slider.active + ' ' + this.obSlide[slider.clickedIndex].ariaLabel;
