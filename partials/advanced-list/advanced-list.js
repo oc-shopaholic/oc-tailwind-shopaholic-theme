@@ -21,10 +21,12 @@ export default new class AdvancedList {
 
   init(){
     if(!document.getElementsByClassName('_advanced-list')[0]) return;
-    
+
     this.initVariables();
-    this.showAllList();
-    
+    if(this.obAdvancedListButtonShowMoreClass) {
+      this.showAllList();
+    }
+
     if(this.obAdvancedListWrapperClass.querySelectorAll('li')[0].dataset.take){
       for(let i = 0; i < this.obAdvancedListWrapperClass.querySelectorAll('li')[0].dataset.take; i++){
         this.obAdvancedListWrapperClass.querySelectorAll('li')[i].removeAttribute('aria-hidden');
