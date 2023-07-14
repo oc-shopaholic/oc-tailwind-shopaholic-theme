@@ -41,6 +41,11 @@
         </div>
     </div>
 
+    {% set obOfferList = obProduct.offer %}
+    {% for obOffer in obOfferList %}
+        <input type="radio" id="offer_{{ obOffer.id }}" name="offer_id" value="{{ obOffer.id }}"> <label for="offer_{{ obOffer.id }}">{{ obOffer.name }}</label><br>
+    {% endfor %}
+
     {% if iTotalQuantity > 0 %}
         <div class="flex flex-row items-center mt-4 mb-7 space-x-2 md:space-x-4 md:mt-7">
             <span class="text-xl text-gray-900 font-medium md:text-3xl">{{ obOffer.currency }}{{ obOffer.price }}</span>

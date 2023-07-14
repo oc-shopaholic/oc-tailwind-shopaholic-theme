@@ -7,9 +7,9 @@ export default new class ProductChoose {
   constructor() {
     this.obShowButton = null;
     this.bActive = false;
-    addEventListener("DOMContentLoaded", (event) => {
+    // addEventListener("DOMContentLoaded", (event) => {
       this.init();
-    })
+    // })
 
   }
 
@@ -38,32 +38,27 @@ export default new class ProductChoose {
   }
 
   init(){
-    if(document.getElementsByClassName('_counter')[0]){
-      InputQuantity.make('_counter');
-    }
-    this.buttonShow();
+    // if(document.getElementsByClassName('_counter')[0]){
+    //   InputQuantity.make('_counter');
+    // }
+    // this.buttonShow();
 
-    const obShopaholicCartAdd = new ShopaholicCartAdd();
-    obShopaholicCartAdd.setAjaxRequestCallback((obRequestData, obButton) => {
-      obRequestData.complete = ({ responseJSON }) => {
-        obShopaholicCartAdd.completeCallback(responseJSON, obButton);
-        offCanvas.make('_header-purchases-container _off-canvas');
-        this.bActive = false;
-        this.buttonShow();
-      };
-      obRequestData.update = {
-        'header/header-ajax': `._header-purchases`,
-      };
-      return obRequestData;
-    }).init();
+    const shopaholicCartAdd = new ShopaholicCartAdd();
+    shopaholicCartAdd.setAjaxRequestCallback((requestData, button) => {
 
-    const obShopaholicCartUpdate = new ShopaholicCartUpdate();
-    obShopaholicCartUpdate.setAjaxRequestCallback((obRequestData, obInput) => {
-      obRequestData.complete = ({ responseJSON }) => {
-        obShopaholicCartUpdate.completeCallback(responseJSON);
-        this.subtotalCount();
+
+      requestData.complete = (data) => {
+        let content = $(`.${this.cartPopupWrapper}`)
+        if (content.hasClass('hidden')) {
+          content.removeClass('hidden')
+          $('body').addClass('overflow-hidden')
+        } else {
+          content.addClass('hidden');
+          $('body').removeClass('overflow-hidden')
+        }
       };
-      return obRequestData;
+
+      return requestData;
     }).init();
   }
 }();
