@@ -1,5 +1,4 @@
 const mix = require('laravel-mix');
-const webpackConfig = require('./webpack.config');
 const jsFileList = [
   'assets/src/js/app',
   'pages/account-credentials/account-credentials',
@@ -36,12 +35,8 @@ let postCssPlugins = [
     require('tailwindcss'),
 ];
 
-
-
-//mix.setResourceRoot('/themes/lovata-tailwind-shopaholic');
 mix.setPublicPath('./');
-mix.webpackConfig(webpackConfig)
-  .copy('node_modules/jquery/dist/jquery.min.js', 'assets/vendor/jquery.min.js');
+mix.copy('node_modules/jquery/dist/jquery.min.js', 'assets/vendor/jquery.min.js');
 
 jsFileList.forEach(fileName => mix.js(`./${fileName}.js`, 'assets/dist/js'));
 
