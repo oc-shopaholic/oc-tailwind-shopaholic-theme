@@ -27,7 +27,7 @@
                 <time class="text-gray-600" datetime="{{ obReview.created_at }}">{{ obReview.created_at|time_diff }}</time>
             </div>
             <div
-                aria-label="{{ 'aria_label_rating_static'|transRaw({
+                aria-label="{{ 'aria_label_rating_static'|_({
                     aria_label_rating_static:obReview.rating
                 }) }}"
                 class="flex flex-row space-x-1">

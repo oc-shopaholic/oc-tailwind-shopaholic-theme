@@ -7,7 +7,7 @@ code = "navigation-main"
 {% if arMenuList is not empty %}
     <nav class="hidden lg:block">
         <ul class="flex flex-wrap space-x-20">
-            {% for arItemMenu in arMenuList if not arItemMenu.viewBag.isHidden %}
+            {% for arItemMenu in arMenuList|filter(arItemMenu => not arItemMenu.viewBag.isHidden) -%}
                 <li>
                     {% set sCode = arItemMenu.code is not empty ? 'data-code='~arItemMenu.code %}
                     {% if arItemMenu.url is not empty %}

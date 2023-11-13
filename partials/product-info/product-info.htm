@@ -22,7 +22,7 @@
             <div aria-hidden="true" class="flex flex-row items-center space-x-1 mr-4 mb-2 md:mb-0">
                 {% partial 'product-rating/product-rating-star' maxRating='5' rating=obProduct.rating unique_id='product' %}
             </div>
-            <span aria-label="{{ 'aria_label_customers_rating'|transRaw({
+            <span aria-label="{{ 'aria_label_customers_rating'|_({
                 aria_label_customers_rating: obProduct.rating,
                 text_customers_total: iReviewCount,
             })}}">
@@ -31,7 +31,7 @@
         </div>
         <div>
             <a href="#ratings" class="underline cursor-pointer mr-2 md:mr-4">
-                {{ 'text_customers_voted'|transRaw({
+                {{ 'text_customers_voted'|_({
                     text_customers_voted_total: iRatingCount,
                 }) }}
             </a>

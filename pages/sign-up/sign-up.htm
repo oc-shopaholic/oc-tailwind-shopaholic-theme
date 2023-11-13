@@ -60,7 +60,7 @@ function onInit()
                 sPartialClasses = 'mt-4 md:mt-3'
                 sId = 'remember_me'
                 sName = 'remember_me'
-                sLabelText = 'text_rules_acceptence'|transRaw({text_rules_acceptence_link_terms_conditions: text_rules_acceptence_link_terms_conditions, text_rules_acceptence_link_privacy_cookie_policy: text_rules_acceptence_link_privacy_cookie_policy}) | raw
+                sLabelText = 'text_rules_acceptence'|_({text_rules_acceptence_link_terms_conditions: text_rules_acceptence_link_terms_conditions, text_rules_acceptence_link_privacy_cookie_policy: text_rules_acceptence_link_privacy_cookie_policy}) | raw
                 bIsRequired = true
             %}
             {% partial 'button/button'
@@ -70,6 +70,6 @@ function onInit()
             %}
         </form>
         {% set text_has_account_link_sign_in = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~( 'sign-in/sign-in'|page )~'">'~('text_has_account_link_sign_in'|_)~'</a>' %}
-        <span class="block text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">{{ 'text_has_account' | transRaw({text_has_account_link_sign_in: text_has_account_link_sign_in}) }}</span>
+        <span class="block text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">{{ 'text_has_account' | _({text_has_account_link_sign_in: text_has_account_link_sign_in}) }}</span>
     </div>
 </div>
