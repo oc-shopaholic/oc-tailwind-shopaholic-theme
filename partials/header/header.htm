@@ -31,7 +31,25 @@
             %}
                 {% partial 'search/search' %}
             {% endpartial %}
+
+            <div class="_off-canvas flex ml-4">
+                <button class="_show text-gray-900 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue" type="button">
+                    language
+                </button>
+                {% partial 'off-canvas/off-canvas'
+                    sPosition = 'right'
+                    sHeading = 'Мана-мана'|_
+                    sCanvasClasses = 'cursor-auto'
+                    sIndentsClass = 'px-4 py-10 md:px-10'
+                    sBackgroundClass = 'language bg-white'
+                    body
+                %}
+                {% partial 'language/language' %}
+                {% endpartial %}
+            </div>
         </div>
+
+
         {% if this.theme.has_buddies %}
             {% if obUser is empty %}
                 <a class="ml-5 sm:ml-8 md:ml-10 text-gray-900 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue" href="{{ 'sign-in/sign-in'|page }}">
