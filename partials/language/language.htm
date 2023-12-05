@@ -1,9 +1,29 @@
-<ul class="">
-    {% for site in sitePicker.sites %}
-        <li class="{{ this.site.code == site.code ? 'active' }}">
-            <a {% if this.site.code != site.code %}href="{{ site.url }}"{% endif %} data-locale="{{ site.locale }}" class="">
-                <span>{{ site.name }}</span>
-            </a>
-        </li>
-    {% endfor %}
-</ul>
+<div class="">
+    <div class="space-y-6">
+        {% partial 'language/language-select'
+        sInputClass='js-language-input'
+        sLabelText='Country'|_
+        sName='Country'
+        sId='language'
+        arOption=sitePicker.sites
+        sKeyForValue='url'
+        bSelected='bSelected'
+        %}
+
+        {% partial 'select/select'
+        sInputClass=''
+        sLabelText='Language'|_
+        sName='Country'
+        sId='language'
+        arOption=sitePicker.sites
+        sKeyForValue='url'
+        bSelected='bSelected'
+        %}
+    </div>
+    {% partial 'button/button'
+        sType = 'submit'
+        sText = 'Submit'|_
+        sPartialClasses = 'w-full md:w-72 mt- p-2 mt-12'
+    %}
+</div>
+

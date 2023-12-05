@@ -1,0 +1,30 @@
+{##}
+
+<div class="{{ sPartialClasses }}">
+    {% if sLabelText %}
+    <label for="{{ sId }}" class="block text-sm font-medium leading-6 mb-1 text-gray-900">{{ sLabelText }}</label>
+    {% endif %}
+    <select
+        id="{{ sId }}"
+        {% if sName %}
+         name="{{ sName }}"
+        {% endif %}
+        class="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6 {{ sInputClass }}"
+        {% if aDataAttr %}
+            {% for attribute, value in aDataAttr %}
+            data-{{ attribute }}="{{ value }}"
+            {% endfor %}
+        {% endif %}
+    >
+        {% for option in arOption %}
+        <option
+                value="{{option[sKeyForValue]}}"
+                {% if this.site.code ==  option.code %}
+                selected
+                {% endif %}
+
+        >{{ option.name }} {{option.code}}</option>
+        {% endfor %}
+    </select>
+</div>
+
