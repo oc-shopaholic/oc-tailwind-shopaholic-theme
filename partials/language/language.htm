@@ -1,29 +1,43 @@
+==
+<?
+function onStart()
+{
+    $obSiteGroupList = $this->sitePicker->sites()->groupBy('group_id');
+    $this['arSiteGroupOptionList'] = $obSiteGroupList->map(function ($obGroupList) {
+        $obGroup = $obGroupList->first()?->group;
+        return [
+            'id'   => $obGroup?->getKey(),
+            'name' => $obGroup?->name,
+        ];
+    })->toArray();
+}
+?>
+==
 <div class="">
+{#    {{ d(arSiteGroupOptionList) }}#}
     <div class="space-y-6">
         {% partial 'language/language-select'
-        sInputClass='js-language-input'
-        sLabelText='Country'|_
-        sName='Country'
-        sId='language'
-        arOption=sitePicker.sites
-        sKeyForValue='url'
-        bSelected='bSelected'
+            sInputClass = 'js-language-input'
+            sLabelText = 'country'|_
+            sName = 'country'
+            sId = 'country'
+            arOptionList = arSiteGroupOptionList
+            sKeyForValue = 'id'
+            sSelectedValue = this.site.group_id
         %}
-
         {% partial 'select/select'
-        sInputClass=''
-        sLabelText='Language'|_
-        sName='Country'
-        sId='language'
-        arOption=sitePicker.sites
-        sKeyForValue='url'
-        bSelected='bSelected'
+            sInputClass = ''
+            sLabelText = 'language'|_
+            sName = 'language'
+            sId = 'language'
+            arOptionList = sitePicker.sites
+            sKeyForValue = 'url'
+            sSelectedValue = this.site.url
         %}
     </div>
     {% partial 'button/button'
         sType = 'submit'
-        sText = 'Submit'|_
+        sText = 'submit'|_
         sPartialClasses = 'w-full md:w-72 mt- p-2 mt-12'
     %}
 </div>
-
