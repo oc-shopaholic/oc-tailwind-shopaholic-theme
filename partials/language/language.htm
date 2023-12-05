@@ -1,1 +1,9 @@
-ololo
+<ul class="">
+    {% for site in sitePicker.sites %}
+        <li class="{{ this.site.code == site.code ? 'active' }}">
+            <a {% if this.site.code != site.code %}href="{{ site.url }}"{% endif %} data-locale="{{ site.locale }}" class="">
+                <span>{{ site.name }}</span>
+            </a>
+        </li>
+    {% endfor %}
+</ul>
