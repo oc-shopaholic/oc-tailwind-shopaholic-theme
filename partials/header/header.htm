@@ -23,14 +23,16 @@
                 </svg>
             </button>
             {% partial 'off-canvas/off-canvas'
-            sPosition = 'right'
-            sHeading = 'Country & Language'|_
-            sCanvasClasses = 'cursor-auto'
-            sIndentsClass = 'px-4 py-10 md:px-10'
-            sBackgroundClass = 'language bg-white'
-            body
+                sPosition = 'right'
+                sHeading = 'country_and_language'|_
+                sCanvasClasses = 'cursor-auto'
+                sIndentsClass = 'px-4 py-10 md:px-10'
+                sBackgroundClass = 'language bg-white'
+                body
             %}
-            {% partial 'language/language' %}
+                <div class="_site_picker">
+                    {% partial 'language/language' %}
+                </div>
             {% endpartial %}
         </div>
         {% endif %}
@@ -42,14 +44,14 @@
                 <span class="sr-only">{{ 'button_page_header_search'|_ }}</span>
             </button>
             {% partial 'off-canvas/off-canvas'
-            sPosition = 'right'
-            sHeading = 'heading_search'|_
-            sCanvasClasses = 'cursor-auto'
-            sIndentsClass = 'px-4 py-10 md:px-10'
-            sBackgroundClass = 'bg-white'
-            body
+                sPosition = 'right'
+                sHeading = 'heading_search'|_
+                sCanvasClasses = 'cursor-auto'
+                sIndentsClass = 'px-4 py-10 md:px-10'
+                sBackgroundClass = 'bg-white'
+                body
             %}
-            {% partial 'search/search' %}
+                {% partial 'search/search' %}
             {% endpartial %}
 
         </div>

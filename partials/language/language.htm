@@ -1,36 +1,33 @@
-==
-<?
-function onStart()
-{
-    $obSiteGroupList = $this->sitePicker->sites()->groupBy('group_id');
-    $this['arSiteGroupOptionList'] = $obSiteGroupList->map(function ($obGroupList) {
-        $obGroup = $obGroupList->first()?->group;
-        return [
-            'id'   => $obGroup?->getKey(),
-            'name' => $obGroup?->name,
-        ];
-    })->toArray();
-}
-?>
-==
+{##}
+
+{% set iActiveSiteGroupId = input('site_group_id', this.site.group_id) %}
+{% set obSiteGroupList = sitePicker.sites().groupBy('group_id') %}
+{% set arGroupOptionList = [] %}
+{% for obGroup in obSiteGroupList %}
+    {% set obFirstSite = obGroup|first %}
+    {% set arGroupOptionList = arGroupOptionList|merge({(loop.index): {id: obFirstSite.group_id, name: obFirstSite.group.name}}) %}
+{% endfor %}
+{% set arSiteOptionList = (obSiteGroupList|length > 1) ? obSiteGroupList[iActiveSiteGroupId] : sitePicker.sites %}
+
 <div class="">
-{#    {{ d(arSiteGroupOptionList) }}#}
     <div class="space-y-6">
-        {% partial 'language/language-select'
-            sInputClass = 'js-language-input'
-            sLabelText = 'country'|_
-            sName = 'country'
-            sId = 'country'
-            arOptionList = arSiteGroupOptionList
-            sKeyForValue = 'id'
-            sSelectedValue = this.site.group_id
-        %}
+        {% if arGroupOptionList|length > 1 %}
+            {% partial 'language/language-select'
+                sInputClass = 'js-language-input'
+                sLabelText = 'country'|_
+                sName = 'site_group_id'
+                sId = 'site_group_id'
+                arOptionList = arGroupOptionList
+                sKeyForValue = 'id'
+                sSelectedValue = iActiveSiteGroupId
+            %}
+        {% endif %}
         {% partial 'select/select'
             sInputClass = ''
             sLabelText = 'language'|_
-            sName = 'language'
-            sId = 'language'
-            arOptionList = sitePicker.sites
+            sName = 'site'
+            sId = 'site'
+            arOptionList = arSiteOptionList
             sKeyForValue = 'url'
             sSelectedValue = this.site.url
         %}

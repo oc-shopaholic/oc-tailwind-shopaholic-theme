@@ -2,10 +2,14 @@
 
 <div class="{{ sPartialClasses }}">
     {% if sLabelText %}
-    <label for="{{ sId }}" class="block text-sm font-medium leading-6 mb-1 text-gray-900">{{ sLabelText }}</label>
+        <label for="{{ sId }}" class="block text-sm font-medium leading-6 mb-1 text-gray-900">{{ sLabelText }}</label>
     {% endif %}
     <select
         id="{{ sId }}"
+        onchange="oc.ajax('onAjax', {
+          data: { site_group_id: event.target.value },
+          update: { 'language/language': '._site_picker' }
+        })"
         {% if sName %}
             name="{{ sName }}"
         {% endif %}
