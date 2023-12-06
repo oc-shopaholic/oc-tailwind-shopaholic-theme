@@ -9,7 +9,7 @@
 {% endfor %}
 {% set arSiteOptionList = (obSiteGroupList|length > 1) ? obSiteGroupList[iActiveSiteGroupId] : sitePicker.sites %}
 
-<div class="">
+<form class="js-language-submit">
     <div class="space-y-6">
         {% if arGroupOptionList|length > 1 %}
             {% partial 'language/language-select'
@@ -25,7 +25,7 @@
         {% partial 'select/select'
             sInputClass = ''
             sLabelText = 'language'|_
-            sName = 'site'
+            sName = 'site-name'
             sId = 'site'
             arOptionList = arSiteOptionList
             sKeyForValue = 'url'
@@ -37,4 +37,4 @@
         sText = 'submit'|_
         sPartialClasses = 'w-full md:w-72 mt- p-2 mt-12'
     %}
-</div>
+</form>

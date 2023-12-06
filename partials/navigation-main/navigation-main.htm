@@ -5,7 +5,7 @@ code = "navigation-main"
 
 {% set arMenuList = MainMenu.menuItems %}
 {% if arMenuList is not empty %}
-    <nav class="hidden lg:block grow">
+    <nav class="hidden lg:block">
         <ul class="flex flex-wrap space-x-20">
             {% for arItemMenu in arMenuList|filter(arItemMenu => not arItemMenu.viewBag.isHidden) -%}
                 {% if not arItemMenu.viewBag.isHidden %}

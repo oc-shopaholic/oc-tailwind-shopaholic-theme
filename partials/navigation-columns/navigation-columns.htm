@@ -18,10 +18,6 @@ code = "navigation-footer"
                     {% endif %}
                     {% set arSubItemMenuList = arItemMenu.items %}
                     {% if arSubItemMenuList is not empty %}
-
-
-                    select
-
                         <ul>
                             {% for arSubItemMenu in arSubItemMenuList|filter(arSubItemMenu => not arSubItemMenu.viewBag.isHidden) -%}
                                 <li class="mt-4 first:mt-0">

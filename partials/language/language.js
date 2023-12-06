@@ -1,35 +1,59 @@
 export default class Language {
-  constructor(app) {
-    this.obNav = app;
-    this.languageInput = null;
-    this.obShow = this.obNav.querySelectorAll("._show");
+  constructor (app) {
+    this.obNav = app
+    this.languageForm = null
+    this.obShow = this.obNav.querySelector('._show')
   }
-  initVariables(){
-    this.languageInput = this.obNav.querySelector(".js-language-input");
+
+  initVariables () {
+    this.languageForm = this.obNav.querySelector('.js-language-submit')
+    this.siteNameInput = this.languageForm.querySelector('[name="site-name"]')
   }
-  show() {
-    this.obShow[0].addEventListener("click", () => {
-      this.initVariables();
-      console.log(1)
-      this.initEvents();
+
+  show () {
+    this.obShow.addEventListener('click', () => {
+      this.initVariables()
+      this.initEvents()
     })
   }
-  initEvents() {
-    console.log(2)
-    this.setRegion();
+
+  initEvents () {
+    this.setRegion()
+    this.setCountry()
   }
-  setRegion() {
-    if(!this.languageInput) return false
-    this.languageInput.addEventListener("change", (e) => {
-      if(window.location.href !== this.languageInput.value) window.location.href = this.languageInput.value
+
+  setCountry () {
+    this.languageInput = this.obNav.querySelector('[name=\'site_group_id\']')
+    if (!this.languageInput) return false
+    this.languageInput.addEventListener('change', (e) => {
+      e.preventDefault()
+      oc.ajax('onAjax', {
+        data: { site_group_id: e.target.value },
+        update: {
+          'language/language': `._site_picker`
+        },
+      }).done(() => {
+        this.initVariables()
+        this.initEvents()
+      })
     })
   }
-  static make(container) {
-    const obContainer = document.getElementsByClassName(`${container}`);
-    Array.from(obContainer).forEach(function(e) {
-      const containerNav = new Language(e);
-      containerNav.show();
-    });
+
+  setRegion () {
+    if (!this.languageForm) return false
+    this.languageForm.addEventListener('submit', (e) => {
+      e.preventDefault()
+      if(window.location.href !== this.languageInput.value) window.location.href = this.languageInput.value;
+      return false
+    })
+  }
+
+  static make (container) {
+    const obContainer = document.getElementsByClassName(`${container}`)
+    Array.from(obContainer).forEach(function (e) {
+      const containerNav = new Language(e)
+      containerNav.show()
+    })
   }
 }
-Language.make('_off-canvas');
+Language.make('_off-canvas')
