@@ -19,7 +19,7 @@ code = "navigation-footer"
                     {% set arSubItemMenuList = arItemMenu.items %}
                     {% if arSubItemMenuList is not empty %}
                         <ul>
-                            {% for arSubItemMenu in arSubItemMenuList  %}
+                            {% for arSubItemMenu in arSubItemMenuList|filter(arSubItemMenu => not arSubItemMenu.viewBag.isHidden)  %}
                                 <li class="mt-4 first:mt-0">
                                     {% set sCode =  arSubItemMenu.code is not empty ? 'data-code='~arSubItemMenu.code %}
                                     {% if arSubItemMenu.url is not empty %}
