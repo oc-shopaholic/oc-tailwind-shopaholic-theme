@@ -25,7 +25,7 @@ function onInit()
 {% if this.theme.main_carousel_active and this.theme.main_carousel is not empty %}
     {% partial 'carousel-main/carousel-main' arCarouselList = this.theme.main_carousel %}
 {% endif %}
-{% if this.theme.latest_news_is_active %}
+{% if this.theme.latest_news_active %}
     {% partial 'news-list-latest/news-list-latest'
         arArticleList = arArticleList
         sSectionHeadingLevel = 2
