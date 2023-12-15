@@ -19,6 +19,7 @@ import '/partials/product-list/product-list';
 /* * Search Input* */
 import '/partials/search/search';
 import '/partials/language/language';
+import '/partials/top-info-block/top-info-block';
 import '/partials/product-card-checkout/product-card-checkout';
 import '/partials/button-wish-list/button-wish-list';
 import '/partials/product-choose/product-choose';
