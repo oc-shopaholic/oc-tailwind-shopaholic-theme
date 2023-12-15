@@ -29,8 +29,11 @@ export default new class AdvancedList {
 
     if(this.obAdvancedListWrapperClass.querySelectorAll('li')[0].dataset.take){
       for(let i = 0; i < this.obAdvancedListWrapperClass.querySelectorAll('li')[0].dataset.take; i++){
-        this.obAdvancedListWrapperClass.querySelectorAll('li')[i].removeAttribute('aria-hidden');
-        this.obAdvancedListWrapperClass.querySelectorAll('li')[i].classList.remove('hidden');
+        const obAdvancedListItem =   this.obAdvancedListWrapperClass.querySelectorAll('li')[i];
+        if(obAdvancedListItem) {
+          this.obAdvancedListWrapperClass.querySelectorAll('li')[i].removeAttribute('aria-hidden');
+          this.obAdvancedListWrapperClass.querySelectorAll('li')[i].classList.remove('hidden');
+        }
       }
     }
   }
