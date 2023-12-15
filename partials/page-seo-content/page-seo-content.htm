@@ -6,9 +6,9 @@
             <img class="w-full" src="{{ this.theme.page_seo_block_image|media }}" alt="{{ this.theme.page_seo_block_image_alt }}" title="{{ this.theme.page_seo_block_image_title }}">
         </div>
     {% endif %}
-    {% if this.theme.page_seo_block_text is not empty %}
-        <div class="prose max-w-none text-gray-600 text-sm lg:text-lg lg:font-medium">
-            {{ this.theme.page_seo_block_text|raw }}
+    {% if this.theme.page_seo_block_content is not empty %}
+        <div class="prose max-w-none text-gray-600 text-sm lg:text-lg">
+            {{ this.theme.page_seo_block_content|raw }}
         </div>
     {% else %}
         <span class="block text-gray-400 text-center mb-4 md:mb-10">{{ 'text_no_page_seo_content'|_ }}</span>
