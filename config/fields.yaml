@@ -274,15 +274,13 @@ tabs:
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
         sign_up_terms_link:
             label: 'theme.lovata-tailwind-shopaholic::lang.field.sign_up_terms_link'
-            type: text
-            placeholder: '/page-link'
+            type: pagefinder
             span: left
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
             translatable: true
         sign_up_policy_link:
             label: 'theme.lovata-tailwind-shopaholic::lang.field.sign_up_policy_link'
-            type: text
-            placeholder: '/page-link'
+            type: pagefinder
             span: right
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
             translatable: true
@@ -444,4 +442,3 @@ tabs:
                             action: show
                             field: dropdown
                             condition: value[richeditor]
-        
