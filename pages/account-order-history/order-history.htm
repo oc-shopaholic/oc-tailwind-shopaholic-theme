@@ -1,4 +1,4 @@
-url = "/order-history"
+url = "/account/order-history"
 layout = "main"
 title = "Order history"
 is_hidden = 0
@@ -35,7 +35,7 @@ last_button_number = 1
 function onInit()
 {
     if(input('delete_all_orders')) {
-        \Lovata\OrdersShopaholic\Models\Order::where('user_id', $obUser->id)->delete();    
+        \Lovata\OrdersShopaholic\Models\Order::where('user_id', $obUser->id)->delete();
     }
 }
 
