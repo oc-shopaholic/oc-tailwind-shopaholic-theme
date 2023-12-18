@@ -54,8 +54,8 @@ function onInit()
                 type = 'password'
                 sPartialClasses = 'mt-4'
             %}
-            {% set text_rules_acceptence_link_terms_conditions = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~( 'terms-conditions'|staticPage )~'">'~('text_rules_acceptence_link_terms_conditions'|_)|raw ~'</a>' %}
-            {% set text_rules_acceptence_link_privacy_cookie_policy = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~( 'privacy-cookie-policy'|staticPage )~'">'~('text_rules_acceptence_link_privacy_cookie_policy'|_)~'</a>' %}
+            {% set text_rules_acceptence_link_terms_conditions = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~ this.theme.sign_up_terms_link|link ~'">'~('text_rules_acceptence_link_terms_conditions'|_)|raw ~'</a>' %}
+            {% set text_rules_acceptence_link_privacy_cookie_policy = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~ this.theme.sign_up_policy_link|link ~'">'~('text_rules_acceptence_link_privacy_cookie_policy'|_)~'</a>' %}
             {% partial 'input-checkbox/input-checkbox'
                 sPartialClasses = 'mt-4 md:mt-3'
                 sId = 'remember_me'
