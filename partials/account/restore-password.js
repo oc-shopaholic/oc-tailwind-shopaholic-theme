@@ -40,13 +40,12 @@ export default new class RestorePassword {
     this.obButton.setAttribute('disabled', 'disabled');
     const self = this;
     request.sendForm(obForm, 'RestorePassword::onAjax', {
-      success: (res) => {
-        const obData = res;
-        if (obData.status === false) {
-          // TODO: Replace alert.
-          alert(obData.message);
-        }
+      complete: function(data, responseCode, xhr) {
         self.obButton.removeAttribute('disabled');
+      },
+      error: function(data, responseCode, xhr) {
+        // TODO: Replace alert.
+        alert(data.message);
       },
     });
   }
