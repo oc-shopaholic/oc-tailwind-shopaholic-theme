@@ -1,13 +1,21 @@
-import request from 'oc-request';
 import Choices from 'choices.js';
 
 export default new class CustomerReviews {
   constructor() {
-    this.obShow = document.getElementsByClassName('_review-list-container')[0].querySelectorAll('._show')[0];
+    this.bShow = document.getElementsByClassName('_review-list-container')[0].querySelectorAll('._show')[0];
     this.obLoadMore = null;
-    this.obListWrapper = '_review-list';
-    
+    this.sListWrapper = '_review-list';
+
     this.init();
+  }
+
+  init(){
+    if(this.bShow){
+      this.bShow.addEventListener('click', ()=>{
+        this.initChoices();
+        this.initLoadMore();
+      })
+    }
   }
 
   initChoices(){
@@ -47,12 +55,16 @@ export default new class CustomerReviews {
 
   initLoadMore(){
     this.obLoadMore = document.getElementsByClassName('_show-more-reviews')[0];
-    if(!this.obLoadMore) return;
+
+    if(!this.obLoadMore) {
+      return;
+    }
+
     this.obLoadMore.addEventListener("click", () => {
       const iPage = parseInt(this.obLoadMore.dataset.page, 10);
       const iNextPage = iPage + 1;
       const iMaxPage = parseInt(this.obLoadMore.dataset.maxPage, 10);
-      
+
       this.sendAjax(iNextPage);
 
       if (iNextPage >= iMaxPage) {
@@ -63,19 +75,10 @@ export default new class CustomerReviews {
     });
   }
 
-  init(){
-    if(this.obShow){
-      this.obShow.addEventListener('click', ()=>{
-        this.initChoices();
-        this.initLoadMore();
-      })
-    }
-  }
-
   sendAjax(iNextPage) {
-    request.sendData('ProductData::onAjaxRequest', {
+    oc.ajax('onAjax', {
       data: { page: iNextPage },
-      update: {'review-list/review-list-ajax': `@.${this.obListWrapper}`}
+      update: { 'review-list/review-list-ajax': `@.${this.sListWrapper}` }
     });
   }
 }();

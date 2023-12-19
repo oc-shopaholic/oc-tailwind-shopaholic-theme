@@ -48,60 +48,58 @@ last_button_limit = 3
 last_button_number = 1
 ==
 <?php
+function onInit()
+{
+    $this['obProduct'] = $this->ProductPage->get();
+    $obReviewList  = $this['obProduct']?->review->active()->sort();
+    $this['iPage'] = $this->Pagination->getPageFromRequest();
+    $this['iMaxPage'] = $this->Pagination->getMaxPage($obReviewList?->count());
+    $this['arReviewList'] = $obReviewList?->page($this['iPage'], $this->Pagination->getCountPerPage());
+}
+
 function onStart()
 {
-    //Get product and first offer item
-    $obProductItem = $this->ProductPage->get();
-
-    $obOfferList = $obProductItem->offer;
-
-    if (empty($obProductItem)) {
+    if (empty($this['obProduct'])) {
         return;
     }
 
-    $arBreadcrumbs = [];
-    if (!empty($obProductItem)) {
-        $arBreadcrumbs[] = [
-            'name'   => $obProductItem->name,
-            'url'    => $obProductItem->getPageUrl(),
+    $this['obRelatedProductList'] = $this['obProduct']->related;
+    $this['obOfferList'] = $this['obProduct']->offer;
+    $this['obPropertyList'] = $this['obProduct']->property;
+    $this['arBreadcrumbs'] = $this->getBreadcrumbs();
+    $this['path_page_js'] = mix('assets/dist/js/product-item.js', 'themes/lovata-tailwind-shopaholic');
+}
+
+function getBreadcrumbs(): array
+{
+    $arBreadcrumbs = [
+        [
+            'name'   => $this['obProduct']->name,
             'active' => true,
-        ];
-    }
+        ]
+    ];
 
-    $obCurrentCategory = !empty($obProductItem) ? $obProductItem->category : $obActiveCategoryItem;
+    $obCategory = $this['obProduct']->category;
 
-    while (!empty($obCurrentCategory) && $obCurrentCategory->isNotEmpty()) {
+    while (!empty($obCategory) && $obCategory->isNotEmpty()) {
         $arBreadcrumbs[] = [
-            'name'   => $obCurrentCategory->name,
-            'url' => \Cms\Classes\Page::url('catalog/catalog',
-            ['catalog' => false])
+            'name' => $obCategory->name,
+            'url'  => $obCategory->getPageUrl(),
         ];
 
-        $obCurrentCategory = $obCurrentCategory->parent;
+        $obCategory = $obCategory->parent;
     }
 
     $arBreadcrumbs[] = [
         'name' => $this->page->title,
-        'url' => $this->pageUrl($this->page->baseFileName, false),
+        'url'  => $this->pageUrl($this->page->baseFileName, false),
     ];
 
-    $this['obRelatedProductList'] = $obProductItem->related;
-    $this['obProduct'] = $obProductItem;
-    $this['obOfferList'] = $obOfferList;
-    $this['arBreadcrumbs'] = array_reverse($arBreadcrumbs);
-}
-
-function onInit()
-{
-    $this['path_page_js'] = mix('assets/dist/js/product-item.js', 'themes/lovata-tailwind-shopaholic');
+    return array_reverse($arBreadcrumbs);
 }
 ?>
 ==
 {##}
-
-{% set obReviewList = obProduct.review.active().sort() %}
-{% set obProduct = ProductPage.get() %}
-{% set obPropertyList = obProduct.property %}
 
 {% partial 'breadcrumbs/breadcrumbs' %}
 
@@ -192,12 +190,9 @@ function onInit()
         <div class="flex mt-7 flex-col xl:mt-0 xl:flex-row xl:pl-14">
             {% set obPropertyList = obProduct.property %}
             {% set iTotalQuantity = obOfferList.getTotalQuantity() %}
-
             <div class="flex flex-col mb-12">
                 {% if obPropertyList.getByCode('Color').property_value.first().value or obRelatedProductList|length > 0 %}
-                    {% partial 'product-choose/product-choose'
-                        obProduct=obProduct
-                    %}
+                    {% partial 'product-choose/product-choose' %}
                 {% endif %}
                 {% if iTotalQuantity > 0 %}
                     <div class="flex flex-row items-center mt-7 md:mt-10">
@@ -238,16 +233,12 @@ function onInit()
     <div id="reviews" class="w-full flex flex-col">
         <h2 class="text-gray-900 text-2xl font-medium uppercase mb-5">{{ 'heading_customer_reviews'|_ }}</h2>
         {% partial 'review-list/review-list'
-            obReview = obReviewList
             sPartialClass = '_review-list-container'
             sListClass = '_review-list-update'
         %}
-       {% partial 'review-add/review-add'
-            obProduct = obProduct
-       %}
+       {% partial 'review-add/review-add' %}
     </div>
     {% partial 'product-rating/product-rating'
-        obProduct=obProduct
         sPartialClass = 'mt-6 xl:mt-14 xl:pl-11 2xl:pl-14'
     %}
 </div>
@@ -263,6 +254,7 @@ function onInit()
 {% endif %}
 
 {% if this.theme.has_related_products %}
+    {# TODO: rename sSectionHeadingLevel var to iSectionHeadingLevel #}
     {% partial 'product-list-small/product-list-small'
         sProductListSmallType = sProductListSmallTypeRelatedProducts
         obProduct = obProduct
