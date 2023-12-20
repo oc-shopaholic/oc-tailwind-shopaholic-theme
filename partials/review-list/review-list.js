@@ -19,6 +19,7 @@ export default new class CustomerReviews {
   }
 
   initChoices(){
+    if(!document.querySelector('._sorting-choice')) return false;
     const choices = new Choices('._sorting-choice', {
       searchEnabled: false,
       searchChoices: false,

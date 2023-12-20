@@ -56,14 +56,17 @@
                     sPartialClasses = '_write-review w-full md:w-72 mt-10 p-2'
                     bGhost = true
                 %}
-                <ul class="_review-list">
-                    {% partial 'review-list/review-list-ajax'
+                <div class="mt-6 md:mt-10">
+                    <ul class="_review-list">
+                        {% partial 'review-list/review-list-ajax'
                         sPartialClass = 'mt-10'
                         sReviewsCount = true
                         sSortingPanel = true
                         sListClass = '_review-list'
-                    %}
-                </ul>
+                        %}
+                    </ul>
+                </div>
+
                 {% partial 'button/button'
                     sText = 'button_read_mode'|_
                     sPartialClasses = '_show-more-reviews w-full md:w-72 mt-3 p-2'

@@ -68,7 +68,8 @@ export default new class productReviewRating {
   windowHover() {
     const app = this;
     window.addEventListener('mouseover', (elem) => {
-      if (!document.getElementsByClassName('_container-star-review')[0].contains(elem.target)) {
+      const containerStarReview = document.querySelector('._container-star-review')
+      if (containerStarReview !== null && !document.getElementsByClassName('_container-star-review')[0].contains(elem.target)) {
         if (app.nActive) {
           app.starState(false, 5);
           app.starState(true, app.nActive);

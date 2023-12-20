@@ -229,7 +229,7 @@ function getBreadcrumbs(): array
         </div>
     </div>
 </div>
-<div class="grid grid-cols-1 xl:mt-10 xl:justify-items-center 2xl:justify-items-start xl:grid-cols-2">
+<div class="grid grid-cols-1 xl:mt-10 xl:justify-items-center 2xl:justify-items-start xl:grid-cols-2{% if this.theme.has_viewed_products == false %} mb-10{% endif %}">
     <div id="reviews" class="w-full flex flex-col">
         <h2 class="text-gray-900 text-2xl font-medium uppercase mb-5">{{ 'heading_customer_reviews'|_ }}</h2>
         {% partial 'review-list/review-list'
