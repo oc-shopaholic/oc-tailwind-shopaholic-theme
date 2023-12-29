@@ -2,7 +2,7 @@ export default new class Tags{
     constructor(){
         this.obTags = document.getElementsByClassName('_tags');
         this.obTagsContainer = this.obTags[0].querySelectorAll('._tags-container')[0];
-        this.obFilterDetails = document.getElementsByClassName('_filter-details')[0];
+        this.obFilterDetails = document.getElementsByClassName('_filter-details');
         this.obResetAll = this.obTags[0].querySelectorAll('._reset-all-tags')[0];
         this.obFilter = document.getElementsByClassName('_filter')[0];
         this.obFilterButton = this.obFilter.querySelectorAll('._show')[0];
@@ -49,10 +49,9 @@ export default new class Tags{
             this.obTags = tag;
             this.obTagsContainer = tag.querySelectorAll('._tags-container')[0];
             this.obTagsContainer.innerHTML = '';
-
             for(let i = 0; i < this.nAmountProperties; i++){
                 for(let j = 0; j < this.obFilterDetails.length; j++){
-                    if(this.obFilterProperties[i] && (this.obFilterProperties[i].id === '2' || this.obFilterProperties[i].id === '9') && this.obFilterDetails[j].id === this.obFilterProperties[i].id){
+                    if(this.obFilterProperties[i]  && this.obFilterDetails[j].id === this.obFilterProperties[i].id){
 
                         let id = this.obFilterDetails[j].id;
                         let section = document.getElementById(id).querySelectorAll('summary')[0].innerText.trim();
