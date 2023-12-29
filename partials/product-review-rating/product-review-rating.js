@@ -37,16 +37,10 @@ export default new class productReviewRating {
     });
   }
 
-  starState(state, count) {
-    if (state) {
-      for (let i = 0; count > i; i++) {
-        this.obContainerStarReview[i].querySelector('path').style.fill = this.sActiveStar;
+  starState(count) {
+      for (let i = 0; i <  this.obContainerStarReview.length; i++) {
+        this.obContainerStarReview[i].querySelector('path').style.fill = this.obContainerStarReview[i].dataset.rating > count ?  this.sDefaultStar : this.sActiveStar;
       }
-    } else {
-      for (let i = 0; count > i; i++) {
-        this.obContainerStarReview[i].querySelector('path').style.fill = this.sDefaultStar;
-      }
-    }
   }
 
   starSelect() {
@@ -54,12 +48,7 @@ export default new class productReviewRating {
     for (let star of this.obContainerStarReview) {
       star.addEventListener('click', (elem) => {
         let active = elem.target.closest('label').dataset.rating;
-        if (active < app.nActive) {
-          app.starState(false, app.nActive);
-          app.starState(true, active);
-        } else {
-          app.starState(true, active);
-        }
+        app.starState(active);
         app.nActive = active;
       });
     }
@@ -70,12 +59,7 @@ export default new class productReviewRating {
     window.addEventListener('mouseover', (elem) => {
       const containerStarReview = document.querySelector('._container-star-review')
       if (containerStarReview !== null && !document.getElementsByClassName('_container-star-review')[0].contains(elem.target)) {
-        if (app.nActive) {
-          app.starState(false, 5);
-          app.starState(true, app.nActive);
-        } else {
-          app.starState(false, 5);
-        }
+        app.starState(app.nActive || 5);
       }
     })
   }
@@ -85,7 +69,7 @@ export default new class productReviewRating {
     for (let star of this.obContainerStarReview) {
       star.addEventListener('mouseover', (elem) => {
         let active = elem.target.closest('label').dataset.rating;
-        app.starState(true, active);
+        app.starState(active);
       });
     }
   }
@@ -121,7 +105,7 @@ export default new class productReviewRating {
       this.obShow.addEventListener('click', () => {
         setTimeout(() => {
           this.obContainerStarReview = document.querySelectorAll('._container-star-review label');
-          this.starState(true, 5);
+          this.starState(5);
           this.nActive = 5;
           this.initEvents();
         }, 10)
