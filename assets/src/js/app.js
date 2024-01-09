@@ -14,11 +14,11 @@ import '/partials/input-quantity/input-quantity';
 import '/partials/off-canvas/off-canvas';
 /* * Advanced list * */
 import '/partials/advanced-list/advanced-list';
-/* * Product List * */
+/* * Product List * */``
 import '/partials/product-list/product-list';
 /* * Search Input* */
 import '/partials/search/search';
-import '/partials/language/language';
+import '/partials/region/region';
 import '/partials/top-info-block/top-info-block';
 import '/partials/product-card-checkout/product-card-checkout';
 import '/partials/button-wish-list/button-wish-list';

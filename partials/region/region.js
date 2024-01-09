@@ -1,4 +1,4 @@
-export default class Language {
+export default class Region {
   constructor (app) {
     this.obNav = app
     this.languageForm = null
@@ -30,7 +30,7 @@ export default class Language {
       oc.ajax('onAjax', {
         data: { site_group_id: e.target.value },
         update: {
-          'language/language': `._site_picker`
+          'region/region': `._site_picker`
         },
       }).done(() => {
         this.initVariables()
@@ -51,9 +51,9 @@ export default class Language {
   static make (container) {
     const obContainer = document.getElementsByClassName(`${container}`)
     Array.from(obContainer).forEach(function (e) {
-      const containerNav = new Language(e)
+      const containerNav = new Region(e)
       containerNav.show()
     })
   }
 }
-Language.make('_off-canvas')
+Region.make('_off-canvas')
