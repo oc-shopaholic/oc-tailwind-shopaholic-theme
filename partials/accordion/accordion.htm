@@ -9,26 +9,28 @@
 {% set obPropertyList = obProduct.property %}
 
 <section class="mx-auto mt-4 mb-10 {{sPartialClasses}}">
-    {% for obItem in obContent %}
-        <details class="border-t border-gray-200 last:border-b">
-            <summary class="font-medium text-blue-800 md:hover:bg-gray-100 text-sm md:text-xl focus-visible:outline-blue py-3 md:py-4">
+    <div class="max-w-[1064px] mx-auto">
+        {% for obItem in obContent %}
+        <details class="js-details border-t border-gray-200 last:border-b">
+            <summary class="js-accordion-summary font-medium text-blue-800 md:hover:bg-gray-100 text-sm md:text-xl focus-visible:outline-blue py-3 md:py-4">
                 {% if markup %}
-                    {{ obItem.question|raw }}
+                {{ obItem.question|raw }}
                 {% else %}
-                    {{ obItem.title }}
+                {{ obItem.title }}
                 {% endif %}
             </summary>
             {% if obItem.dropdown != 'product_detail' %}
-                {% set prose = 'prose max-w-none' %}
+            {% set prose = 'prose max-w-none' %}
             {% else %}
-                {% set prose = 'w-max' %}
+            {% set prose = 'w-max' %}
             {% endif %}
-            <div class="mb-5 md:mt-5 text-sm md:text-base text-gray-600 {{prose}}">
+            <div class="pb-5 md:pt-5 text-sm md:text-base text-gray-600 js-accordion-content {{prose}}">
                 {% if markup %}
-                    {{ obItem.answer|raw }}
+                {{ obItem.answer|raw }}
                 {% endif %}
             </div>
         </details>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </section>
 {#TODO: Add responsive padding to details#}
