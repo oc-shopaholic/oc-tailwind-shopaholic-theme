@@ -1,114 +1,145 @@
-export default new class InputQuantity {
-  constructor() {
-    this.initialization();
+export default class InputQuantity {
+  constructor(app) {
+    this.obCounter = app;
+    this.obMinus = this.obCounter.querySelectorAll("._decrement");
+    this.obPlus = this.obCounter.querySelectorAll("._increment");
+    this.obCount = this.obCounter.querySelectorAll("._count");
+    this.sQuantityCount = this.obCount[0].getAttribute('value');
+  
+    this.obEvents = [];
   }
 
-  initialization() {
-    $("._counter").each(function () {
-      let $counter = $(this);
-      let $minus = $counter.find("._decrement");
-      let $plus = $counter.find("._increment");
-      let $count = $counter.find("._count");
-      let sQuantityCount = $count.attr('value');
+  stateButton(button, state) {
+    if(state){
+      button.setAttribute('disabled', '');
+    } else {
+      button.removeAttribute('disabled');
+    }
+  }
 
-      (function () {
-        counterInitialization();
-      })()
+  getInput() {
+    return this.obCount[0];
+  }
 
-      $count.on("input", (ev) => {
-        if(isMin()){
-          setValue(getMin());
-          sQuantityCount = getMin()
-        }else if(isMax()){
-          setValue(getMax());
-          sQuantityCount = getMax()
-        }else {
-          setValue($(ev.target).val());
-          sQuantityCount = $(ev.target).val()
-        }
+  getValue() {
+    return this.getInput().value;
+  }
 
-        counterInitialization();
-      });
+  setValue(value) {
+    this.getInput().setAttribute('value', value);
+    this.getInput().value = value;
+  }
 
-      function getInput() {
-        return $count
+  getMax() {
+    return this.getInput().getAttribute('max');
+  }
+
+  getMin() {
+    return this.getInput().getAttribute('min');
+  }
+
+  isMin() {
+    return Number(this.getValue()) <= Number(this.getMin());
+  }
+
+  isMax() {
+    return Number(this.getValue()) >= Number(this.getMax());
+  }
+
+  counterInitialization() {
+    if (!this.isMin()) {
+      this.stateButton(this.obMinus[0], false);
+    }
+
+    if (this.isMin()) {
+      this.stateButton(this.obMinus[0], true);
+    }
+
+    if (!this.isMax()) {
+      this.stateButton(this.obPlus[0], false);
+    }
+
+    if (this.isMax()) {
+      this.stateButton(this.obPlus[0], true);
+    }
+  }
+
+  addEvents(){
+    const app = this;
+
+    this.obEvents[0] = (function(ev) {
+      if(app.isMin()){
+        app.setValue(app.getMin());
+        app.sQuantityCount = app.getMin()
+      }else if(app.isMax()){
+        app.setValue(app.getMax());
+        app.sQuantityCount = app.getMax()
+      }else {
+        app.setValue($(ev.target).val());
+        app.sQuantityCount = $(ev.target).val()
       }
 
-      function getValue() {
-        return getInput().val()
+      app.counterInitialization(); 
+    });
+
+    this.obEvents[1] = (function(e) {
+      if (!app.isMin()) {
+        app.sQuantityCount--;
+        app.setValue(app.sQuantityCount);
+        app.stateButton(app.obMinus[0], false);
       }
 
-      function setValue(value) {
-        getInput().attr('value', value);
-        getInput().val(value);
+      if (app.isMin()) {
+        app.stateButton(app.obMinus[0], true);
       }
 
-      function getMax() {
-        return getInput().attr('max')
+      if (!app.isMax()) {
+        app.stateButton(app.obPlus[0], false);
       }
 
-      function getMin() {
-        return getInput().attr('min')
+      app.obCount[0].dispatchEvent(
+        new InputEvent('input', {
+          bubbles: true,
+          cancelable: true,
+      }));
+    });
+
+    this.obEvents[2] = (function(e) {
+      if (!app.isMax()) {
+        app.sQuantityCount++;
+        app.setValue(app.sQuantityCount);
+        app.stateButton(app.obPlus[0], false);
+      }
+      if (app.isMax()) {
+        app.stateButton(app.obPlus[0], true);
+      }
+      if (!app.isMin()) {
+        app.stateButton(app.obMinus[0], false);
       }
 
-      function isMin() {
-        return Number(getValue()) <= Number(getMin())
-      }
+      app.obCount[0].dispatchEvent(
+        new InputEvent('input', {
+          bubbles: true,
+          cancelable: true,
+      }));
+    });
 
-      function isMax() {
-        return Number(getValue()) >= Number(getMax())
-      }
+    this.obCount[0].addEventListener('input', this.obEvents[0]);
+    this.obMinus[0].addEventListener('click', this.obEvents[1]);
+    this.obPlus[0].addEventListener('click', this.obEvents[2]);
+  }
 
-      function stateButton(button, state) {
-        button.prop('disabled', state);
-      }
+  init() {
+    this.counterInitialization();
+    this.addEvents();
+  }
 
-      function counterInitialization() {
-        if (!isMin()) {
-          stateButton($minus, false);
-        }
-        if (isMin()) {
-          stateButton($minus, true);
-        }
-
-        if (!isMax()) {
-          stateButton($plus, false);
-        }
-
-        if (isMax()) {
-          stateButton($plus, true);
-        }
-      }
-
-      $minus.on("click", () => {
-        if (!isMin()) {
-          sQuantityCount--;
-          setValue(sQuantityCount);
-          stateButton($minus, false);
-        }
-
-        if (isMin()) {
-          stateButton($minus, true);
-        }
-
-        if (!isMax()) {
-          stateButton($plus, false);
-        }
-      });
-
-      $plus.on("click", () => {
-        if (!isMax()) {
-          sQuantityCount++;
-          setValue(sQuantityCount);
-          stateButton($plus, false);
-        }
-        if (isMax()) {
-          stateButton($plus, true);
-        }
-        if (!isMin()) {
-          stateButton($minus, false);
-        }
-      })
+  static make(container) {
+    const obContainer = document.getElementsByClassName(`${container}`);
+    Array.from(obContainer).forEach(function(e) {
+      const containerNav = new InputQuantity(e);
+      containerNav.init();
     });
   }
 }
+

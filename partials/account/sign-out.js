@@ -1,3 +1,5 @@
+import request from 'oc-request';
+
 export default new class SignOut {
     constructor() {
       this.sButtonAccountChangePasswordClass = '_sign-out';
@@ -9,7 +11,7 @@ export default new class SignOut {
      * @description Init handler.
      */
     initHandler() {
-      $(document).on('click', `.${this.sButtonAccountChangePasswordClass}`, (obEvent) => {
+      document.getElementsByClassName(this.sButtonAccountChangePasswordClass)[0].addEventListener('click', (obEvent) => {
         // TODO: Understand why we use setTimeout ()
         setTimeout(() => {
           this.sendRequest(obEvent);
@@ -23,7 +25,7 @@ export default new class SignOut {
      */
     sendRequest(obEvent) {
       const self = this;
-      $.request('Logout::onAjax', {
+      request.sendData('Logout::onAjax', {
         complete: (obResponse) => {
           location.href = location.origin
         },

@@ -29,33 +29,33 @@ function onInit()
     <span class="text-gray-900 text-lg md:text-xl uppercase md:normal-case font-medium">{{ 'text_continue_without_sign_in'|_ }}</span>
     {% partial 'button/button'
         sText = 'button_checkout_guest'|_
-        sHref = 'checkout/checkout'|page
-        sPartialClasses = 'w-full md:w-auto mt-4 text-center'
+        sHref = 'checkout'|page
+        bGhost = true
+        sPartialClasses = 'w-full md:w-auto mt-4'
     %}
-    {% set text_checkout_link_sign_in = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline" href="'~( 'sign-up/sign-up'|page )~'">'~('text_checkout_link_sign_in'|_)~'</a>' %}
+    {% set text_checkout_link_sign_in = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline" href="'~( 'sign-up'|page )~'">'~('text_checkout_link_sign_in'|_)~'</a>' %}
     <span class="inline-block mt-2 md:mt-4 text-gray-600">{{ 'text_checkout' | transRaw({text_checkout_link_sign_in: text_checkout_link_sign_in}) }}</span>
+    <h1 class="font-medium uppercase text-xl md:text-3xl mt-8 mb-4">{{ 'page_heading_sign_in'|_ }}</h1>
     <div class="max-w-xs">
-        <h1 class="font-medium uppercase text-xl md:text-3xl mt-8 mb-4">{{ 'page_heading_sign_in'|_ }}</h1>
         <form class="_required">
             {% partial 'input/input'
                 sId = 'form-email'
                 sLabelText = 'input_email'|_
-                name = 'email'
+                name = 'mail'
+                id = 'mail'
                 required = 'required'
-                id = 'email'
-                type = 'email'
             %}
             {% partial 'input/input'
                 sId = 'form-password'
                 sLabelText = 'input_password'|_
                 name = 'password'
+                id ='password'
                 required = 'required'
                 type = 'password'
                 sPartialClasses = 'mt-4'
-                id = 'password'
             %}
             <div class="mt-4 text-right">
-                <a href="{{ 'password-restore/password-restore'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">{{ 'link_password_restore'|_ }}</a>
+                <a href="{{ 'password-restore'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">{{ 'link_password_restore'|_ }}</a>
             </div>
             {% partial 'input-checkbox/input-checkbox'
                 sPartialClasses = 'mt-4 md:mt-3 flex items-center'
@@ -64,9 +64,9 @@ function onInit()
                 sLabelText = 'input_remember_me'|_
             %}
             {% partial 'button/button'
-                sText = 'button_sign_in'|_
+                sText = 'button_sign_in_checkout'|_
                 type = 'submit'
-                sPartialClasses = '_button-sign-in w-full mt-8 md:mt-6'
+                sPartialClasses = 'w-full mt-8 md:mt-6'
             %}
         </form>
         {% set text_no_account_link_sign_up = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~( 'sign-up/sign-up'|page )~'">'~('text_no_account_link_sign_up'|_)~'</a>' %}

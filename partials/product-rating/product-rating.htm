@@ -1,9 +1,11 @@
 {##}
 
-<section class="{{sPartialClass}}" >
+<section id="ratings" class="{{sPartialClass}}">
     {% set iReviewCount = obProduct.review.active().count() %}
-    <h2 class="text-gray-900 text-lg md:text-2xl font-medium uppercase">{{ 'heading_customers_ratings'|_ }}</h2>
-    <div class="flex flex-row items-center space-x-4 mt-4 md:mt-5" aria-label="{{ 'aria_label_customers_rating'|transRaw({
+    {% if sHeaderHidden != true %}
+        <h2 class="text-gray-900 text-lg md:text-2xl font-medium uppercase">{{ 'heading_customers_ratings'|_ }}</h2>
+    {% endif %}
+    <div class="flex flex-row items-center space-x-4 mt-4 md:mt-5" aria-label="{{ 'aria_label_customers_rating'|_({
         aria_label_customers_rating: obProduct.rating,
         text_customers_total: iReviewCount,
     })}}">
@@ -14,7 +16,7 @@
             {% partial 'product-rating/product-rating-star' maxRating='5' rating=obProduct.rating unique_id='product' %}
         </div>
         <span aria-hidden="true" class="text-gray-600 text-sm md:text-base">
-            ({{ 'text_customers_voted'|transRaw({
+            ({{ 'text_customers_voted'|_({
                 text_customers_voted_total: iReviewCount,
             }) }})
         </span>
@@ -22,10 +24,9 @@
     <ul class="flex flex-col md:space-y-2 md:space-y mt-4">
         {% for i in 5..1 %}
             {% set iCount = obProduct.getRatingCount(i) %}
-            {% set customersVotedTotal = ((iCount * 100) / iReviewCount) * 1.75 %}
-            {% set votedTotal = (iCount * 100) / iReviewCount %}
+            {% set votedTotal = obProduct.getRatingPercent(i) %}
 
-            <li class="flex items-center space-x-4" aria-label="{{ 'aria_label_customers_rating_all'|transRaw({
+            <li class="flex items-center space-x-4" aria-label="{{ 'aria_label_customers_rating_all'|_({
                 aria_label_customers_rating_all: i,
                 text_customers_total: votedTotal | round ~ '%',
                 text_customers_count: iCount

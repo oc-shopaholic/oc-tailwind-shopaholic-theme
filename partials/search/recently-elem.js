@@ -1,43 +1,58 @@
 export default class RecentlyElem {
     constructor(app) {
-        this.$vNav = app;
-        this.$vClear = this.$vNav.find('._clear-recently');
-        this.$vText = this.$vNav.find('._recently-text');
+        this.obNav = app;
+        this.obClear = this.obNav.querySelectorAll('._clear-recently');
+        this.obText = this.obNav.querySelectorAll('._recently-text');
 
-        this.vHeader = $("._recently-container ._recently-header");
-        this.vInput = $("._shopaholic-search-input");
-        this.vClearAll = $("._clear-recently-all");
+        this.obHeader = document.querySelectorAll('._recently-container ._recently-header');
+        this.obInput = document.getElementsByClassName('_shopaholic-search-input');
+        this.obClearAll = document.getElementsByClassName('_clear-recently-all');
     }
 
     clear() {
-        this.$vClear.on("click", () => {
+        this.obClear[0].addEventListener("click", (event) => {
+            event.stopPropagation();
             let history = JSON.parse(localStorage.searchHistory);
             history = history.filter((item) => {
-                return item !== this.$vText.text()
+                return item !== this.obText[0].innerText;
             })
             if (!history.length) {
-                this.vHeader.css('display', 'none');
+                this.obHeader[0].style.display = 'none';
             } else if (history.length <= 1) {
-                this.vClearAll.css('display', 'none');
+                this.obClearAll[0].style.display = 'none';
             }
-            let finalHistory = JSON.stringify(history);
+            const finalHistory = JSON.stringify(history);
             localStorage.searchHistory = finalHistory;
-            this.$vNav.remove();
+            this.obNav.remove();
         })
     }
 
     trigger() {
-        this.$vNav.on("click", () => {
-            this.vInput.val(this.$vText.text()).trigger('input');
+        this.obNav.addEventListener("click", () => {
+            this.obInput[0].value = (this.obText[0].innerText);
+            this.obInput[0].dispatchEvent(
+            new InputEvent('input', {
+                bubbles: true,
+                cancelable: true,
+            }));
         })
     }
 
     behaviorEmulation() {
-        this.$vNav.on('keypress', function (e) {
+        const app = this;
+        this.obNav.addEventListener('keypress', function (e) {
             if (e.which === 13 && e.target.classList[0] === '_recently') {
-                this.$vNav.trigger('click');
+                app.obNav.dispatchEvent(
+                new Event('click', {
+                    bubbles: true,
+                    cancelable: true,
+                }));
             } else if (e.which === 13 && e.target.classList[0] === '_clear-recently') {
-                this.$vClear.trigger('click');
+                app.obClear[0].dispatchEvent(
+                new Event('click', {
+                    bubbles: true,
+                    cancelable: true,
+                }));;
             }
         });
     }
@@ -49,8 +64,9 @@ export default class RecentlyElem {
     }
 
     static make(container) {
-        $(container).each(function (e) {
-            const containerNav = new RecentlyElem($(this));
+        const obContainer = document.getElementsByClassName(`${container}`);
+        Array.from(obContainer).forEach(function (e) {
+            const containerNav = new RecentlyElem(e);
             containerNav.show();
         });
     }

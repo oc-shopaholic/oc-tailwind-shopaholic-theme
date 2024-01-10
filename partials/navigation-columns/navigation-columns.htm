@@ -7,7 +7,7 @@ code = "navigation-footer"
 {% if arMenuList is not empty %}
     <nav class="{{ sPartialClasses }}">
         <ul class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-20">
-            {% for arItemMenu in arMenuList if not arItemMenu.viewBag.isHidden %}
+            {% for arItemMenu in arMenuList|filter(arItemMenu => not arItemMenu.viewBag.isHidden) -%}
                 <li>
                     {% set sCode = arItemMenu.code is not empty ? 'data-code='~arItemMenu.code %}
                     {% if arItemMenu.url is not empty %}
@@ -19,7 +19,7 @@ code = "navigation-footer"
                     {% set arSubItemMenuList = arItemMenu.items %}
                     {% if arSubItemMenuList is not empty %}
                         <ul>
-                            {% for arSubItemMenu in arSubItemMenuList if not arSubItemMenu.viewBag.isHidden %}
+                            {% for arSubItemMenu in arSubItemMenuList|filter(arSubItemMenu => not arSubItemMenu.viewBag.isHidden)  %}
                                 <li class="mt-4 first:mt-0">
                                     {% set sCode =  arSubItemMenu.code is not empty ? 'data-code='~arSubItemMenu.code %}
                                     {% if arSubItemMenu.url is not empty %}

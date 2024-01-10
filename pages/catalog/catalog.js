@@ -1,1 +1,4 @@
-import '/partials/product-card/wish-list';
+import '/partials/filter/filter';
+import '/partials/button-wish-list/button-wish-list';
+import '/partials/sorting/sorting';
+import '/partials/tags/tags';

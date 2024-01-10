@@ -15,7 +15,7 @@
 {# TODO: Markup should be changed after removing <dialog> polyfill. #}
 
 <template class="_offCanvasTemplate">
-    <dialog class="_offCanvasContainer cursor-auto z-50 bg-transparent p-0 w-full min-w-full h-full min-h-full my-0 mr-0 backdrop:bg-gray-400 backdrop:opacity-60">
+    <dialog class="_offCanvasContainer cursor-auto z-50 bg-transparent p-0 w-full min-w-full h-full min-h-full my-0 mr-0 backdrop:bg-gray-400 backdrop:opacity-60" data-type="{{sTemplateWorkType}}">
         <div class="_nav hidden box-border fixed right-0 w-full h-full max-h-full overflow-auto duration-1000 md:w-1/2 {{ sCanvasClasses }} {{ sIndentsClass|default('py-10 pr-20 pl-10') }} {{ sBackgroundClass|default('bg-gray-200') }}" data-position="{{sPosition}}">
             <div class="{{sPartialClasses}} {{sHeaderClasses}} mb-10 {{sHeadingHidden}}">
                 {% if sHiddenDefaultHeader == false %}

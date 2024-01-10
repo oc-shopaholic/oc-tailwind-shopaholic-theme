@@ -1,0 +1,26 @@
+{##}
+
+<div class="_sorting-filter flex items-center mb-4 md:justify-end" data-pagination-page="{{iPage}}" data-pagination-max="{{iMaxPage}}" data-active-text="{{ 'text_sort_by'|_ }}">
+    <select class="js-choice _shopaholic-sorting bg-transparent w-full border-0 outline-none focus:outline-none focus:border-0 md:w-auto" id="sort-select" name="sort">
+        <option value="popularity|desc" {{ (sActiveSorting == 'popularity|desc' or sActiveSorting is empty) ? 'selected' : '' }}>{{'text_popular'|_}}</option>
+        <option value="price|desc" {{ sActiveSorting == 'price|desc' ? 'selected' : '' }}>{{'text_price_high_to_low'|_}}</option>
+        <option value="price|asc" {{ sActiveSorting == 'price|asc' ? 'selected' : '' }}>{{'text_price_low_to_high'|_}}</option>
+        <option value="new" {{ sActiveSorting == 'new' ? 'selected' : '' }}>{{'text_newest_first'|_}}</option>
+    </select>
+</div>
+
+{% partial 'tags/tags' 
+    sPartialClass = 'items-center mb-4 flex hidden'
+    sPartialContainer = 'flex scrollbar-x-none overflow-x-scroll ml-4 space-x-4 absolute left-16 w-10/12 md:space-x-2 2xl:w-11/12'
+%}
+{% partial 'sorting/sorting-ajax' %}
+
+{% set arPaginationList = Pagination.get(iPage, obProductList.count()) %}
+
+{% partial 'pagination/pagination'
+    sPartialClasses = '_pagination mb-14'
+    arPaginationList = arPaginationList
+    iMaxPage = iMaxPage
+    iPage = iPage
+    sLinkClass = '_shopaholic-pagination'
+%}

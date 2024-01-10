@@ -25,7 +25,7 @@ function onInit()
 {% if this.theme.main_carousel_active and this.theme.main_carousel is not empty %}
     {% partial 'carousel-main/carousel-main' arCarouselList = this.theme.main_carousel %}
 {% endif %}
-{% if this.theme.latest_news_is_active %}
+{% if this.theme.latest_news_active %}
     {% partial 'news-list-latest/news-list-latest'
         arArticleList = arArticleList
         sSectionHeadingLevel = 2
@@ -45,9 +45,9 @@ function onInit()
 {% endif %}
 <h2 class="font-medium text-3xl text-gray-900 mb-10 uppercase">{{'heading_product_categories'|_}}</h2>
 <div class="flex flex-col mb-10">
-    {% set iTake = 5 %}
+    {% set iTake = 6 %}
     {% set arCategoryListCount = CategoryList.make().tree() %}
-    
+
     {% partial 'advanced-list/advanced-list'
         body
     %}
