@@ -45,7 +45,7 @@
         'sign_up_section'                    => 'Настройки регистрации',
         'sign_up_terms_link'                 => 'Ссылка на страницу \'Условия и положения\'',
         'sign_up_policy_link'                => 'Ссылка на страницу \'Политика конфиденциальности и использования файлов cookie\'',
-        'shopaholic_bar_section'             => 'Панель \'Povered by…\'',
+        'shopaholic_bar_section'             => 'Панель \'Powered by…\'',
         'shopaholic_bar_active'              => 'Активность',
         'latest_news_section'                => 'Блок \'Последние новости\' на главной странице',
         'latest_news_active'                 => 'Активность',

@@ -11,7 +11,6 @@ require:
     - RainLab.Pages
     - RainLab.Translate
     - VojtaSvoboda.TwigExtensions
-    - ToughDeveloper.ImageResizer
     - Lovata.Toolbox
     - Lovata.Shopaholic
     - Lovata.OrdersShopaholic
