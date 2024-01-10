@@ -9,12 +9,12 @@
 {% endfor %}
 {% set arSiteOptionList = (obSiteGroupList|length > 1) ? obSiteGroupList[iActiveSiteGroupId] : sitePicker.sites %}
 
-<form class="js-language-submit">
+<form class="js-picker-submit">
     <div class="space-y-6">
         {% if arGroupOptionList|length > 1 %}
-            {% partial 'region/region-select'
+            {% partial 'site-picker/site-picker-select'
                 sInputClass = 'js-language-input'
-                sLabelText = 'country'|_
+                sLabelText = 'site_picker_group'|_
                 sName = 'site_group_id'
                 sId = 'site_group_id'
                 arOptionList = arGroupOptionList
@@ -24,7 +24,7 @@
         {% endif %}
         {% partial 'select/select'
             sInputClass = ''
-            sLabelText = 'language'|_
+            sLabelText = 'site_picker_language'|_
             sName = 'site-name'
             sId = 'site'
             arOptionList = arSiteOptionList
@@ -34,7 +34,11 @@
     </div>
     {% partial 'button/button'
         sType = 'submit'
-        sText = 'submit'|_
+        sText = 'site_picker_submit'|_
         sPartialClasses = 'w-full md:w-72 mt- p-2 mt-12'
     %}
 </form>
+
+<!--site_picker_group: 'country'-->
+<!--site_picker_language: 'language'-->
+<!--site_picker_submit: 'submit'-->

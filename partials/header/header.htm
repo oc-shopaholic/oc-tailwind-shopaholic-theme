@@ -26,14 +26,14 @@
             </button>
             {% partial 'off-canvas/off-canvas'
                 sPosition = 'right'
-                sHeading = 'country_and_language'|_
+                sHeading = 'heading_choose_region'|_
                 sCanvasClasses = 'cursor-auto'
                 sIndentsClass = 'px-4 py-10 md:px-10'
-                sBackgroundClass = 'language bg-white'
+                sBackgroundClass = 'bg-white'
                 body
             %}
                 <div class="_site_picker">
-                    {% partial 'region/region' %}
+                    {% partial 'site-picker/site-picker' %}
                 </div>
             {% endpartial %}
         </div>

@@ -6,7 +6,7 @@ export default class Region {
   }
 
   initVariables () {
-    this.languageForm = this.obNav.querySelector('.js-language-submit')
+    this.languageForm = this.obNav.querySelector('.js-picker-submit')
     this.siteNameInput = this.languageForm.querySelector('[name="site-name"]')
   }
 
@@ -30,7 +30,7 @@ export default class Region {
       oc.ajax('onAjax', {
         data: { site_group_id: e.target.value },
         update: {
-          'region/region': `._site_picker`
+          'site-picker/site-picker': `._site_picker`
         },
       }).done(() => {
         this.initVariables()
