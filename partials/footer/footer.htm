@@ -67,7 +67,7 @@
             {% set sPoweredByThemeUrl = 'https://octobercms.com/theme/lovata-tailwind-shopaholic' %}
             {% set text_powered_by_plugin = '<a class="underline text-blue-800 hover:text-blue-700 hover:no-underline focus-visible:outline-blue active:text-blue-900 visited:text-purple-800" href="'~ sPoweredByPluginUrl ~'" target="_blank" rel="noopener noreferrer">'~('text_powered_by_plugin'|_)~'</a>' %}
             {% set text_powered_by_theme = '<a class="underline text-blue-800 hover:text-blue-700 hover:no-underline focus-visible:outline-blue active:text-blue-900 visited:text-purple-800" href="'~ sPoweredByThemeUrl ~'" target="_blank" rel="noopener noreferrer">'~('text_powered_by_theme'|_)~'</a>' %}
-            {{ 'text_powered_by' |_({text_powered_by_plugin: text_powered_by_plugin, text_powered_by_theme: text_powered_by_theme} ) }}
+            {{ 'text_powered_by' |transRaw({text_powered_by_plugin: text_powered_by_plugin, text_powered_by_theme: text_powered_by_theme} ) }}
         </div>
     {% endif %}
 </footer>

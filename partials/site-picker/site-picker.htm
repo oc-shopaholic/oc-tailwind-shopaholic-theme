@@ -14,7 +14,7 @@
         {% if arGroupOptionList|length > 1 %}
             {% partial 'site-picker/site-picker-select'
                 sInputClass = 'js-language-input'
-                sLabelText = 'site_picker_group'|_
+                sLabelText = 'input_site_picker_country'|_
                 sName = 'site_group_id'
                 sId = 'site_group_id'
                 arOptionList = arGroupOptionList
@@ -24,7 +24,7 @@
         {% endif %}
         {% partial 'select/select'
             sInputClass = ''
-            sLabelText = 'site_picker_language'|_
+            sLabelText = 'input_site_picker_language'|_
             sName = 'site-name'
             sId = 'site'
             arOptionList = arSiteOptionList
@@ -34,7 +34,7 @@
     </div>
     {% partial 'button/button'
         sType = 'submit'
-        sText = 'site_picker_submit'|_
+        sText = 'button_submit_site_picker'|_
         sPartialClasses = 'w-full md:w-72 mt- p-2 mt-12'
     %}
 </form>
