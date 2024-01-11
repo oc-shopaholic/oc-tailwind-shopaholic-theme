@@ -2,14 +2,13 @@ import ShopaholicProductList from '@lovata/shopaholic-product-list/shopaholic-pr
 import ShopaholicSorting from '@lovata/shopaholic-product-list/shopaholic-sorting';
 import ShopaholicPagination from '@lovata/shopaholic-product-list/shopaholic-pagination';
 import Choices from 'choices.js';
-import Filter from '../filter/filter'
+import Filter, { setAccordionState } from '../filter/filter';
 
 
 export default new class Sorting{
     constructor() {
         this.obSorting = document.getElementsByClassName('_sorting-container')[0];
         this.obContainer = this.obSorting.querySelectorAll('.catalog_wrapper')[0];
-        
         this.handlers();
     }
 
@@ -50,8 +49,7 @@ export default new class Sorting{
 
     handlers(){
         this.initChoices();
-
-        new Filter();
+        this.updateFilters()
         this.initContainerWatch();
         const obListHelper = new ShopaholicProductList();
         obListHelper.setAjaxRequestCallback((obRequestData) => {
@@ -67,6 +65,10 @@ export default new class Sorting{
         const obSortingHelper = new ShopaholicSorting(obListHelper);
         obSortingHelper.init();
     }
+    updateFilters(){
+      new Filter();
+      setAccordionState()
+    }
 
     initContainerWatch(){
         let app = this;
@@ -74,18 +76,18 @@ export default new class Sorting{
 
         const config = {
             childList: true,
-            subtree: true, 
+            subtree: true,
         };
 
         const callback = function (mutationsList, observer) {
             for (let mutation of mutationsList) {
                 if (mutation.type === 'childList') {
-                    new Filter();
                     if(!document.getElementsByClassName('choices').length){
                         app.initChoices();
                     }
                 }
             }
+            app.updateFilters()
         };
 
         const observer = new MutationObserver(callback);
