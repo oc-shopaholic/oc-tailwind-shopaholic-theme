@@ -1,5 +1,3 @@
-import request from 'oc-request';
-
 export default new class ProductListSmall {
   constructor() {
     this.sProductListSmallWrapperClass = '_product-list-small';
@@ -24,7 +22,7 @@ export default new class ProductListSmall {
       const iTake = this.obButton.dataset.take;
       const iProductId = this.obButton.dataset.productId;
       const sButtonName = this.obButton.innerHTML;
-      request.sendData('onInit', {
+      oc.ajax('onInit', {
         data: {
           'product_list_small_list_type': sProductListSmallListType,
           'page': iPage,
