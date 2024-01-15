@@ -3,8 +3,6 @@ url = "/account"
 layout = "main"
 is_hidden = 0
 
-[staticMenu ProfileMenu]
-code = "navigation-account"
 ==
 <?php
 function onInit()
@@ -29,18 +27,35 @@ function onInit()
 ==
 {##}
 
-{% set arMenuList = ProfileMenu.menuItems %}
+{% set arList = [
+    {
+        title: 'Order history',
+        url: "/account/details",
+        icon:  '/themes/lovata-tailwind-shopaholic/assets/images/archive-box.svg'
+    },
+    {
+        title: 'Account details',
+        url: '/wish-list',
+        icon:  '/themes/lovata-tailwind-shopaholic/assets/images/identification.svg'
+    },
+    {
+        title: 'Change password',
+        url: "/customer-service",
+        icon:  '/themes/lovata-tailwind-shopaholic/assets/images/key.svg'
+    }
+
+]%}
 
 {% partial 'breadcrumbs/breadcrumbs' %}
 <div class="flex flex-col mb-10">
     {% partial 'advanced-list/advanced-list'
         body
     %}
-        {% for obItem in arMenuList %}
+        {% for obItem in arList %}
             {% partial 'advanced-list/advanced-list-item'
                 sName = obItem.title
                 sUrl = obItem.url
-                sImagePath = obItem.icon.path
+                sImagePath = obItem.icon
                 sPartialClasses = obItem.viewBag.cssClass
             %}
         {% endfor %}
