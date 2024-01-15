@@ -3,6 +3,7 @@
 {% set obCartList = Cart.get() %}
 
 {% if this.page.id != 'checkout-checkout' %}
+
 <div class="_header-purchases-container _off-canvas flex ml-auto">
     <button class="_show relative ml-5 sm:ml-8 md:ml-10 text-gray-900 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue" type="button">
         {% if obCartList|length > 0 %}
