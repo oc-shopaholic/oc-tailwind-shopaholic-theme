@@ -27,7 +27,7 @@
             body
         %}
             <div class="mt-6">
-                {% partial 'tags/tags' 
+                {% partial 'tags/tags'
                     sPartialClass = 'mb-5 px-4 flex flex-col hidden'
                     sPartialContainer = 'flex flex-col space-y-2'
                     sPartialButton = 'text-right mb-4'
@@ -36,6 +36,7 @@
                     <details
                         class="border-t border-b border-gray-300"
                         {{fMinPriceFilterValue or fMaxPriceFilterValue or bSaleFilter ? 'open'}}
+
                     >
                         <summary class="text-base font-medium text-blue-800 cursor-pointer pb-4 pt-4 pl-4 pr-5 after:right-5 after:text-blue-800 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
                             {{'heading_filter_price'|_}}
@@ -106,8 +107,12 @@
 <template class="_filterTemplate">
     <div class="pr-12 hidden md:block">
         <h2 class="text-gray-900 text-lg font-medium mb-3">{{'heading_filters'|_}}</h2>
+        // TODO: update translate
         <details
-            {{fMinPriceFilterValue or fMaxPriceFilterValue or bSaleFilter ? 'open'}}
+            id="price"
+            data-translate-to={{'text_properties_filter_max'|_}}
+            data-translate-from={{'text_properties_filter_min'|_}}
+            open
         >
             <summary class="text-base font-medium text-blue-800 cursor-pointer mb-3 after:text-blue-800 hover:text-blue-700 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
                 {{'heading_filter_price'|_}}

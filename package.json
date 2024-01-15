@@ -22,6 +22,7 @@
     "@lovata/shopaholic-search": "^1.1.4",
     "@lovata/shopaholic-wish-list": "^1.0.0",
     "@oc-shopaholic/oc-request": "^0.1.1",
+    "@lovata/url-generation": "^1.0.0",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/line-clamp": "^0.3.0",

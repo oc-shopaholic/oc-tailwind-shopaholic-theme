@@ -2,6 +2,7 @@
 {% for obProperty in obProductPropertyList %}
     {% if obProperty.hasValue() %}
     <details
+        open
         class="_filter-details"
         id = "{{obProperty.id}}"
         data-property = "property[{{obProperty.id}}]"
