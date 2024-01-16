@@ -4,7 +4,7 @@ const jsFileList = [
   'pages/account-credentials/account-credentials',
   'pages/account-details/account-details',
   'pages/account-orders/account-orders',
-  'pages/account-password-change/account-password-change',
+  'pages/account-password/account-password',
   'pages/account/account',
   'pages/chackout-failure/chackout-failure',
   'pages/checkout-authentification/checkout-authentification',
