@@ -104,7 +104,10 @@ export default new class Tags {
 
   createTagsFiltres (props) {
     let id = props.id
-    let section = document.getElementById(id).querySelector('summary').innerText.trim()
+    const elemsDetails = document.getElementById(id)
+    if(!elemsDetails) return false
+    let section = elemsDetails.querySelector('summary').innerText.trim()
+    console.log(section)
     props.value.forEach(prop => {
       let text = document.querySelector(`[for="${prop}"]`).innerText
       let tag = document.createElement('li')
