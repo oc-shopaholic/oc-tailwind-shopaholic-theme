@@ -134,6 +134,9 @@ page_heading_password_change: 'Change password'
 page_heading_password_restore: 'Recover password'
 page_heading_sign_in: 'Sign in'
 page_heading_sign_up: 'Sign up'
+page_heading_account_orders: 'My orders'
+page_heading_account_details: 'My details'
+page_heading_account_password: 'Change password'
 
 
 
