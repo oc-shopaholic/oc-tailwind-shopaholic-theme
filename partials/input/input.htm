@@ -2,7 +2,7 @@
 
 <div class="{{ sPartialClasses }}">
     {% if sLabelText %}
-        <label for="{{ sId }}" class="{{ sLabelClasses|default('text-sm text-gray-600 inline-block mb-1') }}">{{ sLabelText }}</label>
+        <label for="{{ sId }}" class="text-xs text-gray-600 inline-block mb-1 {{ sLabelClasses }}">{{ sLabelText }}</label>
     {% endif %}
     <input
         type="{{ type|default('text') }}"

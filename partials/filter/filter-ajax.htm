@@ -33,15 +33,11 @@
                     sPartialButton = 'text-right mb-4'
                 %}
                 <div>
-                    <details
-                        class="border-t border-b border-gray-300"
-                        {{fMinPriceFilterValue or fMaxPriceFilterValue or bSaleFilter ? 'open'}}
-
-                    >
+                    <details class="border-t border-b border-gray-300 js-details">
                         <summary class="text-base font-medium text-blue-800 cursor-pointer pb-4 pt-4 pl-4 pr-5 after:right-5 after:text-blue-800 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
                             {{'heading_filter_price'|_}}
                         </summary>
-                        <div class="flex mb-4 ml-4 mt-3 mr-5">
+                        <div class="js-accordion-content flex mb-4 ml-4 mt-3 mr-5">
                             <fieldset class="mr-3 w-full">
                                 <legend class="sr-only">{{'heading_filter_price'|_}}&nbsp;{{'text_properties_filter_min'|_}}</legend>
                                 {% partial 'input/input'
@@ -68,7 +64,7 @@
                         <div class="_shopaholic-sale-filter-wrapper mb-4" data-filter-type="checkbox">
                             {% partial 'input-checkbox/input-checkbox'
                                 sLabelText = 'input_checkbox_discount'|_
-                                sPartialClasses = 'flex items-center mb-3 mx-4'
+                                sPartialClasses = 'flex items-center pb-3 mx-4'
                                 sInputClass = 'rounded-sm'
                                 sChecked = bSaleFilter
                                 sId = 'sale-filter'
@@ -113,43 +109,45 @@
             data-translate-from={{'text_properties_filter_from'|_}}
             open
         >
-            <summary class="text-base font-medium text-blue-800 cursor-pointer mb-3 after:text-blue-800 hover:text-blue-700 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
+            <summary class="js-accordion-summary text-base font-medium text-blue-800 cursor-pointer mb-3 after:text-blue-800 hover:text-blue-700 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
                 {{'heading_filter_price'|_}}
             </summary>
-            <div class="flex mb-4">
-                <fieldset class="mr-3">
-                    <legend class="sr-only">{{'heading_filter_price'|_}}&nbsp;{{'text_properties_filter_min'|_}}</legend>
-                    {% partial 'input/input'
-                        sLabelText = 'text_properties_filter_min'|_
-                        inputClass = '_shopaholic-price-filter appearance-none quantity_input'
-                        type = 'number'
-                        name = 'filter-min-price'
-                        value = fMinPriceFilterValue
-                        sId = 'min-price'
+            <div class="js-accordion-content">
+                <div class="flex pb-4">
+                    <fieldset class="mr-3">
+                        <legend class="sr-only">{{'heading_filter_price'|_}}&nbsp;{{'text_properties_filter_min'|_}}</legend>
+                        {% partial 'input/input'
+                            sLabelText = 'text_properties_filter_min'|_
+                            inputClass = '_shopaholic-price-filter appearance-none quantity_input'
+                            type = 'number'
+                            name = 'filter-min-price'
+                            value = fMinPriceFilterValue
+                            sId = 'min-price'
+                        %}
+                    </fieldset>
+                    <fieldset>
+                        <legend class="sr-only">{{'heading_filter_price'|_}}&nbsp;{{'text_properties_filter_max'|_}}</legend>
+                        {% partial 'input/input'
+                            sLabelText = 'text_properties_filter_max'|_
+                            inputClass = '_shopaholic-price-filter appearance-none quantity_input'
+                            type = 'number'
+                            name = 'filter-max-price'
+                            value = fMaxPriceFilterValue
+                            sId = 'max-price'
+                        %}
+                    </fieldset>
+                </div>
+                <div class="_shopaholic-sale-filter-wrapper pb-4" data-filter-type="checkbox">
+                    {% partial 'input-checkbox/input-checkbox'
+                        sLabelText = 'input_checkbox_discount'|_
+                        sPartialClasses = 'flex items-center'
+                        sInputClass = 'rounded-sm'
+                        sChecked = bSaleFilter
+                        sId = 'sale-filter'
+                        sName = 'sale'
+                        sValue = 1
                     %}
-                </fieldset>
-                <fieldset>
-                    <legend class="sr-only">{{'heading_filter_price'|_}}&nbsp;{{'text_properties_filter_max'|_}}</legend>
-                    {% partial 'input/input'
-                        sLabelText = 'text_properties_filter_max'|_
-                        inputClass = '_shopaholic-price-filter appearance-none quantity_input'
-                        type = 'number'
-                        name = 'filter-max-price'
-                        value = fMaxPriceFilterValue
-                        sId = 'max-price'
-                    %}
-                </fieldset>
-            </div>
-            <div class="_shopaholic-sale-filter-wrapper mb-4" data-filter-type="checkbox">
-                {% partial 'input-checkbox/input-checkbox'
-                    sLabelText = 'input_checkbox_discount'|_
-                    sPartialClasses = 'flex items-center'
-                    sInputClass = 'rounded-sm'
-                    sChecked = bSaleFilter
-                    sId = 'sale-filter'
-                    sName = 'sale'
-                    sValue = 1
-                %}
+                </div>
             </div>
         </details>
         <div class="_filters-desktop">

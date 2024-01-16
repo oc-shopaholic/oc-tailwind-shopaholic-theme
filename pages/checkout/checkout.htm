@@ -1,6 +1,6 @@
-title = "Checkout"
 url = "/checkout"
 layout = "main"
+title = "Checkout"
 is_hidden = 0
 
 [Cart]
@@ -8,9 +8,10 @@ is_hidden = 0
 [ShippingTypeList]
 
 [MakeOrder]
+redirect_on = 1
+redirect_page = "checkout-success/checkout-success"
 
 [PaymentMethodList]
-
 ==
 <?php
 function onInit()

@@ -3,14 +3,14 @@
     {% if obProperty.hasValue() %}
     <details
         open
-        class="_filter-details"
+        class="_filter-details js-details"
         id = "{{obProperty.id}}"
         data-property = "property[{{obProperty.id}}]"
     >
-        <summary class="text-base font-medium text-blue-800 cursor-pointer mb-3 hover:text-blue-700 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
+        <summary class="js-accordion-summary text-base font-medium text-blue-800 cursor-pointer mb-3 hover:text-blue-700 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
             {{ obProperty.name }}
         </summary>
-        <div class="flex _shopaholic-filter-wrapper {{obProperty.filter_type == 'between' ? 'mb-4' : ''}}" data-filter-type="{{ obProperty.filter_type }}" data-property-id="{{ obProperty.id }}">
+        <div class="flex _shopaholic-filter-wrapper js-accordion-content {{obProperty.filter_type == 'between' ? 'mb-4' : ''}}" data-filter-type="{{ obProperty.filter_type }}" data-property-id="{{ obProperty.id }}">
             {% if obProperty.filter_type == 'between' %}
                 <div class="_filter-range flex" data-filter-id="{{ obProperty.id }}">
                     <fieldset class="mr-3">

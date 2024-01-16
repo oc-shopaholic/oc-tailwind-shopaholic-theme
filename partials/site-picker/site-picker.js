@@ -7,7 +7,6 @@ export default class Region {
 
   initVariables () {
     this.languageForm = this.obNav.querySelector('.js-picker-submit')
-    this.siteNameInput = this.languageForm.querySelector('[name="site-name"]')
   }
 
   show () {

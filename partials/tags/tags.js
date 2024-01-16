@@ -1,5 +1,5 @@
 import UrlGeneration from '@lovata/url-generation'
-
+import { AccordionInit } from '../accordion/accordion'
 export default new class Tags {
   constructor () {
     this.obTags = document.getElementsByClassName('_tags')
@@ -162,6 +162,7 @@ export default new class Tags {
     this.createTags()
     this.removeTag()
     this.removeAllTags()
+    AccordionInit();
   }
 
   watchCatalog () {
