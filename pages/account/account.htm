@@ -9,6 +9,12 @@ function onInit()
 {
     $this['path_page_js'] = mix('assets/dist/js/account.js', 'themes/lovata-tailwind-shopaholic');
 
+    $arBreadcrumbs = [
+        ['name' => \RainLab\Translate\Models\Message::trans('breadcrumbs_page_account'), 'url' => null],
+    ];
+
+    $this['arBreadcrumbs'] = $arBreadcrumbs;
+
     if ($this->theme->has_buddies) {
         $this->addComponent('Lovata\Buddies\Components\UserPage', 'UserPage', [
             'slug' => '{{ :slug }}',

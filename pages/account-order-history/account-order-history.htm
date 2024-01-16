@@ -45,12 +45,12 @@ function onStart()
     $obUser = $this->UserData->get();
 
     $arBreadcrumbs = [
-        ['name' => 'My account', 'url' => \Cms\Classes\Page::url('account/account', ['account' => false])],
+        ['name' => \RainLab\Translate\Models\Message::trans('breadcrumbs_page_account'), 'url' => \Cms\Classes\Page::url('account/account')],
+        ['name' => \RainLab\Translate\Models\Message::trans('breadcrumbs_page_orders'), 'url' => null],
     ];
 
-    $arBreadcrumbs[] = ['name' => 'My orders', 'url' => 'account-order-history/account-order-history'];
-
     $this['arBreadcrumbs'] = $arBreadcrumbs;
+
 }
 ?>
 ==
