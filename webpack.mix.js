@@ -1,7 +1,6 @@
 const mix = require('laravel-mix');
 const jsFileList = [
   'assets/src/js/app',
-  'pages/account-credentials/account-credentials',
   'pages/account-details/account-details',
   'pages/account-orders/account-orders',
   'pages/account-password/account-password',
