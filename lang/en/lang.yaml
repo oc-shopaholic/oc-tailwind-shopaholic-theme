@@ -178,8 +178,8 @@ text_sorry: 'Sorry!'
 text_wish_list_empty: 'Your wish list is empty.'
 text_properties_filter_min: 'Min'
 text_properties_filter_max: 'Max'
-text_properties_filter_from: 'from'
-text_properties_filter_to: 'to'
+text_properties_filter_from: 'from' #TODO: Add in lang.pl
+text_properties_filter_to: 'to' #TODO: Add in lang.pl
 text_heading_category: 'Category'
 text_heading_filter: 'Filter'
 text_page_maintance: 'Our site is undergoing scheduled maintenance. Sorry for the inconvenience.'
