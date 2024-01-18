@@ -98,7 +98,7 @@
     background: url('/themes/lovata-tailwind-shopaholic/assets/images/marker.svg') no-repeat;
     position: absolute;
     top: 50%;
-    right: 0;
+    right: 12px;
     transition: .2s;
     transform: translateY(-50%);
   }
@@ -193,7 +193,7 @@
   @apply w-6 h-6 top-10 fill-black lg:w-8 lg:h-8
 }
 .pswp__button--arrow--next{
-  @apply right-4 
+  @apply right-4
 }
 .pswp__button--arrow--prev{
   @apply left-4
