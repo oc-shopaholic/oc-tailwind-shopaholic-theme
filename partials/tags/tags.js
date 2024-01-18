@@ -106,15 +106,14 @@ export default new class Tags {
     let id = props.id
     const elemsDetails = document.getElementById(id)
     if(!elemsDetails) return false
-    let section = elemsDetails.querySelector('summary').innerText.trim()
-    console.log(section)
+    let section =  props.id == 'sale' ?  document.querySelector('label[for="sale"]') : elemsDetails.querySelector('summary')
+    const sectionText = section.innerText.trim()
     props.value.forEach(prop => {
-      let text = document.querySelector(`[for="${prop}"]`).innerText
+      let text = document.querySelector(`[for="${prop}"]`)
       let tag = document.createElement('li')
       tag.dataset.name = prop
       tag.className = 'whitespace-nowrap mr-3 mb-3 capitalize bg-white rounded shadow py-3 pl-3 pr-5 flex items-center justify-between text-gray-600 text-base lg:text-sm'
-      tag.innerHTML = '' + section + ': ' + text + ' <button class="_delete-tag text-gray-900 p-2 -m-2 ml-3 hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800" type="button" data-id=' + prop + '>' + '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>'
-      // let tag = document.createElement('<li class="whitespace-nowrap capitalize bg-white rounded shadow py-3 pl-3 pr-5 flex items-center justify-between text-gray-600 text-base lg:text-sm">' + section + ': ' + text + ' <button class="_delete-tag text-gray-900 p-2 -m-2 ml-3 hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800" type="button" data-id=' + prop.value[0][g] + '>' + '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button></li>');
+      tag.innerHTML = `${text ? sectionText + ': ' : sectionText } ${text ? text.innerText : ''}  <button class="_delete-tag text-gray-900 p-2 -m-2 ml-3 hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800" type="button" data-id='${props.id == 'sale' ? 'sale' : prop}'> <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>`
       this.obTagsContainer.appendChild(tag)
     })
   }
@@ -135,8 +134,9 @@ export default new class Tags {
               }))
           })
         } else {
-          document.getElementById(`${elem.target.closest('._delete-tag').dataset.id}`).removeAttribute('checked')
-          document.getElementById(`${elem.target.closest('._delete-tag').dataset.id}`).dispatchEvent(
+          const tagElementId =  document.getElementById(`${elem.target.closest('._delete-tag').dataset.id}`)
+          tagElementId.checked = false
+          tagElementId.dispatchEvent(
             new InputEvent('change', {
               bubbles: true,
               cancelable: true,
