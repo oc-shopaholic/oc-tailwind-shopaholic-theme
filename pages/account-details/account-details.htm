@@ -9,6 +9,13 @@ is_hidden = 0
 function onInit()
 {
     $this['path_page_js'] = mix('assets/dist/js/account-details.js', 'themes/lovata-tailwind-shopaholic');
+
+    $arBreadcrumbs = [
+        ['name' => \RainLab\Translate\Models\Message::trans('breadcrumbs_page_account'), 'url' => \Cms\Classes\Page::url('account/account')],
+        ['name' => \RainLab\Translate\Models\Message::trans('breadcrumbs_page_details'), 'url' => null],
+    ];
+
+    $this['arBreadcrumbs'] = $arBreadcrumbs;
 }
 ?>
 ==
@@ -16,6 +23,7 @@ function onInit()
 {% set obUser = UserData.get() %}
 
 {% partial 'breadcrumbs/breadcrumbs' %}
+
 <div class="sm:max-w-xs mt-7 mb-8 md:mb-16">
     <h1 class="font-medium uppercase text-xl md:text-3xl mb-4">My details</h1>
     <span class="text-gray-600 text-sm md:text-base mb-4 inline-block">* — required fields</span>

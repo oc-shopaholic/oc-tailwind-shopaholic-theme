@@ -3,13 +3,17 @@ url = "/account"
 layout = "main"
 is_hidden = 0
 
-[staticMenu ProfileMenu]
-code = "navigation-account"
 ==
 <?php
 function onInit()
 {
     $this['path_page_js'] = mix('assets/dist/js/account.js', 'themes/lovata-tailwind-shopaholic');
+
+    $arBreadcrumbs = [
+        ['name' => \RainLab\Translate\Models\Message::trans('breadcrumbs_page_account'), 'url' => null],
+    ];
+
+    $this['arBreadcrumbs'] = $arBreadcrumbs;
 
     if ($this->theme->has_buddies) {
         $this->addComponent('Lovata\Buddies\Components\UserPage', 'UserPage', [
@@ -29,18 +33,35 @@ function onInit()
 ==
 {##}
 
-{% set arMenuList = ProfileMenu.menuItems %}
+{% set arList = [
+    {
+        title: 'page_heading_account_orders'|_,
+        url: "/account/orders",
+        icon:  '/themes/lovata-tailwind-shopaholic/assets/images/icon-orders.svg'
+    },
+    {
+        title: 'page_heading_account_details'|_,
+        url: '/account/details',
+        icon:  '/themes/lovata-tailwind-shopaholic/assets/images/icon-details.svg'
+    },
+    {
+        title: 'page_heading_account_password'|_,
+        url: "/account/password",
+        icon:  '/themes/lovata-tailwind-shopaholic/assets/images/icon-password.svg'
+    }
+
+]%}
 
 {% partial 'breadcrumbs/breadcrumbs' %}
 <div class="flex flex-col mb-10">
     {% partial 'advanced-list/advanced-list'
         body
     %}
-        {% for obItem in arMenuList %}
+        {% for obItem in arList %}
             {% partial 'advanced-list/advanced-list-item'
                 sName = obItem.title
                 sUrl = obItem.url
-                sImagePath = obItem.icon.path
+                sImagePath = obItem.icon
                 sPartialClasses = obItem.viewBag.cssClass
             %}
         {% endfor %}
