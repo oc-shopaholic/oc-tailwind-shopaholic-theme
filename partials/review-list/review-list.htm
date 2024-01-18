@@ -1,15 +1,12 @@
 {##}
 
 {# TODO:Add svg reusability for whole project #}
-{% set iPage = Pagination.getPageFromRequest() %}
-{% set iMaxPage = Pagination.getMaxPage(obReview.count()) %}
-
 <section class="w-full {{ sPartialClass }}">
     {% if sReviewsCount == true or sSortingPanel == true %}
         <div class="flex justify-between mb-5 items-baseline">
             {% if sReviewsCount == true %}
-                {% set nReviewsCount = obProduct.review.active().sort()|length %}
-                <span class="text-gray-600 text-base">{{ nReviewsCount }} {{ 'text_reviews'|_ }}</span>
+                {% set iReviewsCount = obProduct.review.active().sort()|length %}
+                <span class="text-gray-600 text-base">{{ iReviewsCount }} {{ 'text_reviews'|_ }}</span>
             {% endif %}
             {% if sSortingPanel == true %}
                 <div class="_sorting-reviews flex items-center mb-4 md:justify-end" data-pagination-page="{{ iPage }}" data-pagination-max="{{ iMaxPage }}" data-active-text="{{ 'text_sort_by'|_ }}">
@@ -22,7 +19,7 @@
         </div>
     {% endif %}
     <ul class="{{ sListClass }}">
-        {% partial 'review-list/review-list-ajax' obReviewList = obReview %}
+        {% partial 'review-list/review-list-ajax' %}
     </ul>
     {% if iMaxPage > iPage %}
         <div class="_off-canvas">
@@ -59,14 +56,17 @@
                     sPartialClasses = '_write-review w-full md:w-72 mt-10 p-2'
                     bGhost = true
                 %}
-                {# TODO: is the same partial included? Infinity loop #}
-{#                {% partial 'review-list/review-list'#}
-{#                    obReview = obReviewList#}
-{#                    sPartialClass = 'mt-10'#}
-{#                    sReviewsCount = true#}
-{#                    sSortingPanel = true#}
-{#                    sListClass = '_review-list'#}
-{#                %}#}
+                <div class="mt-6 md:mt-10">
+                    <ul class="_review-list">
+                        {% partial 'review-list/review-list-ajax'
+                        sPartialClass = 'mt-10'
+                        sReviewsCount = true
+                        sSortingPanel = true
+                        sListClass = '_review-list'
+                        %}
+                    </ul>
+                </div>
+
                 {% partial 'button/button'
                     sText = 'button_read_mode'|_
                     sPartialClasses = '_show-more-reviews w-full md:w-72 mt-3 p-2'

@@ -15,7 +15,9 @@ export default new class RestorePassword {
   initHandler() {
     const obButton = document.getElementsByClassName(this.sButtonRestorePasswordClass)
 
-    if(!obButton[0]) return
+    if (!obButton[0]) {
+      return;
+    }
 
     obButton[0].addEventListener('click', (obEvent)=>{
       // TODO: Understand why we use setTimeout ()
@@ -46,6 +48,7 @@ export default new class RestorePassword {
           // TODO: Replace alert.
           alert(obData.message);
         }
+
         self.obButton.removeAttribute('disabled');
       },
     });

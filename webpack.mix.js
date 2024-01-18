@@ -1,10 +1,9 @@
 const mix = require('laravel-mix');
 const jsFileList = [
   'assets/src/js/app',
-  'pages/account-credentials/account-credentials',
   'pages/account-details/account-details',
-  'pages/account-order-list/account-order-list',
-  'pages/account-password-change/account-password-change',
+  'pages/account-orders/account-orders',
+  'pages/account-password/account-password',
   'pages/account/account',
   'pages/chackout-failure/chackout-failure',
   'pages/checkout-authentification/checkout-authentification',
@@ -28,7 +27,6 @@ const jsFileList = [
   'pages/sign-up-success/sign-up-success',
   'pages/sign-up/sign-up',
   'pages/wish-list/wish-list',
-  'pages/account-order-history/account-order-history',
 ];
 
 let postCssPlugins = [

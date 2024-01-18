@@ -1,4 +1,4 @@
-url = "/account/order-history"
+url = "/account/orders"
 layout = "main"
 title = "Order history"
 is_hidden = 0
@@ -41,16 +41,16 @@ function onInit()
 
 function onStart()
 {
-    $this['path_page_js'] = mix('assets/dist/js/account-order-history.js', 'themes/lovata-tailwind-shopaholic');
+    $this['path_page_js'] = mix('assets/dist/js/account-orders.js', 'themes/lovata-tailwind-shopaholic');
     $obUser = $this->UserData->get();
 
     $arBreadcrumbs = [
-        ['name' => 'My account', 'url' => \Cms\Classes\Page::url('account/account', ['account' => false])],
+        ['name' => \RainLab\Translate\Models\Message::trans('breadcrumbs_page_account'), 'url' => \Cms\Classes\Page::url('account/account')],
+        ['name' => \RainLab\Translate\Models\Message::trans('breadcrumbs_page_orders'), 'url' => null],
     ];
 
-    $arBreadcrumbs[] = ['name' => 'My orders', 'url' => 'account-order-history/account-order-history'];
-
     $this['arBreadcrumbs'] = $arBreadcrumbs;
+
 }
 ?>
 ==
