@@ -1,8 +1,12 @@
+[Cart]
+
 [staticPage]
 useContent = 1
 default = 0
 
 [SeoToolbox]
+
+[sitePicker]
 ==
 <?php
 function onInit()
@@ -10,7 +14,6 @@ function onInit()
     $this['path_css'] = mix('assets/dist/css/app.css', 'themes/lovata-tailwind-shopaholic');
     $this['path_js'] = mix('assets/dist/js/app.js', 'themes/lovata-tailwind-shopaholic');
     $this['path_manifest_js'] = mix('assets/dist/js/manifest.js', 'themes/lovata-tailwind-shopaholic');
-    $this['path_vendor_js'] = mix('assets/dist/js/vendor.js', 'themes/lovata-tailwind-shopaholic');
     $this['sAdvancedListTypeCategory'] = 'category';
     $this['sAdvancedListTypeAccount'] = 'account';
     $this['sProductListSmallTypePopularity'] = 'popularity';
@@ -30,7 +33,7 @@ function onInit()
 }
 function onStart()
 {
-    $this['sTopInfoBlockHash'] = $this->theme->top_info_block_active && !empty($this->theme->top_info_block) ? md5($this->theme->top_info_block) : '';
+    $this['sTopInfoBlockHash'] = $this->theme->top_info_block_active && !empty($this->theme->top_info_block_content) ? md5($this->theme->top_info_block_content) : '';
 }
 ?>
 ==

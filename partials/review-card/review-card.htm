@@ -24,10 +24,10 @@
                 {% if obReview.name %}
                     <span class="mr-4 font-bold">{{ obReview.name }} {{ obReview.surname }}</span>
                 {% endif %}
-                <time class="text-gray-600" datetime="{{ obReview.created_at }}">{{ obReview.created_at|time_diff }}</time>
+                <time class="text-gray-600" datetime="{{ obReview.created_at }}">{{ obReview.created_at }}</time>
             </div>
             <div
-                aria-label="{{ 'aria_label_rating_static'|transRaw({
+                aria-label="{{ 'aria_label_rating_static'|_({
                     aria_label_rating_static:obReview.rating
                 }) }}"
                 class="flex flex-row space-x-1">

@@ -14,7 +14,7 @@
         {% if obValue.label == 'White' %}
             {% set checkboxStyle = 'border-gray-300 checked:bg-75 checked:bg-check-black checked:border-gray-300 focus:border-gray-300 active:border-gray-300 checked:hover:border-gray-300 checked:focus:border-gray-300 disabled:opacity-30' %}
         {% else %}
-            {% set checkboxStyle = 'border-0 checked:bg-75 checked:bg-check checked:border-0 disabled:opacity-30' %}
+            {% set checkboxStyle = 'border-transparent checked:bg-75 checked:bg-check checked:border-0 disabled:opacity-30' %}
         {% endif %}
 
         <li class="w-max flex flex-col items-center mb-4 mr-2 {{sPartialClasses}}">
@@ -22,7 +22,7 @@
                 class="_input-checkbox-color rounded w-9 h-9 mr-0 focus:outline-none focus-visible:border-blue-800 {{checkboxStyle}}"
                 type="{{sType|default('checkbox')}}"
                 id="{{obValue.slug}}"
-                value="{{obValue.id}}"
+                value="{{obValue.slug}}"
                 name="{{sName}}"
                 style="--input-checkbox-color: {{obValue.value}};"
                 {{bDisabled ? 'disabled'}}

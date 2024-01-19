@@ -1,10 +1,7 @@
 title = "Checkout Success"
-url = "/checkout/:slug"
+url = "/checkout/success"
 layout = "main"
 is_hidden = 0
-
-[OrderPage]
-slug = "{{ :slug }}"
 ==
 <?php
 function onInit()
@@ -14,6 +11,7 @@ function onInit()
 ?>
 ==
 {##}
+
 <p>{{slug}}</p>
 <div class="flex items-center justify-center mt-28 mb-8 flex-col lg:mt-14">
     <svg class="mb-12 lg:mb-11" width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">

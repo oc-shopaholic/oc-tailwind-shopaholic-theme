@@ -13,8 +13,36 @@
                 <img src="{{ this.theme.business_card_image|media }}" alt="{{ this.theme.business_card_image_alt }}" title="{{ this.theme.business_card_image_title }}">
             </a>
         {% endif %}
-        {% partial 'navigation-main/navigation-main' %}
-        <div class="_off-canvas flex ml-auto">
+        <div class="grow">
+            {% partial 'navigation-main/navigation-main' %}
+        </div>
+        {% if sitePicker.sites|length > 1 %}
+        <div class="_off-canvas flex mr-5 sm:mr-8">
+            <button
+                class="_show flex items-center text-gray-900 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue"
+                type="button"
+                aria-label="{{ 'aria_label_site_picker'|_ }}"
+            >
+                <span class="uppercase font-semibold text-xs">{{ this.site.name }}</span>
+                <svg class="mt-0.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.18414 5.76748C4.423 5.5378 4.80282 5.54525 5.0325 5.78411L8 8.93431L10.9675 5.78411C11.1972 5.54525 11.577 5.5378 11.8159 5.76748C12.0547 5.99715 12.0622 6.37698 11.8325 6.61584L8.4325 10.2158C8.31938 10.3335 8.16321 10.4 8 10.4C7.83679 10.4 7.68062 10.3335 7.5675 10.2158L4.1675 6.61584C3.93782 6.37698 3.94527 5.99715 4.18414 5.76748Z" fill="currentColor"/>
+                </svg>
+            </button>
+            {% partial 'off-canvas/off-canvas'
+                sPosition = 'right'
+                sHeading = 'heading_choose_region'|_
+                sCanvasClasses = 'cursor-auto'
+                sIndentsClass = 'px-4 py-10 md:px-10'
+                sBackgroundClass = 'bg-white'
+                body
+            %}
+                <div class="_site_picker">
+                    {% partial 'site-picker/site-picker' %}
+                </div>
+            {% endpartial %}
+        </div>
+        {% endif %}
+        <div class="_off-canvas flex">
             <button class="_show text-gray-900 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue" type="button">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M19 19L13 13L19 19ZM15 8C15 8.91925 14.8189 9.82951 14.4672 10.6788C14.1154 11.5281 13.5998 12.2997 12.9497 12.9497C12.2997 13.5998 11.5281 14.1154 10.6788 14.4672C9.82951 14.8189 8.91925 15 8 15C7.08075 15 6.1705 14.8189 5.32122 14.4672C4.47194 14.1154 3.70026 13.5998 3.05025 12.9497C2.40024 12.2997 1.88463 11.5281 1.53284 10.6788C1.18106 9.82951 1 8.91925 1 8C1 6.14348 1.7375 4.36301 3.05025 3.05025C4.36301 1.7375 6.14348 1 8 1C9.85652 1 11.637 1.7375 12.9497 3.05025C14.2625 4.36301 15 6.14348 15 8Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>

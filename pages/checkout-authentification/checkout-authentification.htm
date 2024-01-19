@@ -22,7 +22,7 @@ function onInit()
         sPartialClasses = 'w-full md:w-auto mt-4'
     %}
     {% set text_checkout_link_sign_in = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline" href="'~( 'sign-up'|page )~'">'~('text_checkout_link_sign_in'|_)~'</a>' %}
-    <span class="inline-block mt-2 md:mt-4 text-gray-600">{{ 'text_checkout' | transRaw({text_checkout_link_sign_in: text_checkout_link_sign_in}) }}</span>
+    <span class="inline-block mt-2 md:mt-4 text-gray-600">{{ 'text_checkout' | _({text_checkout_link_sign_in: text_checkout_link_sign_in}) }}</span>
     <h1 class="font-medium uppercase text-xl md:text-3xl mt-8 mb-4">{{ 'page_heading_sign_in'|_ }}</h1>
     <div class="max-w-xs">
         <form class="_required">

@@ -10,10 +10,10 @@ export default new class productCardCheckout{
     }
 
     changeStateBasket(){
-        this.obCardList = $('._card-list');
-        this.obStateBasket = $('.product-active');
-        if(!this.obCardList.find('ul').length){
-            this.obStateBasket.css('--icon-indicator', 'hidden');
+        this.obCardList = document.getElementsByClassName('_card-list')[0];
+        this.obStateBasket = document.getElementsByClassName('product-active')[0];
+        if(!this.obCardList.querySelectorAll('ul li').length){
+            this.obStateBasket.style = "--icon-indicator:hidden";
         }
     }
 
@@ -27,8 +27,7 @@ export default new class productCardCheckout{
             }
             obRequestData.complete = () =>{
                 this.changeStateBasket();
-                $('._counter').children().off();
-                InputQuantity.make('._counter');
+                InputQuantity.make('_counter _counter-card');
             }
             return obRequestData;
         }).init();

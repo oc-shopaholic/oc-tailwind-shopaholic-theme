@@ -1,6 +1,6 @@
-title = "Checkout"
 url = "/checkout"
 layout = "main"
+title = "Checkout"
 is_hidden = 0
 
 [Cart]
@@ -8,7 +8,6 @@ is_hidden = 0
 [ShippingTypeList]
 
 [MakeOrder]
-mode = "ajax"
 redirect_on = 1
 redirect_page = "checkout-success/checkout-success"
 
@@ -16,7 +15,7 @@ redirect_page = "checkout-success/checkout-success"
 
 ==
 <?php
-function onStart()
+function onInit()
 {
     $this['path_page_js'] = mix('assets/dist/js/checkout.js', 'themes/lovata-tailwind-shopaholic');
 }
@@ -59,7 +58,7 @@ function onStart()
             {% else %}
                 {% partial 'button/button'
                     sText = 'button_apply_coupon'|_
-                    sPartialClasses = '_shopaholic-coupon-add w-full ml-0 md:w-80 md:ml-2'
+                    sPartialClasses = '_shopaholic-coupon-add w-full ml-0 md:w-80 md:ml-2 '
                     bGhost = 'true'
                 %}
             {% endif %}

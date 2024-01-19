@@ -1,36 +1,53 @@
 export default new class AdvancedList {
   constructor() {
-    this.sAdvancedListWrapperClass = $('._advanced-list');
-    this.sAdvancedListButtonShowMoreClass = $('._advanced-list-button-show-all');
-    this.sAdvancedListButtonShowMoreClassHidden = $('._advanced-list-button-show-all-hidden');
+    this.obAdvancedListWrapperClass = null;
+    this.obAdvancedListButtonShowMoreClass = null;
+    this.obAdvancedListButtonShowMoreClassHidden = null;
 
     this.obButton = null;
 
     this.init();
-    this.showAllList();
   }
 
   /**
    * @description Show all list.
    */
 
+  initVariables(){
+    this.obAdvancedListWrapperClass = document.getElementsByClassName('_advanced-list')[0];
+    this.obAdvancedListButtonShowMoreClass = document.getElementsByClassName('_advanced-list-button-show-all')[0];
+    this.obAdvancedListButtonShowMoreClassHidden = document.getElementsByClassName('_advanced-list-button-show-all-hidden')[0];
+  }
+
   init(){
-    if(this.sAdvancedListWrapperClass.find('li').data('take')){
-      for(let i = 0; i !== this.sAdvancedListWrapperClass.find('li').data('take'); i++){
-        this.sAdvancedListWrapperClass.find('li')[i].removeAttribute('aria-hidden');
-        this.sAdvancedListWrapperClass.find('li')[i].classList.remove('hidden');
+    if(!document.getElementsByClassName('_advanced-list')[0]) return;
+
+    this.initVariables();
+    if(this.obAdvancedListButtonShowMoreClass) {
+      this.showAllList();
+    }
+
+    if(this.obAdvancedListWrapperClass.querySelectorAll('li')[0].dataset.take){
+      for(let i = 0; i < this.obAdvancedListWrapperClass.querySelectorAll('li')[0].dataset.take; i++){
+        const obAdvancedListItem =   this.obAdvancedListWrapperClass.querySelectorAll('li')[i];
+        if(obAdvancedListItem) {
+          this.obAdvancedListWrapperClass.querySelectorAll('li')[i].removeAttribute('aria-hidden');
+          this.obAdvancedListWrapperClass.querySelectorAll('li')[i].classList.remove('hidden');
+        }
       }
     }
   }
 
   showAllList() {
-    this.sAdvancedListButtonShowMoreClass.on('click', ()=> {
-      this.sAdvancedListButtonShowMoreClass.addClass('hidden');
-      this.sAdvancedListButtonShowMoreClassHidden.removeClass('hidden');
+    this.obAdvancedListButtonShowMoreClass.addEventListener('click', ()=> {
+      this.obAdvancedListButtonShowMoreClass.classList.add('hidden');
+      this.obAdvancedListButtonShowMoreClassHidden.classList.remove('hidden');
       setTimeout(()=>{
-        this.sAdvancedListWrapperClass.find('li').removeAttr('aria-hidden', null);
-        this.sAdvancedListWrapperClass.find('li').removeClass('hidden');
-        this.sAdvancedListButtonShowMoreClassHidden.addClass('hidden');
+        for(let i = 0; i < this.obAdvancedListWrapperClass.querySelectorAll('li').length; i++){
+          this.obAdvancedListWrapperClass.querySelectorAll('li')[i].removeAttribute('aria-hidden');
+          this.obAdvancedListWrapperClass.querySelectorAll('li')[i].classList.remove('hidden');
+        }
+        this.obAdvancedListButtonShowMoreClassHidden.classList.add('hidden');
       },300)
     });
   }

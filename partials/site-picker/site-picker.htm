@@ -1,0 +1,42 @@
+{##}
+
+{% set iActiveSiteGroupId = input('site_group_id', this.site.group_id) %}
+{% set obSiteGroupList = sitePicker.sites().groupBy('group_id') %}
+{% set arGroupOptionList = [] %}
+{% for obGroup in obSiteGroupList %}
+    {% set obFirstSite = obGroup|first %}
+    {% set arGroupOptionList = arGroupOptionList|merge({(loop.index): {id: obFirstSite.group_id, name: obFirstSite.group.name}}) %}
+{% endfor %}
+{% set arSiteOptionList = (obSiteGroupList|length > 1) ? obSiteGroupList[iActiveSiteGroupId] : sitePicker.sites %}
+
+<form class="js-picker-submit">
+    <div class="space-y-6">
+        {% if arGroupOptionList|length > 1 %}
+            {% partial 'site-picker/site-picker-select'
+                sInputClass = 'js-language-input'
+                sLabelText = 'input_site_picker_country'|_
+                sName = 'site_group_id'
+                sId = 'site_group_id'
+                arOptionList = arGroupOptionList
+                sKeyForValue = 'id'
+                sSelectedValue = iActiveSiteGroupId
+            %}
+        {% endif %}
+        {% partial 'select/select'
+            sInputClass = ''
+            sLabelText = 'input_site_picker_language'|_
+            sName = 'site-name'
+            sId = 'site'
+            arOptionList = arSiteOptionList
+            sKeyForValue = 'url'
+            sSelectedValue = this.site.url
+        %}
+    </div>
+    {% partial 'button/button'
+        sType = 'submit'
+        sText = 'button_submit_site_picker'|_
+        sPartialClasses = 'w-full md:w-72 mt- p-2 mt-12'
+    %}
+</form>
+
+

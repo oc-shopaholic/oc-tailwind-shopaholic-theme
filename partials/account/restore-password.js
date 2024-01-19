@@ -1,3 +1,5 @@
+import request from 'oc-request';
+
 export default new class RestorePassword {
   constructor() {
     this.sButtonRestorePasswordClass = '_button-restore-password';
@@ -11,12 +13,18 @@ export default new class RestorePassword {
    * @description Init handler.
    */
   initHandler() {
-    $(document).on('click', `.${this.sButtonRestorePasswordClass}`, (obEvent) => {
+    const obButton = document.getElementsByClassName(this.sButtonRestorePasswordClass)
+
+    if (!obButton[0]) {
+      return;
+    }
+
+    obButton[0].addEventListener('click', (obEvent)=>{
       // TODO: Understand why we use setTimeout ()
       setTimeout(() => {
         this.sendRequest(obEvent);
       }, 0);
-    });
+    })
   }
 
   /**
@@ -24,22 +32,24 @@ export default new class RestorePassword {
    * @param {object} obEvent
    */
   sendRequest(obEvent) {
-    this.obButton = $(obEvent.target);
+    this.obButton = obEvent.target;
     const obForm = this.obButton.closest('form');
-    if (obForm.hasClass(this.sInvalidClass)) {
+
+    if (obForm.classList.contains(this.sInvalidClass)) {
       return;
     }
-    this.obButton.attr('disabled', 'disabled');
+
+    this.obButton.setAttribute('disabled', 'disabled');
     const self = this;
-    $.request('RestorePassword::onAjax', {
-      form: obForm,
-      complete: (obResponse) => {
-        const obData = obResponse.responseJSON;
+    request.sendForm(obForm, 'RestorePassword::onAjax', {
+      success: (res) => {
+        const obData = res;
         if (obData.status === false) {
           // TODO: Replace alert.
           alert(obData.message);
         }
-        self.obButton.removeAttr('disabled');
+
+        self.obButton.removeAttribute('disabled');
       },
     });
   }

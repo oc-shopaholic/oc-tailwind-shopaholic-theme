@@ -1,26 +1,25 @@
 import ShopaholicProductList from "@lovata/shopaholic-product-list/shopaholic-product-list";
 import ShopaholicFilterPrice from '@lovata/shopaholic-filter-panel/shopaholic-filter-price';
 import ShopaholicFilterPanel from "@lovata/shopaholic-filter-panel/shopaholic-filter-panel";
-import Filter from "../filter/filter";
+import Filter, { setAccordionState } from '../filter/filter';
 
 export default new class ProductList {
     constructor(){
-        this.$vContainer = $("._filter");
-        this.$vTemplate = null;
+        this.obContainer = document.getElementsByClassName('_filter')[0];
+        this.obProductCount = null;
+        this.obButtonLoading = null;
+        this.obResult = null;
+        this.obClear = null;
+        this.obShow = null;
 
-        this.$vProductCount = null
-        this.$vButtonLoading = null;
-        this.$vResult = null;
-        this.$vClear = null;
-
-        this.show = this.$vContainer.find('._show');
-        this.hide = null;
         this.adaptation();
     }
-    
+
     adaptation(){
-        if($(window).width() <= '768' && this.$vContainer.length){
-            this.show.on('click', () => {
+        if(!this.obContainer) return
+        if(window.innerWidth <= '768' && this.obContainer){
+            this.obShow = this.obContainer.querySelectorAll('._show');
+            this.obShow[0].addEventListener('click', () => {
                 this.initPlugins();
                 this.activeProductUpdate();
                 this.updateFilters();
@@ -35,33 +34,36 @@ export default new class ProductList {
 
     updateFilters(){
         new Filter();
+        setAccordionState()
     }
 
     activeProductUpdate(){
-        this.$vProductCount = this.$vContainer.find('._product-count');
-        let seeAll = this.$vProductCount.text().split('(')[0];
-        let product = $('.catalog_wrapper ._shopaholic-product-wrapper');
-        this.$vProductCount.text(seeAll + ' (' + product.length +')');
+        this.obProductCount = this.obContainer.querySelectorAll('._product-count');
+        if(!this.obProductCount.length) return;
+        const seeAll = this.obProductCount[0].innerHTML.split('(')[0];
+        const product = document.getElementsByClassName('_shopaholic-product-wrapper');
+        this.obProductCount[0].innerHTML = seeAll + ' (' + product.length +')';
     }
 
     showLoading(){
-        this.$vProductCount.css('display', 'none');
-        this.$vButtonLoading = this.$vContainer.find('._show-more-hidden');
-        this.$vButtonLoading.css('display', 'block');
+        if(!this.obProductCount.length) return;
+        this.obProductCount[0].style.display = 'none';
+        this.obButtonLoading = this.obContainer.querySelectorAll('._show-more-hidden');
+        this.obButtonLoading[0].style.display = 'block';
         setTimeout(() => {
-            this.$vProductCount.css('display', 'block');
-            this.$vButtonLoading.css('display', 'none');
+            this.obProductCount[0].style.display = 'block';
+            this.obButtonLoading[0].style.display = 'none';
         }, 400);
     }
 
     watchResult(){
-        let app = this;
-        var target = $('._sorting')[0];
-    
+        const app = this;
+        const target = document.getElementsByClassName('_sorting')[0];
+
         const config = {
           childList: true,
         };
-    
+
         const callback = function (mutationsList, observer) {
           for (let mutation of mutationsList) {
             if (mutation.type === 'childList') {
@@ -80,27 +82,29 @@ export default new class ProductList {
     }
 
     catalogPosition(){
-        let container = $('._shopaholic-product-wrapper');
+        const container = document.getElementsByClassName('_shopaholic-product-wrapper');
         if(!container.length){
-            this.$vResult.css('display', 'flex');
+            this.obResult.style.display = 'flex';
         }else{
-            this.$vResult.css('display', 'grid');
+            this.obResult.style.display = 'grid';
         }
-        this.$vResult.css('justify-content', 'center');
+        this.obResult.style.justifyContent = 'center';
     }
 
     clear(){
-        this.$vResult = $(".catalog_wrapper");
-        this.$vClear = this.$vResult.find("._clearFilter");
-        this.$vClear.on('click', () => {
-            let url = window.location.href.split('?')[0];
+        this.obResult = document.getElementsByClassName('catalog_wrapper')[0];
+        this.obClear = this.obResult.querySelectorAll("._clearFilter");
+        if(!this.obClear.length) return;
+        this.obClear[0].addEventListener('click', () => {
+            const url = window.location.href.split('?')[0];
             window.location.href = url;
         })
     }
+
     initPlugins(){
         const obListHelper = new ShopaholicProductList();
         obListHelper.setAjaxRequestCallback((obRequestData) => {
-            obRequestData.update = { 
+            obRequestData.update = {
                 'product-list/product-list-ajax': '.catalog_wrapper',
                 'filter/filters-desktop-ajax': '._filters-desktop',
                 'filter/filters-mobile-ajax': '._filters-mobile',
@@ -108,7 +112,7 @@ export default new class ProductList {
             };
             return obRequestData;
         });
-        
+
         const obFilterPrice = new ShopaholicFilterPrice(obListHelper);
         obFilterPrice.init();
 
