@@ -12,7 +12,7 @@
         <div class="flex _shopaholic-filter-wrapper js-accordion-content {{obProperty.filter_type == 'between' ? 'mb-4' : ''}}" data-filter-type="{{ obProperty.filter_type }}" data-property-id="{{ obProperty.id }}">
             {% if obProperty.filter_type == 'between' %}
                 <div class="_filter-range flex" data-filter-id="{{ obProperty.id }}">
-                    <fieldset class="mr-3">
+                    <fieldset class="me-3">
                         <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'text_properties_filter_min'|_}}</legend>
                         {% partial 'input/input'
                             sLabelText = 'text_properties_filter_min'|_
@@ -35,7 +35,7 @@
             {% if obProperty.filter_type == 'checkbox' %}
             {% set obPropertyValueList = obProperty.property_value.sort() %}
                 {% if obProperty.code != 'Color' %}
-                    <fieldset class="mr-3 w-full">
+                    <fieldset class="me-3 w-full">
                         <legend class="sr-only">{{ obProperty.name }}</legend>
                         {% for obValue in obPropertyValueList %}
                             {% set bChecked = arFilterValue[obProperty.id] is not empty and obValue.slug in arFilterValue[obProperty.id] %}
@@ -62,7 +62,7 @@
                         {% partial 'input-color-choose/input-color-choose'
                             obPropertyValueList = obPropertyValueList
                             obProperty = obProperty
-                            sPartialClasses = 'mr-3'
+                            sPartialClasses = 'me-3'
                             sContainerClasses = 'w-full flex flex-wrap'
                         %}
                     </fieldset>

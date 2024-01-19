@@ -62,7 +62,7 @@ export default class offCanvas {
     div.style.overflowY = 'scroll';
     div.style.width = '50px';
     div.style.height = '50px';
-    
+
     document.body.appendChild(div)
 
     const scrollWidth = div.offsetWidth - div.clientWidth;
@@ -73,7 +73,7 @@ export default class offCanvas {
   initBackdrop() {
     this.obBackdrop = this.obNav.querySelectorAll(".backdrop");
     if(this.obBackdrop[0]){
-      this.obBackdrop.classList.add('fixed top-0 right-0 bg-gray-400')
+      this.obBackdrop.classList.add('fixed top-0 end-0 bg-gray-400')
       this.obBackdrop.style.left = '0';
       this.obBackdrop.style.bottom = '0';
       this.obBackdrop.style.opacity = '0.6';
@@ -92,16 +92,16 @@ export default class offCanvas {
     this.obEvents[0] = (function(e) {
       if (e.keyCode === 27) {
         app.clearEvents();
-      }   
+      }
     });
-    
-    this.obEvents[1] = (function (e){ 
+
+    this.obEvents[1] = (function (e){
       if(!app.obContainer[0].contains(e.target)){
         app.clearEvents();
       }
     });
 
-    this.obEvents[2] = (function(event){ 
+    this.obEvents[2] = (function(event){
       if(event.target.closest('button') && event.target.closest('button').classList.contains('_hide')){
         app.clearEvents();
       }
@@ -185,7 +185,7 @@ export default class offCanvas {
 
   showMethod(){
     this.obShow[0].addEventListener("click", () => {
-      this.activeOffCanvas();    
+      this.activeOffCanvas();
       setTimeout(()=>{
         if(!this.obShow[0].dataset.tags){
           this.initEvents();

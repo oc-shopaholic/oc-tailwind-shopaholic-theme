@@ -1,6 +1,6 @@
 {##}
 
-<div class="my-7 md:my-12 sm:flex space-y-2 sm:space-y-0 sm:space-x-4">
+<div class="my-7 md:my-12 sm:flex rtl:space-x-reverse space-y-2 sm:space-y-0 sm:space-x-4">
     {% if this.theme.page_seo_block_image is not empty %}
     <picture class="w-1/2 shrink-0 max-w-full lg:max-w-screen-sm">
         <source srcset="{{ this.theme.page_seo_block_image|media|resize(640, 'auto', {'extension': 'webp'}) }}" type="image/webp">
@@ -15,3 +15,4 @@
         <span class="block text-gray-400 text-center mb-4 md:mb-10">{{ 'text_no_page_seo_content'|_ }}</span>
     {% endif %}
 </div>
+

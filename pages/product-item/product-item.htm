@@ -137,7 +137,7 @@ function getBreadcrumbs(): array
                                                         {% if (obProperty.name !='Color' and obProperty.name !='Sale' and obProperty.name !='Materials') and obProperty.property_value.getValueString() %}
                                                             <tr>
                                                                 <th class="text-left min-w-18 font-normal text-gray-600">{{ obProperty.name }}</th>
-                                                                <td class="pl-1.5">{{ obProperty.property_value.getValueString() }}
+                                                                <td class="ps-1.5">{{ obProperty.property_value.getValueString() }}
                                                                     {% if obProperty.name == 'Weight' %}
                                                                         kg
                                                                     {% else %}
@@ -163,7 +163,7 @@ function getBreadcrumbs(): array
                                                             {% for obPropertyValue in obProperty.property_value %}
                                                                 <tr>
                                                                     <th class="text-left min-w-18 font-normal text-gray-600">{{ obPropertyValue.value }}</th>
-                                                                    <td class="pl-1.5">100%</td>
+                                                                    <td class="ps-1.5">100%</td>
                                                                 </tr>
                                                             {% endfor %}
                                                         {% endif %}
@@ -190,7 +190,7 @@ function getBreadcrumbs(): array
         {% partial 'product-info/product-info'
             sPartialClass = 'absolute invisible w-auto xl:w-full xl:static xl:visible'
         %}
-        <div class="flex mt-7 flex-col xl:mt-0 xl:flex-row xl:pl-14">
+        <div class="flex mt-7 flex-col xl:mt-0 xl:flex-row xl:ps-14">
             {% set obPropertyList = obProduct.property %}
             {% set iTotalQuantity = obOfferList.getTotalQuantity() %}
             <div class="flex flex-col mb-12">
@@ -209,7 +209,7 @@ function getBreadcrumbs(): array
 
                         %}
                     </div>
-                    <div class="flex flex-row items-center space-x-2 mt-8 md:mt-10">
+                    <div class="flex flex-row items-center space-x-2 rtl:space-x-reverse  mt-8 md:mt-10">
                         {# TODO: Turn two buttons into one #}
                         {% partial 'button/button'
                             sText = 'button_add_to_cart'|_
@@ -242,7 +242,7 @@ function getBreadcrumbs(): array
        {% partial 'review-add/review-add' %}
     </div>
     {% partial 'product-rating/product-rating'
-        sPartialClass = 'mt-6 xl:mt-14 xl:pl-11 2xl:pl-14'
+        sPartialClass = 'mt-6 xl:mt-14 xl:ps-11 2xl:ps-14'
     %}
 </div>
 

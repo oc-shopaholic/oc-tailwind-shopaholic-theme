@@ -6,7 +6,7 @@
         {% set obLabelList = obProduct.label.active().sort() %}
         {% if obLabelList.isNotEmpty() %}
             {% if obLabelList.count() == 1 %}
-                <div class="absolute z-10 -top-px -left-px overflow-hidden rounded-br rounded-tl flex">
+                <div class="absolute z-10 -top-px -start-px overflow-hidden rounded-br rounded-tl flex">
                     {% for obLabel in obLabelList %}
                         {% if obLabel.code == 'new' %}
                             {% set sColorState = 'bg-green-900' %}
@@ -19,7 +19,7 @@
                     {% endfor %}
                 </div>
             {% else %}
-                <ul class="absolute z-10 -top-px -left-px rounded-br rounded-tl flex w-2/3 scrollbar-x-none overflow-x-scroll space-x-0.5 md:space-x-1 md:overflow-auto md:hover:w-auto">
+                <ul class="absolute z-10 -top-px -start-px rounded-br rounded-tl flex w-2/3 scrollbar-x-none overflow-x-scroll rtl:space-x-reverse space-x-0.5 md:space-x-1 md:overflow-auto md:hover:w-auto">
                     {% for obLabel in obLabelList %}
                         {% if obLabel.code == 'new' %}
                             {% set sColorState = 'bg-green-900' %}
@@ -47,18 +47,18 @@
             <source media="(min-width:769px)" srcset="{{ obProduct.preview_image.getThumb(420, 315, {'quality': 80}) }}" type="image/jpeg">
             <source media="(max-width:768px)" srcset="{{ obProduct.preview_image.getThumb(500, 373, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
             <source media="(max-width:768px)" srcset="{{ obProduct.preview_image.getThumb(500, 373, {'quality': 80}) }}" type="image/jpeg">
-            <img 
+            <img
                 class="object-cover h-full w-full"
                 src="{{ obProduct.preview_image.getThumb(500, 373, {'quality': 80}) }}"
                 itemprop="image"
                 alt="{{ obProduct.preview_image.description }}"
                 title="{{ obProduct.preview_image.title }}"
-                {{ iLoopIndex > iShowIndex ? 'loading="lazy"' }} 
+                {{ iLoopIndex > iShowIndex ? 'loading="lazy"' }}
             >
         </picture>
     </div>
     <div class="mt-2 md:mt-3 mx-2 flex flex-wrap">
-        <span class="break-line text-xs md:text-lg text-gray-900 font-medium mr-2">{{ obOffer.currency }}{{ obOffer.price }}</span>
+        <span class="break-line text-xs md:text-lg text-gray-900 font-medium me-2">{{ obOffer.currency }}{{ obOffer.price }}</span>
         {% if obOffer.old_price_value > obOffer.price_value %}
             <span class="break-line text-xs md:text-lg text-gray-600 line-through font-medium">{{ obOffer.currency }}{{ obOffer.old_price }}</span>
         {% endif %}
@@ -66,14 +66,14 @@
     {% if this.theme.has_wish_list %}
         {% if obProduct.inWishList() %}
             {# TODO: Add buttons a11y #}
-            <button class="_shopaholic-remove-wish-list-button text-red-500 hover:text-red-400 active:text-red-500 w-11 md:w-12 h-11 md:h-12 bg-gray-400 hover:bg-gray-500 group bg-opacity-40 hover:bg-opacity-40 focus:outline-none absolute top-0 right-0 flex justify-center items-center rounded-bl rounded-tr focus-visible:outline-blue focus-visible:text-red-500" type="button">
+            <button class="_shopaholic-remove-wish-list-button text-red-500 hover:text-red-400 active:text-red-500 w-11 md:w-12 h-11 md:h-12 bg-gray-400 hover:bg-gray-500 group bg-opacity-40 hover:bg-opacity-40 focus:outline-none absolute top-0 end-0 flex justify-center items-center rounded-bl rounded-tr focus-visible:outline-blue focus-visible:text-red-500" type="button">
                 <svg class="stroke-current fill-current" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1.59834 2.26511C1.25011 2.61333 0.973884 3.02673 0.785425 3.48171C0.596967 3.93668 0.499969 4.42432 0.499969 4.91678C0.499969 5.40924 0.596967 5.89688 0.785425 6.35185C0.973884 6.80683 1.25011 7.22023 1.59834 7.56845L8 13.9701L14.4017 7.56845C15.1049 6.86518 15.5 5.91135 15.5 4.91678C15.5 3.92221 15.1049 2.96838 14.4017 2.26511C13.6984 1.56185 12.7446 1.16676 11.75 1.16676C10.7554 1.16676 9.8016 1.56185 9.09834 2.26511L8 3.36345L6.90167 2.26511C6.55345 1.91689 6.14005 1.64066 5.68508 1.4522C5.2301 1.26375 4.74246 1.16675 4.25 1.16675C3.75754 1.16675 3.2699 1.26375 2.81493 1.4522C2.35995 1.64066 1.94656 1.91689 1.59834 2.26511V2.26511Z" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
         {% else %}
             {% partial 'button-wish-list/button-wish-list'
-                sPartialClasses = 'bg-opacity-40 absolute -top-px -right-px flex rounded-bl rounded-tr'
+                sPartialClasses = 'bg-opacity-40 absolute -top-px -end-px flex rounded-bl rounded-tr'
             %}
         {% endif %}
     {% endif %}

@@ -14,8 +14,8 @@
         sIndentsClass = 'px-4 py-10 md:px-10'
         sBackgroundClass = 'bg-white'
         body
-    %}  
-        {% partial 'review-card-info/review-card-info' 
+    %}
+        {% partial 'review-card-info/review-card-info'
             obProduct = obProduct
         %}
         <form class="_review-container">
@@ -24,14 +24,14 @@
             <fieldset class="mb-7 lg:mb-6">
                 {# TODO: Add the ability to send product recommendations #}
                 <legend class="text-gray-900 font-medium text-base mb-4 lg:mb-2">{{'text_you_recommend_product'|_}}</legend>
-                <div class="flex space-x-7">
-                    {% partial 'input-radio/input-radio' 
+                <div class="flex space-x-7 rtl:space-x-reverse">
+                    {% partial 'input-radio/input-radio'
                         sName = 'recommended'
                         sId = 'recommended'
                         sLabelText = 'input_yes'|_
                         sPartialClasses = 'flex items-center'
                     %}
-                    {% partial 'input-radio/input-radio' 
+                    {% partial 'input-radio/input-radio'
                         sName = 'recommended'
                         sId = 'non-recommended'
                         sLabelText = 'input_no'|_
