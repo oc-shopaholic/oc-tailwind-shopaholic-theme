@@ -50,26 +50,18 @@ As a User I can Buy Product Item(s) so that I can use it (them).
     </tr>
     <tr>
         <td>7.</td>
-        <td>When I change the amount of Product Items I want to buy its Old Price is subtracted from or added to Old Price.</td>
-    </tr>
-    <tr>
-        <td>8.</td>
-        <td>When I change the amount of Product Items I want to buy its New Price is subtracted from or added to New Price.</td>
-    </tr>
-    <tr>
-        <td>9.</td>
         <td>I can add Product Item to the Wish List.</td>
     </tr>
     <tr>
-        <td>10.</td>
+        <td>8.</td>
         <td>I can add Product Item to the Shopping Cart.</td>
     </tr>
     <tr>
-        <td>11.</td>
+        <td>9.</td>
         <td>I can go the Shopping Cart.</td>
     </tr>
     <tr>
-        <td>12.</td>
+        <td>10.</td>
         <td>I can browse my Order: 
             <ol>
                 <li>order item(s) image;</li>
@@ -77,19 +69,19 @@ As a User I can Buy Product Item(s) so that I can use it (them).
                 <li>order item(s) quantity;</li>
                 <li>order item(s) price;</li>
                 <li>total order cost excluding delivery;</li>
+                <li>total number of order items;</li>
             </ol>
         </td>
     </tr>
     <tr>
-        <td>13.</td>
+        <td>11.</td>
         <td>I can delete Order Item.
             <ol>
                 <li>When Order Item is deleted, its price is subtracted from the Total Order Cost Excluding Delivery.</li>
-                <li>I can undo this deleting.</li>
             </ol></td>
     </tr>
     <tr>
-        <td>14.</td>
+        <td>12.</td>
         <td>I can change the quantity of Order Item.
             <ol>
                 <li>When I change the quantity of Order Item its price is subtracted from or added to the Total Order Cost Excluding Delivery and the Total Order Cost Including Delivery.</li>
@@ -97,7 +89,7 @@ As a User I can Buy Product Item(s) so that I can use it (them).
             </ol></td>
     </tr>
     <tr>
-        <td>15.</td>
+        <td>13.</td>
         <td>I can go to the "Checkout" page and perform <a href="US12-MakeCheckout.md"> US-12</a>.</td>
 </table>
 
