@@ -32,20 +32,18 @@ function onInit()
             {% partial 'input/input'
                 sId = 'form-email'
                 sLabelText = 'input_email'|_
-                name = 'email'
-                required = 'required'
-                id = 'email'
-                type = 'email'
+                sName = 'email'
+                sRequired = 'required'
+                sType = 'email'
             %}
             {# TODO: Add inline ajax validation for email existing #}
             {% partial 'input/input'
                 sId = 'form-password'
                 sLabelText = 'input_password'|_
-                name = 'password'
-                required = 'required'
-                type = 'password'
+                sName = 'password'
+                sRequired = 'required'
+                sType = 'password'
                 sPartialClasses = 'mt-4'
-                id = 'password'
             %}
             <div class="mt-4 text-right">
                 <a href="{{ 'password-restore/password-restore'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base">{{ 'link_password_restore'|_ }}</a>

@@ -96,7 +96,7 @@
     position: relative;
   }
   summary::after {
-    @apply end-1 inline-block absolute
+    @apply end-3 inline-block absolute
   }
   summary::after {
     content: '';

@@ -1,12 +1,14 @@
 export default class Region {
   constructor (app) {
     this.obNav = app
-    this.languageForm = null
+    this.languageForm = this.obNav.querySelector('.js-picker-submit');
+    this.submitButton = this.obNav.querySelector('[type=\'submit\']');
     this.obShow = this.obNav.querySelector('._show')
   }
 
   initVariables () {
-    this.languageForm = this.obNav.querySelector('.js-picker-submit')
+    this.languageForm = this.obNav.querySelector('.js-picker-submit');
+    this.submitButton = this.obNav.querySelector('[type=\'submit\']');
   }
 
   show () {
@@ -22,29 +24,42 @@ export default class Region {
   }
 
   setCountry () {
-    this.languageInput = this.obNav.querySelector('[name=\'site_group_id\']')
-    if (!this.languageInput) return false
+    this.languageInput = this.obNav.querySelector('[name=\'site_group_id\']');
+    if (!this.languageInput) {
+      return false;
+    }
+
     this.languageInput.addEventListener('change', (e) => {
-      e.preventDefault()
+      e.preventDefault();
+      this.submitButton.setAttribute('disabled', 'disabled');
+
       oc.ajax('onAjax', {
         data: { site_group_id: e.target.value },
         update: {
           'site-picker/site-picker': `._site_picker`
         },
       }).done(() => {
-        this.initVariables()
-        this.initEvents()
+        this.initVariables();
+        this.initEvents();
+        this.submitButton.removeAttribute('disabled');
       })
     })
   }
 
   setRegion () {
-    if (!this.languageForm) return false
+    if (!this.languageForm) {
+      return;
+    }
+
     this.languageForm.addEventListener('submit', (e) => {
-      e.preventDefault()
-      if(window.location.href !== this.languageInput.value) window.location.href = this.languageInput.value;
-      return false
-    })
+      e.preventDefault();
+      const languageInput = this.languageForm.querySelector('#site_id');
+      if (!languageInput) {
+        return;
+      }
+
+      window.location.href = languageInput.value;
+    });
   }
 
   static make (container) {
@@ -55,4 +70,5 @@ export default class Region {
     })
   }
 }
-Region.make('_off-canvas')
+
+Region.make('_off-canvas');

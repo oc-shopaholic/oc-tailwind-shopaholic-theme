@@ -5,44 +5,44 @@
         <label for="{{ sId }}" class="text-xs text-gray-600 inline-block mb-1 {{ sLabelClasses }}">{{ sLabelText }}</label>
     {% endif %}
     <input
-        type="{{ type|default('text') }}"
+        type="{{ sType|default('text') }}"
         id="{{ sId }}"
-        {% if name %}
-            name="{{ name }}"
+        {% if sName %}
+            name="{{ sName }}"
         {% endif %}
         class="w-full border border-gray-400 py-3 px-4 rounded placeholder-gray-400 focus:outline-none focus:border-blue-800 focus:ring-transparent {{ inputClass }}"
         data-was-change="false"
         {{ required }}
-        {% if value is not same as(null) %}
-            value="{{ value }}"
+        {% if sValue is not same as(null) %}
+            value="{{ sValue }}"
         {% endif %}
         {{sDataAtributes}}
-        {% if placeholder %}
-            placeholder="{{ placeholder }}"
+        {% if sPlaceholder %}
+            placeholder="{{ sPlaceholder }}"
         {% endif %}
-        {% if disabled == true %}
+        {% if bDisabled == true %}
             disabled="disabled"
         {% endif %}
-        {% if min is not same as(null) %}
-            min="{{ min }}"
+        {% if iMin is not same as(null) %}
+            min="{{ iMin }}"
         {% endif %}
-        {% if max is not same as(null) %}
-            max="{{ max }}"
+        {% if iMax is not same as(null) %}
+            max="{{ iMax }}"
         {% endif %}
-        {% if maxLength is not same as(null) %}
-            maxlength="{{ maxLength }}"
+        {% if iMaxLength is not same as(null) %}
+            maxlength="{{ iMaxLength }}"
         {% endif %}
-        {% if minLength is not same as(null) %}
-            minlength="{{ minLength }}"
+        {% if iMinLength is not same as(null) %}
+            minlength="{{ iMinLength }}"
         {% endif %}
-        {% if pattern is not same as(null) %}
-            pattern="{{ pattern }}"
+        {% if sPattern is not same as(null) %}
+            pattern="{{ sPattern }}"
         {% endif %}
-        {% if validationErrorSelector is not same as(null) %}
-            data-bouncer-target=".{{ validationErrorSelector }}"
+        {% if sValidationErrorSelector is not same as(null) %}
+            data-bouncer-target=".{{ sValidationErrorSelector }}"
         {% endif %}
-        {% if customErrorMessage is not same as(null) %}
-            data-bouncer-message="{{ customErrorMessage }}"
+        {% if sCustomErrorMessage is not same as(null) %}
+            data-bouncer-message="{{ sCustomErrorMessage }}"
         {% endif %}
         {{ attribute|raw }}
     >

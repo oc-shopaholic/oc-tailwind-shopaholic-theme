@@ -15,11 +15,17 @@ export default new class Checkout {
 
    init(){
         setTimeout(()=>{
-            document.getElementById('delivery_1').dispatchEvent(
-                new InputEvent('change', {
-                    bubbles: true,
-                    cancelable: true,
-                }));
+          const arShippingTypeInputList = document.querySelector('input[name=shipping_type_id]')
+          const obFirstShippingTypeInput = arShippingTypeInputList ? arShippingTypeInputList[0] : null;
+          if (!obFirstShippingTypeInput) {
+            return;
+          }
+
+          obFirstShippingTypeInput.dispatchEvent(
+            new InputEvent('change', {
+                bubbles: true,
+                cancelable: true,
+            }));
         }, 10)
         const obShopaholicCartShippingType = new ShopaholicCartShippingType();
         obShopaholicCartShippingType.setAjaxRequestCallback((obRequestData, obButton) => {

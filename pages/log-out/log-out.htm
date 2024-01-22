@@ -10,7 +10,7 @@ function onInit()
 
     $obUser = $this['obUser'];
 
-    if (!empty($obUser) || !$this->theme->has_buddies) {
+    if (empty($obUser) || !$this->theme->has_buddies) {
         return $this->controller->run('404');
     }
 

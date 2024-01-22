@@ -1,7 +1,7 @@
 import ShopaholicProductList from "@lovata/shopaholic-product-list/shopaholic-product-list";
 import ShopaholicFilterPrice from '@lovata/shopaholic-filter-panel/shopaholic-filter-price';
 import ShopaholicFilterPanel from "@lovata/shopaholic-filter-panel/shopaholic-filter-panel";
-import Filter from "../filter/filter";
+import Filter, { setAccordionState } from '../filter/filter';
 
 export default new class ProductList {
     constructor(){
@@ -14,7 +14,7 @@ export default new class ProductList {
 
         this.adaptation();
     }
-    
+
     adaptation(){
         if(!this.obContainer) return
         if(window.innerWidth <= '768' && this.obContainer){
@@ -34,6 +34,7 @@ export default new class ProductList {
 
     updateFilters(){
         new Filter();
+        setAccordionState()
     }
 
     activeProductUpdate(){
@@ -58,11 +59,11 @@ export default new class ProductList {
     watchResult(){
         const app = this;
         const target = document.getElementsByClassName('_sorting')[0];
-    
+
         const config = {
           childList: true,
         };
-    
+
         const callback = function (mutationsList, observer) {
           for (let mutation of mutationsList) {
             if (mutation.type === 'childList') {
@@ -99,11 +100,11 @@ export default new class ProductList {
             window.location.href = url;
         })
     }
-    
+
     initPlugins(){
         const obListHelper = new ShopaholicProductList();
         obListHelper.setAjaxRequestCallback((obRequestData) => {
-            obRequestData.update = { 
+            obRequestData.update = {
                 'product-list/product-list-ajax': '.catalog_wrapper',
                 'filter/filters-desktop-ajax': '._filters-desktop',
                 'filter/filters-mobile-ajax': '._filters-mobile',
@@ -111,7 +112,7 @@ export default new class ProductList {
             };
             return obRequestData;
         });
-        
+
         const obFilterPrice = new ShopaholicFilterPrice(obListHelper);
         obFilterPrice.init();
 

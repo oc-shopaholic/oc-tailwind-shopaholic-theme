@@ -44,6 +44,9 @@ function onInit()
             sHref = 'product-list'|page
             sButtonText = 'button_start_shopping'|_
             sButtonClasses = 'mt-24 md:mt-6'
+            sButtonType = link
+            sHref = '/catalog' 
         %}
+        {# TODO: sHref could be broken if site admin will choose another slug for the Catalog page. #}
     {% endif %}
 </section>

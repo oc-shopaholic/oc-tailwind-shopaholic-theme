@@ -51,13 +51,13 @@ function onInit()
             {% if obActiveCoupon is not empty %}
                 {% partial 'button/button'
                     sText = 'button_remove_coupon'|_
-                    sPartialClasses = '_shopaholic-coupon-remove w-full ms-0 md:w-80 md:ms-2'
+                    sPartialClasses = '_shopaholic-coupon-remove w-full ms-0 md:w-80 md:ms-2 ' ~ (obActiveCoupon is not empty ? '' : 'hidden')
                     bGhost= 'true'
                 %}
             {% else %}
                 {% partial 'button/button'
                     sText = 'button_apply_coupon'|_
-                    sPartialClasses = '_shopaholic-coupon-add w-full ms-0 md:w-80 md:ms-2 '
+                    sPartialClasses = '_shopaholic-coupon-add w-full ms-0 md:w-80 md:ms-2 ' ~ (obActiveCoupon is not empty ? 'hidden' : '')
                     bGhost = 'true'
                 %}
             {% endif %}

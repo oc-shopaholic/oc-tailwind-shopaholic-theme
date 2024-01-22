@@ -213,9 +213,10 @@ function onInit() {
     }
 
     $arBreadcrumbs[] = [
-        'name'   => $this->page->title,
-        'url'    => $this->pageUrl($this->page->baseFileName, false),
-        'active' => empty($obProductItem) && empty($obActiveCategoryItem),
+        'name'    => 'breadcrumbs_catalog_page',
+        'is_lang' => true,
+        'url'     => $this->pageUrl($this->page->baseFileName, false),
+        'active'  => empty($obProductItem) && empty($obActiveCategoryItem),
     ];
 
     $this['arBreadcrumbs'] = array_reverse($arBreadcrumbs);
@@ -237,7 +238,7 @@ function onStart()
     {% partial 'product-card/product-card' %}
 {% else %}
     {# Product list #}
-    <div class="grid md:grid-cols-4">
+    <div class="grid md:grid-cols-4 mb-14">
         {% if bShowFilter %}
             {% partial 'filter/filter'
                 sPartialClass='md:col-span-1'

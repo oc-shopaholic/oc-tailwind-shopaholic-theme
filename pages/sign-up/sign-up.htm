@@ -32,26 +32,26 @@ function onInit()
             {% partial 'input/input'
                 sId = 'form-email'
                 sLabelText = 'input_email'|_
-                name = 'email'
-                required = 'required'
-                type = 'email'
+                sName = 'email'
+                sRequired = 'required'
+                sType = 'email'
             %}
             {# TODO: Add inline ajax validation for avaibility of the email #}
             {% partial 'input/input'
                 sId = 'form-password'
                 sLabelText = 'input_password'|_
-                name = 'password'
-                required = 'required'
-                type = 'password'
+                sName = 'password'
+                sRequired = 'required'
+                sType = 'password'
                 sPartialClasses = 'mt-4'
             %}
             {# TODO: Add inline ajax validation for matching of the password fields values #}
             {% partial 'input/input'
                 sId = 'form-password-confirm'
                 sLabelText = 'input_password_confirmation'|_
-                name = 'password_confirmation'
-                required = 'required'
-                type = 'password'
+                sName = 'password_confirmation'
+                sRequired = 'required'
+                sType = 'password'
                 sPartialClasses = 'mt-4'
             %}
             {% set text_rules_acceptence_link_terms_conditions = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~ this.theme.sign_up_terms_link|link ~'">'~('text_rules_acceptence_link_terms_conditions'|_)|raw ~'</a>' %}

@@ -1,0 +1,91 @@
+aria_label_breadcrumbs: 'Breadcrumbs' #TODO: translate to Russian
+aria_label_close: 'Close' #TODO: translate to Russian
+aria_label_pagination: 'Pagination' #TODO: translate to Russian
+aria_label_pagination_page_next: 'Go to next page' #TODO: translate to Russian
+aria_label_pagination_page_previous: 'Go to previous page' #TODO: translate to Russian
+aria_label_rating_static: 'Rating :aria_label_rating_static_of' #TODO: translate to Russian
+aria_label_rating_static_of: 'of' #TODO: translate to Russian
+breadcrumbs_page_home: 'Home' #TODO: translate to Russian
+breadcrumbs_page_account: 'Мой аккаунт'
+breadcrumbs_page_password_change: 'Изменить пароль'
+button_checkout_guest: 'Checkout as guest' #TODO: translate to Russian
+button_quantity_decrease: 'Decrease quantity' #TODO: translate to Russian
+button_quantity_increase: 'Increase quantity' #TODO: translate to Russian
+button_go_back: 'Go back' #TODO: translate to Russian
+button_page_header_account: 'Open account profile' #TODO: translate to Russian
+button_page_header_cart: 'Go to the cart' #TODO: translate to Russian
+button_page_header_search: 'Search for goods' #TODO: translate to Russian
+button_password_change: 'Change password' #TODO: translate to Russian
+button_password_restore: 'Restore password' #TODO: translate to Russian
+button_reload_page: 'Reload page' #TODO: translate to Russian
+button_show_more_products: 'More products' #TODO: translate to Russian
+button_sign_in: 'Вход' #TODO: translate to Russian
+button_sign_in_checkout: 'Sign in & Checkout' #TODO: translate to Russian
+button_sign_up: 'Sign up' #TODO: translate to Russian
+button_start_shopping: 'Start shopping' #TODO: translate to Russian
+heading_icon_list_payment_methods: 'Available payment methods' #TODO: translate to Russian
+heading_icon_list_social_media: 'Our social medias' #TODO: translate to Russian
+heading_news_list_latest: 'News' #TODO: translate to Russian
+heading_page_wish_list: 'Wish list' #TODO: translate to Russian
+heading_product_list_small_popular_products: 'Popular products' #TODO: translate to Russian
+heading_product_list_small_recently_viewed: 'Recently viewed' #TODO: translate to Russian
+input_email: 'Email' #TODO: translate to Russian
+input_quantity: 'Quantity' #TODO: translate to Russian
+input_password: 'Password' #TODO: translate to Russian
+input_password_current: 'Current password' #TODO: translate to Russian
+input_password_new: 'New password' #TODO: translate to Russian
+input_password_new_confirm: 'Confirm new password' #TODO: translate to Russian
+input_password_confirmation: 'Confirm new password' #TODO: translate to Russian
+input_remember_me: 'Keep me signed in' #TODO: translate to Russian
+link_see_all: 'See all' #TODO: translate to Russian
+link_password_restore: 'Forgot password?' #TODO: translate to Russian
+page_header_link_sign_in: 'Вход' #TODO: translate to Russian
+page_heading_faq: 'F.A.Q.' #TODO: translate to Russian
+page_heading_news_list: 'News' #TODO: translate to Russian
+page_heading_password_change: 'Change password' #TODO: translate to Russian
+page_heading_password_restore: 'Recover password' #TODO: translate to Russian
+page_heading_sign_in: 'Вход' #TODO: translate to Russian
+page_heading_sign_up: 'Sign up' #TODO: translate to Russian
+text_checkout: 'To use a promo code, sign in or :text_checkout_link_sign_in first.' #TODO: translate to Russian
+text_checkout_link_sign_in: 'create an account' #TODO: translate to Russian
+text_continue_without_sign_in: 'Continue without authorization' #TODO: translate to Russian
+text_error_404: 'The page you are loking for doesn’t exist.' #TODO: translate to Russian
+text_error_500: 'We’re experiencing an internal server problem. We know about this mistake and are working to fix it. Please, reload page or try again later.' #TODO: translate to Russian
+text_has_account: 'Don’t have an account? :text_has_account_link_sign_in' #TODO: translate to Russian
+text_has_account_link_sign_in: 'Sign in' #TODO: translate to Russian
+text_icon_list_payment_methods_not_found: 'No payment methods has been added.' #TODO: translate to Russian
+text_icon_list_social_media_not_found: 'No social medias has been added.' #TODO: translate to Russian
+text_news_list_latest_not_found: 'No news has been added.' #TODO: translate to Russian
+text_news_list_not_found: 'No news has been added.' #TODO: translate to Russian
+text_no_account: 'Don’t have an account? :text_no_account_link_sign_up' #TODO: translate to Russian
+text_no_account_link_sign_up: 'Sign up' #TODO: translate to Russian
+text_no_image_article: 'Image isn’t available.' #TODO: translate to Russian
+text_no_page_seo_content: 'No page SEO content has been added.' #TODO: translate to Russian
+text_password_restore: 'The link for restoring the password was sent to your email.' #TODO: translate to Russian
+text_powered_by: 'Powered by :text_powered_by_plugin and the :text_powered_by_theme theme.' #TODO: translate to Russian
+text_powered_by_plugin: 'Shopaholic' #TODO: translate to Russian
+text_powered_by_theme: 'Tailwind' #TODO: translate to Russian
+text_rules_acceptence: 'By registering, you agree with our :text_rules_acceptence_link_terms_conditions, and :text_rules_acceptence_link_privacy_cookie_policy.' #TODO: translate to Russian
+text_rules_acceptence_link_terms_conditions: 'Terms & Conditions' #TODO: translate to Russian
+text_rules_acceptence_link_privacy_cookie_policy: 'Privacy & Cookie Policy' #TODO: translate to Russian
+text_sign_up_email-confirmation: 'Please, check your email to confirm the address.' #TODO: translate to Russian
+text_sign_up_success: 'Your email was confirmed. Now you can sign in.' #TODO: translate to Russian
+text_sorry: 'Sorry!' #TODO: translate to Russian
+text_wish_list_empty: 'Your wish list is empty.' #TODO: translate to Russian
+validation_missing_value_checkbox: 'This field is required.' #TODO: translate to Russian
+validation_missing_value_radio: 'Please select a value.' #TODO: translate to Russian
+validation_missing_value_select: 'Please select a value.' #TODO: translate to Russian
+validation_missing_value_select_multiple: 'Please select at least one value.' #TODO: translate to Russian
+validation_missing_value_default: 'Please fill out this field.' #TODO: translate to Russian
+validation_pattern_mismatch_email: 'Please enter a valid email address.' #TODO: translate to Russian
+validation_pattern_mismatch_url: 'Please enter a URL.' #TODO: translate to Russian
+validation_pattern_mismatch_number: 'Please enter a number' #TODO: translate to Russian
+validation_pattern_mismatch_color: 'Please match the following format: #rrggbb' #TODO: Move #rrggbb to variable, translate to Russian
+validation_pattern_mismatch_date: 'Please use the YYYY-MM-DD format' #TODO: Move YYYY-MM-DD to variable, translate to Russian
+validation_pattern_mismatch_time: 'Please use the 24-hour time format. Ex. 23:00' #TODO: Move 24-hour and 23:00 to variables, translate to Russian
+validation_pattern_mismatch_month: 'Please use the YYYY-MM format' #TODO: Move YYYY-MM to variable, translate to Russian
+validation_pattern_mismatch_default: 'Please match the requested format.' #TODO: translate to Russian
+validation_out_of_range_over: 'Please select a value that is no more than {max}.' #TODO: Move {max} to variable #TODO: translate to Russian
+validation_out_of_range_under: 'Please select a value that is no less than {min}.' #TODO: Move {min} to variable #TODO: translate to Russian
+validation_wrong_length_over: 'Please shorten this text to no more than {maxLength} characters. You are currently using {length} characters.' #TODO: Move {maxLength} and {length} to variables, translate to Russian
+validation_wrong_length_under: 'Please lengthen this text to {minLength} characters or more. You are currently using {length} characters.' #TODO: Move {minLength} and {length} to variables, translate to Russian

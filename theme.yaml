@@ -18,3 +18,4 @@ require:
     - Lovata.FilterShopaholic
 translate:
     en: lang/en/lang.yaml
+    ru: lang/ru/lang.yaml

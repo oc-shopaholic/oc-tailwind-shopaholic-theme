@@ -8,7 +8,7 @@
         {% for arItem in arBreadcrumbs %}
             <li class="ps-3 inline-flex before:separator whitespace-nowrap">
                 {% if loop.last %}
-                    <span class="ms-3">{{ arItem.name }}</span>
+                    <span class="ms-3">{{ arItem.is_lang ? arItem.name|_ : arItem.name }}</span>
                 {% else %}
                     <a class="underline hover:text-blue-700 focus:text-blue-800 active:text-blue-900 ms-3" href="{{ arItem.url }}">{{ arItem.name }}</a>
                 {% endif %}
