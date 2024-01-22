@@ -165,7 +165,7 @@
 }
 
 .pswp__top-bar.pswp__hide-on-close{
-  @apply space-x-4 w-auto flex bg-gray-100 items-center end-0 left-auto rounded-bl lg:space-x-6 rtl:space-x-reverse
+  @apply space-x-4 w-auto flex bg-gray-100 items-center end-0 inset-auto rounded-bl lg:space-x-6 rtl:space-x-reverse
 }
 .pswp__top-bar.pswp__hide-on-close .pswp__counter{
   text-shadow: initial;

@@ -16,7 +16,7 @@ export default new class ProductGallery {
     this.obSwiperContainer = document.getElementsByClassName('_swiper-container')[0];
 
     if(!this.obSwiperContainer) return;
-    
+
     this.obSlide = this.obSwiperContainer.querySelectorAll('.swiper-slide');
     const slider = document.querySelector(`.${this.sGallerySelector}`);
 
@@ -60,7 +60,7 @@ export default new class ProductGallery {
         },
       },
     });
-    
+
     const galleryTop = new Swiper(`.${this.sGallerySelector}`, {
       spaceBetween: 0,
       allowSlidePrev: true,
@@ -70,7 +70,7 @@ export default new class ProductGallery {
         autoScrollOffset: 1,
       },
     });
-  
+
     this.activeSlide(galleryThumbs);
   }
 
