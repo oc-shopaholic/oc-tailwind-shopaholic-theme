@@ -16,16 +16,26 @@ export default class offCanvas {
     this.obContainerRend = null;
     this.sNewRend = false;
     this.obEvents = [];
+    this.direction = this.getDirection()
   }
 
   onNewRend(){
     this.sNewRend = this.obNav.querySelectorAll('._offCanvasContainer')[0].dataset.type;
   }
 
+  getDirection() {
+    const bodeElem = document.querySelector("body")
+    return window.getComputedStyle(bodeElem).getPropertyValue('direction')
+  }
+
   initOffCanvas(){
     if(this.sNewRend !== 'detach'){
+
       this.obTemplateNav = this.obNav.querySelectorAll("._offCanvasTemplate");
       this.obTemplate = this.obTemplateNav[0].content.cloneNode(true);
+      if(this.direction === 'rtl') {
+        this.obTemplate.querySelector('._nav').dataset.position = 'left'
+      }
       this.obNav.appendChild(this.obTemplate);
       this.onNewRend();
     }else{
@@ -39,7 +49,6 @@ export default class offCanvas {
     setTimeout(()=>{
       if(!this.obShow[0].dataset.tags){
         this.obDialog.showModal();
-
         document.body.style.overflowY = 'hidden';
         document.body.style.paddingRight = this.sScrollWidth + 'px';
       }
