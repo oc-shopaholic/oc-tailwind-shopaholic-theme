@@ -97,8 +97,8 @@ export default new class Tags {
     const text = this.getTextTagsPrice(props.value)
     let tag = document.createElement('li')
     tag.dataset.name = id
-    tag.className = 'whitespace-nowrap mr-3 mb-3 capitalize bg-white rounded shadow py-3 ps-3 pe-5 flex items-center justify-between text-gray-600 text-base lg:text-sm'
-    tag.innerHTML = '' + section + ': ' + text + ' <button class="_delete-tag text-gray-900 p-2 -m-2 ml-3 hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800" type="button" data-id=' + id + '>' + '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>'
+    tag.className = 'whitespace-nowrap me-3 mb-3 capitalize bg-white rounded shadow py-3 ps-3 pe-5 flex items-center justify-between text-gray-600 text-base lg:text-sm'
+    tag.innerHTML = '' + section + ': ' + text + ' <button class="_delete-tag text-gray-900 p-2 -m-2 ms-3 hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800" type="button" data-id=' + id + '>' + '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>'
     this.obTagsContainer.appendChild(tag)
   }
 
@@ -112,8 +112,8 @@ export default new class Tags {
       let text = document.querySelector(`[for="${prop}"]`)
       let tag = document.createElement('li')
       tag.dataset.name = prop
-      tag.className = 'whitespace-nowrap mr-3 mb-3 capitalize bg-white rounded shadow py-3 ps-3 pe-5 flex items-center justify-between text-gray-600 text-base lg:text-sm'
-      tag.innerHTML = `${text ? sectionText + ': ' : sectionText } ${text ? text.innerText : ''}  <button class="_delete-tag text-gray-900 p-2 -m-2 ml-3 hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800" type="button" data-id='${props.id == 'sale' ? 'sale' : prop}'> <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>`
+      tag.className = 'whitespace-nowrap me-3 mb-3 capitalize bg-white rounded shadow py-3 ps-3 pe-5 flex items-center justify-between text-gray-600 text-base lg:text-sm'
+      tag.innerHTML = `${text ? sectionText + ': ' : sectionText } ${text ? text.innerText : ''}  <button class="_delete-tag text-gray-900 p-2 -m-2 ms-3 hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800" type="button" data-id='${props.id == 'sale' ? 'sale' : prop}'> <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>`
       this.obTagsContainer.appendChild(tag)
     })
   }

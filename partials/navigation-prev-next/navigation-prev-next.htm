@@ -22,7 +22,7 @@
     {% endif %}
     {% if obNextArticle.isNotEmpty() %}
         {% partial 'button/button'
-            sPartialClasses = 'flex border-2 bg-transparent border-blue-800 text-blue-800 py-3 pl-10 pe-7 rounded md:ms-auto'
+            sPartialClasses = 'flex border-2 bg-transparent border-blue-800 text-blue-800 py-3 ps-10 pe-7 rounded md:ms-auto'
             sText = 'button_next_article'|_
             sHref = obNextArticle.getPageUrl(this.page.baseFileName)
             bGhost = true
