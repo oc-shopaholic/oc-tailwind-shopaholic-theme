@@ -47,13 +47,13 @@
             <source media="(min-width:769px)" srcset="{{ obProduct.preview_image.getThumb(420, 315, {'quality': 80}) }}" type="image/jpeg">
             <source media="(max-width:768px)" srcset="{{ obProduct.preview_image.getThumb(500, 373, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
             <source media="(max-width:768px)" srcset="{{ obProduct.preview_image.getThumb(500, 373, {'quality': 80}) }}" type="image/jpeg">
-            <img 
+            <img
                 class="object-cover h-full w-full"
                 src="{{ obProduct.preview_image.getThumb(500, 373, {'quality': 80}) }}"
                 itemprop="image"
                 alt="{{ obProduct.preview_image.description }}"
                 title="{{ obProduct.preview_image.title }}"
-                {{ iLoopIndex > iShowIndex ? 'loading="lazy"' }} 
+                {{ iLoopIndex > iShowIndex ? 'loading="lazy"' }}
             >
         </picture>
     </div>

@@ -96,7 +96,7 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
     require('tailwindcss-pseudo-elements'),
-    require('@tailwindcss/line-clamp'),
+    // require('@tailwindcss/line-clamp'),
     plugin(function ({ addUtilities }) {
       const newUtilities = {
         '.separator': {

@@ -10,7 +10,7 @@ function onInit()
     $this['path_page_js'] = mix('assets/dist/js/account.js', 'themes/lovata-tailwind-shopaholic');
 
     $arBreadcrumbs = [
-        ['name' => \RainLab\Translate\Models\Message::trans('breadcrumbs_page_account'), 'url' => null],
+        ['name' => \RainLab\Translate\Models\Message::trans('account_my_account'), 'url' => null],
     ];
 
     $this['arBreadcrumbs'] = $arBreadcrumbs;
@@ -35,17 +35,17 @@ function onInit()
 
 {% set arList = [
     {
-        title: 'page_heading_account_orders'|_,
+        title: 'account_order_history'|_,
         url: "/account/orders",
         icon:  '/themes/lovata-tailwind-shopaholic/assets/images/icon-orders.svg'
     },
     {
-        title: 'page_heading_account_details'|_,
+        title: 'account_private_data'|_,
         url: '/account/details',
         icon:  '/themes/lovata-tailwind-shopaholic/assets/images/icon-details.svg'
     },
     {
-        title: 'page_heading_account_password'|_,
+        title: 'account_password_change'|_,
         url: "/account/password",
         icon:  '/themes/lovata-tailwind-shopaholic/assets/images/icon-password.svg'
     }
@@ -53,7 +53,9 @@ function onInit()
 ]%}
 
 {% partial 'breadcrumbs/breadcrumbs' %}
+
 <div class="flex flex-col mb-10">
+    <h1 class="font-medium uppercase text-xl md:text-3xl mb-4">{{'account_my_account'|_}}</h1>
     {% partial 'advanced-list/advanced-list'
         body
     %}
@@ -70,7 +72,7 @@ function onInit()
                 <span class="w-12 relative md:w-full h-12 md:h-auto bg-gray-200 group-hover:bg-blue-800 group-focus:bg-blue-900 md:aspect-w-1 md:aspect-h-1">
                     <span class="advanced-list-icon h-6 w-6 bg-6 md:bg-auto after:bg-blue-800 after:group-hover:bg-white transform scale-50" style="--advanced-list-icon-src: url('/themes/lovata-tailwind-shopaholic/assets/images/exit.svg')"></span>
                 </span>
-                <span class="w-full flex flex-1 items-center pl-4 pr-2 md:py-4 md:px-2 xl:p-4 md:justify-center border border-l-0 md:border-l md:border-t-0 border-solid border-gray-200 rounded-br-sm md:rounded-bl-sm rounded-tr-sm md:rounded-t-none md:text-center group-active:underline">Sign out</span>
+                <span class="w-full flex flex-1 items-center pl-4 pr-2 md:py-4 md:px-2 xl:p-4 md:justify-center border border-l-0 md:border-l md:border-t-0 border-solid border-gray-200 rounded-br-sm md:rounded-bl-sm rounded-tr-sm md:rounded-t-none md:text-center group-active:underline">{{'account_sign_out'|_}}</span>
             </button>
         </li>
     {% endpartial %}

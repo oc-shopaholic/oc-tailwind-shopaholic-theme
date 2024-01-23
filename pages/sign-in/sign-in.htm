@@ -25,13 +25,13 @@ function onInit()
 {##}
 
 <div class="mt-7 mb-14 flex flex-col items-center">
-    <h1 class="font-medium uppercase text-xl md:text-3xl mb-4">{{ 'page_heading_sign_in'|_ }}</h1>
+    <h1 class="font-medium uppercase text-xl md:text-3xl mb-4">{{ 'account_signing_in'|_ }}</h1>
     <div class="max-w-xs">
         <form class="_required">
             {# TODO: To discuss validation message layout shift #}
             {% partial 'input/input'
                 sId = 'form-email'
-                sLabelText = 'input_email'|_
+                sLabelText = 'form_user_email'|_
                 sName = 'email'
                 sRequired = 'required'
                 sType = 'email'
@@ -39,29 +39,29 @@ function onInit()
             {# TODO: Add inline ajax validation for email existing #}
             {% partial 'input/input'
                 sId = 'form-password'
-                sLabelText = 'input_password'|_
+                sLabelText = 'form_user_password'|_
                 sName = 'password'
                 sRequired = 'required'
                 sType = 'password'
                 sPartialClasses = 'mt-4'
             %}
             <div class="mt-4 text-right">
-                <a href="{{ 'password-restore/password-restore'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base">{{ 'link_password_restore'|_ }}</a>
+                <a href="{{ 'password-reset/password-reset'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base">{{ 'account_password_forgot'|_ }}</a>
             </div>
             {% partial 'input-checkbox/input-checkbox'
                 sPartialClasses = 'mt-4 md:mt-3 flex items-center'
                 sId = 'remember_me'
                 sName = 'remember_me'
-                sLabelText = 'input_remember_me'|_
+                sLabelText = 'form_user_keep_signed'|_
             %}
             {% partial 'button/button'
-                sText = 'button_sign_in'|_
+                sText = 'account_sign_in'|_
                 sType = 'submit'
                 sPartialClasses = '_button-sign-in w-full mt-8 md:mt-6'
             %}
             {# TODO: Add inline ajax validation #}
         </form>
-        {% set text_no_account_link_sign_up = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~( 'sign-up/sign-up'|page )~'">'~('text_no_account_link_sign_up'|_)~'</a>' %}
-        <span class="block text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">{{ 'text_no_account' | transRaw({text_no_account_link_sign_up: text_no_account_link_sign_up}) }}</span>
+        {% set account_sign_up = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~( 'sign-up/sign-up'|page )~'">'~('account_sign_up'|_)~'</a>' %}
+        <span class="block text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">{{ 'account_no_account_sign_up' | transRaw({account_sign_up: account_sign_up}) }}</span>
     </div>
 </div>

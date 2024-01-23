@@ -13,7 +13,7 @@ code = "navigation-main"
     </button>
     {% partial 'off-canvas/off-canvas'
         sPosition = 'left'
-        sHeading = 'heading_search'|_
+        sHeading = 'search_search'|_
         sIndentsClass = 'px-4 py-0 md:px-10'
         sBackgroundClass = 'bg-white'
         sHeaderClasses = 'mb-0'
@@ -48,9 +48,9 @@ code = "navigation-main"
                     {% endfor %}
                 </ul>
             </nav>
-            <h2 class="uppercase font-medium text-lg text-gray-900 mb-4 mt-8">{{'heading_account'|_}}</h2>
+            <h2 class="uppercase font-medium text-lg text-gray-900 mb-4 mt-8">{{'account_my'|_}}</h2>
             {% partial 'button/button'
-                sText = 'button_sign_in'|_
+                sText = 'account_sign_in'|_
                 sPartialClasses = 'font-medium text-lg w-full mb-4 text-center'
                 sHref='sign-in'
             %}

@@ -130,7 +130,7 @@ function getBreadcrumbs(): array
                                 {% if obPropertyList.getByCode('width').property_value.getValueString() != '' or obPropertyList.getByCode('height').property_value.getValueString() != '' or obPropertyList.getByCode('depth').property_value.getValueString() != '' or obPropertyList.getByCode('weight').property_value.getValueString() != '' %}
                                     <div class="w-full md:w-1/2 mt-4 md:mt-0">
                                         <table>
-                                            <caption class="text-left w-max font-bold pb-2">{{'text_product_meauserements'|_}}:</caption>
+                                            <caption class="text-left w-max font-bold pb-2">{{'product_measurements'|_}}:</caption>
                                             <tbody class="flex flex-col space-y-2">
                                                 {% if obPropertyList.isNotEmpty() %}
                                                     {% for obProperty in obPropertyList %}
@@ -155,7 +155,7 @@ function getBreadcrumbs(): array
                                 {% if obPropertyList.getByCode('materials').property_value.getValueString() != '' %}
                                     <div class="w-full md:w-1/2 mt-4 md:mt-0">
                                         <table>
-                                            <caption class="text-left w-max font-bold pb-2">{{'text_materials'|_}}:</caption>
+                                            <caption class="text-left w-max font-bold pb-2">{{'product_materials'|_}}:</caption>
                                             <tbody class="flex flex-col space-y-2">
                                                 {% if obPropertyList.isNotEmpty() %}
                                                     {% for obProperty in obPropertyList %}
@@ -212,7 +212,7 @@ function getBreadcrumbs(): array
                     <div class="flex flex-row items-center space-x-2 mt-8 md:mt-10">
                         {# TODO: Turn two buttons into one #}
                         {% partial 'button/button'
-                            sText = 'button_add_to_cart'|_
+                            sText = 'product_add_to_cart'|_
                             sPartialClasses = '_shopaholic-cart-add font-bold h-11 md:h-12 w-full md:w-60'
                         %}
                         {% if obProduct.inWishList() %}
@@ -234,7 +234,7 @@ function getBreadcrumbs(): array
 </div>
 <div class="grid grid-cols-1 xl:mt-10 xl:justify-items-center 2xl:justify-items-start xl:grid-cols-2{% if this.theme.has_viewed_products == false %} mb-10{% endif %}">
     <div id="reviews" class="w-full flex flex-col">
-        <h2 class="text-gray-900 text-2xl font-medium uppercase mb-5">{{ 'heading_customer_reviews'|_ }}</h2>
+        <h2 class="text-gray-900 text-2xl font-medium uppercase mb-5">{{ 'reviews_customer_reviews'|_ }}</h2>
         {% partial 'review-list/review-list'
             sPartialClass = '_review-list-container'
             sListClass = '_review-list-update'
@@ -249,7 +249,7 @@ function getBreadcrumbs(): array
 {% if this.theme.has_viewed_products %}
     {% partial 'product-list-small/product-list-small'
         sProductListSmallType = sProductListSmallTypeViewedProducts
-        sSectionHeading = 'heading_product_list_small_recently_viewed'|_
+        sSectionHeading = 'catalog_products_viewed'|_
         sSectionHeadingLevel = 2
         iTake = 4
         iShowIndex = 0
@@ -261,7 +261,7 @@ function getBreadcrumbs(): array
     {% partial 'product-list-small/product-list-small'
         sProductListSmallType = sProductListSmallTypeRelatedProducts
         obProduct = obProduct
-        sSectionHeading = 'heading_product_list_small_you_might_also_like'|_
+        sSectionHeading = 'catalog_products_also_like'|_
         sSectionHeadingLevel = 2
         iTake = 4
         iShowIndex = 0

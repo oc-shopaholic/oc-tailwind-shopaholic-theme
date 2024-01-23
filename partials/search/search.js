@@ -33,12 +33,12 @@ export default class Search {
     this.bOpenRecently = false;
     this.aRecentlyTextDefault = [];
     this.sSplitSpaces = null;
-    this.sNoResultSearchText = /:text_search_query/g;
+    this.sNoResultSearchText = /:search_query/g;
   }
 
   initVariables(){
     this.bOpenRecently = false;
-    this.sNoResultSearchText = /:text_search_query/g;
+    this.sNoResultSearchText = /:search_query/g;
     this.nPagination = 3;
     this.obPlaceholder = this.obNav.querySelectorAll("._placeholder");
     this.obInput = this.obNav.querySelectorAll("._shopaholic-search-input");

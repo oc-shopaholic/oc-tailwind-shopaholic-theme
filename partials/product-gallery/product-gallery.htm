@@ -86,9 +86,9 @@
     <div class="gallery-thumbs mt-2">
         <ul class="swiper-wrapper _swiper-container py-2 flex items-center">
             {% for obImage in arImages %}
-                <li class="swiper-slide" aria-label="{{ 'text_slider'|_({
-                    text_slider_index: loop.index,
-                    text_slider_max: arImages|length,
+                <li class="swiper-slide" aria-label="{{ 'slider_item_number'|_({
+                    slider_item_number_current: loop.index,
+                    slider_item_number_total: arImages|length,
                 })}}">
                     <a role="button" tabindex="0">
                         <picture>
@@ -134,7 +134,7 @@
 {% put scripts %}
     <script>
         window.slider = {
-            'active': "{{ 'text_slider_active'|_ }}",
+            'active': "{{ 'slider_item_active'|_ }}",
         };
     </script>
 {% endput %}

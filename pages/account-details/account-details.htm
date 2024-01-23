@@ -11,8 +11,8 @@ function onInit()
     $this['path_page_js'] = mix('assets/dist/js/account-details.js', 'themes/lovata-tailwind-shopaholic');
 
     $arBreadcrumbs = [
-        ['name' => \RainLab\Translate\Models\Message::trans('breadcrumbs_page_account'), 'url' => \Cms\Classes\Page::url('account/account')],
-        ['name' => \RainLab\Translate\Models\Message::trans('breadcrumbs_page_details'), 'url' => null],
+        ['name' => \RainLab\Translate\Models\Message::trans('account_my_account'), 'url' => \Cms\Classes\Page::url('account/account')],
+        ['name' => \RainLab\Translate\Models\Message::trans('account_private_data'), 'url' => null],
     ];
 
     $this['arBreadcrumbs'] = $arBreadcrumbs;
@@ -23,21 +23,20 @@ function onInit()
 {% set obUser = UserData.get() %}
 
 {% partial 'breadcrumbs/breadcrumbs' %}
-
+<h1 class="font-medium uppercase text-xl md:text-3xl mb-4">{{'form_user_name'|_}}</h1>
 <div class="sm:max-w-xs mt-7 mb-8 md:mb-16">
-    <h1 class="font-medium uppercase text-xl md:text-3xl mb-4">My details</h1>
-    <span class="text-gray-600 text-sm md:text-base mb-4 inline-block">* — required fields</span>
+    <span class="text-gray-600 text-sm md:text-base mb-4 inline-block">*{{'form_required_fields'|_}}</span>
     <form class="_required">
-        {% partial 'input/input' sLabelText = 'Your name *' type = 'text' sId = 'name' name = 'name' value = obUser.name required = 'required' %}
+        {% partial 'input/input' sLabelText = 'form_user_name'|_ type = 'text' sId = 'name' name = 'name' value = obUser.name required = 'required' %}
         {# TODO: Add inline ajax validation for name existing #}
-        {% partial 'input/input' sLabelText = 'E-mail *' type = 'email' sId = 'mail' name = 'mail' value = obUser.email required = 'required' sPartialClasses = 'mt-4' %}
+        {% partial 'input/input' sLabelText = 'form_user_email'|_ type = 'email' sId = 'mail' name = 'mail' value = obUser.email required = 'required' sPartialClasses = 'mt-4' %}
         {# TODO: Add inline ajax validation for email existing #}
-        {% partial 'input/input' sLabelText = 'Phone number' type = 'text' sId = 'phone' name = 'phone' value = obUser.phone sPartialClasses = 'mt-4' %}
+        {% partial 'input/input' sLabelText = 'form_user_phone'|_ type = 'text' sId = 'phone' name = 'phone' value = obUser.phone sPartialClasses = 'mt-4' %}
         {# TODO: Add inline ajax validation for Phone number format #}
-        {% partial 'input/input' sLabelText = 'Country' type = 'text' sId = 'country' name = 'country' value = arForm.country ?? obUser.address.country sPartialClasses = 'mt-4' %}
-        {% partial 'input/input' sLabelText = 'City' type = 'text' sId = 'city' name = 'city' sPartialClasses = 'mt-4' %}
-        {% partial 'input/input' sLabelText = 'Zip сode' type = 'text' sId = 'zip' name = 'zip' sPartialClasses = 'mt-4' %}
-        {% partial 'input/input' sLabelText = 'Postal address' type = 'text' sId = 'address' name = 'address' sPartialClasses = 'mt-4' %}
-        {% partial 'button/button' sText = 'Save changes' sType = 'submit' sPartialClasses = 'w-full md:w-auto mt-8' %}
+        {% partial 'input/input' sLabelText = 'form_user_country'|_ type = 'text' sId = 'country' name = 'country' value = arForm.country ?? obUser.address.country sPartialClasses = 'mt-4' %}
+        {% partial 'input/input' sLabelText = 'form_user_city'|_ type = 'text' sId = 'city' name = 'city' sPartialClasses = 'mt-4' %}
+        {% partial 'input/input' sLabelText = 'form_user_zip_code'|_ type = 'text' sId = 'zip' name = 'zip' sPartialClasses = 'mt-4' %}
+        {% partial 'input/input' sLabelText = 'form_user_address_postal'|_ type = 'text' sId = 'address' name = 'address' sPartialClasses = 'mt-4' %}
+        {% partial 'button/button' sText = 'form_save'|_ sType = 'submit' sPartialClasses = 'w-full md:w-auto mt-8' %}
     </form>
 </div>

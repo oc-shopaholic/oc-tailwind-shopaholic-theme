@@ -31,10 +31,10 @@ function onInit()
 
 {% set obFAQ = FAQ.faq %}
 {% partial 'breadcrumbs/breadcrumbs' %}
-<h1 class="text-lg md:text-2xl text-gray-900 font-medium">{{ 'page_heading_faq'|_ }}</h1>
+<h1 class="text-lg md:text-2xl text-gray-900 font-medium">{{ 'faq_faq'|_ }}</h1>
 {% if obFAQ.isNotEmpty() %}
-    {% partial 'accordion/accordion' 
-        obContent=obFAQ 
-        obType = 'markup' 
+    {% partial 'accordion/accordion'
+        obContent=obFAQ
+        obType = 'markup'
     %}
 {% endif %}
