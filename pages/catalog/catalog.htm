@@ -22,6 +22,7 @@ slug_required = 0
 smart_url_check = 1
 skip_error = 1
 
+[CategoryList]
 [Pagination]
 count_per_page = 15
 pagination_limit = 5
@@ -58,6 +59,7 @@ function onInit() {
     /** @var \Lovata\Shopaholic\Classes\Item\CategoryItem $obMainCategoryItem */
     /** @var \Lovata\Shopaholic\Classes\Collection\ProductCollection $obProductList */
     /** @var \Lovata\Shopaholic\Classes\Collection\CategoryCollection $obCategoryList */
+    $this['categoryList'] = $this->CategoryList->make()->active()->site();
     $obProductItem = $this->ProductPage->get();
     $obActiveCategoryItem = $this->CategoryPage->get();
     $obMainCategoryItem = $this->MainCategoryPage->get();
@@ -237,13 +239,19 @@ function onStart()
     {# Product card #}
     {% partial 'product-card/product-card' %}
 {% else %}
-    {# Product list #}
     <div class="grid md:grid-cols-4 mb-14">
-        {% if bShowFilter %}
-            {% partial 'filter/filter'
-                sPartialClass='md:col-span-1'
-            %}
-        {% endif %}
+
+        <aside class="flex flex-col md:col-span-1 space-y-10">
+            {% if categoryList is not empty %}
+                {% partial 'catalog-list/catalog-list'
+                    categoryList=categoryList
+                %}
+            {% endif %}
+            {% if bShowFilter %}
+                {% partial 'filter/filter' %}
+            {% endif %}
+        </aside>
+
         <div class="_sorting-container w-full md:col-span-3">
             <div class="_sorting">
                 {% partial 'sorting/sorting' %}

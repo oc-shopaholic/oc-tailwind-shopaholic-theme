@@ -1,0 +1,15 @@
+<div>
+    <h2 class="text-lg font-medium text-gray-900 mb-3">{{'heading_category'|_}}</h2>
+    <ul class="pr-12 hidden md:block space-y-2">
+        {% for obItem in categoryList -%}
+        <li>
+            <a class="bg-white overflow-hidden rounded-sm flex flex-row text-blue-800 font-medium h-full group cursor-pointer hover:underline md:border-l rounded-br-sm rounded-tr-sm md:rounded-t-none group-active:underline" href="{{ obItem.getPageUrl('catalog/catalog') }}">
+            <span class="w-12 relative h-12 bg-gray-200 group-hover:bg-blue-800 group-focus:bg-blue-900">
+            <span class="advanced-list-icon h-6 w-6 bg-6 md:bg-auto after:bg-blue-800 after:group-hover:bg-white transform scale-50" style="--advanced-list-icon-src: url({{ obItem.icon.path }})"></span>
+            </span>
+                <span class="flex flex-1 items-center pl-4 pr-2  border border-l-0 border-solid border-gray-200 rounded-br-sm md:rounded-bl-sm rounded-tr-sm group-active:underline">{{ obItem.name }}</span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
