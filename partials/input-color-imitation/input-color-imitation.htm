@@ -7,7 +7,7 @@
         {% set checkboxStyle = 'border-0 disabled:opacity-30' %}
     {% endif %}
 
-    {% if bChecked and obValue.color == 'White' %}
+    {% if bChecked and obValue.label == 'White' %}
         {% set sChecked = 'relative after:content-[""] after:absolute after:bg-75 after:border-gray-300 after:inset-0 after:bg-check-black after:bg-no-repeat after:bg-center' %}
     {% elseif bChecked %}
         {% set sChecked = 'relative after:content-[""] after:absolute after:bg-75 after:border-0 after:inset-0 after:bg-check after:bg-no-repeat after:bg-center' %}
