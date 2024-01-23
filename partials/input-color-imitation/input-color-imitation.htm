@@ -7,11 +7,11 @@
         {% set checkboxStyle = 'border-0 disabled:opacity-30' %}
     {% endif %}
 
-    {% if bChecked and obValue.label == 'White' %}
+    {% if bChecked and obValue.color == 'White' %}
         {% set sChecked = 'relative after:content-[""] after:absolute after:bg-75 after:border-gray-300 after:inset-0 after:bg-check-black after:bg-no-repeat after:bg-center' %}
     {% elseif bChecked %}
         {% set sChecked = 'relative after:content-[""] after:absolute after:bg-75 after:border-0 after:inset-0 after:bg-check after:bg-no-repeat after:bg-center' %}
-    {% endif %}  
+    {% endif %}
 
     {% if sHref %}
         {% set sTags = 'a' %}
@@ -20,7 +20,7 @@
     {% endif %}
 
     <li class="flex">
-        <{{sTags}} class="w-max flex flex-col items-center mb-4 {{sPartialClasses}}" 
+        <{{sTags}} class="w-max flex flex-col items-center mb-4 {{sPartialClasses}}"
             {% if sHref %}
                 href="{{sHref}}"
             {% endif %}
