@@ -19,7 +19,7 @@
         {% if sitePicker.sites|length > 1 %}
         <div class="_off-canvas flex mr-5 sm:mr-8">
             <button
-                class="_show flex items-center text-gray-900 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue"
+                class="_show  js-btn-region hidden lg:flex items-center text-gray-900 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue"
                 type="button"
                 aria-label="{{ 'aria_label_site_picker'|_ }}"
             >
@@ -32,11 +32,12 @@
                 sPosition = 'right'
                 sHeading = 'heading_choose_region'|_
                 sCanvasClasses = 'cursor-auto'
-                sIndentsClass = 'px-4 py-10 md:px-10'
+                sIndentsClass = 'py-10 md:px-10'
                 sBackgroundClass = 'bg-white'
+                sHeaderClasses = 'px-4'
                 body
             %}
-                <div class="_site_picker">
+                <div class="_site_picker px-4">
                     {% partial 'site-picker/site-picker' %}
                 </div>
             {% endpartial %}
