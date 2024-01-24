@@ -25,6 +25,9 @@ function onInit()
 {##}
 
 <div class="mt-7 mb-14 flex flex-col items-center">
+    {% if this.theme.has_buddies and obUser is empty %}
+        {% partial 'checkout/checkout-guest' %}
+    {% endif %}
     <h1 class="font-medium uppercase text-xl md:text-3xl mb-4">{{ 'page_heading_sign_in'|_ }}</h1>
     <div class="max-w-xs">
         <form class="_required">

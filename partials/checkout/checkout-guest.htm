@@ -1,0 +1,11 @@
+<div class="space-y-4 mb-8">
+    <h3 class="uppercase md:normal-case text-xl text-center text-gray-900 font-medium">Continue without authorization</h3>
+    <div class="flex justify-center mt-10">
+        {% partial 'button/button'
+            sText = 'Checkout as guest'|_
+            sHref = 'checkout/checkout'|page
+            sPartialClasses = 'w-full md:w-auto text-center'
+        %}
+    </div>
+    <p class="text-center text-gray-600 text-base ">To use a promo code, sign in or <a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="{{ 'sign-up/sign-up'|page }}">create an account</a> first.</p>
+</div>
