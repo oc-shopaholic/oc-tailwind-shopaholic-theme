@@ -238,4 +238,6 @@ validation_pattern_mismatch_number: 'Please enter a number'
 validation_pattern_mismatch_time: 'Please use the 24-hour time format. Ex. 23:00' #TODO: Move 24-hour and 23:00 to variables
 validation_pattern_mismatch_url: 'Please enter a URL.'
 validation_wrong_length_over: 'Please shorten this text to no more than {maxLength} characters. You are currently using {length} characters.' #TODO: Move {maxLength} and {length} to variables
-validation_wrong_length_under: 'Please lengthen this text to {minLength} characters or more. You are currently using {length} characters.' #TODO: Move {minLength} and {length} to variables
+validation_wrong_length_under: 'Please lengthen this text to {minLength} characters or more. You are currently using {length} characters.' #TODO: Move {minLength} and {length} to variables,
+filter_text_reset: 'Reset all'
+

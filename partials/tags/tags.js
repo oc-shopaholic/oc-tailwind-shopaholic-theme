@@ -90,16 +90,20 @@ export default new class Tags {
     return text
   }
 
+
+  setTemplateValue(id, text) {
+    let clone = document.querySelector('#tag-template-container').content.cloneNode(true);
+    clone.querySelector('li').dataset.name = id
+    clone.querySelector('span').innerText = text
+    this.obTagsContainer.appendChild(clone)
+  }
   createTagsPrice (props) {
     let id = props.id
     let section = document.getElementById(id).querySelector('summary').innerText.trim()
     if (!props.value.join('')) return false
     const text = this.getTextTagsPrice(props.value)
-    let tag = document.createElement('li')
-    tag.dataset.name = id
-    tag.className = 'whitespace-nowrap mr-3 mb-3 capitalize bg-white rounded shadow py-3 pl-3 pr-5 flex items-center justify-between text-gray-600 text-base lg:text-sm'
-    tag.innerHTML = '' + section + ': ' + text + ' <button class="_delete-tag text-gray-900 p-2 -m-2 ml-3 hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800" type="button" data-id=' + id + '>' + '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>'
-    this.obTagsContainer.appendChild(tag)
+    const textTemplateValue = section + ': ' + text
+    this.setTemplateValue(id, textTemplateValue)
   }
 
   createTagsFiltres (props) {
@@ -110,11 +114,8 @@ export default new class Tags {
     const sectionText = section.innerText.trim()
     props.value.forEach(prop => {
       let text = document.querySelector(`[for="${prop}"]`)
-      let tag = document.createElement('li')
-      tag.dataset.name = prop
-      tag.className = 'whitespace-nowrap mr-3 mb-3 capitalize bg-white rounded shadow py-3 pl-3 pr-5 flex items-center justify-between text-gray-600 text-base lg:text-sm'
-      tag.innerHTML = `${text ? sectionText + ': ' : sectionText } ${text ? text.innerText : ''}  <button class="_delete-tag text-gray-900 p-2 -m-2 ml-3 hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800" type="button" data-id='${props.id == 'sale' ? 'sale' : prop}'> <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>`
-      this.obTagsContainer.appendChild(tag)
+      const textTemplateValue =  `${text ? sectionText + ': ' : sectionText } ${text ? text.innerText : ''}`
+      this.setTemplateValue(id, textTemplateValue)
     })
   }
 
@@ -134,7 +135,7 @@ export default new class Tags {
               }))
           })
         } else {
-          const tagElementId =  document.getElementById(`${elem.target.closest('._delete-tag').dataset.id}`)
+          const tagElementId =  document.getElementById(`${elem.target.closest('._delete-tag').dataset.name}`)
           tagElementId.checked = false
           tagElementId.dispatchEvent(
             new InputEvent('change', {

@@ -233,12 +233,16 @@ function onStart()
 
 {% partial 'breadcrumbs/breadcrumbs' %} {# TODO: Fix wrong breadcrumbs #}
 
+<h1 class="container font-medium mx-auto mb-4 md:mb-10 text-lg md:text-3xl uppercase">{{ 'Catalog'|_ }}</h1>
+
 {# TODO: Finish stylization of the select box. #}
+
 
 {% if obProduct.isNotEmpty() %}
     {# Product card #}
     {% partial 'product-card/product-card' %}
 {% else %}
+
     <div class="grid md:grid-cols-4 mb-14">
 
         <aside class="flex flex-col md:col-span-1 space-y-10">
@@ -252,7 +256,7 @@ function onStart()
             {% endif %}
         </aside>
 
-        <div class="_sorting-container w-full md:col-span-3">
+        <div class="_sorting-container relative w-full md:col-span-3">
             <div class="_sorting">
                 {% partial 'sorting/sorting' %}
             </div>

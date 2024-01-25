@@ -28,7 +28,7 @@ export default new class Sorting{
                 return {
                   item: ({ classNames }, data) => {
                     let active = document.getElementsByClassName('_sorting-filter')[0].dataset.activeText;
-                    return template(`
+                      return template(`
                         <div class="${classNames.item} ${
                         data.highlighted
                         ? classNames.highlightedState
