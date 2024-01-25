@@ -1,14 +1,16 @@
-{##}
-
 <div class="{{ sPartialClasses }}">
     {% if sLabelText %}
         <label for="{{ sId }}" class="text-xs text-gray-600 inline-block mb-1 {{ sLabelClasses }}">{{ sLabelText }}</label>
     {% endif %}
+    {# TODO: sName and name. Without name not working filter  #}
     <input
         type="{{ sType|default('text') }}"
         id="{{ sId }}"
         {% if sName %}
             name="{{ sName }}"
+        {% endif %}
+        {% if name %}
+            name="{{ name }}"
         {% endif %}
         class="w-full border border-gray-400 py-3 px-4 rounded placeholder-gray-400 focus:outline-none focus:border-blue-800 focus:ring-transparent {{ inputClass }}"
         data-was-change="false"
@@ -51,5 +53,3 @@
         <div class="{{ validationErrorSelector }} text-red-700 text-sm inline-block"></div>
     {% endif %}
 </div>
-
-{# TODO: Make boolean attributes required and disabled consistent #}

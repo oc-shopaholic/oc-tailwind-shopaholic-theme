@@ -33,8 +33,8 @@
                     sPartialButton = 'text-right mb-4'
                 %}
                 <div>
-                    <details class="border-t border-b border-gray-300 js-details">
-                        <summary class="text-base font-medium text-blue-800 cursor-pointer pb-4 pt-4 pl-4 pr-5 after:right-5 after:text-blue-800 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
+                    <details open class="border-t border-b border-gray-300 js-details">
+                        <summary class="js-accordion-summary text-base font-medium text-blue-800 cursor-pointer pb-4 pt-4 pl-4 pr-5 after:right-5 after:text-blue-800 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
                             {{'heading_filter_price'|_}}
                         </summary>
                         <div class="js-accordion-content flex mb-4 ml-4 mt-3 mr-5">
@@ -43,9 +43,7 @@
                                 {% partial 'input/input'
                                     sLabelText = 'text_properties_filter_min'|_
                                     inputClass = '_shopaholic-price-filter appearance-none quantity_input'
-                                    type = 'number'
-                                    name = 'filter-min-price'
-                                    value = fMinPriceFilterValue
+                                    sType = 'number'
                                     sId = 'min-price'
                                 %}
                             </fieldset>
@@ -54,9 +52,7 @@
                                 {% partial 'input/input'
                                     sLabelText = 'text_properties_filter_max'|_
                                     inputClass = '_shopaholic-price-filter appearance-none quantity_input'
-                                    type= 'number'
-                                    name= 'filter-max-price'
-                                    value = fMaxPriceFilterValue
+                                    sType= 'number'
                                     sId = 'max-price'
                                 %}
                             </fieldset>
@@ -101,7 +97,7 @@
 
 {# TODO: Fix opening animation for details #}
 <template class="_filterTemplate">
-    <div class="pr-12 hidden md:block">
+    <div class="pr-6 lg:pr-12 hidden md:block">
         <h2 class="text-gray-900 text-lg font-medium mb-3">{{'heading_filters'|_}}</h2>
         <details
             id="price"

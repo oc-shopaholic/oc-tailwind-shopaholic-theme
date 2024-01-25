@@ -243,7 +243,7 @@ function onStart()
     {% partial 'product-card/product-card' %}
 {% else %}
 
-    <div class="grid md:grid-cols-4 mb-14">
+    <div class="grid md:grid-cols-3 lg:grid-cols-4 mb-14">
 
         <aside class="flex flex-col md:col-span-1 space-y-10">
             {% if categoryList is not empty %}
@@ -256,7 +256,7 @@ function onStart()
             {% endif %}
         </aside>
 
-        <div class="_sorting-container relative w-full md:col-span-3">
+        <div class="_sorting-container relative w-full md:col-span-2 lg:col-span-3">
             <div class="_sorting">
                 {% partial 'sorting/sorting' %}
             </div>

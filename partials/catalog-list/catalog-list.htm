@@ -1,6 +1,6 @@
 <div>
     <h2 class="text-xl font-medium text-gray-900 mb-3">{{'heading_category'|_}}</h2>
-    <ul class="pr-12 hidden md:block space-y-2">
+    <ul class="pr-6 lg:pr-12 hidden md:block space-y-2">
         {% for obItem in categoryList -%}
         <li>
             <a class="bg-white overflow-hidden rounded-sm flex flex-row text-blue-800 font-medium h-full group cursor-pointer hover:underline md:border-l rounded-br-sm rounded-tr-sm md:rounded-t-none group-active:underline" href="{{ obItem.getPageUrl('catalog/catalog') }}">

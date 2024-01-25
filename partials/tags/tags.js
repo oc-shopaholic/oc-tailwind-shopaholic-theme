@@ -110,6 +110,8 @@ export default new class Tags {
     let id = props.id
     const elemsDetails = document.getElementById(id)
     if(!elemsDetails) return false
+    console.log("props")
+    console.log(props)
     let section =  props.id == 'sale' ?  document.querySelector('label[for="sale"]') : elemsDetails.querySelector('summary')
     const sectionText = section.innerText.trim()
     props.value.forEach(prop => {
