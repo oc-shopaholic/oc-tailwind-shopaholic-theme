@@ -27,6 +27,8 @@ export default new class ProductList {
         }else{
             this.initPlugins();
         }
+
+
         this.clear();
         this.watchResult();
         this.catalogPosition();

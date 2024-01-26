@@ -21,25 +21,6 @@ export default new class Tags {
     const params = Object.keys(UrlGeneration.obParamList)
     this.nAmountProperties = params ? params.length : 0
   }
-
-  linkSorting () {
-    let exceptions = 'property'
-    let regProp = new RegExp(exceptions, 'g')
-
-    if (!this.sUrl) return
-    this.sUrl = this.sUrl.split('?')[1]
-    for (let i = 0; i < this.nAmountProperties; i++) {
-      let properties = this.sUrl.replace(regProp, '').split('&')[i]
-      let propertiesId = properties.split('=')[0]
-      let propertiesValues = properties.split('=')[1]
-      if (propertiesId !== '' && propertiesId !== 'sort') {
-        propertiesId = propertiesId.replace('[', '').replace(']', '')
-        propertiesValues = propertiesValues.split('|')
-        this.obFilterProperties.push({ id: propertiesId, value: [propertiesValues] })
-      }
-    }
-  }
-
   paramsList () {
     const paramsList = []
     const paramList = UrlGeneration.obParamList
@@ -56,7 +37,7 @@ export default new class Tags {
         }
       )
     }
-    return paramsList
+    return paramsList.filter(param => param.id !== "sort")
   }
 
   createTags () {
@@ -110,8 +91,6 @@ export default new class Tags {
     let id = props.id
     const elemsDetails = document.getElementById(id)
     if(!elemsDetails) return false
-    console.log("props")
-    console.log(props)
     let section =  props.id == 'sale' ?  document.querySelector('label[for="sale"]') : elemsDetails.querySelector('summary')
     const sectionText = section.innerText.trim()
     props.value.forEach(prop => {
@@ -164,7 +143,7 @@ export default new class Tags {
   initTags () {
     this.sUrl = location.search
     this.propertyCount()
-    this.linkSorting()
+    // this.linkSorting()
     this.createTags()
     this.removeTag()
     this.removeAllTags()
@@ -219,6 +198,8 @@ export default new class Tags {
 
   init () {
     if (window.innerWidth <= 768) {
+
+
       this.obFilterButton.dispatchEvent(
         new InputEvent('click', {
           bubbles: true,
