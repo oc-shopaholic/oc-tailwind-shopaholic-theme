@@ -3,10 +3,11 @@
 {# TODO:Add svg reusability for whole project #}
 <section class="w-full {{ sPartialClass }}">
     {% if sReviewsCount == true or sSortingPanel == true %}
+    ----
         <div class="flex justify-between mb-5 items-baseline">
             {% if sReviewsCount == true %}
                 {% set iReviewsCount = obProduct.review.active().sort()|length %}
-                <span class="text-gray-600 text-base">{{ iReviewsCount }} {{ 'text_reviews'|_ }}</span>
+                <span class="text-gray-600 text-base">{{ iReviewsCount }} {{ 'reviews_reviews'|_ }}</span>
             {% endif %}
             {% if sSortingPanel == true %}
                 <div class="_sorting-reviews flex items-center mb-4 md:justify-end" data-pagination-page="{{ iPage }}" data-pagination-max="{{ iMaxPage }}" data-active-text="{{ 'reviews_sort_by'|_ }}">

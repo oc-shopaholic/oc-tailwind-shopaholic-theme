@@ -55,6 +55,7 @@ breadcrumbs_breadcrumbs: 'Okruszki chlebowe'
 breadcrumbs_home: 'Strona główna'
 
 # Catalog
+catalog_categories_show: 'Pokaż wszystkie'
 catalog_categories: 'Kategorie produktów'
 catalog_products_also_like: 'Może ci się spodobać'
 catalog_products_popular: 'Popularne produkty'
@@ -172,6 +173,7 @@ purchase_subtotal: 'Suma pośrednia'
 purchase_success_message: 'Dziękujemy za zakup w naszym sklepie!'
 purchase_summary: 'Podsumowanie'
 purchase_total: 'Razem'
+purchase_order_is_accepted: 'zostało przyjęte'
 
 # Reviews
 reviews_customer_ratings: 'Oceny klientów'
@@ -233,7 +235,7 @@ theme_social_media_list_not_added: 'Nie dodano żadnych mediów społecznościow
 theme_social_media_list: 'Nasze media społecznościowe'
 
 # Validation messages
-validation_missing_value_checkbox: ''
+validation_missing_value_checkbox: 'To pole jest wymagane.'
 validation_missing_value_default: 'Proszę wypełnić to pole.'
 validation_missing_value_radio: 'Proszę wybrać wartość.'
 validation_missing_value_select_multiple: 'Proszę wybrać co najmniej jedną wartość.'
