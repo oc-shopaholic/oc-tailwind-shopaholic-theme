@@ -1,0 +1,60 @@
+title = "Checkout Authentification"
+url = "/checkout/sign-in"
+layout = "main"
+is_hidden = 0
+==
+<?php
+function onInit()
+{
+    $this['path_page_js'] = mix('assets/dist/js/checkout-authentification.js', 'themes/lovata-tailwind-shopaholic');
+}
+?>
+==
+{##}
+
+
+<div class="flex flex-col items-center mt-4 md:mt-6 mb-5 md:mb-16">
+    <span class="text-gray-900 text-lg md:text-xl uppercase md:normal-case font-medium">{{ 'account_checkout_guest_heading'|_ }}</span>
+    {% partial 'button/button'
+        sText = 'account_checkout_guest'|_
+        sHref = 'checkout/checkout'|page
+        bGhost = true
+        sPartialClasses = 'w-full md:w-auto mt-4'
+    %}
+    {% set text_checkout_link_sign_in = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline" href="'~( 'sign-up/sign-up'|page )~'">'~('account_create'|_)~'</a>' %}
+    <span class="inline-block mt-2 md:mt-4 text-gray-600">{{ 'text_checkout' | transRaw({text_checkout_link_sign_in: text_checkout_link_sign_in}) }}</span>
+    <h1 class="font-medium uppercase text-xl md:text-3xl mt-8 mb-4">{{ 'account_signing_in'|_ }}</h1>
+    <div class="max-w-xs">
+        <form class="_required">
+            {% partial 'input/input'
+                sId = 'form-email'
+                sLabelText = 'form_user_email'|_
+                name = 'mail'
+                id = 'mail'
+                required = 'required'
+            %}
+            {% partial 'input/input'
+                sId = 'form-password'
+                sLabelText = 'form_user_password'|_
+                name = 'password'
+                id ='password'
+                required = 'required'
+                type = 'password'
+                sPartialClasses = 'mt-4'
+            %}
+            <div class="mt-4 text-right">
+                <a href="{{ 'password-restore/password-restore'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">{{ 'account_password_forgot'|_ }}</a>
+            </div>
+            <div class="mt-4 md:mt-3">
+                <label>
+                    <input class="rounded-sm text-blue-800 focus-visible:outline-blue focus:outline-none" type="checkbox" /> {{ 'form_user_keep_signed'|_ }}
+                </label>
+            </div>
+            {% partial 'button/button'
+                sText = 'account_sign_in_checkout'|_
+                type = 'submit'
+                sPartialClasses = 'w-full mt-8 md:mt-6'
+            %}
+        </form>
+    </div>
+</div>

@@ -31,7 +31,7 @@ function onInit()
             {% for obProduct in arProductList %}
                 {% partial 'product-card/product-card'
                     obProduct = obProduct
-                    iLoopIndex = loop.index
+                    iLoopIndex = loop.indexproduct-card
                     iShowIndex = 8
                 %}
             {% endfor %}
@@ -41,12 +41,11 @@ function onInit()
             sPartialClasses = 'mt-20 md:mt-7'
             sIconName = 'wishlist.svg'
             sEmptyPageMessage = 'wishlist_empty'|_
-            sHref = 'product-list'|page
+            sHref = 'catalog/catalog'|page
             sButtonText = 'wishlist_start_shopping'|_
             sButtonClasses = 'mt-24 md:mt-6'
             sButtonType = link
-            sHref = '/catalog'
-        %}
-        {# TODO: sHref could be broken if site admin will choose another slug for the Catalog page. #}
+            sHref = 'catalog/catalog'|page
+        %}{#TODO: sHref could be broken if site admin will choose another slug for the Catalog page. #}
     {% endif %}
 </section>

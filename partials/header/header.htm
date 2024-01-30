@@ -5,11 +5,11 @@
     <div class="container mx-auto px-4 py-4 sm:py-5 flex items-center">
         {% partial 'navigation-main-mobile/navigation-main-mobile' %}
         {% if this.theme.business_card_image is not empty and this.page.id == 'index' %}
-            <span class="flex-shrink-0 w-36 mr-20">
+            <span class="shrink-0 w-36 mr-20">
                 <img src="{{ this.theme.business_card_image|media }}" alt="{{ this.theme.business_card_image_alt }}" title="{{ this.theme.business_card_image_title }}">
             </span>
         {% elseif this.theme.business_card_image is not empty %}
-            <a href="{{ 'index/index'|page }}" class="flex-shrink-0 focus-visible:outline-blue w-36 mr-20">
+            <a href="{{ 'index/index'|page }}" class="shrink-0 focus-visible:outline-blue w-36 mr-20">
                 <img src="{{ this.theme.business_card_image|media }}" alt="{{ this.theme.business_card_image_alt }}" title="{{ this.theme.business_card_image_title }}">
             </a>
         {% endif %}
@@ -81,7 +81,7 @@
             {% partial 'header/header-ajax' %}
         </div>
         {% if this.theme.has_buddies and obUser is empty %}
-            <a href="{{ 'sign-in/sign-in'|page }}" class="ml-9 flex-shrink-0 text-blue-800 focus-visible:outline-blue hover:text-blue-700 active:text-blue-900 hidden lg:inline">{{ 'account_sign_in'|_ }}</a>
+            <a href="{{ 'sign-in/sign-in'|page }}" class="ml-9 shrink-0 text-blue-800 focus-visible:outline-blue hover:text-blue-700 active:text-blue-900 hidden lg:inline">{{ 'account_sign_in'|_ }}</a>
         {% endif %}
     </div>
 </header>

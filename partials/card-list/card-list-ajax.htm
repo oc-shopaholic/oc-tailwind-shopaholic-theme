@@ -29,7 +29,7 @@
             {% partial 'button/button'
                 sPartialClasses = '_checkout-button px-16 mt-28 text-center text-lg lg:text-base lg:mt-px'
                 sText = 'purchase_checkout'|_ ~ ' (' ~ obCartList.getTotalQuantity() ~ ')'
-                sHref = '/checkout'
+                sHref = obUser ? 'checkout/checkout'|page : 'checkout-authentification/checkout-authentification'|page
             %}
         {% endif %}
     </div>
@@ -38,7 +38,7 @@
         sPartialClasses = 'mt-44 justify-center mb-8 text-center lg:mb-14 lg:mt-52'
         sIconName = 'basket.svg'
         sEmptyPageMessage = 'Your Shopping Cart is empty.'
-        sHref = '/catalog'
+        sHref = 'catalog/catalog'|page
         sButtonText = 'purchase_start_shopping'|_
         sButtonClasses = 'mt-36 w-full lg:mt-24 md:w-auto'
     %}
