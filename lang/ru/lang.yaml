@@ -30,7 +30,7 @@ account_password_reset_success: 'Ссылка для восстановлени�
 account_password_reset: 'Сбросить пароль'
 account_privacy_cookie_policy: 'Политикой конфиденциальности и использования файлов cookie'
 account_privacy_terms_conditions: 'Условиями и положениями'
-account_private_data: 'Персональные данные'
+account_personal_data: 'Персональные данные'
 account_rules_acceptance: 'Регистрируясь, вы соглашаетесь с нашими :account_privacy_terms_conditions, и :account_privacy_cookie_policy.'
 account_sign_in_checkout: 'Войти и оформить заказ'
 account_sign_in: 'Войти'
@@ -52,6 +52,7 @@ blog_title: 'Новости'
 
 # Breadcrumbs
 breadcrumbs_breadcrumbs: 'Хлебные крошки'
+breadcrumbs_catalog: 'Каталог'
 breadcrumbs_home: 'Главная'
 
 # Catalog
@@ -143,7 +144,7 @@ product_sorting_low_to_high: 'Цена: от низкой к высокой'
 # Purchase
 purchase_checkout: 'Оформить заказ'
 purchase_color: 'Цвет'
-purchase_colos: 'Цвета'
+purchase_colors: 'Цвета'
 purchase_continue_shopping: 'Продолжить покупки'
 purchase_coupon_apply: 'Применить купон'
 purchase_coupon_code: 'Код купона'

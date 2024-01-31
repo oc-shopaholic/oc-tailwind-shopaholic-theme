@@ -12,7 +12,7 @@ function onInit()
 
     $arBreadcrumbs = [
         ['name' => \RainLab\Translate\Models\Message::trans('account_my_account'), 'url' => \Cms\Classes\Page::url('account/account')],
-        ['name' => \RainLab\Translate\Models\Message::trans('account_private_data'), 'url' => null],
+        ['name' => \RainLab\Translate\Models\Message::trans('account_personal_data'), 'url' => null],
     ];
 
     $this['arBreadcrumbs'] = $arBreadcrumbs;
@@ -23,7 +23,7 @@ function onInit()
 {% set obUser = UserData.get() %}
 
 {% partial 'breadcrumbs/breadcrumbs' %}
-<h1 class="font-medium uppercase text-xl md:text-3xl mb-4">{{'form_user_name'|_}}</h1>
+<h1 class="font-medium uppercase text-xl md:text-3xl mb-4">{{'account_personal_data'|_}}</h1>
 <div class="sm:max-w-xs mt-7 mb-8 md:mb-16">
     <span class="text-gray-600 text-sm md:text-base mb-4 inline-block">*{{'form_required_fields'|_}}</span>
     <form class="_required">

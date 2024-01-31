@@ -30,7 +30,7 @@ account_password_reset_success: 'The link for restoring the password was sent to
 account_password_reset: 'Reset password'
 account_privacy_cookie_policy: 'Privacy & Cookie Policy'
 account_privacy_terms_conditions: 'Terms & Conditions'
-account_private_data: 'Private data'
+account_personal_data: 'Private data'
 account_rules_acceptance: 'By registering, you agree with our :account_privacy_terms_conditions, and :account_privacy_cookie_policy.'
 account_sign_in_checkout: 'Sign in & Checkout'
 account_sign_in: 'Sign in'
@@ -52,6 +52,7 @@ blog_title: 'News'
 
 # Breadcrumbs
 breadcrumbs_breadcrumbs: 'Breadcrumbs'
+breadcrumbs_catalog: 'Catalog'
 breadcrumbs_home: 'Home'
 
 # Catalog

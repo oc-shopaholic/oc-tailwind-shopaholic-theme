@@ -30,7 +30,7 @@ account_password_reset_success: 'Link do przywrócenia hasła został wysłany n
 account_password_reset: 'Zresetuj hasło'
 account_privacy_cookie_policy: 'Polityką prywatności i plikami cookie'
 account_privacy_terms_conditions: 'Regulaminem'
-account_private_data: 'Dane osobowe'
+account_personal_data: 'Dane osobowe'
 account_rules_acceptance: 'Rejestrując się, zgadzasz się z naszym :account_privacy_terms_conditions, i :account_privacy_cookie_policy.'
 account_sign_in_checkout: 'Zaloguj się i zamów'
 account_sign_in: 'Zaloguj się'
@@ -52,6 +52,7 @@ blog_title: 'Wiadomaści'
 
 # Breadcrumbs
 breadcrumbs_breadcrumbs: 'Okruszki chlebowe'
+breadcrumbs_catalog: 'Katalog'
 breadcrumbs_home: 'Strona główna'
 
 # Catalog
