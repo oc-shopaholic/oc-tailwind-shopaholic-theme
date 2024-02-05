@@ -1,7 +1,7 @@
 {##}
 
 <div class="mt-7 lg:mt-6" role="group" aria-labelledby="star-rating">
-    <span class="text-gray-900 font-medium text-base" id="star-rating">{{'text_rate_product'|_}}</span>
+    <span class="text-gray-900 font-medium text-base" id="star-rating">{{'reviews_product_rate'|_}}</span>
     <div class="_container-star-review flex mt-2 mb-8 space-x-2 rtl:space-x-reverse lg:mb-7">
         {% partial 'input-radio/input-radio'
             sInputClasses = 'hidden'
@@ -9,7 +9,7 @@
             sName = 'rating'
             sValue = '1'
             sDataLabel = 'data-rating=1'
-            sTitle = 'aria_label_terrible'|_
+            sTitle = 'reviews_stars_rating_1'|_
             body
         %}
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,7 +22,7 @@
             sName = 'rating'
             sValue = '2'
             sDataLabel = 'data-rating=2'
-            sTitle = 'aria_label_not_good'|_
+            sTitle = 'reviews_stars_rating_2'|_
             body
         %}
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -35,7 +35,7 @@
             sName = 'rating'
             sValue = '3'
             sDataLabel = 'data-rating=3'
-            sTitle = 'aria_label_average'|_
+            sTitle = 'reviews_stars_rating_3'|_
             body
         %}
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,7 +48,7 @@
             sName = 'rating'
             sValue = '4'
             sDataLabel = 'data-rating=4'
-            sTitle = 'aria_label_very_good'|_
+            sTitle = 'reviews_stars_rating_4:'|_
             body
         %}
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,7 +61,7 @@
             sName = 'rating'
             sValue = '5'
             sDataLabel = 'data-rating=5'
-            sTitle = 'aria_label_amazing'|_
+            sTitle = 'reviews_stars_rating_5'|_
             sChecked = 'checked'
             body
         %}

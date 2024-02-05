@@ -5,7 +5,7 @@
         <svg class="me-4" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9.99967 13.3334C10.9163 13.3334 11.6663 14.0834 11.6663 15C11.6663 15.9167 10.9163 16.6667 9.99967 16.6667C9.08301 16.6667 8.33301 15.9167 8.33301 15C8.33301 14.0834 9.08301 13.3334 9.99967 13.3334ZM9.99967 8.33337C10.9163 8.33337 11.6663 9.08337 11.6663 10C11.6663 10.9167 10.9163 11.6667 9.99967 11.6667C9.08301 11.6667 8.33301 10.9167 8.33301 10C8.33301 9.08337 9.08301 8.33337 9.99967 8.33337ZM9.99967 3.33337C10.9163 3.33337 11.6663 4.08337 11.6663 5.00004C11.6663 5.91671 10.9163 6.66671 9.99967 6.66671C9.08301 6.66671 8.33301 5.91671 8.33301 5.00004C8.33301 4.08337 9.08301 3.33337 9.99967 3.33337ZM4.99967 13.3334C5.91634 13.3334 6.66634 14.0834 6.66634 15C6.66634 15.9167 5.91634 16.6667 4.99967 16.6667C4.08301 16.6667 3.33301 15.9167 3.33301 15C3.33301 14.0834 4.08301 13.3334 4.99967 13.3334ZM4.99967 8.33337C5.91634 8.33337 6.66634 9.08337 6.66634 10C6.66634 10.9167 5.91634 11.6667 4.99967 11.6667C4.08301 11.6667 3.33301 10.9167 3.33301 10C3.33301 9.08337 4.08301 8.33337 4.99967 8.33337ZM4.99967 3.33337C5.91634 3.33337 6.66634 4.08337 6.66634 5.00004C6.66634 5.91671 5.91634 6.66671 4.99967 6.66671C4.08301 6.66671 3.33301 5.91671 3.33301 5.00004C3.33301 4.08337 4.08301 3.33337 4.99967 3.33337ZM14.9997 13.3334C15.9163 13.3334 16.6663 14.0834 16.6663 15C16.6663 15.9167 15.9163 16.6667 14.9997 16.6667C14.083 16.6667 13.333 15.9167 13.333 15C13.333 14.0834 14.083 13.3334 14.9997 13.3334ZM14.9997 8.33337C15.9163 8.33337 16.6663 9.08337 16.6663 10C16.6663 10.9167 15.9163 11.6667 14.9997 11.6667C14.083 11.6667 13.333 10.9167 13.333 10C13.333 9.08337 14.083 8.33337 14.9997 8.33337ZM14.9997 3.33337C15.9163 3.33337 16.6663 4.08337 16.6663 5.00004C16.6663 5.91671 15.9163 6.66671 14.9997 6.66671C14.083 6.66671 13.333 5.91671 13.333 5.00004C13.333 4.08337 14.083 3.33337 14.9997 3.33337Z" fill="#4B5563"/>
         </svg>
-        <span>{{'text_heading_category'|_}}</span>
+        <span>{{'search_category'|_}}</span>
     </button>
     <div class="_off-canvas">
         <button class="_show flex border border-gray-300 py-3 pe-16 ps-3 rounded items-center">
@@ -14,11 +14,11 @@
                 <rect x="4" y="9" width="12" height="1.4" rx="0.7" fill="#4B5563"/>
                 <rect x="6" y="13" width="8" height="1.4" rx="0.7" fill="#4B5563"/>
             </svg>
-            <span>{{'text_heading_filter'|_}}</span>
+            <span>{{'filter_filter'|_}}</span>
         </button>
         {% partial 'off-canvas/off-canvas'
             sPosition = 'right'
-            sHeading = 'heading_filters'|_
+            sHeading = 'filter_filters'|_
             sCanvasClasses = 'ps-0 pe-0 cursor-auto'
             sBackgroundClass = 'bg-gray-50'
             sHeaderClasses = 'me-4 ms-4 md:me-0 md:ms-0'
@@ -35,13 +35,13 @@
                 <div>
                     <details class="border-t border-b border-gray-300 js-details">
                         <summary class="text-base font-medium text-blue-800 cursor-pointer pb-4 pt-4 ps-4 pe-5 after:right-5 after:text-blue-800 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
-                            {{'heading_filter_price'|_}}
+                            {{'filter_price'|_}}
                         </summary>
                         <div class="js-accordion-content flex mb-4 ms-4 mt-3 me-5">
                             <fieldset class="me-3 w-full">
-                                <legend class="sr-only">{{'heading_filter_price'|_}}&nbsp;{{'text_properties_filter_min'|_}}</legend>
+                                <legend class="sr-only">{{'filter_price'|_}}&nbsp;{{'filter_min'|_}}</legend>
                                 {% partial 'input/input'
-                                    sLabelText = 'text_properties_filter_min'|_
+                                    sLabelText = 'filter_min'|_
                                     inputClass = '_shopaholic-price-filter appearance-none quantity_input'
                                     type = 'number'
                                     name = 'filter-min-price'
@@ -50,9 +50,9 @@
                                 %}
                             </fieldset>
                             <fieldset class="w-full">
-                                <legend class="sr-only">{{'heading_filter_price'|_}}&nbsp;{{'text_properties_filter_max'|_}}</legend>
+                                <legend class="sr-only">{{'filter_price'|_}}&nbsp;{{'filter_max'|_}}</legend>
                                 {% partial 'input/input'
-                                    sLabelText = 'text_properties_filter_max'|_
+                                    sLabelText = 'filter_max'|_
                                     inputClass = '_shopaholic-price-filter appearance-none quantity_input'
                                     type= 'number'
                                     name= 'filter-max-price'
@@ -63,7 +63,7 @@
                         </div>
                         <div class="_shopaholic-sale-filter-wrapper mb-4" data-filter-type="checkbox">
                             {% partial 'input-checkbox/input-checkbox'
-                                sLabelText = 'input_checkbox_discount'|_
+                                sLabelText = 'product_filter_discounted_only'|_
                                 sPartialClasses = 'flex items-center pb-3 mx-4'
                                 sInputClass = 'rounded-sm'
                                 sChecked = bSaleFilter
@@ -79,11 +79,11 @@
                 </div>
                 <div class="ms-4 me-5">
                     {% partial 'button/button'
-                        sText = 'link_see_all'|_
+                        sText = 'filter_see_all'|_
                         sPartialClasses = '_hide _product-count w-full mt-8'
                     %}
                     {% partial 'button/button'
-                        sText = 'button_loading'|_
+                        sText = 'form_loading'|_
                         sPartialClasses = '_show-more-hidden hidden mx-auto relative w-full ps-12 mt-8'
                         bDisabled = true
                         body
@@ -102,22 +102,22 @@
 {# TODO: Fix opening animation for details #}
 <template class="_filterTemplate">
     <div class="pe-12 hidden md:block">
-        <h2 class="text-gray-900 text-lg font-medium mb-3">{{'heading_filters'|_}}</h2>
+        <h2 class="text-gray-900 text-lg font-medium mb-3">{{'filter_filters'|_}}</h2>
         <details
             id="price"
-            data-translate-to={{'text_properties_filter_max'|_}}
-            data-translate-from={{'text_properties_filter_from'|_}}
+            data-translate-to={{'filter_to'|_}}
+            data-translate-from={{'filter_from'|_}}
             open
         >
             <summary class="js-accordion-summary text-base font-medium text-blue-800 cursor-pointer mb-3 after:text-blue-800 hover:text-blue-700 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
-                {{'heading_filter_price'|_}}
+                {{'filter_price'|_}}
             </summary>
             <div class="js-accordion-content">
                 <div class="flex pb-4">
                     <fieldset class="me-3">
-                        <legend class="sr-only">{{'heading_filter_price'|_}}&nbsp;{{'text_properties_filter_min'|_}}</legend>
+                        <legend class="sr-only">{{'filter_price'|_}}&nbsp;{{'filter_min'|_}}</legend>
                         {% partial 'input/input'
-                            sLabelText = 'text_properties_filter_min'|_
+                            sLabelText = 'filter_min'|_
                             inputClass = '_shopaholic-price-filter appearance-none quantity_input'
                             type = 'number'
                             name = 'filter-min-price'
@@ -126,9 +126,9 @@
                         %}
                     </fieldset>
                     <fieldset>
-                        <legend class="sr-only">{{'heading_filter_price'|_}}&nbsp;{{'text_properties_filter_max'|_}}</legend>
+                        <legend class="sr-only">{{'filter_price'|_}}&nbsp;{{'filter_max'|_}}</legend>
                         {% partial 'input/input'
-                            sLabelText = 'text_properties_filter_max'|_
+                            sLabelText = 'filter_max'|_
                             inputClass = '_shopaholic-price-filter appearance-none quantity_input'
                             type = 'number'
                             name = 'filter-max-price'
@@ -139,7 +139,7 @@
                 </div>
                 <div class="_shopaholic-sale-filter-wrapper pb-4" data-filter-type="checkbox">
                     {% partial 'input-checkbox/input-checkbox'
-                        sLabelText = 'input_checkbox_discount'|_
+                        sLabelText = 'product_filter_discounted_only'|_
                         sPartialClasses = 'flex items-center'
                         sInputClass = 'rounded-sm'
                         sChecked = bSaleFilter

@@ -1,8 +1,9 @@
 {##}
 
+{# TODO: Probbably this should be a universal partial or it should be embeded directly to the Orders page template #}
 <div id="{{sPartialId}}" class="_toggle {{sPartialClasses}}">
     <button aria-expanded="false" aria-controls="{{sPartialId}}" class="_button-toggle group w-full flex flex-row items-center rtl:space-x-reverse space-x-2 duration-300 text-blue-800 justify-between lg:justify-start hover:text-blue-700 focus-visible:outline-2 focus-visible:outline-dashed focus-visible:outline-blue-800">
-        <span class="_status">{{ 'button_show_order'|_ }}</span>
+        <span class="_status">{{ 'account_order_items_show'|_ }}</span>
         <svg class="_arrow duration-300 group-hover:text-blue-700" width="12" height="8" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
@@ -20,9 +21,8 @@
 {% put scripts %}
     <script>
         window.stateButton = {
-            'show_order': "{{ 'button_show_order'|_ }}",
-            'hide_order': "{{ 'button_hide_order'|_ }}",
-            'orders_count': "{{ 'button_orders_count'|_ }}",
+            'show_order': "{{ 'account_order_items_show'|_ }}",
+            'hide_order': "{{ 'account_order_items_hide'|_ }}",
         };
     </script>
 {% endput %}

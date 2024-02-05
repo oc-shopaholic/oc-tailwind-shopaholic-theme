@@ -6,13 +6,13 @@
         <div class="flex justify-between mb-5 items-baseline">
             {% if sReviewsCount == true %}
                 {% set iReviewsCount = obProduct.review.active().sort()|length %}
-                <span class="text-gray-600 text-base">{{ iReviewsCount }} {{ 'text_reviews'|_ }}</span>
+                <span class="text-gray-600 text-base">{{ iReviewsCount }} {{ 'reviews_reviews'|_ }}</span>
             {% endif %}
             {% if sSortingPanel == true %}
-                <div class="_sorting-reviews flex items-center mb-4 md:justify-end" data-pagination-page="{{ iPage }}" data-pagination-max="{{ iMaxPage }}" data-active-text="{{ 'text_sort_by'|_ }}">
+                <div class="_sorting-reviews flex items-center mb-4 md:justify-end" data-pagination-page="{{ iPage }}" data-pagination-max="{{ iMaxPage }}" data-active-text="{{ 'reviews_sort_by'|_ }}">
                     <select class="_sorting-choice bg-transparent w-full border-0 outline-none focus:outline-none focus:border-0 md:w-auto" id="sort-select" name="sort">
-                        <option value="popularity|desc" {{ (sActiveSorting == 'popularity|desc' or sActiveSorting is empty) ? 'selected' : '' }} class="text-gray-600">{{'text_newest_to_oldest'|_}}</option>
-                        <option value="price|desc" {{ sActiveSorting == 'price|desc' ? 'selected' : '' }} class="text-gray-600">{{'text_oldest_to_newest'|_}}</option>
+                        <option value="popularity|desc" {{ (sActiveSorting == 'popularity|desc' or sActiveSorting is empty) ? 'selected' : '' }} class="text-gray-600">{{'reviews_sorting_newest_first'|_}}</option>
+                        <option value="price|desc" {{ sActiveSorting == 'price|desc' ? 'selected' : '' }} class="text-gray-600">{{'reviews_sorting_oldest_first'|_}}</option>
                     </select>
                 </div>
             {% endif %}
@@ -29,14 +29,14 @@
                 data-page="1"
                 type="button"
             >
-                <span class="me-2 text-sm md:text-base">{{ 'text_read_more_reviews'|_ }}</span>
+                <span class="me-2 text-sm md:text-base">{{ 'reviews_read_more'|_ }}</span>
                 <svg width="8" height="12">
                     <use href="../../themes/lovata-tailwind-shopaholic/assets/images/sprite.svg#arrow-right"></use>
                 </svg>
             </button>
             {% partial 'off-canvas/off-canvas'
                 sPosition = 'right'
-                sHeading = 'heading_customer_reviews_ratings'|_
+                sHeading = 'reviews_customer_reviews_ratings'|_
                 sHeaderClasses = 'items-center mb-7'
                 sCanvasClasses = 'cursor-auto'
                 sIndentsClass = 'px-4 py-10 md:px-10'
@@ -52,7 +52,7 @@
                     sHeaderHidden = true
                 %}
                 {% partial 'button/button'
-                    sText = 'button_write_review'|_
+                    sText = 'reviews_review_write'|_
                     sPartialClasses = '_write-review w-full md:w-72 mt-10 p-2'
                     bGhost = true
                 %}
@@ -68,7 +68,7 @@
                 </div>
 
                 {% partial 'button/button'
-                    sText = 'button_read_mode'|_
+                    sText = 'reviews_read_mode'|_
                     sPartialClasses = '_show-more-reviews w-full md:w-72 mt-3 p-2'
                     bGhost = true
                     sDataAtribute = 'data-max-page=' ~ iMaxPage ~ ' data-page=1'

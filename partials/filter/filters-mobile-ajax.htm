@@ -12,9 +12,9 @@
             <div class="flex mb-7 ms-4 me-5 mt-3 _shopaholic-filter-wrapper" data-filter-type="{{ obProperty.filter_type }}" data-property-id="{{ obProperty.id }}">
                 <div class="_filter-range flex" data-filter-id="{{ obProperty.id }}">
                     <fieldset class="me-3 w-full">
-                        <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'text_properties_filter_min'|_}}</legend>
+                        <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'filter_min'|_}}</legend>
                         {% partial 'input/input'
-                            sLabelText = 'text_properties_filter_min'|_
+                            sLabelText = 'filter_min'|_
                             inputClass = '_min appearance-none quantity_input'
                             value = fMinWidthFilterValue
                             sId = obProperty.name ~ 'min'
@@ -22,9 +22,9 @@
                         %}
                     </fieldset>
                     <fieldset class="w-full">
-                        <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'text_properties_filter_min'|_}}</legend>
+                        <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'filter_min'|_}}</legend>
                         {% partial 'input/input'
-                            sLabelText = 'text_properties_filter_max'|_
+                            sLabelText = 'filter_max'|_
                             inputClass = '_max appearance-none quantity_input'
                             value = fMaxWidthFilterValue
                             sId = obProperty.name ~ 'max'

@@ -22,21 +22,21 @@
             <div aria-hidden="true" class="flex flex-row items-center space-x-1 rtl:space-x-reverse me-4 mb-2 md:mb-0">
                 {% partial 'product-rating/product-rating-star' maxRating='5' rating=obProduct.rating unique_id='product' %}
             </div>
-            <span aria-label="{{ 'aria_label_customers_rating'|_({
-                aria_label_customers_rating: obProduct.rating,
-                text_customers_total: iReviewCount,
+            <span aria-label="{{ 'reviews_customers_rating'|_({
+                reviews_customers_rating_value: obProduct.rating,
+                reviews_customers_rating_value_max: iReviewCount,
             })}}">
                 ({{ obProduct.rating }})
             </span>
         </div>
         <div>
             <a href="#ratings" class="underline cursor-pointer me-2 md:me-4">
-                {{ 'text_customers_voted'|_({
-                    text_customers_voted_total: iRatingCount,
+                {{ 'reviews_customers_votes_number'|_({
+                    reviews_customers_votes_number_value: iRatingCount,
                 }) }}
             </a>
             <a href="#reviews" class="underline cursor-pointer">
-                {{ iReviewCount }} {{'link_reviews'|_}}
+                {{ iReviewCount }} {{'reviews_reviews'|_}}
             </a>
         </div>
     </div>
@@ -58,7 +58,7 @@
         </div>
     {% else %}
         <div class="mb-7 mt-4 md:my-7">
-            <span class="font-medium text-sm md:text-lg">{{'text_not_avalable'|_}}</span>
+            <span class="font-medium text-sm md:text-lg">{{'product_not_available'|_}}</span>
         </div>
     {% endif %}
 </div>

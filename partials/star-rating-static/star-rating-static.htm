@@ -1,9 +1,10 @@
 {##}
 
-{% set sMaxRating = sMaxRating|default(5) %}
-{% set aria_label_rating_static_of = sRating ~ ' ' ~ 'aria_label_rating_static_of'|_ ~ ' ' ~ sMaxRating %}
+{# TODO: This partial must be used or deleted #}
 
-<div class="inline-flex" role="img" aria-label="{{ 'aria_label_rating_static' | _({aria_label_rating_static_of: aria_label_rating_static_of}) }}" tabindex="0">
+{% set sMaxRating = sMaxRating|default(5) %}
+{% set reviews_customers_rating_product= sRating ~ ' ' ~ 'reviews_customers_rating_product'|_ ~ ' ' ~ sMaxRating %}
+<div class="inline-flex" role="img" aria-label="{{ 'reviews_customers_rating_product' | _({reviews_customers_rating_product: reviews_customers_rating_product}) }}" tabindex="0">
     {% for i in 0..sMaxRating-1 %}
         {% set id = unique_id~loop.index %}
         {% if sRating >= loop.index %}

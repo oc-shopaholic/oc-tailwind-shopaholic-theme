@@ -3,11 +3,11 @@
 <section id="ratings" class="{{sPartialClass}}">
     {% set iReviewCount = obProduct.review.active().count() %}
     {% if sHeaderHidden != true %}
-        <h2 class="text-gray-900 text-lg md:text-2xl font-medium uppercase">{{ 'heading_customers_ratings'|_ }}</h2>
+        <h2 class="text-gray-900 text-lg md:text-2xl font-medium uppercase">{{ 'reviews_customer_ratings'|_ }}</h2>
     {% endif %}
-    <div class="flex flex-row items-center space-x-4 rtl:space-x-reverse mt-4 md:mt-5" aria-label="{{ 'aria_label_customers_rating'|_({
-        aria_label_customers_rating: obProduct.rating,
-        text_customers_total: iReviewCount,
+    <div class="flex flex-row items-center space-x-4 rtl:space-x-reverse mt-4 md:mt-5" aria-label="{{ 'reviews_customers_rating'|_({
+        reviews_customers_rating_value: obProduct.rating,
+        reviews_customers_rating_value_max: iReviewCount,
     })}}">
         <span aria-hidden="true" class="text-gray-900 font-medium text-base md:text-lg">
             {{ obProduct.rating }}
@@ -16,8 +16,8 @@
             {% partial 'product-rating/product-rating-star' maxRating='5' rating=obProduct.rating unique_id='product' %}
         </div>
         <span aria-hidden="true" class="text-gray-600 text-sm md:text-base">
-            ({{ 'text_customers_voted'|_({
-                text_customers_voted_total: iReviewCount,
+            ({{ 'reviews_customers_votes_number'|_({
+                reviews_customers_votes_number_value: iReviewCount,
             }) }})
         </span>
     </div>
@@ -26,10 +26,10 @@
             {% set iCount = obProduct.getRatingCount(i) %}
             {% set votedTotal = obProduct.getRatingPercent(i) %}
 
-            <li class="flex items-center space-x-4 rtl:space-x-reverse " aria-label="{{ 'aria_label_customers_rating_all'|_({
-                aria_label_customers_rating_all: i,
-                text_customers_total: votedTotal | round ~ '%',
-                text_customers_count: iCount
+            <li class="flex items-center space-x-4 rtl:space-x-reverse" aria-label="{{ 'reviews_customers_rating_all'|_({
+                reviews_customers_rating_stars_number: i,
+                reviews_customers_rating_share: votedTotal | round ~ '%',
+                reviews_customers_rating_votes_number: iCount
             })}}">
                 <div class="flex flex-row space-x-1 rtl:space-x-reverse ">
                     {% partial 'product-rating/product-rating-star' maxRating='5' rating=i unique_id='total-rating-'~i %}

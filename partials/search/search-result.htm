@@ -17,8 +17,8 @@ sorting = "popularity|desc"
 
 {# Render product list #}
 
-<h2 class="sr-only">{{ 'heading_search_results'|_ }}</h2>
-<ul class="-mx-4 ps-4 md:mx-0 md:ps-0">
+<h2 class="sr-only">{{ 'search_results'|_ }}</h2>
+<ul class="-mx-4 pl-4 md:mx-0 md:ps-0">
     {% for obCategory in arCategoryList %}
     {% set obOffer = obCategory.offer.first() %}
     <li class="w-full cursor-pointer">
@@ -28,7 +28,7 @@ sorting = "popularity|desc"
             </svg>
             <div class="after:content-[''] after:absolute after:inset-0 after:border-b after:start-10 after:border-gray-200 pb-3 md:after:border-0 md:ms-1 md:pb-0">
                 <span class="_category-name w-max line-clamp-3 mb-auto">{{ obCategory.name }}</span>
-                <span class="text-gray-600 text-xs">{{ 'text_category'|_ }}</span>
+                <span class="text-gray-600 text-xs">{{ 'search_category'|_ }}</span>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 absolute end-4 top-3.5 block md:hidden md:end-0 md:top-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -62,7 +62,7 @@ sorting = "popularity|desc"
                     itemprop="image" alt="{{ obProduct.preview_image.description }}"
                     title="{{ obProduct.preview_image.title }}">
             </picture>
-            <div class="after:content-[''] after:absolute after:inset-0 after:border-b after:start-10 after:border-gray-200 pb-3 md:after:border-0 md:pb-0">
+            <div class="after:content-[''] after:absolute after:inset-0 after:border-b after:left-10 after:border-gray-200 pb-3 md:after:border-0 md:pb-0">
                 <span class="_product-name w-max text-sm font-normal text-gray-900 line-clamp-3 mb-auto">{{ obProduct.name }}</span>
                 <span class="break-line text-xs text-gray-900 font-medium">{{ obOffer.currency }}{{ obOffer.price }}</span>
                 {% if obOffer.old_price_value > obOffer.price_value %}
