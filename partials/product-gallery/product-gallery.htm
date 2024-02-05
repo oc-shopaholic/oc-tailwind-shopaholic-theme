@@ -5,13 +5,13 @@
         {% if this.theme.has_wish_list %}
             {% if obProduct.inWishList() %}
                 {# TODO: Add buttons a11y #}
-                <button class="_shopaholic-remove-wish-list-button absolute top-4 end-4 z-10 text-red-500 hover:text-red-400 active:text-red-500 w-11 md:w-12 h-11 md:h-12 bg-gray-400/40 hover:bg-gray-500/40 group focus:outline-none flex justify-center items-center rounded-bl rounded-tr focus-visible:outline-blue focus-visible:text-red-500" type="button">
+                <button class="_shopaholic-remove-wish-list-button absolute top-4 end-4 z-10 text-red-500 hover:text-red-400 active:text-red-500 w-11 md:w-12 h-11 md:h-12 bg-gray-400/40 hover:bg-gray-500/40 group focus:outline-none flex justify-center items-center rounded focus-visible:outline-blue focus-visible:text-red-500" type="button">
                     <svg class="stroke-current fill-current" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1.59834 2.26511C1.25011 2.61333 0.973884 3.02673 0.785425 3.48171C0.596967 3.93668 0.499969 4.42432 0.499969 4.91678C0.499969 5.40924 0.596967 5.89688 0.785425 6.35185C0.973884 6.80683 1.25011 7.22023 1.59834 7.56845L8 13.9701L14.4017 7.56845C15.1049 6.86518 15.5 5.91135 15.5 4.91678C15.5 3.92221 15.1049 2.96838 14.4017 2.26511C13.6984 1.56185 12.7446 1.16676 11.75 1.16676C10.7554 1.16676 9.8016 1.56185 9.09834 2.26511L8 3.36345L6.90167 2.26511C6.55345 1.91689 6.14005 1.64066 5.68508 1.4522C5.2301 1.26375 4.74246 1.16675 4.25 1.16675C3.75754 1.16675 3.2699 1.26375 2.81493 1.4522C2.35995 1.64066 1.94656 1.91689 1.59834 2.26511V2.26511Z" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
             {% else %}
-                <button class="_shopaholic-add-wish-list-button absolute top-4 end-4 z-10 md:hidden text-white hover:text-red-400 active:text-red-500 w-11 md:w-12 h-11 md:h-12 bg-gray-400/40 hover:bg-gray-500/40 group focus:outline-none flex justify-center items-center rounded-sm md:rounded focus-visible:outline-blue focus-visible:text-red-500" type="button">
+                <button class="_shopaholic-add-wish-list-button absolute top-4 end-4 z-10 md:hidden text-white hover:text-red-400 active:text-red-500 w-11 md:w-12 h-11 md:h-12 bg-gray-400/40 hover:bg-gray-500/40 group focus:outline-none flex justify-center items-center rounded focus-visible:outline-blue focus-visible:text-red-500" type="button">
                     <svg class="stroke-current group-hover:fill-current" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1.59834 2.26511C1.25011 2.61333 0.973884 3.02673 0.785425 3.48171C0.596967 3.93668 0.499969 4.42432 0.499969 4.91678C0.499969 5.40924 0.596967 5.89688 0.785425 6.35185C0.973884 6.80683 1.25011 7.22023 1.59834 7.56845L8 13.9701L14.4017 7.56845C15.1049 6.86518 15.5 5.91135 15.5 4.91678C15.5 3.92221 15.1049 2.96838 14.4017 2.26511C13.6984 1.56185 12.7446 1.16676 11.75 1.16676C10.7554 1.16676 9.8016 1.56185 9.09834 2.26511L8 3.36345L6.90167 2.26511C6.55345 1.91689 6.14005 1.64066 5.68508 1.4522C5.2301 1.26375 4.74246 1.16675 4.25 1.16675C3.75754 1.16675 3.2699 1.26375 2.81493 1.4522C2.35995 1.64066 1.94656 1.91689 1.59834 2.26511V2.26511Z" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -22,7 +22,7 @@
             {% set obLabelList = obProduct.label.active().sort() %}
             {% if obLabelList.isNotEmpty() %}
                 {% if obLabelList.count() == 1 %}
-                    <div class="absolute z-10 top-4 start-4 overflow-hidden rounded-br rounded-tl flex md:-start-px md:top-7">
+                    <div class="absolute z-10 top-4 start-4 overflow-hidden flex md:-start-px md:top-7">
                         {% for obLabel in obLabelList %}
                             {% if obLabel.code == 'new' %}
                                 {% set sColorState = 'bg-green-900' %}
@@ -31,11 +31,11 @@
                             {% else %}
                                 {% set sColorState = 'bg-red-700' %}
                             {% endif %}
-                            <div class="{{sColorState}} text-white px-4 py-2 whitespace-nowrap text-xs lg:text-sm">{{ obLabel.name }}</div>
+                            <div class="{{sColorState}} rounded-ss rounded-ee text-white px-4 py-2 whitespace-nowrap text-xs lg:text-sm">{{ obLabel.name }}</div>
                         {% endfor %}
                     </div>
                 {% else %}
-                    <ul class="absolute z-10 top-4 start-4 flex w-2/3 scrollbar-x-none overflow-x-scroll rtl:space-x-reverse space-x-0.5 md:space-x-1 md:overflow-auto md:hover:w-auto md:-start-px md:top-7">
+                    <ul class="absolute z-10 top-4 start-4 flex w-2/3 scrollbar-x-none overflow-x-scroll rtl:space-x-reverse space-x-0.5 md:space-x-1 md:overflow-auto md:hover:w-auto md:-start-px md:top-7 qwwwwwwwwwwwwwwwww">
                         {% for obLabel in obLabelList %}
                             {% if obLabel.code == 'new' %}
                                 {% set sColorState = 'bg-green-900' %}
@@ -45,9 +45,9 @@
                                 {% set sColorState = 'bg-red-700' %}
                             {% endif %}
                             {% if loop.index == 1 %}
-                                {% set sRounded = 'rounded-br rounded-tl' %}
+                                {% set sRounded = 'rounded-se rounded-ee' %}
                             {% else %}
-                                {% set sRounded = 'rounded-b-lg' %}
+                                {% set sRounded = 'rounded' %}
                             {% endif %}
                             <li>
                                 <div class="{{sRounded}} {{sColorState}} text-white px-4 py-2 whitespace-nowrap">{{ obLabel.name }}</div>
@@ -84,7 +84,7 @@
         </ul>
     </div>
     <div class="gallery-thumbs mt-2">
-        <ul class="swiper-wrapper _swiper-container py-2 flex items-center">
+        <ul class="swiper-wrapper _swiper-container py-2 px-0.5 flex items-center">
             {% for obImage in arImages %}
                 <li class="swiper-slide" aria-label="{{ 'slider_item_number'|_({
                     slider_item_number_current: loop.index,
@@ -109,25 +109,7 @@
     </div>
 </div>
 <style>
-    .gallery-thumbs li.swiper-slide {
-        width: 92px;
-        height: 92px;
-        margin-left: 8px;
-    }
-    .gallery-thumbs li.swiper-slide:nth-last-child(1){
-        margin-right: 10px;
-    }
 
-    @media only screen and (max-width: 768px) {
-        .gallery-thumbs li.swiper-slide {
-            width: 76px;
-            height: 76px;
-            margin-left: 4px;
-        }
-        .gallery-thumbs li.swiper-slide:nth-last-child(1){
-            margin-right: 6px;
-        }
-    }
 </style>
 
 

@@ -21,15 +21,15 @@
             </picture>
         </div>
         {% if obLabelList.count() == 1 %}
-            <div class="absolute z-10 -top-px -start-px overflow-hidden rounded-br rounded-tl flex">
+            <div class="absolute z-10 -top-px -start-px overflow-hidden rounded-ss rounded-ee flex">
                 {% for obLabel in obLabelList %}
                     <div class="text-white bg-red-700 px-4 py-2 whitespace-nowrap">{{ obLabel.name }}</div>
                 {% endfor %}
             </div>
         {% else %}
-            <ul class="absolute z-10 -top-px -start-px rounded-br rounded-tl flex w-2/3 scrollbar-x-none overflow-x-scroll md:overflow-auto md:hover:w-auto">
+            <ul class="absolute z-10 -top-px -start-px rounded-ss rounded-se flex w-2/3 scrollbar-x-none overflow-x-scroll md:overflow-auto md:hover:w-auto">
                 <li>
-                    <div class="text-gray-100 text-xs md:text-sm bg-red-700 px-2 py-0.5 md:py-1 whitespace-nowrap">{{'purchase_sale'|_}}</div>
+                    <div class="text-gray-100 text-xs md:text-sm rounded-ee bg-red-700 px-2 py-0.5 md:py-1 whitespace-nowrap">{{'purchase_sale'|_}}</div>
                 </li>
             </ul>
         {% endif %}

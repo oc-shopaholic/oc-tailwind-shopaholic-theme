@@ -4,6 +4,14 @@
 
 @import "tailwindcss/utilities";
 
+@layer base {
+  :where([dir="rtl"]) select {
+    background-position: left theme('spacing.2') center;
+    padding-left: theme('spacing.10');
+    padding-right: theme('spacing.3');
+  }
+}
+
 @layer components {
   .slider__pagination{
     @apply flex justify-center mt-5 lg:mt-12
@@ -164,6 +172,7 @@
   }
 }
 
+
 .pswp__top-bar.pswp__hide-on-close{
   @apply space-x-4 w-auto flex bg-gray-100 items-center end-0 inset-auto rounded-bl lg:space-x-6 rtl:space-x-reverse
 }
@@ -180,6 +189,7 @@
 .pswp__top-bar.pswp__hide-on-close .pswp__button.pswp__button--fullscreen-button .pswp__icn{
   fill: black;
 }
+
 .pswp__top-bar.pswp__hide-on-close .pswp__button.pswp__button--zoom{
   @apply order-2
 }
@@ -199,18 +209,22 @@
   @apply w-6 h-6 top-10 fill-black lg:w-8 lg:h-8
 }
 .pswp__button--arrow--next{
-  @apply end-4
+  @apply rtl:right-auto end-4
 }
 .pswp__button--arrow--prev{
-  @apply left-4
-}
-.pswp__button--arrow--next .pswp__icn{
-  @apply end-3 lg:right-4
-}
-.pswp__button--arrow--prev .pswp__icn{
-  @apply left-3 lg:left-4
+  @apply start-4
 }
 
+.pswp__button--arrow--prev .pswp__icn{
+  @apply rtl:rotate-180 translate-y-0.5 left-3.5 rtl:left-1.5
+}
+.pswp__button--arrow--next .pswp__icn {
+  @apply rotate-180 -translate-x-0.5 translate-y-0.5 rtl:rotate-0 rtl:translate-x-1.5 rtl:translate-y-0.5
+}
+
+
+
+@import "./swiper.css";
 @import "../../../node_modules/swiper/swiper-bundle.min.css";
 @import "../../../node_modules/photoswipe/dist/photoswipe.css";
 @import "../../../node_modules/choices.js/public/assets/styles/choices.min.css";

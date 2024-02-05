@@ -44,7 +44,7 @@ export default new class ProductGallery {
     lightbox.init();
 
     const galleryThumbs = new Swiper(`.${this.sPaginationSelector}`, {
-      spaceBetween: 2,
+      spaceBetween: 4,
       slidesPerView: 'auto',
       freeMode: true,
       watchSlidesVisibility: true,
@@ -62,7 +62,7 @@ export default new class ProductGallery {
     });
 
     const galleryTop = new Swiper(`.${this.sGallerySelector}`, {
-      spaceBetween: 0,
+      spaceBetween: 8,
       allowSlidePrev: true,
       thumbs: {
         slideThumbActiveClass: "outline outline-2 outline-blue-800",

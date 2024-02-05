@@ -15,13 +15,13 @@
 </ul>
 <div class="_subtotal mt-4 flex flex-col lg:mt-6 lg:flex-row lg:justify-between lg:items-center">
     <div class="flex justify-between lg:justify-start">
-        <span class="flex text-gray-900 text-base font-medium">
-            {{'purchase_subtotal'|_}}&nbsp;
-            <span class="text-gray-600 _item">
-                ({{obCartList.getTotalQuantity()}} {{'purchase_items'|_}})
-            </span>
-            :
-        </span>
+            <span class="flex text-gray-600 text-base font-medium">
+                {{'purchase_subtotal'|_}}&nbsp;
+                (<span class="_item inline-flex space-x-1">
+                    <span class="inline-block rtl:order-1">{{obCartList.getTotalQuantity()}}</span>
+                    <span>{{'purchase_items'|_}}</span>
+                </span>)
+            </span>&nbsp;:
         <span class="font-medium text-base ps-4">{{ obCartList.currency }}<span class="_shopaholic-cart" data-group="position-total-price" data-field="price">{{obCartList.getTotalPrice()}}</span></span>
     </div>
 </div>
