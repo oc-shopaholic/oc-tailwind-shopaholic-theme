@@ -12,25 +12,25 @@
 
 <tbody>
     <tr>
-        <th colspan="2" class="font-normal pb-4 text-left text-gray-900 text-sm md:text-base">{{'text_subtotal'|_}}&nbsp;
-            <span class="_item">({{obCartList.getTotalQuantity()}} {{'text_item'|_}})</span>
+        <th colspan="2" class="font-normal pb-4 text-left text-gray-900 text-sm md:text-base">{{'purchase_subtotal'|_}}&nbsp;
+            <span class="_item">({{obCartList.getTotalQuantity()}} {{'purchase_items'|_}})</span>
         </th>
         <td class="font-normal text-right text-gray-900 pb-4 text-sm md:text-base">
             <span class="font-medium text-base pl-4">{{ obCartList.currency }}<span class="_shopaholic-cart" data-group="position-total-price" data-field="price">{{obCartList.getTotalPrice()}}</span></span>
         </td>
     </tr>
     <tr>
-        <th colspan="2" class="font-normal pb-4 text-gray-900 text-sm text-left md:text-base">{{'text_delivery'|_}}</th>
+        <th colspan="2" class="font-normal pb-4 text-gray-900 text-sm text-left md:text-base">{{'purchase_delivery'|_}}</th>
         <td class="font-normal text-right text-gray-900 pb-4 text-sm md:text-base">
             {% if obActiveShippingType.price_full == 0 %}
-                {{'text_free'|_}}
+                {{'purchase_for_free'|_}}
             {% else %}
                 {{ obActiveShippingType.currency }}{{obActiveShippingType.price_full}}
             {% endif %}
         </td>
     </tr>
     <tr>
-        <th colspan="2" class="text-gray-900 text-base text-left md:text-lg">{{'text_est_total'|_}}</th>
+        <th colspan="2" class="text-gray-900 text-base text-left md:text-lg">{{'purchase_total'|_}}</th>
         <td class="text-gray-900 text-right text-base md:text-lg">{{ Cart.getCurrency() }}<span class="cart__result-price-value _shopaholic-cart" data-group="total-price" data-field="price">{{ obTotalPriceData.price  }}</span></td>
     </tr>
 </tbody>

@@ -14,18 +14,18 @@
             {% if obProperty.filter_type == 'between' %}
                 <div class="_filter-range flex" data-filter-id="{{ obProperty.id }}">
                     <fieldset class="mr-3">
-                        <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'text_properties_filter_min'|_}}</legend>
+                        <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'filter_min'|_}}</legend>
                         {% partial 'input/input'
-                            sLabelText = 'text_properties_filter_min'|_
+                            sLabelText = 'filter_min'|_
                             inputClass = '_min appearance-none quantity_input'
                             sId = obProperty.name ~ 'min'
                             type = 'number'
                         %}
                     </fieldset>
                     <fieldset>
-                        <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'text_properties_filter_max'|_}}</legend>
+                        <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'filter_max'|_}}</legend>
                         {% partial 'input/input'
-                            sLabelText = 'text_properties_filter_max'|_
+                            sLabelText = 'filter_max'|_
                             inputClass = '_max appearance-none quantity_input'
                             sId = obProperty.name ~ 'max'
                             type = 'number'

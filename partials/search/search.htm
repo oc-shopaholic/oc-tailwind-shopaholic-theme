@@ -4,7 +4,7 @@
     inputClass='_shopaholic-search-input relative z-10 bg-transparent border-gray-400 focus:border-gray-600 pl-12 pr-11 md:pr-10'
     maxLength='100'
     sPartialClasses='w-full flex w-full relative items-center mb-4'
-    sLabelText='heading_search'|_
+    sLabelText='search_search'|_
     sLabelClasses='sr-only'
     body
 %}
@@ -18,15 +18,15 @@
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
     </div>
-    <button class="_clear hidden absolute p-3 -m-3 right-5 top-3 z-20 cursor-pointer hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800 md:right-4" aria-label="{{ 'heading_search_clear_title'|_ }}">
+    <button class="_clear hidden absolute p-3 -m-3 right-5 top-3 z-20 cursor-pointer hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800 md:right-4" aria-label="{{ 'search_search'|_ }}">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
     </button>
 {% endpartial %}
 <section class="_recently-container hidden relative">
-    <h2 class="_recently-header text-gray-400 font-medium text-base text-left ml-0 mt-4 mb-5 pr-20 uppercase md:ml-4 md:mb-4 md:mt-6">{{ 'heading_search_history'|_ }}</h2>
-    <button class="_clear-recently-all cursor-pointer hidden absolute top-1 right-1 text-base text-blue-800 p-2 -m-2 md:right-6 md:text-sm hover:underline hover:text-blue-700 active:text-blue-900 active:no-underline focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800" title="{{ 'text_search_clear_all'|_ }}">{{ 'button_clear_all'|_ }}</button>
+    <h2 class="_recently-header text-gray-400 font-medium text-base text-left ml-0 mt-4 mb-5 pr-20 uppercase md:ml-4 md:mb-4 md:mt-6">{{ 'search_history'|_ }}</h2>
+    <button class="_clear-recently-all cursor-pointer hidden absolute top-1 right-1 text-base text-blue-800 p-2 -m-2 md:right-6 md:text-sm hover:underline hover:text-blue-700 active:text-blue-900 active:no-underline focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800" title="{{ 'search_clear'|_ }}">{{ 'search_clear_all'|_ }}</button>
     <ul class="_recently-list -mx-4 pl-4 md:mx-0 md:pl-0"></ul>
     <template class="_recently-template">
         <li class="_recently relative md:hover:bg-gray-100" tabindex="0">
@@ -36,7 +36,7 @@
                 </svg>
                 <span class="_recently-text w-full pb-3 after:content-[''] after:absolute after:inset-0 after:border-b after:left-10 after:border-gray-200 md:after:border-0 md:pb-0"></span>
             </div>
-            <button class="_clear-recently absolute p-3 -m-3 right-4 top-1 cursor-pointer hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800 md:right-5 md:top-3" title="{{ 'text_search_remove_query'|_ }}">
+            <button class="_clear-recently absolute p-3 -m-3 right-4 top-1 cursor-pointer hover:text-blue-700 active:text-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus:outline-none focus:text-blue-800 md:right-5 md:top-3" title="{{ 'search_query_remove'|_ }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                 </svg>
@@ -48,11 +48,11 @@
     {% partial 'search/search-result' %}
 </section>
 {% partial 'button/button'
-    sText = 'button_show_more'|_
+    sText = 'search_show_more'|_
     sPartialClasses = '_show-more mx-auto hidden relative w-60 mt-8'
 %}
 {% partial 'button/button'
-    sText = 'button_loading'|_
+    sText = 'form_loading'|_
     sPartialClasses = '_show-more-hidden mx-auto hidden relative w-60 pl-12 mt-8'
     bDisabled = true
     body
@@ -63,8 +63,8 @@
 </svg>
 {% endpartial %}
 <div class="_no-result flex-col	items-center justify-center	h-4/5 hidden">
-    <span class="text-gray-400 text-2xl mb-2 font-medium">{{ 'heading_search_no_results'|_ }}</span>
+    <span class="text-gray-400 text-2xl mb-2 font-medium">{{ 'search_results_no'|_ }}</span>
     <p class="_no-result-text w-80 text-gray-400 text-base text-center flex justify-center flex-wrap">
-        {{ 'text_search_no_results'|_ }}
+        {{ 'search_results_no_description'|_ }}
     </p>
 </div>

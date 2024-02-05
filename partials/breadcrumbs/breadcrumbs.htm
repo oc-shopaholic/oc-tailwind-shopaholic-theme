@@ -1,9 +1,9 @@
 {##}
 
 <nav class="my-4 md:my-6 overflow-auto xl:overflow-hidden scrollbar-x-none {{ sPartialClasses }}" role="navigation">
-    <ul class="flex flex-nowrap xl:flex-wrap text-gray-600" aria-label="{{ 'aria_label_breadcrumbs'|_ }}">
+    <ul class="flex flex-nowrap xl:flex-wrap text-gray-600" aria-label="{{ 'breadcrumbs_breadcrumbs'|_ }}">
         <li>
-            <a class="underline" href="{{ 'index/index'|page }}">{{ 'breadcrumbs_page_home'|_ }}</a>
+            <a class="underline" href="{{ 'index/index'|page }}">{{ 'breadcrumbs_home'|_ }}</a>
         </li>
         {% for arItem in arBreadcrumbs %}
             <li class="pl-3 inline-flex before:separator whitespace-nowrap">
