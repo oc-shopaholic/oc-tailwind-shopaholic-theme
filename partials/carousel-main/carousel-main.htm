@@ -17,7 +17,7 @@
                                     {{ obItem.image|media|resize(1920, 'auto', {'quality': 80, 'extension': 'webp'}) }} 1920w"
                                 sizes="100vw"
                                 type="image/webp">
-                            {# TODO: Add resize for mobile screen resolution #}
+
                             <img
                                 class="object-cover w-full"
                                 srcset="
@@ -39,13 +39,29 @@
                     </a>
                 {% else %}
                     <picture>
-                        <source srcset="{{ obItem.image|media|resize(1440, 640, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
+                        <source
+                            srcset="
+                                {{ obItem.image|media|resize(640, 'auto', {'quality': 80, 'extension': 'webp'}) }} 640w,
+                                {{ obItem.image|media|resize(768, 'auto', {'quality': 80, 'extension': 'webp'}) }} 768w,
+                                {{ obItem.image|media|resize(1024, 'auto', {'quality': 80, 'extension': 'webp'}) }} 1024w,
+                                {{ obItem.image|media|resize(1280, 'auto', {'quality': 80, 'extension': 'webp'}) }} 1280w,
+                                {{ obItem.image|media|resize(1536, 'auto', {'quality': 80, 'extension': 'webp'}) }} 1536w,
+                                {{ obItem.image|media|resize(1920, 'auto', {'quality': 80, 'extension': 'webp'}) }} 1920w"
+                            sizes="100vw"
+                            type="image/webp">
                         <img
+                            srcset="
+                                {{ obItem.image|media|resize(640, 'auto', {'quality': 80}) }} 640w,
+                                {{ obItem.image|media|resize(768, 'auto', {'quality': 80}) }} 768w,
+                                {{ obItem.image|media|resize(1024, 'auto', {'quality': 80}) }} 1024w,
+                                {{ obItem.image|media|resize(1280, 'auto', {'quality': 80}) }} 1280w,
+                                {{ obItem.image|media|resize(1536, 'auto', {'quality': 80}) }} 1536w,
+                                {{ obItem.image|media|resize(1920, 'auto', {'quality': 80}) }} 1920w"
+                            src="{{ obItem.image|media|resize(360, 'auto', {'quality': 80}) }}"
                             class="w-full h-full object-cover"
-                            src="{{ obItem.image|media|resize(1440, 640, {'quality': 80}) }}"
                             alt="{{ obItem.description }}"
                             title="{{ obItem.title }}"
-                            {{ loop.index > 1 ? 'loading="lazy"' }}
+                            loading="lazy"
                         >
                     </picture>
                 {% endif %}
