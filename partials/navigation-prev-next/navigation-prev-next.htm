@@ -10,20 +10,20 @@
     {% if obPrevArticle.isNotEmpty() %}
         {% partial 'button/button'
             sPartialClasses = 'flex border-2 bg-transparent border-blue-800 text-blue-800 py-3 pl-7 pr-10 rounded mt-2 order-1 md:order-none md:mt-0'
-            sText = 'button_prev_article'|_
+            sText = 'blog_post_prev'|_
             sHref = obPrevArticle.getPageUrl(this.page.baseFileName)
             bGhost = true
             body
-        %}  
+        %}
             <svg class="mr-2" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M15.2485 6.35159C15.4735 6.57662 15.5999 6.88179 15.5999 7.19999C15.5999 7.51818 15.4735 7.82335 15.2485 8.04839L11.2969 12L15.2485 15.9516C15.4671 16.1779 15.5881 16.481 15.5853 16.7957C15.5826 17.1103 15.4564 17.4113 15.2339 17.6338C15.0114 17.8563 14.7105 17.9825 14.3958 17.9852C14.0812 17.9879 13.7781 17.867 13.5517 17.6484L8.75173 12.8484C8.52677 12.6234 8.40039 12.3182 8.40039 12C8.40039 11.6818 8.52677 11.3766 8.75173 11.1516L13.5517 6.35159C13.7768 6.12662 14.0819 6.00024 14.4001 6.00024C14.7183 6.00024 15.0235 6.12662 15.2485 6.35159Z" fill="currentColor"/>
-            </svg>   
+            </svg>
         {% endpartial %}
     {% endif %}
     {% if obNextArticle.isNotEmpty() %}
         {% partial 'button/button'
             sPartialClasses = 'flex border-2 bg-transparent border-blue-800 text-blue-800 py-3 pl-10 pr-7 rounded md:ml-auto'
-            sText = 'button_next_article'|_
+            sText = 'blog_post_next'|_
             sHref = obNextArticle.getPageUrl(this.page.baseFileName)
             bGhost = true
             body

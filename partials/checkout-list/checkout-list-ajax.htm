@@ -7,18 +7,18 @@
         {% set obOffer = obCartPosition.offer %}
         {% set obProduct = obOffer.product %}
         <li class="_shopaholic-product-wrapper relative after:content-[''] after:absolute after:inset-0 after:border-b after:first:border-t after:border-gray-200 after:-left-4 after:-z-10 lg:after:left-0" data-position-id="{{ obCartPosition.id }}" data-product-id="{{ obProduct.id }}">
-            {% partial 'product-card-checkout/product-card-checkout' 
+            {% partial 'product-card-checkout/product-card-checkout'
                 obCartPosition = obCartPosition
             %}
         </li>
     {% endfor %}
 </ul>
-<div class="_subtotal mt-4 flex flex-col lg:mt-6 lg:flex-row lg:justify-between lg:items-center">   
+<div class="_subtotal mt-4 flex flex-col lg:mt-6 lg:flex-row lg:justify-between lg:items-center">
     <div class="flex justify-between lg:justify-start">
         <span class="flex text-gray-900 text-base font-medium">
-            {{'text_subtotal'|_}}&nbsp;
+            {{'purchase_subtotal'|_}}&nbsp;
             <span class="text-gray-600 _item">
-                ({{obCartList.getTotalQuantity()}} {{'text_item'|_}})
+                ({{obCartList.getTotalQuantity()}} {{'purchase_items'|_}})
             </span>
             :
         </span>
@@ -29,9 +29,9 @@
 {% put scripts %}
     <script>
         window.subtotal = {
-            'item': "{{ 'text_item'|_ }}",
-            'currency': "{{ 'text_currency'|_ }}",
-            'checkout': "{{ 'button_checkout'|_ }}"
+            'item': "{{ 'purchase_items'|_ }}",
+            'currency': "{{ 'purchase_currency'|_ }}",
+            'checkout': "{{ 'purchase_checkout'|_ }}"
         };
     </script>
 {% endput %}

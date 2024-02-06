@@ -39,7 +39,7 @@ export default class Toggle{
     }
 
     changeTextMobail(state){
-        if(state){ 
+        if(state){
             this.obStatus.innerText = this.obHideText + (this.obContent.querySelectorAll('ul._toggle-list')[0].childElementCount > 1 ? ' (' + this.obContent.querySelectorAll('ul._toggle-list')[0].childElementCount + ')' : '');
         }else{
             this.obStatus.innerText = this.obHideText + (this.obContent.querySelectorAll('ul._toggle-list')[0].childElementCount > 1 ? ' (' + this.obContent.querySelectorAll('ul._toggle-list')[0].childElementCount + ')' : '');
@@ -49,7 +49,7 @@ export default class Toggle{
     changeColorText(state){
         if(window.innerWidth > 1024 || !this.obApp) return;
 
-        if(state){ 
+        if(state){
             this.obStatus.classList.add('text-gray-900');
         }else{
             this.obStatus.classList.remove('text-gray-900');
@@ -104,7 +104,7 @@ export default class Toggle{
             if(window.innerWidth < 1024 && this.obApp){
                 this.obHideText = window.stateButton.orders_count;
                 this.obShowText = window.stateButton.orders_count;
-                this.changeTextMobail(true);
+                this.changeTextMobail(true); //TODO: Fix lang mistake
             }else{
                 this.obHideText = window.stateButton.hide_order;
                 this.obShowText = window.stateButton.show_order;

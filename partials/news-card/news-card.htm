@@ -9,8 +9,9 @@
             <picture>
                 <source srcset="
                     {{ obArticle.preview_image.getThumb(364, 'auto', {'quality': 80, 'extension': 'webp'})}} 364w,
-                    {{ obArticle.preview_image.getThumb(172, 'auto', {'quality': 80, 'extension': 'webp'})}} 172w,
-                " type="image/webp">
+                    {{ obArticle.preview_image.getThumb(172, 'auto', {'quality': 80, 'extension': 'webp'})}} 172w"
+                    sizes="(max-width: 768px) 172px, 364px"
+                    type="image/webp">
                 <img
                     class="rounded w-full h-full object-cover"
                     srcset="
@@ -29,7 +30,7 @@
             <img
                 class="w-full h-full rounded object-cover"
                 src="{{ 'assets/images/no-photo.svg'|theme }}"
-                alt="{{ 'text_no_image_article'|_ }}"
+                alt="{{ 'blog_image_no'|_ }}"
                 {{ iLoopIndex > iShowIndex ? 'loading="lazy"' }}
             >
         {% endif %}

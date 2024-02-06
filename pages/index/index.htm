@@ -31,28 +31,27 @@ function onInit()
         sSectionHeadingLevel = 2
     %}
 {% endif %}
-
 {% if this.theme.has_popularity %}
     {% partial 'product-list-small/product-list-small'
         sProductListSmallType = sProductListSmallTypePopularity
-        sSectionHeading = 'heading_product_list_small_popular_products'|_
+        sSectionHeading = 'catalog_products_popular'|_
         sSectionHeadingLevel = 2
         iTake = 4
         sBtnMore = true
-        sButtonName = 'button_show_more_products'|_
+        sButtonName = 'catalog_products_show_more'|_
         iShowIndex = 4
     %}
     {# TODO: Change sSectionHeadingLevel to iSectionHeadingLevel overall #}
 {% endif %}
 <section>
-    <h2 class="font-medium text-3xl text-gray-900 mb-10 uppercase">{{'heading_product_categories'|_}}</h2>
-    <div class="flex flex-col mb-10">
-        {% set iTake = 6 %}
-        {% set arCategoryListCount = CategoryList.make().tree() %}
+<h2 class="font-medium text-3xl text-gray-900 mb-10 uppercase">{{'catalog_categories'|_}}</h2>
+<div class="flex flex-col mb-10">
+    {% set iTake = 6 %}
+    {% set arCategoryListCount = CategoryList.make().tree() %}
 
-        {% partial 'advanced-list/advanced-list'
-            body
-        %}
+    {% partial 'advanced-list/advanced-list'
+        body
+    %}
         {% for obItem in arCategoryListCount %}
             {% partial 'advanced-list/advanced-list-item'
                 sName = obItem.name
@@ -67,7 +66,7 @@ function onInit()
         {% endpartial %}
         {% if arCategoryListCount|length > iTake %}
         <div class="flex justify-center mt-10">
-            <button class="_advanced-list-button-show-all text-base rounded text-blue-800 border border-blue-800 border-solid py-3 px-8 w-full md:w-max hover:bg-blue-700 hover:border-blue-700 hover:text-white focus:outline-none active:bg-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus-visible:bg-blue-800 focus-visible:text-white">{{ 'button_all_categories'|_ }}</button>
+            <button class="_advanced-list-button-show-all text-base rounded text-blue-800 border border-blue-800 border-solid py-3 px-8 w-full md:w-max hover:bg-blue-700 hover:border-blue-700 hover:text-white focus:outline-none active:bg-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus-visible:bg-blue-800 focus-visible:text-white">{{ 'catalog_categories_show'|_ }}</button>
             {% partial 'button/button'
                 sText = 'button_loading'|_
                 sPartialClasses = '_advanced-list-button-show-all-hidden w-full hidden relative pl-14 pr-10 md:w-max'
@@ -80,11 +79,9 @@ function onInit()
                 </svg>
             {% endpartial %}
         </div>
-        {% endif %}
-    </div>
-
+    {% endif %}
+</div>
 </section>
-
 {% if this.theme.page_seo_block_active %}
     {% partial 'page-seo-content/page-seo-content' %}
 {% endif %}

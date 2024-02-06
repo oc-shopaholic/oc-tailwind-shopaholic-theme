@@ -1,8 +1,6 @@
 const plugin = require('tailwindcss/plugin');
 
 module.exports = {
-  corePlugins: {
-  },
   content: [
     './layouts/**/*.htm',
     './pages/**/*.htm',
@@ -77,18 +75,6 @@ module.exports = {
       screens: {
         'ml': '840px',
       },
-      // margin: ['first', 'last'],
-      // textColor: ['active', 'focus-visible', 'visited'],
-      // outline: ['focus-visible'],
-      // backgroundColor: ['group-focus', 'active', 'focus-visible', 'disabled', 'even'],
-      // ringWidth: ['focus-visible'],
-      // ringColor: ['hover', 'active', 'focus', 'focus-visible'],
-      // ringOffsetWidth: ['responsive', 'focus-visible', 'focus'],
-      // opacity: ['hover', 'focus'],
-      // fill: ['hover', 'group-hover', 'group-focus', 'focus'],
-      // stroke: ['hover', 'group-hover', 'group-focus', 'focus'],
-      // width: ['hover'],
-      // borderWidth: ['first', 'last']
     }
   },
   plugins: [
@@ -96,7 +82,6 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
     require('tailwindcss-pseudo-elements'),
-    require('@tailwindcss/line-clamp'),
     plugin(function ({ addUtilities }) {
       const newUtilities = {
         '.separator': {
