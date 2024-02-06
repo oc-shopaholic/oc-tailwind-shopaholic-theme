@@ -82,6 +82,7 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
     require('tailwindcss-pseudo-elements'),
+    require('tailwindcss-content-visibility'),
     plugin(function ({ addUtilities }) {
       const newUtilities = {
         '.separator': {
