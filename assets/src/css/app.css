@@ -206,7 +206,7 @@
 }
 
 .content-visibility {
-  @apply content-visibility-auto contain-intrinsic-size-[0_100px]
+  @apply content-visibility-auto contain-intrinsic-size-[100px_1000px]
 }
 
 @import "../../../node_modules/swiper/swiper-bundle.min.css";
