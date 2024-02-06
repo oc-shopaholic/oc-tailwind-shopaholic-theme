@@ -205,9 +205,9 @@
   @apply left-3 lg:left-4
 }
 
-/*.content-visibility {*/
-/*  @apply content-visibility-auto contain-intrinsic-size-[0_100px]*/
-/*}*/
+.content-visibility {
+  @apply content-visibility-auto contain-intrinsic-size-[0_100px]
+}
 
 @import "../../../node_modules/swiper/swiper-bundle.min.css";
 @import "../../../node_modules/photoswipe/dist/photoswipe.css";
