@@ -12,7 +12,7 @@ code = "navigation-footer"
                     {% set sCode = arItemMenu.code is not empty ? 'data-code='~arItemMenu.code %}
                     {% if arItemMenu.url is not empty %}
                         {% set sExternal = arItemMenu.viewBag.isExternal ? 'target=_blank' : '' %}
-                        <a href={{ arItemMenu.url }} {{ sExternal }} class="uppercase mb-5 md:mb-6 inline-block text-gray-900 text-xl underline hover:text-blue-700 hover:no-underline active:text-blue-900 focus-visible:outline-blue {{ arItemMenu.viewBag.cssClass }}" {{ sCode }}>{{ arItemMenu.title }}</a>
+                        <a href={{ arItemMenu.url }} {{ sExternal }} class="uppercase mb-5 md:mb-6 inline-block link link-gray text-xl underline hover:no-underline {{ arItemMenu.viewBag.cssClass }}" {{ sCode }}>{{ arItemMenu.title }}</a>
                     {% else %}
                         <span class="uppercase mb-5 md:mb-6 inline-block text-gray-900 text-xl {{ arItemMenu.viewBag.cssClass }}" {{ sCode }}>{{ arItemMenu.title }}</span>
                     {% endif %}
@@ -24,7 +24,7 @@ code = "navigation-footer"
                                     {% set sCode =  arSubItemMenu.code is not empty ? 'data-code='~arSubItemMenu.code %}
                                     {% if arSubItemMenu.url is not empty %}
                                         {% set sExternal = arSubItemMenu.viewBag.isExternal ? 'target=_blank' : '' %}
-                                        <a href="{{ arSubItemMenu.url }}" {{ sExternal }} class="text-gray-600 text-base underline hover:text-blue-700 hover:no-underline active:text-blue-900 focus-visible:outline-blue {{ arSubItemMenu.viewBag.cssClass }}" {{ sCode }}>{{ arSubItemMenu.title }}</a>
+                                        <a href="{{ arSubItemMenu.url }}" {{ sExternal }} class="text-gray-600 link link-gray text-base underline hover:no-underline {{ arSubItemMenu.viewBag.cssClass }}" {{ sCode }}>{{ arSubItemMenu.title }}</a>
                                     {% else %}
                                         <span class="text-gray-600 text-base {{ arSubItemMenu.viewBag.cssClass }}" {{ sCode }}>{{ arSubItemMenu.title }}</span>
                                     {% endif %}

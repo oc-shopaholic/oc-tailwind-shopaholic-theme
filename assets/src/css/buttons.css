@@ -1,0 +1,27 @@
+
+.button-primary {
+  @apply bg-blue-800 hover:bg-blue-700 hover:ring-blue-700 hover:border-blue-700
+}
+.button-state{
+  @apply outline outline-offset-2 outline-red-700 outline-2
+}
+/*.button-state{*/
+/*  @apply text-white rounded outline-none active:bg-blue-900*/
+/*  border border-blue-800 focus:border-white focus-visible:border-white focus-within:border-white active:border-blue-900*/
+/*  ring-2 focus-visible:ring-2 ring-blue-800 focus-visible:ring-blue-800 focus-within:ring-blue-800 active:ring-blue-900*/
+/*}*/
+
+.link {
+  @apply outline-current
+  focus:outline-dotted focus:outline-2
+  focus-visible:outline-dotted focus-visible:outline-2
+  focus-within:outline-dotted focus-within:outline-2
+  active:text-blue-900
+}
+.link-blue {
+  @apply text-blue-800 hover:text-blue-700 visited:text-purple-800
+}
+.link-gray {
+  @apply text-gray-900 hover:text-blue-700
+}
+

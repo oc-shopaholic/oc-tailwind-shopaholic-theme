@@ -2,7 +2,7 @@
 
 <article class="flex flex-col {{ sPartialClasses }}">
     <h{{ sCardHeadingLevel }} class="mt-2 order-1">
-        <a class="hover:text-blue-800 focus-visible:outline-blue" href="{{ obArticle.getPageUrl('news-item/news-item') }}">{{ obArticle.title }}</a>
+        <a class="link link-blue" href="{{ obArticle.getPageUrl('news-item/news-item') }}">{{ obArticle.title }}</a>
     </h{{ sCardHeadingLevel }}>
     <div class="aspect-w-16 aspect-h-10 md:aspect-h-11">
         {% if obArticle.preview_image is not empty %}
