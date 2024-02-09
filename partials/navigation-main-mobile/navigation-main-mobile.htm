@@ -5,7 +5,7 @@ code = "navigation-main"
 {# TODO: Add animation for the burger button. #}
 
 {% set arMenuList = MainMenu.menuItems %}
-<div class="_off-canvas block mr-3.5 lg:hidden">
+<div class="_off-canvas block mr-3.5 lg:hidden flex">
     <button class="_show hover:text-blue-700 active:text-blue-900 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:rounded-sm">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M6.6665 30H33.3332M6.6665 10H33.3332H6.6665ZM6.6665 20H33.3332H6.6665Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
@@ -46,6 +46,15 @@ code = "navigation-main"
                             </li>
                         {% endif %}
                     {% endfor %}
+                    <li class="py-3 -mx-4 px-4 md:mx-0 md:px-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 pb-3 md:after:border-0 md:ml-1 md:pb-0">
+                        <button
+                                class="js-show-region text-sm font-medium text-blue-800 hover:text-blue-700 hover:underline active:text-blue-900 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800"
+                                type="button"
+                                aria-label="{{ 'aria_label_site_picker'|_ }}"
+                        >
+                            <span class="uppercase font-semibold text-xs">{{ this.site.name }}</span>
+                        </button>
+                    </li>
                 </ul>
             </nav>
             <h2 class="uppercase font-medium text-lg text-gray-900 mb-4 mt-8">{{'account_my'|_}}</h2>
