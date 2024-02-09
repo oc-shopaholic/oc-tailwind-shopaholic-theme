@@ -10,7 +10,7 @@
                 <source srcset="
                     {{ obArticle.preview_image.getThumb(364, 'auto', {'quality': 80, 'extension': 'webp'})}} 364w,
                     {{ obArticle.preview_image.getThumb(172, 'auto', {'quality': 80, 'extension': 'webp'})}} 172w"
-                    sizes="(max-width: 768px) 172px, 364px"
+                    sizes="(max-width: 768px) 172w, 364w"
                     type="image/webp">
                 <img
                     class="rounded w-full h-full object-cover"
@@ -18,7 +18,7 @@
                         {{ obArticle.preview_image.getThumb(364, 'auto', {'quality': 80}) }} 364w,
                         {{ obArticle.preview_image.getThumb(172, 'auto', {'quality': 80}) }} 172w
                     "
-                    sizes="(max-width: 768px) 172px, 364px"
+                    sizes="(max-width: 768px) 172w, 364w"
                     src="{{ obArticle.preview_image.getThumb(10, 'auto', {'quality': 80}) }}"
                     alt="{{ obArticle.preview_image.description }}"
                     width="364"

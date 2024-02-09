@@ -205,7 +205,13 @@
   @apply left-3 lg:left-4
 }
 
+.pswp--click-to-zoom.pswp--zoom-allowed .pswp__img {
+  @apply object-contain
+}
+
 @import "../../../node_modules/swiper/swiper-bundle.min.css";
 @import "../../../node_modules/photoswipe/dist/photoswipe.css";
 @import "../../../node_modules/choices.js/public/assets/styles/choices.min.css";
 @import "../js/vanila-tabs/vanilla-tabs.min.css";
+
+

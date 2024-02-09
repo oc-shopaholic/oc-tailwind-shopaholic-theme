@@ -1,14 +1,14 @@
 {##}
-
 <div class="flex items-center space-x-2 md:space-x-6">
     <picture>
         <source srcset="{{ obProduct.preview_image.getThumb(92, 92, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
-        <source srcset="{{ obProduct.preview_image.getThumb(92, 92, {'quality': 80}) }}" type="image/jpeg">
         <img
             class="object-contain w-20 h-20 md:w-24 md:h-24 rounded"
-            src="{{ obProduct.preview_image.path.getThumb(92, 92, {'quality': 80})}}"
-            alt="{{ obProduct.description }}"
+            src="{{ obProduct.preview_image.getThumb(92, 92, {'quality': 80})}}"
+            alt="{{ obProduct.title }}"
             title="{{ obProduct.title }}"
+            width="92"
+            height="92"
         >
     </picture>
     <div class="flex flex-col">

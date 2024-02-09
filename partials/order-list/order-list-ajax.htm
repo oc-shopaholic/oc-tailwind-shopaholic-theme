@@ -45,17 +45,16 @@
                             <li class="flex flex-row space-x-2">
                                 <div class="relative flex items-center">
                                     <picture class="object-fill w-20 h-20">
-                                        <source media="(min-width:769px)" srcset="{{ obProduct.preview_image.getThumb(420, 315, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
-                                        <source media="(min-width:769px)" srcset="{{ obProduct.preview_image.getThumb(420, 315, {'quality': 80}) }}" type="image/jpeg">
-                                        <source media="(max-width:768px)" srcset="{{ obProduct.preview_image.getThumb(500, 373, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
-                                        <source media="(max-width:768px)" srcset="{{ obProduct.preview_image.getThumb(500, 373, {'quality': 80}) }}" type="image/jpeg">
+                                        <source srcset="{{ obProduct.preview_image.getThumb(80, 80, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
                                         <img
                                             class="object-fill h-full w-full rounded"
-                                            src="{{ obProduct.preview_image.getThumb(500, 373, {'quality': 80}) }}"
+                                            src="{{ obProduct.preview_image.getThumb(80, 80, {'quality': 80}) }}"
                                             itemprop="image"
                                             alt="{{ obProduct.preview_image.description }}"
                                             title="{{ obProduct.preview_image.title }}"
                                             loading="lazy"
+                                            width="80"
+                                            height="80"
                                         >
                                     </picture>
                                     {% if this.theme.has_labels %}

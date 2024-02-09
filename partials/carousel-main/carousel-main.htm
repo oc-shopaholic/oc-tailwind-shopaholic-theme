@@ -17,7 +17,6 @@
                                     {{ obItem.image|media|resize(1920, 'auto', {'quality': 80, 'extension': 'webp'}) }} 1920w"
                                 sizes="100vw"
                                 type="image/webp">
-
                             <img
                                 class="object-cover w-full"
                                 srcset="
@@ -58,6 +57,7 @@
                                 {{ obItem.image|media|resize(1536, 'auto', {'quality': 80}) }} 1536w,
                                 {{ obItem.image|media|resize(1920, 'auto', {'quality': 80}) }} 1920w"
                             src="{{ obItem.image|media|resize(360, 'auto', {'quality': 80}) }}"
+                            sizes="100vw"
                             class="w-full h-full object-cover"
                             alt="{{ obItem.description }}"
                             title="{{ obItem.title }}"

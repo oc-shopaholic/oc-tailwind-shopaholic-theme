@@ -43,24 +43,18 @@ sorting = "popularity|desc"
     {% set obOffer = obProduct.offer.first() %}
     <li class="cursor-pointer hover:bg-inherit md:px-0 md:hover:bg-gray-100">
         <a class="_shopaholic-product-wrapper flex my-2 py-2 relative md:my-0" href="{{ obProduct.getPageUrl('product-item') }}">
-            <picture class="object-cover mr-2 md:ml-3">
-                {# TODO: Add images quality value to the theme settings #}
-                <source media="(min-width:769px)"
-                    srcset="{{ obProduct.preview_image.getThumb(420, 315, {'quality': 80, 'extension': 'webp'}) }}"
-                    type="image/webp">
-                <source media="(min-width:769px)"
-                    srcset="{{ obProduct.preview_image.getThumb(420, 315, {'quality': 80}) }}"
-                    type="image/jpeg">
-                <source media="(max-width:768px)"
-                    srcset="{{ obProduct.preview_image.getThumb(500, 373, {'quality': 80, 'extension': 'webp'}) }}"
-                    type="image/webp">
-                <source media="(max-width:768px)"
-                    srcset="{{ obProduct.preview_image.getThumb(500, 373, {'quality': 80}) }}"
-                    type="image/jpeg">
-                <img class="object-cover w-8 h-8"
-                    src="{{ obProduct.preview_image.preview_image.getThumb(500, 373, {'quality': 80}) }}"
-                    itemprop="image" alt="{{ obProduct.preview_image.description }}"
-                    title="{{ obProduct.preview_image.title }}">
+            <picture class="mr-2 md:ml-3">
+                <source srcset="{{ obProduct.preview_image.getThumb(32, 32, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
+                <img
+                    src="{{ obProduct.preview_image.getThumb(32, 32, {'quality': 80}) }}"
+                    itemprop="image"
+                    alt="{{ obProduct.preview_image.description }}"
+                    title="{{ obProduct.preview_image.title }}"
+                    class="object-contain w-8 h-8"
+                    loading="lazy"
+                    width="32"
+                    height="32"
+                />
             </picture>
             <div class="after:content-[''] after:absolute after:inset-0 after:border-b after:left-10 after:border-gray-200 pb-3 md:after:border-0 md:pb-0">
                 <span class="_product-name w-max text-sm font-normal text-gray-900 line-clamp-3 mb-auto">{{ obProduct.name }}</span>

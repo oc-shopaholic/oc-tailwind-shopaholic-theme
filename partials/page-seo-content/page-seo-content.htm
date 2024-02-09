@@ -10,7 +10,7 @@
                 {{ this.theme.page_seo_block_image|media|resize(400, 'auto', {'quality': 80, 'extension': 'webp'})}} 400w,
                 {{ this.theme.page_seo_block_image|media|resize(304, 'auto', {'quality': 80, 'extension': 'webp'})}} 304w
             "
-            sizes="(min-width: 1280px) 624px, (max-width: 1279px) 496px, (max-width: 1024px) 400px, (max-width: 768px) 304px"
+            sizes="(min-width: 1280px) 624w, (max-width: 1279px) 496w, (max-width: 1024px) 400w, (max-width: 768px) 304w"
             type="image/webp">
         <img
             srcset="
@@ -19,10 +19,12 @@
                 {{ this.theme.page_seo_block_image|media|resize(400, 'auto', {'quality': 80}) }} 400w,
                 {{ this.theme.page_seo_block_image|media|resize(304, 'auto', {'quality': 80}) }} 304w
             "
-            sizes="(min-width: 1280px) 624px, (max-width: 1279px) 496px, (max-width: 1024px) 400px, (max-width: 768px) 304px"
+            sizes="(min-width: 1280px) 624w, (max-width: 1279px) 496w, (max-width: 1024px) 400w, (max-width: 768px) 304w"
             src="{{ this.theme.page_seo_block_image|media|resize(10, 'auto')}}"
             alt="{{ this.theme.page_seo_block_image_alt }}"
             loading="lazy"
+            width="624"
+            height="416"
             title="{{ this.theme.page_seo_block_image_title }}"
         >
     </picture>

@@ -48,9 +48,9 @@
                     {{ obProduct.preview_image.getThumb(364, 'auto', {'quality': 80, 'extension': 'webp'})}} 364w,
                     {{ obProduct.preview_image.getThumb(234, 'auto', {'quality': 80, 'extension': 'webp'})}} 234w,
                     {{ obProduct.preview_image.getThumb(188, 'auto', {'quality': 80, 'extension': 'webp'})}} 188w,
-                    {{ obProducts.preview_image.getThumb(294, 'auto', {'quality': 80, 'extension': 'webp'})}} 294w
+                    {{ obProduct.preview_image.getThumb(294, 'auto', {'quality': 80, 'extension': 'webp'})}} 294w
                 "
-                sizes="(min-width: 1280px) 364px, (max-width: 1279px) 234px, (max-width: 1024px) 188px, (max-width: 768px) 294px"
+                sizes="(min-width: 1280px) 364w, (max-width: 1279px) 234w, (max-width: 1024px) 188w, (max-width: 768px) 294w"
                 type="image/webp">
             <img
                 srcset="
@@ -59,11 +59,13 @@
                     {{ obProduct.preview_image.getThumb(188, 'auto', {'quality': 80}) }} 188w,
                     {{ obProduct.preview_image.getThumb(294, 'auto', {'quality': 80}) }} 294w
                 "
-                sizes="(min-width: 1280px) 364px, (max-width: 1279px) 234px, (max-width: 1024px) 188px, (max-width: 768px) 294px"
+                sizes="(min-width: 1280px) 364w, (max-width: 1279px) 234w, (max-width: 1024px) 188w, (max-width: 768px) 294w"
                 class="object-cover h-full w-full"
                 src="{{ obProduct.preview_image.getThumb(364, 'auto', {'quality': 80}) }}"
                 itemprop="image"
                 loading="lazy"
+                width="362"
+                height="270"
                 alt="{{ obProduct.preview_image.description }}"
                 title="{{ obProduct.preview_image.title }}"
             >
@@ -90,3 +92,4 @@
         {% endif %}
     {% endif %}
 </div>
+

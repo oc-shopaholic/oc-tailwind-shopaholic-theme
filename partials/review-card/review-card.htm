@@ -5,11 +5,13 @@
         {% if obReview.image %}
             <picture>
                 <source srcset="{{ obImage.getThumb(48, 48, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
-                <source srcset="{{ obImage.getThumb(48, 48, {'quality': 80}) }}" type="image/jpeg">
                 <img
                     alt="{{ obReview.name }} {{ obReview.surname }}"
+                    src="{{ obImage.getThumb(48, 48, {'quality': 80}) }}"
                     class="rounded-3xl mr-4 w-12 h-12"
                     loading="lazy"
+                    width="48"
+                    height="48"
                 />
             </picture>
         {% else %}
