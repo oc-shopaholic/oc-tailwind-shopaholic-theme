@@ -44,12 +44,16 @@ button.button-state[disabled]:active,
   @apply bg-gray-300 text-gray-600 border-0 outline-gray-500
 }
 
+button.link[disabled]:active,
+[type='button'].link[disabled]:active,
+[type='reset'].link[disabled]:active,
+[type='submit'].link[disabled]:active,
 .link {
   @apply outline-current
   focus:outline-dotted focus:outline-2
   focus-visible:outline-dotted focus-visible:outline-2
   focus-within:outline-dotted focus-within:outline-2
-  active:text-blue-900
+  active:!text-blue-900 active:!bg-transparent
 }
 .link-blue {
   @apply text-blue-800 hover:text-blue-700 visited:text-purple-800
@@ -57,4 +61,3 @@ button.button-state[disabled]:active,
 .link-gray {
   @apply text-gray-900 hover:text-blue-700
 }
-

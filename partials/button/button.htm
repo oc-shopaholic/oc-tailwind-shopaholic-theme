@@ -3,9 +3,9 @@
 {# TODO: Need fallback for focus-visible #}
 
 {% if bGhost %}
-    {% set sDefaultClass = 'button-outline' %}
+    {% set sDefaultClass = 'button-outline button-state' %}
 {% else %}
-    {% set sDefaultClass = 'button-primary' %}
+    {% set sDefaultClass = 'button-primary button-state' %}
 {% endif %}
 
 {% if sButtonType == 'link' %}
@@ -17,7 +17,7 @@
 {% elseif sButtonType == 'confirm' %}
     {% set sDefaultClass = 'w-full rounded font-medium bg-red-700 text-white px-2 py-3 text-lg lg:text-base hover:bg-red-600 hover:border-red-600 hover:text-white focus:outline-none active:bg-red-800 focus-visible:ring focus-visible:ring-red-700 focus-visible:ring-offset-4 focus-visible:ring-offset-white focus-visible:bg-red-700 disabled:bg-gray-300 disabled:text-gray-600' %}
 {% elseif sButtonType == 'link' %}
-    {% set sDefaultClass = 'flex flex-row-reverse items-center text-base my-4 underline text-blue-800 hover:text-blue-700 hover:no-underline focus-visible:no-underline	focus-visible:outline-2 focus-visible:outline-dashed focus-visible:outline-blue-800 active:no-underline active:text-blue-900' %}
+    {% set sDefaultClass = 'link link-gray flex flex-row-reverse items-center text-base my-4 underline hover:no-underline focus-visible:no-underline ' %}
 {% endif %}
 
 
@@ -26,12 +26,12 @@
     {% if bBlank == true %}
         target="_blank" rel="noopener noreferrer"
     {% endif %}
-    class="{{ sDefaultClass }} button-state inline-block {{ sPartialClasses }} ">
+    class="{{ sDefaultClass }} inline-block {{ sPartialClasses }} ">
         {{body|raw}}
         {{ sText }}
     </a>
 {% else %}
-    <button class="{{ sDefaultClass }} button-state {{ sPartialClasses }}"
+    <button class="{{ sDefaultClass }} {{ sPartialClasses }}"
         type="{{ sType|default('button') }}"
         {{ sDataAtribute }}
         {% if sOnClick %}
