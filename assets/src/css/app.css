@@ -204,8 +204,8 @@
 .pswp__button--arrow--prev .pswp__icn{
   @apply left-3 lg:left-4
 }
-
 @import "./buttons.css";
+
 @import "../../../node_modules/swiper/swiper-bundle.min.css";
 @import "../../../node_modules/photoswipe/dist/photoswipe.css";
 @import "../../../node_modules/choices.js/public/assets/styles/choices.min.css";

@@ -54,8 +54,8 @@ function onInit()
                 sType = 'password'
                 sPartialClasses = 'mt-4'
             %}
-            {% set account_privacy_terms_conditions = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~ this.theme.sign_up_terms_link|link ~'">'~('account_privacy_terms_conditions'|_)|raw ~'</a>' %}
-            {% set account_privacy_cookie_policy = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~ this.theme.sign_up_policy_link|link ~'">'~('account_privacy_cookie_policy'|_)~'</a>' %}
+            {% set account_privacy_terms_conditions = '<a class="link link-blue underline hover:no-underline text-sm md:text-base" href="'~ this.theme.sign_up_terms_link|link ~'">'~('account_privacy_terms_conditions'|_)|raw ~'</a>' %}
+            {% set account_privacy_cookie_policy = '<a class="link link-blue underline hover:no-underline text-sm md:text-base" href="'~ this.theme.sign_up_policy_link|link ~'">'~('account_privacy_cookie_policy'|_)~'</a>' %}
             {% partial 'input-checkbox/input-checkbox'
                 sPartialClasses = 'mt-4 md:mt-3'
                 sId = 'remember_me'
@@ -69,7 +69,7 @@ function onInit()
                 sPartialClasses = '_button-sign-up w-full mt-8 md:mt-6'
             %}
         </form>
-        {% set account_sign_in = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~( 'sign-in/sign-in'|page )~'">'~('account_sign_in'|_)~'</a>' %}
+        {% set account_sign_in = '<a class="link link-blue  underline hover:no-underline text-sm md:text-base" href="'~( 'sign-in/sign-in'|page )~'">'~('account_sign_in'|_)~'</a>' %}
         <span class="block text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">{{ 'account_has_account_sign_in' | transRaw({account_sign_in: account_sign_in}) }}</span>
     </div>
 </div>

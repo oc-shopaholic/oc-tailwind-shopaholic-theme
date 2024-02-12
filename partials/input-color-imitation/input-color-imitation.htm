@@ -11,7 +11,7 @@
         {% set sChecked = 'relative after:content-[""] after:absolute after:bg-75 after:border-gray-300 after:inset-0 after:bg-check-black after:bg-no-repeat after:bg-center' %}
     {% elseif bChecked %}
         {% set sChecked = 'relative after:content-[""] after:absolute after:bg-75 after:border-0 after:inset-0 after:bg-check after:bg-no-repeat after:bg-center' %}
-    {% endif %}  
+    {% endif %}
 
     {% if sHref %}
         {% set sTags = 'a' %}
@@ -19,14 +19,14 @@
         {% set sTags = 'div' %}
     {% endif %}
 
-    <li class="flex">
-        <{{sTags}} class="w-max flex flex-col items-center mb-4 {{sPartialClasses}}" 
+    <li class="flex items-start border mb-4">
+        <{{sTags}} class="w-max flex flex-col items-center rounded link {{sPartialClasses}}"
             {% if sHref %}
                 href="{{sHref}}"
             {% endif %}
         >
-            <div class="_input-checkbox-color rounded w-12 h-12 mr-0 focus:outline-none focus-visible:border-blue-800 md:w-9 md:h-9 {{checkboxStyle}} {{sChecked}}" style="--input-checkbox-color: {{obValue.value}};"></div>
-            <span class="text-gray-600 text-xs pt-1">{{ obValue.label|raw}}</span>
+            <span class="_input-checkbox-color rounded w-12 h-12 mr-0 focus:outline-none focus-visible:border-blue-800 md:w-9 md:h-9 {{checkboxStyle}} {{sChecked}}" style="--input-checkbox-color: {{obValue.value}};"></span>
+            <span class="text-gray-600 text-xs">{{ obValue.label|raw}}</span>
             <input
                 class="_input-checkbox-color hidden"
                 type="{{sType|default('checkbox')}}"

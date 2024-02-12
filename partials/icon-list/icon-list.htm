@@ -7,7 +7,7 @@
             {% for obItem in arItemList %}
                 <li>
                     {% if obItem.url is not empty %}
-                        <a class="bg-gray-200 block rounded hover:opacity-75 focus-visible:outline-blue {{ sItemClass }}" href="{{ obItem.url }}" target="_blank">
+                        <a class="bg-gray-200 block rounded hover:opacity-75 link {{ sItemClass }}" href="{{ obItem.url }}" target="_blank">
                             <img src="{{ obItem.image|media }}" alt="{{ obItem.alt }}" title="{{ obItem.title }}" loading="lazy">
                         </a>
                     {% else %}
