@@ -41,7 +41,7 @@ function onInit()
                 type = 'password'
                 sPartialClasses = 'mt-4'
             %}
-            <div class="mt-4 text-right">
+            <div class="mt-4 text-end">
                 <a href="{{ 'password-reset'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">{{ 'account_password_forgot'|_ }}</a>
             </div>
             {% set account_privacy_terms_conditions = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~ this.theme.sign_up_terms_link|link ~'">'~('account_privacy_terms_conditions'|_)|raw ~'</a>' %}

@@ -16,7 +16,7 @@ export default new class ProductGallery {
     this.obSwiperContainer = document.getElementsByClassName('_swiper-container')[0];
 
     if(!this.obSwiperContainer) return;
-    
+
     this.obSlide = this.obSwiperContainer.querySelectorAll('.swiper-slide');
     const slider = document.querySelector(`.${this.sGallerySelector}`);
 
@@ -44,7 +44,7 @@ export default new class ProductGallery {
     lightbox.init();
 
     const galleryThumbs = new Swiper(`.${this.sPaginationSelector}`, {
-      spaceBetween: 2,
+      spaceBetween: 4,
       slidesPerView: 'auto',
       freeMode: true,
       watchSlidesVisibility: true,
@@ -60,9 +60,9 @@ export default new class ProductGallery {
         },
       },
     });
-    
+
     const galleryTop = new Swiper(`.${this.sGallerySelector}`, {
-      spaceBetween: 0,
+      spaceBetween: 8,
       allowSlidePrev: true,
       thumbs: {
         slideThumbActiveClass: "outline outline-2 outline-blue-800",
@@ -70,7 +70,7 @@ export default new class ProductGallery {
         autoScrollOffset: 1,
       },
     });
-  
+
     this.activeSlide(galleryThumbs);
   }
 
