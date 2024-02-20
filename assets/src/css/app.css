@@ -168,9 +168,6 @@
   ._description-text{
     max-height: var(--description-text-max-height);
   }
-  .product-active{
-    visibility: var(--icon-indicator);
-  }
 }
 
 .pswp__top-bar.pswp__hide-on-close{
