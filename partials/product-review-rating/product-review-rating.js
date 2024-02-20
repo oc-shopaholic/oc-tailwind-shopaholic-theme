@@ -23,9 +23,7 @@ export default new class productReviewRating {
     this.obContainerReview = document.querySelector('._review-container button');
     this.obContainerReview.addEventListener('click', (event) => {
       event.preventDefault();
-
       const form = document.querySelector('._review-container');
-
       request.sendForm(form, 'MakeReview::onCreate', {
         update: {
           'review-list/review-list-ajax': `.${this.obListWrapper}`
@@ -59,7 +57,7 @@ export default new class productReviewRating {
     window.addEventListener('mouseover', (elem) => {
       const containerStarReview = document.querySelector('._container-star-review')
       if (containerStarReview !== null && !document.getElementsByClassName('_container-star-review')[0].contains(elem.target)) {
-        app.starState(app.nActive || 5);
+        app.starState(app.nActive || 0);
       }
     })
   }
@@ -105,8 +103,8 @@ export default new class productReviewRating {
       this.obShow.addEventListener('click', () => {
         setTimeout(() => {
           this.obContainerStarReview = document.querySelectorAll('._container-star-review label');
-          this.starState(5);
-          this.nActive = 5;
+          this.starState(0);
+          this.nActive = 0;
           this.initEvents();
         }, 10)
       })

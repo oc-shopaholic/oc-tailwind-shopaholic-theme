@@ -22,12 +22,13 @@
         {% partial 'review-list/review-list-ajax' %}
     </ul>
     {% if iMaxPage > iPage %}
-        <div class="_off-canvas">
+        <div>
             <button
-                class="_show flex flex-row items-center text-blue-800"
+                class="_offCanvasOpen flex flex-row items-center text-blue-800"
                 data-max-page="{{ iMaxPage }}"
                 data-page="1"
                 type="button"
+                data-for="review_info"
             >
                 <span class="me-2 text-sm md:text-base">{{ 'reviews_read_more'|_ }}</span>
                 <svg class="rtl:rotate-180" width="8" height="12">
@@ -35,6 +36,7 @@
                 </svg>
             </button>
             {% partial 'off-canvas/off-canvas'
+                id = 'review_info'
                 sPosition = 'right'
                 sHeading = 'reviews_customer_reviews_ratings'|_
                 sHeaderClasses = 'items-center mb-7'

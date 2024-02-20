@@ -1,0 +1,16 @@
+{##}
+{% set sTitle              = this.theme.map_popup_title %}
+{% set sAddressValue       = this.theme.business_card_address %}
+{% set sPhoneValue         = this.theme.business_card_phone %}
+
+<div>
+    {% if sTitle is not empty %}
+        <h4>{{ sTitle }}</h4>
+    {% endif %}
+    {% if sAddressValue is not empty %}
+        <b>{{ sAddressValue }}</b>
+    {% endif %}
+    {% if sPhoneValue is not empty %}
+        <span>{{ sPhoneValue }}</span>
+    {% endif %}
+</div>

@@ -119,6 +119,21 @@
   details[open]>summary::after{
     transform: translateY(-50%) rotate(180deg);
   }
+  .alert{
+    @apply fixed top-20 right-14 mb-2 rounded-lg flex flex-row-reverse gap-5 p-4 max-w-sm items-start
+  }
+  .alert-success{
+    @apply bg-green-100 text-green-800
+  }
+  .alert-error{
+    @apply bg-red-100 text-red-900
+  }
+  .alert-warning{
+    @apply bg-blue-200 text-blue-900
+  }
+  .alert-info{
+    @apply bg-gray-200 text-gray-700
+  }
   .wishlist__empty {
     background-image: url('/themes/lovata-tailwind-shopaholic/assets/images/wishlist.svg');
   }
@@ -166,9 +181,6 @@
   }
   ._description-text{
     max-height: var(--description-text-max-height);
-  }
-  .product-active{
-    visibility: var(--icon-indicator);
   }
 }
 

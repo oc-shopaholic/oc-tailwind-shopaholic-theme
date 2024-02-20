@@ -7,8 +7,8 @@
         </svg>
         <span>{{'search_category'|_}}</span>
     </button>
-    <div class="_off-canvas">
-        <button class="_show flex border border-gray-300 py-3 pe-16 ps-3 rounded items-center">
+    <div>
+        <button class="_offCanvasOpen flex border border-gray-300 py-3 pe-16 ps-3 rounded items-center" data-for="filter_panel">
             <svg class="me-4" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="2" y="5" width="16" height="1.4" rx="0.7" fill="#4B5563"/>
                 <rect x="4" y="9" width="12" height="1.4" rx="0.7" fill="#4B5563"/>
@@ -17,12 +17,12 @@
             <span>{{'filter_filter'|_}}</span>
         </button>
         {% partial 'off-canvas/off-canvas'
+            id = 'filter_panel'
             sPosition = 'right'
             sHeading = 'filter_filters'|_
             sCanvasClasses = 'ps-0 pe-0 cursor-auto'
             sBackgroundClass = 'bg-gray-50'
-            sHeaderClasses = 'me-4 ms-4 md:me-0 md:ms-0'
-            sTemplateWorkType = 'detach'
+            sHeaderClasses = 'mr-4 ml-4 md:mr-0 md:ml-0'
             sIndentsClass = 'py-10'
             body
         %}
@@ -108,6 +108,7 @@
             data-translate-to={{'filter_to'|_}}
             data-translate-from={{'filter_from'|_}}
             open
+            class="js-details"
         >
             <summary class="js-accordion-summary text-base font-medium text-blue-800 cursor-pointer mb-3 after:text-blue-800 hover:text-blue-700 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
                 {{'filter_price'|_}}

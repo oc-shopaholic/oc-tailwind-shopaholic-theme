@@ -1,12 +1,14 @@
 {##}
 
-<div class="_off-canvas _write-review">
+<div class="_write-review">
     {% partial 'button/button'
         sText = 'reviews_review_write'|_
-        sPartialClasses = '_show w-full md:w-72 mt-8 p-2'
+        sPartialClasses = '_offCanvasOpen w-full md:w-72 mt-8 p-2'
         bGhost = true
+        sDataAtribute = 'data-for="review_card_info"'
     %}
     {% partial 'off-canvas/off-canvas'
+        id = 'review_card_info'
         sPosition = 'right'
         sHeading = 'reviews_review_add'|_
         sHeaderClasses = 'items-center mb-7'

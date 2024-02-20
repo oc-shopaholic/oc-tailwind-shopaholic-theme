@@ -9,7 +9,7 @@ code = "navigation-main"
         <ul class="flex flex-wrap space-x-20 rtl:space-x-reverse ">
             {% for arItemMenu in arMenuList|filter(arItemMenu => not arItemMenu.viewBag.isHidden) -%}
                 {% if not arItemMenu.viewBag.isHidden %}
-                    <li>
+                    <li class="md:mr-20 md:last:mr-0 md:min-[10%]">
                         {% set sCode = arItemMenu.code is not empty ? 'data-code='~arItemMenu.code %}
                         {% if arItemMenu.url is not empty %}
                             {% set sExternal = arItemMenu.viewBag.isExternal ? 'target=_blank' : '' %}
