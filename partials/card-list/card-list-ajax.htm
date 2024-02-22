@@ -3,7 +3,7 @@
 {% set obCartList = Cart.get() %}
 
 {% if obCartList.isNotEmpty() %}
-    <ul class="-mx-4 ps-4 lg:mx-0 lg:ps-0">
+    <ul class="-mx-4 pl-4 lg:mx-0 lg:pl-0">
         {% for obCartPosition in obCartList %}
             {% set obOffer = obCartPosition.offer %}
             {% set obProduct = obOffer.product %}
@@ -25,10 +25,12 @@
             </span>&nbsp;:
             <span class="font-medium text-base ps-4">{{ obCartList.currency }}<span class="_shopaholic-cart" data-group="position-total-price" data-field="price">{{obCartList.getTotalPrice()}}</span></span>
         </div>
+        // TODO: check sHref
+        <!-- sHref = obUser ? 'checkout/checkout'|page : 'checkout-authentification/checkout-authentification'|page-->
         {% if bButton != true %}
             {% partial 'button/button'
                 sPartialClasses = '_checkout-button px-16 mt-28 text-center text-lg lg:text-base lg:mt-px'
-                sHref = obUser ? 'checkout/checkout'|page : 'checkout-authentification/checkout-authentification'|page
+                sHref = this.theme.has_buddies and obUser is empty ? 'sign-in/sign-in'|page : 'checkout/checkout'|page
                 body
             %}
 
