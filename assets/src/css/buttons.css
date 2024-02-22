@@ -54,12 +54,11 @@ button.link[disabled]:active,
   focus-visible:outline-dotted focus-visible:outline-2
   focus-within:outline-dotted focus-within:outline-2
   active:!text-blue-900 active:!bg-transparent
-  [&:not(.underline)]:hover:underline
 }
 .link-blue {
-  @apply text-blue-800 hover:text-blue-700 visited:text-purple-800
+  @apply text-blue-800 hover:text-blue-700 visited:text-purple-800 [&:not(.underline)]:hover:underline
 }
 .link-gray {
-  @apply text-gray-900 hover:text-blue-700
+  @apply text-gray-900 hover:text-blue-700 [&:not(.underline)]:hover:underline
 }
 
