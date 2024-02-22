@@ -12,18 +12,18 @@
                 <source media="(max-width:768px)" srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100, 'extension': 'webp'}) }}" type="image/webp">
                 <source media="(max-width:768px)" srcset="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" type="image/jpeg">
                 <img
-                    class="rounded w-full h-full object-cover"     
-                    src="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}" 
+                    class="rounded w-full h-full object-cover"
+                    src="{{ obArticle.preview_image.getThumb(sWidth, sHeight, {'quality': 100}) }}"
                     alt="{{ obArticle.preview_image.description }}"
-                    {{ iLoopIndex > iShowIndex ? 'loading="lazy"' }} 
+                    {{ iLoopIndex > iShowIndex ? 'loading="lazy"' }}
                 >
             </picture>
         {% else %}
-            <img 
-                class="w-full h-full rounded object-cover" 
-                src="{{ 'assets/images/no-photo.svg'|theme }}" 
-                alt="{{ 'text_no_image_article'|_ }}"
-                {{ iLoopIndex > iShowIndex ? 'loading="lazy"' }} 
+            <img
+                class="w-full h-full rounded object-cover"
+                src="{{ 'assets/images/no-photo.svg'|theme }}"
+                alt="{{ 'blog_image_no'|_ }}"
+                {{ iLoopIndex > iShowIndex ? 'loading="lazy"' }}
             >
         {% endif %}
     </div>

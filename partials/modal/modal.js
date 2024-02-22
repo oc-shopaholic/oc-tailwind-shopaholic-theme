@@ -21,14 +21,14 @@ export default class Modal{
       this.obTemplate = this.obTemplateNav[0].content.cloneNode(true);
       this.obNav.appendChild(this.obTemplate);
       this.obDialog = document.querySelectorAll('._modalContainer')[0];
-      
+
       dialogPolyfill.registerDialog(this.obDialog);
       this.obDialog.showModal();
 
       document.body.style.overflowY = 'hidden';
       document.body.style.paddingRight = this.sScrollWidth + 'px';
 
-  
+
       this.obContainer = this.obNav.querySelectorAll("._nav");
     }
 
@@ -44,9 +44,9 @@ export default class Modal{
       div.style.overflowY = 'scroll';
       div.style.width = '50px';
       div.style.height = '50px';
-      
+
       document.body.appendChild(div)
-  
+
       const scrollWidth = div.offsetWidth - div.clientWidth;
       div.remove();
       this.sScrollWidth = scrollWidth;
@@ -55,7 +55,7 @@ export default class Modal{
     initBackdrop() {
       this.obBackdrop = this.obNav.querySelectorAll(".backdrop");
       if(this.obBackdrop[0]){
-        this.obBackdrop.classList.add('fixed top-0 right-0 bg-gray-400')
+        this.obBackdrop.classList.add('fixed top-0 end-0 bg-gray-400')
         this.obBackdrop.style.left = '0';
         this.obBackdrop.style.bottom = '0';
         this.obBackdrop.style.opacity = '0.6';
@@ -74,21 +74,21 @@ export default class Modal{
       this.obEvents[0] = (function(e) {
         if (e.keyCode === 27) {
           app.clearEvents();
-        }   
+        }
       });
-      
-      this.obEvents[1] = (function (e){ 
+
+      this.obEvents[1] = (function (e){
         if(!app.obContainer[0].contains(e.target)){
           app.clearEvents();
         }
       });
-  
-      this.obEvents[2] = (function(event){ 
+
+      this.obEvents[2] = (function(event){
         if(event.target.closest('button') && event.target.closest('button').classList.contains('_hide')){
           app.clearEvents();
         }
       });
-  
+
       document.addEventListener('keydown', this.obEvents[0]);
       this.obNav.addEventListener('mouseup', this.obEvents[1]);
       this.obNav.addEventListener('click', this.obEvents[2]);
@@ -100,7 +100,7 @@ export default class Modal{
       this.obNav.removeEventListener('click', this.obEvents[2]);
       this.clear();
     }
-    
+
     initAnimOpen(){
       this.initFocus();
     }
@@ -116,7 +116,7 @@ export default class Modal{
     clear(){
       this.animClose();
     }
-    
+
     activeOffCanvas(){
       this.initScrollWidth();
       this.initOffCanvas();
@@ -125,11 +125,11 @@ export default class Modal{
 
     showMethod(){
       this.obShow[0].addEventListener("click", () => {
-        this.activeOffCanvas();    
+        this.activeOffCanvas();
         this.initEvents();
       })
     }
-    
+
     static make(container) {
       const obContainer = document.getElementsByClassName(`${container}`);
       Array.from(obContainer).forEach(function(e) {

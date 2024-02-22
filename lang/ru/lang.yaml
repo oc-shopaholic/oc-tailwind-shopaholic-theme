@@ -1,91 +1,271 @@
-aria_label_breadcrumbs: 'Breadcrumbs' #TODO: translate to Russian
-aria_label_close: 'Close' #TODO: translate to Russian
-aria_label_pagination: 'Pagination' #TODO: translate to Russian
-aria_label_pagination_page_next: 'Go to next page' #TODO: translate to Russian
-aria_label_pagination_page_previous: 'Go to previous page' #TODO: translate to Russian
-aria_label_rating_static: 'Rating :aria_label_rating_static_of' #TODO: translate to Russian
-aria_label_rating_static_of: 'of' #TODO: translate to Russian
-breadcrumbs_page_home: 'Home' #TODO: translate to Russian
-breadcrumbs_page_account: 'Мой аккаунт'
-breadcrumbs_page_password_change: 'Изменить пароль'
-button_checkout_guest: 'Checkout as guest' #TODO: translate to Russian
-button_quantity_decrease: 'Decrease quantity' #TODO: translate to Russian
-button_quantity_increase: 'Increase quantity' #TODO: translate to Russian
-button_go_back: 'Go back' #TODO: translate to Russian
-button_page_header_account: 'Open account profile' #TODO: translate to Russian
-button_page_header_cart: 'Go to the cart' #TODO: translate to Russian
-button_page_header_search: 'Search for goods' #TODO: translate to Russian
-button_password_change: 'Change password' #TODO: translate to Russian
-button_password_restore: 'Restore password' #TODO: translate to Russian
-button_reload_page: 'Reload page' #TODO: translate to Russian
-button_show_more_products: 'More products' #TODO: translate to Russian
-button_sign_in: 'Вход' #TODO: translate to Russian
-button_sign_in_checkout: 'Sign in & Checkout' #TODO: translate to Russian
-button_sign_up: 'Sign up' #TODO: translate to Russian
-button_start_shopping: 'Start shopping' #TODO: translate to Russian
-heading_icon_list_payment_methods: 'Available payment methods' #TODO: translate to Russian
-heading_icon_list_social_media: 'Our social medias' #TODO: translate to Russian
-heading_news_list_latest: 'News' #TODO: translate to Russian
-heading_page_wish_list: 'Wish list' #TODO: translate to Russian
-heading_product_list_small_popular_products: 'Popular products' #TODO: translate to Russian
-heading_product_list_small_recently_viewed: 'Recently viewed' #TODO: translate to Russian
-input_email: 'Email' #TODO: translate to Russian
-input_quantity: 'Quantity' #TODO: translate to Russian
-input_password: 'Password' #TODO: translate to Russian
-input_password_current: 'Current password' #TODO: translate to Russian
-input_password_new: 'New password' #TODO: translate to Russian
-input_password_new_confirm: 'Confirm new password' #TODO: translate to Russian
-input_password_confirmation: 'Confirm new password' #TODO: translate to Russian
-input_remember_me: 'Keep me signed in' #TODO: translate to Russian
-link_see_all: 'See all' #TODO: translate to Russian
-link_password_restore: 'Forgot password?' #TODO: translate to Russian
-page_header_link_sign_in: 'Вход' #TODO: translate to Russian
-page_heading_faq: 'F.A.Q.' #TODO: translate to Russian
-page_heading_news_list: 'News' #TODO: translate to Russian
-page_heading_password_change: 'Change password' #TODO: translate to Russian
-page_heading_password_restore: 'Recover password' #TODO: translate to Russian
-page_heading_sign_in: 'Вход' #TODO: translate to Russian
-page_heading_sign_up: 'Sign up' #TODO: translate to Russian
-text_checkout: 'To use a promo code, sign in or :text_checkout_link_sign_in first.' #TODO: translate to Russian
-text_checkout_link_sign_in: 'create an account' #TODO: translate to Russian
-text_continue_without_sign_in: 'Continue without authorization' #TODO: translate to Russian
-text_error_404: 'The page you are loking for doesn’t exist.' #TODO: translate to Russian
-text_error_500: 'We’re experiencing an internal server problem. We know about this mistake and are working to fix it. Please, reload page or try again later.' #TODO: translate to Russian
-text_has_account: 'Don’t have an account? :text_has_account_link_sign_in' #TODO: translate to Russian
-text_has_account_link_sign_in: 'Sign in' #TODO: translate to Russian
-text_icon_list_payment_methods_not_found: 'No payment methods has been added.' #TODO: translate to Russian
-text_icon_list_social_media_not_found: 'No social medias has been added.' #TODO: translate to Russian
-text_news_list_latest_not_found: 'No news has been added.' #TODO: translate to Russian
-text_news_list_not_found: 'No news has been added.' #TODO: translate to Russian
-text_no_account: 'Don’t have an account? :text_no_account_link_sign_up' #TODO: translate to Russian
-text_no_account_link_sign_up: 'Sign up' #TODO: translate to Russian
-text_no_image_article: 'Image isn’t available.' #TODO: translate to Russian
-text_no_page_seo_content: 'No page SEO content has been added.' #TODO: translate to Russian
-text_password_restore: 'The link for restoring the password was sent to your email.' #TODO: translate to Russian
-text_powered_by: 'Powered by :text_powered_by_plugin and the :text_powered_by_theme theme.' #TODO: translate to Russian
-text_powered_by_plugin: 'Shopaholic' #TODO: translate to Russian
-text_powered_by_theme: 'Tailwind' #TODO: translate to Russian
-text_rules_acceptence: 'By registering, you agree with our :text_rules_acceptence_link_terms_conditions, and :text_rules_acceptence_link_privacy_cookie_policy.' #TODO: translate to Russian
-text_rules_acceptence_link_terms_conditions: 'Terms & Conditions' #TODO: translate to Russian
-text_rules_acceptence_link_privacy_cookie_policy: 'Privacy & Cookie Policy' #TODO: translate to Russian
-text_sign_up_email-confirmation: 'Please, check your email to confirm the address.' #TODO: translate to Russian
-text_sign_up_success: 'Your email was confirmed. Now you can sign in.' #TODO: translate to Russian
-text_sorry: 'Sorry!' #TODO: translate to Russian
-text_wish_list_empty: 'Your wish list is empty.' #TODO: translate to Russian
-validation_missing_value_checkbox: 'This field is required.' #TODO: translate to Russian
-validation_missing_value_radio: 'Please select a value.' #TODO: translate to Russian
-validation_missing_value_select: 'Please select a value.' #TODO: translate to Russian
-validation_missing_value_select_multiple: 'Please select at least one value.' #TODO: translate to Russian
-validation_missing_value_default: 'Please fill out this field.' #TODO: translate to Russian
-validation_pattern_mismatch_email: 'Please enter a valid email address.' #TODO: translate to Russian
-validation_pattern_mismatch_url: 'Please enter a URL.' #TODO: translate to Russian
-validation_pattern_mismatch_number: 'Please enter a number' #TODO: translate to Russian
-validation_pattern_mismatch_color: 'Please match the following format: #rrggbb' #TODO: Move #rrggbb to variable, translate to Russian
-validation_pattern_mismatch_date: 'Please use the YYYY-MM-DD format' #TODO: Move YYYY-MM-DD to variable, translate to Russian
-validation_pattern_mismatch_time: 'Please use the 24-hour time format. Ex. 23:00' #TODO: Move 24-hour and 23:00 to variables, translate to Russian
-validation_pattern_mismatch_month: 'Please use the YYYY-MM format' #TODO: Move YYYY-MM to variable, translate to Russian
-validation_pattern_mismatch_default: 'Please match the requested format.' #TODO: translate to Russian
-validation_out_of_range_over: 'Please select a value that is no more than {max}.' #TODO: Move {max} to variable #TODO: translate to Russian
-validation_out_of_range_under: 'Please select a value that is no less than {min}.' #TODO: Move {min} to variable #TODO: translate to Russian
-validation_wrong_length_over: 'Please shorten this text to no more than {maxLength} characters. You are currently using {length} characters.' #TODO: Move {maxLength} and {length} to variables, translate to Russian
-validation_wrong_length_under: 'Please lengthen this text to {minLength} characters or more. You are currently using {length} characters.' #TODO: Move {minLength} and {length} to variables, translate to Russian
+# Account
+account_checkout_guest_heading: 'Продолжить без входа'
+account_checkout_guest_message: 'Чтобы использовать промо-код, войдите или :account_create сначала.'
+account_checkout_guest: 'Перейти к оплате'
+account_create: 'создайте учётную запись'
+account_email_confirmation_message: 'Ваш адрес email был подтверждён. Теперь вы можете авторизоваться.'
+account_has_account_sign_in: 'Есть учёттная запись? :account_sign_in.'
+account_my_account: 'Моя учётная запись'
+account_my: 'Мой аккаунт'
+account_no_account_sign_up: 'Нет учётной записи? :account_sign_up.'
+account_no_orders: 'У вас нет заказов.'
+account_open_account: 'Открыть аккаунт'
+account_order_date: 'Дата заказа'
+account_order_history_delete_message: 'Вы хотите удалить историю своих заказов?'
+account_order_history_delete: 'Очистить историю'
+account_order_history: 'История заказов'
+account_order_items_hide: 'Скрыть товары'
+account_order_items_show: 'Показать товары'
+account_order_items: 'Товары в заказе'
+account_order_more: 'Больше заказов'
+account_order_number: 'Номер заказа'
+account_order_price_total: 'Общая стоимость'
+account_order_status: 'Статус заказа'
+account_password_change: 'Изменение пароля'
+account_password_create: 'Создание нового пароля'
+account_password_forgot: 'Забыли пароль?'
+account_password_new_save: 'Сохранить новый пароль'
+account_password_recovery: 'Восстановление пароля'
+account_password_reset_success: 'Ссылка для восстановления пароля была отправлена на вашу электронную почту.'
+account_password_reset: 'Сбросить пароль'
+account_privacy_cookie_policy: 'Политикой конфиденциальности и использования файлов cookie'
+account_privacy_terms_conditions: 'Условиями и положениями'
+account_personal_data: 'Персональные данные'
+account_rules_acceptance: 'Регистрируясь, вы соглашаетесь с нашими :account_privacy_terms_conditions, и :account_privacy_cookie_policy.'
+account_sign_in_checkout: 'Войти и оформить заказ'
+account_sign_in: 'Войти'
+account_sign_out: 'Выйти'
+account_sign_up_success_message: 'Пожалуйста, проверьте ваш email, чтобы подтвердить адрес.'
+account_sign_up: 'Зарегистрироваться'
+account_signing_in: 'Вход'
+account_signing_up: 'Регистрация'
+account_start_shopping: 'Начать покупки'
+
+# Blog
+blog_image_no: 'Изображение недоступно'
+blog_post_next: 'Следующая новость'
+blog_post_prev: 'Предыдущая новость'
+blog_posts_latest: 'Последние новости'
+blog_posts_not_added: 'Нет добавленных новостей.'
+blog_see_all: 'See all'
+blog_title: 'Новости'
+
+# Breadcrumbs
+breadcrumbs_breadcrumbs: 'Хлебные крошки'
+breadcrumbs_catalog: 'Каталог'
+breadcrumbs_home: 'Главная'
+
+# Catalog
+catalog_categories_show: 'Показать все'
+catalog_categories: 'Категории товаров'
+catalog_products_also_like: 'Вам также может понравиться'
+catalog_products_popular: 'Популярные товары'
+catalog_products_show_more: 'Больше продуктов'
+catalog_products_viewed: 'Недавно просмотренные'
+
+# Contact
+contact_address: 'Адрес'
+contact_contact_us: 'Свяжитесь с нами'
+contact_email: 'Email'
+contact_phone: 'Телефон'
+contact_waiting for message: 'Ожидаем ваше сообщение'
+
+# Error pages
+error_page_404_description: 'Запрашиваемая страница не существует.'
+error_page_500_description: 'У нас возникла внутренняя ошибка сервером. Мы знаем об ней и работаем над её устранением. Пожалуйста, перезагрузите страницу или повторите попытку позже.'
+error_page_apology: 'Извините!'
+error_page_go_back: 'Назад'
+
+# F.A.Q.
+faq_faq: 'Вопрос и ответы'
+
+# Filter
+filter_clear_all: 'Очистить все фильтры'
+filter_filter: 'Фильтр'
+filter_filters: 'Фильтры'
+filter_from: 'от'
+filter_max: 'Макс'
+filter_min: 'Мин'
+filter_price: 'Цена'
+filter_result_no: 'Нет результатов, соответствующих критериям фильтрации. Снимите все фильтры или очистите все фильтры, чтобы показать результаты.' #TODO: Possible bad translation
+filter_see_all: 'Смотреть все'
+filter_to: 'до'
+
+# Forms
+form_cancel: 'Отменить'
+form_close: 'Закрыть'
+form_language: 'Язык'
+form_loading: 'Загрузка…'
+form_no: 'Нет'
+form_quantity: 'Количество'
+form_required_fields: 'обязательные поля'
+form_save: 'Сохранить'
+form_send: 'Отправить'
+form_user_address_postal: 'Почтовый адрес'
+form_user_city: 'Город'
+form_user_country: 'Страна'
+form_user_email: 'Адрес email'
+form_user_keep_signed: 'Сохранить мой вход в систему'
+form_user_message: 'Сообщение'
+form_user_name: 'Имя'
+form_user_password_change: 'Изменить пароль'
+form_user_password_confirm: 'Подтвердите пароль'
+form_user_password_current: 'Текущий пароль'
+form_user_password_new_confirm: 'Подтвердите новый пароль'
+form_user_password_new: 'Новый пароль'
+form_user_password: 'Пароль'
+form_user_phone: 'Номер телефона'
+form_user_zip_code: 'Почтовый индекс'
+form_yes: 'Да'
+
+# Maintenance page
+maintenance_page_description: 'Наш сайт находится на плановом техническом обслуживании. Приносим извинения за причиненные неудобства.'
+maintenance_page_mode: 'Режим обслуживания'
+maintenance_page_reload: 'Перезагрузить страницу'
+
+# Multisite
+multisite_country: 'Страна'
+multisite_region_language_change: 'Изменить регион и язык'
+multisite_settings_change: 'Изменить настройки'
+multisite_settings: 'Настройки региона и языка'
+
+# Pagination
+pagination_pagination: 'Постраничная разбивка'
+pagination_page_next: 'Перейти к следующей странице'
+pagination_page_previous: 'Перейти к предыдущей странице'
+
+# Product
+product_description_hide: 'Скрыть полное описание'
+product_description_show: 'Читать полное описание'
+product_materials: 'Материалы'
+product_measurements: 'Размера товара'
+product_not_available: 'Не доступно'
+
+# Products
+product_add_to_cart: 'Добавить в корзину'
+product_filter_discounted_only: 'Только товары на скидке'
+product_price: 'Цена'
+product_quantity_decrease: 'Уменьшить количество'
+product_quantity_increase: 'Увеличить количество'
+product_sorting_high_to_low: 'Цена: от высокой к низкой'
+product_sorting_low_to_high: 'Цена: от низкой к высокой'
+
+# Purchase
+purchase_checkout: 'Оформить заказ'
+purchase_color: 'Цвет'
+purchase_colors: 'Цвета'
+purchase_continue_shopping: 'Продолжить покупки'
+purchase_coupon_apply: 'Применить купон'
+purchase_coupon_code: 'Код купона'
+purchase_coupon_have: 'Есть купон?'
+purchase_coupon_remove: 'Удалить купон'
+purchase_currency: '€'
+purchase_customer_data: 'Контактные данные'
+purchase_delivery_info: 'Способ In Store Pickup, иногда называемый BOPIS (Buy Online, Pickup In Store), дает покупателям возможность забрать свой заказ в физическом магазине вместо того, чтобы отправлять его по адресу. Этот способ не требует оплаты.' #TODO: Move to theme settings
+purchase_delivery_method_choose: 'Выберите адрес доставки'
+purchase_delivery_method: 'Метод доставки'
+purchase_delivery_terms: 'Условия доставки'
+purchase_delivery: 'Доставка'
+purchase_for_free: 'Бесплатно'
+purchase_go_to_cart: 'Перейти в корзину'
+purchase_items: 'шт.'
+purchase_number_abbreviation: '№'
+purchase_order_is_accepted: 'принят'
+purchase_order_your: 'Ваш заказ'
+purchase_order: 'Заказать'
+purchase_payment_method_choose: 'Выберите метод оплаты'
+purchase_payment_method: 'Метод оплаты'
+purchase_payment_methods: 'Доступные методы оплаты'
+purchase_pickup_point_choose: 'Выбрать место выдачи заказа'
+purchase_product_remove: 'Удалить продукт'
+purchase_sale: 'Распродажа'
+purchase_start_shopping: 'Начать покупки'
+purchase_subtotal: 'Промежуточный итог'
+purchase_success_message: 'Благодарим вас за покупку в нашем магазине!'
+purchase_summary: 'Сводка'
+purchase_total: 'Общий итог'
+
+# Reviews
+reviews_customer_ratings: 'Рейтинг от покупателей'
+reviews_customer_reviews_ratings: 'Отзывы клиентов и рейтинг'
+reviews_customer_reviews: 'Отзывы клиентов'
+reviews_customers_rating_all: ':reviews_customers_rating_stars_number stars, :reviews_customers_rating_share на :reviews_customers_rating_votes_number отзывах'
+reviews_customers_rating_product: 'Рейтинг этого товара — :reviews_customers_rating_product из 5'
+reviews_customers_rating: 'Рейтинг :reviews_customers_rating_value из 5, основанный :reviews_customers_rating_value_max отзывах'
+reviews_customers_votes_number: ':reviews_customers_votes_number_value рейтинг'
+reviews_product_model: 'Номер модели'
+reviews_product_rate: 'Оценить этот товар'
+reviews_read_mode: 'Читать больше'
+reviews_read_more: 'Читать больше отзывов'
+reviews_review_add: 'Добавить отзыв'
+reviews_review_submit: 'Отправить отзыв'
+reviews_review_write: 'Оставить отзыв'
+reviews_reviews: 'отзывов'
+reviews_share_experience_placeholder: 'Что вам нравится, а что — нет? О чём стоит знать другим покупателям перед покупкой?'
+reviews_share_experience: 'Поделитесь вашим опытом покупки'
+reviews_sort_by: 'Сортировать по'
+reviews_sorting_newest_first: 'Сначала новые'
+reviews_sorting_oldest_first: 'Сначала старые'
+reviews_stars_rating_1: 'Ужасно'
+reviews_stars_rating_2: 'Плохо'
+reviews_stars_rating_3: 'Средне'
+reviews_stars_rating_4: 'Очень хорошо'
+reviews_stars_rating_5: 'Потрясающе'
+reviews_would_recommend: 'Вы можете рекомендовать этот товар?'
+
+# Search
+search_category: 'Категория'
+search_clear_all: 'Очистить всё'
+search_clear: 'Очистить все поисковые запросы'
+search_history: 'История поиска'
+search_query_remove: 'Удалить этот поисковый запрос'
+search_results_no_description: 'Мы не можем найти соответствия для :search_query Пожалуйста, попробуйте изменить запрос.'
+search_results_no: 'Результаты поиска отсутствуют'
+search_results: 'Результаты поиска'
+search_search_products: 'Искать товары'
+search_search: 'Поиск'
+search_show_more: 'Показать больше'
+
+# Slider
+slider_item_active: 'активный'
+slider_item_number: ':slider_item_number_current из :slider_item_number_total'
+
+# Sorting
+sorting_newest_first: 'Сначала новые'
+sorting_popular: 'Популярное'
+
+# Theme
+theme_payment_methods_not_added: 'Нет добавленных способов оплаты.'
+theme_payment_methods: 'Доступные методы оплаты'
+theme_powered_by_plugin: 'Shopaholic'
+theme_powered_by_theme: 'Tailwind'
+theme_powered_by: 'Работает наa :theme_powered_by_plugin и шаблоне :theme_powered_by_theme.'
+theme_seo_content_not_added: 'SEO контент на до бавлен на страницу.'
+theme_social_media_list_not_added: 'Нет добавленныех аккаунтов в социальных сетях.'
+theme_social_media_list: 'Наши страницы в социальных сетях'
+
+# Validation messages
+validation_missing_value_checkbox: 'Это обязательное поле.'
+validation_missing_value_default: 'Пожалуйста, заполните это поле.'
+validation_missing_value_radio: 'Пожалуйста, выберите значение.'
+validation_missing_value_select_multiple: 'Пожалуйста, выберите хотя бы одно значение.'
+validation_missing_value_select: 'Пожалуйста, выберите значение.'
+validation_out_of_range_over: 'Пожалуйста, выберите значение не больше, чем {max}.'
+validation_out_of_range_under: 'Пожалуйста, выберите значение не меньше, чем {min}.'
+validation_pattern_mismatch_color: 'Пожалуйста, выберите значение, соответствующее формату: #rrggbb.'
+validation_pattern_mismatch_date: 'Пожалуйста, используйте следущий формат даты YYYY-MM-DD.'
+validation_pattern_mismatch_default: 'Пожалуйста, соблюдайте установленный формат.'
+validation_pattern_mismatch_email: 'Пожалуйста, укажите действительный адрес email.'
+validation_pattern_mismatch_month: 'Пожалуйста, используйте следущий формат даты YYYY-MM.'
+validation_pattern_mismatch_number: 'Пожалуйста, укажите число.'
+validation_pattern_mismatch_time: 'Пожалуйста, укажите 24-часовой формат фремени: HH:MM.'
+validation_pattern_mismatch_url: 'Пожалуйста, укажите адрес URL.'
+validation_wrong_length_over: 'Пожалуйста, сократите этот текст не более чем до {maxLength} символов. В данный момент вы используете {length} символов.'
+validation_wrong_length_under: 'Пожалуйста, удлините этот текст до {minLength} символов или более. В данный момент вы используете {length} символов.'
+
+# Wishlist
+wishlist_empty: 'Вы не добавили товары в избранное.'
+wishlist_start_shopping: 'Начать покупки'
+wishlist_wishlist_add: 'Добавить в избранное'
+wishlist_wishlist_remove: 'Удалить из избранного'
+wishlist_wishlist: 'Избранное'

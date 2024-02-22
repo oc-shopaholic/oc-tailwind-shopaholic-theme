@@ -1,0 +1,63 @@
+title = "Checkout Authentification"
+url = "/sign-in-checkout"
+layout = "main"
+is_hidden = 0
+==
+<?php
+function onInit()
+{
+    $this['path_page_js'] = mix('assets/dist/js/sign-in-checkout.js', 'themes/lovata-tailwind-shopaholic');
+}
+?>
+==
+{##}
+
+<div class="flex flex-col items-center mt-4 md:mt-6 mb-5 md:mb-16">
+    <span class="text-gray-900 text-lg md:text-xl uppercase md:normal-case font-medium">{{ 'account_checkout_guest_heading'|_ }}</span>
+    {% partial 'button/button'
+        sText = 'account_checkout_guest'|_
+        sHref = 'checkout'|page
+        bGhost = true
+        sPartialClasses = 'w-full md:w-auto mt-4'
+    %}
+    {% set account_create = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline" href="'~( 'sign-up'|page )~'">'~('account_create'|_)~'</a>' %}
+    <span class="inline-block mt-2 md:mt-4 text-gray-600">{{ 'account_checkout_guest_message' | transRaw({account_create: account_create}) }}</span>
+    <h1 class="font-medium uppercase text-xl md:text-3xl mt-8 mb-4">{{ 'account_signing_in'|_ }}</h1>
+    <div class="max-w-xs">
+        <form class="_required">
+            {% partial 'input/input'
+                sId = 'form-email'
+                sLabelText = 'form_user_email'|_
+                name = 'mail'
+                id = 'mail'
+                required = 'required'
+            %}
+            {% partial 'input/input'
+                sId = 'form-password'
+                sLabelText = 'form_user_password'|_
+                name = 'password'
+                id ='password'
+                required = 'required'
+                type = 'password'
+                sPartialClasses = 'mt-4'
+            %}
+            <div class="mt-4 text-end">
+                <a href="{{ 'password-reset'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">{{ 'account_password_forgot'|_ }}</a>
+            </div>
+            {% set account_privacy_terms_conditions = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~ this.theme.sign_up_terms_link|link ~'">'~('account_privacy_terms_conditions'|_)|raw ~'</a>' %}
+            {% set account_privacy_cookie_policy = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~ this.theme.sign_up_policy_link|link ~'">'~('account_privacy_cookie_policy'|_)~'</a>' %}
+            {% partial 'input-checkbox/input-checkbox'
+                sPartialClasses = 'mt-4 md:mt-3'
+                sId = 'remember_me'
+                sName = 'remember_me'
+                sLabelText = 'account_rules_acceptance'|transRaw({account_privacy_terms_conditions: account_privacy_terms_conditions, account_privacy_cookie_policy: account_privacy_cookie_policy}) | raw
+                bIsRequired = true
+            %}
+            {% partial 'button/button'
+                sText = 'account_sign_in_checkout'|_
+                type = 'submit'
+                sPartialClasses = 'w-full mt-8 md:mt-6'
+            %}
+        </form>
+    </div>
+</div>

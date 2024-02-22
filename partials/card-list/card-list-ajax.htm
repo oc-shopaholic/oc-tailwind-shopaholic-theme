@@ -3,34 +3,41 @@
 {% set obCartList = Cart.get() %}
 
 {% if obCartList.isNotEmpty() %}
-    <ul class="-mx-4 pl-4 lg:mx-0 lg:pl-0">
+    <ul class="-mx-4 ps-4 lg:mx-0 lg:ps-0">
         {% for obCartPosition in obCartList %}
             {% set obOffer = obCartPosition.offer %}
             {% set obProduct = obOffer.product %}
-            <li class="_shopaholic-product-wrapper relative after:content-[''] after:absolute after:inset-0 after:border-b after:first:border-t after:border-gray-200 after:-left-4 after:-z-10 lg:after:left-0" data-position-id="{{ obCartPosition.id }}" data-product-id="{{ obProduct.id }}">
-                {% partial 'product-card-checkout/product-card-checkout' 
+            <li class="_shopaholic-product-wrapper relative after:content-[''] after:absolute after:inset-0 after:border-b after:first:border-t after:border-gray-200 after:-start-4 after:-z-10 lg:after:start-0" data-position-id="{{ obCartPosition.id }}" data-product-id="{{ obProduct.id }}">
+                {% partial 'product-card-checkout/product-card-checkout'
                     obCartPosition = obCartPosition
                 %}
             </li>
         {% endfor %}
     </ul>
-    <div class="_subtotal mt-8 flex flex-col lg:flex-row lg:justify-between lg:items-center">   
-        <div class="flex justify-between lg:justify-start">
-            <span class="flex text-gray-900 text-base font-medium">
-                {{'text_subtotal'|_}}&nbsp;
-                <span class="text-gray-600 _item">
-                    ({{obCartList.getTotalQuantity()}} {{'text_item'|_}})
-                </span>
-                :
-            </span>
-            <span class="font-medium text-base pl-4">{{ obCartList.currency }}<span class="_shopaholic-cart" data-group="position-total-price" data-field="price">{{obCartList.getTotalPrice()}}</span></span>
+    <div class="_subtotal mt-8 flex flex-col lg:flex-row lg:justify-between lg:items-center">
+        <div class="flex justify-between lg:justify-start text-gray-900">
+            <span class="flex text-gray-600 text-base font-medium">
+                {{'purchase_subtotal'|_}}&nbsp;
+                (<span class="_item inline-flex space-x-1">
+                    <span class="inline-block rtl:order-1">{{obCartList.getTotalQuantity()}}</span>
+                    <span>{{'purchase_items'|_}}</span>
+                </span>)
+            </span>&nbsp;:
+            <span class="font-medium text-base ps-4">{{ obCartList.currency }}<span class="_shopaholic-cart" data-group="position-total-price" data-field="price">{{obCartList.getTotalPrice()}}</span></span>
         </div>
         {% if bButton != true %}
-            {% partial 'button/button' 
+            {% partial 'button/button'
                 sPartialClasses = '_checkout-button px-16 mt-28 text-center text-lg lg:text-base lg:mt-px'
-                sText = 'button_checkout'|_ ~ ' (' ~ obCartList.getTotalQuantity() ~ ')'
-                sHref = '/checkout'
+                sHref = obUser ? 'checkout/checkout'|page : 'checkout-authentification/checkout-authentification'|page
+                body
             %}
+
+               <span class="inline-flex">
+                    <span>{{'purchase_checkout'|_}}</span>&nbsp;
+                    <span>({{obCartList.getTotalQuantity()}})</span>
+               </span>
+
+        {% endpartial %}
         {% endif %}
     </div>
 {% else %}
@@ -38,17 +45,17 @@
         sPartialClasses = 'mt-44 justify-center mb-8 text-center lg:mb-14 lg:mt-52'
         sIconName = 'basket.svg'
         sEmptyPageMessage = 'Your Shopping Cart is empty.'
-        sHref = '/catalog'
-        sButtonText = 'button_start_shopping'|_
+        sHref = 'catalog/catalog'|page
+        sButtonText = 'purchase_start_shopping'|_
         sButtonClasses = 'mt-36 w-full lg:mt-24 md:w-auto'
     %}
 {% endif %}
 {% put scripts %}
     <script>
         window.subtotal = {
-            'item': "{{ 'text_item'|_ }}",
-            'currency': "{{ 'text_currency'|_ }}",
-            'checkout': "{{ 'button_checkout'|_ }}"
+            'item': "{{ 'purchase_items'|_ }}",
+            'currency': "{{ 'purchase_currency'|_ }}",
+            'checkout': "{{ 'purchase_checkout'|_ }}"
         };
     </script>
 {% endput %}

@@ -1,0 +1,9 @@
+.gallery-thumbs li.swiper-slide {
+  @apply w-[92px] h-[92px]
+}
+
+@media only screen and (max-width: 768px) {
+  .gallery-thumbs li.swiper-slide {
+    @apply w-[76px] h-[76px]
+  }
+}

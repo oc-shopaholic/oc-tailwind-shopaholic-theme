@@ -3,8 +3,8 @@
 <div id="description-custom" class="_description break-words line-clamp-3 overflow-hidden">
     <div class="_description-text duration-500">{{ sDescription | raw }}</div>
 </div>
-<button aria-expanded="false" aria-controls="description-custom" class="_description-toggle flex flex-row items-center space-x-2 mt-2 duration-300 text-blue-800">
-    <span class="_status">{{ 'button_show_description'|_ }}</span>
+<button aria-expanded="false" aria-controls="description-custom" class="_description-toggle flex flex-row items-center rtl:space-x-reverse space-x-2 mt-2 duration-300 text-blue-800">
+    <span class="_status">{{ 'product_description_show'|_ }}</span>
     <svg class="_arrow duration-300" width="12" height="8" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
             fill-rule="evenodd"
@@ -18,8 +18,8 @@
 {% put scripts %}
     <script>
         window.stateButton = {
-            'show': "{{ 'button_show_description'|_ }}",
-            'hide': "{{ 'button_hide_description'|_ }}",
+            'show': "{{ 'product_description_show'|_ }}",
+            'hide': "{{ 'product_description_hide'|_ }}",
         };
     </script>
 {% endput %}

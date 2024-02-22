@@ -6,20 +6,18 @@
 
 <div>
 
-
-    <span class="text-gray-900 font-medium text-base">{{ 'heading_colors'|_ }}</span>
-    <ul class="flex space-x-2 mt-2">
-        {% for obValue in obPropertyList|filter(obValue => obValue.code == 'color') %}
-
+    <span class="text-gray-900 font-medium text-base">{{ 'purchase_colors'|_ }}</span>
+    <ul class="flex space-x-2 rtl:space-x-reverse  mt-2">
+        {% for obValue in obPropertyList %}
             {% partial 'input-color-imitation/input-color-imitation'
-                sPartialClasses = 'mr-0'
+                sPartialClasses = 'me-0'
                 obPropertyValueList = obValue.property_value
                 obProperty = obProperty
                 sName = 'offer_id'
                 sValue = obOffer.id
                 sType = 'radio'
                 bChecked = true
-                sContainerClasses = 'flex flex-row space-x-2 mt-4 md:mt-2 text-xs text-gray-600'
+                sContainerClasses = 'flex flex-row space-x-2 rtl:space-x-reverse mt-4 md:mt-2 text-xs text-gray-600'
             %}
         {% endfor %}
         {% for obRelatedProduct in obRelatedProductList %}
@@ -27,14 +25,14 @@
                 {% for obValue in obPropertyList %}
                     {% if obValue.code == 'color' %}
                         {% partial 'input-color-imitation/input-color-imitation'
-                            sPartialClasses = 'mr-0'
+                            sPartialClasses = 'me-0'
                             obPropertyValueList = obValue.property_value
                             obProperty = obProperty
                             sName = 'offer_id'
                             sValue = obOffer.id
                             sType = 'radio'
                             sHref = obRelatedProduct.getPageUrl('product-item/product-item')
-                            sContainerClasses = 'flex flex-row space-x-2 mt-4 md:mt-2 text-xs text-gray-600'
+                            sContainerClasses = 'flex flex-row space-x-2 rtl:space-x-reverse mt-4 md:mt-2 text-xs text-gray-600'
                         %}
                     {% endif %}
                 {% endfor %}
