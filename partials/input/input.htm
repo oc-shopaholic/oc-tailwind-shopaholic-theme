@@ -1,6 +1,7 @@
 <div class="{{ sPartialClasses }}">
     {% if sLabelText %}
-        <label for="{{ sId }}" class="text-xs text-gray-600 inline-block mb-1 {{ sLabelClasses }}">{{ sLabelText }}</label>
+        <label for="{{ sId }}" class="text-xs text-gray-600 inline-block mb-1 {{ sLabelClasses }}">{{ sLabelText }}{% if required %} *{% endif %}
+        </label>
     {% endif %}
     {# TODO: sName and name. Without name not working filter  #}
     <input

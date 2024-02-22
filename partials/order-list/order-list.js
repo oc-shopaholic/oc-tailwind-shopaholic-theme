@@ -1,25 +1,25 @@
 import request from 'oc-request';
-import Toggle from '../toggle/toggle';
+import { AccordionInit } from '../accordion/accordion'
 
 export default new class OrderList {
     constructor() {
       this.obLoadMore = document.getElementsByClassName('_show-more-orders')[0];
       this.obDeleteOrders = document.getElementsByClassName('_delete_all_orders')[0];
       this.obListWrapper = '_orders-list';
-      
+
       this.init();
     }
-  
+
     init(){
-      Toggle.make('_toggle');
+      AccordionInit()
       if(!this.obLoadMore) return
       this.obLoadMore.addEventListener("click", () => {
         const iPage = parseInt(this.obLoadMore.dataset.page, 10);
         const iNextPage = iPage + 1;
         const iMaxPage = parseInt(this.obLoadMore.dataset.maxPage, 10);
-        
+
         this.sendAjax(iNextPage);
-  
+
         if (iNextPage >= iMaxPage) {
           this.obLoadMore.remove();
         } else {
@@ -31,7 +31,7 @@ export default new class OrderList {
       //   console.log('deleteAll');
       // })
     }
-  
+
     // deleteAll(){
     //     $.request('onAjax', {
     //         data: {delete_all_orders: true},
@@ -44,7 +44,7 @@ export default new class OrderList {
         data: { page: iNextPage },
         update: { 'order-list/order-list-ajax': `@.${this.obListWrapper}` },
         complete: ()=> {
-          Toggle.make('_toggle');
+          AccordionInit()
         }
       });
     }

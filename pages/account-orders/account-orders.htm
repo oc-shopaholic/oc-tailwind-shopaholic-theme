@@ -45,8 +45,8 @@ function onStart()
     $obUser = $this->UserData->get();
 
     $arBreadcrumbs = [
-        ['name' => \RainLab\Translate\Models\Message::trans('breadcrumbs_page_account'), 'url' => \Cms\Classes\Page::url('account/account')],
-        ['name' => \RainLab\Translate\Models\Message::trans('breadcrumbs_page_orders'), 'url' => null],
+        ['name' => \RainLab\Translate\Models\Message::trans('account_my_account'), 'url' => \Cms\Classes\Page::url('account/account')],
+        ['name' => \RainLab\Translate\Models\Message::trans('account_order_history'), 'url' => null],
     ];
 
     $this['arBreadcrumbs'] = $arBreadcrumbs;
@@ -62,16 +62,16 @@ function onStart()
 {% set obOrderList = obUser.order %}
 
 <div class="mb-8 mt-1 lg:mb-16">
-    <h1 class="uppercase text-xl mb-4 font-medium lg:text-3xl">{{'heading_my_orders'|_}}</h1>
+    <h1 class="uppercase text-xl mb-4 font-medium lg:text-3xl">{{'account_order_history'|_}}</h1>
     {% if obOrderList|length > 0 %}
         {% partial 'order-list/order-list' %}
     {% else %}
         {% partial 'info-message/info-message'
             sPartialClasses = 'mt-28 md:mt-14'
             sIconName = 'empty.svg'
-            sEmptyPageMessage = 'text_have_no_orders'|_
-            sHref = '/catalog'
-            sButtonText = 'button_start_shopping'|_
+            sEmptyPageMessage = 'account_no_orders'|_
+            sHref = 'catalog/catalog'|page
+            sButtonText = 'account_start_shopping'|_
             sButtonClasses = 'mt-24 w-full text-center md:px-16 md:mt-6 md:w-auto'
         %}
     {% endif %}

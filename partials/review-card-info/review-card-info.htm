@@ -1,6 +1,6 @@
 {##}
 
-<div class="flex items-center space-x-2 md:space-x-6">
+<div class="flex items-center space-x-2 md:space-x-6 rtl:space-x-reverse">
     <picture>
         <source srcset="{{ obProduct.preview_image.getThumb(92, 92, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
         <source srcset="{{ obProduct.preview_image.getThumb(92, 92, {'quality': 80}) }}" type="image/jpeg">
@@ -9,10 +9,10 @@
             src="{{ obProduct.preview_image.path.getThumb(92, 92, {'quality': 80})}}"
             alt="{{ obProduct.description }}"
             title="{{ obProduct.title }}"
-        />
+        >
     </picture>
     <div class="flex flex-col">
         <span class="text-gray-900 text-sm md:text-base font-bold">{{ obProduct.name }}</span>
-        <span class="text-gray-900 text-sm md:text-base">{{'text_model_number'|_}}: {{ obProduct.code }}</span>
+        <span class="text-gray-900 text-sm md:text-base">{{'reviews_product_model'|_}}: {{ obProduct.code }}</span>
     </div>
 </div>

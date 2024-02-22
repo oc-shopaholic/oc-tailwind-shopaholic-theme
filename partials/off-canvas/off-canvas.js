@@ -1,59 +1,111 @@
 import dialogPolyfill from 'dialog-polyfill'
 import * as focusTrap from 'focus-trap'
 
-export default class offCanvas {
-  constructor(app) {
-    this.obNav = app;
-    this.obShow = this.obNav.querySelectorAll("._show");
-    this.obContainer = null;
-    this.obTemplateNav = null;
-    this.obTemplate = null;
-    this.obOffCanvasRemove = null;
-    this.obDialog = null;
-    this.sScrollWidth = null;
-    this.obBackdrop = null;
-    this.obFocus = null;
-    this.obContainerRend = null;
-    this.sNewRend = false;
-    this.obEvents = [];
+export class OffCanvasContainer {
+  constructor() {
+    this.dialogList = {};
   }
 
-  onNewRend(){
-    this.sNewRend = this.obNav.querySelectorAll('._offCanvasContainer')[0].dataset.type;
-  }
-
-  initOffCanvas(){
-    if(this.sNewRend !== 'detach'){
-      this.obTemplateNav = this.obNav.querySelectorAll("._offCanvasTemplate");
-      this.obTemplate = this.obTemplateNav[0].content.cloneNode(true);
-      this.obNav.appendChild(this.obTemplate);
-      this.onNewRend();
-    }else{
-      if(this.obContainerRend){
-        this.obNav.appendChild(this.obContainerRend);
+  init() {
+    document.addEventListener('click', (event) => {
+      const eventNode = event.target;
+      const openNode = eventNode.closest(`._offCanvasOpen`);
+      const dialogID = openNode ? openNode.getAttribute('data-for') : null;
+      if (!dialogID) {
+        return;
       }
+
+      event.stopPropagation();
+      event.preventDefault();
+
+      this.open(dialogID);
+    })
+  }
+
+  open(dialogID) {
+    if (!dialogID) {
+      return;
     }
-    this.obDialog = document.querySelectorAll('._offCanvasContainer')[0];
-    dialogPolyfill.registerDialog(this.obDialog);
 
-    setTimeout(()=>{
-      if(!this.obShow[0].dataset.tags){
-        this.obDialog.showModal();
+    const offCanvas = this.dialogList[dialogID] ?? new OffCanvas(dialogID);
+    offCanvas.open();
 
-        document.body.style.overflowY = 'hidden';
-        document.body.style.paddingRight = this.sScrollWidth + 'px';
-      }
-    }, 10)
+    this.dialogList[dialogID] = offCanvas;
+  }
 
-    this.obContainer = this.obNav.querySelectorAll("._nav");
+  close(dialogID) {
+    if (!dialogID || !this.dialogList[dialogID]) {
+      return;
+    }
+
+    /** @type OffCanvas */
+    const offCanvas = this.dialogList[dialogID];
+    offCanvas.close();
+
+    this.dialogList[dialogID] = null;
+  }
+
+  find(dialogID) {
+    return  this.dialogList[dialogID] ?? null;
+  }
+
+  /**
+   * @return {OffCanvasContainer}
+   */
+  static instance() {
+    if (window.canvasContainer === undefined) {
+      window.canvasContainer = new OffCanvasContainer();
+    }
+
+    return window.canvasContainer;
+  }
+}
+
+class OffCanvas {
+  constructor(dialogID) {
+    this.id = dialogID;
+    this.templateNode = document.querySelector(`#${dialogID}_template`);
+    console.log(this.templateNode);
+    this.parentNode = this.templateNode ? this.templateNode.parentElement : null;
+
+    this.dialogTemplate = null;
+    this.dialogNode = null;
+    this.dialogContentNode = null;
+
+    this.obFocusTrap = null;
+    this.obBackdropNode = null;
+  }
+
+  open() {
+    if (!this.templateNode) {
+      return;
+    }
+
+    this.initOffCanvas();
+    this.initScrollWidth();
+    this.initAnimationOpen();
+    this.initEvents();
+  }
+
+  initOffCanvas() {
+    this.dialogTemplate = this.templateNode.content.cloneNode(true);
+    this.parentNode.appendChild(this.dialogTemplate);
+    this.dialogNode = this.parentNode.querySelector('._offCanvasContainer');
+    dialogPolyfill.registerDialog(this.dialogNode);
+
+    setTimeout(() => {
+      this.dialogNode.showModal();
+
+      document.body.style.overflowY = 'hidden';
+      document.body.style.paddingRight = this.sScrollWidth + 'px';
+    }, 10);
+
+    this.dialogContentNode = this.dialogNode.querySelector('._offCanvasContent');
   }
 
   initFocus() {
-    if(!this.obShow[0].dataset.tags){
-      this.obFocus = focusTrap.createFocusTrap('._offCanvasContainer');
-
-      this.obFocus.activate()
-    }
+    this.obFocusTrap = focusTrap.createFocusTrap(this.dialogNode);
+    this.obFocusTrap.activate();
   }
 
   initScrollWidth() {
@@ -62,7 +114,7 @@ export default class offCanvas {
     div.style.overflowY = 'scroll';
     div.style.width = '50px';
     div.style.height = '50px';
-    
+
     document.body.appendChild(div)
 
     const scrollWidth = div.offsetWidth - div.clientWidth;
@@ -71,135 +123,109 @@ export default class offCanvas {
   }
 
   initBackdrop() {
-    this.obBackdrop = this.obNav.querySelectorAll(".backdrop");
-    if(this.obBackdrop[0]){
-      this.obBackdrop.classList.add('fixed top-0 right-0 bg-gray-400')
-      this.obBackdrop.style.left = '0';
-      this.obBackdrop.style.bottom = '0';
-      this.obBackdrop.style.opacity = '0.6';
-      this.obDialog.style.minHeight = '100vh';
-      this.obDialog.style.top = '0';
-      this.obDialog.style.right = '0';
-      this.obDialog.style.left = '0';
-      this.obDialog.style.bottom = '0';
-      this.obDialog.style.position = 'fixed';
+    this.obBackdropNode = this.parentNode.querySelector('.backdrop');
+    if (!this.obBackdropNode) {
+      return;
     }
+
+    this.obBackdropNode.classList.add('fixed top-0 right-0 bg-gray-400')
+    this.obBackdropNode.style.left = '0';
+    this.obBackdropNode.style.bottom = '0';
+    this.obBackdropNode.style.opacity = '0.6';
+    this.obBackdropNode.style.minHeight = '100vh';
+    this.obBackdropNode.style.top = '0';
+    this.obBackdropNode.style.right = '0';
+    this.obBackdropNode.style.left = '0';
+    this.obBackdropNode.style.bottom = '0';
+    this.obBackdropNode.style.position = 'fixed';
   }
 
-  initEvents(){
-    const app = this;
+  initEvents() {
+    const dialogID = this.id;
+    const offCanvas = this;
 
-    this.obEvents[0] = (function(e) {
-      if (e.keyCode === 27) {
-        app.clearEvents();
-      }   
-    });
-    
-    this.obEvents[1] = (function (e){ 
-      if(!app.obContainer[0].contains(e.target)){
-        app.clearEvents();
+    this.eventKeyDown = (event) => {
+      if (event.keyCode === 27) {
+        OffCanvasContainer.instance().close(dialogID);
       }
-    });
-
-    this.obEvents[2] = (function(event){ 
-      if(event.target.closest('button') && event.target.closest('button').classList.contains('_hide')){
-        app.clearEvents();
+    };
+    this.eventMouseUp = (event) => {
+      if (!offCanvas.dialogContentNode.contains(event.target)) {
+        OffCanvasContainer.instance().close(dialogID);
       }
-    });
+    };
+    this.eventClick = (event) => {
+      const hideButton = event.target.closest('button');
+      if (hideButton && hideButton.classList.contains('_hide')) {
+        OffCanvasContainer.instance().close(dialogID);
+      }
+    };
 
-    document.addEventListener('keydown', this.obEvents[0]);
-    this.obNav.addEventListener('mouseup', this.obEvents[1]);
-    this.obNav.addEventListener('click', this.obEvents[2]);
+    document.addEventListener('keydown', this.eventKeyDown);
+    document.addEventListener('mouseup', this.eventMouseUp);
+    this.dialogContentNode.addEventListener('click', this.eventClick);
   }
 
-  initAnimOpen(){
-    if(this.obContainer[0].dataset.position === 'bottom'){
-      this.obContainer[0].style.top = '100%';
-      this.obContainer[0].style.width = '100%';
-    }else{
-      this.obContainer[0].setAttribute('style', this.obContainer[0].dataset.position + ':-100%');
+  initAnimationOpen() {
+    if (this.dialogContentNode.dataset.position === 'bottom') {
+      this.dialogContentNode.style.top = '100%';
+      this.dialogContentNode.style.width = '100%';
+    } else {
+      this.dialogContentNode.setAttribute('style', this.dialogContentNode.dataset.position + ':-100%');
     }
-    this.obContainer[0].style.display = 'block';
+
+    this.dialogContentNode.style.display = 'block';
+
     this.initBackdrop();
-    this.animOpen();
+    this.animationOpen();
   }
 
-  initAnimClose(){
-    if(this.obContainer[0].dataset.position === 'bottom'){
-      this.obContainer[0].classList.add('block w-full h-full');
-      this.obContainer[0].style.top = '150%';
-    }else{
-      this.obContainer[0].setAttribute('style', this.obContainer[0].dataset.position + ':-100%')
-      this.obContainer[0].style.display = 'block';
+  initAnimationClose() {
+    if (this.dialogContentNode.dataset.position === 'bottom') {
+      this.dialogContentNode.classList.add('block w-full h-full');
+      this.dialogContentNode.style.top = '150%';
+    } else {
+      this.dialogContentNode.setAttribute('style', this.dialogContentNode.dataset.position + ':-100%')
+      this.dialogContentNode.style.display = 'block';
     }
   }
 
-  animOpen(){
+  animationOpen() {
     setTimeout(() => {
-      if(this.obContainer[0].dataset.position === 'bottom'){
-        this.obContainer.style.top = '50%';
-      }else{
-        this.obContainer[0].setAttribute('style', this.obContainer[0].dataset.position + ':0px');
-        this.obContainer[0].style.display = 'block';
+      if (this.dialogContentNode.dataset.position === 'bottom') {
+        this.dialogContentNode.style.top = '50%';
+      } else {
+        this.dialogContentNode.setAttribute('style', this.dialogContentNode.dataset.position + ':0px');
+        this.dialogContentNode.style.display = 'block';
       }
+
       this.initFocus()
     }, 100);
   }
 
-  animClose(){
+  animationClose() {
     setTimeout(() => {
       document.body.style.overflowY = 'auto';
       document.body.style.paddingRight = '0px';
-      this.obFocus.deactivate();
-      this.obOffCanvasRemove = this.obNav.querySelectorAll('._offCanvasContainer');
-      if(this.obShow[0].dataset.show){
-        this.obOffCanvasRemove[0].removeAttribute('open');
-        this.obOffCanvasRemove[0].classList.add('hidden');
-      }
-      else if(this.sNewRend === 'detach'){
-        this.obOffCanvasRemove[0].removeAttribute('open');
-        this.obContainerRend = this.obNav.removeChild(this.obOffCanvasRemove[0]);
-      }else{
-        this.obOffCanvasRemove[0].remove();
-      }
+
+      this.obFocusTrap.deactivate();
+      this.dialogNode.remove();
     }, 400);
   }
 
-  clearEvents(){
-    document.removeEventListener('keydown', this.obEvents[0]);
-    this.obNav.removeEventListener('mouseup', this.obEvents[1]);
-    this.obNav.removeEventListener('click', this.obEvents[2]);
-    this.clear();
+  clearEvents() {
+    document.removeEventListener('keydown', this.eventKeyDown);
+    document.removeEventListener('mouseup', this.eventMouseUp);
+    this.dialogContentNode.removeEventListener('click', this.eventClick);
   }
 
-  clear(){
-    this.initAnimClose();
-    this.animClose();
-  }
-
-  activeOffCanvas(){
-    this.initOffCanvas();
-    this.initScrollWidth();
-    this.initAnimOpen();
-  }
-
-  showMethod(){
-    this.obShow[0].addEventListener("click", () => {
-      this.activeOffCanvas();    
-      setTimeout(()=>{
-        if(!this.obShow[0].dataset.tags){
-          this.initEvents();
-        }
-      }, 10)
-    })
-  }
-
-  static make(container) {
-    const obContainer = document.getElementsByClassName(`${container}`);
-    Array.from(obContainer).forEach(function(e) {
-      const containerNav = new offCanvas(e);
-      containerNav.showMethod();
-    });
+  close() {
+    this.clearEvents();
+    this.initAnimationClose();
+    this.animationClose();
   }
 }
-offCanvas.make('_off-canvas')
+
+oc.pageReady().then(() => {
+  OffCanvasContainer.instance().init();
+});

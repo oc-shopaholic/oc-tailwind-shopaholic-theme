@@ -1,38 +1,41 @@
 {##}
 
+{# TODO: It looks like it must be embeded in the Orders page template #}
+
 {% set obUser = UserData.get() %}
 {% set obOrderList = obUser.order %}
 {% set iPage = Pagination.getPageFromRequest() %}
 {% set iMaxPage = Pagination.getMaxPage(obOrderList.count()) %}
 
-{#
-<div class="_modal">
+
+{# <div class="_modal">
     {% partial 'button/button'
         sButtonType = 'link'
-        sText = 'button_delete_order_history'|_
+        sText = 'account_order_history_delete'|_
         sPartialClasses = '_delete_all_orders _show'
         body
     %}
-        <svg class="mr-2" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="me-2" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3.33203 5.83333H16.6654M15.832 5.83333L15.1095 15.9517C15.0796 16.3722 14.8914 16.7657 14.583 17.053C14.2745 17.3403 13.8686 17.5 13.447 17.5H6.55036C6.12881 17.5 5.72292 17.3403 5.41444 17.053C5.10595 16.7657 4.91779 16.3722 4.88786 15.9517L4.16536 5.83333H15.832ZM8.33203 9.16667V14.1667V9.16667ZM11.6654 9.16667V14.1667V9.16667ZM12.4987 5.83333V3.33333C12.4987 3.11232 12.4109 2.90036 12.2546 2.74408C12.0983 2.5878 11.8864 2.5 11.6654 2.5H8.33203C8.11102 2.5 7.89906 2.5878 7.74278 2.74408C7.5865 2.90036 7.4987 3.11232 7.4987 3.33333V5.83333H12.4987Z" stroke="#1E40AF" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>        
-    {% endpartial %}
-    {% partial 'modal/modal' 
-        sText = 'text_delete_your_order_history'|_
-        sButtonCloseText = 'button_cancel'|_
-        sButtonConfirmText = 'button_delete'|_
+        </svg>
+    {% endpartial %} TODO: Move icon to the button
+    {% partial 'modal/modal'
+        sText = 'account_order_history_delete_message'|_
+        sButtonCloseText = 'form_no'|_
+        sButtonConfirmText = 'form_yes'|_
     %}
 </div>
-#}
+TODO: Move this functionality to a separate Git branch #}
+
 <div class="hidden lg:grid-flow-col lg:grid-cols-6 lg:bg-gray-200 lg:grid">
-    <div class="py-2 px-3 text-base font-medium">{{'heading_order_number'|_}}</div>
-    <div class="py-2 px-3 text-base font-medium">{{'heading_order_date'|_}}</div>
-    <div class="py-2 px-3 text-base font-medium">{{'heading_status'|_}}</div>
-    <div class="col-span-2 py-2 px-3 text-base font-medium">{{'heading_order_items'|_}}</div>
-    <div class="py-2 px-3 text-base font-medium">{{'heading_price'|_}}</div>
+    <div class="py-2 px-3 text-base font-medium">{{'account_order_number'|_}}</div>
+    <div class="py-2 px-3 text-base font-medium">{{'account_order_date'|_}}</div>
+    <div class="py-2 px-3 text-base font-medium">{{'account_order_status'|_}}</div>
+    <div class="col-span-2 py-2 px-3 text-base font-medium">{{'account_order_items'|_}}</div>
+    <div class="py-2 px-3 text-base font-medium">{{'account_order_price_total'|_}}</div>
 </div>
 <ul class="_orders-list flex flex-col space-y-2 lg:space-y-0 lg:block">
-    {% partial 'order-list/order-list-ajax' 
+    {% partial 'order-list/order-list-ajax'
         obOrderList = obOrderList
     %}
 </ul>
@@ -40,7 +43,7 @@
     <div class="flex justify-center">
         {% partial 'button/button'
             bGhost = true
-            sText = 'button_more_orders'|_
+            sText = 'account_order_more'|_
             sDataAtribute = 'data-max-page=' ~ iMaxPage ~ ' data-page=1'
             sPartialClasses = '_show-more-orders mt-8 lg:mt-10'
         %}

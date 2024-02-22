@@ -36,7 +36,7 @@
     "postcss": "^8.4.4",
     "resolve-url-loader": "^3.1.4",
     "swiper": "^7.3.1",
-    "tailwindcss": "^3.0.0",
+    "tailwindcss": "^3.4.1",
     "tailwindcss-pseudo-elements": "^1.5.1",
     "vue-template-compiler": "^2.6.14"
   },
@@ -49,6 +49,9 @@
     "jquery": "^3.7.0",
     "lazysizes": "^5.3.2",
     "oc-request": "^1.0.0",
-    "photoswipe": "^5.3.2"
+    "photoswipe": "^5.3.2",
+    "load-google-maps-api": "^2.0.2",
+    "tailwindcss-scroll-snap": "^1.1.0",
+    "tailwindcss-content-visibility": "^0.1.0"
   }
 }
