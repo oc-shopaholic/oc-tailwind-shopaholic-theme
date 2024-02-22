@@ -42,7 +42,7 @@ sorting = "popularity|desc"
     {% for obProduct in obProductList %}
     {% set obOffer = obProduct.offer.first() %}
     <li class="cursor-pointer hover:bg-inherit md:px-0 md:hover:bg-gray-100">
-        <a class="_shopaholic-product-wrapper flex my-2 py-2 relative md:my-0" href="{{ obProduct.getPageUrl('product-item') }}">
+        <a class="_shopaholic-product-wrapper flex my-2 py-2 relative md:my-0 link" href="{{ obProduct.getPageUrl('product-item') }}">
             <picture class="object-cover mr-2 md:ml-3">
                 {# TODO: Add images quality value to the theme settings #}
                 <source media="(min-width:769px)"
