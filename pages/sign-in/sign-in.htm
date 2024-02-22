@@ -45,7 +45,7 @@ function onInit()
                 sType = 'password'
                 sPartialClasses = 'mt-4'
             %}
-            <div class="mt-4 text-right">
+            <div class="mt-4 text-end">
                 <a href="{{ 'password-reset/password-reset'|page }}" class="link link-blue underline hover:no-underline text-sm md:text-base">{{ 'account_password_forgot'|_ }}</a>
             </div>
             {% partial 'input-checkbox/input-checkbox'
@@ -65,4 +65,3 @@ function onInit()
         <span class="block text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">{{ 'account_no_account_sign_up' | transRaw({account_sign_up: account_sign_up}) }}</span>
     </div>
 </div>
-`

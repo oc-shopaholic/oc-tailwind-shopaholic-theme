@@ -1,12 +1,14 @@
 {##}
 
-<div class="_off-canvas _write-review">
+<div class="_write-review">
     {% partial 'button/button'
         sText = 'reviews_review_write'|_
-        sPartialClasses = '_show w-full md:w-72 mt-8 p-2'
+        sPartialClasses = '_offCanvasOpen w-full md:w-72 mt-8 p-2'
         bGhost = true
+        sDataAtribute = 'data-for="review_card_info"'
     %}
     {% partial 'off-canvas/off-canvas'
+        id = 'review_card_info'
         sPosition = 'right'
         sHeading = 'reviews_review_add'|_
         sHeaderClasses = 'items-center mb-7'
@@ -24,7 +26,7 @@
             <fieldset class="mb-7 lg:mb-6">
                 {# TODO: Add the ability to send product recommendations #}
                 <legend class="text-gray-900 font-medium text-base mb-4 lg:mb-2">{{'reviews_would_recommend'|_}}</legend>
-                <div class="flex space-x-7">
+                <div class="flex space-x-7 rtl:space-x-reverse">
                     {% partial 'input-radio/input-radio'
                         sName = 'recommended'
                         sId = 'recommended'

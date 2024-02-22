@@ -31,7 +31,7 @@ function onStart()
 {##}
 
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="{{ activeLocale ? activeLocale : 'en' }}">
+<html dir="auto" class="scroll-smooth" lang="{{ activeLocale ? activeLocale : 'en' }}">
     <head>
         {% partial 'head/head' %}
     </head>
@@ -43,6 +43,7 @@ function onStart()
                 {% page %}
             </main>
             {% partial 'footer/footer' %}
+            {% partial 'flash-message/flash-message' %}
         </div>
         {% partial 'scripts/scripts' %}
         {% partial 'input/input-validation-message' %}

@@ -6,11 +6,11 @@
             <a class="underline hover:no-underline link link-gray" href="{{ 'index/index'|page }}">{{ 'breadcrumbs_home'|_ }}</a>
         </li>
         {% for arItem in arBreadcrumbs %}
-            <li class="pl-3 flex before:separator whitespace-nowrap">
+            <li class="ps-3 inline-flex before:separator whitespace-nowrap rtl:before:translate-y-0.5 rtl:before:rotate-180">
                 {% if loop.last %}
-                    <span class="ml-3">{{ arItem.is_lang ? arItem.name|_ : arItem.name }}</span>
+                    <span class="ms-3">{{ arItem.is_lang ? arItem.name|_ : arItem.name }}</span>
                 {% else %}
-                    <a class="underline hover:no-underline link link-gray ml-3" href="{{ arItem.url }}">{{ arItem.name }}</a>
+                    <a class="underline hover:no-underline link link-gray ms-3" href="{{ arItem.url }}">{{ arItem.name }}</a>
                 {% endif %}
             </li>
         {% endfor %}

@@ -21,34 +21,34 @@
             </picture>
         </div>
         {% if obLabelList.count() == 1 %}
-            <div class="absolute z-10 -top-px -left-px overflow-hidden rounded-br rounded-tl flex">
+            <div class="absolute z-10 -top-px -start-px overflow-hidden rounded-ss rounded-ee flex">
                 {% for obLabel in obLabelList %}
                     <div class="text-white bg-red-700 px-4 py-2 whitespace-nowrap">{{ obLabel.name }}</div>
                 {% endfor %}
             </div>
         {% else %}
-            <ul class="absolute z-10 -top-px -left-px rounded-br rounded-tl flex w-2/3 scrollbar-x-none overflow-x-scroll md:overflow-auto md:hover:w-auto">
+            <ul class="absolute z-10 -top-px -start-px rounded-ss rounded-se flex w-2/3 scrollbar-x-none overflow-x-scroll md:overflow-auto md:hover:w-auto">
                 <li>
-                    <div class="text-gray-100 text-xs md:text-sm bg-red-700 px-2 py-0.5 md:py-1 whitespace-nowrap">{{'purchase_sale'|_}}</div>
+                    <div class="text-gray-100 text-xs md:text-sm rounded-ee bg-red-700 px-2 py-0.5 md:py-1 whitespace-nowrap">{{'purchase_sale'|_}}</div>
                 </li>
             </ul>
         {% endif %}
     </div>
-    <div class="flex-1 ml-2 flex justify-between items-start pr-5 lg:pr-0 md:ml-5">
+    <div class="flex-1 ms-2 flex justify-between items-start pe-5 lg:pe-0 md:ms-5">
         <div class="w-full">
             <div class="flex justify-between">
                 <h3 class="text-gray-900 font-medium text-sm md:text-base">{{ obProduct.name }}</h3>
-                <div class="relative flex justify-between ml-2 md:ml-3.5 md:space-x-6">
+                <div class="relative flex justify-between ms-2 md:ms-3.5 md:space-x-6 rtl:space-x-reverse">
                     {% if this.theme.has_wish_list %}
                         {% if obProduct.inWishList() %}
-                            <button class="_shopaholic-remove-wish-list-button text-red-500 p-3 -m-3.5 mr-2.5 group link" type="button">
+                            <button class="_shopaholic-remove-wish-list-button text-red-500 p-3.5 -m-3.5 me-2.5 group link" type="button">
                                 <svg class="_card-list-chekout stroke-current fill-current group-active:fill-current group-active:text-red-500 group-hover:text-blue-700" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.59834 2.26511C1.25011 2.61333 0.973884 3.02673 0.785425 3.48171C0.596967 3.93668 0.499969 4.42432 0.499969 4.91678C0.499969 5.40924 0.596967 5.89688 0.785425 6.35185C0.973884 6.80683 1.25011 7.22023 1.59834 7.56845L8 13.9701L14.4017 7.56845C15.1049 6.86518 15.5 5.91135 15.5 4.91678C15.5 3.92221 15.1049 2.96838 14.4017 2.26511C13.6984 1.56185 12.7446 1.16676 11.75 1.16676C10.7554 1.16676 9.8016 1.56185 9.09834 2.26511L8 3.36345L6.90167 2.26511C6.55345 1.91689 6.14005 1.64066 5.68508 1.4522C5.2301 1.26375 4.74246 1.16675 4.25 1.16675C3.75754 1.16675 3.2699 1.26375 2.81493 1.4522C2.35995 1.64066 1.94656 1.91689 1.59834 2.26511V2.26511Z" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                                 <span class="sr-only">{{'wishlist_wishlist_remove'|_}}</span>
                             </button>
                         {% else %}
-                            <button class="_shopaholic-add-wish-list-button p-3.5 text-gray-600 -m-3.5 mr-2.5 group focus-visible:text-blue-800 link" type="button">
+                            <button class="_shopaholic-add-wish-list-button p-3.5 text-gray-600 -m-3.5 me-2.5 group link" type="button">
                                 <svg class="_card-list-chekout stroke-current group-active:fill-current group-active:text-red-500 group-hover:text-blue-700" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.59834 2.26511C1.25011 2.61333 0.973884 3.02673 0.785425 3.48171C0.596967 3.93668 0.499969 4.42432 0.499969 4.91678C0.499969 5.40924 0.596967 5.89688 0.785425 6.35185C0.973884 6.80683 1.25011 7.22023 1.59834 7.56845L8 13.9701L14.4017 7.56845C15.1049 6.86518 15.5 5.91135 15.5 4.91678C15.5 3.92221 15.1049 2.96838 14.4017 2.26511C13.6984 1.56185 12.7446 1.16676 11.75 1.16676C10.7554 1.16676 9.8016 1.56185 9.09834 2.26511L8 3.36345L6.90167 2.26511C6.55345 1.91689 6.14005 1.64066 5.68508 1.4522C5.2301 1.26375 4.74246 1.16675 4.25 1.16675C3.75754 1.16675 3.2699 1.26375 2.81493 1.4522C2.35995 1.64066 1.94656 1.91689 1.59834 2.26511V2.26511Z" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -65,7 +65,7 @@
                 </div>
             </div>
             {# TODO: Add receiving colors for order #}
-            <div class="my-4 md:mt-2 text-gray-600 text-sm md:text-base">{{'purchase_color'|_}}: <span class="pl-2"><a class="underline" href="{{obProduct.getPageUrl('product-item/product-item')}}">{{obPropertyColor.property_value.first().value}}</a></span></div>
+            <div class="my-4 md:mt-2 text-gray-600 text-sm md:text-base">{{'purchase_color'|_}}: <span class="ps-2"><a class="underline" href="{{obProduct.getPageUrl('product-item/product-item')}}">{{obPropertyColor.property_value.first().value}}</a></span></div>
             <div class="flex items-center justify-between">
                 {% partial 'input-quantity/input-quantity'
                     iMin = 1
@@ -78,7 +78,7 @@
                 %}
                 <div>
                     <div class="flex flex-wrap text-sm lg:text-base">
-                        <span class="break-line text-gray-900 font-medium mr-2">{{ obCartPosition.currency }}<span class="_cost _shopaholic-cart" role="presentation" data-group="position" data-field="price">{{ obCartPosition.price }}</span></span>
+                        <span class="break-line text-gray-900 font-medium me-2">{{ obCartPosition.currency }}<span class="_cost _shopaholic-cart" role="presentation" data-group="position" data-field="price">{{ obCartPosition.price }}</span></span>
                         {% if obCartPosition.old_price > 0 %}
                             <span class="break-line line-through text-gray-600 font-medium {{ obCartPosition.discount_price_value == 0 ? 'hidden' : '' }}">{{ obCartPosition.currency }}<span class="_shopaholic-old-price _shopaholic-cart" role="presentation" data-group="position" data-field="old-price">{{ obCartPosition.old_price }}</span></span>
                         {% endif %}

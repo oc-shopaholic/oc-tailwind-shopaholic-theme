@@ -3,7 +3,6 @@
 {# TODO:Add svg reusability for whole project #}
 <section class="w-full {{ sPartialClass }}">
     {% if sReviewsCount == true or sSortingPanel == true %}
-    ----
         <div class="flex justify-between mb-5 items-baseline">
             {% if sReviewsCount == true %}
                 {% set iReviewsCount = obProduct.review.active().sort()|length %}
@@ -23,19 +22,21 @@
         {% partial 'review-list/review-list-ajax' %}
     </ul>
     {% if iMaxPage > iPage %}
-        <div class="_off-canvas">
+        <div>
             <button
-                class="_show flex flex-row items-center link-blue link"
+                class="_offCanvasOpen flex flex-row items-center link-blue link"
                 data-max-page="{{ iMaxPage }}"
                 data-page="1"
                 type="button"
+                data-for="review_info"
             >
-                <span class="mr-2 text-sm md:text-base">{{ 'reviews_read_more'|_ }}</span>
-                <svg width="8" height="12">
+                <span class="me-2 text-sm md:text-base">{{ 'reviews_read_more'|_ }}</span>
+                <svg class="rtl:rotate-180" width="8" height="12">
                     <use href="../../themes/lovata-tailwind-shopaholic/assets/images/sprite.svg#arrow-right"></use>
                 </svg>
             </button>
             {% partial 'off-canvas/off-canvas'
+                id = 'review_info'
                 sPosition = 'right'
                 sHeading = 'reviews_customer_reviews_ratings'|_
                 sHeaderClasses = 'items-center mb-7'

@@ -12,16 +12,16 @@
 
 <tbody>
     <tr>
-        <th colspan="2" class="font-normal pb-4 text-left text-gray-900 text-sm md:text-base">{{'purchase_subtotal'|_}}&nbsp;
+        <th colspan="2" class="font-normal pb-4 text-start text-gray-900 text-sm md:text-base">{{'purchase_subtotal'|_}}&nbsp;
             <span class="_item">({{obCartList.getTotalQuantity()}} {{'purchase_items'|_}})</span>
         </th>
-        <td class="font-normal text-right text-gray-900 pb-4 text-sm md:text-base">
-            <span class="font-medium text-base pl-4">{{ obCartList.currency }}<span class="_shopaholic-cart" data-group="position-total-price" data-field="price">{{obCartList.getTotalPrice()}}</span></span>
+        <td class="font-normal text-end text-gray-900 pb-4 text-sm md:text-base">
+            <span class="font-medium text-base ps-4">{{ obCartList.currency }}<span class="_shopaholic-cart" data-group="position-total-price" data-field="price">{{obCartList.getTotalPrice()}}</span></span>
         </td>
     </tr>
     <tr>
-        <th colspan="2" class="font-normal pb-4 text-gray-900 text-sm text-left md:text-base">{{'purchase_delivery'|_}}</th>
-        <td class="font-normal text-right text-gray-900 pb-4 text-sm md:text-base">
+        <th colspan="2" class="font-normal pb-4 text-gray-900 text-sm text-start md:text-base">{{'purchase_delivery'|_}}</th>
+        <td class="font-normal text-end text-gray-900 pb-4 text-sm md:text-base">
             {% if obActiveShippingType.price_full == 0 %}
                 {{'purchase_for_free'|_}}
             {% else %}
@@ -30,7 +30,7 @@
         </td>
     </tr>
     <tr>
-        <th colspan="2" class="text-gray-900 text-base text-left md:text-lg">{{'purchase_total'|_}}</th>
-        <td class="text-gray-900 text-right text-base md:text-lg">{{ Cart.getCurrency() }}<span class="cart__result-price-value _shopaholic-cart" data-group="total-price" data-field="price">{{ obTotalPriceData.price  }}</span></td>
+        <th colspan="2" class="text-gray-900 text-base text-start md:text-lg">{{'purchase_total'|_}}</th>
+        <td class="text-gray-900 text-end text-base md:text-lg font-semibold">{{ Cart.getCurrency() }}<span class="cart__result-price-value _shopaholic-cart" data-group="total-price" data-field="price">{{ obTotalPriceData.price  }}</span></td>
     </tr>
 </tbody>
