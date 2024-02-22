@@ -1,6 +1,6 @@
 tabs:
     fields:
-### Content
+        ### Content
         business_card_section:
             label: 'theme.lovata-tailwind-shopaholic::lang.field.business_card_section'
             type: section
@@ -284,6 +284,61 @@ tabs:
             span: right
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.content'
             translatable: true
+        map_section:
+            label: "Map Section"
+            type: section
+            span: full
+            tab: "Content"
+        map_section_active:
+            label: "lovata.toolbox::lang.field.active"
+            type: switch
+            span: full
+            tab: "Content"
+        map_api_key:
+            label: "Api key"
+            type: text
+            span: left
+            required: 0
+            tab: "Content"
+            placeholder: "Api key"
+            comment: "Add Google Map Api Key for work with map."
+            trigger:
+                action: show
+                field: map_section_active
+                condition: checked
+        map_popup_title:
+            label: "lovata.toolbox::lang.field.title"
+            type: text
+            span: right
+            required: 0
+            tab: "Content"
+            placeholder: "lovata.toolbox::lang.field.title"
+            trigger:
+                action: show
+                field: map_section_active
+                condition: checked
+        map_lat:
+            label: "Lat"
+            type: text
+            span: left
+            required: 0
+            tab: "Content"
+            placeholder: "Lat"
+            trigger:
+                action: show
+                field: map_section_active
+                condition: checked
+        map_lng:
+            label: "Lng"
+            type: text
+            span: right
+            required: 0
+            tab: "Content"
+            placeholder: "Lng"
+            trigger:
+                action: show
+                field: map_section_active
+                condition: checked
         ### Functionality
         shopaholic_bar_section:
             label: 'theme.lovata-tailwind-shopaholic::lang.field.shopaholic_bar_section'
@@ -318,7 +373,7 @@ tabs:
             defaul: on
             span: full
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.functionality'
-### Plugins
+        ### Plugins
         plugin_check:
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.plugins'
             span: left

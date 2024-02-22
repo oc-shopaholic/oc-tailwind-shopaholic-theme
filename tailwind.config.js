@@ -31,7 +31,8 @@ module.exports = {
       },
       backgroundImage: {
         'check': "url('/themes/lovata-tailwind-shopaholic/assets/images/check.svg')",
-        'check-black': "url('/themes/lovata-tailwind-shopaholic/assets/images/check-black.svg')"
+        'check-black': "url('/themes/lovata-tailwind-shopaholic/assets/images/check-black.svg')",
+        'feedback': "url('/themes/lovata-tailwind-shopaholic/assets/images/union.svg')",
       },
       fontSize: {
         error: ['9rem', '1'],
@@ -58,7 +59,6 @@ module.exports = {
         90: '360px',
         174: '696px',
         23: '92px',
-        174: '696px',
         225: '900px',
       },
       height: {
@@ -77,11 +77,28 @@ module.exports = {
       },
     }
   },
+  variants: {
+    extend: {
+      margin: ['first', 'last'],
+      textColor: ['active', 'focus-visible', 'visited'],
+      outline: ['focus-visible'],
+      backgroundColor: ['group-focus', 'active', 'focus-visible', 'disabled'],
+      ringWidth: ['focus-visible'],
+      ringColor: ['hover', 'active', 'focus', 'focus-visible'],
+      ringOffsetWidth: ['responsive', 'focus-visible', 'focus'],
+      opacity: ['hover', 'focus'],
+      fill: ['hover', 'group-hover', 'group-focus', 'focus'],
+      stroke: ['hover', 'group-hover', 'group-focus', 'focus'],
+      width: ['hover'],
+      borderWidth: ['first', 'last'],
+    }
+  },
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
     require('tailwindcss-pseudo-elements'),
+    require('tailwindcss-content-visibility'),
     plugin(function ({ addUtilities }) {
       const newUtilities = {
         '.separator': {

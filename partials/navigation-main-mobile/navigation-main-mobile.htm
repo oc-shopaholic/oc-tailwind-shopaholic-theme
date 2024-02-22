@@ -5,13 +5,14 @@ code = "navigation-main"
 {# TODO: Add animation for the burger button. #}
 
 {% set arMenuList = MainMenu.menuItems %}
-<div class="_off-canvas block mr-3.5 lg:hidden flex">
-    <button class="_show hover:text-blue-700 active:text-blue-900 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:rounded-sm">
+<div class="block me-3.5 lg:hidden flex">
+    <button class="_offCanvasOpen hover:text-blue-700 active:text-blue-900 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:rounded-sm" data-for="mobile_menu">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M6.6665 30H33.3332M6.6665 10H33.3332H6.6665ZM6.6665 20H33.3332H6.6665Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     </button>
     {% partial 'off-canvas/off-canvas'
+        id = 'mobile_menu'
         sPosition = 'left'
         sHeading = 'search_search'|_
         sIndentsClass = 'px-4 py-0 md:px-10'
@@ -21,18 +22,18 @@ code = "navigation-main"
         body
     %}
         {% if arMenuList is not empty %}
-            <div class="py-4 flex -mx-4 px-4 md:mx-0 md:px-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 md:after:border-0 md:ml-1 md:pb-0">
+            <div class="py-4 flex -mx-4 px-4 md:mx-0 md:px-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 md:after:border-0 md:ms-1 md:pb-0">
                 <button class="_hide p-2 -m-2 hover:text-blue-700 active:text-blue-900 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:rounded-sm lg:block">
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 10L30 30M10 30L30 10L10 30Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
                 {% if this.theme.business_card_image is not empty and this.page.id == 'index' %}
-                    <span class="shrink-0 w-36 ml-6">
+                    <span class="flex-shrink-0 w-36 ms-6">
                         <img class="" src="{{ this.theme.business_card_image|media }}" alt="{{ this.theme.business_card_image_alt }}" title="{{ this.theme.business_card_image_title }}">
                     </span>
                 {% elseif this.theme.business_card_image is not empty %}
-                    <a href="{{ 'index/index'|page }}" class="w-36 ml-6 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:rounded-sm">
+                    <a href="{{ 'index/index'|page }}" class="w-36 ms-6 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800 focus-visible:rounded-sm">
                         <img class="" src="{{ this.theme.business_card_image|media }}" alt="{{ this.theme.business_card_image_alt }}" title="{{ this.theme.business_card_image_title }}">
                     </a>
                 {% endif %}
@@ -41,7 +42,7 @@ code = "navigation-main"
                 <ul class="flex flex-col mb-2">
                     {% for arItemMenu in arMenuList|filter(arItemMenu => not arItemMenu.viewBag.isHidden) -%}
                         {% if not arItemMenu.viewBag.isHidden %}
-                            <li class="py-3 -mx-4 px-4 md:mx-0 md:px-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 pb-3 md:after:border-0 md:ml-1 md:pb-0">
+                            <li class="py-3 -mx-4 px-4 md:mx-0 md:px-0 relative after:content-[''] after:absolute after:inset-0 after:top-auto after:border-b after:border-gray-200 pb-3 md:after:border-0 md:ms-1 md:pb-0">
                                 <a href="{{ arItemMenu.url }}" class="text-sm font-medium text-blue-800 hover:text-blue-700 hover:underline active:text-blue-900 focus-visible:text-blue-800 focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800">{{ arItemMenu.title }}</a>
                             </li>
                         {% endif %}

@@ -4,6 +4,14 @@
 
 @import "tailwindcss/utilities";
 
+@layer base {
+  :where([dir="rtl"]) select {
+    background-position: left theme('spacing.2') center;
+    padding-left: theme('spacing.10');
+    padding-right: theme('spacing.3');
+  }
+}
+
 @layer components {
   .slider__pagination{
     @apply flex justify-center mt-5 lg:mt-12
@@ -12,13 +20,13 @@
     @apply hidden
   }
   .slider__bullet{
-    @apply w-1 lg:w-3 h-1 lg:h-3 ml-2 lg:ml-6 first:ml-0 bg-gray-400 rounded-full
+    @apply w-1 lg:w-3 h-1 lg:h-3 ms-2 lg:ms-6 first:ms-0 bg-gray-400 rounded-full
   }
   .slider__bullet_active{
     @apply bg-blue-800
   }
   .tabs.style__horizontal .tabs__nav .tabs__nav_link{
-    @apply font-medium bg-transparent text-xl bg-inherit border-0
+    @apply font-medium text-xl bg-inherit border-0
   }
   .tabs.style__horizontal .tabs__nav .tabs__nav_link.is__active{
     @apply border-solid bg-transparent border-b-4 border-blue-800 font-medium
@@ -36,17 +44,22 @@
     @apply text-blue-800 bg-transparent text-base font-medium
   }
   input[type='radio']{
-    @apply relative checked:bg-none checked:text-white checked:border-blue-600 checked:after:content-[''] checked:after:absolute checked:after:rounded-full checked:after:w-2 checked:after:h-2 checked:after:bg-blue-800 checked:after:inset-0 checked:after:left-[3px] checked:after:top-[3px] hover:!border-blue-600 focus-visible:!border-gray-900 focus-visible:ring-transparent focus:ring-transparent focus:!border-blue-600
+    @apply relative checked:bg-none checked:text-white checked:border-blue-600 checked:after:content-[''] checked:after:absolute checked:after:rounded-full checked:after:w-2 checked:after:h-2 checked:after:bg-blue-800 checked:after:left-[3px] checked:after:top-[3px] hover:!border-blue-600 focus-visible:!border-gray-900 focus-visible:ring-transparent focus:ring-transparent focus:!border-blue-600
   }
   .js-choice__dropdown[aria-expanded]{
     @apply bg-white border-0 w-full rounded-md shadow-lg mt-1 z-50 break-normal overflow-x-hidden whitespace-nowrap
   }
-  div.choices[data-type*=select-one]::after{
+  .choices[data-type*=select-one]::after{
+    @apply end-0
+  }
+
+  .choices[data-type*=select-one]::after{
     width:13px;
     height:9px;
+    right: inherit;
     border-width: 0;
     margin-bottom: 2px;
-    right: 0;
+    inset-inline-end: 0;
     background-image: url('/themes/lovata-tailwind-shopaholic/assets/images/arrow.svg');
     background-repeat: no-repeat;
   }
@@ -91,19 +104,35 @@
     position: relative;
   }
   summary::after {
+    @apply end-3 inline-block absolute
+  }
+  summary::after {
     content: '';
-    display: inline-block;
     width: 15px;
     height: 10px;
     background: url('/themes/lovata-tailwind-shopaholic/assets/images/marker.svg') no-repeat;
     position: absolute;
     top: 50%;
-    right: 12px;
     transition: .2s;
     transform: translateY(-50%);
   }
   details[open]>summary::after{
     transform: translateY(-50%) rotate(180deg);
+  }
+  .alert{
+    @apply fixed top-20 right-14 mb-2 rounded-lg flex flex-row-reverse gap-5 p-4 max-w-sm items-start
+  }
+  .alert-success{
+    @apply bg-green-100 text-green-800
+  }
+  .alert-error{
+    @apply bg-red-100 text-red-900
+  }
+  .alert-warning{
+    @apply bg-blue-200 text-blue-900
+  }
+  .alert-info{
+    @apply bg-gray-200 text-gray-700
   }
   .wishlist__empty {
     background-image: url('/themes/lovata-tailwind-shopaholic/assets/images/wishlist.svg');
@@ -153,17 +182,15 @@
   ._description-text{
     max-height: var(--description-text-max-height);
   }
-  .product-active{
-    visibility: var(--icon-indicator);
-  }
 }
 
+
 .pswp__top-bar.pswp__hide-on-close{
-  @apply space-x-4 w-auto flex bg-gray-100 items-center right-0 left-auto rounded-bl lg:space-x-6
+  @apply space-x-4 w-auto flex bg-gray-100 items-center end-0 inset-auto rounded-bl lg:space-x-6 rtl:space-x-reverse
 }
 .pswp__top-bar.pswp__hide-on-close .pswp__counter{
   text-shadow: initial;
-  @apply h-14 text-gray-600 flex ml-4 items-center opacity-100 mt-0 text-sm lg:text-2xl lg:ml-7
+  @apply h-14 text-gray-600 flex ms-4 items-center opacity-100 mt-0 text-sm lg:text-2xl lg:ms-7
 }
 .pswp__top-bar.pswp__hide-on-close .pswp__preloader{
   @apply hidden -order-1
@@ -174,11 +201,12 @@
 .pswp__top-bar.pswp__hide-on-close .pswp__button.pswp__button--fullscreen-button .pswp__icn{
   fill: black;
 }
+
 .pswp__top-bar.pswp__hide-on-close .pswp__button.pswp__button--zoom{
   @apply order-2
 }
 .pswp__top-bar.pswp__hide-on-close .pswp__button.pswp__button--close{
-  @apply mr-4 order-4 lg:mr-6
+  @apply me-4 order-4 lg:me-6
 }
 .pswp__top-bar.pswp__hide-on-close .pswp__button{
   @apply w-8 h-8 flex items-center justify-center lg:w-12 lg:h-14
@@ -193,22 +221,30 @@
   @apply w-6 h-6 top-10 fill-black lg:w-8 lg:h-8
 }
 .pswp__button--arrow--next{
-  @apply right-4
+  @apply rtl:right-auto end-4
 }
 .pswp__button--arrow--prev{
-  @apply left-4
+  @apply start-4
 }
-.pswp__button--arrow--next .pswp__icn{
-  @apply right-3 lg:right-4
-}
+
 .pswp__button--arrow--prev .pswp__icn{
-  @apply left-3 lg:left-4
+  @apply rtl:rotate-180 translate-y-0.5 left-3.5 rtl:left-1.5
+}
+.pswp__button--arrow--next .pswp__icn {
+  @apply rotate-180 -translate-x-0.5 translate-y-0.5 rtl:rotate-0 rtl:translate-x-1.5 rtl:translate-y-0.5
 }
 
 .pswp--click-to-zoom.pswp--zoom-allowed .pswp__img {
   @apply object-contain
 }
 
+.content-visibility {
+  @apply content-visibility-auto contain-intrinsic-size-[0_100px]
+}
+
+
+
+@import "./swiper.css";
 @import "../../../node_modules/swiper/swiper-bundle.min.css";
 @import "../../../node_modules/photoswipe/dist/photoswipe.css";
 @import "../../../node_modules/choices.js/public/assets/styles/choices.min.css";
