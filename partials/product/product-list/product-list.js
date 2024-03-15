@@ -14,11 +14,11 @@ export class ProductList {
     this.obListHelper.setAjaxRequestCallback((obRequestData) => {
       obRequestData.update = {
         'product/product-list/product-list': '.catalog_wrapper',
-        'catalog/filter/filters-desktop-ajax': '._filters-desktop',
-        'catalog/filter/filters-mobile-ajax': '._filters-mobile',
+        'catalog/filter/filter-ajax': '._filter',
       };
       obRequestData.complete = () => {
         document.dispatchEvent(new CustomEvent('product:list.updated'));
+        document.dispatchEvent(new CustomEvent('product:filter.updated'));
       };
 
       return obRequestData;

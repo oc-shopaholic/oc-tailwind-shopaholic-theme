@@ -1,108 +1,3 @@
-title = "Product page"
-url = "/catalog1/:category?/:product?"
-layout = "main"
-is_hidden = 0
-
-[CategoryPage]
-slug = "{{ :category }}"
-slug_required = 0
-smart_url_check = 1
-has_wildcard = 0
-skip_error = 1
-
-[ProductPage]
-slug = "{{ :product }}"
-slug_required = 1
-smart_url_check = 0
-skip_error = 0
-
-[ProductList]
-sorting = "no"
-
-[ProductData]
-
-[MakeReview]
-
-[Pagination]
-count_per_page = 3
-pagination_limit = 5
-active_class = "pagination__link_current"
-button_list = "last-more,last"
-first_button_name = "First"
-first_button_limit = 3
-first_button_number = 1
-first-more_button_name = "..."
-first-more_button_limit = 3
-prev_button_name = "Prev"
-prev_button_limit = 1
-prev-more_button_name = "..."
-prev-more_button_limit = 1
-next-more_button_name = "..."
-next-more_button_limit = 1
-next_button_name = "Next"
-next_button_limit = 1
-last-more_button_name = "..."
-last-more_button_limit = 3
-last_button_name = "Last"
-last_button_limit = 3
-last_button_number = 1
-==
-<?php
-function onInit()
-{
-    $this['obProduct'] = $this->ProductPage->get();
-    $obReviewList  = $this['obProduct']?->review->active()->sort();
-    $this['iPage'] = $this->Pagination->getPageFromRequest();
-    $this['iMaxPage'] = $this->Pagination->getMaxPage($obReviewList?->count());
-    $this['arReviewList'] = $obReviewList?->page($this['iPage'], $this->Pagination->getCountPerPage());
-}
-
-function onStart()
-{
-    if (empty($this['obProduct'])) {
-        return;
-    }
-
-    $this['obRelatedProductList'] = $this['obProduct']->related;
-    $this['obOfferList'] = $this['obProduct']->offer;
-    $this['obPropertyList'] = $this['obProduct']->property;
-    $this['arBreadcrumbs'] = $this->getBreadcrumbs();
-    $this['path_page_js'] = mix('assets/dist/js/product-item.js', 'themes/lovata-tailwind-shopaholic');
-}
-
-function getBreadcrumbs(): array
-{
-    $arBreadcrumbs = [
-        [
-            'name'   => $this['obProduct']->name,
-            'active' => true,
-        ]
-    ];
-
-    $obCategory = $this['obProduct']->category;
-
-    while (!empty($obCategory) && $obCategory->isNotEmpty()) {
-        $arBreadcrumbs[] = [
-            'name' => $obCategory->name,
-            'url'  => $obCategory->getPageUrl(),
-        ];
-
-        $obCategory = $obCategory->parent;
-    }
-
-    $arBreadcrumbs[] = [
-        'name' => $this->page->title,
-        'url'  => $this->pageUrl($this->page->baseFileName, false),
-    ];
-
-    return array_reverse($arBreadcrumbs);
-}
-?>
-==
-{##}
-
-{% partial 'common/breadcrumbs' %}
-
 {# TODO: Add flash messages to the add to cart action. #}
 
 <div class="_shopaholic-product-wrapper grid grid-cols-1 xl:grid-cols-2 xl:justify-items-center 2xl:justify-items-start" data-product-id="{{ obProduct.id }}">
@@ -135,22 +30,22 @@ function getBreadcrumbs(): array
                                         <table>
                                             <caption class="text-start w-max font-bold pb-2">{{'product_measurements'|_}}:</caption>
                                             <tbody class="flex flex-col space-y-2">
-                                                {% if obPropertyList.isNotEmpty() %}
-                                                    {% for obProperty in obPropertyList %}
-                                                        {% if (obProperty.name !='Color' and obProperty.name !='Sale' and obProperty.name !='Materials') and obProperty.property_value.getValueString() %}
-                                                            <tr>
-                                                                <th class="text-start min-w-18 font-normal text-gray-600">{{ obProperty.name }}</th>
-                                                                <td class="ps-1.5">{{ obProperty.property_value.getValueString() }}
-                                                                    {% if obProperty.name == 'Weight' %}
-                                                                        kg
-                                                                    {% else %}
-                                                                        cm
-                                                                    {% endif %}
-                                                                </td>
-                                                            </tr>
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                {% endif %}
+                                            {% if obPropertyList.isNotEmpty() %}
+                                                {% for obProperty in obPropertyList %}
+                                                    {% if (obProperty.name !='Color' and obProperty.name !='Sale' and obProperty.name !='Materials') and obProperty.property_value.getValueString() %}
+                                                        <tr>
+                                                            <th class="text-start min-w-18 font-normal text-gray-600">{{ obProperty.name }}</th>
+                                                            <td class="ps-1.5">{{ obProperty.property_value.getValueString() }}
+                                                                {% if obProperty.name == 'Weight' %}
+                                                                    kg
+                                                                {% else %}
+                                                                    cm
+                                                                {% endif %}
+                                                            </td>
+                                                        </tr>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
                                             </tbody>
                                         </table>
                                     </div>
@@ -160,18 +55,18 @@ function getBreadcrumbs(): array
                                         <table>
                                             <caption class="text-start w-max font-bold pb-2">{{'product_materials'|_}}:</caption>
                                             <tbody class="flex flex-col space-y-2">
-                                                {% if obPropertyList.isNotEmpty() %}
-                                                    {% for obProperty in obPropertyList %}
-                                                        {% if (obProperty.name !='Width' and obProperty.name !='Color' and obProperty.name !='Sale' and obProperty.name !='Height' and obProperty.name !='Depth' and obProperty.name !='Weight') and obPropertyList.isNotEmpty() %}
-                                                            {% for obPropertyValue in obProperty.property_value %}
-                                                                <tr>
-                                                                    <th class="text-start min-w-18 font-normal text-gray-600">{{ obPropertyValue.value }}</th>
-                                                                    <td class="ps-1.5">100%</td>
-                                                                </tr>
-                                                            {% endfor %}
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                {% endif %}
+                                            {% if obPropertyList.isNotEmpty() %}
+                                                {% for obProperty in obPropertyList %}
+                                                    {% if (obProperty.name !='Width' and obProperty.name !='Color' and obProperty.name !='Sale' and obProperty.name !='Height' and obProperty.name !='Depth' and obProperty.name !='Weight') and obPropertyList.isNotEmpty() %}
+                                                        {% for obPropertyValue in obProperty.property_value %}
+                                                            <tr>
+                                                                <th class="text-start min-w-18 font-normal text-gray-600">{{ obPropertyValue.value }}</th>
+                                                                <td class="ps-1.5">100%</td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
                                             </tbody>
                                         </table>
                                     </div>
@@ -242,7 +137,7 @@ function getBreadcrumbs(): array
             sPartialClass = '_review-list-container'
             sListClass = '_review-list-update'
         %}
-       {% partial 'review-add/review-add' %}
+        {% partial 'review-add/review-add' %}
     </div>
     {% partial 'product-rating/product-rating'
         sPartialClass = 'mt-6 xl:mt-14 xl:ps-11 2xl:ps-14'

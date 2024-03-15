@@ -23,7 +23,7 @@ smart_url_check = 1
 skip_error = 1
 
 [Pagination]
-count_per_page = 3
+count_per_page = 15
 pagination_limit = 5
 active_class = "pagination__link_current"
 button_list = "first,first-more,main,last-more,last"
@@ -148,7 +148,7 @@ function onInit() {
     if (!empty($obProductItem)) {
         $arBreadcrumbs[] = [
             'name'   => $obProductItem->name,
-            'url'    => $obProductItem->getPageUrl(),
+            'url'    => $obProductItem->getPageUrl('catalog'),
             'active' => true,
         ];
     }
@@ -158,7 +158,7 @@ function onInit() {
     while (!empty($obCurrentCategory) && $obCurrentCategory->isNotEmpty()) {
         $arBreadcrumbs[] = [
             'name'   => $obCurrentCategory->name,
-            'url'    => $obCurrentCategory->getPageUrl(),
+            'url'    => $obCurrentCategory->getPageUrl('catalog', ['slug']),
             'active' => empty($obProductItem) && $obCurrentCategory->id == $obActiveCategoryItem->id,
         ];
 
@@ -190,29 +190,7 @@ function onStart()
 {# TODO: Finish stylization of the select box. #}
 
 {% if obProduct.isNotEmpty() %}
+    {% partial 'product/product-page' %}
 {% else %}
-    <h1 class="text-gray-900 text-xl md:text-2xl xl:text-3xl uppercase">{{ SeoToolbox.getPageTitle(obSeoModel, arSEOParams)|default(obActiveCategory.name) }}</h1>
-    {% if obActiveCategory.preview_text is not empty %}
-    <div>
-        {{ obActiveCategory.preview_text }}
-    </div>
-    {% endif %}
-    {# Product list #}
-    <div class="grid md:grid-cols-4 mb-14">
-        {% if bHasFilterPlugin %}
-            <section class="_filter md:col-span-1"></section>
-        {% endif %}
-        <div class="_sorting-container w-full md:col-span-3">
-            <div class="_sorting">
-                {% partial 'product/product-list/product-list-wrapper' %}
-            </div>
-        </div>
-    </div>
-
-    {% set description = SeoToolbox.getPageDescription(obSeoModel, arSEOParams)|default(obActiveCategory.description) %}
-    {% if description %}
-        <div>
-            {{ description|raw }}
-        </div>
-    {% endif %}
+    {% partial 'catalog/catalog-page' %}
 {% endif %}

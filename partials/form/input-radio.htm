@@ -16,10 +16,9 @@ Params:
 - body
 #}
 {% set id = id|default(name) %}
-
 <div class="{{ wrapperClasses }}">
     <input
-        class="text-blue-800 border-gray-600 me-2.5 focus:outline-none focus-visible:border-blue-800 {{inputClasses}}"
+        class="w-4 h-4 text-blue-800 border-gray-600 me-2.5 focus:outline-none focus-visible:border-blue-800 {{inputClasses}}"
         type="radio"
         {% if name %}
             name="{{ name }}"
@@ -41,7 +40,7 @@ Params:
     >
     <label
         for="{{ id }}"
-        class="text-sm md:text-base text-gray-600 {{ labelClasses }}"
+        class="text-sm md:text-base text-gray-600 cursor-pointer {{ labelClasses }}"
         {{dataLabel}}
         title="{{title}}"
     >{{ text }}{{body|raw}}</label>

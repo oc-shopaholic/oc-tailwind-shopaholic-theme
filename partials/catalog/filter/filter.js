@@ -23,7 +23,6 @@ export default class Filter {
 
     this.adaptation();
     this.initAccordionState();
-    this.initHandlers();
   }
 
   initHandlers() {
@@ -165,12 +164,21 @@ oc.pageReady().then(() => {
     update: {'catalog/filter/filter-ajax': '._filter'},
     complete: (response) => {
       obFilter.init();
+      obFilter.initHandlers();
 
       document.addEventListener(EVENT_OPEN, (event) => {
+        if (event.detail.id !== 'filter_panel') {
+          return;
+        }
+
         obFilter.initAccordionState();
       });
 
-      document.dispatchEvent(new CustomEvent('product:list.updated'));
+      document.dispatchEvent(new CustomEvent('product:filter.updated'));
     }
-  })
+  });
+
+  document.addEventListener('product:list.updated', () => {
+    obFilter.init();
+  });
 });

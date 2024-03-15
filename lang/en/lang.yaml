@@ -58,6 +58,7 @@ breadcrumbs_home: 'Home'
 # Catalog
 catalog_categories_show: 'Show all'
 catalog_categories: 'Product categories'
+categories: 'Categories'
 catalog_products_also_like: 'You might also like'
 catalog_products_popular: 'Popular products'
 catalog_products_show_more: 'More products'

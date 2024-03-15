@@ -8,7 +8,7 @@ title = "Category list"
     {'name': 'catalog_categories'|_, 'url': null}
 ] %}
 
-{% set obCategoryList = CategoryList.make().active().tree() %}
+{% set obCategoryList = CategoryList.make().active().tree().site() %}
 {% partial 'common/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
 
 <h1 class="text-gray-900 text-xl md:text-2xl xl:text-3xl uppercase">{{ SeoToolbox.getPageTitle()|default('catalog_categories'|_) }}</h1>
@@ -17,11 +17,13 @@ title = "Category list"
     <div class="flex flex-col my-10">
         {% partial 'common/advanced-list/advanced-list' body %}
             {% for obCategory in obCategoryList %}
-                {% partial 'common/advanced-list/advanced-list-item'
-                    name = obCategory.name
-                    href = obCategory.getPageUrl('catalog')
-                    imagePath = obCategory.icon.path
-                %}
+                {% if obCategory.product_count > 0 %}
+                    {% partial 'common/advanced-list/advanced-list-item'
+                        name = obCategory.name
+                        href = obCategory.getPageUrl('catalog')
+                        imagePath = obCategory.icon.path
+                    %}
+                {% endif %}
             {% endfor %}
         {% endpartial %}
     </div>
