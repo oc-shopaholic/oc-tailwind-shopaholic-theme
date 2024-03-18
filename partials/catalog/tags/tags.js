@@ -20,6 +20,7 @@ class TagList {
   }
 
   init () {
+    if(this.tagListNode === null) return false;
     this.prepareTagList();
     this.createTags();
   }

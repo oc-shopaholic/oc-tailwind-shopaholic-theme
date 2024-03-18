@@ -72,6 +72,7 @@ function onInit() {
     if(!empty($obProductItem)) {
         //Product item data
         $this['obProduct'] = $obProductItem;
+        $this['path_page_js'] = mix('assets/dist/js/product-item.js', 'themes/lovata-tailwind-shopaholic');
     } else {
         // Set main category as active category
         if (!empty($obMainCategoryItem) && empty($obActiveCategoryItem)) {
@@ -139,6 +140,8 @@ function onInit() {
         $this['arProductList'] = $arProductList;
         $this['obProductList'] = $obProductList;
 
+        $this['path_page_js'] = mix('assets/dist/js/catalog.js', 'themes/lovata-tailwind-shopaholic');
+
         $this['obActiveCategory'] = $obActiveCategoryItem;
         $this['obCategoryList'] = $this->CategoryList->make()->active();
     }
@@ -169,10 +172,7 @@ function onInit() {
     $this['bHasFilterPlugin'] = $bHasFilterPlugin;
 }
 
-function onStart()
-{
-    $this['path_page_js'] = mix('assets/dist/js/catalog.js', 'themes/lovata-tailwind-shopaholic');
-}
+
 ?>
 ==
 {% set arBreadcrumbs = [

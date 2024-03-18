@@ -1,4 +1,5 @@
 import '/partials/common/tabs/tabs';
+
 import '/partials/review-list/review-list';
 import '/partials/product-gallery/product-gallery';
 import '/partials/product-review-rating/product-review-rating';

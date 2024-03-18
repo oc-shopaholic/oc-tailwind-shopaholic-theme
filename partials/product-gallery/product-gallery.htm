@@ -1,7 +1,7 @@
 {##}
 
 <div class="md:w-174 m-x-auto overflow-hidden">
-    <div class="gallery-top relative -mx-4 md:mx-0">
+    <div class="js-gallery-top swiper relative -mx-4 md:mx-0">
         {% if this.theme.has_wish_list %}
             {% if obProduct.inWishList() %}
                 {# TODO: Add buttons a11y #}
@@ -35,7 +35,7 @@
                         {% endfor %}
                     </div>
                 {% else %}
-                    <ul class="absolute z-10 top-4 start-4 flex w-2/3 scrollbar-x-none overflow-x-scroll rtl:space-x-reverse space-x-0.5 md:space-x-1 md:overflow-auto md:hover:w-auto md:-start-px md:top-7 qwwwwwwwwwwwwwwwww">
+                    <ul class="absolute z-10m top-4 start-4 flex w-2/3 scrollbar-x-none overflow-x-scroll rtl:space-x-reverse space-x-0.5 md:space-x-1 md:overflow-auto md:hover:w-auto md:-start-px md:top-7 qwwwwwwwwwwwwwwwww">
                         {% for obLabel in obLabelList %}
                             {% if obLabel.code == 'new' %}
                                 {% set sColorState = 'bg-green-900' %}
@@ -57,7 +57,7 @@
                 {% endif %}
             {% endif %}
         {% endif %}
-        <ul class="swiper-wrapper pswp-gallery pswp-gallery--single-column" id="my-gallery">
+        <ul class="swiper-wrapper js-photo-swipe pswp-gallery pswp-gallery--single-column">
             {% for obImage in arImages %}
                 <li class="swiper-slide cursor-pointer">
                     <a
@@ -83,22 +83,23 @@
             {% endfor %}
         </ul>
     </div>
-    <div class="gallery-thumbs mt-2">
-        <ul class="swiper-wrapper _swiper-container py-2 px-0.5 flex items-center">
+    <div class="js-gallery-thumbs swiper mt-2">
+        <ul class="swiper-wrapper py-2 px-0.5 flex items-center">
             {% for obImage in arImages %}
                 <li class="swiper-slide" aria-label="{{ 'slider_item_number'|_({
                     slider_item_number_current: loop.index,
                     slider_item_number_total: arImages|length,
                 })}}">
-                    <a role="button" tabindex="0">
+                    <a role="button" class="block" tabindex="0">
                         <picture>
                             <source srcset="{{ obImage.getThumb(92, 92, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
                             <source srcset="{{ obImage.getThumb(92, 92, {'quality': 80}) }}" type="image/jpeg">
                             <img
-                                class="object-contain w-full md:h-full"
+                                class="object-contain w-full md:h-full "
                                 src="{{ obImage.preview_image.getThumb(92, 92, {'quality': 80}) }}"
                                 alt="{{ obItem.description }}"
                                 title="{{ obItem.title }}"
+                                style="max-width: 100%; width: 92px"
                                 {% if loop.index > 5 %} loading="lazy" {% endif %}
                             />
                         </picture>
@@ -108,11 +109,6 @@
         </ul>
     </div>
 </div>
-<style>
-
-</style>
-
-
 {% put scripts %}
     <script>
         window.slider = {
@@ -120,3 +116,4 @@
         };
     </script>
 {% endput %}
+

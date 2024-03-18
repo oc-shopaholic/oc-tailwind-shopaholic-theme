@@ -1,9 +1,6 @@
-.gallery-thumbs li.swiper-slide {
-  @apply w-[92px] h-[92px]
+.js-gallery-thumbs .swiper-slide {
+  @apply border-2 border-transparent !w-auto
 }
-
-@media only screen and (max-width: 768px) {
-  .gallery-thumbs li.swiper-slide {
-    @apply w-[76px] h-[76px]
-  }
+.js-gallery-thumbs .swiper-slide.swiper-slide-thumb-active {
+  @apply border-blue-800
 }
