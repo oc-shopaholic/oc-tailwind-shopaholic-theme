@@ -67,8 +67,9 @@ function onInit()
     </div>
     {% set sApiKey = this.theme.map_api_key %}
     {% set sActive = this.theme.map_section_active %}
-    {% if sActive is not empty %}
-        {% partial 'common/map/map' sApiKey = sApiKey %}
+    {% partial 'common/map/map' sApiKey = sApiKey %}
+    {% if sActive %}
+
     {% else %}
         <div class="lg:ml-auto w-full lg:max-w-screen-sm xl:max-w-[850px] mt-7 md:mt-0">
             <h2 class="text-lg md:text-2xl text-gray-900 font-medium mb-4 md:mb-6 uppercase">{{'heading_waiting_for_your_feedback'|_}}</h2>
