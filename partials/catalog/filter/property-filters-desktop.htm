@@ -9,7 +9,7 @@
         data-property = "property[{{obProperty.id}}]"
     >
         <summary class="js-accordion-summary text-base font-medium text-blue-800 cursor-pointer mb-3 hover:text-blue-700 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
-            {{ obProperty.filter_name }}
+            {{ obProperty.filter_name }} {% if obProperty.measure.isNotEmpty() %}({{ obProperty.measure.name }}){% endif %}
         </summary>
         <div class="flex _shopaholic-filter-wrapper js-accordion-content {{obProperty.filter_type == 'between' ? 'mb-4' : ''}}" data-filter-type="{{ obProperty.filter_type }}" data-property-id="{{ obProperty.id }}">
             {% if obProperty.filter_type == 'between' %}
@@ -82,6 +82,7 @@
                     id = 'property-' ~ obProperty.id
                     name = 'property-' ~ obProperty.id
                     wrapperClasses = 'w-full'
+                    placeholder='filter_choose_value'|_
                     options = selectOptions
                     selectedValue = arFilterValue[obProperty.id]
                 %}

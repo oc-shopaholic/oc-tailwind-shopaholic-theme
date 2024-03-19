@@ -1,0 +1,12 @@
+{#
+Params:
+- obProduct
+- obOffer
+#}
+
+<li class="_product_tab_details" data-title="{{ 'product_tab_details'|_ }}">
+    {% partial 'product/product-tabs/product-tab-details-ajax'
+        obProduct = obProduct
+        obOffer = obOffer
+    %}
+</li>

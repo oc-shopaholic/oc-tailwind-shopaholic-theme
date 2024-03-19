@@ -57,7 +57,7 @@ export default class ExpandableText {
   }
 }
 
-oc.pageReady().then(() => {
+document.addEventListener('DOMContentLoaded', () => {
   const expandableText = new ExpandableText();
   expandableText.initSummaryEvents();
 });

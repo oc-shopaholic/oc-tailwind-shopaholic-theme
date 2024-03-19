@@ -1,6 +1,6 @@
 import {OffCanvasContainer} from '/partials/common/off-canvas/off-canvas.js';
 
-oc.pageReady().then(() => {
+document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', (event) => {
     const eventNode = event.target;
     const buttonNode = eventNode.closest('.js-show-region');

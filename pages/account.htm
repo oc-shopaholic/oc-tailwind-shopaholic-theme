@@ -4,23 +4,20 @@ layout = "main"
 is_hidden = 0
 
 [UserPage]
-slug = "{{ :slug }}"
+slug = ""
 slug_required = 0
 mode = "ajax"
 flash_on = 0
 redirect_on = 0
-redirect_page = "account/account"
-login_page = "sign-in/sign-in"
+redirect_page = "account"
+login_page = "sign-in"
 ==
 <?php
 function onInit()
 {
-    $this['path_page_js'] = mix('assets/dist/js/account.js', 'themes/lovata-tailwind-shopaholic');
+    $bHasUserPlugin = $this['bHasUserPlugin'];
 
-    $bHasPlugin = \System\Classes\PluginManager::instance()->hasPlugin('lovata.buddies')
-        && !\System\Classes\PluginManager::instance()->isDisabled('Lovata.Buddies');
-
-    if (!$bHasPlugin) {
+    if (!$bHasUserPlugin) {
         return $this->controller->run('404');
     }
 }
@@ -32,17 +29,17 @@ function onInit()
 {% set arList = [
     {
         title: 'account_order_history'|_,
-        url: "account-orders/account-orders",
+        url: "account-orders",
         icon:  'assets/images/icon-orders.svg'|theme,
     },
     {
         title: 'account_personal_data'|_,
-        url: 'account-details/account-details',
+        url: 'account-details',
         icon:  'assets/images/icon-details.svg'|theme,
     },
     {
         title: 'account_password_change'|_,
-        url: "account-password/account-password",
+        url: "account-change-password",
         icon:  'assets/images/icon-password.svg'|theme,
     }
 ]%}
@@ -63,7 +60,7 @@ function onInit()
         <li>
             <a class="w-full overflow-hidden rounded-sm flex flex-row md:flex-col text-sm xl:text-base text-blue-800 font-medium h-full group cursor-pointer border border-l-0 hover:underline md:border-l md:border-t-0 border-solid border-gray-200 rounded-ss-sm md:rounded-es-sm rounded-se-sm md:rounded-t-none md:text-center group-active:underline"
                type="button"
-                href="{{ 'log-out/log-out'|page }}">
+                href="{{ 'log-out'|page }}">
                 <span class="w-12 relative md:w-full h-12 md:h-auto bg-gray-200 group-hover:bg-blue-800 group-focus:bg-blue-900 md:aspect-w-1 md:aspect-h-1">
                     <span class="advanced-list-icon h-6 w-6 bg-6 md:bg-auto after:bg-blue-800 after:group-hover:bg-white scale-50" style="--advanced-list-icon-src: url('{{ 'assets/images/exit.svg'|theme }}')"></span>
                 </span>

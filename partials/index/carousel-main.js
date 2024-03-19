@@ -34,7 +34,7 @@ class MainCarousel {
   }
 }
 
-oc.pageReady().then(() => {
+document.addEventListener('DOMContentLoaded', () => {
   const obMainCarousel = new MainCarousel();
   obMainCarousel.init();
 });

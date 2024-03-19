@@ -1,35 +1,32 @@
 <form class="_required">
-    {# TODO: To discuss validation message layout shift #}
     {% partial 'form/input'
-        id = 'form-email'
-        labelText = 'form_user_email'|_
-        name = 'email'
-        required = 'required'
-        type = 'email'
+    id = 'email'
+    labelText = 'form_user_email'|_
+    name = 'email'
+    required = 'required'
     %}
-    {# TODO: Add inline ajax validation for email existing #}
     {% partial 'form/input'
-        id = 'form-password'
-        labelText = 'form_user_password'|_
-        name = 'password'
-        required = 'required'
-        type = 'password'
-        wrapperClasses = 'mt-4'
+    id = 'password'
+    labelText = 'form_user_password'|_
+    name = 'password'
+    required = 'required'
+    type = 'password'
+    wrapperClasses = 'mt-4'
     %}
     <div class="mt-4 text-end">
-        <a href="{{ 'password-reset/password-reset'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base">{{ 'account_password_forgot'|_ }}</a>
+        <a href="{{ 'password-restore'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">{{ 'account_password_forgot'|_ }}</a>
     </div>
+    {% set accountPrivacyTermsConditions = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~ this.theme.sign_up_terms_link|link ~'">'~('account_privacy_terms_conditions'|_)|raw ~'</a>' %}
+    {% set accountPrivacyCookiePolicy = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~ this.theme.sign_up_policy_link|link ~'">'~('account_privacy_cookie_policy'|_)~'</a>' %}
     {% partial 'form/input-checkbox'
-        wrapperClasses = 'mt-4 md:mt-3 flex items-center'
-        id = 'remember_me'
-        name = 'remember_me'
-        labelText = 'form_user_keep_signed'|_
+    wrapperClasses = 'mt-4 md:mt-3'
+    id = 'remember_me'
+    name = 'remember_me'
+    labelText = 'account_rules_acceptance'|transRaw({account_privacy_terms_conditions: accountPrivacyTermsConditions, account_privacy_cookie_policy: accountPrivacyCookiePolicy}) | raw
     %}
     {% partial 'form/button'
-        text = 'account_sign_in'|_
-        type = 'submit'
-        wrapperClasses = '_button-sign-in w-full mt-8 md:mt-6'
+    text = 'account_sign_in_checkout'|_
+    type = 'submit'
+    wrapperClasses = 'w-full mt-8 md:mt-6'
     %}
-    {# TODO: Add inline ajax validation #}
 </form>
-

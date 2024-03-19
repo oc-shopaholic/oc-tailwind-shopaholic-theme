@@ -2,6 +2,7 @@ uuid: 7159eee2-43ad-4938-99d7-4d3e88035e59
 handle: Site\SiteContent
 type: global
 name: Site content
+multisite: true
 
 customMessages:
     titleUpdateForm: 'shopaholic.theme.site_content.title_update'
@@ -17,7 +18,6 @@ fields:
         type: text
         span: left
         tab: 'shopaholic.theme.business_card.tab'
-        translatable: true
     business_card_image:
         label: 'lovata.toolbox::lang.field.image'
         comment: 'shopaholic.theme.business_card.field.image_comment'
@@ -25,54 +25,46 @@ fields:
         span: right
         mode: image
         tab: 'shopaholic.theme.business_card.tab'
-        translatable: true
     business_card_description:
         label: 'shopaholic.theme.business_card.field.description'
         type: text
         span: left
         tab: 'shopaholic.theme.business_card.tab'
-        translatable: true
     business_card_image_alt:
         label: 'shopaholic.theme.field.image_alt'
         comment: 'shopaholic.theme.field.image_alt_comment'
         type: text
         span: right
         tab: 'shopaholic.theme.business_card.tab'
-        translatable: true
     business_card_phone:
         label: 'shopaholic.theme.business_card.field.phone'
         comment: 'shopaholic.theme.business_card.field.phone_comment'
         type: text
         span: left
         tab: 'shopaholic.theme.business_card.tab'
-        translatable: true
     business_card_image_title:
         label: 'shopaholic.theme.field.image_title'
         comment: 'shopaholic.theme.field.image_title_comment'
         type: text
         span: right
         tab: 'shopaholic.theme.business_card.tab'
-        translatable: true
     business_card_email:
         label: 'shopaholic.theme.business_card.field.email'
         comment: 'shopaholic.theme.business_card.field.email_comment'
         type: text
         span: left
         tab: 'shopaholic.theme.business_card.tab'
-        translatable: true
     business_card_address:
         label: 'shopaholic.theme.business_card.field.address'
         type: text
         span: full
         tab: 'shopaholic.theme.business_card.tab'
-        translatable: true
     business_card_copyright:
         label: 'shopaholic.theme.business_card.field.copyright'
         placeholder: 'shopaholic.theme.business_card.field.copyright_placeholder'
         type: text
         span: full
         tab: 'shopaholic.theme.business_card.tab'
-        translatable: true
 
     top_info_block_active:
         label: 'lovata.toolbox::lang.field.active'
@@ -84,7 +76,6 @@ fields:
         type: richeditor
         span: full
         tab: 'shopaholic.theme.top_info_block.tab'
-        translatable: true
 
     payment_methods_list_active:
         label: 'lovata.toolbox::lang.field.active'
@@ -96,7 +87,6 @@ fields:
         span: full
         style: collapsed
         tab: 'shopaholic.theme.payment_methods.tab'
-        translatable: true
         trigger:
             action: show
             field: payment_methods_list_active
@@ -135,7 +125,6 @@ fields:
         span: full
         style: collapsed
         tab: 'shopaholic.theme.social_media_list.tab'
-        translatable: true
         trigger:
             action: show
             field: social_media_list_active

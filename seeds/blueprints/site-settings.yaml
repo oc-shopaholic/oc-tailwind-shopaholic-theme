@@ -19,12 +19,6 @@ fields:
         defaul: on
         span: full
         tab: 'shopaholic.theme.tab.functionality'
-    latest_news_active:
-        label: 'shopaholic.theme.site_settings.field.latest_news_active'
-        type: switch
-        defaul: on
-        span: full
-        tab: 'shopaholic.theme.tab.functionality'
 
     has_wish_list:
         label: 'shopaholic.theme.site_settings.field.plugin_wish_list_for_shopaholic'

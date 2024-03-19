@@ -46,7 +46,7 @@ class Sorting {
   }
 }
 
-oc.pageReady().then(() => {
+document.addEventListener('DOMContentLoaded', () => {
   const obSorting = new Sorting();
   obSorting.init();
 });

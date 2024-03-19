@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="flex flex-col space-y-1">
                                     {% if obProduct.active %}
-                                        <a href="{{ obProduct.getPageUrl('product-item/product-item') }}" class="text-gray-900 text-sm font-bold lg:text-base">{{ obProduct.name }}</a>
+                                        <a href="{{ obProduct.getPageUrl('catalog') }}" class="text-gray-900 text-sm font-bold lg:text-base">{{ obProduct.name }}</a>
                                     {% else %}
                                         <span class="text-gray-900 text-sm lg:text-base">{{ obProduct.name }}</span>
                                     {% endif %}

@@ -1,7 +1,12 @@
-{##}
+{#
+Params:
+- prefix
+- rating
+- maxRating
+#}
 
-{% for i in 0..maxRating-1 %}
-{% set id = unique_id~loop.index %}
+{% for i in 0..maxRating - 1 %}
+    {% set id = prefix ~ loop.index %}
     {% if rating >= loop.index %}
         <svg class="rating__image w-4 h-4" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             xmlns:sketchjs="https://sketch.io/dtd/" width="30" height="30" viewBox="0 0 30 30">

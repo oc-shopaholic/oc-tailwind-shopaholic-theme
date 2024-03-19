@@ -1,24 +1,22 @@
-title = "Log out"
 url = "/log-out"
 layout = "main"
+title = "Log out"
 is_hidden = 0
+
+[Logout]
+mode = "submit"
+redirect_on = 1
+redirect_page = "index"
 ==
 <?php
 function onInit()
 {
-    $this['path_page_js'] = mix('assets/dist/js/log-out.js', 'themes/lovata-tailwind-shopaholic');
-
     $obUser = $this['obUser'];
+    $bHasUserPlugin = $this['bHasUserPlugin'];
 
-    if (empty($obUser) || !$this->theme->has_buddies) {
+    if (!$bHasUserPlugin) {
         return $this->controller->run('404');
     }
-
-    $this->addComponent('Lovata\Buddies\Components\Logout', 'Logout', [
-        'redirect_on' => 1,
-        'redirect_page' => 'index/index',
-        'mode' => 'submit',
-    ]);
 }
 ?>
 ==

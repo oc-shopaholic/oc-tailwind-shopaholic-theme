@@ -20,7 +20,7 @@ sorting = "popularity|desc"
     <ul class="-mx-4 pl-4 md:mx-0 md:ps-0">
         {% for obCategory in obCategoryList %}
             <li class="w-full cursor-pointer">
-                <a class="_shopaholic-product-wrapper mb-1 pb-2 ps-0 mt-4 flex items-center relative hover:bg-inherit md:hover:bg-gray-100 md:px-2 md:mb-0 md:pt-1 md:pb-1 md:mt-0" href="{{ obCategory.getPageUrl('catalog') }}">
+                <a class="_shopaholic-product-wrapper mb-1 pb-2 ps-0 mt-4 flex items-center relative hover:bg-inherit md:hover:bg-gray-100 md:px-2 md:mb-0 md:pt-1 md:pb-1 md:mt-0" href="{{ obCategory.getPageUrl('catalog', ['slug']) }}">
                     <svg class="h-6 w-6 me-4 mb-3 md:mb-0 md:me-2.5 md:ms-2" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2.5 5.83329V14.1666C2.5 15.0871 3.24619 15.8333 4.16667 15.8333H15.8333C16.7538 15.8333 17.5 15.0871 17.5 14.1666V7.49996C17.5 6.57949 16.7538 5.83329 15.8333 5.83329H10.8333L9.16667 4.16663H4.16667C3.24619 4.16663 2.5 4.91282 2.5 5.83329Z" stroke="#4B5563" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>

@@ -1,13 +1,17 @@
 {#
 Params:
 - obProduct
+- wrapperClasses
+- wrapperListClasses
+- roundedClassesFirst
+- roundedClassesNext
 #}
 
 {% if bHasLabelPlugin %}
     {% set obLabelList = obProduct.label.active().sort() %}
     {% if obLabelList.isNotEmpty() %}
         {% if obLabelList.count() == 1 %}
-            <div class="absolute z-10 -top-px -start-px overflow-hidden rounded-ee rounded-ss flex">
+            <div class="absolute z-10 overflow-hidden flex rounded-ss rounded-ee {{ wrapperClasses }}">
                 {% for obLabel in obLabelList %}
                     {% if obLabel.code == 'new' %}
                         {% set colorState = 'bg-green-900' %}
@@ -22,7 +26,7 @@ Params:
                 {% endfor %}
             </div>
         {% else %}
-            <ul class="absolute z-10 -top-px -start-px rounded-ss rounded-ee flex w-2/3 scrollbar-x-none overflow-x-scroll rtl:space-x-reverse space-x-0.5 md:space-x-1 md:overflow-auto md:hover:w-auto">
+            <ul class="absolute z-10 flex w-2/3 scrollbar-x-none overflow-x-scroll rtl:space-x-reverse space-x-0.5 md:space-x-1 md:overflow-auto md:hover:w-auto {{ wrapperListClasses }}">
                 {% for obLabel in obLabelList %}
                     {% if obLabel.code == 'new' %}
                         {% set colorState = 'bg-green-900' %}
@@ -32,9 +36,9 @@ Params:
                         {% set colorState = 'bg-sky-700' %}
                     {% endif %}
                     {% if loop.index == 1 %}
-                        {% set roundedClasses = 'rounded-ss rounded-ee' %}
+                        {% set roundedClasses = roundedClassesFirst %}
                     {% else %}
-                        {% set roundedClasses = 'rounded-b' %}
+                        {% set roundedClasses = roundedClassesNext %}
                     {% endif %}
                     <li>
                         <div class="{{roundedClasses}} {{colorState}} text-white whitespace-nowrap py-1 px-2 text-xs lg:text-sm md:px-4 md:py-2">

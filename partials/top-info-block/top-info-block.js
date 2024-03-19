@@ -105,7 +105,7 @@ class TopInfoBlock {
   }
 }
 
-oc.pageReady().then(() => {
+document.addEventListener('DOMContentLoaded', () => {
   const obTopInfoBlock = new TopInfoBlock();
   obTopInfoBlock.initData();
   obTopInfoBlock.show();

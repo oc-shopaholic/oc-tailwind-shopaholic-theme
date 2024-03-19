@@ -50,6 +50,9 @@ last_button_number = 1
 sorting = "popularity|desc"
 
 [CategoryList]
+
+[global ProductPageContent]
+handle = "Site\ProductPage"
 ==
 <?php
 function onInit() {
@@ -72,6 +75,7 @@ function onInit() {
     if(!empty($obProductItem)) {
         //Product item data
         $this['obProduct'] = $obProductItem;
+
         $this['path_page_js'] = mix('assets/dist/js/product-item.js', 'themes/lovata-tailwind-shopaholic');
     } else {
         // Set main category as active category
@@ -140,10 +144,10 @@ function onInit() {
         $this['arProductList'] = $arProductList;
         $this['obProductList'] = $obProductList;
 
-        $this['path_page_js'] = mix('assets/dist/js/catalog.js', 'themes/lovata-tailwind-shopaholic');
-
         $this['obActiveCategory'] = $obActiveCategoryItem;
         $this['obCategoryList'] = $this->CategoryList->make()->active();
+
+        $this['path_page_js'] = mix('assets/dist/js/catalog.js', 'themes/lovata-tailwind-shopaholic');
     }
 
     //Get breadcrumbs
@@ -172,14 +176,14 @@ function onInit() {
     $this['bHasFilterPlugin'] = $bHasFilterPlugin;
 }
 
-
+function onStart()
+{
+}
 ?>
 ==
 {% set arBreadcrumbs = [
     {'name': 'breadcrumbs_catalog'|_, 'url': 'category-list'|page}
 ]|merge(arBreadcrumbs) %}
-{% set arSEOParams = {'category': obActiveCategory, 'product': obProduct} %}
-{% set obSeoModel = obProduct ? obProduct : obActiveCategory %}
 
 {% put seo_tags %}
     {% component 'SeoToolbox' model=obSeoModel params=arSEOParams %}

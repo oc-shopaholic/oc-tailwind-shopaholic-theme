@@ -163,7 +163,7 @@ export class FlashMessageController {
   }
 }
 
-oc.pageReady().then(() => {
+document.addEventListener('DOMContentLoaded', () => {
   const flashMessageList = new FlashMessageController();
   flashMessageList.init();
 });

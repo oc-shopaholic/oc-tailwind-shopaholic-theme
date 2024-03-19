@@ -6,8 +6,8 @@ Params:
 
 {# TODO:Check if tabs work when there are more than their width #}
 
-<section class="w-full {{wrapperClasses}}">
-    <ul class="tabs {{wrapperClasses}}">
-        {{body|raw}}
+<section class="w-full {{ wrapperClasses }}">
+    <ul class="{{ wrapperListClasses }}">
+        {{ body|raw }}
     </ul>
 </section>

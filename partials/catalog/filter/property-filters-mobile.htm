@@ -7,13 +7,13 @@
         id = "{{obProperty.id}}"
     >
         <summary class="text-base font-medium text-blue-800 cursor-pointer pb-4 pt-4 ps-4 pe-5 after:end-5 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
-            {{ obProperty.name }}
+            {{ obProperty.filter_name }} {% if obProperty.measure.isNotEmpty() %}({{ obProperty.measure.name }}){% endif %}
         </summary>
         {% if obProperty.filter_type == 'between' %}
             <div class="flex mb-7 ms-4 me-5 mt-3 _shopaholic-filter-wrapper" data-filter-type="{{ obProperty.filter_type }}" data-property-id="{{ obProperty.id }}">
                 <div class="_filter-range flex" data-filter-id="{{ obProperty.id }}">
                     <fieldset class="me-3 w-full">
-                        <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'filter_min'|_}}</legend>
+                        <legend class="sr-only">{{ obProperty.filter_name }}&nbsp;{{'filter_min'|_}}</legend>
                         {% partial 'form/input'
                             labelText = 'filter_min'|_
                             inputClasses = '_min appearance-none quantity_input'
@@ -24,7 +24,7 @@
                         %}
                     </fieldset>
                     <fieldset class="w-full">
-                        <legend class="sr-only">{{ obProperty.name }}&nbsp;{{'filter_min'|_}}</legend>
+                        <legend class="sr-only">{{ obProperty.filter_name }}&nbsp;{{'filter_min'|_}}</legend>
                         {% partial 'form/input'
                             labelText = 'filter_max'|_
                             inputClasses = '_max appearance-none quantity_input'
@@ -41,7 +41,7 @@
                 {% set obPropertyValueList = obProperty.property_value.sort() %}
                 {% if obProperty.code != 'color' %}
                     <fieldset class="me-3 w-full">
-                        <legend class="sr-only">{{ obProperty.name }}</legend>
+                        <legend class="sr-only">{{ obProperty.filter_name }}</legend>
                         {% for obValue in obPropertyValueList %}
                             {% set bChecked = arFilterValue[obProperty.id] is not empty and obValue.slug in arFilterValue[obProperty.id] %}
                             {% set bDisabled = false %}
@@ -63,7 +63,7 @@
                     </fieldset>
                 {% else %}
                     <fieldset class="flex flex-wrap">
-                        <legend class="sr-only">{{ obProperty.name }}</legend>
+                        <legend class="sr-only">{{ obProperty.filter_name }}</legend>
                         {% partial 'input-color-choose/input-color-choose'
                             obPropertyValueList = obPropertyValueList
                             obProperty = obProperty
@@ -83,6 +83,7 @@
                 id = 'property-' ~ obProperty.id
                 name = 'property-' ~ obProperty.id
                 wrapperClasses = 'w-full'
+                placeholder='filter_choose_value'|_
                 options = selectOptions
                 selectedValue = arFilterValue[obProperty.id]
             %}

@@ -11,7 +11,13 @@ Params:
     <a class="text-xs md:text-lg font-bold text-gray-900 active:text-blue-900 hover:text-blue-700 focus-visible:outline-blue line-clamp-3 mb-auto mx-2" href="{{ obProduct.getPageUrl('catalog') }}">
         {{ obProduct.name }}
     </a>
-    {% partial 'product/product-labels' obProduct = obProduct %}
+    {% partial 'product/product-labels'
+        obProduct = obProduct
+        wrapperClasses = '-top-px -start-px'
+        wrapperListClasses = '-top-px -start-px'
+        roundedClassesFirst = 'rounded-ss rounded-ee'
+        roundedClassesNext = 'rounded-b'
+    %}
     <div class="order-first mb-2 rounded-ee rounded-se overflow-hidden aspect-w-16 aspect-h-12">
         <a href="{{ obProduct.getPageUrl('catalog') }}">
             {% if obProduct.preview_image is not empty %}
@@ -30,12 +36,15 @@ Params:
                     >
                 </picture>
             {% else %}
+            <span class="w-full h-full flex items-center justify-center">
                 <img
-                    class="w-full h-full rounded object-cover"
+                    class="w-1/2 rounded object-cover"
                     src="{{ 'assets/images/no-photo.svg'|theme }}"
                     alt="{{ 'blog_image_no'|_ }}"
                     {{ loopIndex > showIndex ? 'loading="lazy"' }}
                 >
+            </span>
+
             {% endif %}
         </a>
     </div>

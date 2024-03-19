@@ -1,6 +1,6 @@
 {##}
 
-<section id="ratings" class="{{sPartialClass}}">
+<section id="ratings" class="{{wraperClasses}}">
     {% set iReviewCount = obProduct.review.active().count() %}
     {% if sHeaderHidden != true %}
         <h2 class="text-gray-900 text-lg md:text-2xl font-medium uppercase">{{ 'reviews_customer_ratings'|_ }}</h2>
@@ -13,7 +13,7 @@
             {{ obProduct.rating }}
         </span>
         <div aria-hidden="true" class="flex flex-row items-center space-x-1 rtl:space-x-reverse">
-            {% partial 'product-rating/product-rating-star' maxRating='5' rating=obProduct.rating unique_id='product' %}
+            {% partial 'common/rating-star' maxRating='5' rating=obProduct.rating prefix='product' %}
         </div>
         <span aria-hidden="true" class="text-gray-600 text-sm md:text-base">
             ({{ 'reviews_customers_votes_number'|_({
@@ -32,7 +32,7 @@
                 reviews_customers_rating_votes_number: iCount
             })}}">
                 <div class="flex flex-row space-x-1 rtl:space-x-reverse ">
-                    {% partial 'product-rating/product-rating-star' maxRating='5' rating=i unique_id='total-rating-'~i %}
+                    {% partial 'common/rating-star' maxRating='5' rating=i prefix='total-rating-'~i %}
                 </div>
                 <svg aria-hidden="true" class="w-44 h-1" viewBox="0 0 182 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect class="w-44 h-1" rx="2" fill="#D1D5DB"/>

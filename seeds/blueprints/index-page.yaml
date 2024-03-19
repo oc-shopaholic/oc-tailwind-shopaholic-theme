@@ -2,6 +2,7 @@ uuid: 7159eee2-43ad-4938-99d7-4d3e88035e57
 handle: Site\IndexPage
 type: global
 name: Index page
+multisite: true
 
 customMessages:
     titleUpdateForm: 'shopaholic.theme.index_page.title_update'
@@ -23,7 +24,6 @@ fields:
         span: full
         tab: 'shopaholic.theme.main_carousel.tab'
         style: collapsed
-        translatable: true
         trigger:
             action: show
             field: main_carousel_active
@@ -50,7 +50,12 @@ fields:
                     label: 'lovata.toolbox::lang.field.slug'
                     type: text
                     span: left
-
+    latest_news_active:
+        label: 'shopaholic.theme.index_page.latest_news_active'
+        type: switch
+        defaul: on
+        span: full
+        tab: 'shopaholic.theme.tab.functionality'
     page_seo_block_active:
         label: 'lovata.toolbox::lang.field.active'
         type: switch
@@ -61,7 +66,6 @@ fields:
         type: richeditor
         span: left
         tab: 'shopaholic.theme.index_page_seo_block.tab'
-        translatable: true
         trigger:
             action: show
             field: page_seo_block_active
@@ -73,7 +77,6 @@ fields:
         span: right
         mode: image
         tab: 'shopaholic.theme.index_page_seo_block.tab'
-        translatable: true
         trigger:
             action: show
             field: page_seo_block_active
@@ -84,7 +87,6 @@ fields:
         span: right
         tab: 'shopaholic.theme.index_page_seo_block.tab'
         comment: 'shopaholic.theme.field.image_alt_comment'
-        translatable: true
         trigger:
             action: show
             field: page_seo_block_active
@@ -95,7 +97,6 @@ fields:
         type: text
         span: right
         tab: 'shopaholic.theme.index_page_seo_block.tab'
-        translatable: true
         trigger:
             action: show
             field: page_seo_block_active

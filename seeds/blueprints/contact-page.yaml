@@ -2,6 +2,7 @@ uuid: 7159eee2-43ad-4938-99d7-4d3e88035e22
 handle: Site\ContactPage
 type: global
 name: Contact page
+multisite: true
 
 customMessages:
     titleUpdateForm: 'shopaholic.theme.contact_page.title_update'

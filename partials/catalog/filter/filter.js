@@ -155,7 +155,7 @@ export default class Filter {
   }
 }
 
-oc.pageReady().then(() => {
+document.addEventListener('DOMContentLoaded', () => {
   const obFilter = new Filter();
   obFilter.initSummaryEvents();
   obFilter.initClearButton();

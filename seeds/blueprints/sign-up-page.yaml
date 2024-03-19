@@ -18,10 +18,8 @@ fields:
         type: pagefinder
         span: left
         tab: 'shopaholic.theme.tab.general'
-        translatable: true
     sign_up_policy_link:
         label: 'shopaholic.theme.sign_up_page.field.policy_link'
         type: pagefinder
         span: right
         tab: 'shopaholic.theme.tab.general'
-        translatable: true

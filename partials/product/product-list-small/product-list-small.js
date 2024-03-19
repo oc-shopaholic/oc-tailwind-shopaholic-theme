@@ -40,7 +40,7 @@ class ProductListSmall {
   }
 }
 
-oc.pageReady().then(() => {
+document.addEventListener('DOMContentLoaded', () => {
   const obProductListSmall = new ProductListSmall();
   obProductListSmall.init();
 });

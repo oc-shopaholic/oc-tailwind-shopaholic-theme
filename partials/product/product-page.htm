@@ -1,101 +1,53 @@
 {# TODO: Add flash messages to the add to cart action. #}
 
+{% set obOfferList = obProduct.offer %}
+{% set obOffer = obOfferList.first() %}
+
 <div class="_shopaholic-product-wrapper grid grid-cols-1 xl:grid-cols-2 xl:justify-items-center 2xl:justify-items-start" data-product-id="{{ obProduct.id }}">
     <div class="w-full">
-        {% partial 'product-info/product-info'
-            sPartialClass = 'xl:w-auto xl:absolute xl:invisible'
+        {% partial 'product/product-info'
+            wraperClasses = 'xl:w-auto xl:absolute xl:invisible'
+            obProduct = obProduct
+            obOfferList = obOfferList
+            obOffer = obOffer
         %}
-        {% partial 'product-gallery/product-gallery' arImages = obProduct.images %}
-        {% if obProduct.description is not empty %}
+        {% partial 'product/product-gallery/product-gallery' arImages = obProduct.images %}
+        {% if obProduct.preview_text is not empty %}
             <div class="w-full flex flex-col mt-7 md:mt-11">
                 {% partial 'common/expandable-text/expandable-text'
                     numberVisibleRows=3
-                    description=obProduct.description
+                    description=obProduct.preview_text
                 %}
             </div>
         {% endif %}
-
-        {% if this.theme.product_page is not empty %}
-            {% partial 'common/tabs/tabs'
-                wrapperClasses = '_tabs-product'
-                wrapperClasses = 'mt-4 mb-7 lg:my-10'
-                body
+        {% partial 'common/tabs/tabs'
+            wrapperClasses = 'mt-4 mb-7 lg:my-10'
+            wrapperListClasses = 'tabs _tabs-product'
+            body
+        %}
+            {% partial 'product/product-tabs/product-tab-details'
+                obProduct = obProduct
+                obOffer = obOffer
             %}
-                {% for tab in this.theme.product_page %}
-                    <li data-title="{{tab.title}}">
-                        {% if tab.dropdown == 'product_detail' %}
-                            <div class="flex flex-col md:flex-row" >
-                                {% if obPropertyList.getByCode('width').property_value.getValueString() != '' or obPropertyList.getByCode('height').property_value.getValueString() != '' or obPropertyList.getByCode('depth').property_value.getValueString() != '' or obPropertyList.getByCode('weight').property_value.getValueString() != '' %}
-                                    <div class="w-full md:w-1/2 mt-4 md:mt-0">
-                                        <table>
-                                            <caption class="text-start w-max font-bold pb-2">{{'product_measurements'|_}}:</caption>
-                                            <tbody class="flex flex-col space-y-2">
-                                            {% if obPropertyList.isNotEmpty() %}
-                                                {% for obProperty in obPropertyList %}
-                                                    {% if (obProperty.name !='Color' and obProperty.name !='Sale' and obProperty.name !='Materials') and obProperty.property_value.getValueString() %}
-                                                        <tr>
-                                                            <th class="text-start min-w-18 font-normal text-gray-600">{{ obProperty.name }}</th>
-                                                            <td class="ps-1.5">{{ obProperty.property_value.getValueString() }}
-                                                                {% if obProperty.name == 'Weight' %}
-                                                                    kg
-                                                                {% else %}
-                                                                    cm
-                                                                {% endif %}
-                                                            </td>
-                                                        </tr>
-                                                    {% endif %}
-                                                {% endfor %}
-                                            {% endif %}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                {% endif %}
-                                {% if obPropertyList.getByCode('materials').property_value.getValueString() != '' %}
-                                    <div class="w-full md:w-1/2 mt-4 md:mt-0">
-                                        <table>
-                                            <caption class="text-start w-max font-bold pb-2">{{'product_materials'|_}}:</caption>
-                                            <tbody class="flex flex-col space-y-2">
-                                            {% if obPropertyList.isNotEmpty() %}
-                                                {% for obProperty in obPropertyList %}
-                                                    {% if (obProperty.name !='Width' and obProperty.name !='Color' and obProperty.name !='Sale' and obProperty.name !='Height' and obProperty.name !='Depth' and obProperty.name !='Weight') and obPropertyList.isNotEmpty() %}
-                                                        {% for obPropertyValue in obProperty.property_value %}
-                                                            <tr>
-                                                                <th class="text-start min-w-18 font-normal text-gray-600">{{ obPropertyValue.value }}</th>
-                                                                <td class="ps-1.5">100%</td>
-                                                            </tr>
-                                                        {% endfor %}
-                                                    {% endif %}
-                                                {% endfor %}
-                                            {% endif %}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                {% endif %}
-                            </div>
-                        {% else %}
-                            <article class="prose md:prose-lg" >
-                                <div class="flex flex-col space-y-2" >
-                                    {{tab.richeditor|raw}}
-                                </div>
-                            </article>
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            {% endpartial %}
-        {% endif %}
+            {% partial 'product/product-tabs/product-tab-description' obProduct = obProduct %}
+            {% partial 'product/product-tabs/product-tab-content' obProduct = obProduct %}
+        {% endpartial %}
     </div>
     <div class="flex flex-col">
-        {% partial 'product-info/product-info'
-            sPartialClass = 'absolute invisible w-auto xl:w-full xl:static xl:visible'
+        {% partial 'product/product-info'
+            wraperClasses = 'absolute invisible w-auto xl:w-full xl:static xl:visible'
+            obProduct = obProduct
+            obOfferList = obOfferList
+            obOffer = obOffer
         %}
-        <div class="flex mt-7 flex-col xl:mt-0 xl:flex-row xl:ps-14">
-            {% set obPropertyList = obProduct.property %}
-            {% set iTotalQuantity = obOfferList.getTotalQuantity() %}
-            <div class="flex flex-col mb-12">
-                {% if obPropertyList.getByCode('Color').property_value.first().value or obRelatedProductList|length > 0 %}
-                    {% partial 'product-choose/product-choose' %}
-                {% endif %}
-                {% if iTotalQuantity > 0 %}
+        {% if obOfferList.isNotEmpty() %}
+            <div class="flex mt-7 flex-col xl:mt-0 xl:flex-row xl:ps-14">
+                <div class="flex flex-col mb-12">
+                    {% partial 'product/product-choose/product-choose'
+                        obProduct = obProduct
+                        obOfferList = obOfferList
+                        obOffer = obOffer
+                    %}
                     <div class="flex flex-row items-center mt-7 md:mt-10">
                         {% partial 'input-quantity/input-quantity'
                             iMin = 1
@@ -125,22 +77,22 @@
                             %}
                         {% endif %}
                     </div>
-                {% endif %}
+                </div>
             </div>
-        </div>
+        {% endif %}
     </div>
 </div>
 <div class="grid grid-cols-1 xl:mt-10 xl:justify-items-center 2xl:justify-items-start xl:grid-cols-2{% if this.theme.has_viewed_products == false %} mb-10{% endif %}">
     <div id="reviews" class="w-full flex flex-col">
         <h2 class="text-gray-900 text-2xl font-medium uppercase mb-5">{{ 'reviews_customer_reviews'|_ }}</h2>
         {% partial 'review-list/review-list'
-            sPartialClass = '_review-list-container'
+            wraperClasses = '_review-list-container'
             sListClass = '_review-list-update'
         %}
         {% partial 'review-add/review-add' %}
     </div>
     {% partial 'product-rating/product-rating'
-        sPartialClass = 'mt-6 xl:mt-14 xl:ps-11 2xl:ps-14'
+        wraperClasses = 'mt-6 xl:mt-14 xl:ps-11 2xl:ps-14'
     %}
 </div>
 

@@ -1,34 +1,31 @@
-<h1 class="uppercase font-medium text-xl md:text-3xl">{{ SeoToolbox.getPageTitle(obSeoModel, arSEOParams)|default(obActiveCategory.name) }}</h1>
-{% if obActiveCategory.preview_text is not empty %}
-    <div class="w-full flex flex-col mt-4">
-        {% partial 'common/expandable-text/expandable-text'
-            description=obActiveCategory.preview_text
-            numberVisibleRows=3
-        %}
-    </div>
-{% endif %}
-<div class="grid md:grid-cols-4 mb-14 mt-6 md:mt-10">
-    <section class="md:col-span-1">
+{% set arSEOParams = {'category': obActiveCategory} %}
+{% set obSeoModel = obActiveCategory %}
+{% set isPositionFilter = false %}
+
+<div class="grid md:grid-cols-4 mb-14 mt-6 md:mt-10 gap-12">
+    <section class="md:col-span-1{% if isPositionFilter %} order-1{% endif %}">
         {% set obChildrenCategoryList = obActiveCategory.children().site() %}
         {% if obChildrenCategoryList.isNotEmpty() %}
-            <h3>{{ 'categories'|_ }}</h3>
-            <ul>
-                {% for obCategory in obChildrenCategoryList %}
-                    {% if obCategory.product_count > 0 %}
-                        <li>
-                            <a href="{{ obCategory.getPageUrl('catalog', ['slug']) }}">
-                                {{ obCategory.name }}
-                            </a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
+            <div class="mb-4">
+                {% partial 'catalog/subcategory/subcategory' obChildrenCategoryList=obChildrenCategoryList %}
+            </div>
         {% endif %}
         {% if bHasFilterPlugin %}
             <div class="_filter"></div>
         {% endif %}
     </section>
     <div class="_sorting-container w-full md:col-span-3">
+        <h1 class="uppercase font-medium text-xl md:text-3xl">
+            {{ SeoToolbox.getPageTitle(obSeoModel, arSEOParams)|default(obActiveCategory.name) }}
+        </h1>
+        {% if obActiveCategory.preview_text is not empty %}
+        <div class="w-full flex flex-col mt-4">
+            {% partial 'common/expandable-text/expandable-text'
+                description=obActiveCategory.preview_text
+                numberVisibleRows=3
+            %}
+        </div>
+        {% endif %}
         <div class="_sorting">
             {% partial 'product/product-list/product-list-wrapper' %}
         </div>

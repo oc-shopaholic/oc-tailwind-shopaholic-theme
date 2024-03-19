@@ -1,7 +1,14 @@
-title = "Sign Up"
 url = "/sign-up"
 layout = "main"
+title = "Sign Up"
 is_hidden = 0
+
+[Registration]
+mode = "ajax"
+flash_on = 1
+redirect_on = 1
+redirect_page = "sign-up-success"
+activation = "activation_mail"
 ==
 <?php
 function onInit()
@@ -9,28 +16,28 @@ function onInit()
     $this['path_page_js'] = mix('assets/dist/js/sign-up.js', 'themes/lovata-tailwind-shopaholic');
 
     $obUser = $this['obUser'];
+    $bHasUserPlugin = $this['bHasUserPlugin'];
 
-    if (!$this->theme->has_buddies || !empty($obUser)) {
+    if (!$bHasUserPlugin) {
         return $this->controller->run('404');
     }
+}
 
-    $this->addComponent('Lovata\Buddies\Components\Registration', 'Registration', [
-        'redirect_on' => 1,
-        'redirect_page' => 'sign-up-success/sign-up-success',
-        'activation' => 'activation_mail',
-        'mode' => 'ajax',
-    ]);
+function onStart() {
+    $obUser = $this['obUser'];
+    if (!empty($obUser)) {
+        return \Cms::redirect(\Cms::pageUrl('account'), [], 307);
+    }
 }
 ?>
 ==
-{##}
-
 <div class="mt-7 mb-14 flex flex-col items-center">
     <h1 class="font-medium uppercase text-xl md:text-3xl mb-4">{{ 'account_signing_up'|_ }}</h1>
     <div class="max-w-xs">
         {% partial 'account/sign-up-form' %}
-
-        {% set account_sign_in = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~( 'sign-in/sign-in'|page )~'">'~('account_sign_in'|_)~'</a>' %}
-        <span class="block text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">{{ 'account_has_account_sign_in' | transRaw({account_sign_in: account_sign_in}) }}</span>
+        {% set accountSignIn = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~( 'sign-in'|page )~'">'~('account_sign_in'|_)~'</a>' %}
+        <span class="block text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">
+            {{ 'account_has_account_sign_in' | transRaw({account_sign_in: accountSignIn}) }}
+        </span>
     </div>
 </div>

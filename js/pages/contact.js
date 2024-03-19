@@ -9,6 +9,10 @@ class ContactPage {
   }
 
   init() {
+    if (!this.formNode) {
+      return;
+    }
+
     const obThis = this;
     this.formNode.addEventListener('submit', (event) => {
       event.stopPropagation();
@@ -58,7 +62,7 @@ class ContactPage {
   }
 }
 
-oc.pageReady().then(() => {
+document.addEventListener('DOMContentLoaded', () => {
   const formHandler = new ContactPage();
   formHandler.init();
 });

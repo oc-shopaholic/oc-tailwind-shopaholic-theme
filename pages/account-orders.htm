@@ -9,8 +9,8 @@ slug_required = 0
 mode = "ajax"
 flash_on = 0
 redirect_on = 0
-redirect_page = "account/account"
-login_page = "sign-in/sign-in"
+redirect_page = "account"
+login_page = "sign-in"
 
 [ProductData]
 
@@ -53,7 +53,7 @@ function onInit()
 ?>
 ==
 {% set arBreadcrumbs = [
-    {'name': 'account_my_account'|_, 'url': 'account/account'|page},
+    {'name': 'account_my_account'|_, 'url': 'account'|page},
     {'name': 'account_order_history'|_, 'url': null}
 ] %}
 {% set obUser = UserData.get() %}

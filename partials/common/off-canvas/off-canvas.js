@@ -236,6 +236,6 @@ class OffCanvas {
   }
 }
 
-oc.pageReady().then(() => {
+document.addEventListener('DOMContentLoaded', () => {
   OffCanvasContainer.instance().init();
 });

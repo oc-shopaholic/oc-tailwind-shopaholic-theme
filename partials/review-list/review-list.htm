@@ -1,7 +1,7 @@
 {##}
 
 {# TODO:Add svg reusability for whole project #}
-<section class="w-full {{ sPartialClass }}">
+<section class="w-full {{ wraperClasses }}">
     {% if sReviewsCount == true or sSortingPanel == true %}
         <div class="flex justify-between mb-5 items-baseline">
             {% if sReviewsCount == true %}
@@ -50,7 +50,7 @@
                 %}
                 {% partial 'product-rating/product-rating'
                     obProduct=obProduct
-                    sPartialClass = 'mt-7'
+                    wraperClasses = 'mt-7'
                     sHeaderHidden = true
                 %}
                 {% partial 'form/button'
@@ -61,7 +61,7 @@
                 <div class="mt-6 md:mt-10">
                     <ul class="_review-list">
                         {% partial 'review-list/review-list-ajax'
-                        sPartialClass = 'mt-10'
+                        wraperClasses = 'mt-10'
                         sReviewsCount = true
                         sSortingPanel = true
                         sListClass = '_review-list'

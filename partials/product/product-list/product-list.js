@@ -92,7 +92,7 @@ export class ProductList {
   // }
 }
 
-oc.pageReady().then(() => {
+document.addEventListener('DOMContentLoaded', () => {
   const obProductList = new ProductList();
   obProductList.init();
 });

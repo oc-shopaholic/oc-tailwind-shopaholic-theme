@@ -1,0 +1,15 @@
+<h2 class="text-xl font-medium text-gray-900 mb-3">{{'categories'|_}}</h2>
+<ul class="pr-6 lg:pr-12 hidden md:block space-y-2">
+    {% for obItem in obChildrenCategoryList -%}
+    <li>
+        <a class="overflow-hidden rounded-sm flex flex-row text-blue-800 font-medium h-full group cursor-pointer hover:underline group-active:underline" href="{{ obItem.getPageUrl('catalog', ['slug']) }}">
+            {% if obItem.icon %}
+            <span class="w-12 relative h-12">
+                <span class="advanced-list-icon h-6 w-6 transform scale-50" style="--advanced-list-icon-src: url({{ obItem.icon.path }})"></span>
+            </span>
+            {% endif %}
+            <span class="group-active:underline py-3">{{ obItem.name }}</span>
+        </a>
+    </li>
+    {% endfor %}
+</ul>

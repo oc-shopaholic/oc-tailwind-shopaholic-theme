@@ -1,40 +1,42 @@
-<form class="_required">
+<form id="sign-up" class="_required">
     {% partial 'form/input'
-        id = 'form-email'
-        labelText = 'form_user_email'|_
-        name = 'email'
-        required = 'required'
-        type = 'email'
+    id = 'form-email'
+    labelText = 'form_user_email'|_
+    name = 'email'
+    required = 'required'
+    type = 'email'
     %}
-    {# TODO: Add inline ajax validation for avaibility of the email #}
     {% partial 'form/input'
-        id = 'form-password'
-        labelText = 'form_user_password'|_
-        name = 'password'
-        required = 'required'
-        type = 'password'
-        wrapperClasses = 'mt-4'
+    id = 'form-password'
+    labelText = 'form_user_password'|_
+    name = 'password'
+    required = 'required'
+    type = 'password'
+    wrapperClasses = 'mt-4'
+    dataAtributes = 'autocomplete="new-password"'
     %}
     {# TODO: Add inline ajax validation for matching of the password fields values #}
     {% partial 'form/input'
-        id = 'form-password-confirm'
-        labelText = 'form_user_password_confirm'|_
-        name = 'password_confirmation'
-        required = 'required'
-        type = 'password'
-        wrapperClasses = 'mt-4'
+    id = 'form-password-confirm'
+    labelText = 'form_user_password_confirm'|_
+    name = 'password_confirmation'
+    required = 'required'
+    type = 'password'
+    wrapperClasses = 'mt-4'
+    dataAtributes = 'autocomplete="new-password"'
     %}
     {% set accountPrivacyTermsConditions = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~ this.theme.sign_up_terms_link|link ~'">'~('account_privacy_terms_conditions'|_)|raw ~'</a>' %}
     {% set accountPrivacyCookiePolicy = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~ this.theme.sign_up_policy_link|link ~'">'~('account_privacy_cookie_policy'|_)~'</a>' %}
     {% partial 'form/input-checkbox'
-        wrapperClasses = 'mt-4 md:mt-3'
-        id = 'remember_me'
-        name = 'remember_me'
-        labelText = 'account_rules_acceptance'|transRaw({account_privacy_terms_conditions: accountPrivacyTermsConditions, account_privacy_cookie_policy: accountPrivacyCookiePolicy}) | raw
+    wrapperClasses = 'mt-4 md:mt-3'
+    id = 'agreement'
+    name = 'agreement'
+    required = 'required'
+    labelText = 'account_rules_acceptance'|transRaw({account_privacy_terms_conditions: accountPrivacyTermsConditions, account_privacy_cookie_policy: accountPrivacyCookiePolicy}) | raw
     %}
     {% partial 'form/button'
-        text = 'account_sign_up'|_
-        type = 'submit'
-        wrapperClasses = '_button-sign-up w-full mt-8 md:mt-6'
+    text = 'account_sign_up'|_
+    type = 'submit'
+    wrapperClasses = '_button-sign-up w-full mt-8 md:mt-6'
     %}
 </form>

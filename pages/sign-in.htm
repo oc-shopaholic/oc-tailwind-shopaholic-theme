@@ -1,33 +1,74 @@
-title = "Sign In"
 url = "/sign-in"
 layout = "main"
+title = "Sign In"
 is_hidden = 0
 
 [Login]
-redirect_on = 1
-redirect_page = "account/account"
 mode = "ajax"
+flash_on = 1
+redirect_on = 1
+redirect_page = "account"
 ==
 <?php
 function onInit()
-    {
-        $this['path_page_js'] = mix('assets/dist/js/sign-in.js', 'themes/lovata-tailwind-shopaholic');
+{
+    $this['path_page_js'] = mix('assets/dist/js/sign-in.js', 'themes/lovata-tailwind-shopaholic');
 
-        $obUser = $this['obUser'];
-        $bHasPlugin = \System\Classes\PluginManager::instance()->hasPlugin('lovata.buddies')
-            && !\System\Classes\PluginManager::instance()->isDisabled('lovata.buddies');
+    $obUser = $this['obUser'];
+    $bHasUserPlugin = $this['bHasUserPlugin'];
 
-        if (!$bHasPlugin || !empty($obUser)) {
-            return $this->controller->run('404');
-        }
+    if (!$bHasUserPlugin) {
+        return $this->controller->run('404');
     }
+}
+
+function onStart() {
+    $obUser = $this['obUser'];
+    if (!empty($obUser)) {
+        return \Cms::redirect(\Cms::pageUrl('account'), [], 307);
+    }
+}
 ?>
 ==
 <div class="mt-7 mb-14 flex flex-col items-center">
     <h1 class="font-medium uppercase text-xl md:text-3xl mb-4">{{ 'account_signing_in'|_ }}</h1>
     <div class="max-w-xs">
-        {% partial 'account/sign-in-form' %}
-        {% set account_sign_up = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~( 'sign-up/sign-up'|page )~'">'~('account_sign_up'|_)~'</a>' %}
+        <form id="sign-in" class="_required">
+            {# TODO: To discuss validation message layout shift #}
+            {% partial 'form/input'
+                id = 'form-email'
+                labelText = 'form_user_email'|_
+                name = 'email'
+                required = 'required'
+                type = 'email'
+            %}
+            {# TODO: Add inline ajax validation for email existing #}
+            {% partial 'form/input'
+                id = 'form-password'
+                labelText = 'form_user_password'|_
+                name = 'password'
+                required = 'required'
+                type = 'password'
+                wrapperClasses = 'mt-4'
+                dataAtributes = 'autocomplete="current-password"'
+            %}
+            <div class="mt-4 text-end">
+                <a href="{{ 'password-restore'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base">{{ 'account_password_forgot'|_ }}</a>
+            </div>
+            {% partial 'form/input-checkbox'
+                wrapperClasses = 'mt-4 md:mt-3 flex items-center'
+                id = 'remember_me'
+                name = 'remember_me'
+                labelText = 'form_user_keep_signed'|_
+            %}
+            {% partial 'form/button'
+                text = 'account_sign_in'|_
+                type = 'submit'
+                wrapperClasses = '_button-sign-in w-full mt-8 md:mt-6'
+            %}
+            {# TODO: Add inline ajax validation #}
+        </form>
+        {% set account_sign_up = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~( 'sign-up'|page )~'">'~('account_sign_up'|_)~'</a>' %}
         <span class="block text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">{{ 'account_no_account_sign_up' | transRaw({account_sign_up: account_sign_up}) }}</span>
     </div>
 </div>

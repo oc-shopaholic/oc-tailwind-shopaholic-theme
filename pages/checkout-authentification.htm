@@ -16,11 +16,11 @@ function onInit()
     <span class="text-gray-900 text-lg md:text-xl uppercase md:normal-case font-medium">{{ 'account_checkout_guest_heading'|_ }}</span>
     {% partial 'form/button'
         text = 'account_checkout_guest'|_
-        url = 'checkout/checkout'|page
+        url = 'checkout'|page
         isGhost = true
         wrapperClasses = 'w-full md:w-auto mt-4'
     %}
-    {% set textCheckoutLinkSignIn = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline" href="'~( 'sign-up/sign-up'|page )~'">'~('account_create'|_)~'</a>' %}
+    {% set textCheckoutLinkSignIn = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline" href="'~( 'sign-up'|page )~'">'~('account_create'|_)~'</a>' %}
     <span class="inline-block mt-2 md:mt-4 text-gray-600">{{ 'text_checkout' | transRaw({text_checkout_link_sign_in: textCheckoutLinkSignIn}) }}</span>
     <h1 class="font-medium uppercase text-xl md:text-3xl mt-8 mb-4">{{ 'account_signing_in'|_ }}</h1>
     <div class="max-w-xs">
@@ -42,7 +42,7 @@ function onInit()
                 wrapperClasses = 'mt-4'
             %}
             <div class="mt-4 text-end">
-                <a href="{{ 'password-restore/password-restore'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">{{ 'account_password_forgot'|_ }}</a>
+                <a href="{{ 'password-restore'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">{{ 'account_password_forgot'|_ }}</a>
             </div>
             <div class="mt-4 md:mt-3">
                 <label>

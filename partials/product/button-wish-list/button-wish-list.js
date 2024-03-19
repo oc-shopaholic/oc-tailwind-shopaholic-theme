@@ -1,5 +1,6 @@
 import ShopaholicAddWishList from '@oc-shopaholic/shopaholic-wish-list/shopaholic-add-wish-list';
 import ShopaholicRemoveWishList from '@oc-shopaholic/shopaholic-wish-list/shopaholic-remove-wish-list';
+import {FlashMessage} from '/partials/message/flash-message';
 
 export default new class ButtonWishList {
   constructor() {
@@ -34,10 +35,8 @@ export default new class ButtonWishList {
 
         obThis.buttonNode.removeAttribute('disabled');
 
-        oc.flashMsg({
-          message: obThis.buttonNode.dataset.addSuccess,
-          type: 'success'
-        });
+        const obFlashMessage = new FlashMessage(window.messages.wishlist_wishlist_add_success, 'success');
+        obFlashMessage.show();
       };
 
       return obRequestData;
@@ -59,10 +58,8 @@ export default new class ButtonWishList {
 
         obThis.buttonNode.removeAttribute('disabled');
 
-        oc.flashMsg({
-          message: obThis.buttonNode.dataset.removeSuccess,
-          type: 'success'
-        });
+        const obFlashMessage = new FlashMessage(window.messages.wishlist_wishlist_remove_success, 'success');
+        obFlashMessage.show();
       };
 
       return obRequestData;

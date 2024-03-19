@@ -1,0 +1,99 @@
+<div class="md:w-174 m-x-auto overflow-hidden">
+    <div class="js-gallery-top swiper relative -mx-4 md:mx-0">
+        {% if bHasWishListPlugin %}
+            {% if obProduct.inWishList() %}
+                {# TODO: Add buttons a11y #}
+                <button class="_shopaholic-remove-wish-list-button absolute top-4 end-4 z-10 text-red-500 hover:text-red-400 active:text-red-500 w-11 md:w-12 h-11 md:h-12 bg-gray-400/40 hover:bg-gray-500/40 group focus:outline-none flex justify-center items-center rounded focus-visible:outline-blue focus-visible:text-red-500" type="button">
+                    <svg class="stroke-current fill-current" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.59834 2.26511C1.25011 2.61333 0.973884 3.02673 0.785425 3.48171C0.596967 3.93668 0.499969 4.42432 0.499969 4.91678C0.499969 5.40924 0.596967 5.89688 0.785425 6.35185C0.973884 6.80683 1.25011 7.22023 1.59834 7.56845L8 13.9701L14.4017 7.56845C15.1049 6.86518 15.5 5.91135 15.5 4.91678C15.5 3.92221 15.1049 2.96838 14.4017 2.26511C13.6984 1.56185 12.7446 1.16676 11.75 1.16676C10.7554 1.16676 9.8016 1.56185 9.09834 2.26511L8 3.36345L6.90167 2.26511C6.55345 1.91689 6.14005 1.64066 5.68508 1.4522C5.2301 1.26375 4.74246 1.16675 4.25 1.16675C3.75754 1.16675 3.2699 1.26375 2.81493 1.4522C2.35995 1.64066 1.94656 1.91689 1.59834 2.26511V2.26511Z" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            {% else %}
+                <button class="_shopaholic-add-wish-list-button absolute top-4 end-4 z-10 md:hidden text-white hover:text-red-400 active:text-red-500 w-11 md:w-12 h-11 md:h-12 bg-gray-400/40 hover:bg-gray-500/40 group focus:outline-none flex justify-center items-center rounded focus-visible:outline-blue focus-visible:text-red-500" type="button">
+                    <svg class="stroke-current group-hover:fill-current" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.59834 2.26511C1.25011 2.61333 0.973884 3.02673 0.785425 3.48171C0.596967 3.93668 0.499969 4.42432 0.499969 4.91678C0.499969 5.40924 0.596967 5.89688 0.785425 6.35185C0.973884 6.80683 1.25011 7.22023 1.59834 7.56845L8 13.9701L14.4017 7.56845C15.1049 6.86518 15.5 5.91135 15.5 4.91678C15.5 3.92221 15.1049 2.96838 14.4017 2.26511C13.6984 1.56185 12.7446 1.16676 11.75 1.16676C10.7554 1.16676 9.8016 1.56185 9.09834 2.26511L8 3.36345L6.90167 2.26511C6.55345 1.91689 6.14005 1.64066 5.68508 1.4522C5.2301 1.26375 4.74246 1.16675 4.25 1.16675C3.75754 1.16675 3.2699 1.26375 2.81493 1.4522C2.35995 1.64066 1.94656 1.91689 1.59834 2.26511V2.26511Z" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            {% endif %}
+        {% endif %}
+        {% partial 'product/product-labels'
+            obProduct = obProduct
+            wrapperClasses = 'top-4 start-4 md:-start-px md:top-7'
+            wrapperListClasses = 'top-4 start-4 md:-start-px md:top-7'
+            roundedClassesFirst = 'rounded-se rounded-ee'
+            roundedClassesNext = 'rounded'
+        %}
+        {% if arImages is not empty %}
+            <ul class="swiper-wrapper js-photo-swipe pswp-gallery pswp-gallery--single-column">
+                {% for obImage in arImages %}
+                    <li class="swiper-slide cursor-pointer">
+                        <a
+                            href="{{ obImage.getThumb(696, 524, {'quality': 80}) }}"
+                            role="button"
+                            data-pswp-width="1200"
+                            data-pswp-height="1000"
+                            target="_blank"
+                        >
+                            <picture class="swiper-slide-container w-90 md:w-174">
+                                <source srcset="{{ obImage.getThumb(696, 524, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
+                                <source srcset="{{ obImage.getThumb(696, 524, {'quality': 80}) }}" type="image/jpeg">
+                                <img
+                                    class="object-contain h-auto"
+                                    src="{{ obImage.preview_image.getThumb(696, 524, {'quality': 80}) }}"
+                                    alt="{{ obItem.description }}"
+                                    title="{{ obItem.title }}"
+                                    {% if loop.index > 1 %} loading="lazy" {% endif %}
+                                />
+                            </picture>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+        <span class="w-full h-full flex items-center justify-center">
+            <img
+                class="w-1/2 rounded object-cover"
+                src="{{ 'assets/images/no-photo.svg'|theme }}"
+                alt="{{ 'blog_image_no'|_ }}"
+                {{ loopIndex > showIndex ? 'loading="lazy"' }}
+            >
+        </span>
+
+        {% endif %}
+    </div>
+    {% if arImages is not empty %}
+        <div class="js-gallery-thumbs swiper mt-2">
+            <ul class="swiper-wrapper _swiper-container py-2 px-0.5 flex items-center">
+                {% for obImage in arImages %}
+                    <li class="swiper-slide" aria-label="{{ 'slider_item_number'|_({slider_item_number_current: loop.index, slider_item_number_total: arImages|length,}) }}">
+                        <a role="button" tabindex="0">
+                            <picture>
+                                <source srcset="{{ obImage.getThumb(92, 92, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
+                                <source srcset="{{ obImage.getThumb(92, 92, {'quality': 80}) }}" type="image/jpeg">
+                                <img
+                                    class="object-contain w-full md:h-full"
+                                    src="{{ obImage.preview_image.getThumb(92, 92, {'quality': 80}) }}"
+                                    alt="{{ obItem.description }}"
+                                    title="{{ obItem.title }}"
+                                    {% if loop.index > 5 %} loading="lazy" {% endif %}
+                                />
+                            </picture>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</div>
+<style>
+
+</style>
+
+
+{% put scripts %}
+    <script>
+        window.slider = {
+            'active': "{{ 'slider_item_active'|_ }}",
+        };
+    </script>
+{% endput %}

@@ -28,7 +28,7 @@ function onInit()
     {% partial 'index/carousel-main' arCarouselList = IndexPageContent.main_carousel %}
 {% endif %}
 
-{% if SiteSettings.latest_news_active %}
+{% if IndexPageContent.latest_news_active %}
     {% set arArticleList = ArticleList.make().sort('publish|desc').published().take(4) %}
     {% if arArticleList is not empty %}
         {% partial 'news/news-list-latest'

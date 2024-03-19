@@ -99,7 +99,7 @@
 
 {# TODO: Fix opening animation for details #}
 <template class="_filterTemplate">
-    <div class="pe-12 hidden md:block">
+    <div class="hidden md:block">
         <h2 class="text-gray-900 text-lg font-medium mb-3">{{'filter_filters'|_}}</h2>
         <details
             id="price-filter"
@@ -149,7 +149,7 @@
                 </div>
             </div>
         </details>
-        <div class="_filters-desktop">
+        <div class="_filters-desktop space-y-4">
             {% partial 'catalog/filter/filters-desktop-ajax' %}
         </div>
     </div>

@@ -46,6 +46,7 @@
 
     "shopaholic.theme.index_page.title": "Index page",
     "shopaholic.theme.index_page.title_update": "Update index page content",
+    "shopaholic.theme.index_page.latest_news_active": "Latest News block on the Index page",
 
     "shopaholic.theme.main_carousel.tab": "Main Carousel",
     "shopaholic.theme.main_carousel.image_comment": "Recommended resolution: 1920×640px. The SVG format is supported.",

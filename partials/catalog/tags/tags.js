@@ -15,7 +15,6 @@ class TagList {
     this.tagListNode = this.mainNode ? this.mainNode.querySelector('._tags-container') : null;
     this.propertyCount = 0;
     this.tagList = [];
-
     UrlGeneration.init();
   }
 
@@ -28,7 +27,8 @@ class TagList {
   prepareTagList() {
     this.propertyCount = 0;
     this.tagList = [];
-    for (const [key, value] of UrlGeneration.obSearchParams.entries()) {
+    const obSearchParams = UrlGeneration.obSearchParams.entries();
+    for (const [key, value] of obSearchParams) {
       let tagID = null;
       if (key === FILTER_TYPE_PRICE) {
         tagID = FILTER_TYPE_PRICE;
@@ -51,6 +51,10 @@ class TagList {
   }
 
   createTags () {
+    if (!this.tagListNode) {
+      return;
+    }
+
     this.tagListNode.innerHTML = '';
     if (this.tagList.length === 0) {
       this.mainNode.classList.add('hidden');
