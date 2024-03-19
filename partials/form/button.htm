@@ -1,0 +1,59 @@
+{#
+Params:
+- wrapperClasses
+- isGhost
+- buttonType
+- url
+- isBlank
+- type
+- body
+- text
+- dataAtribute
+- onClick
+- disabled
+#}
+
+{# TODO: Need fallback for focus-visible #}
+
+{% if isGhost %}
+    {% set defaultClass = 'rounded text-blue-800 border border-blue-800 border-solid py-3 px-8 text-lg md:text-base hover:bg-blue-700 hover:border-blue-700 hover:text-white focus:outline-none active:bg-blue-900 focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white focus-visible:bg-blue-800 focus-visible:text-white' %}
+{% else %}
+    {% set defaultClass = 'rounded bg-blue-800 text-white py-3 px-8 text-lg md:text-base hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus-visible:ring-1 focus-visible:ring-blue-800 focus-visible:ring-offset-1 focus-visible:ring-offset-white disabled:bg-gray-300 disabled:text-gray-600' %}
+{% endif %}
+
+{% if buttonType == 'link' %}
+    {% set defaultClass = 'whitespace-nowrap underline text-base' %}
+{% endif %}
+
+{% if buttonType == 'cancel' %}
+    {% set defaultClass = 'rounded w-full font-medium bg-gray-200 text-blue-800 px-2 py-3 text-lg lg:text-base hover:bg-blue-700 hover:border-blue-700 hover:text-white focus:outline-none active:bg-blue-900 focus-visible:ring focus-visible:ring-blue-800 focus-visible:ring-offset-4 focus-visible:ring-offset-white focus-visible:bg-blue-800 focus-visible:text-white disabled:bg-gray-300 disabled:text-gray-600' %}
+{% elseif buttonType == 'confirm' %}
+    {% set defaultClass = 'w-full rounded font-medium bg-red-700 text-white px-2 py-3 text-lg lg:text-base hover:bg-red-600 hover:border-red-600 hover:text-white focus:outline-none active:bg-red-800 focus-visible:ring focus-visible:ring-red-700 focus-visible:ring-offset-4 focus-visible:ring-offset-white focus-visible:bg-red-700 disabled:bg-gray-300 disabled:text-gray-600' %}
+{% elseif buttonType == 'link' %}
+    {% set defaultClass = 'flex flex-row-reverse items-center text-base my-4 underline text-blue-800 hover:text-blue-700 hover:no-underline focus-visible:no-underline	focus-visible:outline-2 focus-visible:outline-dashed focus-visible:outline-blue-800 active:no-underline active:text-blue-900' %}
+{% endif %}
+
+{% if url %}
+    <a href="{{ url }}"
+    {% if isBlank == true %}
+        target="_blank" rel="noopener noreferrer"
+    {% endif %}
+    class="{{ defaultClass }} inline-block {{ wrapperClasses }}">
+        {{body|raw}}
+        {{ text }}
+    </a>
+{% else %}
+    <button class="{{ defaultClass }} {{ wrapperClasses }}"
+        type="{{ type|default('button') }}"
+        {{ dataAtribute }}
+        {% if onClick %}
+            onclick="{{ onClick }}"
+        {% endif %}
+        {% if disabled %}
+            disabled
+        {% endif %}
+    >
+        {{ text }}
+        {{body|raw}}
+    </button>
+{% endif %}

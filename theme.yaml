@@ -6,7 +6,7 @@ authorCode: ''
 code: tailwind-shopaholic
 parent: ''
 database: '0'
-form: config/fields.yaml
+#form: config/fields.yaml
 require:
     - RainLab.Pages
     - RainLab.Translate

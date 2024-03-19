@@ -1,0 +1,57 @@
+{#
+Params:
+- id
+- name
+- options
+- selectedValue
+- keyForValue
+- keyForLabel
+- disabled
+- dataAtributes
+- wrapperClasses
+- inputClasses
+- labelText
+- placeholder
+- hideClearButton
+#}
+{% set id = id|default(name) %}
+{% set keyForValue = keyForValue|default('value') %}
+{% set keyForLabel = keyForLabel|default('label') %}
+
+<div class="relative {{ wrapperClasses }}">
+    {% if labelText %}
+        <label for="{{ id }}" class="block text-sm font-medium leading-6 text-gray-900">{{ labelText }}</label>
+    {% endif %}
+    <select
+        id="{{ id }}"
+        {% if name %}
+            name="{{ name }}"
+        {% endif %}
+        class="mt-2 block w-full rounded-md border-0 py-1.5 ps-3 pe-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6 {{ inputClasses }} js-clear-select"
+        {% if disabled == true %}
+            disabled="disabled"
+        {% endif %}
+        {{dataAtributes}}
+    >
+        {% if placeholder %}<option value="" disabled selected hidden>{{ placeholder }}</option>{% endif %}
+
+        {% for obOption in options %}
+            {% set optionValue = obOption[keyForValue] %}
+            <option
+                    value="{{ optionValue }}"
+                    {% if obOption['disabled'] == true %}
+                        disabled="disabled"
+                    {% endif %}
+                    {{ obOption['attributes']|raw }}
+                    {% if optionValue == selectedValue %}selected{% endif %}
+            >{{ obOption[keyForLabel] }}</option>
+        {% endfor %}
+    </select>
+    {% if hideClearButton == false %}
+        <button class="js-clear-options link absolute right-0.5 bottom-0.5 bg-white p-2 text-gray-600 hover:text-gray-900{% if selectedValue is  empty %} hidden{% endif %}">
+            <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3.5 h-3.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+        </button>
+    {% endif %}
+</div>

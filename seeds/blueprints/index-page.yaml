@@ -1,0 +1,103 @@
+uuid: 7159eee2-43ad-4938-99d7-4d3e88035e57
+handle: Site\IndexPage
+type: global
+name: Index page
+multisite: true
+
+customMessages:
+    titleUpdateForm: 'shopaholic.theme.index_page.title_update'
+
+navigation:
+    label: 'shopaholic.theme.index_page.title'
+    parent: Site\SiteContent
+    icon: icon-file-text
+    order: 200
+
+fields:
+    main_carousel_active:
+        label: 'lovata.toolbox::lang.field.active'
+        type: switch
+        span: full
+        tab: 'shopaholic.theme.main_carousel.tab'
+    main_carousel:
+        type: repeater
+        span: full
+        tab: 'shopaholic.theme.main_carousel.tab'
+        style: collapsed
+        trigger:
+            action: show
+            field: main_carousel_active
+            condition: checked
+        form:
+            fields:
+                alt:
+                    label: 'shopaholic.theme.field.image_alt'
+                    type: text
+                    span: left
+                    comment: 'shopaholic.theme.field.image_alt_comment'
+                image:
+                    label: 'lovata.toolbox::lang.field.image'
+                    type: mediafinder
+                    span: right
+                    mode: image
+                    comment: 'shopaholic.theme.main_carousel.image_comment'
+                title:
+                    label: 'shopaholic.theme.field.image_title'
+                    type: text
+                    span: left
+                    comment: 'shopaholic.theme.field.image_title_comment'
+                url:
+                    label: 'lovata.toolbox::lang.field.slug'
+                    type: text
+                    span: left
+    latest_news_active:
+        label: 'shopaholic.theme.index_page.latest_news_active'
+        type: switch
+        defaul: on
+        span: full
+        tab: 'shopaholic.theme.tab.functionality'
+    page_seo_block_active:
+        label: 'lovata.toolbox::lang.field.active'
+        type: switch
+        span: full
+        tab: 'shopaholic.theme.index_page_seo_block.tab'
+    page_seo_block_content:
+        label: 'shopaholic.theme.field.content'
+        type: richeditor
+        span: left
+        tab: 'shopaholic.theme.index_page_seo_block.tab'
+        trigger:
+            action: show
+            field: page_seo_block_active
+            condition: checked
+    page_seo_block_image:
+        label: 'lovata.toolbox::lang.field.image'
+        comment: 'shopaholic.theme.index_page_seo_block.image_comment'
+        type: mediafinder
+        span: right
+        mode: image
+        tab: 'shopaholic.theme.index_page_seo_block.tab'
+        trigger:
+            action: show
+            field: page_seo_block_active
+            condition: checked
+    page_seo_block_image_alt:
+        label: 'shopaholic.theme.field.image_alt'
+        type: text
+        span: right
+        tab: 'shopaholic.theme.index_page_seo_block.tab'
+        comment: 'shopaholic.theme.field.image_alt_comment'
+        trigger:
+            action: show
+            field: page_seo_block_active
+            condition: checked
+    page_seo_block_image_title:
+        label: 'shopaholic.theme.field.image_title'
+        comment: 'shopaholic.theme.field.image_title_comment'
+        type: text
+        span: right
+        tab: 'shopaholic.theme.index_page_seo_block.tab'
+        trigger:
+            action: show
+            field: page_seo_block_active
+            condition: checked

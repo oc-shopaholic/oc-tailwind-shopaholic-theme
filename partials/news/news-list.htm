@@ -1,0 +1,24 @@
+{#
+Params:
+- wrapperClasses
+- arArticleList
+#}
+
+<div class="mt-10 mb-10 {{ wrapperClasses }}">
+    {% if arArticleList is not empty %}
+        <ul class="grid grid-cols-2 md:grid-cols-4 gap-x-2 gap-y-4 md:gap-x-4 md:gap-y-12">
+            {% for obArticle in arArticleList %}
+                <li class="w-auto">
+                    {% partial 'news/news-card'
+                        obArticle = obArticle
+                        cardHeadingLevel = 2
+                        loopIndex = loop.index
+                        showIndex = 8
+                    %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <span class="block text-gray-400 text-center mb-4 md:mb-10">{{ 'blog_posts_not_added'|_ }}</span>
+    {% endif %}
+</div>

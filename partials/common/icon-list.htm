@@ -1,0 +1,32 @@
+{#
+Params:
+- sectionHeader
+- wrapperClasses
+- listClasses
+- itemClasses
+- arItemList
+- notFoundMessage
+#}
+
+<div class="mt-6 {{ wrapperClasses }}">
+    <span class="sr-only">{{ sectionHeader }}</span>
+    {% if arItemList is not empty %}
+        <ul class="flex flex-wrap gap-4 {{ listClasses }}">
+            {% for obItem in arItemList %}
+                <li>
+                    {% if obItem.url is not empty %}
+                        <a class="bg-gray-200 block rounded hover:opacity-75 focus-visible:outline-blue {{ itemClasses }}" href="{{ obItem.url }}" target="_blank">
+                            <img src="{{ obItem.image|media }}" alt="{{ obItem.alt }}" title="{{ obItem.title }}" loading="lazy">
+                        </a>
+                    {% else %}
+                        <span class="bg-gray-200 block rounded {{ itemClasses }}">
+                            <img src="{{ obItem.image|media }}" alt="{{ obItem.alt }}" title="{{ obItem.title }}" loading="lazy">
+                        </span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <span class="block text-gray-400 text-center mb-4 md:mb-10">{{ notFoundMessage }}</span>
+    {% endif %}
+</div>

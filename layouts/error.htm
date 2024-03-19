@@ -2,9 +2,16 @@
 useContent = 1
 default = 0
 
+[Cart]
+
 [SeoToolbox]
 
 [sitePicker]
+
+[UserData]
+
+[global SiteContent]
+handle = Site\SiteContent
 ==
 <?php
 function onInit()
@@ -12,22 +19,41 @@ function onInit()
     $this['path_css'] = mix('assets/dist/css/app.css', 'themes/lovata-tailwind-shopaholic');
     $this['path_js'] = mix('assets/dist/js/app.js', 'themes/lovata-tailwind-shopaholic');
     $this['path_manifest_js'] = mix('assets/dist/js/manifest.js', 'themes/lovata-tailwind-shopaholic');
+
+    $bHasUserPlugin = \System\Classes\PluginManager::instance()->hasPlugin('lovata.buddies')
+        && !\System\Classes\PluginManager::instance()->isDisabled('Lovata.Buddies');
+    $bHasWishListPlugin = \System\Classes\PluginManager::instance()->hasPlugin('lovata.wishlistshopaholic')
+        && !\System\Classes\PluginManager::instance()->isDisabled('Lovata.WishListShopaholic');
+
+    $this['bHasUserPlugin'] = $bHasUserPlugin && !empty($this->UserData);
+    $this['bHasWishListPlugin'] = $bHasWishListPlugin;
+
+    if ($bHasUserPlugin && !empty($this->UserData)) {
+        $this['obUser'] = $this->UserData->get();
+    }
 }
+
 function onStart()
 {
-    $this['sTopInfoBlockHash'] = $this->theme->top_info_block_active && !empty($this->theme->top_info_block_content) ? md5($this->theme->top_info_block_content) : '';
+    $this['sTopInfoBlockHash'] = $this->SiteContent->top_info_block_active && !empty($this->SiteContent->top_info_block_content) ? md5($this->SiteContent->top_info_block_content) : '';
 }
 ?>
 ==
-
-{##}
-
 <!DOCTYPE html>
 <html dir="auto" lang="{{ activeLocale ? activeLocale : 'en' }}">
     <head>
-        {% partial 'head/head' %}
+        {{ SeoToolbox.getHeadBegin()|raw }}
+        {% partial 'main/head' %}
+        {% placeholder seo_tags default %}
+            {% component 'SeoToolbox' %}
+        {% endplaceholder %}
+        {{ SeoToolbox.getHeadEnd()|raw }}
     </head>
     <body class="bg-gray-50" itemscope itemtype="http://schema.org/WebPage">
+        {{ SeoToolbox.getBodyBegin()|raw }}
         {% page %}
+        {% partial 'message/flash-message' %}
+        {% partial 'main/scripts' %}
+        {{ SeoToolbox.getBodyEnd()|raw }}
     </body>
 </html>

@@ -1,0 +1,78 @@
+uuid: 7159eee2-43ad-4938-99d7-4d3e88035e58
+handle: Site\SiteSettings
+type: global
+name: Site settings
+
+customMessages:
+    titleUpdateForm: 'shopaholic.theme.site_settings.title_update'
+
+navigation:
+    label: 'shopaholic.theme.site_settings.title'
+    parent: Site\SiteContent
+    icon: octo-icon-cog
+    order: 1000
+
+fields:
+    shopaholic_bar_active:
+        label: 'shopaholic.theme.site_settings.field.shopaholic_bar_section'
+        type: switch
+        defaul: on
+        span: full
+        tab: 'shopaholic.theme.tab.functionality'
+
+    has_wish_list:
+        label: 'shopaholic.theme.site_settings.field.plugin_wish_list_for_shopaholic'
+        type: switch
+        span: left
+        required: 0
+        tab: 'shopaholic.theme.site_settings.tab.plugins'
+        comment: 'shopaholic.theme.site_settings.field.plugin_wish_list_for_shopaholic_comment'
+        commentHtml: true
+    has_labels:
+        label: 'shopaholic.theme.site_settings.field.plugin_labels_shopaholic'
+        type: switch
+        span: left
+        required: 0
+        tab: 'shopaholic.theme.site_settings.tab.plugins'
+        comment: 'shopaholic.theme.site_settings.field.plugin_labels_shopaholic_comment'
+        commentHtml: true
+    has_popularity:
+        label: 'shopaholic.theme.site_settings.field.plugin_popularity_shopaholic'
+        type: switch
+        span: left
+        required: 0
+        tab: 'shopaholic.theme.site_settings.tab.plugins'
+        comment: 'shopaholic.theme.site_settings.field.plugin_popularity_shopaholic_comment'
+        commentHtml: true
+    has_viewed_products:
+        label: 'shopaholic.theme.site_settings.field.plugin_viewed_products_shopaholic'
+        type: switch
+        span: left
+        required: 0
+        tab: 'shopaholic.theme.site_settings.tab.plugins'
+        comment: 'shopaholic.theme.site_settings.field.plugin_viewed_products_shopaholic_comment'
+        commentHtml: true
+    has_related_products:
+        label: 'shopaholic.theme.site_settings.field.plugin_related_products_shopaholic'
+        type: switch
+        span: left
+        required: 0
+        tab: 'shopaholic.theme.site_settings.tab.plugins'
+        comment: 'shopaholic.theme.site_settings.field.plugin_related_products_shopaholic_comment'
+        commentHtml: true
+    has_buddies:
+        label: 'shopaholic.theme.site_settings.field.plugin_buddies'
+        type: switch
+        span: left
+        required: 0
+        tab: 'shopaholic.theme.site_settings.tab.plugins'
+        comment: 'shopaholic.theme.site_settings.field.plugin_buddies_comment'
+        commentHtml: true
+    has_faq:
+        label: 'shopaholic.theme.site_settings.field.plugin_faq'
+        type: switch
+        span: left
+        required: 0
+        tab: 'shopaholic.theme.site_settings.tab.plugins'
+        comment: 'shopaholic.theme.site_settings.field.plugin_faq_comment'
+        commentHtml: true

@@ -1,0 +1,23 @@
+{#
+Params:
+- errorCode
+- errorMessage
+- hasButton
+- buttonClasses
+- buttonText
+- onClick
+- wrapperClasses
+#}
+
+<div class="flex flex-col items-center {{ wrapperClasses }}">
+    <span class="font-black text-error text-gray-200">{{ errorCode }}</span>
+    <span class="text-3xl mt-8 text-gray-400">{{ 'error_page_apology'|_ }}</span>
+    <p class="text-base md:text-lg mt-2 text-gray-400">{{ errorMessage }}</p>
+    {% if hasButton %}
+        {% partial 'form/button'
+            text = buttonText
+            wrapperClasses = buttonClasses
+            onClick = onClick
+        %}
+    {% endif %}
+</div>

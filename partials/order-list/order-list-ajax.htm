@@ -32,7 +32,7 @@
         </div>
         <div class="py-3 text-base border-t border-gray-200 lg:border-t-0 lg:border-none lg:border-0 lg:py-2 lg:px-3 lg:col-span-2">
             {% partial 'toggle/toggle'
-                sPartialClasses = 'py-1 lg:w-max'
+                wrapperClasses = 'py-1 lg:w-max'
                 sPartialId = obOrder.order_number
                 body
             %}
@@ -99,7 +99,7 @@
                                 </div>
                                 <div class="flex flex-col space-y-1">
                                     {% if obProduct.active %}
-                                        <a href="{{ obProduct.getPageUrl('product-item/product-item') }}" class="text-gray-900 text-sm font-bold lg:text-base">{{ obProduct.name }}</a>
+                                        <a href="{{ obProduct.getPageUrl('catalog') }}" class="text-gray-900 text-sm font-bold lg:text-base">{{ obProduct.name }}</a>
                                     {% else %}
                                         <span class="text-gray-900 text-sm lg:text-base">{{ obProduct.name }}</span>
                                     {% endif %}

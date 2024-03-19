@@ -374,11 +374,11 @@ tabs:
             span: full
             tab: 'theme.lovata-tailwind-shopaholic::lang.tab.functionality'
         ### Plugins
-        plugin_check:
-            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.plugins'
-            span: left
-            type: partial
-            path: ~/themes/lovata-tailwind-shopaholic/config/_plugin_check.htm
+#        plugin_check:
+#            tab: 'theme.lovata-tailwind-shopaholic::lang.tab.plugins'
+#            span: left
+#            type: partial
+#            path: ~/themes/lovata-tailwind-shopaholic/config/_plugin_check.htm
         has_wish_list:
             label: 'theme.lovata-tailwind-shopaholic::lang.field.plugin_wish_list_for_shopaholic'
             type: switch

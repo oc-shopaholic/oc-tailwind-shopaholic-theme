@@ -1,10 +1,7 @@
-import request from 'oc-request';
-
-export default new class TopInfoBlock {
+class TopInfoBlock {
   constructor() {
     this.sTopInfoBlockWrapperClass = '_top-info-block';
     this.sTopInfoBlockButtonClosedClass = '_top-info-block-button-close';
-    this.sHiddenClass = 'hidden';
 
     this.sHashKey = 'top_info_block_hash';
     this.sActiveKey = 'top_info_block_active';
@@ -12,9 +9,6 @@ export default new class TopInfoBlock {
     this.bActive = false;
     this.sNewHash = '';
     this.sOldHash = '';
-
-    this.initData();
-    this.show();
   }
 
   /**
@@ -22,29 +16,39 @@ export default new class TopInfoBlock {
    */
   initData() {
     this.bActive = localStorage.getItem(this.sActiveKey);
-    if (this.bActive === 'true') {
-      this.bActive = true;
-    } else {
-      this.bActive = false;
-    }
+    this.bActive = this.bActive === 'true';
 
-    this.sNewHash = document.getElementsByClassName(this.sTopInfoBlockWrapperClass)[0].dataset.hash;
-    if (this.sNewHash === undefined) {
-      this.sNewHash = '';
-    }
+    const infoBlockNode = document.querySelector(`.${this.sTopInfoBlockWrapperClass}`);
+    if (infoBlockNode) {
+      this.sNewHash = infoBlockNode.dataset.hash;
+      if (this.sNewHash === undefined) {
+        this.sNewHash = '';
+      }
 
-    this.sOldHash = localStorage.getItem(this.sHashKey);
+      this.sOldHash = localStorage.getItem(this.sHashKey);
+    }
   }
 
   /**
    * @description Hide block.
    */
   hide() {
-    document.getElementsByClassName(this.sTopInfoBlockButtonClosedClass)[0].addEventListener('click', () => {
-      document.getElementsByClassName(this.sTopInfoBlockWrapperClass)[0].classList.add(this.sHiddenClass);
+    const closeButtonNode = document.querySelector(`.${this.sTopInfoBlockButtonClosedClass}`);
+    if (!closeButtonNode) {
+      return;
+    }
 
-      this.updateLocalStorage(false, this.sNewHash);
-    });
+    const obThis = this;
+    closeButtonNode.addEventListener('click', () => {
+      const infoBlockNode = document.querySelector(`.${obThis.sTopInfoBlockWrapperClass}`);
+      if (!infoBlockNode) {
+        return;
+      }
+
+      infoBlockNode.classList.add('hidden');
+
+      obThis.updateLocalStorage(false, this.sNewHash);
+    })
   }
 
   /**
@@ -55,13 +59,19 @@ export default new class TopInfoBlock {
       return;
     }
 
-    const self = this;
+    const obThis = this;
 
-    request.sendData('onInit', {
+    oc.ajax('onInit', {
       update: {'top-info-block/top-info-block-ajax': `.${this.sTopInfoBlockWrapperClass}`},
       complete: function () {
-        self.hide();
-        document.getElementsByClassName(self.sTopInfoBlockWrapperClass)[0].classList.remove(self.sHiddenClass);
+        obThis.hide();
+
+        const infoBlockNode = document.querySelector(`.${obThis.sTopInfoBlockWrapperClass}`);
+        if (!infoBlockNode) {
+          return;
+        }
+
+        infoBlockNode.classList.remove('hidden');
       },
     });
   }
@@ -93,4 +103,10 @@ export default new class TopInfoBlock {
     localStorage.setItem(this.sActiveKey, bActive);
     localStorage.setItem(this.sHashKey, sHash);
   }
-}();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const obTopInfoBlock = new TopInfoBlock();
+  obTopInfoBlock.initData();
+  obTopInfoBlock.show();
+});

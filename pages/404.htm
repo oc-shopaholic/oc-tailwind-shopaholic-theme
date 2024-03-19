@@ -1,0 +1,14 @@
+title = "404 Not Found"
+url = "/404"
+layout = "main"
+is_hidden = 0
+==
+{% partial 'message/error-message'
+    wrapperClasses = 'mt-28 md:mt-20 mb-8 md:mb-12'
+    errorCode = '404'
+    errorMessage = 'error_page_404_description'|_
+    hasButton = true
+    buttonText = 'error_page_go_back'|_
+    buttonClasses = 'mt-36 md:mt-10 w-full sm:w-auto'
+    onClick = 'history.go(-1)'
+%}

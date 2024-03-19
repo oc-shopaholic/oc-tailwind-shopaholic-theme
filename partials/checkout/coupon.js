@@ -1,5 +1,5 @@
-import ShopaholicCouponAdd from "@lovata/shopaholic-coupon/shopaholic-coupon-add";
-import ShopaholicCouponRemove from '@lovata/shopaholic-coupon/shopaholic-coupon-remove';
+import ShopaholicCouponAdd from "@oc-shopaholic/shopaholic-coupon/shopaholic-coupon-add";
+import ShopaholicCouponRemove from '@oc-shopaholic/shopaholic-coupon/shopaholic-coupon-remove';
 
 export default new class Coupon {
   constructor() {

@@ -1,0 +1,47 @@
+{#
+Params:
+- id
+- name
+- value
+- required
+- disabled
+- checked
+- dataAtributes
+- wrapperClasses
+- inputClasses
+- labelClasses
+- dataLabel
+- title
+- text
+- body
+#}
+{% set id = id|default(name) %}
+<div class="{{ wrapperClasses }}">
+    <input
+        class="w-4 h-4 text-blue-800 border-gray-600 me-2.5 focus:outline-none focus-visible:border-blue-800 {{inputClasses}}"
+        type="radio"
+        {% if name %}
+            name="{{ name }}"
+        {% endif %}
+        {% if id %}
+            id="{{ id }}"
+        {% endif %}
+        {% if value %}
+            value="{{ value }}"
+        {% endif %}
+        {{ required }}
+        {% if checked %}
+            checked
+        {% endif %}
+        {% if disabled == true %}
+            disabled="disabled"
+        {% endif %}
+        {{dataAtributes}}
+    >
+    <label
+        for="{{ id }}"
+        class="text-sm md:text-base text-gray-600 cursor-pointer {{ labelClasses }}"
+        {{dataLabel}}
+        title="{{title}}"
+    >{{ text }}{{body|raw}}</label>
+</div>

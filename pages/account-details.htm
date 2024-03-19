@@ -1,0 +1,104 @@
+title = "Account Details"
+url = "/account/details"
+layout = "main"
+is_hidden = 0
+
+[UserPage]
+slug = "{{ :slug }}"
+slug_required = 0
+mode = "ajax"
+flash_on = 0
+redirect_on = 0
+redirect_page = "account"
+login_page = "sign-in"
+==
+<?php
+function onInit()
+{
+    $bHasPlugin = \System\Classes\PluginManager::instance()->hasPlugin('lovata.buddies')
+        && !\System\Classes\PluginManager::instance()->isDisabled('Lovata.Buddies');
+
+    if (!$bHasPlugin) {
+        return $this->controller->run('404');
+    }
+}
+?>
+==
+{% set obUser = UserData.get() %}
+{% set arBreadcrumbs = [
+    {'name': 'account_my_account'|_, 'url': 'account'|page},
+    {'name': 'account_personal_data'|_, 'url': null},
+] %}
+
+{% partial 'common/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
+<h1 class="font-medium uppercase text-xl md:text-3xl mb-4">{{'account_personal_data'|_}}</h1>
+<div class="sm:max-w-xs mt-7 mb-8 md:mb-16">
+    <span class="text-gray-600 text-sm md:text-base mb-4 inline-block">*{{'form_required_fields'|_}}</span>
+    <form class="_required">
+        {% partial 'form/input'
+            labelText = 'form_user_name'|_
+            type = 'text'
+            id = 'name'
+            name = 'name'
+            value = obUser.name
+            required = 'required'
+        %}
+        {# TODO: Add inline ajax validation for name existing #}
+        {% partial 'form/input'
+            labelText = 'form_user_email'|_
+            type = 'email'
+            id = 'email'
+            name = 'email'
+            value = obUser.email
+            required = 'required'
+            wrapperClasses = 'mt-4'
+        %}
+        {# TODO: Add inline ajax validation for email existing #}
+        {% partial 'form/input'
+            labelText = 'form_user_phone'|_
+            type = 'text'
+            id = 'phone'
+            name = 'phone'
+            value = obUser.phone
+            wrapperClasses = 'mt-4'
+        %}
+        {# TODO: Add inline ajax validation for Phone number format #}
+        {% partial 'form/input'
+            labelText = 'form_user_country'|_
+            type = 'text'
+            id = 'country'
+            name = 'country'
+            value = obUser.address.country
+            wrapperClasses = 'mt-4'
+        %}
+        {% partial 'form/input'
+            labelText = 'form_user_city'|_
+            type = 'text'
+            id = 'city'
+            name = 'city'
+            value = obUser.address.city
+            wrapperClasses = 'mt-4'
+        %}
+        {% partial 'form/input'
+            labelText = 'form_user_zip_code'|_
+            type = 'text'
+            id = 'zip'
+            name = 'zip'
+            value = obUser.address.zip
+            wrapperClasses = 'mt-4'
+        %}
+        {% partial 'form/input'
+            labelText = 'form_user_address_postal'|_
+            type = 'text'
+            id = 'address'
+            name = 'address'
+            value = obUser.address.address
+            wrapperClasses = 'mt-4'
+        %}
+        {% partial 'form/button'
+            text = 'form_save'|_
+            type = 'submit'
+            wrapperClasses = 'w-full md:w-auto mt-8'
+        %}
+    </form>
+</div>

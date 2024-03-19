@@ -17,7 +17,7 @@
             {% set checkboxStyle = 'border-transparent checked:bg-75 checked:bg-check checked:border-0 disabled:opacity-30' %}
         {% endif %}
 
-        <li class="w-max flex flex-col items-center mb-4 me-2 {{sPartialClasses}}">
+        <li class="w-max flex flex-col items-center mb-4 me-2 {{wrapperClasses}}">
             <input
                 class="_input-checkbox-color rounded w-9 h-9 me-0 focus:outline-none focus-visible:border-blue-800 {{checkboxStyle}}"
                 type="{{sType|default('checkbox')}}"

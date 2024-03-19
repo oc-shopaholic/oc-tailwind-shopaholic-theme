@@ -1,0 +1,200 @@
+url = "/catalog/:category*/:slug?"
+layout = "main"
+title = "Catalog"
+
+[CategoryPage MainCategoryPage]
+slug = "{{ :category }}"
+slug_required = 1
+smart_url_check = 1
+has_wildcard = 1
+skip_error = 0
+
+[CategoryPage]
+slug = "{{ :slug }}"
+slug_required = 0
+smart_url_check = 1
+has_wildcard = 0
+skip_error = 1
+
+[ProductPage]
+slug = "{{ :slug }}"
+slug_required = 0
+smart_url_check = 1
+skip_error = 1
+
+[Pagination]
+count_per_page = 15
+pagination_limit = 5
+active_class = "pagination__link_current"
+button_list = "first,first-more,main,last-more,last"
+first_button_name = "First"
+first_button_limit = 3
+first_button_number = 1
+first-more_button_name = "..."
+first-more_button_limit = 4
+prev_button_name = "Prev"
+prev_button_limit = 1
+prev-more_button_name = "..."
+prev-more_button_limit = 1
+next-more_button_name = "..."
+next-more_button_limit = 1
+next_button_name = "Next"
+next_button_limit = 1
+last-more_button_name = "..."
+last-more_button_limit = 4
+last_button_name = "Last"
+last_button_limit = 3
+last_button_number = 1
+
+[ProductList]
+sorting = "popularity|desc"
+
+[CategoryList]
+
+[global ProductPageContent]
+handle = "Site\ProductPage"
+==
+<?php
+function onInit() {
+    /** @var \Lovata\Shopaholic\Classes\Item\ProductItem $obProductItem */
+    /** @var \Lovata\Shopaholic\Classes\Item\CategoryItem $obActiveCategoryItem */
+    /** @var \Lovata\Shopaholic\Classes\Item\CategoryItem $obMainCategoryItem */
+    /** @var \Lovata\Shopaholic\Classes\Collection\ProductCollection $obProductList */
+    /** @var \Lovata\Shopaholic\Classes\Collection\CategoryCollection $obCategoryList */
+    $obProductItem = $this->ProductPage->get();
+    $obActiveCategoryItem = $this->CategoryPage->get();
+    $obMainCategoryItem = $this->MainCategoryPage->get();
+
+    if (!empty($this->param('slug')) && (empty($obProductItem)) && empty($obActiveCategoryItem)) {
+        return $this->ProductPage->getErrorResponse();
+    }
+
+    $bHasFilterPlugin = \System\Classes\PluginManager::instance()->hasPlugin('lovata.filtershopaholic')
+        && !\System\Classes\PluginManager::instance()->isDisabled('Lovata.FilterShopaholic');
+
+    if(!empty($obProductItem)) {
+        //Product item data
+        $this['obProduct'] = $obProductItem;
+
+        $this['path_page_js'] = mix('assets/dist/js/product-item.js', 'themes/lovata-tailwind-shopaholic');
+    } else {
+        // Set main category as active category
+        if (!empty($obMainCategoryItem) && empty($obActiveCategoryItem)) {
+            $obActiveCategoryItem = $obMainCategoryItem;
+        }
+
+        $sActiveSorting = $this->ProductList->getSorting();
+        $iPage = $this->Pagination->getPageFromRequest();
+
+        //Get product list
+        $obProductList = $this->ProductList->make()->active()->sort($sActiveSorting);
+
+        //Get category product list
+        if (!empty($obActiveCategoryItem)) {
+            $obProductList = $obProductList->category($obActiveCategoryItem->id, true);
+        }
+
+        //Get filters
+        if ($bHasFilterPlugin) {
+            //Get price filter
+            $arPriceFilterValue = explode('|', input('price'));
+            $fMinPriceFilterValue = Arr::get($arPriceFilterValue, 0);
+            $fMaxPriceFilterValue = Arr::get($arPriceFilterValue, 1);
+
+            $obProductPropertyList = $obActiveCategoryItem->product_filter_property;
+            $obOfferPropertyList = $obActiveCategoryItem->offer_filter_property;
+
+            //Get filter by properties
+            $arFilterValue = (array) input('property');
+            if (!empty($arFilterValue)) {
+                foreach($arFilterValue as $sKey => $sValue) {
+                    $arValueList = explode('|', $sValue);
+                    $arFilterValue[$sKey] = count($arValueList) === 1 ? array_shift($arValueList) : $arValueList;
+                }
+            }
+
+            $obProductList = $obProductList->copy()
+                ->filterByProperty($arFilterValue, $obProductPropertyList)
+                ->filterByProperty($arFilterValue, $obOfferPropertyList)
+                ->filterByPrice($fMinPriceFilterValue, $fMaxPriceFilterValue);
+
+            $bSaleFilter = (bool) input('sale');
+
+            if ($bSaleFilter) {
+                $obProductList->filterByDiscount();
+            }
+
+            $this['fMinPriceFilterValue'] = $fMinPriceFilterValue;
+            $this['fMaxPriceFilterValue'] = $fMaxPriceFilterValue;
+            $this['bSaleFilter'] = $bSaleFilter;
+
+            $this['arFilterValue'] = $arFilterValue;
+            $this['obProductPropertyList'] = $obProductPropertyList;
+            $this['obOfferPropertyList'] = $obOfferPropertyList;
+        }
+
+        $arProductList = $obProductList->page($iPage, $this->Pagination->getCountPerPage());
+        $iMaxPage = $this->Pagination->getMaxPage($obProductList->count());
+        $iCount = $obProductList->count();
+        $this['sActiveSorting'] = $sActiveSorting;
+        $this['iPage'] = $iPage;
+        $this['iCount'] = $iCount;
+        $this['iMaxPage'] = $iMaxPage;
+
+        $this['arProductList'] = $arProductList;
+        $this['obProductList'] = $obProductList;
+
+        $this['obActiveCategory'] = $obActiveCategoryItem;
+        $this['obCategoryList'] = $this->CategoryList->make()->active();
+
+        $this['path_page_js'] = mix('assets/dist/js/catalog.js', 'themes/lovata-tailwind-shopaholic');
+    }
+
+    //Get breadcrumbs
+    $arBreadcrumbs = [];
+    if (!empty($obProductItem)) {
+        $arBreadcrumbs[] = [
+            'name'   => $obProductItem->name,
+            'url'    => $obProductItem->getPageUrl('catalog'),
+            'active' => true,
+        ];
+    }
+
+    $obCurrentCategory = !empty($obProductItem) ? $obProductItem->category : $obActiveCategoryItem;
+
+    while (!empty($obCurrentCategory) && $obCurrentCategory->isNotEmpty()) {
+        $arBreadcrumbs[] = [
+            'name'   => $obCurrentCategory->name,
+            'url'    => $obCurrentCategory->getPageUrl('catalog', ['slug']),
+            'active' => empty($obProductItem) && $obCurrentCategory->id == $obActiveCategoryItem->id,
+        ];
+
+        $obCurrentCategory = $obCurrentCategory->parent;
+    }
+
+    $this['arBreadcrumbs'] = array_reverse($arBreadcrumbs);
+    $this['bHasFilterPlugin'] = $bHasFilterPlugin;
+}
+
+function onStart()
+{
+}
+?>
+==
+{% set arBreadcrumbs = [
+    {'name': 'breadcrumbs_catalog'|_, 'url': 'category-list'|page}
+]|merge(arBreadcrumbs) %}
+
+{% put seo_tags %}
+    {% component 'SeoToolbox' model=obSeoModel params=arSEOParams %}
+{% endput %}
+
+{% partial 'common/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
+
+{# TODO: Finish stylization of the select box. #}
+
+{% if obProduct.isNotEmpty() %}
+    {% partial 'product/product-page' %}
+{% else %}
+    {% partial 'catalog/catalog-page' %}
+{% endif %}

@@ -159,7 +159,6 @@ purchase_coupon_apply: 'Применить купон'
 purchase_coupon_code: 'Код купона'
 purchase_coupon_have: 'Есть купон?'
 purchase_coupon_remove: 'Удалить купон'
-purchase_currency: '€'
 purchase_customer_data: 'Контактные данные'
 purchase_delivery_info: 'Способ In Store Pickup, иногда называемый BOPIS (Buy Online, Pickup In Store), дает покупателям возможность забрать свой заказ в физическом магазине вместо того, чтобы отправлять его по адресу. Этот способ не требует оплаты.' #TODO: Move to theme settings
 purchase_delivery_method_choose: 'Выберите адрес доставки'

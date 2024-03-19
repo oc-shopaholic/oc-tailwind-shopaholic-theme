@@ -1,0 +1,44 @@
+{#
+Params:
+- arProductList
+- type
+- iTake
+- iPage
+- iProductID
+- showButton
+#}
+
+{% if arProductList is empty %}
+    {% set type = type|default(input('type')) %}
+    {% if type == 'popularity' %}
+        {% set obProductList = ProductList.make().active().sort('popularity|desc') %}
+    {% elseif type == 'new' %}
+        {% set obProductList = ProductList.make().active().sort('new') %}
+    {% elseif type == 'viewed_products' %}
+        {% set obProductList = ProductList.make().active().viewed() %}
+    {% elseif type == 'related_products' %}
+        {% set iProductID = input('product_id') %}
+        {% set obProduct = ProductData.get(iProductID) %}
+        {% set obProductList = obProduct.related().active() %}
+    {% endif %}
+
+    {% set iPage = iPage|default(input('page')|default(1)) %}
+    {% set iPage = iPage >= 1 ? iPage : 1 %}
+
+    {% set iTake = iTake|default(input('take')) %}
+    {% set iTake = iTake >= 1 ? iTake : 1 %}
+
+    {% set iTotalCount = obProductList.count() %}
+    {% set showButton = iTake * iPage < iTotalCount %}
+{% endif %}
+
+{% set buttonName = buttonName|default(input('button_name')) %}
+
+{% if buttonName is not empty and showButton %}
+    {% partial 'form/button'
+        isGhost = true
+        text = buttonName
+        wrapperClasses = 'w-full md:w-auto font-medium _product-list-small-button-more'
+        dataAtribute = 'data-page='~(iPage + 1)~' data-type='~type~' data-take='~iTake~' data-product-id='~iProductID
+    %}
+{% endif %}

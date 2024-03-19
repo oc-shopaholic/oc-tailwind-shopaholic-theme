@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"paths": {
+			"/partials": ["partials"],
+			"/partials/*": ["partials/*"],
+      "/js": ["js"],
+			"/js/*": ["js/*"]
+		}
+	},
+	"include": ["pages/**/*.js", "partials/**/*.js", "assets/src/js/app.js"],
+  "exclude": ["node_modules"]
+}

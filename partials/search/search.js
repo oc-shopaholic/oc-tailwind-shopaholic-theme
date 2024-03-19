@@ -1,4 +1,4 @@
-import ShopaholicSearch from "@lovata/shopaholic-search";
+import ShopaholicSearch from "@oc-shopaholic/shopaholic-search";
 import RecentlyElem from "./recently-elem";
 
 export default class Search {

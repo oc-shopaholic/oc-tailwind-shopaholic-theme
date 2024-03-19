@@ -1,5 +1,3 @@
-{##}
-
 {% set iActiveSiteGroupId = input('site_group_id', this.site.group_id) %}
 {% set obSiteGroupList = sitePicker.sites().groupBy('group_id') %}
 {% set arGroupOptionList = [] %}
@@ -13,8 +11,8 @@
     <div class="space-y-6">
         {% if arGroupOptionList|length > 1 %}
             {% partial 'site-picker/site-picker-select'
-                sInputClass = 'js-language-input'
-                sLabelText = 'multisite_country'|_
+                inputClasses = 'js-language-input'
+                labelText = 'multisite_country'|_
                 sName = 'site_group_id'
                 sId = 'site_group_id'
                 arOptionList = arGroupOptionList
@@ -22,21 +20,21 @@
                 sSelectedValue = iActiveSiteGroupId
             %}
         {% endif %}
-        {% partial 'select/select'
-            sInputClass = ''
-            sLabelText = 'form_language'|_
-            sName = 'site-name'
-            sId = 'site_id'
-            arOptionList = arSiteOptionList
-            sKeyForValue = 'url'
-            sSelectedValue = this.site.url
+        {% partial 'form/select'
+            inputClasses = ''
+            labelText = 'form_language'|_
+            name = 'site-name'
+            id = 'site_id'
+            options = arSiteOptionList
+            keyForValue = 'url'
+            keyForLabel = 'name'
+            selectedValue = this.site.url
+            hideClearButton = true
         %}
     </div>
-    {% partial 'button/button'
-        sType = 'submit'
-        sText = 'multisite_settings_change'|_
-        sPartialClasses = 'w-full md:w-72 mt- p-2 mt-12'
+    {% partial 'form/button'
+        type = 'submit'
+        text = 'multisite_settings_change'|_
+        wrapperClasses = 'w-full md:w-72 mt- p-2 mt-12'
     %}
 </form>
-
-

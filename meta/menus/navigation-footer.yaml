@@ -1,0 +1,135 @@
+items:
+    -
+        title: Information
+        nesting: null
+        type: header
+        url: null
+        code: ''
+        reference: null
+        cmsPage: null
+        replace: null
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+        items:
+            -
+                title: 'About us'
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: about-us
+                cmsPage: null
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Customer service'
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: customer-service
+                cmsPage: null
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: News
+                type: cms-page
+                code: ''
+                reference: news-list
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: FAQ
+                type: cms-page
+                code: ''
+                reference: faq
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Contact us'
+                type: cms-page
+                code: ''
+                reference: contact
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+    -
+        title: Service
+        nesting: null
+        type: header
+        url: null
+        code: ''
+        reference: null
+        cmsPage: null
+        replace: null
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+        items:
+            -
+                title: 'Shipping policy'
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: shipping-policy
+                cmsPage: null
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Payment method'
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: payment-methods
+                cmsPage: null
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Terms & Conditions'
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: terms-conditions
+                cmsPage: null
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Privacy & Cookie policy'
+                nesting: 0
+                type: static-page
+                url: null
+                code: ''
+                reference: privacy-and-cookie-policy
+                cmsPage: null
+                replace: 0
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+name: 'Navigation Footer'

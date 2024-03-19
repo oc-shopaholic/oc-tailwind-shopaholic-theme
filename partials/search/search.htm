@@ -1,11 +1,9 @@
-{##}
-
-{% partial 'input/input'
-    inputClass='_shopaholic-search-input relative z-10 bg-transparent border-gray-400 focus:border-gray-600 ps-12 pe-11 md:pe-10'
-    maxLength='100'
-    sPartialClasses='w-full flex w-full relative items-center mb-4'
-    sLabelText='search_search'|_
-    sLabelClasses='sr-only'
+{% partial 'form/input'
+    inputClasses='_shopaholic-search-input relative z-10 bg-transparent border-gray-400 focus:border-gray-600 ps-12 pe-11 md:pe-10'
+    maxLength = '100'
+    wrapperClasses='w-full flex w-full relative items-center mb-4'
+    labelText='search_search'|_
+    labelClasses='sr-only'
     body
 %}
     <span class="_placeholder absolute text-gray-400 start-12 whitespace-pre"></span>
@@ -47,14 +45,14 @@
 <section class="search-result-wrapper">
     {% partial 'search/search-result' %}
 </section>
-{% partial 'button/button'
-    sText = 'search_show_more'|_
-    sPartialClasses = '_show-more mx-auto hidden relative w-60 mt-8'
+{% partial 'form/button'
+    text = 'search_show_more'|_
+    wrapperClasses = '_show-more mx-auto hidden relative w-60 mt-8'
 %}
-{% partial 'button/button'
-    sText = 'form_loading'|_
-    sPartialClasses = '_show-more-hidden mx-auto hidden relative w-60 ps-12 mt-8'
-    bDisabled = true
+{% partial 'form/button'
+    text = 'form_loading'|_
+    wrapperClasses = '_show-more-hidden mx-auto hidden relative w-60 ps-12 mt-8'
+    disabled = true
     body
 %}
 <svg class="animate-spin absolute top-4 start-14 w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

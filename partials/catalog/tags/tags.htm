@@ -1,0 +1,18 @@
+{#
+Params:
+- wrapperClasses
+- wrapperButtonClasses
+- listClasses
+#}
+
+<div class="_tags mb-7 mt-7 md:my-6 {{ wrapperClasses }}">
+    <div class="{{ wrapperButtonClasses }}">
+        {% partial 'form/button'
+            text = 'filter_reset_all'|_
+            buttonType = 'link'
+            wrapperClasses = '_reset-all-tags text-gray-600'
+        %}
+    </div>
+    <ul class="_tags-container {{listClasses}}">
+    </ul>
+</div>

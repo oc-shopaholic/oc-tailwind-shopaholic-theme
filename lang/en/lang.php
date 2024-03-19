@@ -24,7 +24,7 @@
         'main_carousel_title'                => 'Title',
         'product_page_type'                  => 'Type',
 
-        
+
         'payment_methods_list_section'       => 'Payment methods',
         'payment_methods_list_active'        => 'Active',
         'payment_methods_list_image_alt'     => 'Alternative text',

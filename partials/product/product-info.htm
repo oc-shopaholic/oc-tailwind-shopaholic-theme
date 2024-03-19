@@ -1,0 +1,62 @@
+{#
+Params:
+- wraperClasses
+- obProduct
+- obOfferList
+- obOffer
+#}
+
+{% set arSEOParams = {'category': obProduct.category, 'product': obProduct} %}
+{% set obSeoModel = obProduct %}
+
+{% set obReviewList = obProduct.review.active() %}
+{% set obReviewListWithComment = obReviewList.copy().withComment() %}
+{% set obReviewListWithRating = obReviewList.copy().withRating() %}
+
+{% set iTotalQuantity = obOfferList.getTotalQuantity() %}
+<div class="w-full xl:ps-14 {{ wraperClasses }}">
+    <h1 class="text-gray-900 text-xl md:text-2xl xl:text-3xl uppercase">
+        {{ SeoToolbox.getPageTitle(obSeoModel, arSEOParams)|default(obProduct.name) }}
+    </h1>
+    <div class="_evaluation flex flex-wrap flex-row mt-4 md:mt-3 text-gray-600 text-sm md:text-base md:items-center">
+        <div class="flex me-3 md:me-4">
+            <div aria-hidden="true" class="flex flex-row items-center space-x-1 rtl:space-x-reverse me-4 mb-2 md:mb-0">
+                {% partial 'common/rating-star' maxRating='5' rating=obProduct.rating prefix='product' %}
+            </div>
+            {% if obProduct.rating > 0 %}
+                <span aria-label="{{ 'reviews_customers_rating'|_({reviews_customers_rating_value: obProduct.rating, reviews_customers_rating_value_max: obReviewListWithRating.count(),}) }}">
+                    ({{ obProduct.rating }})
+                </span>
+            {% endif %}
+        </div>
+        {% if obReviewListWithRating.count() > 0 or obReviewListWithComment.count() > 0 %}
+            <div>
+                {% if obReviewListWithRating.count() > 0 %}
+                    <a href="#ratings" class="underline cursor-pointer me-2 md:me-4">
+                        {{ 'reviews_customers_votes_number'|_({
+                            reviews_customers_votes_number_value: obReviewListWithRating.count(),
+                        }) }}
+                    </a>
+                {% endif %}
+                {% if obReviewListWithComment.count() > 0 %}
+                    <a href="#reviews" class="underline cursor-pointer">
+                        {{ obReviewListWithComment.count() }} {{'reviews_reviews'|_}}
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+
+    {% if obOffer.isNotEmpty() %}
+        <div class="flex flex-row items-center mt-4 mb-7 space-x-2 md:space-x-4 rtl:space-x-reverse md:mt-7">
+            <span class="text-xl text-gray-900 font-medium md:text-3xl">{{ obOffer.currency }}{{ obOffer.price }}</span>
+            {% if obOffer.old_price_value > obOffer.price_value %}
+                <span class="text-gray-600 text-base font-medium line-through md:text-3xl">{{ obOffer.currency }}{{ obOffer.old_price }}</span>
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="mb-7 mt-4 md:my-7">
+            <span class="font-medium text-sm md:text-lg">{{'product_not_available'|_}}</span>
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,62 @@
+uuid: 7159eee2-43ad-4938-99d7-4d3e88035e22
+handle: Site\ContactPage
+type: global
+name: Contact page
+multisite: true
+
+customMessages:
+    titleUpdateForm: 'shopaholic.theme.contact_page.title_update'
+
+navigation:
+    label: 'shopaholic.theme.contact_page.title'
+    parent: Site\SiteContent
+    icon: icon-phone-square
+    order: 300
+
+fields:
+    map_section_active:
+        label: 'lovata.toolbox::lang.field.active'
+        type: switch
+        span: full
+        tab: 'shopaholic.theme.contact_page.tab_map'
+    map_api_key:
+        label: 'shopaholic.theme.contact_page.field.map_api_key'
+        type: text
+        span: left
+        required: 0
+        tab: 'shopaholic.theme.contact_page.tab_map'
+        comment: 'shopaholic.theme.contact_page.field.map_api_key_comment'
+        trigger:
+            action: show
+            field: map_section_active
+            condition: checked
+    map_popup_title:
+        label: 'shopaholic.theme.contact_page.field.map_popup_title'
+        type: text
+        span: right
+        required: 0
+        tab: 'shopaholic.theme.contact_page.tab_map'
+        trigger:
+            action: show
+            field: map_section_active
+            condition: checked
+    map_lat:
+        label: 'shopaholic.theme.contact_page.field.map_lat'
+        type: text
+        span: left
+        required: 0
+        tab: 'shopaholic.theme.contact_page.tab_map'
+        trigger:
+            action: show
+            field: map_section_active
+            condition: checked
+    map_lng:
+        label: 'shopaholic.theme.contact_page.field.map_lng'
+        type: text
+        span: right
+        required: 0
+        tab: 'shopaholic.theme.contact_page.tab_map'
+        trigger:
+            action: show
+            field: map_section_active
+            condition: checked

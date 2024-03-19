@@ -1,0 +1,70 @@
+<footer class="full-width bg-gray-100 {{ wrapperClasses }}">
+    <div class="container mx-auto px-4 py-7 lg:pt-10 lg:pb-8 flex flex-col md:flex-row">
+        <div class="mb-6 lg:mb-0 pb-6 lg:pb-0 border-b lg:border-b-0 border-gray-300 flex flex-col">
+            {% partial 'navigation/navigation-columns' %}
+            {% if SiteContent.payment_methods_list_active %}
+                {% partial 'common/icon-list'
+                    sectionHeader = "theme_payment_methods"|_
+                    wrapperClasses = "lg:mt-8"
+                    listClasses = "gap-x-2"
+                    arItemList = SiteContent.payment_methods_list
+                    itemClasses = "w-14 aspect-w-14 aspect-h-9"
+                    notFoundMessage = "theme_payment_methods_not_added"|_
+                %}
+            {% endif %}
+        </div>
+        {% if SiteContent.business_card_image is not empty
+           or SiteContent.business_card_description is not empty
+           or SiteContent.business_card_phone is not empty
+           or SiteContent.business_card_email is not empty
+           or SiteContent.business_card_address is not empty
+        %}
+            <div class="lg:ps-8 lg:me-auto max-w-xs">
+                {% if SiteContent.business_card_image is not empty %}
+                    <img loading="lazy" class="block max-h-14" src="{{ SiteContent.business_card_image|media }}" alt="{{ SiteContent.business_card_image_alt }}" title="{{ SiteContent.business_card_image_title }}">
+                {% endif %}
+                {% if SiteContent.business_card_description is not empty %}
+                    <p class="mt-4 text-gray-600 text-sm">{{ SiteContent.business_card_description }}</p>
+                {% endif %}
+                {% if (SiteContent.business_card_phone or SiteContent.business_card_email or SiteContent.business_card_address) is not empty %}
+                    <ul class="mt-4">
+                        {% if SiteContent.business_card_phone is not empty %}
+                            <li>
+                                <a class="text-blue-800 underline hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus-visible:outline-blue" href="tel:{{ SiteContent.business_card_phone|replace({'-': '', '(': '', ')': '', ' ': ''}) }}">{{ SiteContent.business_card_phone }}</a>
+                            </li>
+                        {% endif %}
+                        {% if SiteContent.business_card_email is not empty %}
+                            <li class="mt-4 lg:mt-2">
+                                <a class="text-blue-800 underline hover:text-blue-700 hover:no-underline active:text-blue-900 visited:text-purple-800 focus-visible:outline-blue" href="mailto:{{ SiteContent.business_card_email }}">{{ SiteContent.business_card_email }}</a>
+                            </li>
+                        {% endif %}
+                        {% if SiteContent.business_card_address is not empty %}
+                            <li class="mt-5 lg:mt-2 text-gray-600">{{ SiteContent.business_card_address }}</li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+                {% if SiteContent.social_media_list_active %}
+                    {% partial 'common/icon-list'
+                        sectionHeader = "theme_social_media_list"|_
+                        wrapperClasses = "lg:mt-5"
+                        arItemList = SiteContent.social_media_list
+                        itemClasses = "w-10 aspect-w-1 aspect-h-1"
+                        notFoundMessage = "theme_social_media_list_not_added"|_
+                    %}
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+    {% if SiteContent.business_card_copyright is not empty %}
+        <div class="bg-gray-200 text-gray-700 text-center p-2.5 text-xs md:text-sm">{{ SiteContent.business_card_copyright }}</div>
+    {% endif %}
+    {% if SiteContent.shopaholic_bar_active %}
+        <div class="text-center text-gray-600 p-2.5 text-xs md:text">
+            {% set sPoweredByPluginUrl = 'https://shopaholic.one' %}
+            {% set sPoweredByThemeUrl = 'https://octobercms.com/theme/lovata-tailwind-shopaholic' %}
+            {% set themePoweredByPlugin = '<a class="underline text-blue-800 hover:text-blue-700 hover:no-underline focus-visible:outline-blue active:text-blue-900 visited:text-purple-800" href="'~ sPoweredByPluginUrl ~'" target="_blank" rel="noopener noreferrer">'~('theme_powered_by_plugin'|_)~'</a>' %}
+            {% set themePoweredByTheme = '<a class="underline text-blue-800 hover:text-blue-700 hover:no-underline focus-visible:outline-blue active:text-blue-900 visited:text-purple-800" href="'~ sPoweredByThemeUrl ~'" target="_blank" rel="noopener noreferrer">'~('theme_powered_by_theme'|_)~'</a>' %}
+            {{ 'theme_powered_by' |transRaw({theme_powered_by_plugin: themePoweredByPlugin, theme_powered_by_theme: themePoweredByTheme} ) }}
+        </div>
+    {% endif %}
+</footer>

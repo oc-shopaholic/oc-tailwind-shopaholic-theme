@@ -1,0 +1,59 @@
+{% set obCartList = Cart.get() %}
+
+{% if obCartList.isNotEmpty() %}
+    <ul class="-mx-4 ps-4 lg:mx-0 lg:ps-0">
+        {% for obCartPosition in obCartList %}
+            {% set obOffer = obCartPosition.offer %}
+            {% set obProduct = obOffer.product %}
+            <li class="_shopaholic-product-wrapper relative after:content-[''] after:absolute after:inset-0 after:border-b after:first:border-t after:border-gray-200 after:-start-4 after:-z-10 lg:after:start-0" data-position-id="{{ obCartPosition.id }}" data-product-id="{{ obProduct.id }}">
+                {% partial 'product-card-checkout/product-card-checkout'
+                    obCartPosition = obCartPosition
+                    obOffer = obOffer
+                    obProduct = obProduct
+                %}
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="_subtotal mt-8 flex flex-col lg:flex-row lg:justify-between lg:items-center">
+        <div class="flex justify-between lg:justify-start text-gray-900">
+            <span class="flex text-gray-600 text-base font-medium">
+                {{'purchase_subtotal'|_}}&nbsp;
+                (<span class="_item inline-flex space-x-1">
+                    <span class="inline-block rtl:order-1">{{obCartList.getTotalQuantity()}}</span>
+                    <span>{{'purchase_items'|_}}</span>
+                </span>)
+            </span>&nbsp;:
+            <span class="font-medium text-base ps-4">{{ obCartList.currency }}<span class="_shopaholic-cart" data-group="position-total-price" data-field="price">{{obCartList.getTotalPrice()}}</span></span>
+        </div>
+        {% if bButton != true %}
+            {% partial 'form/button'
+                wrapperClasses = '_checkout-button px-16 mt-28 text-center text-lg lg:text-base lg:mt-px'
+                url = obUser ? 'checkout'|page : 'checkout-authentification'|page
+                body
+            %}
+               <span class="inline-flex">
+                    <span>{{'purchase_checkout'|_}}</span>&nbsp;
+                    <span>({{obCartList.getTotalQuantity()}})</span>
+               </span>
+        {% endpartial %}
+        {% endif %}
+    </div>
+{% else %}
+    {% partial 'message/info-message'
+        wrapperClasses = 'mt-44 justify-center mb-8 text-center lg:mb-14 lg:mt-52'
+        icon = 'basket.svg'
+        message = 'purchase_cart_is_empty'|_
+        buttonHref = 'category-list'|page
+        buttonText = 'purchase_start_shopping'|_
+        buttonClasses = 'mt-36 w-full lg:mt-24 md:w-auto'
+    %}
+{% endif %}
+{% put scripts %}
+    <script>
+        window.subtotal = {
+            'item': "{{ 'purchase_items'|_ }}",
+            'currency': "{{ obOffer.currency|_ }}",
+            'checkout': "{{ 'purchase_checkout'|_ }}"
+        };
+    </script>
+{% endput %}

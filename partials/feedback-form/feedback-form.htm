@@ -6,32 +6,32 @@
 >
     {{ form_token() }}
 
-    {% partial 'input/input'
-        sId = 'name'
-        sLabelText = 'form_user_name'|_
-        sName = 'name'
+    {% partial 'form/input'
+        id = 'name'
+        labelText = 'form_user_name'|_
+        name = 'name'
         required = 'required'
         type = 'text'
-        sPartialClasses = 'relative'
+        wrapperClasses = 'relative'
     %}
-    {% partial 'input/input'
-        sId = 'form-email'
-        sLabelText = 'form_user_email'|_
-        sName = 'email'
+    {% partial 'form/input'
+        id = 'form-email'
+        labelText = 'form_user_email'|_
+        name = 'email'
         required = 'required'
         type = 'email'
-        sPartialClasses = 'mt-7 md:mt-8 relative'
+        wrapperClasses = 'mt-7 md:mt-8 relative'
     %}
-    {% partial 'textarea/textarea'
-        sId = 'message'
-        sLabelText = 'form_user_message'|_
-        sName = 'message'
-        sPartialClasses = 'mt-7 md:mt-8 relative'
-        sRows = '4'
+    {% partial 'form/textarea'
+        id = 'message'
+        labelText = 'form_user_message'|_
+        name = 'message'
+        wrapperClasses = 'mt-7 md:mt-8 relative'
+        rows = '4'
     %}
-    {% partial 'button/button'
-        sText = 'form_send'|_
-        sType = 'submit'
-        sPartialClasses = 'w-full md:w-auto mt-12 md:mt-10'
+    {% partial 'form/button'
+        text = 'form_send'|_
+        type = 'submit'
+        wrapperClasses = 'w-full md:w-auto mt-12 md:mt-10'
     %}
 </form>

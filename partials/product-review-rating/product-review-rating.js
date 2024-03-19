@@ -1,5 +1,3 @@
-import request from 'oc-request';
-
 export default new class productReviewRating {
   constructor() {
     this.obContainerStarReview = null;
@@ -24,7 +22,7 @@ export default new class productReviewRating {
     this.obContainerReview.addEventListener('click', (event) => {
       event.preventDefault();
       const form = document.querySelector('._review-container');
-      request.sendForm(form, 'MakeReview::onCreate', {
+      oc.ajax(form, 'MakeReview::onCreate', {
         update: {
           'review-list/review-list-ajax': `.${this.obListWrapper}`
         },

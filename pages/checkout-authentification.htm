@@ -1,0 +1,59 @@
+title = "Checkout Authentification"
+url = "/checkout/sign-in"
+layout = "main"
+is_hidden = 0
+==
+<?php
+function onInit()
+{
+}
+?>
+==
+{##}
+
+
+<div class="flex flex-col items-center mt-4 md:mt-6 mb-5 md:mb-16">
+    <span class="text-gray-900 text-lg md:text-xl uppercase md:normal-case font-medium">{{ 'account_checkout_guest_heading'|_ }}</span>
+    {% partial 'form/button'
+        text = 'account_checkout_guest'|_
+        url = 'checkout'|page
+        isGhost = true
+        wrapperClasses = 'w-full md:w-auto mt-4'
+    %}
+    {% set textCheckoutLinkSignIn = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline" href="'~( 'sign-up'|page )~'">'~('account_create'|_)~'</a>' %}
+    <span class="inline-block mt-2 md:mt-4 text-gray-600">{{ 'text_checkout' | transRaw({text_checkout_link_sign_in: textCheckoutLinkSignIn}) }}</span>
+    <h1 class="font-medium uppercase text-xl md:text-3xl mt-8 mb-4">{{ 'account_signing_in'|_ }}</h1>
+    <div class="max-w-xs">
+        <form class="_required">
+            {% partial 'form/input'
+                id = 'form-email'
+                labelText = 'form_user_email'|_
+                name = 'mail'
+                id = 'mail'
+                required = 'required'
+            %}
+            {% partial 'form/input'
+                id = 'form-password'
+                labelText = 'form_user_password'|_
+                name = 'password'
+                id ='password'
+                required = 'required'
+                type = 'password'
+                wrapperClasses = 'mt-4'
+            %}
+            <div class="mt-4 text-end">
+                <a href="{{ 'password-restore'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:otline-blue underline hover:no-underline text-sm md:text-base">{{ 'account_password_forgot'|_ }}</a>
+            </div>
+            <div class="mt-4 md:mt-3">
+                <label>
+                    <input class="rounded-sm text-blue-800 focus-visible:outline-blue focus:outline-none" type="checkbox" /> {{ 'form_user_keep_signed'|_ }}
+                </label>
+            </div>
+            {% partial 'form/button'
+                text = 'account_sign_in_checkout'|_
+                type = 'submit'
+                wrapperClasses = 'w-full mt-8 md:mt-6'
+            %}
+        </form>
+    </div>
+</div>

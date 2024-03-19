@@ -1,0 +1,239 @@
+url = "/checkout"
+layout = "main"
+title = "Checkout"
+is_hidden = 0
+
+[Cart]
+
+[ShippingTypeList]
+
+[MakeOrder]
+redirect_on = 1
+redirect_page = "checkout-success"
+
+[PaymentMethodList]
+==
+<?php
+function onInit()
+{
+    $this['path_page_js'] = mix('assets/dist/js/checkout.js', 'themes/lovata-tailwind-shopaholic');
+}
+?>
+==
+{% set arBreadcrumbs = [
+    {'name': 'purchase_checkout'|_, 'url': null}
+] %}
+
+{% set obActiveCoupon = Cart.getAppliedCouponList()|first %}
+{% set obShippingTypeList = ShippingTypeList.make().sort().active() %}
+{% set obPaymentMethodList = PaymentMethodList.make().sort().active() %}
+
+{% set iActiveShippingTypeID = input('shipping_type_id') %}
+{% set obActiveShippingType = obShippingTypeList.find(iActiveShippingTypeID) %}
+{% if obActiveShippingType.isEmpty() %}
+    {% set obActiveShippingType = obShippingTypeList.first() %}
+{% endif %}
+
+{% partial 'common/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
+
+<section class="grid lg:grid-cols-2">
+    <form class="_required _shopaholic-order-form lg:col-span-1">
+        <h1 class="mb-6 text-gray-900 font-medium text-xl uppercase md:text-3xl">{{'purchase_checkout'|_}}</h1>
+        {% partial 'checkout-list/checkout-list' %}
+        <div class="flex mb-7 flex-col mt-7 items-start md:items-end md:flex-row">
+            {% partial 'form/input'
+                labelText='purchase_coupon_have'|_
+                placeholder='purchase_coupon_code'|_
+                name='coupon'
+                value=obActiveCoupon.code
+                attribute='data-coupon'
+                wrapperClasses='flex flex-col w-full mb-2 md:w-80 md:mb-0'
+                labelClasses='font-medium text-gray-900 mb-2 text-sm md:text-base'
+                disabled=obActiveCoupon is not empty
+            %}
+            {% if obActiveCoupon is not empty %}
+                {% partial 'form/button'
+                    text = 'purchase_coupon_remove'|_
+                    wrapperClasses = '_shopaholic-coupon-remove w-full ms-0 md:w-80 md:ms-2 ' ~ (obActiveCoupon is not empty ? '' : 'hidden')
+                    isGhost= 'true'
+                %}
+            {% else %}
+                {% partial 'form/button'
+                    text = 'purchase_coupon_apply'|_
+                    wrapperClasses = '_shopaholic-coupon-add w-full ms-0 md:w-80 md:ms-2 ' ~ (obActiveCoupon is not empty ? 'hidden' : '')
+                    isGhost = 'true'
+                %}
+            {% endif %}
+        </div>
+        <div class="_switch">
+            <h2 class="text-gray-900 text-lg font-medium uppercase md:text-2xl">{{'purchase_delivery_method'|_}}</h2>
+            <fieldset class="_switch-radio mt-4">
+                <legend class="sr-only">{{'purchase_delivery_method_choose'|_}}</legend>
+                <div class="flex flex-col space-y-4 w-full md:w-1/2">
+                    {% for obShippingType in obShippingTypeList %}
+                        {% set sDataSwitch = '' %}
+                        {% set sChecked = '' %}
+
+                        {% if obActiveShippingType.id == obShippingType.id %}
+                            {% set sChecked = 'checked' %}
+                        {% endif %}
+                        {% if obShippingType.name == 'Mailing' %}
+                            {% set sDataSwitch = 'data-switch="_switch-mailing" ' %}
+                        {% elseif obShippingType.name == 'Pickup' %}
+                            {% set sDataSwitch = 'data-switch="_switch-pickup" ' %}
+                        {% endif %}
+                        {% partial 'form/input-radio'
+                            id = 'shipping_type_'~obShippingType.id
+                            name = 'shipping_type_id'
+                            checked = sChecked
+                            value = obShippingType.id
+                            wrapperClasses = 'flex items-center'
+                            inputClasses = '_shopaholic-order-field peer'
+                            dataAtributes = sDataSwitch~'data-group="order"'
+                            labelClasses = 'peer-checked:text-gray-900 w-full ps-2 flex justify-between'
+                            body
+                        %}
+                            {% set isHidden = obShippingType.discount_price_value == 0 ? 'cart__delivery-price-value_hidden' %}
+                            <span>{{ obShippingType.name}}&nbsp;</span>
+                            {% if obShippingType.price == 0 %}
+                                <span>{{'purchase_for_free'|_}}</span>
+                            {% else %}
+                                <span>{{ obShippingType.currency }}{{ obShippingType.price }}</span>
+                            {% endif %}
+                        {% endpartial %}
+                    {% endfor %}
+                </div>
+            </fieldset>
+            {# TODO: Think about options for implementing points of issue #}
+            <fieldset class="_switch-pickup-container flex flex-col mt-6 space-y-4 hidden">
+                <h3>{{'purchase_pickup_point_choose'|_}}</h3>
+                <legend class="sr-only">{{'purchase_pickup_point_choose'|_}}</legend>
+                {% partial 'form/input-radio'
+                    wrapperClasses = 'flex items-center'
+                    labelText = 'Port Mafaldaview, 3561 Hane Island Suite 810'
+                    id = 'point-1'
+                    labelClasses = 'peer-checked:text-gray-900'
+                    inputClasses = 'peer'
+                    name = 'point'
+                %}
+                {% partial 'form/input-radio'
+                    wrapperClasses = 'flex items-center'
+                    labelText = 'Mayaville, 80354 Smitham Roads'
+                    id = 'point-2'
+                    labelClasses = 'peer-checked:text-gray-900'
+                    inputClasses = 'peer'
+                    name = 'point'
+                %}
+            </fieldset>
+            <div class="mt-5 mb-7">
+                <p id="delivery-terms-сonditions" class="_delivery-info mb-1 text-sm md:text-base">{{'purchase_delivery_info'|_}}</p>
+                <button aria-expanded="true" aria-controls="delivery-terms-сonditions" class="_delivery-terms relative mr-1 text-blue-800 text-sm md:text-base">{{'purchase_delivery_terms'|_}}
+                    <svg width="16" height="16" class="_delivery-toggle absolute -end-5 top-1.5" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.23423 5.83441C4.38425 5.68443 4.5877 5.60018 4.79983 5.60018C5.01196 5.60018 5.21541 5.68443 5.36543 5.83441L7.99983 8.46881L10.6342 5.83441C10.708 5.758 10.7963 5.69706 10.8939 5.65513C10.9915 5.6132 11.0965 5.59113 11.2027 5.59021C11.3089 5.58929 11.4143 5.60953 11.5126 5.64975C11.6109 5.68998 11.7002 5.74938 11.7753 5.82449C11.8505 5.89961 11.9099 5.98893 11.9501 6.08725C11.9903 6.18556 12.0106 6.29091 12.0096 6.39713C12.0087 6.50335 11.9866 6.60833 11.9447 6.70593C11.9028 6.80354 11.8418 6.89181 11.7654 6.96561L8.56543 10.1656C8.41541 10.3156 8.21196 10.3998 7.99983 10.3998C7.7877 10.3998 7.58425 10.3156 7.43423 10.1656L4.23423 6.96561C4.08425 6.81559 4 6.61214 4 6.40001C4 6.18788 4.08425 5.98443 4.23423 5.83441Z" fill="#1E40AF"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="w-full md:w-1/2">
+                <h2 class="mb-4 text-gray-900 text-lg font-medium uppercase md:text-2xl lg:mb-3">{{'purchase_customer_data'|_}}</h2>
+                <span class="text-sm font-light text-gray-600 md:text-base">* — {{'form_required_fields'|_}}</span>
+                <div class="flex flex-col space-y-4 mt-4 mb-7 lg:mt-3">
+                    {% partial 'form/input'
+                        labelClasses = 'text-sm mb-1 text-gray-600'
+                        labelText = 'form_user_name'|_
+                        inputClasses = '_shopaholic-order-field'
+                        type = 'text'
+                        name = 'first_name'
+                        required = 'required'
+                        dataAtributes = 'data-group="user" data-field="name"'
+                    %}
+                    <div class="_switch-mailing-container hidden flex flex-col space-y-4" aria-hidden="true">
+                        {% partial 'form/input'
+                            labelClasses = 'text-sm mb-1 text-gray-600'
+                            labelText='form_user_address_postal'|_
+                            name = 'address'
+                            inputClasses = '_shopaholic-order-field'
+                            dataAtributes = 'data-group="shipping_address" data-field="address1"'
+                        %}
+                        {% partial 'form/input'
+                            labelClasses = 'text-sm mb-1 text-gray-600'
+                            labelText='form_user_country'|_
+                            type = 'text'
+                            name = 'country'
+                            inputClasses = '_shopaholic-order-field'
+                            dataAtributes = 'data-group="shipping_address" data-field="country"'
+                        %}
+                        {% partial 'form/input'
+                            labelClasses = 'text-sm mb-1 text-gray-600'
+                            labelText = 'form_user_zip_code'|_
+                            type = 'number'
+                            name = 'zipCode'
+                            inputClasses = '_shopaholic-order-field'
+                            dataAtributes = 'data-group="shipping_address" data-field="poscode"'
+                        %}
+                    </div>
+                    {% partial 'form/input'
+                        labelClasses = 'text-sm mb-1 text-gray-600'
+                        labelText = 'form_user_email'|_ ~ '*'
+                        type = 'email'
+                        name = 'email'
+                        required = 'required'
+                        inputClasses = '_shopaholic-order-field'
+                        dataAtributes = 'data-group="user"'
+                    %}
+                    {% partial 'form/input'
+                        labelClasses = 'text-sm mb-1 text-gray-600'
+                        labelText = 'form_user_phone'|_
+                        type = 'number'
+                        name = 'phone'
+                        inputClasses = '_shopaholic-order-field'
+                        dataAtributes = 'data-group="user"'
+                    %}
+                </div>
+            </div>
+        </div>
+        <fieldset class="_payment-method">
+            <h2 class="mb-4 text-gray-900 text-lg font-medium uppercase md:text-2xl">{{'purchase_payment_method'|_}}</h2>
+            <legend class="sr-only">{{'purchase_payment_method_choose'|_}}</legend>
+            {% for obPaymentMethod in obPaymentMethodList %}
+                {% if obPaymentMethod.name == 'Cash' %}
+                    {% set sStyle = '_cash' %}
+                {% elseif obPaymentMethod.name == 'Card' %}
+                    {% set sStyle = '_card' %}
+                {% endif %}
+                {% set checked = loop.index == 1 ? 'checked' : '' %}
+                {% partial 'form/input-radio'
+                    wrapperClasses = 'flex items-center mb-4'
+                    labelText = obPaymentMethod.name
+                    id = 'payment_method_'~obPaymentMethod.id
+                    name = 'payment_method_id'
+                    checked = checked
+                    inputClasses = sStyle~' _shopaholic-order-field peer'
+                    value = obPaymentMethod.id
+                    dataAtributes = 'data-group="order"'
+                    labelClasses = 'peer-checked:text-gray-900'
+                %}
+            {% endfor %}
+            <div class="_payment-card hidden flex flex-col">
+                {% if this.theme.payment_methods_list_active %}
+                    {% partial 'common/icon-list'
+                        sectionHeader = "purchase_payment_methods"|_
+                        wrapperClasses = "lg:mt-2 lg:mb-2"
+                        listClasses = "gap-x-2"
+                        arItemList = this.theme.payment_methods_list
+                        itemClasses = "w-14 aspect-w-14 aspect-h-9"
+                        notFoundMessage = "text_icon_list_payment_methods_not_found"|_
+                    %}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="_subtotal-container _cart-checkout-list w-full md:w-1/2 mt-7 mb-12">
+            <h2 class="mb-4 text-gray-900 font-medium text-lg uppercase md:text-2xl">{{'purchase_summary'|_}}</h2>
+            {% partial 'checkout-subtotal/checkout-subtotal' %}
+            {% partial 'form/button'
+                wrapperClasses = 'w-full md:w-auto'
+                text = 'purchase_order'|_
+                type = 'submit'
+            %}
+        </div>
+    </form>
+</section>

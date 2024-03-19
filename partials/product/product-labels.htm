@@ -1,0 +1,52 @@
+{#
+Params:
+- obProduct
+- wrapperClasses
+- wrapperListClasses
+- roundedClassesFirst
+- roundedClassesNext
+#}
+
+{% if bHasLabelPlugin %}
+    {% set obLabelList = obProduct.label.active().sort() %}
+    {% if obLabelList.isNotEmpty() %}
+        {% if obLabelList.count() == 1 %}
+            <div class="absolute z-10 overflow-hidden flex rounded-ss rounded-ee {{ wrapperClasses }}">
+                {% for obLabel in obLabelList %}
+                    {% if obLabel.code == 'new' %}
+                        {% set colorState = 'bg-green-900' %}
+                    {% elseif obLabel.code == 'sale' %}
+                        {% set colorState = 'bg-red-700' %}
+                    {% else %}
+                        {% set colorState = 'bg-sky-700' %}
+                    {% endif %}
+                    <div class="{{colorState}} text-white px-4 py-2 whitespace-nowrap text-xs lg:text-sm">
+                        {{ obLabel.name }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <ul class="absolute z-10 flex w-2/3 scrollbar-x-none overflow-x-scroll rtl:space-x-reverse space-x-0.5 md:space-x-1 md:overflow-auto md:hover:w-auto {{ wrapperListClasses }}">
+                {% for obLabel in obLabelList %}
+                    {% if obLabel.code == 'new' %}
+                        {% set colorState = 'bg-green-900' %}
+                    {% elseif obLabel.code == 'sale' %}
+                        {% set colorState = 'bg-red-700' %}
+                    {% else %}
+                        {% set colorState = 'bg-sky-700' %}
+                    {% endif %}
+                    {% if loop.index == 1 %}
+                        {% set roundedClasses = roundedClassesFirst %}
+                    {% else %}
+                        {% set roundedClasses = roundedClassesNext %}
+                    {% endif %}
+                    <li>
+                        <div class="{{roundedClasses}} {{colorState}} text-white whitespace-nowrap py-1 px-2 text-xs lg:text-sm md:px-4 md:py-2">
+                            {{ obLabel.name }}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
+{% endif %}
