@@ -215,6 +215,9 @@
 .pswp__button--arrow--next .pswp__icn {
   @apply rotate-180 -translate-x-0.5 translate-y-0.5 rtl:rotate-0 rtl:translate-x-1.5 rtl:translate-y-0.5
 }
+.pswp--click-to-zoom.pswp--zoom-allowed .pswp__img {
+  @apply object-contain
+}
 
 .content-visibility {
   @apply content-visibility-auto contain-intrinsic-size-[0_100px]
