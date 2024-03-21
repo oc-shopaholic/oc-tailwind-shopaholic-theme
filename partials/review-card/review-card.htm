@@ -5,17 +5,19 @@
         {% if obReview.image %}
             <picture>
                 <source srcset="{{ obImage.getThumb(48, 48, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
-                <source srcset="{{ obImage.getThumb(48, 48, {'quality': 80}) }}" type="image/jpeg">
                 <img
                     alt="{{ obReview.name }} {{ obReview.surname }}"
+                    src="{{ obImage.getThumb(48, 48, {'quality': 80}) }}"
                     class="rounded-3xl me-4 w-12 h-12"
                     loading="lazy"
+                    width="48"
+                    height="48"
                 />
             </picture>
         {% else %}
             <div class="flex justify-center items-center me-4 bg-gray-200 w-12 h-12 rounded-3xl">
                 <svg width="18" height="19">
-                    <use href="../../themes/lovata-tailwind-shopaholic/assets/images/sprite.svg#anonim-avatar"></use>
+                    <use href="{{ 'assets/images/sprite.svg#anonim-avatar'|theme }}"></use>
                 </svg>
             </div>
         {% endif %}
@@ -31,7 +33,7 @@
                     reviews_customers_rating_product:obReview.rating
                 }) }}"
                 class="flex flex-row space-x-1 rtl:space-x-reverse"> {#TODO: Think to transfet ARIA label to rating partial #}
-                {% partial 'product-rating/product-rating-star' maxRating='5' rating=obReview.rating unique_id='total-rating-'~obReview.rating %}
+                {% partial 'common/rating-star' maxRating='5' rating=obReview.rating prefix='review-' ~ obReview.id %}
             </div>
         </div>
     </div>

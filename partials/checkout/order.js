@@ -1,4 +1,4 @@
-import ShopaholicOrder from '@lovata/shopaholic-cart/shopaholic-order';
+import ShopaholicOrder from '@oc-shopaholic/shopaholic-cart/shopaholic-order';
 
 export default new class Order{
     constructor(){

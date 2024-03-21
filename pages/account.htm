@@ -1,0 +1,71 @@
+title = "Account"
+url = "/account"
+layout = "main"
+is_hidden = 0
+
+[UserPage]
+slug = ""
+slug_required = 0
+mode = "ajax"
+flash_on = 0
+redirect_on = 0
+redirect_page = "account"
+login_page = "sign-in"
+==
+<?php
+function onInit()
+{
+    $bHasUserPlugin = $this['bHasUserPlugin'];
+
+    if (!$bHasUserPlugin) {
+        return $this->controller->run('404');
+    }
+}
+?>
+==
+{% set arBreadcrumbs = [
+    {'name': 'account_my_account'|_, 'url': null},
+] %}
+{% set arList = [
+    {
+        title: 'account_order_history'|_,
+        url: "account-orders",
+        icon:  'assets/images/icon-orders.svg'|theme,
+    },
+    {
+        title: 'account_personal_data'|_,
+        url: 'account-details',
+        icon:  'assets/images/icon-details.svg'|theme,
+    },
+    {
+        title: 'account_password_change'|_,
+        url: "account-change-password",
+        icon:  'assets/images/icon-password.svg'|theme,
+    }
+]%}
+
+{% partial 'common/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
+
+<div class="flex flex-col mb-10">
+    <h1 class="font-medium uppercase text-xl md:text-3xl mb-4">{{'account_my_account'|_}}</h1>
+    {% partial 'common/advanced-list/advanced-list' body %}
+        {% for obItem in arList %}
+            {% partial 'common/advanced-list/advanced-list-item'
+                name = obItem.title
+                href = obItem.url|page
+                imagePath = obItem.icon
+                wrapperClasses = obItem.viewBag.cssClass
+            %}
+        {% endfor %}
+        <li>
+            <a class="link link-blue rounded-sm flex flex-row md:flex-col text-sm xl:text-base font-medium h-full group cursor-pointer border border-l-0 md:border-l md:border-t-0 border-solid border-gray-200 rounded-ss-sm md:rounded-es-sm rounded-se-sm md:rounded-t-none md:text-center group-active:underline"
+                type="button"
+                href="{{ 'log-out'|page }}">
+                <span class="w-12 relative md:w-auto h-12 md:h-auto bg-gray-200 group-hover:bg-blue-800 group-focus:bg-blue-900 md:aspect-w-1 md:aspect-h-1">
+                    <span class="advanced-list-icon h-6 w-6 bg-6 md:bg-auto after:bg-blue-800 after:focus-visible:bg-white after:focus-within:bg-white after:group-focus:bg-white after:group-hover:bg-white transform scale-50" style="--advanced-list-icon-src: url('{{ 'assets/images/exit.svg'|theme }}')"></span>
+                </span>
+                <span class="w-full flex flex-1 items-center ps-4 pe-2 md:py-4 md:px-2 xl:p-4 md:justify-center border border-l-0 md:border-l md:border-t-0 border-solid border-gray-200 rounded-ss-sm md:rounded-es-sm rounded-tr-sm md:rounded-t-none md:text-center group-active:underline">{{'account_sign_out'|_}}</span>
+            </a>
+        </li>
+    {% endpartial %}
+</div>

@@ -14,15 +14,13 @@
   "author": "Lovata",
   "devDependencies": {
     "@babel/core": "^7.16.0",
-    "@lovata/popup-helper": "^1.0.1",
-    "@lovata/shopaholic-cart": "^1.1.1",
-    "@lovata/shopaholic-coupon": "^1.0.0",
-    "@lovata/shopaholic-filter-panel": "^1.1.1",
-    "@lovata/shopaholic-product-list": "^1.0.1",
-    "@lovata/shopaholic-search": "^1.1.4",
-    "@lovata/shopaholic-wish-list": "^1.0.0",
-    "@oc-shopaholic/oc-request": "^0.1.1",
-    "@lovata/url-generation": "^1.0.0",
+    "@oc-shopaholic/shopaholic-cart": "^0.0.3",
+    "@oc-shopaholic/shopaholic-coupon": "^0.0.3",
+    "@oc-shopaholic/shopaholic-filter-panel": "^0.0.5",
+    "@oc-shopaholic/shopaholic-product-list": "^0.0.4",
+    "@oc-shopaholic/shopaholic-search": "^0.0.2",
+    "@oc-shopaholic/shopaholic-wish-list": "^0.0.4",
+    "@oc-shopaholic/url-generation": "^0.0.3",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/line-clamp": "^0.3.0",
@@ -46,12 +44,10 @@
     "dialog-polyfill": "^0.5.6",
     "focus-trap": "^6.7.2",
     "formbouncerjs": "^1.4.6",
-    "jquery": "^3.7.0",
     "lazysizes": "^5.3.2",
-    "oc-request": "^1.0.0",
-    "photoswipe": "^5.3.2",
     "load-google-maps-api": "^2.0.2",
-    "tailwindcss-scroll-snap": "^1.1.0"
+    "photoswipe": "^5.3.2",
+    "tailwindcss-scroll-snap": "^1.1.0",
     "tailwindcss-content-visibility": "^0.1.0"
   }
 }

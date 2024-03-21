@@ -1,0 +1,118 @@
+{# TODO: Add flash messages to the add to cart action. #}
+
+{% set obOfferList = obProduct.offer %}
+{% set obOffer = obOfferList.first() %}
+
+<div class="_shopaholic-product-wrapper grid grid-cols-1 xl:grid-cols-2 xl:justify-items-center 2xl:justify-items-start" data-product-id="{{ obProduct.id }}">
+    <div class="w-full">
+        {% partial 'product/product-info'
+            wraperClasses = 'xl:w-auto xl:absolute xl:invisible'
+            obProduct = obProduct
+            obOfferList = obOfferList
+            obOffer = obOffer
+        %}
+        {% partial 'product/product-gallery/product-gallery' arImages = obProduct.images %}
+        {% if obProduct.preview_text is not empty %}
+            <div class="w-full flex flex-col mt-7 md:mt-11">
+                {% partial 'common/expandable-text/expandable-text'
+                    numberVisibleRows=3
+                    description=obProduct.preview_text
+                %}
+            </div>
+        {% endif %}
+        {% partial 'common/tabs/tabs'
+            wrapperClasses = 'mt-4 mb-7 lg:my-10'
+            wrapperListClasses = 'tabs _tabs-product'
+            body
+        %}
+            {% partial 'product/product-tabs/product-tab-details'
+                obProduct = obProduct
+                obOffer = obOffer
+            %}
+            {% partial 'product/product-tabs/product-tab-description' obProduct = obProduct %}
+            {% partial 'product/product-tabs/product-tab-content' obProduct = obProduct %}
+        {% endpartial %}
+    </div>
+    <div class="flex flex-col">
+        {% partial 'product/product-info'
+            wraperClasses = 'absolute invisible w-auto xl:w-full xl:static xl:visible'
+            obProduct = obProduct
+            obOfferList = obOfferList
+            obOffer = obOffer
+        %}
+        {% if obOfferList.isNotEmpty() %}
+            <div class="flex mt-7 flex-col xl:mt-0 xl:flex-row xl:ps-14">
+                <div class="flex flex-col mb-12">
+                    {% partial 'product/product-choose/product-choose'
+                        obProduct = obProduct
+                        obOfferList = obOfferList
+                        obOffer = obOffer
+                    %}
+                    <div class="flex flex-row items-center mt-7 md:mt-10">
+                        {% partial 'input-quantity/input-quantity'
+                            iMin = 1
+                            iMax = iTotalQuantity
+                            iValue = 1
+                            sPartialWidth = "w-9 h-9"
+                            sName = "quantity"
+                            inputClasses = "_shopaholic-cart-quantity"
+
+                        %}
+                    </div>
+                    <div class="flex flex-row items-center space-x-2 rtl:space-x-reverse  mt-8 md:mt-10">
+                        {# TODO: Turn two buttons into one #}
+                        {% partial 'form/button'
+                            text = 'product_add_to_cart'|_
+                            wrapperClasses = '_shopaholic-cart-add font-bold h-11 md:h-12 w-full md:w-60'
+                        %}
+                        {% if obProduct.inWishList() %}
+                            <button class="_shopaholic-remove-wish-list-button text-red-500 hover:text-red-400 active:text-red-500 w-11 md:w-12 h-11 md:h-12 bg-gray-400/40 hover:bg-gray-500/40 group focus:outline-none flex justify-center items-center rounded focus-visible:outline-blue focus-visible:text-red-500" type="button">
+                                <svg class="stroke-current fill-current" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1.59834 2.26511C1.25011 2.61333 0.973884 3.02673 0.785425 3.48171C0.596967 3.93668 0.499969 4.42432 0.499969 4.91678C0.499969 5.40924 0.596967 5.89688 0.785425 6.35185C0.973884 6.80683 1.25011 7.22023 1.59834 7.56845L8 13.9701L14.4017 7.56845C15.1049 6.86518 15.5 5.91135 15.5 4.91678C15.5 3.92221 15.1049 2.96838 14.4017 2.26511C13.6984 1.56185 12.7446 1.16676 11.75 1.16676C10.7554 1.16676 9.8016 1.56185 9.09834 2.26511L8 3.36345L6.90167 2.26511C6.55345 1.91689 6.14005 1.64066 5.68508 1.4522C5.2301 1.26375 4.74246 1.16675 4.25 1.16675C3.75754 1.16675 3.2699 1.26375 2.81493 1.4522C2.35995 1.64066 1.94656 1.91689 1.59834 2.26511V2.26511Z" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        {% else %}
+                            {% partial 'product/button-wish-list/button-wish-list'
+                                wrapperClasses = 'flex rounded'
+                            %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+<div class="grid grid-cols-1 xl:mt-10 xl:justify-items-center 2xl:justify-items-start xl:grid-cols-2{% if this.theme.has_viewed_products == false %} mb-10{% endif %}">
+    <div id="reviews" class="w-full flex flex-col">
+        <h2 class="text-gray-900 text-2xl font-medium uppercase mb-5">{{ 'reviews_customer_reviews'|_ }}</h2>
+        {% partial 'review-list/review-list'
+            wraperClasses = '_review-list-container'
+            sListClass = '_review-list-update'
+        %}
+        {% partial 'review-add/review-add' %}
+    </div>
+    {% partial 'product-rating/product-rating'
+        wraperClasses = 'mt-6 xl:mt-14 xl:ps-11 2xl:ps-14'
+    %}
+</div>
+
+{% if this.theme.has_viewed_products %}
+    {% partial 'product/product-list-small/product-list-small'
+        type = 'viewed_products'
+        sectionHeading = 'catalog_products_viewed'|_
+        sectionHeadingLevel = 2
+        iTake = 4
+        showIndex = 0
+    %}
+{% endif %}
+
+{% if this.theme.has_related_products %}
+    {% partial 'product/product-list-small/product-list-small'
+        type = 'related_products'
+        obProduct = obProduct
+        sectionHeading = 'catalog_products_also_like'|_
+        sectionHeadingLevel = 2
+        iTake = 4
+        showIndex = 0
+    %}
+{% endif %}

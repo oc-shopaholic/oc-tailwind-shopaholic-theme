@@ -1,12 +1,17 @@
-[Cart]
-
 [staticPage]
 useContent = 1
 default = 0
 
+[Cart]
+
 [SeoToolbox]
 
 [sitePicker]
+
+[UserData]
+
+[global SiteContent]
+handle = Site\SiteContent
 ==
 <?php
 function onInit()
@@ -14,57 +19,58 @@ function onInit()
     $this['path_css'] = mix('assets/dist/css/app.css', 'themes/lovata-tailwind-shopaholic');
     $this['path_js'] = mix('assets/dist/js/app.js', 'themes/lovata-tailwind-shopaholic');
     $this['path_manifest_js'] = mix('assets/dist/js/manifest.js', 'themes/lovata-tailwind-shopaholic');
-    $this['sAdvancedListTypeCategory'] = 'category';
-    $this['sAdvancedListTypeAccount'] = 'account';
-    $this['sProductListSmallTypePopularity'] = 'popularity';
-    $this['sProductListSmallTypeViewedProducts'] = 'viewed_products';
-    $this['sProductListSmallTypeRelatedProducts'] = 'related_products';
 
-    if ($this->theme->has_buddies) {
-        $this->addComponent('Lovata\Buddies\Components\UserData', 'UserData', []);
+    $bHasUserPlugin = \System\Classes\PluginManager::instance()->hasPlugin('lovata.buddies')
+        && !\System\Classes\PluginManager::instance()->isDisabled('Lovata.Buddies');
+    $bHasWishListPlugin = \System\Classes\PluginManager::instance()->hasPlugin('lovata.wishlistshopaholic')
+        && !\System\Classes\PluginManager::instance()->isDisabled('Lovata.WishListShopaholic');
+
+    $this['bHasUserPlugin'] = $bHasUserPlugin && !empty($this->UserData);
+    $this['bHasWishListPlugin'] = $bHasWishListPlugin;
+
+    if ($bHasUserPlugin && !empty($this->UserData)) {
         $this['obUser'] = $this->UserData->get();
     }
-
-    $arBreadcrumbs = [
-        ['name' => $this->page->title, 'url' => \Cms\Classes\Page::url('static', ['static' => false])],
-    ];
-
-    $this['arBreadcrumbs'] = $arBreadcrumbs;
 }
+
 function onStart()
 {
-    $this['sTopInfoBlockHash'] = $this->theme->top_info_block_active && !empty($this->theme->top_info_block_content) ? md5($this->theme->top_info_block_content) : '';
+    $this['sTopInfoBlockHash'] = $this->SiteContent->top_info_block_active && !empty($this->SiteContent->top_info_block_content) ? md5($this->SiteContent->top_info_block_content) : '';
 }
 ?>
 ==
-
-{##}
+{% set arBreadcrumbs = [
+    {'name': page.title, 'url': null},
+] %}
 
 <!DOCTYPE html>
 <html dir="auto" lang="{{ activeLocale ? activeLocale : 'en' }}">
     <head>
-        {% partial 'head/head' %}
+        {{ SeoToolbox.getHeadBegin()|raw }}
+        {% partial 'main/head' %}
+        {% placeholder seo_tags default %}
+            {% component 'SeoToolbox' %}
+        {% endplaceholder %}
+        {{ SeoToolbox.getHeadEnd()|raw }}
     </head>
     <body class="bg-gray-50" itemscope itemtype="http://schema.org/WebPage">
+        {{ SeoToolbox.getBodyBegin()|raw }}
         <div class="sm:container sm:mx-auto px-4 min-h-screen grid grid-cols-full grid-rows-auto-fr-auto">
-            {% partial 'header/header' %}
+            {% partial 'main/header' %}
             <main>
-                {% partial 'breadcrumbs/breadcrumbs' %}
+                {% partial 'common/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
                 <div class="max-w-5xl mx-auto mb-6 md:mb-14">
-                    {% if SeoToolbox.getPageTitle is not empty and this.theme.mighty_seo_heading_is_active %}
-                        <h1 class="font-medium text-lg md:text-2xl mb-3 md:mb-6">{{ SeoToolbox.getPageTitle }}</h1>
-                    {% else %}
-                        <h1 class="font-medium text-lg md:text-2xl mb-3 md:mb-6">{{ this.page.title }}</h1>
-                    {% endif %}
+                    <h1 class="font-medium text-lg md:text-2xl mb-3 md:mb-6">{{ SeoToolbox.getPageTitle()|default(this.page.title) }}</h1>
                     <div class="overflow-x-hidden prose max-w-none text-sm md:text-base">
                         {% page %}
                         {# TODO: Fix table on mobile #}
                     </div>
                 </div>
             </main>
-            {% partial 'footer/footer' %}
-            {% partial 'flash-message/flash-message' %}
+            {% partial 'main/footer' %}
+            {% partial 'message/flash-message' %}
         </div>
-        {% partial 'scripts/scripts' %}
+        {% partial 'main/scripts' %}
+        {{ SeoToolbox.getBodyEnd()|raw }}
     </body>
 </html>

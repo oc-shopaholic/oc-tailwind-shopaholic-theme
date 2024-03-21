@@ -1,0 +1,72 @@
+{#
+Params:
+- obProduct
+- obOfferList
+- obOffer
+#}
+
+{# Get offer properties #}
+{% set obPropertyList = obOffer.property %}
+{# Try to find properties from group with "main" code #}
+{% set obPropertyGroupList = obPropertyList.getGroupList() %}
+{% set obMainPropertyGroup = obPropertyGroupList.getByCode('main') %}
+{% if obMainPropertyGroup.isNotEmpty() %}
+    {% set obPropertyList = obPropertyList.group(obMainPropertyGroup.id) %}
+{% endif %}
+
+{# Render choose section as single select, if product has single main propery #}
+{% if obPropertyList.count() == 1 %}
+    {% set options = [] %}
+    {% set obMainProperty = obPropertyList.first() %}
+    {% for obTempOffer in obOfferList %}
+        {% set obTempProperty = obTempOffer.property.find(obMainProperty.id) %}
+        {% set obPropertyValueList = obTempProperty.property_value %}
+        {% if obTempProperty.hasValue() %}
+            {% set options = options|merge([{'value': obTempOffer.id, 'label': obPropertyValueList.getValueString() ~ ' ' ~ obTempProperty.measure.name }]) %}
+        {% endif %}
+    {% endfor %}
+    {% partial 'form/select'
+        id = 'offer_' ~ obTempOffer.id
+        name = 'offer_' ~ obTempOffer.id
+        labelText = obMainProperty.name
+        options = options
+        selectedValue = obOffer.id
+        hideClearButton = true
+    %}
+{# Render choose section as single select, if product dosn't has single main propery #}
+{% elseif obPropertyList.count() == 0 and obOfferList.count() > 1 %}
+    {% set options = [] %}
+    {% for obTempOffer in obOfferList %}
+        {% set options = options|merge([{'value': obTempOffer.id, 'label': obTempOffer.name }]) %}
+    {% endfor %}
+    {% partial 'form/select'
+        id = 'offer_' ~ obTempOffer.id
+        name = 'offer_' ~ obTempOffer.id
+        labelText = obMainProperty.name
+        options = options
+        selectedValue = obOffer.id
+    %}
+{# Render choose section as list of selects, if product has main properies > 1 #}
+{% elseif obPropertyList.count() > 1 %}
+    {% for obProperty in obPropertyList %}
+        {% set options = [] %}
+        {% for obTempOffer in obOfferList %}
+            {% set obTempProperty = obTempOffer.property.find(obProperty.id) %}
+            {% set obPropertyValueList = obTempProperty.property_value %}
+            {% for obPropertyValue in obPropertyValueList %}
+                {% set options = options|merge({(obPropertyValue.value): {'value': obPropertyValue.slug, 'label': obPropertyValue.value ~ ' ' ~ obTempProperty.measure.name}}) %}
+            {% endfor %}
+        {% endfor %}
+        <div>
+            {% partial 'form/select'
+                id = 'property-' ~ obProperty.id
+                name = 'property-' ~ obProperty.id
+                labelText = obProperty.name
+                placeholder='filter_choose_value'|_
+            %}
+        </div>
+    {% endfor %}
+{# Render hidden input, if product doesn't have main property and product has single offer #}
+{% elseif obOffer.isNotEmpty() %}
+    <input class="hidden" type="radio" id="offer_{{ obOffer.id }}" name="offer_id" value="{{ obOffer.id }}" checked>
+{% endif %}

@@ -1,0 +1,23 @@
+url = "/log-out"
+layout = "main"
+title = "Log out"
+is_hidden = 0
+
+[Logout]
+mode = "submit"
+redirect_on = 1
+redirect_page = "index"
+==
+<?php
+function onInit()
+{
+    $obUser = $this['obUser'];
+    $bHasUserPlugin = $this['bHasUserPlugin'];
+
+    if (!$bHasUserPlugin) {
+        return $this->controller->run('404');
+    }
+}
+?>
+==
+{##}

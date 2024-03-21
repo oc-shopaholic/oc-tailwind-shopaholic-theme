@@ -1,0 +1,50 @@
+items:
+    -
+        title: Catalog
+        type: cms-page
+        code: ''
+        reference: category-list
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: News
+        nesting: null
+        type: cms-page
+        url: null
+        code: ''
+        reference: news-list
+        cmsPage: null
+        replace: null
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: 'Wish list'
+        nesting: null
+        type: cms-page
+        url: null
+        code: ''
+        reference: wish-list
+        cmsPage: null
+        replace: null
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: 'Contact us'
+        nesting: null
+        type: cms-page
+        url: null
+        code: ''
+        reference: contact
+        cmsPage: null
+        replace: null
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+name: 'Navigation Main'

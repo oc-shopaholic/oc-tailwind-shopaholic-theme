@@ -1,11 +1,9 @@
-{##}
-
-{% partial 'input/input'
-    inputClass='_shopaholic-search-input relative z-10 bg-transparent border-gray-400 focus:border-gray-600 ps-12 pe-11 md:pe-10'
-    maxLength='100'
-    sPartialClasses='w-full flex w-full relative items-center mb-4'
-    sLabelText='search_search'|_
-    sLabelClasses='sr-only'
+{% partial 'form/input'
+    inputClasses='_shopaholic-search-input relative z-10 bg-transparent border-gray-400 focus:border-gray-600 ps-12 pe-11 md:pe-10'
+    maxLength = '100'
+    wrapperClasses='w-full flex w-full relative items-center mb-4'
+    labelText='search_search'|_
+    labelClasses='sr-only'
     body
 %}
     <span class="_placeholder absolute text-gray-400 start-12 whitespace-pre"></span>
@@ -26,7 +24,7 @@
 {% endpartial %}
 <section class="_recently-container hidden relative">
     <h2 class="_recently-header text-gray-400 font-medium text-base text-start ms-0 mt-4 mb-5 pe-20 uppercase md:ms-4 md:mb-4 md:mt-6">{{ 'search_history'|_ }}</h2>
-    <button class="_clear-recently-all cursor-pointer hidden absolute top-1 end-1 text-base text-blue-800 p-2 -m-2 md:end-6 md:text-sm hover:underline hover:text-blue-700 active:text-blue-900 active:no-underline focus-visible:outline-dotted focus-visible:outline-2 focus-visible:outline-blue-800" title="{{ 'search_clear'|_ }}">{{ 'search_clear_all'|_ }}</button>
+    <button class="_clear-recently-all link cursor-pointer hidden absolute top-1 end-1 text-base text-blue-800 p-2 -m-2 md:end-6 md:text-sm" title="{{ 'search_clear'|_ }}">{{ 'search_clear_all'|_ }}</button>
     <ul class="_recently-list -mx-4 ps-4 md:mx-0 md:ps-0"></ul>
     <template class="_recently-template">
         <li class="_recently relative md:hover:bg-gray-100 link" tabindex="0">
@@ -47,14 +45,14 @@
 <section class="search-result-wrapper">
     {% partial 'search/search-result' %}
 </section>
-{% partial 'button/button'
-    sText = 'search_show_more'|_
-    sPartialClasses = '_show-more mx-auto hidden relative w-60 mt-8'
+{% partial 'form/button'
+    text = 'search_show_more'|_
+    wrapperClasses = '_show-more mx-auto hidden relative w-60 mt-8'
 %}
-{% partial 'button/button'
-    sText = 'form_loading'|_
-    sPartialClasses = '_show-more-hidden mx-auto hidden relative w-60 ps-12 mt-8'
-    bDisabled = true
+{% partial 'form/button'
+    text = 'form_loading'|_
+    wrapperClasses = '_show-more-hidden mx-auto hidden relative w-60 ps-12 mt-8'
+    disabled = true
     body
 %}
 <svg class="animate-spin absolute top-4 start-14 w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

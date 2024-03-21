@@ -1,0 +1,81 @@
+{
+    "shopaholic.theme.tab.general": "General",
+    "shopaholic.theme.tab.functionality": "Functionality",
+
+    "shopaholic.theme.field.content": "Content",
+    "shopaholic.theme.field.image_alt": "Alternative text",
+    "shopaholic.theme.field.image_alt_comment": "This string will have been shown in case an image has not loaded on the page.",
+    "shopaholic.theme.field.image_title": "Image title",
+    "shopaholic.theme.field.image_title_comment": "This string will be shown on the mouse hover on the image.",
+
+    "shopaholic.theme.site_content.title": "Site content",
+    "shopaholic.theme.site_content.title_update": "Update site content",
+
+    "shopaholic.theme.business_card.tab": "Business Card",
+    "shopaholic.theme.business_card.field.store_name": "Store name",
+    "shopaholic.theme.business_card.field.image_comment": "Recommended resolution: 300×75px. The SVG format is supported.",
+    "shopaholic.theme.business_card.field.description": "Store description or tagline",
+    "shopaholic.theme.business_card.field.phone": "Phone",
+    "shopaholic.theme.business_card.field.phone_comment": "This string will be rendered on the page as a clickable hyperlink.",
+    "shopaholic.theme.business_card.field.email": "Email",
+    "shopaholic.theme.business_card.field.email_comment": "This string will be rendered on the page as a clickable hyperlink.",
+    "shopaholic.theme.business_card.field.address": "Address",
+    "shopaholic.theme.business_card.field.copyright": "Page copyright",
+    "shopaholic.theme.business_card.field.copyright_placeholder": "© 2024 Atmosphere. All rights reserved.",
+
+    "shopaholic.theme.top_info_block.tab": "Top Info Block",
+
+    "shopaholic.theme.site_settings.title": "Site settings",
+    "shopaholic.theme.site_settings.title_update": "Update site content",
+    "shopaholic.theme.site_settings.tab.plugins": "Plugins and extensions",
+    "shopaholic.theme.site_settings.field.shopaholic_bar_section": "Powered by Shopaholic bar",
+    "shopaholic.theme.site_settings.field.plugin_wish_list_for_shopaholic": "Wish List for Shopaholic",
+    "shopaholic.theme.site_settings.field.plugin_wish_list_for_shopaholic_comment": "Requires to install <strong><a href=\"https://octobercms.com/plugin/lovata-wishlistshopaholic\">Wish List for Shopaholic</a></strong>",
+    "shopaholic.theme.site_settings.field.plugin_labels_shopaholic": "Labels for Shopaholic",
+    "shopaholic.theme.site_settings.field.plugin_labels_shopaholic_comment": "Requires to install <strong><a href=\"https://octobercms.com/plugin/lovata-labelsshopaholic\">Labels for Shopaholic</a></strong>",
+    "shopaholic.theme.site_settings.field.plugin_popularity_shopaholic": "Popularity for Shopaholic",
+    "shopaholic.theme.site_settings.field.plugin_popularity_shopaholic_comment": "Requires to install <strong><a href=\"https://octobercms.com/plugin/lovata-popularityshopaholic\">Popularity for Shopaholic</a></strong>",
+    "shopaholic.theme.site_settings.field.plugin_viewed_products_shopaholic": "Viewed Products for Shopaholic",
+    "shopaholic.theme.site_settings.field.plugin_viewed_products_shopaholic_comment": "Requires to install <strong><a href=\"https://octobercms.com/plugin/lovata-viewedproductsshopaholic\">Viewed Products for Shopaholic</a></strong>",
+    "shopaholic.theme.site_settings.field.plugin_related_products_shopaholic": "Related product for Shopaholic",
+    "shopaholic.theme.site_settings.field.plugin_related_products_shopaholic_comment": "Requires to install <strong><a href=\"https://octobercms.com/plugin/lovata-relatedproductsshopaholic\">Related product for Shopaholic</a></strong>",
+    "shopaholic.theme.site_settings.field.plugin_buddies": "Buddies",
+    "shopaholic.theme.site_settings.field.plugin_buddies_comment": "Requires to install <strong><a href=\"https://octobercms.com/plugin/lovata-buddies\">Buddies</a></strong>",
+    "shopaholic.theme.site_settings.field.plugin_faq": "FAQ",
+    "shopaholic.theme.site_settings.field.plugin_faq_comment": "Requires to install <strong><a href=\"https://octobercms.com/plugin/andreishilov-faq\">FAQ</a></strong>",
+
+    "shopaholic.theme.index_page.title": "Index page",
+    "shopaholic.theme.index_page.title_update": "Update index page content",
+    "shopaholic.theme.index_page.latest_news_active": "Latest News block on the Index page",
+
+    "shopaholic.theme.main_carousel.tab": "Main Carousel",
+    "shopaholic.theme.main_carousel.image_comment": "Recommended resolution: 1920×640px. The SVG format is supported.",
+
+    "shopaholic.theme.index_page_seo_block.tab": "Page SEO Block",
+    "shopaholic.theme.index_page_seo_block.image_comment": "Recommended horizontal size: 640px.",
+
+    "shopaholic.theme.product_page.title": "Product page",
+    "shopaholic.theme.product_page.title_update": "Update product page content",
+    "shopaholic.theme.product_page.type_product_detail": "Product detail",
+    "shopaholic.theme.product_page.type_richeditor": "Richeditor",
+
+    "shopaholic.theme.sign_up_page.title": "Sign Up page",
+    "shopaholic.theme.sign_up_page.title_update": "Update Sign Up page content",
+    "shopaholic.theme.sign_up_page.field.terms_link": "Terms & Conditions page link",
+    "shopaholic.theme.sign_up_page.field.policy_link": "Privacy & Cookie Policy page link",
+
+    "shopaholic.theme.payment_methods.tab": "Payment methods",
+    "shopaholic.theme.payment_methods.image_comment": "Recommended resolution: 56×36px. The SVG format is supported.",
+
+    "shopaholic.theme.social_media_list.tab": "Social Media",
+    "shopaholic.theme.social_media_list.image_comment": "Recommended resolution: 40×40px. The SVG format is supported.",
+
+    "shopaholic.theme.contact_page.title": "Contact page",
+    "shopaholic.theme.contact_page.title_update": "Update contact page content",
+    "shopaholic.theme.contact_page.tab_map": "Map",
+    "shopaholic.theme.contact_page.field.map_api_key": "API key",
+    "shopaholic.theme.contact_page.field.map_api_key_comment": "Fill your API key for Google Maps",
+    "shopaholic.theme.contact_page.field.map_popup_title": "Block title",
+    "shopaholic.theme.contact_page.field.map_lat": "Latitude",
+    "shopaholic.theme.contact_page.field.map_lng": "Longitude"
+}

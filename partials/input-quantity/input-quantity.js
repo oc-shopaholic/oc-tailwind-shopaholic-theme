@@ -5,7 +5,7 @@ export default class InputQuantity {
     this.obPlus = this.obCounter.querySelectorAll("._increment");
     this.obCount = this.obCounter.querySelectorAll("._count");
     this.sQuantityCount = this.obCount[0].getAttribute('value');
-  
+
     this.obEvents = [];
   }
 
@@ -75,11 +75,11 @@ export default class InputQuantity {
         app.setValue(app.getMax());
         app.sQuantityCount = app.getMax()
       }else {
-        app.setValue($(ev.target).val());
-        app.sQuantityCount = $(ev.target).val()
+        app.setValue(ev.target.value);
+        app.sQuantityCount = ev.target.value
       }
 
-      app.counterInitialization(); 
+      app.counterInitialization();
     });
 
     this.obEvents[1] = (function(e) {

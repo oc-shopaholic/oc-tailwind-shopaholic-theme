@@ -1,8 +1,13 @@
 [Cart]
 
-[ProductList]
+[SeoToolbox]
 
 [sitePicker]
+
+[UserData]
+
+[global SiteContent]
+handle = Site\SiteContent
 ==
 <?php
 function onInit()
@@ -10,42 +15,55 @@ function onInit()
     $this['path_css'] = mix('assets/dist/css/app.css', 'themes/lovata-tailwind-shopaholic');
     $this['path_js'] = mix('assets/dist/js/app.js', 'themes/lovata-tailwind-shopaholic');
     $this['path_manifest_js'] = mix('assets/dist/js/manifest.js', 'themes/lovata-tailwind-shopaholic');
-    $this['sAdvancedListTypeCategory'] = 'category';
-    $this['sAdvancedListTypeAccount'] = 'account';
-    $this['sProductListSmallTypePopularity'] = 'popularity';
-    $this['sProductListSmallTypeViewedProducts'] = 'viewed_products';
-    $this['sProductListSmallTypeRelatedProducts'] = 'related_products';
 
-    if ($this->theme->has_buddies) {
-        $this->addComponent('Lovata\Buddies\Components\UserData', 'UserData', []);
+    $bHasUserPlugin = \System\Classes\PluginManager::instance()->hasPlugin('lovata.buddies')
+        && !\System\Classes\PluginManager::instance()->isDisabled('Lovata.Buddies');
+    $bHasWishListPlugin = \System\Classes\PluginManager::instance()->hasPlugin('lovata.wishlistshopaholic')
+        && !\System\Classes\PluginManager::instance()->isDisabled('Lovata.WishListShopaholic');
+    $bHasPopularityPlugin = \System\Classes\PluginManager::instance()->hasPlugin('lovata.popularityshopaholic')
+        && !\System\Classes\PluginManager::instance()->isDisabled('Lovata.PopularityShopaholic');
+    $bHasLabelPlugin = \System\Classes\PluginManager::instance()->hasPlugin('lovata.labelsshopaholic')
+        && !\System\Classes\PluginManager::instance()->isDisabled('Lovata.LabelsShopaholic');
+
+    $this['bHasUserPlugin'] = $bHasUserPlugin && !empty($this->UserData);
+    $this['bHasWishListPlugin'] = $bHasWishListPlugin;
+    $this['bHasPopularityPlugin'] = $bHasPopularityPlugin;
+    $this['bHasLabelPlugin'] = $bHasLabelPlugin;
+
+    if ($bHasUserPlugin && !empty($this->UserData)) {
         $this['obUser'] = $this->UserData->get();
     }
 }
+
 function onStart()
 {
-    $this['sTopInfoBlockHash'] = $this->theme->top_info_block_active && !empty($this->theme->top_info_block_content) ? md5($this->theme->top_info_block_content) : '';
+    $this['sTopInfoBlockHash'] = $this->SiteContent->top_info_block_active && !empty($this->SiteContent->top_info_block_content) ? md5($this->SiteContent->top_info_block_content) : '';
 }
 ?>
 ==
-
-{##}
-
 <!DOCTYPE html>
 <html dir="auto" class="scroll-smooth" lang="{{ activeLocale ? activeLocale : 'en' }}">
     <head>
-        {% partial 'head/head' %}
+        {{ SeoToolbox.getHeadBegin()|raw }}
+        {% partial 'main/head' %}
+        {% placeholder seo_tags default %}
+            {% component 'SeoToolbox' %}
+        {% endplaceholder %}
+        {{ SeoToolbox.getHeadEnd()|raw }}
     </head>
     <body class="bg-gray-50 lg:overflow-x-hidden" itemscope itemtype="http://schema.org/WebPage">
-    {# TODO: Fix horizontal scroll on the lg breakpoint. lg:overflow-x-hidden is a temporary solution. #}
-        <div class="sm:container sm:mx-auto px-4 min-h-screen l grid grid-cols-full grid-rows-auto-fr-auto">
-            {% partial 'header/header' %}
+        {{ SeoToolbox.getBodyBegin()|raw }}
+        {# TODO: Fix horizontal scroll on the lg breakpoint. lg:overflow-x-hidden is a temporary solution. #}
+        <div class="sm:container sm:mx-auto px-4 min-h-screen grid grid-cols-full grid-rows-auto-fr-auto">
+            {% partial 'main/header' %}
             <main>
                 {% page %}
             </main>
-            {% partial 'footer/footer' %}
-            {% partial 'flash-message/flash-message' %}
+            {% partial 'main/footer' %}
+            {% partial 'message/flash-message' %}
         </div>
-        {% partial 'scripts/scripts' %}
-        {% partial 'input/input-validation-message' %}
+        {% partial 'form/input-validation-message' %}
+        {% partial 'main/scripts' %}
+        {{ SeoToolbox.getBodyEnd()|raw }}
     </body>
 </html>

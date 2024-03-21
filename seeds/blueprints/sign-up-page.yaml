@@ -1,0 +1,25 @@
+uuid: 7159eee2-43ad-4938-99d7-4d3e88035e15
+handle: Site\SignUpPage
+type: global
+name: Sign Up page
+
+customMessages:
+    titleUpdateForm: 'shopaholic.theme.sign_up_page.title_update'
+
+navigation:
+    label: 'shopaholic.theme.sign_up_page.title'
+    parent: Site\SiteContent
+    icon: icon-user
+    order: 500
+
+fields:
+    sign_up_terms_link:
+        label: 'shopaholic.theme.sign_up_page.field.terms_link'
+        type: pagefinder
+        span: left
+        tab: 'shopaholic.theme.tab.general'
+    sign_up_policy_link:
+        label: 'shopaholic.theme.sign_up_page.field.policy_link'
+        type: pagefinder
+        span: right
+        tab: 'shopaholic.theme.tab.general'

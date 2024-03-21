@@ -1,0 +1,14 @@
+title = "500 Internal Server Error"
+url = "/500"
+layout = "error"
+is_hidden = 0
+==
+{% partial 'message/error-message'
+    wrapperClasses = 'min-h-screen justify-center px-4 py-8 max-w-2xl mx-auto text-center'
+    errorCode = '500'
+    errorMessage = 'error_page_500_description'|_
+    hasButton = true
+    buttonText = 'maintenance_page_reload'|_
+    buttonClasses = 'mt-36 sm:mt-10 w-full sm:w-auto'
+    onClick = 'history.go(0)'
+%}

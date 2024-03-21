@@ -1,0 +1,10 @@
+<div class="_sorting-filter flex items-center mb-4 md:justify-end">
+    <select class="js-choice _shopaholic-sorting bg-transparent w-full border-0 outline-none focus:outline-none focus:border-0 md:w-auto" id="sorting" name="sorting" data-active-text="{{ 'reviews_sort_by'|_ }}">
+        {% if bHasPopularityPlugin %}
+            <option value="popularity|desc" {{ (sActiveSorting == 'popularity|desc' or sActiveSorting is empty) ? 'selected' : '' }}>{{'sorting_popular'|_}}</option>
+        {% endif %}
+        <option value="price|desc" {{ sActiveSorting == 'price|desc' or (sActiveSorting is empty and not bHasPopularityPlugin) ? 'selected' : '' }}>{{'product_sorting_high_to_low'|_}}</option>
+        <option value="price|asc" {{ sActiveSorting == 'price|asc' ? 'selected' : '' }}>{{'product_sorting_low_to_high'|_}}</option>
+        <option value="new" {{ sActiveSorting == 'new' ? 'selected' : '' }}>{{'sorting_newest_first'|_}}</option>
+    </select>
+</div>

@@ -1,0 +1,42 @@
+uuid: 7159eee2-43ad-4938-99d7-4d3e88035e12
+handle: Site\ProductPage
+type: global
+name: Product page
+
+customMessages:
+    titleUpdateForm: 'shopaholic.theme.product_page.title_update'
+
+navigation:
+    label: 'shopaholic.theme.product_page.title'
+    parent: Site\SiteContent
+    icon: icon-book
+    order: 300
+
+fields:
+    content_tabs:
+        tab: 'shopaholic.theme.tab.general'
+        label: 'lovata.toolbox::lang.field.type'
+        type: repeater
+        span: full
+        form:
+            fields:
+                title:
+                    label: 'lovata.toolbox::lang.field.title'
+                    type: text
+                    span: left
+                content:
+                    label: 'shopaholic.theme.field.content'
+                    type: richeditor
+                    span: right
+                    trigger:
+                        action: show
+                        field: dropdown
+                        condition: value[richeditor]
+                dropdown:
+                    label: 'lovata.toolbox::lang.field.type'
+                    type: dropdown
+                    span: left
+                    showSearch: false
+                    default: product_detail
+                    options:
+                        richeditor: 'shopaholic.theme.product_page.type_richeditor'

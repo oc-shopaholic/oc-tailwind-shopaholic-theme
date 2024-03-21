@@ -1,7 +1,7 @@
 {##}
 
 {# TODO:Add svg reusability for whole project #}
-<section class="w-full {{ sPartialClass }}">
+<section class="w-full {{ wraperClasses }}">
     {% if sReviewsCount == true or sSortingPanel == true %}
         <div class="flex justify-between mb-5 items-baseline">
             {% if sReviewsCount == true %}
@@ -32,17 +32,17 @@
             >
                 <span class="me-2 text-sm md:text-base">{{ 'reviews_read_more'|_ }}</span>
                 <svg class="rtl:rotate-180" width="8" height="12">
-                    <use href="../../themes/lovata-tailwind-shopaholic/assets/images/sprite.svg#arrow-right"></use>
+                    <use href="{{ 'assets/images/sprite.svg#arrow-right'|theme }}"></use>
                 </svg>
             </button>
-            {% partial 'off-canvas/off-canvas'
+            {% partial 'common/off-canvas/off-canvas'
                 id = 'review_info'
-                sPosition = 'right'
-                sHeading = 'reviews_customer_reviews_ratings'|_
-                sHeaderClasses = 'items-center mb-7'
-                sCanvasClasses = 'cursor-auto'
-                sIndentsClass = 'px-4 py-10 md:px-10'
-                sBackgroundClass = 'bg-white'
+                position = 'right'
+                heading = 'reviews_customer_reviews_ratings'|_
+                headerClasses = 'items-center mb-7'
+                canvasClasses = 'cursor-auto'
+                indentClasses = 'px-4 py-10 md:px-10'
+                backgroundClasses = 'bg-white'
                 body
             %}
                 {% partial 'review-card-info/review-card-info'
@@ -50,18 +50,18 @@
                 %}
                 {% partial 'product-rating/product-rating'
                     obProduct=obProduct
-                    sPartialClass = 'mt-7'
+                    wraperClasses = 'mt-7'
                     sHeaderHidden = true
                 %}
-                {% partial 'button/button'
-                    sText = 'reviews_review_write'|_
-                    sPartialClasses = '_write-review w-full md:w-72 mt-10 p-2'
-                    bGhost = true
+                {% partial 'form/button'
+                    text = 'reviews_review_write'|_
+                    wrapperClasses = '_write-review w-full md:w-72 mt-10 p-2'
+                    isGhost = true
                 %}
                 <div class="mt-6 md:mt-10">
                     <ul class="_review-list">
                         {% partial 'review-list/review-list-ajax'
-                        sPartialClass = 'mt-10'
+                        wraperClasses = 'mt-10'
                         sReviewsCount = true
                         sSortingPanel = true
                         sListClass = '_review-list'
@@ -69,11 +69,11 @@
                     </ul>
                 </div>
 
-                {% partial 'button/button'
-                    sText = 'reviews_read_mode'|_
-                    sPartialClasses = '_show-more-reviews w-full md:w-72 mt-3 p-2'
-                    bGhost = true
-                    sDataAtribute = 'data-max-page=' ~ iMaxPage ~ ' data-page=1'
+                {% partial 'form/button'
+                    text = 'reviews_read_mode'|_
+                    wrapperClasses = '_show-more-reviews w-full md:w-72 mt-3 p-2'
+                    isGhost = true
+                    dataAtribute = 'data-max-page=' ~ iMaxPage ~ ' data-page=1'
                 %}
             {% endpartial %}
         </div>

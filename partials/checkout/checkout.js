@@ -1,4 +1,4 @@
-import ShopaholicCartShippingType from '@lovata/shopaholic-cart/shopaholic-cart-shipping-type';
+import ShopaholicCartShippingType from '@oc-shopaholic/shopaholic-cart/shopaholic-cart-shipping-type';
 
 export default new class Checkout {
    constructor(){
@@ -40,12 +40,10 @@ export default new class Checkout {
         document.getElementsByClassName('_delivery-terms')[0].addEventListener('click', () => {
             if(document.getElementsByClassName(this.sDeliveryInfo)[0].classList.contains('hidden')){
                 document.getElementsByClassName(this.sDeliveryInfo)[0].classList.remove('hidden');
-                // $(this.sDeliveryInfo).removeAttr('aria-hidden');
                 document.getElementsByClassName(this.sDeliveryToggle)[0].classList.remove('rotate-180');
                 document.getElementsByClassName('_delivery-terms')[0].setAttribute('aria-expanded', true);
             }else {
                 document.getElementsByClassName(this.sDeliveryInfo)[0].classList.add('hidden');
-                // $(this.sDeliveryInfo).attr('aria-hidden', true);
                 document.getElementsByClassName(this.sDeliveryToggle)[0].classList.add('rotate-180');
                 document.getElementsByClassName('_delivery-terms')[0].setAttribute('aria-expanded', false);
 

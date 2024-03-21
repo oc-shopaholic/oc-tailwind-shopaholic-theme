@@ -1,0 +1,108 @@
+{##}
+{% for obProperty in obPropertyList %}
+    {% if obProperty.hasValue() %}
+    <details
+        class="_filter-details border-b border-gray-300"
+        open
+        id = "{{obProperty.id}}"
+    >
+        <summary class="text-base font-medium text-blue-800 cursor-pointer pb-4 pt-4 ps-4 pe-5 after:end-5 focus-visible:text-blue-800 focus-visible:outline-2 focus-visible:outline-dotted focus-visible:outline-blue-800">
+            {{ obProperty.filter_name }} {% if obProperty.measure.isNotEmpty() %}({{ obProperty.measure.name }}){% endif %}
+        </summary>
+        {% if obProperty.filter_type == 'between' %}
+            <div class="flex mb-7 ms-4 me-5 mt-3 _shopaholic-filter-wrapper" data-filter-type="{{ obProperty.filter_type }}" data-property-id="{{ obProperty.id }}">
+                <div class="_filter-range flex" data-filter-id="{{ obProperty.id }}">
+                    <fieldset class="me-3 w-full">
+                        <legend class="sr-only">{{ obProperty.filter_name }}&nbsp;{{'filter_min'|_}}</legend>
+                        {% partial 'form/input'
+                            labelText = 'filter_min'|_
+                            inputClasses = '_min appearance-none quantity_input'
+                            value = fMinWidthFilterValue
+                            name = 'property-min-' ~ obProperty.id
+                            id = 'property-min-' ~ obProperty.id
+                            type = 'number'
+                        %}
+                    </fieldset>
+                    <fieldset class="w-full">
+                        <legend class="sr-only">{{ obProperty.filter_name }}&nbsp;{{'filter_min'|_}}</legend>
+                        {% partial 'form/input'
+                            labelText = 'filter_max'|_
+                            inputClasses = '_max appearance-none quantity_input'
+                            value = fMaxWidthFilterValue
+                            name = 'property-max-' ~ obProperty.id
+                            id = 'property-max-' ~ obProperty.id
+                            type = 'number'
+                        %}
+                    </fieldset>
+                </div>
+            </div>
+        {% elseif obProperty.filter_type == 'checkbox' %}
+            <div class="flex mb-2 ms-4 mt-3 me-5 _shopaholic-filter-wrapper" data-filter-type="{{ obProperty.filter_type }}" data-property-id="{{ obProperty.id }}">
+                {% set obPropertyValueList = obProperty.property_value.sort() %}
+                {% if obProperty.code != 'color' %}
+                    <fieldset class="me-3 w-full">
+                        <legend class="sr-only">{{ obProperty.filter_name }}</legend>
+                        {% for obValue in obPropertyValueList %}
+                            {% set bChecked = arFilterValue[obProperty.id] is not empty and obValue.slug in arFilterValue[obProperty.id] %}
+                            {% set bDisabled = false %}
+                            {% if bChecked == false and arFilterValueWithoutProperty[obProperty.id] is not empty %}
+                                {% set obProductListTemp = obProductList.copy().filterByProperty(arFilterValueWithoutProperty[obProperty.id], obProductPropertyList).filterByProperty(arFilterValueWithoutProperty[obProperty.id], obOfferPropertyList) %}
+                                {% set bDisabled = obValue.isDisabled(obProductListTemp) %}
+                            {% endif %}
+                            {% partial 'form/input-checkbox'
+                                labelText = obValue.value
+                                wrapperClasses = 'flex items-center mb-4'
+                                inputClasses = 'rounded-sm disabled:opacity-20'
+                                disabled = bDisabled
+                                checked= bChecked
+                                id = 'property-' ~ obProperty.id ~ '-' ~ obValue.slug
+                                name = 'property-' ~ obProperty.id
+                                value = obValue.slug
+                            %}
+                        {% endfor %}
+                    </fieldset>
+                {% else %}
+                    <fieldset class="flex flex-wrap">
+                        <legend class="sr-only">{{ obProperty.filter_name }}</legend>
+                        {% partial 'input-color-choose/input-color-choose'
+                            obPropertyValueList = obPropertyValueList
+                            obProperty = obProperty
+                            wrapperClasses = 'me-3'
+                            sContainerClasses = 'w-full flex flex-wrap'
+                        %}
+                    </fieldset>
+                {% endif %}
+            </div>
+        {% elseif obProperty.filter_type == 'select' %}
+            {% set obPropertyValueList = obProperty.property_value.sort() %}
+            {% set selectOptions = [] %}
+            {% for obPropertyValue in obPropertyValueList %}
+                {% set selectOptions = selectOptions|merge([{value: obPropertyValue.slug, label: obPropertyValue.value}]) %}
+            {% endfor %}
+            {% partial 'form/select'
+                id = 'property-' ~ obProperty.id
+                name = 'property-' ~ obProperty.id
+                wrapperClasses = 'w-full'
+                placeholder='filter_choose_value'|_
+                options = selectOptions
+                selectedValue = arFilterValue[obProperty.id]
+            %}
+        {% elseif obProperty.filter_type == 'radio' %}
+            <fieldset class="flex flex-wrap">
+                {% set obPropertyValueList = obProperty.property_value.sort() %}
+                {% for obPropertyValue in obPropertyValueList %}
+                    {% set bChecked = arFilterValue[obProperty.id] is not empty and obValue.slug in arFilterValue[obProperty.id] %}
+                    {% partial 'form/input-radio'
+                        id = 'property-' ~ obProperty.id ~ '-' ~ obPropertyValue.slug
+                        name = 'property-' ~ obProperty.id
+                        wrapperClasses = 'w-full'
+                        value = obPropertyValue.slug
+                        checked = bChecked
+                        text = obPropertyValue.value
+                    %}
+                {% endfor %}
+            </fieldset>
+        {% endif %}
+    </details>
+    {% endif %}
+{% endfor %}

@@ -22,7 +22,7 @@ button.button-state,
 [type='submit'].button-state,
 .button-state{
   @apply
-  focus:outline focus:outline-offset-2 focus:outline-blue-700 focus:outline-1 focus:bg-blue-800 focus:text-white
+  focus:outline focus:outline-offset-1 focus:outline-blue-700 focus:outline-1 focus:bg-blue-800 focus:text-white
   focus-visible:outline focus-visible:outline-offset-1 focus-visible:outline-blue-700 focus-visible:outline-1 focus-visible:bg-blue-800 focus-visible:text-white
   focus-within:outline focus-within:outline-offset-1 focus-within:outline-blue-700 focus-within:outline-1 focus-within:bg-blue-800 focus-within:text-white
   disabled:bg-gray-300 disabled:text-gray-600 disabled:border-0 disabled:outline-gray-500
@@ -50,13 +50,13 @@ button.link[disabled]:active,
 [type='submit'].link[disabled]:active,
 .link {
   @apply outline-current
-  focus:outline-dotted focus:outline-2
-  focus-visible:outline-dotted focus-visible:outline-2
-  focus-within:outline-dotted focus-within:outline-2
+  focus:outline-dotted focus:outline-1
+  focus-visible:outline-dotted focus-visible:outline-1
+  focus-within:outline-dotted focus-within:outline-1
   active:!text-blue-900 active:!bg-transparent
 }
 .link-blue {
-  @apply text-blue-800 hover:text-blue-700 visited:text-purple-800 [&:not(.underline)]:hover:underline
+  @apply inline-block text-blue-800 hover:text-blue-700 visited:text-purple-800 [&:not(.underline)]:hover:underline
 }
 .link-gray {
   @apply text-gray-900 hover:text-blue-700 [&:not(.underline)]:hover:underline

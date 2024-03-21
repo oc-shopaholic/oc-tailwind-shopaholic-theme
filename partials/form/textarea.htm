@@ -1,0 +1,50 @@
+{#
+Params:
+- id
+- name
+- placeholder
+- required
+- disabled
+- rows
+- maxLength
+- validationErrorSelector
+- customErrorMessage
+- validationErrorSelector
+- wrapperClasses
+- labelClasses
+- labelText
+#}
+<div class="{{ wrapperClasses }}">
+    {% if labelText %}
+        <label for="{{ id }}" class="text-sm text-gray-600 inline-block mb-1 {{ labelClasses }}">{{ labelText }}</label>
+    {% endif %}
+    <textarea
+        class="w-full border border-gray-400 py-3 px-4 rounded placeholder-gray-400 focus:outline-none focus:border-blue-800 focus:ring-transparent"
+        id="{{ id }}"
+        {% if name %}
+            name="{{ name }}"
+        {% endif %}
+        {{ required }}
+        {% if rows %}
+            rows="{{ rows }}"
+        {% endif %}
+        {% if placeholder %}
+            placeholder="{{ placeholder }}"
+        {% endif %}
+        {% if disabled == true %}
+            disabled="disabled"
+        {% endif %}
+        {% if maxLength is not same as(null) %}
+            maxlength="{{ maxLength }}"
+        {% endif %}
+        {% if validationErrorSelector is not same as(null) %}
+            data-bouncer-target=".{{ validationErrorSelector }}"
+        {% endif %}
+        {% if customErrorMessage is not same as(null) %}
+            data-bouncer-message="{{ customErrorMessage }}"
+        {% endif %}
+    ></textarea>
+    {% if validationErrorSelector is not same as(null) %}
+        <div class="{{ validationErrorSelector }} text-red-700 text-sm inline-block"></div>
+    {% endif %}
+</div>

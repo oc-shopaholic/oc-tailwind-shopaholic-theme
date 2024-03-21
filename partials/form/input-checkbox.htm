@@ -1,0 +1,41 @@
+{#
+Params:
+- id
+- name
+- labelText
+- value
+- checked
+- required
+- disabled
+- dataAtributes
+- textSize
+- wrapperClasses
+- inputClasses
+- indentClasses
+#}
+{% set id = id|default(name) %}
+
+<div class="{{ wrapperClasses }}">
+    <input
+        class="text-blue-800 focus:border-blue-800 focus:outline-1 focus:outline-blue-800 focus:!shadow-none !ring-0 focus:!ring-0 focus:outline-offset-2 focus-visible:border-blue-800 focus-visible:outline-1 focus-visible:outline-blue-800 focus-visible:!shadow-none focus-visible:!ring-0 focus-visible:outline-offset-1 focus-within:border-blue-800 focus-within:outline-[3px] focus-within:outline-blue-800 focus-within:!shadow-none focus-within:!ring-0 focus-within:outline-offset-1 {{sInputClass}} {{sIndentsClass|default('border-gray-600 me-2.5')}}"
+        type="checkbox"
+        {% if name %}
+            name="{{ name }}"
+        {% endif %}
+        {% if id %}
+            id="{{ id }}"
+        {% endif %}
+        {% if value %}
+            value="{{ value }}"
+        {% endif %}
+        {{ required }}
+        {% if checked %}
+            checked
+        {% endif %}
+        {% if disabled == true %}
+            disabled="disabled"
+        {% endif %}
+        {{dataAtributes}}
+    > {# TODO: Fix focus-visible state for checkbox #}
+    <label for="{{ id }}" class="text-gray-600 {{textSize|default('text-sm md:text-base')}}">{{ labelText|raw}}</label>
+</div>

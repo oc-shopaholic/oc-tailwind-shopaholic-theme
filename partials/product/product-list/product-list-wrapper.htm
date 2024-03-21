@@ -1,0 +1,10 @@
+{% partial 'catalog/sorting/sorting' %}
+
+{% partial 'catalog/tags/tags'
+    wrapperClasses = 'items-start mb-4 flex hidden'
+    listClasses = 'flex flex-wrap -mb-3 scrollbar-x-none overflow-x-scroll ml-4 w-10/12 2xl:w-11/12'
+%}
+<div class="catalog_wrapper">
+    {% partial 'product/product-list/product-list' %}
+</div>
+

@@ -1,0 +1,88 @@
+title = "Contact"
+url = "/contact"
+layout = "main"
+is_hidden = 0
+
+[genericForm]
+rules[name] = "required"
+rules[email] = "required"
+messages_success = "Your form was successfully submitted"
+messages_errors = "There were errors with your submission"
+reset_form = 1
+inline_errors = "disabled"
+allowed_fields[] = "name"
+allowed_fields[] = "email"
+allowed_fields[] = "message"
+sanitize_data = "disabled"
+anonymize_ip = "disabled"
+recaptcha_theme = "light"
+recaptcha_type = "image"
+recaptcha_size = "normal"
+emails_date_format = "Y-m-d"
+==
+<?php
+function onInit()
+{
+    $this['path_page_js'] = mix('assets/dist/js/contact.js', 'themes/lovata-tailwind-shopaholic');
+}
+?>
+==
+{% set arBreadcrumbs = [
+    {'name': 'heading_contact'|_, 'url': null}
+] %}
+
+{% partial 'common/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
+<h1 class="text-lg md:text-3xl text-gray-900 font-medium uppercase mb-4 md:mb-6">{{'heading_contact'|_}}</h1>
+<div class="flex flex-col lg:flex-row mb-7 md:mb-10">
+    <div class="flex flex-col sm:flex-row lg:flex-col gap-y-5 sm:gap-x-20">
+        <div>
+            {% if this.theme.business_card_address is not empty %}
+                <span class="text-gray-600 text-sm md:text-base font-normal mb-2 md:mb-1 inline-block">{{'text_address'|_}}</span>
+                <div class="mb-5 md:mb-6 text-sm md:text-base text-gray-900">{{ this.theme.business_card_address }}</div>
+            {% endif %}
+            {% if this.theme.business_card_phone is not empty %}
+                <span class="text-gray-600 text-sm md:text-base font-normal mb-2 md:mb-1 inline-block">{{'text_phone_number'|_}}</span>
+                <div class="mb-5 md:mb-6 text-sm md:text-base">
+                    <a class="link link-blue underline hover:no-underline" href="tel:{{ this.theme.business_card_phone|replace({'-': '', '(': '', ')': '', ' ': ''}) }}">{{ this.theme.business_card_phone }}</a>
+                </div>
+            {% endif %}
+            {% if this.theme.business_card_email is not empty %}
+                <span class="text-gray-600 text-sm md:text-base font-normal mb-2 md:mb-1 inline-block">{{'input_email'|_}}</span>
+                <div class="text-sm md:text-base">
+                    <a class="underline hover:no-underline link link-blue" href="mailto:{{ this.theme.business_card_email }}">{{ this.theme.business_card_email }}</a>
+                </div>
+            {% endif %}
+        </div>
+        {% if this.theme.pickup_points_active %}
+            {% set arPickupPointsList = this.theme.pickup_points_list %}
+            <div>
+                <span class="text-gray-600 text-sm md:text-base font-normal mb-2 inline-block">{{'text_pickup_points'|_}}</span>
+                <ul class="list-disc list-inside pl-2.5">
+                    {% for obItem in arPickupPointsList %}
+                    <li>{{ obItem.point }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+    {% set sApiKey = this.theme.map_api_key %}
+    {% set sActive = this.theme.map_section_active %}
+    {% if sActive is not empty %}
+        {% partial 'common/map/map' sApiKey = sApiKey %}
+    {% else %}
+        <div class="lg:ml-auto w-full lg:max-w-screen-sm xl:max-w-[850px] mt-7 md:mt-0">
+            <h2 class="text-lg md:text-2xl text-gray-900 font-medium mb-4 md:mb-6 uppercase">{{'heading_waiting_for_your_feedback'|_}}</h2>
+            {% partial 'feedback-form/feedback-form' %}
+        </div>
+    {% endif %}
+</div>
+{% if sActive is not empty %}
+    <div class="full-width lg:bg-feedback lg:bg-no-repeat lg:bg-left lg:bg-[length:300px] xl:bg-auto">
+        <div class="flex sm:container sm:mx-auto px-4">
+            <div class="md:ml-auto w-full lg:max-w-screen-sm xl:max-w-[850px] mb-8 md:mb-12">
+                <h2 class="text-lg md:text-2xl text-gray-900 font-medium mb-4 md:mb-6 uppercase">{{'heading_waiting_for_your_feedback'|_}}</h2>
+                {% partial 'feedback-form/feedback-form' %}
+            </div>
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,18 @@
+{#
+Params:
+- obProduct
+#}
+
+{% if ProductPageContent.content_tabs is not empty %}
+    {% for tabData in ProductPageContent.content_tabs %}
+        <li data-title="{{ tabData.title }}">
+            <div class="flex flex-col md:flex-row" >
+                <article class="prose md:prose-lg" >
+                    <div class="flex flex-col space-y-2" >
+                        {{ tabData.content|raw }}
+                    </div>
+                </article>
+            </div>
+        </li>
+    {% endfor %}
+{% endif %}

@@ -1,0 +1,78 @@
+title = "Account Orders"
+url = "/account/orders"
+layout = "main"
+is_hidden = 0
+
+[UserPage]
+slug = "{{ :slug }}"
+slug_required = 0
+mode = "ajax"
+flash_on = 0
+redirect_on = 0
+redirect_page = "account"
+login_page = "sign-in"
+
+[ProductData]
+
+[Pagination]
+count_per_page = 5
+pagination_limit = 10
+active_class = "pagination__link_current"
+button_list = "last-more,last"
+first_button_name = "First"
+first_button_limit = 3
+first_button_number = 1
+first-more_button_name = "..."
+first-more_button_limit = 3
+prev_button_name = "Prev"
+prev_button_limit = 1
+prev-more_button_name = "..."
+prev-more_button_limit = 1
+next-more_button_name = "..."
+next-more_button_limit = 1
+next_button_name = "Next"
+next_button_limit = 1
+last-more_button_name = "..."
+last-more_button_limit = 3
+last_button_name = "Last"
+last_button_limit = 3
+last_button_number = 1
+==
+<?php
+function onInit()
+{
+    $this['path_page_js'] = mix('assets/dist/js/account-orders.js', 'themes/lovata-tailwind-shopaholic');
+
+    $bHasPlugin = \System\Classes\PluginManager::instance()->hasPlugin('lovata.buddies')
+        && !\System\Classes\PluginManager::instance()->isDisabled('Lovata.Buddies');
+
+    if (!$bHasPlugin) {
+        return $this->controller->run('404');
+    }
+}
+?>
+==
+{% set arBreadcrumbs = [
+    {'name': 'account_my_account'|_, 'url': 'account'|page},
+    {'name': 'account_order_history'|_, 'url': null}
+] %}
+{% set obUser = UserData.get() %}
+{% set obOrderList = obUser.order %}
+
+{% partial 'common/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
+
+<div class="mb-8 mt-1 lg:mb-16">
+    <h1 class="uppercase text-xl mb-4 font-medium lg:text-3xl">{{'account_order_history'|_}}</h1>
+    {% if obOrderList.isNotEmpty() %}
+        {% partial 'order-list/order-list' %}
+    {% else %}
+        {% partial 'message/info-message'
+            wrapperClasses = 'mt-28 md:mt-14'
+            icon = 'empty.svg'
+            message = 'account_no_orders'|_
+            buttonHref = 'catalog'|page
+            buttonText = 'account_start_shopping'|_
+            buttonClasses = 'mt-24 w-full text-center md:px-16 md:mt-6 md:w-auto'
+        %}
+    {% endif %}
+</div>

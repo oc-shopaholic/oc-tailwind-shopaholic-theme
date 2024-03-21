@@ -1,0 +1,76 @@
+{#
+Params:
+- obProduct
+- obOffer
+#}
+
+{% set showMaterials = obOffer.measure.isNotEmpty() or obOffer.weight > 0 or obOffer.height > 0 or obOffer.length > 0 or obOffer.width > 0 %}
+
+{% if showMaterials %}
+    <div class="mt-4 md:mt-0">
+        <table>
+            <caption class="text-start w-max font-bold pb-2">{{'product_materials'|_}}:</caption>
+            <tbody class="flex flex-col space-y-2">
+                {% if obOffer.measure.isNotEmpty() %}
+                    <tr>
+                        <th class="text-start min-w-18 font-normal text-gray-600">{{ 'product_measure'|_ }}</th>
+                        <td class="ps-1.5">{{ obOffer.measure.name }}</td>
+                    </tr>
+                {% endif %}
+                {% if obOffer.weight > 0 %}
+                    <tr>
+                        <th class="text-start min-w-18 font-normal text-gray-600">{{ 'product_weight'|_ }}</th>
+                        <td class="ps-1.5">{{ obOffer.weight }} {{ obOffer.weight_measure.name }}</td>
+                    </tr>
+                {% endif %}
+                {% if obOffer.height > 0 %}
+                    <tr>
+                        <th class="text-start min-w-18 font-normal text-gray-600">{{ 'product_height'|_ }}</th>
+                        <td class="ps-1.5">{{ obOffer.height }} {{ obOffer.dimensions_measure.name }}</td>
+                    </tr>
+                {% endif %}
+                {% if obOffer.length > 0 %}
+                    <tr>
+                        <th class="text-start min-w-18 font-normal text-gray-600">{{ 'product_length'|_ }}</th>
+                        <td class="ps-1.5">{{ obOffer.length }} {{ obOffer.dimensions_measure.name }}</td>
+                    </tr>
+                {% endif %}
+                {% if obOffer.width > 0 %}
+                    <tr>
+                        <th class="text-start min-w-18 font-normal text-gray-600">{{ 'product_width'|_ }}</th>
+                        <td class="ps-1.5">{{ obOffer.width }} {{ obOffer.dimensions_measure.name }}</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endif %}
+
+{# Get propert list #}
+{% set obPropertyList = obProduct.property %}
+{# Get property group list  #}
+{% set obGroupList = obPropertyList.getGroupList() %}
+
+{% for obGroup in obGroupList %}
+    {# Filter property list by group  #}
+    {% set obGroupPropertyList = obPropertyList.group(obGroup.id) %}
+    {% if obGroupPropertyList.isNotEmpty() %}
+        <div class="flex flex-col md:flex-row" >
+            <div class="mt-4 md:mt-0">
+                <table>
+                    <caption class="text-start w-max font-bold pb-2">{{ obGroup.name }}:</caption>
+                    <tbody class="flex flex-col space-y-2">
+                        {% for obProperty in obGroupPropertyList %}
+                            {% if obProperty.hasValue() %}
+                                <tr>
+                                    <th class="text-start min-w-18 font-normal text-gray-600">{{ obProperty.name }}</th>
+                                    <td class="ps-1.5">{{ obProperty.property_value.getValueString() }} {{ obProperty.measure.name }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}

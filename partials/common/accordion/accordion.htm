@@ -1,0 +1,24 @@
+{% set markup = obType == 'markup' %}
+
+<section class="mx-auto mt-4 mb-10 {{wrapperClasses}}">
+    <div class="max-w-[1064px] mx-auto">
+        {% for obItem in obContent %}
+            <details class="js-details border-t border-gray-200 last:border-b">
+                <summary class="js-accordion-summary link font-medium text-blue-800 md:hover:bg-gray-100 text-sm md:text-xl focus-visible:outline-blue px-3 py-3 md:py-4">
+                    {% if markup %}
+                        {{ obItem.question|raw }}
+                    {% else %}
+                        {{ obItem.title }}
+                    {% endif %}
+                </summary>
+                {% set prose = obItem.dropdown != 'product_detail' ?  'prose max-w-none' : 'w-max' %}
+                <div class="pb-5 md:pt-5 px-3 text-sm md:text-base text-gray-600 js-accordion-content {{prose}}">
+                    {% if markup %}
+                        {{ obItem.answer|raw }}
+                    {% endif %}
+                </div>
+            </details>
+        {% endfor %}
+    </div>
+</section>
+{#TODO: Add responsive padding to details#}

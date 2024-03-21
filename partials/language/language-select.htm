@@ -1,14 +1,14 @@
 {##}
-<div class="{{ sPartialClasses }}">
-    {% if sLabelText %}
-        <label for="{{ sId }}" class="block text-sm font-medium leading-6 mb-1 text-gray-900">{{ sLabelText }}</label>
+<div class="{{ wrapperClasses }}">
+    {% if labelText %}
+        <label for="{{ sId }}" class="block text-sm font-medium leading-6 mb-1 text-gray-900">{{ labelText }}</label>
     {% endif %}
     <select
         id="{{ sId }}"
         {% if sName %}
             name="{{ sName }}"
         {% endif %}
-        class="block w-full rounded-md border-0 py-1.5 ps-3 pe-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6 {{ sInputClass }}"
+        class="block w-full rounded-md border-0 py-1.5 ps-3 pe-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6 {{ inputClasses }}"
         {% if arDataAttr %}
             {% for sAttribute, sValue in arDataAttr %}
                 data-{{ sAttribute }}="{{ sValue }}"

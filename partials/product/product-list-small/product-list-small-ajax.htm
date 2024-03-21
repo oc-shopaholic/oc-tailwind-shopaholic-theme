@@ -1,0 +1,40 @@
+{#
+Params:
+- arProductList
+- type
+- showIndex
+#}
+
+{% if arProductList is empty %}
+    {% set type = type|default(input('type')) %}
+    {% if type == 'popularity' %}
+        {% set obProductList = ProductList.make().active().sort('popularity|desc') %}
+    {% elseif type == 'new' %}
+        {% set obProductList = ProductList.make().active().sort('new') %}
+    {% elseif type == 'viewed_products' %}
+        {% set obProductList = ProductList.make().active().viewed() %}
+    {% elseif type == 'related_products' %}
+        {% set iProductID = input('product_id') %}
+        {% set obProduct = ProductData.get(iProductID) %}
+        {% set obProductList = obProduct.related().active() %}
+    {% endif %}
+
+    {% set iPage = iPage|default(input('page')|default(1)) %}
+    {% set iPage = iPage >= 1 ? iPage : 1 %}
+
+    {% set iTake = iTake|default(input('take')) %}
+    {% set iTake = iTake >= 1 ? iTake : 1 %}
+
+    {% set arProductList = obProductList.page(iPage, iTake) %}
+{% endif %}
+
+{% for obProduct in arProductList %}
+    <li class="h-full">
+        {% partial 'product/product-card'
+            obProduct=obProduct
+            wrapperClasses = 'h-full'
+            loopIndex = loop.index
+            showIndex = showIndex
+        %}
+    </li>
+{% endfor %}
