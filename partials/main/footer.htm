@@ -8,7 +8,7 @@
                     wrapperClasses = "lg:mt-8"
                     listClasses = "gap-x-2"
                     arItemList = SiteContent.payment_methods_list
-                    itemClasses = "w-14 aspect-14/9"
+                    itemClasses = "w-14"
                     notFoundMessage = "theme_payment_methods_not_added"|_
                 %}
             {% endif %}
@@ -43,13 +43,13 @@
                             <li class="mt-5 lg:mt-2 text-gray-600">{{ SiteContent.business_card_address }}</li>
                         {% endif %}
                     </ul>
-                {% endif %}ss
+                {% endif %}
                 {% if SiteContent.social_media_list_active %}
                     {% partial 'common/icon-list'
                         sectionHeader = "theme_social_media_list"|_
                         wrapperClasses = "lg:mt-5"
                         arItemList = SiteContent.social_media_list
-                        itemClasses = "w-10 aspect-square"
+                        itemClasses = "w-10"
                         notFoundMessage = "theme_social_media_list_not_added"|_
                     %}
                 {% endif %}
