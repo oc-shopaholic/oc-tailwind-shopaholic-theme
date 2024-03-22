@@ -5,9 +5,13 @@
 <div class="grid md:grid-cols-4 mb-14 mt-6 md:mt-10 gap-12">
     <section class="md:col-span-1{% if isPositionFilter %} order-1{% endif %}">
         {% set obChildrenCategoryList = obActiveCategory.children().site() %}
+        {% set obChildrenCategoryList = obChildrenCategoryList.isNotEmpty() ? obChildrenCategoryList : obActiveCategory.parent.children().site() %}
         {% if obChildrenCategoryList.isNotEmpty() %}
             <div class="mb-4">
-                {% partial 'catalog/subcategory/subcategory' obChildrenCategoryList=obChildrenCategoryList %}
+                {% partial 'catalog/subcategory/subcategory'
+                    obChildrenCategoryList = obChildrenCategoryList
+                    obActiveCategory = obActiveCategory
+                %}
             </div>
         {% endif %}
         {% if bHasFilterPlugin %}

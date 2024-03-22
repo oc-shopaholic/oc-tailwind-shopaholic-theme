@@ -2,7 +2,7 @@ import Choices from 'choices.js';
 
 export default new class CustomerReviews {
   constructor() {
-    this.bShow = document.getElementsByClassName('_review-list-container')[0].querySelectorAll('._show')[0];
+    this.bShow = document.querySelector('._review-list-container ._show');
     this.obLoadMore = null;
     this.sListWrapper = '_review-list';
 

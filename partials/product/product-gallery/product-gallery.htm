@@ -1,5 +1,5 @@
 <div class="md:w-174 m-x-auto overflow-hidden">
-    <div class="gallery-top relative -mx-4 md:mx-0">
+    <div class="js-gallery-top swiper relative -mx-4 md:mx-0">
         {% if bHasWishListPlugin %}
             {% if obProduct.inWishList() %}
                 {# TODO: Add buttons a11y #}
@@ -24,7 +24,7 @@
             roundedClassesNext = 'rounded'
         %}
         {% if arImages is not empty %}
-            <ul class="swiper-wrapper pswp-gallery pswp-gallery--single-column" id="my-gallery">
+            <ul class="swiper-wrapper js-photo-swipe pswp-gallery pswp-gallery--single-column">
                 {% for obImage in arImages %}
                     <li class="swiper-slide cursor-pointer">
                         <a
@@ -62,7 +62,7 @@
         {% endif %}
     </div>
     {% if arImages is not empty %}
-        <div class="gallery-thumbs mt-2">
+        <div class="js-gallery-thumbs swiper mt-2">
             <ul class="swiper-wrapper _swiper-container py-2 px-0.5 flex items-center">
                 {% for obImage in arImages %}
                     <li class="swiper-slide" aria-label="{{ 'slider_item_number'|_({slider_item_number_current: loop.index, slider_item_number_total: arImages|length,}) }}">
