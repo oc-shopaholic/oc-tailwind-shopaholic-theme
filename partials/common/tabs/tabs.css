@@ -1,0 +1,101 @@
+.tabs:not(.is__responsive) .tabs__nav_link {
+  @apply cursor-pointer translate-y-0.5
+}
+
+.tabs__content {
+  @apply block transition-all
+}
+
+.tabs.style__horizontal .tabs__content,
+.tabs.style__vertical .tabs__content {
+  @apply h-0 invisible overflow-hidden opacity-0
+}
+
+.tabs.style__horizontal .tabs__content.is__active,
+.tabs.style__vertical .tabs__content.is__active,
+.tabs__content.is__active {
+  @apply opacity-100 h-auto visible
+}
+
+.tabs:not(.is__responsive) .tabs__nav {
+  @apply relative border-b-2 border-gray-200 flex
+}
+
+.tabs.style__horizontal .tabs__content .tabs__nav_link {
+  @apply hidden
+}
+
+.tabs:not(.is__responsive) .tabs__nav_link {
+  @apply mx-0.5 p-2.5 border-b-4 border-transparent mb-0
+}
+
+.tabs.is__responsive .tabs__nav_link {
+  @apply py-[18px] text-blue-800 font-medium
+}
+
+.tabs:not(.is__responsive) .tabs__nav_link.is__active {
+  @apply font-bold border-blue-800
+}
+
+.tabs:not(.is__responsive) .tabs__content_wrapper {
+  @apply md:flex md:items-start md:justify-between py-5
+}
+
+.tabs.style__accordion,
+.tabs.is__responsive {
+  @apply block
+}
+
+.tabs.style__accordion .tabs__nav,
+.tabs.is__responsive .tabs__nav {
+  @apply hidden
+}
+
+.tabs.style__accordion .tabs__nav_link,
+.tabs.is__responsive .tabs__nav_link, .tabs.style__accordion .tabs__content .tabs__nav_link,
+.tabs.is__responsive .tabs__content .tabs__nav_link {
+  @apply block
+}
+
+.tabs.style__accordion .tabs__nav_link.is__active,
+.tabs.is__responsive .tabs__nav_link.is__active {
+  @apply font-bold
+}
+
+.tabs.style__accordion .tabs__content,
+.tabs.is__responsive .tabs__content {
+  @apply block h-[auto] opacity-100 visible overflow-auto w-auto
+}
+
+.tabs.style__accordion .tabs__content_wrapper,
+.tabs.is__responsive .tabs__content_wrapper {
+  @apply h-0 scale-y-0 overflow-hidden
+}
+
+.tabs.style__accordion .tabs__content.is__active .tabs__content_wrapper,
+.tabs.is__responsive .tabs__content.is__active .tabs__content_wrapper {
+  @apply h-[auto] scale-y-100 py-3
+}
+
+.tabs.style__accordion .tabs__content,
+.tabs.is__responsive .tabs__content {
+  @apply relative bg-transparent border-t-2 border-gray-200 px-0 overflow-x-hidden
+}
+
+.tabs.style__accordion .tabs__content,
+.tabs.is__responsive .tabs__content:last-child {
+  @apply border-b-2 border-gray-200
+}
+
+.tabs.style__accordion .tabs__content,
+.tabs.is__responsive .tabs__content::after {
+  @apply inline-block w-4 h-2.5 top-6 right-4 absolute content-[""] transition-all duration-300
+}
+
+.tabs.style__accordion .tabs__content, .tabs.is__responsive .tabs__content::after {
+  @apply bg-arrow bg-no-repeat
+}
+
+.tabs.style__horizontal .tabs__content.is__active::after {
+  @apply rotate-180
+}

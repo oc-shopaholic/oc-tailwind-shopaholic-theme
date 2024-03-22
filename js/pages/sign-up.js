@@ -1,4 +1,4 @@
-import '../assets/src/js/validation';
+import '/js/vendor/validation';
 
 class SignUp {
   constructor() {

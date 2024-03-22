@@ -1,4 +1,4 @@
-import '../assets/src/js/validation';
+import '/js/vendor/validation';
 import '/partials/common/map/map';
 
 import {FlashMessage} from '/partials/message/flash-message';

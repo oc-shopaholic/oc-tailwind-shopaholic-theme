@@ -1,0 +1,41 @@
+{#
+Params:
+- id
+- name
+- options
+- keyForValue
+- keyForLabel
+- selectedValue
+- dataAtributes
+- wrapperClasses
+- labelText
+#}
+{% set id = id|default(name) %}
+{% set keyForValue = keyForValue|default('value') %}
+{% set keyForLabel = keyForLabel|default('label') %}
+
+<div class="{{ wrapperClasses }}">
+    {% if labelText %}
+        <label for="{{ id }}" class="block text-sm font-medium leading-6 mb-1 text-gray-900">{{ labelText }}</label>
+    {% endif %}
+    <select
+        id="{{ id }}"
+        {% if name %}
+            name="{{ name }}"
+        {% endif %}
+        class="block w-full rounded-md border-0 py-1.5 ps-3 pe-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6 {{ inputClasses }}"
+        {{dataAtributes}}
+    >
+        {% for obOption in options %}
+            {% set optionValue = obOption[keyForValue] %}
+            <option
+                value="{{ optionValue }}"
+                {% if obOption['disabled'] == true %}
+                    disabled="disabled"
+                {% endif %}
+                {{ obOption['attributes']|raw }}
+                {% if optionValue == selectedValue %}selected{% endif %}
+            >{{ obOption[keyForLabel] }}</option>
+        {% endfor %}
+    </select>
+</div>

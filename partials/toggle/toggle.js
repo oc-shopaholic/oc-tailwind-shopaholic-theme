@@ -1,11 +1,11 @@
 export default class Toggle{
     constructor(app){
         this.obApp = app;
-        this.obToggle = this.obApp.querySelectorAll('._button-toggle')[0];
-        this.obContent = this.obApp.querySelectorAll('._toggle-content')[0];
-        this.obArrow = this.obApp.querySelectorAll('._arrow')[0];
-        this.obStatus = this.obApp.querySelectorAll('._status')[0];
-        this.obLoadMore = document.getElementsByClassName('_show-more-orders')[0];
+        this.obToggle = this.obApp.querySelector('._button-toggle');
+        this.obContent = this.obApp.querySelector('._toggle-content');
+        this.obArrow = this.obApp.querySelector('._arrow');
+        this.obStatus = this.obApp.querySelector('._status');
+        this.obLoadMore = document.querySelector('._show-more-orders');
 
         this.obHideText = null;
         this.obShowText = null;

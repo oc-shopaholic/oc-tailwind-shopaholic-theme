@@ -1,22 +1,17 @@
 const mix = require('laravel-mix');
 const jsFileList = [
-  'assets/src/js/app',
-  'pages/account-details',
-  'pages/account-orders',
-  'pages/account-change-password',
-  'pages/sign-in-checkout',
-  'pages/checkout',
-  'pages/contact',
-  'pages/faq',
-  'pages/index',
-  'pages/news-list',
-  'pages/password-reset',
-  'pages/password-restore',
-  'pages/product-item',
-  'pages/catalog',
-  'pages/sign-in',
-  'pages/sign-up',
-  'pages/wish-list',
+  'js/vendor/app',
+  'js/pages/account-orders',
+  'js/pages/sign-in-checkout',
+  'js/pages/checkout',
+  'js/pages/contact',
+  'js/pages/faq',
+  'js/pages/index',
+  'js/pages/password-reset',
+  'js/pages/product-item',
+  'js/pages/catalog',
+  'js/pages/sign-in',
+  'js/pages/sign-up'
 ];
 
 let postCssPlugins = [
@@ -30,7 +25,6 @@ jsFileList.forEach(fileName => mix.js(`./${fileName}.js`, 'assets/dist/js'));
 mix.postCss('assets/src/css/app.css', 'assets/dist/css', postCssPlugins);
 
 mix.browserSync({
-  proxy: '172.17.0.1',
   open: false,
   reloadDelay: 500,
   files: [

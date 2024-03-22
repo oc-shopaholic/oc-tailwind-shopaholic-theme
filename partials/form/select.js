@@ -28,6 +28,10 @@ export default class Select {
         return;
       }
       const clearButton = selectNode.parentNode.querySelector(".js-clear-options");
+      if (!clearButton) {
+        return;
+      }
+
       if (selectNode.value) {
         clearButton.classList.remove("hidden");
       } else {

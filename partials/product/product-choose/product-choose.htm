@@ -31,6 +31,7 @@ Params:
         labelText = obMainProperty.name
         options = options
         selectedValue = obOffer.id
+        hideClearButton = true
     %}
 {# Render choose section as single select, if product dosn't has single main propery #}
 {% elseif obPropertyList.count() == 0 and obOfferList.count() > 1 %}
@@ -62,7 +63,6 @@ Params:
                 name = 'property-' ~ obProperty.id
                 labelText = obProperty.name
                 placeholder='filter_choose_value'|_
-                emptyOption='filter_empty'|_
             %}
         </div>
     {% endfor %}

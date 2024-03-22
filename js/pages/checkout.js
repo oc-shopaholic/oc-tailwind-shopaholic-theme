@@ -12,4 +12,4 @@ import '/partials/checkout/switch';
 
 import '/partials/checkout/order';
 
-import '../assets/src/js/validation';
+import '/js/vendor/validation';

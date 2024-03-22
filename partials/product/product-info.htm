@@ -32,14 +32,14 @@ Params:
         {% if obReviewListWithRating.count() > 0 or obReviewListWithComment.count() > 0 %}
             <div>
                 {% if obReviewListWithRating.count() > 0 %}
-                    <a href="#ratings" class="underline cursor-pointer me-2 md:me-4">
+                    <a href="#ratings" class="text-gray-600 link link-gray underline hover:no-underline cursor-pointer me-2 md:me-4">
                         {{ 'reviews_customers_votes_number'|_({
                             reviews_customers_votes_number_value: obReviewListWithRating.count(),
                         }) }}
                     </a>
                 {% endif %}
                 {% if obReviewListWithComment.count() > 0 %}
-                    <a href="#reviews" class="underline cursor-pointer">
+                    <a href="#reviews" class="text-gray-600 link link-gray underline hover:no-underline cursor-pointer">
                         {{ obReviewListWithComment.count() }} {{'reviews_reviews'|_}}
                     </a>
                 {% endif %}

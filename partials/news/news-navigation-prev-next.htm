@@ -22,7 +22,7 @@
     {% endif %}
     {% if obNextArticle.isNotEmpty() %}
         {% partial 'form/button'
-            wrapperClasses = 'flex border-2 bg-transparent border-blue-800 text-blue-800 py-3 ps-10 pe-7 rounded md:ms-auto'
+            wrapperClasses = 'flex border-2 bg-transparent border-blue-800 text-blue-800 py-3 ps-10 pe-7 rounded'
             text = 'blog_post_next'|_
             url = obNextArticle.getPageUrl('news-item')
             isGhost = true

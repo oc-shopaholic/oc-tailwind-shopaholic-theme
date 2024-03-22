@@ -34,7 +34,12 @@ Params:
         {% if name %}
             name="{{ name }}"
         {% endif %}
-        class="w-full border border-gray-400 py-3 px-4 rounded placeholder-gray-400 focus:outline-none focus:border-blue-800 focus:ring-transparent {{ inputClasses }}"
+        class="w-full border border-gray-400 py-3 px-4 rounded placeholder-gray-400
+            focus:outline-none focus:border-blue-800 focus:ring-transparent
+            focus-visible:outline-none focus-visible:border-blue-800 focus-visible:ring-transparent
+            focus-within:outline-none focus-within:border-blue-800 focus-within:ring-transparent
+            {{ inputClass }}
+        "
         data-was-change="false"
         {{ required }}
         {% if value is not same as(null) %}

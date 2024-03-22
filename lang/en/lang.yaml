@@ -94,7 +94,6 @@ filter_see_all: 'See all'
 filter_to: 'to'
 filter_reset_all: 'Reset all'
 filter_choose_value: 'Choose value'
-filter_empty: 'Empty'
 
 # Forms
 form_cancel: 'Cancel'

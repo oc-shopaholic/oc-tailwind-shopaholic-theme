@@ -7,21 +7,22 @@
 {% endfor %}
 {% set arSiteOptionList = (obSiteGroupList|length > 1) ? obSiteGroupList[iActiveSiteGroupId] : sitePicker.sites %}
 
-<form class="js-picker-submit">
+<form class="js-site-picker">
     <div class="space-y-6">
         {% if arGroupOptionList|length > 1 %}
-            {% partial 'site-picker/site-picker-select'
-                inputClasses = 'js-language-input'
+            {% partial 'main/site-picker/site-picker-select'
+                inputClasses = 'js-country-picker'
                 labelText = 'multisite_country'|_
-                sName = 'site_group_id'
-                sId = 'site_group_id'
-                arOptionList = arGroupOptionList
-                sKeyForValue = 'id'
-                sSelectedValue = iActiveSiteGroupId
+                name = 'site_group_id'
+                id = 'site_group_id'
+                options = arGroupOptionList
+                keyForValue = 'id'
+                keyForLabel = 'name'
+                selectedValue = iActiveSiteGroupId
             %}
         {% endif %}
         {% partial 'form/select'
-            inputClasses = ''
+            inputClasses = 'js-language-picker'
             labelText = 'form_language'|_
             name = 'site-name'
             id = 'site_id'
@@ -29,6 +30,7 @@
             keyForValue = 'url'
             keyForLabel = 'name'
             selectedValue = this.site.url
+            hideClearButton = true
         %}
     </div>
     {% partial 'form/button'

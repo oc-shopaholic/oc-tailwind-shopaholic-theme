@@ -1,8 +1,8 @@
-import '../assets/src/js/validation';
+import '/js/vendor/validation';
 
-class ResetPassword {
+class RestorePassword {
   constructor() {
-    this.buttonNode = document.querySelector('._button-reset-password');
+    this.buttonNode = document.querySelector('._button-restore-password');
     this.formNode = this.buttonNode ? this.buttonNode.closest('form') : null;
   }
 
@@ -25,7 +25,7 @@ class ResetPassword {
     this.buttonNode.setAttribute('disabled', 'disabled');
     const obThis = this;
 
-    oc.request('#password-reset', 'ResetPassword::onAjax', {
+    oc.request('#password-restore', 'RestorePassword::onAjax', {
       complete: (response) => {
         obThis.buttonNode.removeAttribute('disabled');
       },
@@ -34,7 +34,6 @@ class ResetPassword {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const obResetPassword = new ResetPassword();
-  obResetPassword.initHandler();
+  const obRestorePassword = new RestorePassword();
+  obRestorePassword.initHandler();
 });
-

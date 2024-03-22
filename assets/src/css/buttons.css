@@ -1,0 +1,64 @@
+/*There are many classes in the selector because there are problems with the specificity of tailwindcss*/
+button.button-primary,
+[type='button'].button-primary,
+[type='reset'].button-primary,
+[type='submit'].button-primary,
+.button-primary {
+  @apply bg-blue-800 hover:bg-blue-700 hover:border-blue-700 rounded text-white py-3 px-8 text-lg md:text-base
+}
+
+
+button.button-outline,
+[type='button'].button-outline,
+[type='reset'].button-outline,
+[type='submit'].button-outline,
+.button-outline {
+  @apply rounded text-blue-800 border border-blue-800 border-solid py-3 px-8 text-lg md:text-base hover:bg-blue-700 hover:border-blue-700 hover:text-white
+}
+
+button.button-state,
+[type='button'].button-state,
+[type='reset'].button-state,
+[type='submit'].button-state,
+.button-state{
+  @apply
+  focus:outline focus:outline-offset-1 focus:outline-blue-700 focus:outline-1 focus:bg-blue-800 focus:text-white
+  focus-visible:outline focus-visible:outline-offset-1 focus-visible:outline-blue-700 focus-visible:outline-1 focus-visible:bg-blue-800 focus-visible:text-white
+  focus-within:outline focus-within:outline-offset-1 focus-within:outline-blue-700 focus-within:outline-1 focus-within:bg-blue-800 focus-within:text-white
+  disabled:bg-gray-300 disabled:text-gray-600 disabled:border-0 disabled:outline-gray-500
+}
+
+button.button-state:active:not([disabled]),
+[type='button']:active:not([disabled]),
+[type='reset'].button-state:active:not([disabled]),
+[type='submit'].button-state:active:not([disabled]),
+.button-state:active:not([disabled]){
+ @apply bg-blue-900 text-white
+}
+
+button.button-state[disabled]:active,
+[type='button'].button-state[disabled]:active,
+[type='reset'].button-state[disabled]:active,
+[type='submit'].button-state[disabled]:active,
+.button-state[disabled]:active{
+  @apply bg-gray-300 text-gray-600 border-0 outline-gray-500
+}
+
+button.link[disabled]:active,
+[type='button'].link[disabled]:active,
+[type='reset'].link[disabled]:active,
+[type='submit'].link[disabled]:active,
+.link {
+  @apply outline-current
+  focus:outline-dotted focus:outline-1
+  focus-visible:outline-dotted focus-visible:outline-1
+  focus-within:outline-dotted focus-within:outline-1
+  active:!text-blue-900 active:!bg-transparent
+}
+.link-blue {
+  @apply inline-block text-blue-800 hover:text-blue-700 visited:text-purple-800 [&:not(.underline)]:hover:underline
+}
+.link-gray {
+  @apply text-gray-900 hover:text-blue-700 [&:not(.underline)]:hover:underline
+}
+

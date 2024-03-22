@@ -1,4 +1,4 @@
-export default class VanillaTabs {
+export default class Tabs {
 
 	constructor( opts ) {
 
@@ -35,7 +35,7 @@ export default class VanillaTabs {
 
 		// walk on all tabs on the page
 		tabs.forEach( ( el, i ) => {
-			
+
 			let tabsElem = el,
 			childNodes = tabsElem.childNodes,
 			tabsTitles = [],
@@ -158,10 +158,10 @@ export default class VanillaTabs {
 					// add active classes and remove inactive for accordion nav links
 					accordionNavLinks.forEach( ( el ) => {
 						el.classList.remove( 'is__active');
-					});									
+					});
 
 					accordionNavLinks[ activeTabIndex ].classList.add( 'is__active');
-					
+
 				}
 
 			});
@@ -188,7 +188,7 @@ export default class VanillaTabs {
 				accordionNavLinks = tabsElem.querySelectorAll( '.tabs__content > .tabs__nav_link');
 
 				this.skipIfInitialized( tabsElem );
-				
+
 				if( window.innerWidth > Number( this.options.responsiveBreak ) ) {
 
 					tabsElem.classList.remove( responsiveClassName );
