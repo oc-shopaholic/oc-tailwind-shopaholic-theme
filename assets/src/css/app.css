@@ -127,21 +127,7 @@
   .quantity_input{
     -moz-appearance: textfield;
   }
-  .tabs.style__accordion .tabs__content, .tabs.is__responsive .tabs__content::after {
-    content: '';
-    display: inline-block;
-    width: 15px;
-    height: 10px;
-    top: 32px;
-    right: 20px;
-    background: url('/themes/lovata-tailwind-shopaholic/assets/images/marker.svg') no-repeat;
-    position: absolute;
-    transition: .2s;
-    transform: translateY(-50%);
-  }
-  .tabs.style__horizontal .tabs__content.is__active::after{
-    transform: translateY(-50%) rotate(180deg);
-  }
+
   .advanced-list-icon::after {
     content: '';
     width: inherit;
@@ -183,7 +169,6 @@
 .pswp__top-bar.pswp__hide-on-close .pswp__button.pswp__button--fullscreen-button .pswp__icn{
   fill: black;
 }
-
 .pswp__top-bar.pswp__hide-on-close .pswp__button.pswp__button--zoom{
   @apply order-2
 }
@@ -209,21 +194,24 @@
   @apply start-4
 }
 
+
 .pswp__button--arrow--prev .pswp__icn{
   @apply rtl:rotate-180 translate-y-0.5 left-3.5 rtl:left-1.5
 }
 .pswp__button--arrow--next .pswp__icn {
   @apply rotate-180 -translate-x-0.5 translate-y-0.5 rtl:rotate-0 rtl:translate-x-1.5 rtl:translate-y-0.5
 }
+.pswp--click-to-zoom.pswp--zoom-allowed .pswp__img {
+  @apply object-contain
+}
 
 .content-visibility {
   @apply content-visibility-auto contain-intrinsic-size-[0_100px]
 }
 
-
+@import "./buttons.css";
 @import "./swiper.css";
 @import "/node_modules/swiper/swiper-bundle.min.css";
 @import "/node_modules/photoswipe/dist/photoswipe.css";
 @import "/node_modules/choices.js/public/assets/styles/choices.min.css";
-@import "/js/vendor/vanila-tabs/vanilla-tabs.min.css";
-@import "./tabs.css";
+@import "/partials/common/tabs/tabs.css";

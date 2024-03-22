@@ -4,7 +4,7 @@ import '/partials/common/off-canvas/off-canvas';
 import '/partials/common/advanced-list/advanced-list';
 import '/partials/search/search';
 import '/partials/form/select';
-import '/partials/site-picker/site-picker';
+import '/partials/main/site-picker/site-picker';
 import '/partials/product/button-wish-list/button-wish-list';
 import '/partials/message/flash-message';
 import '/partials/common/expandable-text/expandable-text';

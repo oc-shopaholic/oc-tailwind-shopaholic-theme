@@ -1,10 +1,10 @@
 export default class InputQuantity {
   constructor(app) {
     this.obCounter = app;
-    this.obMinus = this.obCounter.querySelectorAll("._decrement");
-    this.obPlus = this.obCounter.querySelectorAll("._increment");
-    this.obCount = this.obCounter.querySelectorAll("._count");
-    this.sQuantityCount = this.obCount[0].getAttribute('value');
+    this.obMinus = this.obCounter.querySelector("._decrement");
+    this.obPlus = this.obCounter.querySelector("._increment");
+    this.obCount = this.obCounter.querySelector("._count");
+    this.sQuantityCount = this.obCount.getAttribute('value');
 
     this.obEvents = [];
   }
@@ -18,7 +18,7 @@ export default class InputQuantity {
   }
 
   getInput() {
-    return this.obCount[0];
+    return this.obCount;
   }
 
   getValue() {
@@ -48,19 +48,19 @@ export default class InputQuantity {
 
   counterInitialization() {
     if (!this.isMin()) {
-      this.stateButton(this.obMinus[0], false);
+      this.stateButton(this.obMinus, false);
     }
 
     if (this.isMin()) {
-      this.stateButton(this.obMinus[0], true);
+      this.stateButton(this.obMinus, true);
     }
 
     if (!this.isMax()) {
-      this.stateButton(this.obPlus[0], false);
+      this.stateButton(this.obPlus, false);
     }
 
     if (this.isMax()) {
-      this.stateButton(this.obPlus[0], true);
+      this.stateButton(this.obPlus, true);
     }
   }
 
@@ -86,18 +86,18 @@ export default class InputQuantity {
       if (!app.isMin()) {
         app.sQuantityCount--;
         app.setValue(app.sQuantityCount);
-        app.stateButton(app.obMinus[0], false);
+        app.stateButton(app.obMinus, false);
       }
 
       if (app.isMin()) {
-        app.stateButton(app.obMinus[0], true);
+        app.stateButton(app.obMinus, true);
       }
 
       if (!app.isMax()) {
-        app.stateButton(app.obPlus[0], false);
+        app.stateButton(app.obPlus, false);
       }
 
-      app.obCount[0].dispatchEvent(
+      app.obCount.dispatchEvent(
         new InputEvent('input', {
           bubbles: true,
           cancelable: true,
@@ -108,25 +108,25 @@ export default class InputQuantity {
       if (!app.isMax()) {
         app.sQuantityCount++;
         app.setValue(app.sQuantityCount);
-        app.stateButton(app.obPlus[0], false);
+        app.stateButton(app.obPlus, false);
       }
       if (app.isMax()) {
-        app.stateButton(app.obPlus[0], true);
+        app.stateButton(app.obPlus, true);
       }
       if (!app.isMin()) {
-        app.stateButton(app.obMinus[0], false);
+        app.stateButton(app.obMinus, false);
       }
 
-      app.obCount[0].dispatchEvent(
+      app.obCount.dispatchEvent(
         new InputEvent('input', {
           bubbles: true,
           cancelable: true,
       }));
     });
 
-    this.obCount[0].addEventListener('input', this.obEvents[0]);
-    this.obMinus[0].addEventListener('click', this.obEvents[1]);
-    this.obPlus[0].addEventListener('click', this.obEvents[2]);
+    this.obCount.addEventListener('input', this.obEvents[0]);
+    this.obMinus.addEventListener('click', this.obEvents[1]);
+    this.obPlus.addEventListener('click', this.obEvents[2]);
   }
 
   init() {

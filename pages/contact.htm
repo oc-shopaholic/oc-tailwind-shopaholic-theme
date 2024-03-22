@@ -43,13 +43,13 @@ function onInit()
             {% if this.theme.business_card_phone is not empty %}
                 <span class="text-gray-600 text-sm md:text-base font-normal mb-2 md:mb-1 inline-block">{{'text_phone_number'|_}}</span>
                 <div class="mb-5 md:mb-6 text-sm md:text-base">
-                    <a class="text-blue-800 underline hover:text-blue-700 hover:no-underline active:text-blue-900 focus-visible:outline-blue" href="tel:{{ this.theme.business_card_phone|replace({'-': '', '(': '', ')': '', ' ': ''}) }}">{{ this.theme.business_card_phone }}</a>
+                    <a class="link link-blue underline hover:no-underline" href="tel:{{ this.theme.business_card_phone|replace({'-': '', '(': '', ')': '', ' ': ''}) }}">{{ this.theme.business_card_phone }}</a>
                 </div>
             {% endif %}
             {% if this.theme.business_card_email is not empty %}
                 <span class="text-gray-600 text-sm md:text-base font-normal mb-2 md:mb-1 inline-block">{{'input_email'|_}}</span>
                 <div class="text-sm md:text-base">
-                    <a class="text-blue-800 underline hover:text-blue-700 hover:no-underline active:text-blue-900 focus-visible:outline-blue" href="mailto:{{ this.theme.business_card_email }}">{{ this.theme.business_card_email }}</a>
+                    <a class="underline hover:no-underline link link-blue" href="mailto:{{ this.theme.business_card_email }}">{{ this.theme.business_card_email }}</a>
                 </div>
             {% endif %}
         </div>

@@ -1,5 +1,5 @@
 <div class="md:w-174 m-x-auto overflow-hidden">
-    <div class="gallery-top relative -mx-4 md:mx-0">
+    <div class="js-gallery-top swiper relative -mx-4 md:mx-0">
         {% if bHasWishListPlugin %}
             {% if obProduct.inWishList() %}
                 {# TODO: Add buttons a11y #}
@@ -24,11 +24,11 @@
             roundedClassesNext = 'rounded'
         %}
         {% if arImages is not empty %}
-            <ul class="swiper-wrapper pswp-gallery pswp-gallery--single-column" id="my-gallery">
+            <ul class="swiper-wrapper js-photo-swipe pswp-gallery pswp-gallery--single-column">
                 {% for obImage in arImages %}
                     <li class="swiper-slide cursor-pointer">
                         <a
-                            href="{{ obImage.getThumb(696, 524, {'quality': 80}) }}"
+                            href="{{ obImage.getThumb(1200, 'auto', {'quality': 80}) }}"
                             role="button"
                             data-pswp-width="1200"
                             data-pswp-height="1000"
@@ -62,23 +62,23 @@
         {% endif %}
     </div>
     {% if arImages is not empty %}
-        <div class="gallery-thumbs mt-2">
+        <div class="js-gallery-thumbs swiper mt-2">
             <ul class="swiper-wrapper _swiper-container py-2 px-0.5 flex items-center">
                 {% for obImage in arImages %}
                     <li class="swiper-slide" aria-label="{{ 'slider_item_number'|_({slider_item_number_current: loop.index, slider_item_number_total: arImages|length,}) }}">
-                        <a role="button" tabindex="0">
+                        <button class="flex items-center h-full" role="button" tabindex="0">
                             <picture>
                                 <source srcset="{{ obImage.getThumb(92, 92, {'quality': 80, 'extension': 'webp'}) }}" type="image/webp">
                                 <source srcset="{{ obImage.getThumb(92, 92, {'quality': 80}) }}" type="image/jpeg">
                                 <img
                                     class="object-contain w-full md:h-full"
-                                    src="{{ obImage.preview_image.getThumb(92, 92, {'quality': 80}) }}"
+                                    src="{{ obImage.getThumb(92, 92, {'quality': 80}) }}"
                                     alt="{{ obItem.description }}"
                                     title="{{ obItem.title }}"
                                     {% if loop.index > 5 %} loading="lazy" {% endif %}
                                 />
                             </picture>
-                        </a>
+                        </button>
                     </li>
                 {% endfor %}
             </ul>

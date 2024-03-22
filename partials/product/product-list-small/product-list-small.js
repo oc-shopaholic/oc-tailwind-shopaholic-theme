@@ -18,7 +18,7 @@ class ProductListSmall {
       const iPage = obThis.buttonNode.dataset.page;
       const iTake = obThis.buttonNode.dataset.take;
       const iProductID = obThis.buttonNode.dataset.productId;
-      const buttonName = obThis.buttonNode.innerHTML;
+      const buttonName = obThis.buttonNode.outerText;
       oc.ajax('onInit', {
         data: {
           'type': type,

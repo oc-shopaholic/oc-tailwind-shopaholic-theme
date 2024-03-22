@@ -33,6 +33,7 @@ module.exports = {
         'check': "url('/themes/lovata-tailwind-shopaholic/assets/images/check.svg')",
         'check-black': "url('/themes/lovata-tailwind-shopaholic/assets/images/check-black.svg')",
         'feedback': "url('/themes/lovata-tailwind-shopaholic/assets/images/union.svg')",
+        'arrow': "url('/themes/lovata-tailwind-shopaholic/assets/images/marker.svg')",
       },
       fontSize: {
         error: ['9rem', '1'],

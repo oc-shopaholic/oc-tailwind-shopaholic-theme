@@ -4,7 +4,7 @@
     <div class="max-w-[1064px] mx-auto">
         {% for obItem in obContent %}
             <details class="js-details border-t border-gray-200 last:border-b">
-                <summary class="js-accordion-summary font-medium text-blue-800 md:hover:bg-gray-100 text-sm md:text-xl focus-visible:outline-blue px-3 py-3 md:py-4">
+                <summary class="js-accordion-summary link font-medium text-blue-800 md:hover:bg-gray-100 text-sm md:text-xl focus-visible:outline-blue px-3 py-3 md:py-4">
                     {% if markup %}
                         {{ obItem.question|raw }}
                     {% else %}

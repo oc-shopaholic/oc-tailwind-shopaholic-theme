@@ -16,12 +16,11 @@ Params:
     class="{{hiddenClasses}}"
     {% if needLoad %}
         aria-hidden="true"
-        data-take="{{iTake}}"
     {% endif %}
 >
-    <a class="overflow-hidden rounded-sm flex flex-row md:flex-col text-sm xl:text-base text-blue-800 font-medium h-full group cursor-pointer border border-l-0 hover:underline md:border-l md:border-t-0 border-solid border-gray-200 rounded-ss-sm md:rounded-es-sm rounded-se-sm md:rounded-t-none md:text-center group-active:underline {{wrapperClasses}}" href="{{ href }}">
+    <a class="link link-blue rounded-sm flex flex-row md:flex-col text-sm xl:text-base font-medium h-full group cursor-pointer border border-l-0 md:border-l md:border-t-0 border-solid border-gray-200 rounded-ss-sm md:rounded-es-sm rounded-se-sm md:rounded-t-none md:text-center group-active:underline {{wrapperClasses}}" href="{{ href }}">
         <span class="w-12 relative md:w-auto h-12 md:h-auto bg-gray-200 group-hover:bg-blue-800 group-focus:bg-blue-900 md:aspect-w-1 md:aspect-h-1">
-            <span class="advanced-list-icon h-6 w-6 bg-6 md:bg-auto after:bg-blue-800 after:group-hover:bg-white transform scale-50" style="--advanced-list-icon-src: url({{ imagePath }})"></span>
+            <span class="advanced-list-icon h-6 w-6 bg-6 md:bg-auto after:bg-blue-800 after:focus-visible:bg-white after:focus-within:bg-white after:group-focus:bg-white after:group-hover:bg-white transform scale-50" style="--advanced-list-icon-src: url({{ imagePath }})"></span>
         </span>
         <span class="flex flex-1 items-center ps-4 pe-2 md:py-4 md:px-2 xl:p-4 md:justify-center border border-l-0 md:border-l md:border-t-0 border-solid border-gray-200 rounded-ss-sm md:rounded-es-sm rounded-se-sm md:rounded-t-none md:text-center group-active:underline">{{ name }}</span>
     </a>

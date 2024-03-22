@@ -18,7 +18,7 @@ Params:
 {% set id = id|default(name) %}
 <div class="{{ wrapperClasses }}">
     <input
-        class="w-4 h-4 text-blue-800 border-gray-600 me-2.5 focus:outline-none focus-visible:border-blue-800 {{inputClasses}}"
+        class="text-blue-800 border-gray-600 me-2.5 outline-current focus:outline-2 outline-blue-800 focus-visible:outline-blue-800 focus-visible:outline-2 focus-within:outline-blue-800 focus-within:outline-2 {{sInputClasses}}"
         type="radio"
         {% if name %}
             name="{{ name }}"

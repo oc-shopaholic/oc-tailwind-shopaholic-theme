@@ -53,7 +53,7 @@ function onStart() {
                 dataAtributes = 'autocomplete="current-password"'
             %}
             <div class="mt-4 text-end">
-                <a href="{{ 'password-restore'|page }}" class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base">{{ 'account_password_forgot'|_ }}</a>
+                <a href="{{ 'password-restore'|page }}" class="link link-blue underline hover:no-underline text-sm md:text-base">{{ 'account_password_forgot'|_ }}</a>
             </div>
             {% partial 'form/input-checkbox'
                 wrapperClasses = 'mt-4 md:mt-3 flex items-center'
@@ -68,7 +68,7 @@ function onStart() {
             %}
             {# TODO: Add inline ajax validation #}
         </form>
-        {% set account_sign_up = '<a class="text-blue-800 hover:text-blue-700 active:text-blue-900 focus-visible:outline-blue underline hover:no-underline text-sm md:text-base" href="'~( 'sign-up'|page )~'">'~('account_sign_up'|_)~'</a>' %}
+        {% set account_sign_up = '<a class="link link-blue underline hover:no-underline text-sm md:text-base" href="'~( 'sign-up'|page )~'">'~('account_sign_up'|_)~'</a>' %}
         <span class="block text-center text-gray-600 text-sm md:text-base mt-8 md:mt-7">{{ 'account_no_account_sign_up' | transRaw({account_sign_up: account_sign_up}) }}</span>
     </div>
 </div>

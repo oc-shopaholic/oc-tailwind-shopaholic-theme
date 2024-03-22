@@ -54,7 +54,7 @@ function onStart()
     <body class="bg-gray-50 lg:overflow-x-hidden" itemscope itemtype="http://schema.org/WebPage">
         {{ SeoToolbox.getBodyBegin()|raw }}
         {# TODO: Fix horizontal scroll on the lg breakpoint. lg:overflow-x-hidden is a temporary solution. #}
-        <div class="sm:container sm:mx-auto px-4 min-h-screen l grid grid-cols-full grid-rows-auto-fr-auto">
+        <div class="sm:container sm:mx-auto px-4 min-h-screen grid grid-cols-full grid-rows-auto-fr-auto">
             {% partial 'main/header' %}
             <main>
                 {% page %}

@@ -6,7 +6,7 @@ Params:
 #}
 
 <nav class="my-4 md:my-6 overflow-auto xl:overflow-hidden scrollbar-x-none {{ wrapperClasses }}" role="navigation">
-    <ul class="flex flex-nowrap xl:flex-wrap text-gray-600" aria-label="{{ 'breadcrumbs_breadcrumbs'|_ }}">
+    <ul class="p-0.5 flex flex-nowrap xl:flex-wrap text-gray-600" aria-label="{{ 'breadcrumbs_breadcrumbs'|_ }}">
         <li>
             <a class="underline hover:no-underline link link-gray" href="{{ 'index'|page }}">{{ 'breadcrumbs_home'|_ }}</a>
         </li>
@@ -15,7 +15,7 @@ Params:
                 {% if loop.last %}
                     <span class="ms-3">{{ arItemData.is_lang ? arItemData.name|_ : arItemData.name }}</span>
                 {% else %}
-                    <a class="underline hover:no-underline ms-3" href="{{ arItemData.url }}">{{ arItemData.is_lang ? arItemData.name|_ : arItemData.name }}</a>
+                    <a class="underline hover:no-underline link link-gray ms-3" href="{{ arItemData.url }}">{{ arItemData.is_lang ? arItemData.name|_ : arItemData.name }}</a>
                 {% endif %}
             </li>
         {% endfor %}
