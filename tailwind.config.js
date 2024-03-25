@@ -76,6 +76,13 @@ module.exports = {
       screens: {
         'ml': '840px',
       },
+      aspectRatio: {
+        '3/4': '3 / 4',
+        '4/3': '4 / 3',
+        '14/9': '14 / 9', // checkout
+        '14/16': '14 / 16', // map
+        '16/5': '16 / 5', // map
+      },
     }
   },
   variants: {
@@ -97,7 +104,6 @@ module.exports = {
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
-    require('@tailwindcss/aspect-ratio'),
     require('tailwindcss-pseudo-elements'),
     require('tailwindcss-content-visibility'),
     plugin(function ({ addUtilities }) {

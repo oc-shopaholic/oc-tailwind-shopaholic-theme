@@ -4,7 +4,7 @@
         {% partial 'navigation/navigation-main-mobile' %}
         {% if SiteContent.business_card_image is not empty %} {#TODO: Change markup to logical link #}
             {% if this.page.id == 'index' %}
-                <span class="flex-shrink-0 w-36 me-20">
+                <span class="flex-shrink-0 w-36 md:me-20">
                     <img src="{{ SiteContent.business_card_image|media }}" alt="{{ SiteContent.business_card_image_alt }}" title="{{ SiteContent.business_card_image_title }}">
                 </span>
             {% else %}

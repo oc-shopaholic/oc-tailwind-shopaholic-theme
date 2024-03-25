@@ -5,6 +5,13 @@ Params:
 - loopIndex
 - showIndex
 #}
+{% set classesAspect = {
+    "1/1": 'aspect-square',
+    "4/3": 'aspect-4/3',
+    "3/4": 'aspect-3/4',
+}
+%}
+{% set aspect = "4/3" %}
 
 <article class="flex flex-col {{ wrapperClasses }}">
     <h{{ cardHeadingLevel }} class="mt-2 order-1">
@@ -12,7 +19,7 @@ Params:
             {{ obArticle.title }}
         </a>
     </h{{ cardHeadingLevel }}>
-    <div class="aspect-w-16 aspect-h-10 md:aspect-h-11">
+    <div class="{{classesAspect[aspect]}}">
         <a class="link" href="{{ obArticle.getPageUrl('news-item') }}">
             {% if obArticle.preview_image is not empty %}
             <picture>
