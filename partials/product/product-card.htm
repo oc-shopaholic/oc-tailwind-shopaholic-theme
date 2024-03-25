@@ -7,7 +7,7 @@ Params:
 
 {% set obOffer = obProduct.offer.first() %}
 
-<div class="_shopaholic-product-wrapper flex flex-col relative border border-gray-200 rounded pb-2 {{ wrapperClasses }}" data-product-id="{{ obProduct.id }}">
+<div class="_shopaholic-product-wrapper flex flex-col relative border border-outline-variant rounded pb-2 {{ wrapperClasses }}" data-product-id="{{ obProduct.id }}">
     <a class="link link-gray text-xs md:text-lg font-bold  line-clamp-3 mb-auto mx-2" href="{{ obProduct.getPageUrl('catalog') }}">
         {{ obProduct.name }}
     </a>
@@ -63,9 +63,9 @@ Params:
         </a>
     </div>
     <div class="mt-2 md:mt-3 mx-2 flex flex-wrap">
-        <span class="break-line text-xs md:text-lg text-gray-900 font-medium me-2">{{ obOffer.currency }}{{ obOffer.price }}</span>
+        <span class="break-line text-xs md:text-lg text-on-surface font-medium me-2">{{ obOffer.currency }}{{ obOffer.price }} 111</span>
         {% if obOffer.old_price_value > obOffer.price_value %}
-            <span class="break-line text-xs md:text-lg text-gray-600 line-through font-medium">{{ obOffer.currency }}{{ obOffer.old_price }}</span>
+            <span class="break-line text-xs md:text-lg text-outline line-through font-medium">{{ obOffer.currency }}{{ obOffer.old_price }}</span>
         {% endif %}
     </div>
     {% if bHasWishListPlugin %}

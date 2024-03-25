@@ -4,16 +4,15 @@ button.button-primary,
 [type='reset'].button-primary,
 [type='submit'].button-primary,
 .button-primary {
-  @apply bg-blue-800 hover:bg-blue-700 hover:border-blue-700 rounded text-white py-3 px-8 text-lg md:text-base
+  @apply bg-primary hover:bg-primary-hover hover:border-primary-hover rounded text-white py-3 px-8 text-lg md:text-base
 }
-
 
 button.button-outline,
 [type='button'].button-outline,
 [type='reset'].button-outline,
 [type='submit'].button-outline,
 .button-outline {
-  @apply rounded text-blue-800 border border-blue-800 border-solid py-3 px-8 text-lg md:text-base hover:bg-blue-700 hover:border-blue-700 hover:text-white
+  @apply rounded text-primary border border-primary border-solid py-3 px-8 text-lg md:text-base hover:bg-primary-hover hover:border-primary-hover hover:text-white
 }
 
 button.button-state,
@@ -22,10 +21,10 @@ button.button-state,
 [type='submit'].button-state,
 .button-state{
   @apply
-  focus:outline focus:outline-offset-1 focus:outline-blue-700 focus:outline-1 focus:bg-blue-800 focus:text-white
-  focus-visible:outline focus-visible:outline-offset-1 focus-visible:outline-blue-700 focus-visible:outline-1 focus-visible:bg-blue-800 focus-visible:text-white
-  focus-within:outline focus-within:outline-offset-1 focus-within:outline-blue-700 focus-within:outline-1 focus-within:bg-blue-800 focus-within:text-white
-  disabled:bg-gray-300 disabled:text-gray-600 disabled:border-0 disabled:outline-gray-500
+  focus:outline focus:outline-offset-1 focus:outline-primary-hover focus:outline-1 focus:bg-primary focus:text-white
+  focus-visible:outline focus-visible:outline-offset-1 focus-visible:outline-primary-hover focus-visible:outline-1 focus-visible:bg-primary focus-visible:text-white
+  focus-within:outline focus-within:outline-offset-1 focus-within:outline-primary-hover focus-within:outline-1 focus-within:bg-primary focus-within:text-white
+  disabled:bg-surface-dim disabled:text-on-surface disabled:border-0 disabled:outline-outline
 }
 
 button.button-state:active:not([disabled]),
@@ -33,7 +32,7 @@ button.button-state:active:not([disabled]),
 [type='reset'].button-state:active:not([disabled]),
 [type='submit'].button-state:active:not([disabled]),
 .button-state:active:not([disabled]){
- @apply bg-blue-900 text-white
+ @apply bg-on-primary-container text-white
 }
 
 button.button-state[disabled]:active,
@@ -41,7 +40,7 @@ button.button-state[disabled]:active,
 [type='reset'].button-state[disabled]:active,
 [type='submit'].button-state[disabled]:active,
 .button-state[disabled]:active{
-  @apply bg-gray-300 text-gray-600 border-0 outline-gray-500
+  @apply bg-surface-dim text-on-surface border-0 outline-outline
 }
 
 button.link[disabled]:active,
@@ -53,12 +52,15 @@ button.link[disabled]:active,
   focus:outline-dotted focus:outline-1
   focus-visible:outline-dotted focus-visible:outline-1
   focus-within:outline-dotted focus-within:outline-1
-  active:!text-blue-900 active:!bg-transparent
+  active:!text-on-primary-container active:!bg-transparent
 }
 .link-blue {
-  @apply inline-block text-blue-800 hover:text-blue-700 visited:text-purple-800 [&:not(.underline)]:hover:underline
+  @apply inline-block text-primary hover:text-primary-hover [&:not(.underline)]:hover:underline
 }
 .link-gray {
-  @apply text-gray-900 hover:text-blue-700 [&:not(.underline)]:hover:underline
+  @apply text-on-surface-variant hover:text-primary-hover [&:not(.underline)]:hover:underline
+}
+.link-dark {
+  @apply text-on-surface hover:text-primary-hover [&:not(.underline)]:hover:underline
 }
 

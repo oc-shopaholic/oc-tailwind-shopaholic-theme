@@ -76,6 +76,28 @@ module.exports = {
       screens: {
         'ml': '840px',
       },
+      colors: {
+        primary: {
+          hover: "var(--primary-hover, #1D4ED8)", // blue-700
+          focus: "var(--primary-focus, #1e3a8a)", // blue-900
+          DEFAULT: "var(--primary, #1E40AF)", // blue-800
+        },
+        "on-primary": {
+          container: "var(--on-primary-container, #1e3a8a)", // blue-900
+        },
+        surface: {
+          dim: "var(--surface-dim, #d1d5db)", // gray-300
+          container: "var(--surface-container, #f3f4f6)", // gray-100
+        },
+        "on-surface": {
+          variant: "var(--on-surface-variant, #4b5563)", // gray-600
+          DEFAULT: "var(--on-surface, #111827)", // gray-900
+        },
+        outline: {
+          variant: "var(--outline-variant, #E5E7EB)", // gray-200
+          DEFAULT: "var(--outline, #9CA3AF)", // gray-400
+        },
+      }
     }
   },
   variants: {

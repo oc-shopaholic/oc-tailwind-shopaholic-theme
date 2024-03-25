@@ -53,8 +53,26 @@ function onInit()
 {% set arCategoryList = obCategoryList.all() %}
 
 {% if arCategoryList is not empty %}
+<style>
+  :root {
+    --primary: #d97706;
+    --primary-hover: #f59e0b;
+    --primary-focus: #854d0e;
+
+    --on-primary-container: #78350f;
+
+    --surface-dim: #cbd5e1;
+    --surface-container: #f1f5f9;
+
+    --on-surface: #0f172a;
+    --on-surface-variant: #475569;
+
+    --outline: #94a3b8;
+    --outline-variant: #e2e8f0;
+  }
+</style>
 <section class="content-visibility p-0.5">
-    <h2 class="font-medium text-3xl text-gray-900 mb-10 uppercase">{{'catalog_categories'|_}}</h2>
+    <h2 class="font-medium text-3xl text-on-surface mb-10 uppercase">{{'catalog_categories'|_}}</h2>
     <div class="flex flex-col mb-10">
         {% partial 'common/advanced-list/advanced-list' body %}
             {% for key,obCategory in arCategoryList %}
@@ -79,7 +97,7 @@ function onInit()
                     disabled = true
                     body
                 %}
-                    <svg class="animate-spin top-4 start-60 w-5 h-5 text-gray-400 md:start-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <svg class="animate-spin absolute top-4 start-60 w-5 h-5 text-outline md:start-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>

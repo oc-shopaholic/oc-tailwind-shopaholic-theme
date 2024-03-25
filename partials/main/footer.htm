@@ -1,4 +1,4 @@
-<footer class="full-width bg-gray-100 {{ wrapperClasses }}">
+<footer class="full-width bg-surface-container {{ wrapperClasses }}">
     <div class="container mx-auto px-4 py-7 lg:pt-10 lg:pb-8 flex flex-col md:flex-row">
         <div class="mb-6 lg:mb-0 pb-6 lg:pb-0 border-b lg:border-b-0 border-gray-300 flex flex-col">
             {% partial 'navigation/navigation-columns' %}
@@ -24,7 +24,7 @@
                     <img loading="lazy" class="block max-h-14" src="{{ SiteContent.business_card_image|media }}" alt="{{ SiteContent.business_card_image_alt }}" title="{{ SiteContent.business_card_image_title }}">
                 {% endif %}
                 {% if SiteContent.business_card_description is not empty %}
-                    <p class="mt-4 text-gray-600 text-sm">{{ SiteContent.business_card_description }}</p>
+                    <p class="mt-4 text-sm text-on-surface-variant">{{ SiteContent.business_card_description }}</p>
                 {% endif %}
                 {% if (SiteContent.business_card_phone or SiteContent.business_card_email or SiteContent.business_card_address) is not empty %}
                     <ul class="mt-4">
@@ -39,7 +39,7 @@
                             </li>
                         {% endif %}
                         {% if SiteContent.business_card_address is not empty %}
-                            <li class="mt-5 lg:mt-2 text-gray-600">{{ SiteContent.business_card_address }}</li>
+                            <li class="mt-5 lg:mt-2 text-on-surface-variant">{{ SiteContent.business_card_address }}</li>
                         {% endif %}
                     </ul>
                 {% endif %}
@@ -56,7 +56,7 @@
         {% endif %}
     </div>
     {% if SiteContent.business_card_copyright is not empty %}
-        <div class="bg-gray-200 text-gray-700 text-center p-2.5 text-xs md:text-sm">{{ SiteContent.business_card_copyright }}</div>
+        <div class="bg-outline-variant text-on-surface-variant text-center p-2.5 text-xs md:text-sm">{{ SiteContent.business_card_copyright }}</div>
     {% endif %}
     {% if SiteContent.shopaholic_bar_active %}
         <div class="text-center text-gray-600 p-2.5 text-xs md:text">
